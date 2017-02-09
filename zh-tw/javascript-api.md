@@ -1,6 +1,12 @@
 # Javascript API
 
-使用 nodejs 時：
+Botnana Control API 可以在 [npm registry](https://www.npmjs.com/) 下載
+
+使用 nodejs 時在你的 `package.json` 加入此 dependency:
+
+    botnana: '*'
+
+並在程式中加入
 
     var botnana = require("botnana");
 
@@ -27,8 +33,8 @@
 
 ## Start、Ready and Poll
 
-程式使用 `botnana.start(ip_address)` 連上位於 `ip_address` 的 Botnana Control。Ready 事件代表已經連上並建立基本資料，
-可以開始處理之後函式內的工作。`botnana.start` 同時會起動輪詢機制，每 100 ms 輪詢 Botnana Control 的回應。
+程式使用 `botnana.start(ip_address)` 連上位於 `ip_address` 的 Botnana Control。`ready` 事件代表已經連上 Botnana Control，
+可以開始處理發給 Botnana Control 的要求。 `botnana.start` 同時會起動輪詢機制，每 100 ms 輪詢 Botnana Control 的回應。
 
     botnana.once("ready", function() {
         // 工作 1

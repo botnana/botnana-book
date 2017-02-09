@@ -3,6 +3,7 @@
 - [簡介](./README.md)
 - [硬體規格](./hardware.md)
     - [Botnana A2](./botnana-a2.md)
+    - [Botnana Box](./botnana-box.md)
 - [軟體規格](./software.md)
 - [Roadmap](./roadmap.md)
 - [入門教學](./tutorial.md)
