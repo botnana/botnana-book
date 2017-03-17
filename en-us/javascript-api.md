@@ -229,7 +229,10 @@ e.g. //範例：執行時會先單軸回 Home，然後再移動到位置 30000 �
     var p2 = new botnana.Program("p2");
     var s1 = p2.ethercat.slave(1);
     s1.hm();
+    s1.go();
+    s1.pp();
     s1.move_to(30000);
+    s1.go();
     p2.deploy();
     botnana.once("deployed", function() {
         p2.run();
