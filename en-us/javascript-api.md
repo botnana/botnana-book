@@ -67,19 +67,19 @@ Data Event API can be used to process these events. e.g.
     botnana.on("homing_method.3", function (value) {
         console.log("Homing method of slave 3 is " + result);
     });
-    botnana.on("dout.2.1", function (value) {
+    botnana.on("dout.1.2", function (value) {
         console.log("dout 1 of slave 2 is " + value);
     });
 
 To only process the event once, use `once`. e.g.
 
-    botnana.once("dout.2.1", function (value) {
+    botnana.once("dout.1.2", function (value) {
         console.log("dout 1 of slave 2 is " + value);
     });
 
 Or use `times` to specify the number of times to process the event. e.g.
 
-    botnana.times("dout.2.1", function (value) {
+    botnana.times("dout.1.2", function (value) {
         console.log("dout 1 of slave 2 is " + value);
     }, 5);
 
@@ -175,16 +175,16 @@ e.g. Configuring drive's homing method: 範例：設定馬達回原點的方式
 
 e.g. Digital and analogue output/input //範例：數位及類比 IO 的輸出及輸入：
 
-    botnana.on("dout.1.5", function (value) {
+    botnana.on("dout.5.1", function (value) {
         console.log("dout 5 of slave 1 is " + value);
     });
-    botnana.on("din.2.4", function (value) {
+    botnana.on("din.4.2", function (value) {
         console.log("din 4 of slave 5 is " + value);
     });
-    botnana.on("aout.3.2", function (value) {
+    botnana.on("aout.2.3", function (value) {
         console.log("aout 2 of slave 3 is " + value);
     });
-    botnana.on("ain.4.2", function (value) {
+    botnana.on("ain.2.4", function (value) {
         console.log("ain 2 of slave 2 is " + value );
     });
     botnana.once("ready", function() {

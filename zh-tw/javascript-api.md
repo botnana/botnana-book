@@ -64,19 +64,19 @@ Botnana Control 回傳資料的格式為
     botnana.on("homing_method.3", function (value) {
         console.log("Homing method of slave 3 is " + result);
     });
-    botnana.on("dout.2.1", function (value) {
+    botnana.on("dout.1.2", function (value) {
         console.log("dout 1 of slave 2 is " + value);
     });
 
 如果只處理一次事件，使用 `once`。例如：
 
-    botnana.once("dout.2.1", function (value) {
+    botnana.once("dout.1.2", function (value) {
         console.log("dout 1 of slave 2 is " + value);
     });
 
 也可以使用 times 指定處理事件的次數。例如：
 
-    botnana.times("dout.2.1", function (value) {
+    botnana.times("dout.1.2", function (value) {
         console.log("dout 1 of slave 2 is " + value);
     }, 5);
 
@@ -157,16 +157,16 @@ Botnana Control 回傳資料的格式為
 
 範例：數位及類比 IO 的輸出及輸入：
 
-    botnana.on("dout.1.5", function (value) {
+    botnana.on("dout.5.1", function (value) {
         console.log("dout 5 of slave 1 is " + value);
     });
-    botnana.on("din.2.4", function (value) {
+    botnana.on("din.4.2", function (value) {
         console.log("din 4 of slave 5 is " + value);
     });
-    botnana.on("aout.3.2", function (value) {
+    botnana.on("aout.2.3", function (value) {
         console.log("aout 2 of slave 3 is " + value);
     });
-    botnana.on("ain.4.2", function (value) {
+    botnana.on("ain.2.4", function (value) {
         console.log("ain 2 of slave 2 is " + value );
     });
     botnana.once("ready", function() {
