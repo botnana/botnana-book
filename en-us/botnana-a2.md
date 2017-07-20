@@ -37,7 +37,8 @@ Pin number | ZCZ Ball number | Pin name  | Signal name            | Mode | TYPE
            |                 |           | dcan0_rx               | 2    | I
            |                 |           | I2C2_SCL               | 3    | I/OD
            |                 |           | spi1_cs1               | 4    | I/O
-           |                 |           | pr1_uart0_rts_n        | 5    | O  |                 |           | pr1_edc_latch1_in      | 6    | I
+           |                 |           | pr1_uart0_rts_n        | 5    | O
+           |                 |           | pr1_edc_latch1_in      | 6    | I
            |                 |           | gpio0_13               | 7    | I/O
 7          | R7              | TIMER4    | gpmc_advn_ale          | 0    | O
            |                 |           | timer4                 | 2    | I/O
