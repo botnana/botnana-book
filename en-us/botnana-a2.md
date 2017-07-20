@@ -22,7 +22,7 @@ Botnana A2 specifications:
 
 40 Pins Attributes：
 
-Pin number | ZCZ Ball number | Pin name  | Signal name            | Mode | TYPE
+Pin number | AM3357 Ball number | Pin name  | Signal name            | Mode | TYPE
 -----------|-----------------|-----------|------------------------|------|------
 3          | D18             | I2C2_SDA  | uart1_ctsn             | 0    | I
            |                 |           | timer6                 | 1    | I/O
