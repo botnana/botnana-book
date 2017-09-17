@@ -14,6 +14,13 @@ Botnana A2 預設於開機時自動啟動動程科技的 Botnana Control P2P 軸
 
     dpkg -r botnana-control
 
+若要用 etherCAT Master RTDM ，且不用 Botnana Control P2P 軸控軟體，則需自行設定如下︰ 
+
+    1. 執行 dpkg -r botnana-control
+    2. 於檔案 /etc/rc.local 中，確認有如下的註解行(3.14.26 會因 kernel 版本而異)
+       #insmod /lib/modules/3.14.26/kernel/drivers/net/ethernet/ti/ti_cpsw.ko
+    3. 執行 insserv ethercat
+
 ### Configuration
 
 請參考 [設定檔](./configuration-file.md) 章節，若無必要，請勿手動修改設定檔。
