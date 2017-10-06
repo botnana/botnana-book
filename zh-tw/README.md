@@ -1,13 +1,13 @@
 # 簡介
 
-霸蕉控制器 (Botnana Control) 是一款工業以太網 EtherCAT 控制器的快速開發以及學習環境。
+霸那控制器 (Botnana Control) 是一款工業以太網 EtherCAT 控制器的快速開發以及學習環境。
 目標是幫使用者快速開發以工業以太網 EtherCAT 為基礎的自動控制以及工業物聯網應用。
 
-![霸焦控制器](./botnana-a2-in-box.png)
+![霸那控制器](./botnana-a2-in-box.png)
 
 ## 應用領域
 
-霸蕉控制器軟體適合以下應用
+霸那控制器軟體適合以下應用
 
 * 資料收集：做為 Remote Control Unit (RTU) 使用。
 * 資料分析：透過內建類似試算表的工具及 Javascript，分析收集到的資料。

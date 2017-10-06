@@ -1,6 +1,6 @@
 # 軟體規格
 
-霸蕉控制器出廠時預裝以下開源軟體，
+霸那控制器出廠時預裝以下開源軟體，
 
 * Debian Linux
 * IgH EtherCAT Master for Linux
