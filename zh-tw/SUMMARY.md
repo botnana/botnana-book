@@ -14,6 +14,7 @@
 - [程式開發界面](programming.md)
     - [JSON API](./json-api.md)
     - [Javascript API](./javascript-api.md)
+    * [Real-time Script API](./real-time-script-api.md)
 - [支援的硬體清單](./known-working-hardware.md)
 
 -------------------------
