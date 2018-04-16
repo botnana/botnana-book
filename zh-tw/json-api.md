@@ -39,11 +39,11 @@ Botnana Control 若回傳資料，格式一律為
 
 ## Configuration API
 
-程式可以使用 Configuration API 來處理設定檔。新的設定值在重開機或重新載入設定檔後生效。
+程式可以使用 Configuration API 來處理參數設定檔。參數檔的設定，在重開機或重新讀取參數檔後生效。
 
-### 修改設定
+### 修改設定參數
 
-修改設定並不會立刻將設定值儲存至設定檔，也不會影響到各裝置目前使用的設定值。
+修改設定參數並不會立刻將設定值儲存至參數設定檔，也不會影響到各裝置目前使用的參數。
 
 範例：修改 slave 1 的回歸原點方法。
 
@@ -57,9 +57,98 @@ Botnana Control 若回傳資料，格式一律為
       }
     }
 
-### 儲存設定
+範例： 修改  motion 參數。可以同時設定多個參數或是單獨一個參數。 
 
-儲存設定會立刻將設定值儲存至設定檔，但不會影響到各裝置目前使用的設定值。
+    {
+      "jsonrpc": "2.0",
+      "method": "config.motion.set",
+      "params": {
+        "period_us":2000
+        "group_capacity": 5
+        "axis_capacity": 5
+       }
+    }
+
+範例：修改 group 的設定，依據 position 設定對應的 group，可以同時設定多個參數或是單獨一個參數。 
+
+    {
+      "jsonrpc": "2.0",
+      "method": "config.group.set",
+      "params": {
+        "position": 1,
+        "name": "BotnanaGo",
+        "gtype": "2D",
+        "mapping": [1, 2],
+        "vmax": 0.5,
+        "amax": 5.0,
+        "jmax": 80.0, 
+      }
+    }
+
+
+    
+範例：修改 axis 的設定，依據 position 設定對應的 axis，可以同時設定多個參數或是單獨一個參數，`encoder_length_unit`可以設定為 `Meter`, `Revolution`或是 `Pulse`。 
+
+    {
+      "jsonrpc": "2.0",
+      "method": "config.axis.set",
+      "params": {
+        "position": 1,
+        "name": "X",
+        "home_offset": 0.05,
+        "encoder_ppu": 2000000.0
+        "encoder_length_unit":"Meter"
+        "encoder_direction": 1
+      }
+    }
+    
+### 取得設定參數
+
+範例： 取得 motion 設定
+
+    {
+      "jsonrpc": "2.0",
+      "method": "config.motion.get",
+    }
+
+輸出範例：
+  
+    config_period_us|2000|config_group_capacity|7|config_axis_capacity|10
+  
+
+範例： 取得 Group 1 設定
+
+    {
+      "jsonrpc": "2.0",
+      "method": "config.group.get",
+      "params": {
+        "position": 1,
+      }
+    }
+
+輸出範例：
+    
+    config_group_name.1|BotnanaGo|config_group_type.1|2D|config_group_mapping.1|2,3|config_group_vmax.1|0.200|config_group_amax.1|5.000|config_group_jmax.1|40.000
+
+範例： 取得 axis 1
+
+    {
+      "jsonrpc": "2.0",
+      "method": "config.axis.get",
+      "params": {
+        "position": 1,
+      }
+    }
+
+
+輸出範例：
+
+    config_axis_name.1|X|config_axis_home_offset.1|0.0500|config_encoder_ppu.1|120000.00000|config_encoder_length_unit.1|Meter|config_encoder_direction.1|-1
+
+
+### 儲存設定參數
+
+儲存設定參數會立刻將設定值儲存至參數設定檔，但不會影響到各裝置目前使用的參數。
 
 關機再開後系統會使用新的設定。
 
@@ -72,11 +161,10 @@ Botnana Control 若回傳資料，格式一律為
 
 ## Slave API
 
-### 讀取 Slave 資訊
+### 讀取 Slave 狀態
 
-使用者可以使用 get 取得 slave 資訊。
-使用 `get_diff` 取得自行上次執行 `get` 或 `get_diff` 後的改變。
-如果上次執行 `get` 或 `get_diff` 後都沒有改變，回傳資料為空字串。
+使用者可以使用 get 取得所有參數。使用 get_diff 取得自上次執行 get 後被改變的狀態。
+如果上次執行 get 後狀態都沒有改變，回傳資料為空字串。
 
     {
       "jsonrpc": "2.0",
@@ -112,7 +200,7 @@ Botnana Control 若回傳資料，格式一律為
     dout.10.3|0|dout.11.3|0|dout.12.3|0|dout.13.3|0|dout.14.3|0|
     dout.15.3|0|dout.16.3|0
 
-其中的 dout.3.11 代表是第三個 Slave 的第 11 個數位輸出。
+其中的 dout.11.3 代表是第三個 Slave 的第 11 個數位輸出。
 
 數位輸入回傳資料範例，以台達電 EC6022 為例：
 
@@ -121,7 +209,7 @@ Botnana Control 若回傳資料，格式一律為
     din.10.7|0|din.11.7|0|din.12.7|0|din.13.7|0|din.14.7|0|din.15.7|0|
     din.16.7|0
 
-其中的 dout.7.15 代表是第七個 Slave 的第 15 個數位輸入。
+其中的 din.15.7 代表是第七個 Slave 的第 15 個數位輸入。
 
 類比輸出回傳資料範例，以台達電 EC9144 為例：
 
@@ -133,9 +221,9 @@ Botnana Control 若回傳資料，格式一律為
     vendor.4|Delta|product.4|EC8124|ain.1.4|0|ain.2.4|0|
     ain.3.4|0|ain.4.4|0
 
-### 設定馬達驅動器
+### 設定馬達驅動器參數
 
-和設定檔的 API 不同，此法設定會立即生效。
+和設定檔的 API 不同，此法設定的參數會立即生效。
 
 馬達驅動器部份目前提供以下參數：
 
@@ -172,7 +260,7 @@ Botnana Control 若回傳資料，格式一律為
       }
     }
 
-### 設定 IO 點
+### 設定 IO 點狀態
 
     {
       "jsonrpc": "2.0",
@@ -227,5 +315,39 @@ Botnana Control 若回傳資料，格式一律為
       "params": {
           "position": 1,
           "channel": 2,
+      }
+    }
+
+## Real-time Scripting API
+
+Botnana Control 在其 real-time event loop 提供 Real-time script 來滿足更複雜的程式需求。為此提供兩個 JSON-RPC：
+
+* motion.evaluate: 解譯 real-time script。注意不可以使用 `motion.evaluate` 來編譯 real-time script。
+* script.deploy: 編譯 real-time script。
+
+TODO: 未來將改名為
+
+* script.evaluate
+* script.deploy
+
+Real-time script 的指令集請見 [Real-time scripting API](./real-time-script-api.md)
+
+範例：以下 RPC 呼叫設定 Slave 1 回歸原點方法的 JSON 命令。
+
+    {
+      "jsonrpc": "2.0",
+      "method": "motion.evaluate",
+      "params": {
+        "script": "33 1 homing-method!"
+      }
+    }
+
+範例：以下 RPC 呼叫編譯了一名為 p1 的程式。當 p1 執行時會設定 Slave 1 回歸原點方法。
+
+    {
+      "jsonrpc": "2.0",
+      "method": "script.deploy",
+      "params": {
+        "script": ": p1  33 1 homing-method! ;"
       }
     }

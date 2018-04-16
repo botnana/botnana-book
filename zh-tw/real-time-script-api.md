@@ -40,7 +40,8 @@ Botnana Control 在其 real-time event loop 中使用了 Forth VM 以滿足更�
 * `pds-goal! ( goal n -- )` Set PDS goal of slave n
 * `reset-fault ( n -- )` Reset fault for slave n
 * `go ( n -- )` Set point for slave n
-* `jog ( position n -- )` Jog slave n to position
+* `target-p! ( p n -- )` Set target position of slave n
+* `target-v! ( v n -- )` Set target velocity of slave n
 * `target-reached? ( n -- t=reached )` Has slave n reached its target position?
 * `home-offset! ( offset n -- )` Set home offset of slave n
 * `homing-a! ( acceleration n -- )` Set homing acceleration of slave n
@@ -53,61 +54,49 @@ Botnana Control 在其 real-time event loop 中使用了 Forth VM 以滿足更�
 
 ### Sine Wave Trajectory
 
-* `start-sine-trj (n --)` Start sine wave trajectory of slave n
-* `stop-sine-trj (n --)` Stop sine wave trajectory of slave n
-* `ems-sine-trj (n --)` Emergency stop sine wave trajectory of slave n
-* `sine-trj-forth (n --)` Sine Wave trajectory forth of slave n
-* `sine-trj-p@ (n --)(F: -- p)` Get sine wave trajectory position of slave n
-* `sine-trj-v@ (n --)(F: -- v)` Get sine wave trajectory velocity of slave n
-* `sine-trj-running? (n -- running)` Is sine wave trajectory running of slave n
-* `sine-trj! (n -- )(F: freq start-pos amplitude)` Set sine wave trajectory parameters of slave n
-* `sine-trj-f! (n -- )(F: freq)` Change running frequency of sine wave trajectory of slave n
-* `sine-trj-amp! (n -- )(F: amplitude)` Change running amplitude of sine wave trajectory of slave n
+* `sine-start (n --)` Start sine wave trajectory of slave n
+* `sine-stop (n --)` Stop sine wave trajectory of slave n
+* `sine-ems (n --)` Emergency stop sine wave trajectory of slave n
+* `sine-forth (n --)` Sine Wave trajectory forth of slave n
+* `sine-p@ (n --)(F: -- p)` Get sine wave trajectory position of slave n
+* `sine-v@ (n --)(F: -- v)` Get sine wave trajectory velocity of slave n
+* `sine-running? (n -- running)` Is sine wave trajectory running of slave n
+* `sine-cfg! (n -- )(F: freq start-pos amplitude)` Set sine wave trajectory parameters of slave n
+* `sine-f! (n -- )(F: freq)` Change running frequency of sine wave trajectory of slave n
+* `sine-amp! (n -- )(F: amplitude)` Change running amplitude of sine wave trajectory of slave n
 
 
-### Manager
+### Start, Stop and Reset
 
 * `start (--)` start 
 * `stop (--)` stop
 * `ems (--)` emergency stop
 * `reset-job (--)` reset job
 
-
-### Joint Groups and Trajectory Planners
-
-For all joint groups and trajectory planners:
-
-
-* `end? (-- flag) ` all groups at end?
-* `stop? (-- flag) ` all groups stopped?
-
-
 ##### Configuration
-
-可能不需要 Forth 指令，用 config 檔處理。Config 檔還可以指定軸的英文名。
 
 **For System**
 
-* `.feature (--)`  Print information of joint system (capacity, group name, group type and joint name). example of `.feature`: `gnames|Main,Orbit|gtypes|1D,2D|jnames|X,Y,Z`. (只有初始化時會設定motion，之後不可變動 motion 的配置，但可以修改設定檔下次啟動生效)
+* `.motion (--)`  Print information of motion. Example of return message: `period_us|2000|group_capacity|7|joint_capacity|10` 
 
 **For Group**
 
-* `gvmax! (g --) (F: v)` Set vmax of group.
-* `gamax! (g --) (F: a)` Set vmax of group.
-* `gjmax! (g --) (F: j)` Set vmax of group.
-* `map1d (x g --)` Set joint mapping (x) of group (g). the group shall be Group1D.   
-* `map2d (x y g --)` Set joint mapping (x, y) of group (g). the group shall be Group2D.
-* `map3d (x y z g --)` Set joint mapping (x, y, z) of group (g). the group shall be Group3D.
-* `.gconfig (g --)`  Print information of group g. Example of `1 .gconfig` : `gmap.1|1|vmax.1|0.100|amax.1|5.000|jmax.1|80.000`.   Example of `2 .gconfig` : `gmap.2|2,3|vmax.2|0.100|amax.2|5.000|jmax.2|80.000`.  
+* `gvmax! (g --) (F: v)` Set vmax of group (g).
+* `gamax! (g --) (F: a)` Set amax of group (g).
+* `gjmax! (g --) (F: j)` Set jmax of group (g).
+* `map1d (x g --)` Set axis mapping (x) of group (g). The group shall be Group1D.   
+* `map2d (x y g --)` Set axis mapping (x, y) of group (g). The group shall be Group2D.
+* `map3d (x y z g --)` Set axis mapping (x, y, z) of group (g). The group shall be Group3D.
+* `.grpcfg (g --)`  Print information of group g. Example of `1 .grpcfg`, return message : `group_name.1|BotnanaGo|group_type.1|1D|group_mapping.1|1|group_vmax.1|0.100|group_amax.1|5.000|group_jmax.1|80.000`  
 
-**For Joint**
+**For Axis**
 
-* `enc-scale! (j --) (F: scale --)` Set encoder scale (pulses_for_unit) of joint j.
-* `enc-dir! (dir j --) ` Set encoder polarity of joint j.
-* `homofs! (j --) (F: ofs --)` Set home offset of joint j.
-* `.jconfig (j --)`  Print information of joint j. Example of `1 .jconfig` : `enc-scale.1|1000000.00000|enc-polarity.1|1|jhmofs.1|-0.1000`
+* `enc-ppu! (j --) (F: ppu --)` Set encoder ppu (pulses_per_unit) of axis j.
+* `enc-u! (u j --) ` Set encoder length unit of axis j. `u = 0 as Meter, u = 1 as Revolution, u = 2 as Pulse`
+* `enc-dir! (dir j --) ` Set encoder direction of axis j.
+* `hmofs! (j --) (F: ofs --)` Set home offset of axis j.
+* `.axiscfg (j --)`  Print information of axis j. Example of `1 .axiscfg`, return message : `axis_name.1|X|home_offset.1|0.0500|encoder_ppu.1|120000.00000|encoder_length_unit.1|Meter|encoder_direction.1|-1`
 `.    
-
 
 #### Path Planning Commands for All Dimensions
 
@@ -116,11 +105,20 @@ For all joint groups and trajectory planners:
 * `0path` ( -- ) Clear path.
 * `feedrate! ( F: v -- )` Set programmed segment feedrate. `v` > 0.
 * `feedrate@ ( F: -- v )` Get programmed segment feedrate. 
-
+* `+coordinator (--)` Enable coordinator.
+* `-coordinator (--)` Disable coordinator.
+* `+group (--)` Enable current group.
+* `-group (--)` Disable current group.
+* `vcmd! ( F: v -- )` Set execution velocity command.`v` can be negataive.
+* `gend? (-- flag )` Has path of current group ended ?
+* `gstop? (-- flag )` Has path of current group stopped ?
+* `empty? (-- flag)` Is path of current group empty?
+* `end? (-- flag)` Has path of all groups of coordinator ended ?
+* `stop? (-- flag)` Has path of all groups of coordinator stopped ?
 
 #### 1D Path Planning
 
-Current joint group should be a 1D for the following commands to work without failure.
+Current axis group should be 1D for the following commands to work without failure.
 
 * `move1d (F: x -- )` Declare the current absolute coordinate to be `x`. (G92)
 * `line1d (F: x -- )` Add a line to `x` into path.
@@ -129,7 +127,7 @@ Current joint group should be a 1D for the following commands to work without fa
 
 Current joint group should be 2D for the following commands to work without failure.
 
-* `move2d (F: x y -- )` Declare the current absolute coordinate to be `x`. (G92)
+* `move2d (F: x y -- )` Declare the current absolute coordinate to be `(x, y)`. (G92)
 * `line2d (F: x y -- )` Add a line to `(x, y)` into path.
 * `arc2d ( n --)(F: cx cy x y -- )` Add an arc to `(x, y)` with center `(cx, cy)` into path.
   Argument `n` should not be zero. For counterclockwise arc `n>0` and `n-1` is the _winding number_ with respect to center. For clockwise arc `n<0` and `n+1` is the _winding number_ with respect to center.
@@ -138,7 +136,7 @@ Current joint group should be 2D for the following commands to work without fail
 
 Current joint group should be 3D for the following commands to work without failure.
 
-* `move3d (F: x y z -- )` Declare the current absolute coordinate to be `x`. (G92)
+* `move3d (F: x y z -- )` Declare the current absolute coordinate to be `(x, y, z)`. (G92)
 * `line3d (F: x y z -- )` Add a line to `(x, y, z)` into path.
 * `helix3d ( n --)(F: cx cy x y z -- )` Add a helix to `(x, y, z)` with center `(cx, cy)` into path. If z is the current z, the added curve is an arc.
   Argument `n` should not be zero. For counterclockwise arc `n>0` and `n-1` is the _winding number_ with respect to center. For clockwise arc `n<0` and `n+1` is the _winding number_ with respect to center.
@@ -147,40 +145,28 @@ Current joint group should be 3D for the following commands to work without fail
 
 Current joint group should be 4D for the following commands to work without failure.
 
-* `move4d (F: x y z c -- )` Declare the current absolute coordinate to be `x`. (G92)
+* `move4d (F: x y z c -- )` Declare the current absolute coordinate to be `x, y, z, c`. (G92)
 * `line4d (F: x y z c -- )` Add a line to `(x, y, z, c)` into path.
 
 #### 5D Path Planning (TODO)
 
 Current joint group should be 5D for the following commands to work without failure.
 
-* `move5d (F: x y z a b -- )` Declare the current absolute coordinate to be `x`. (G92)
+* `move5d (F: x y z a b -- )` Declare the current absolute coordinate to be `x, y, z, a, b`. (G92)
 * `line5d (F: x y z a b -- )` Add a line to `(x, y, z, a, b)` into path.
 
 #### 6D Path Planning (TODO)
 
 Current joint group should be 6D for the following commands to work without failure.
 
-* `move6d (F: x y z a b c -- )` Declare the current absolute coordinate to be `x`. (G92)
+* `move6d (F: x y z a b c -- )` Declare the current absolute coordinate to be `x, y, z, a, b, c`. (G92)
 * `line6d (F: x y z a b c -- )` Add a line to `(x, y, z, a, b, c)` into path.
 
-#### Path Execution
-
-* `+coordinated (--)` Enable coordinated joint groups.
-* `-coordinated (--)` Disable coordinated joint groups.
-* `+group (--)` Activate current group.
-* `-group (--)` Inactive current group.
-* `vcmd! ( F: v -- )` Set execution velocity command.`v` can be negataive.
-* `gend? (-- flag )` At end of path of current group ?
-* `gstop? (-- flag )` Is stopped of path of current group ?
-* `empty? (-- flag)` Is path empty of current group ?
-* `end? (-- flag)` At end of all groups of joint system ?
-* `stop? (-- flag)` Are stopped of all groups of joint system ?
 
 #### Information
 
-* `.group (g --)` Print information of group g 
-* `.joint (j --)` Print information of joint j 
+* `.group (g --)` Print information of group g. Example of `1 .group`, return message : `group_enabled.1|false|group_stopping.1|true|move_count.1|0|path_event_count.1|0|focus.1|0|source.1|0|pva.1|0.00000,0.00000,0.00000|move_length.1|0.00000|total_length.1|0.00000|feedrate.1|0.000|vcmd.1|0.000|max_look_ahead_count.1|0|ACS.1|0.00000|PCS.1|0.00000`
+* `.axis (j --)` Print information of axis j. Example of `1 .axis`, return message : `axis_command_position.1|0.00000|axis_corrected_position.1|0.00000|encdoer_position.1|-0.05000|following_error.1|0.00000`
 
 ### CPU Timing
 
@@ -192,7 +178,7 @@ Current joint group should be 6D for the following commands to work without fail
 * `tester-chkusb ( -- )` Test USB memory stick
 * `tester-chkusd ( -- )` Test microSD
 * `-tester ( -- )` Disable all tester outputs
-* `+tester ( -- )` Enable all tester outputs,
+* `+tester ( -- )` Enable all tester outputs
 * `tester-high ( -- )` Set all tester outputs to high
 * `tester-low ( -- )` Set all tester outputs to 0V
 
