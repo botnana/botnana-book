@@ -20,7 +20,7 @@
 
 * Frequency converter (X)
 * Servo drive 
-* Steeper motor
+* Stepper motor
 * Multiple drive module (X)
 
 ### Beckhoff
