@@ -51,6 +51,9 @@ Botnana Control 在其 real-time event loop 中使用了 Forth VM 以滿足更�
 * `profile-a1! ( acceleration n -- )` Set profile acceleration of slave n
 * `profile-a2! ( deceleration n -- )` Set profile deceleration of slave n
 * `profile-v! ( velocity n -- )` Set profile velocity of slave n
+* `servo-on ( n -- )` Servo on of slave n
+* `servo-off ( n -- )` Servo off of slave n
+* `servo-stop ( n --)` Servo stop of slave n
 
 ### Sine Wave Trajectory
 
@@ -95,7 +98,7 @@ Botnana Control 在其 real-time event loop 中使用了 Forth VM 以滿足更�
 * `enc-u! (u j --) ` Set encoder length unit of axis j. `u = 0 as Meter, u = 1 as Revolution, u = 2 as Pulse`
 * `enc-dir! (dir j --) ` Set encoder direction of axis j.
 * `hmofs! (j --) (F: ofs --)` Set home offset of axis j.
-* `.axiscfg (j --)`  Print information of axis j. Example of `1 .axiscfg`, return message : `axis_name.1|X|home_offset.1|0.0500|encoder_ppu.1|120000.00000|encoder_length_unit.1|Meter|encoder_direction.1|-1`
+* `.axiscfg (j --)`  Print information of axis j. Example of `1 .axiscfg`, return message : `axis_name.1|X|axis_home_offset.1|0.0500|encoder_ppu.1|120000.00000|encoder_length_unit.1|Meter|encoder_direction.1|-1`
 `.    
 
 #### Path Planning Commands for All Dimensions
