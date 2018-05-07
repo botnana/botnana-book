@@ -31,7 +31,7 @@
 * Real-time extenstion (Xenomai)
 * 支援 Modbus。
 * 支援 *csp* 和 *pv* 模式。
-* 可進行三軸同動及直線圓弧補間。補間支援具 pp 模式的馬達驅動器。
+* 可進行三軸同動及直線圓弧補間。補間支援具 csp 模式的馬達驅動器。
 
 ### 等級三：Botnana CNC
 

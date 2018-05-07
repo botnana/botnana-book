@@ -16,6 +16,9 @@
     - [Javascript API](./javascript-api.md)
     - [Real-time Script API](./real-time-script-api.md)
 - [支援的硬體清單](./known-working-hardware.md)
+- [常見問題](./faq.md)
+    - [網路設定](./faq/network.md)
+
 
 
 
