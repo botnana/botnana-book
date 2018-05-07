@@ -92,7 +92,7 @@ debian@arm:~$
 
 ### 有線網路設定
 
-先將網路線連上， 使用 `udo connmanctl technologies` 查詢連線狀態。應會出現 `/net/connman/technology/ethernet` 項目
+先將網路線連上， 使用 `sudo connmanctl technologies` 查詢連線狀態。應會出現 `/net/connman/technology/ethernet` 項目
 
 ```
 debian@Q190G4:~$ sudo connmanctl technologies 
