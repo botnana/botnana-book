@@ -63,8 +63,8 @@ Botnana Control 若回傳資料，格式一律為
       "jsonrpc": "2.0",
       "method": "config.motion.set",
       "params": {
-        "period_us":2000
-        "group_capacity": 5
+        "period_us": 2000,
+        "group_capacity": 5,
         "axis_capacity": 5
        }
     }
@@ -96,8 +96,8 @@ Botnana Control 若回傳資料，格式一律為
         "position": 1,
         "name": "X",
         "home_offset": 0.05,
-        "encoder_ppu": 2000000.0
-        "encoder_length_unit":"Meter"
+        "encoder_ppu": 2000000.0,
+        "encoder_length_unit": "Meter",
         "encoder_direction": 1
       }
     }
@@ -130,7 +130,7 @@ Botnana Control 若回傳資料，格式一律為
     
     config_group_name.1|BotnanaGo|config_group_type.1|2D|config_group_mapping.1|2,3|config_group_vmax.1|0.200|config_group_amax.1|5.000|config_group_jmax.1|40.000
 
-範例： 取得 axis 1
+範例： 取得 Axis 1
 
     {
       "jsonrpc": "2.0",
