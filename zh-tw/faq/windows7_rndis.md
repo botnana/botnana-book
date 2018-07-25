@@ -79,7 +79,7 @@
 
 ##### 14.4. 查看 Botnana-A2 的詳細資料
 
-以此範例可以看到本機的IP 是 192.168.7.1。而 DHCP Server IP 是 192.168.7.2，此 DHCP Server IP 就為 Botnana-A2 的 IP。
+以此範例可以看到本機的IP 是 192.168.7.1。而 DHCP Server IP 是 192.168.7.2，此 DHCP Server IP 就是 Botnana-A2 的 IP。
 
 ![](./win7_rndis_connection_details.png)
 
