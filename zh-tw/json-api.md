@@ -122,8 +122,8 @@ Botnana Control 若回傳資料，格式一律為
       "jsonrpc": "2.0",
       "method": "config.motion.set",
       "params": {
-        "period_us":2000
-        "group_capacity": 5
+        "period_us": 2000,
+        "group_capacity": 5,
         "axis_capacity": 5
        }
     }
@@ -307,7 +307,7 @@ Botnana Control 若回傳資料，格式一律為
     "position": 指定運動軸，從 1 開始計數。
 
 
-範例： 取得 axis 1
+範例： 取得 Axis 1
 
     {
       "jsonrpc": "2.0",
