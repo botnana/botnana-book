@@ -1365,6 +1365,46 @@ Print information of axis j.
     |following_error.1|0.00001
     |axis_interpolator_enabled.1|false
 
+
+
+### Pitch Corrector
+
+#### `+pcorr ( channel slave -- )`
+
+開啟指定驅動器的 Pitch Corrector
+
+#### `-pcorr ( channel slave -- )`
+
+關閉指定驅動器的 Pitch Corrector
+
+
+#### `>pcorr ( channel slave -- )`
+
+讀取指定驅動器的 Pitch Corrector，此命令會造成 real time cycle overrun, 要在安全的情況下使用，例如 Servo off 的情況下。
+
+
+#### `.pcorr ( channel slave -- )`
+
+輸出目前 Pitch Corrector 的查表結果
+
+命令範例:  
+    
+    1 1 .pcorr
+
+回傳訊息 :
+
+    pcorr_name.1.1|P0001-01.sdx
+    |pcorr_len.1.1|10
+    |pcorr_position.1.1|0.0000000
+    |pcorr_forward.1.1|0.0000000
+    |pcorr_backward.1.1|0.0000000
+    |pcorr_corrected_position.1.1|0.0000000
+    |pcorr_backlash.1.1|0.0000000
+    |pcorr_direction.1.1|1
+    |pcorr_factor.1.1|0.0020000
+    |pcorr_enabled.1.1|0
+
+
 ### CPU Timing Profiler
 
 #### `.cpu-timing ( -- )`

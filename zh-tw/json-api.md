@@ -341,6 +341,80 @@ Botnana Control 若回傳資料，格式一律為
       "jsonrpc": "2.0",
       "method": "config.save"
     }
+    
+    
+### 取得 Pitch 補正表內容
+
+方法：
+
+    "method": "corrector.pitch.get" 
+    
+必要參數：
+    
+    "name": 補正表檔案名稱。檔案名稱格式為 PXXXX-YY.sdx，XXXX 表示 EtherCAT Slave Position 的位置（16 進位表示），YY 表示該  EtherCAT Slave 上的第幾個驅動器（16 進位表示）。
+
+
+範例：取得 EtherCAT Slave Position 1 Drive Channel 1 的補正表
+
+    {
+      "jsonrpc": "2.0",
+      "method": "corrector.pitch.get",
+      "params": {
+        "name": "P0001-01.sdx",
+      }
+    }
+    
+### 設定 Pitch 補正表內容
+
+方法：
+
+    "method": "corrector.pitch.set" 
+    
+必要參數：
+    
+    "name": 補正表檔案名稱。檔案名稱格式為 PXXXX-YY.sdx，XXXX 表示 EtherCAT Slave Position 的位置（16 進位表示），YY 表示該  EtherCAT Slave 上的第幾個驅動器（16 進位表示）。
+    "script": 補正表內容
+
+範例：取得：
+
+    {
+      "jsonrpc": "2.0",
+      "method": "corrector.pitch.set",
+      "params": {
+        "name": "P0001-01.sdx",
+        "script": "內容範例如下"
+      }
+    }        
+
+
+    補正表內容範例：
+    
+    {
+        "description": "example",
+        "date": "date",
+        "name": "P0001-01.sdx",
+        "factor": 0.001,
+        "entries": [
+            {
+                "position": 0.0,
+                "forward": 0.0,
+                "backward": 0.0
+            },
+            {
+                "position": 10.0,
+                "forward": 10.0,
+                "backward": 10.0
+            },
+       ]
+    }
+    
+    position 表示命令位置。 Botnana-Control 的軸運動命令是 axis command = drive_command + home offset,
+             查表時是使用 drive_command （避免受 home offset 調整影響）。
+    forward  表示正向運動時的實際位置。
+    backward 表示負向運動時的實際位置。
+    factor   表示 position, forward, backward 轉換到 Botnana-Control 的單位係數，
+             一般 Botnana-Control 的單位可能會是 [m], [rad], [pulse]
+
 
 
 ## Real-time Scripting API
