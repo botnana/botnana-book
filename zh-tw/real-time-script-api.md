@@ -6,7 +6,7 @@ Botnana Control 在其 real-time event loop 中使用了 Forth VM 以滿足更�
 
 除了標準的 Forth 指令，Botnana Control 增加了以下 Forth 指令集。
 
-### Host primitives
+###1. Host primitives
 
 * `#dins ( -- n )` Digital input count
 * `#douts ( -- n )` Digital output count
@@ -15,9 +15,9 @@ Botnana Control 在其 real-time event loop 中使用了 Forth VM 以滿足更�
 * `din@ ( n -- t=on )` Read digital input
 * `time-msec ( -- n )` Current time in milliseconds
 
-### EtherCAT primitives
+###2. EtherCAT primitives
 
-#### `.slave ( n -- )`
+####2.1 `.slave ( n -- )`
 
 Print information of slave n
     
@@ -146,7 +146,7 @@ Print information of slave n
     ain.3.4|0|ain.4.4|0
       
 
-#### `.slave-diff ( n -- )`
+####2.2 `.slave-diff ( n -- )`
 
 Print information difference of slave n
     
@@ -159,7 +159,7 @@ Print information difference of slave n
     2 .slave-diff
     
 
-#### `list-slaves ( -- )`
+####2.3 `list-slaves ( -- )`
 
 Scan slaves
 
@@ -178,7 +178,7 @@ Scan slaves
     士林電機 SDP: vendor_id = 1468 (0x5BC)
                  product_code =  1 (0x1)          
 
-#### `.sdo ( n --)`
+####2.4 `.sdo ( n --)`
 
 Print SDO information of slave n
 
@@ -204,7 +204,7 @@ Print SDO information of slave n
     sdo_data    : 該 位址 （index:subindex）的值。
     sdo_data_hex: 以 16 進位表示該位址的值。
 
-#### `sdo-upload-i32 ( subindex index n --)`
+####2.5 `sdo-upload-i32 ( subindex index n --)`
 
 Upload data (i32) of index:subidex from slave n by SDO
 
@@ -215,27 +215,27 @@ $6064 表示 index ($表示 16進位), 0x6064:0x00 的位址是 Position Actual 
              
     0 $6064 2 sdo-upload-i32             
 
-#### `sdo-upload-i16 ( subindex index n --)`
+####2.6 `sdo-upload-i16 ( subindex index n --)`
 
 Upload data (i16) of index:subidex from slave n by SDO
 
-#### `sdo-upload-i8  ( subindex index n --)`
+####2.7 `sdo-upload-i8  ( subindex index n --)`
 
 Upload data (i8) of index:subidex from slave n by SDO
 
-#### `sdo-upload-u32 ( subindex index n --)`
+####2.8 `sdo-upload-u32 ( subindex index n --)`
 
 Upload data (u32) of index:subidex from slave n by SDO
 
-#### `sdo-upload-u16 ( subindex index n --)`
+####2.9 `sdo-upload-u16 ( subindex index n --)`
 
 Upload data (u16) of index:subidex from slave n by SDO
 
-#### `sdo-upload-u8  ( subindex index n --)`
+####2.10 `sdo-upload-u8  ( subindex index n --)`
 
 Upload data (u8) of index:subidex from slave n by SDO
 
-#### `sdo-download-i32 ( data subindex index n --)`
+####2.11 `sdo-download-i32 ( data subindex index n --)`
 
 Download data (i32) of index:subidex to slave n by SDO
 
@@ -245,27 +245,27 @@ $60FF 表示 index ($表示 16進位), 0x60FF:0x00 的位址是 Target Velocity 
 
     100 0 $60FF 2 sdo-download-i32
 
-#### `sdo-download-i16 ( data subindex index n --)`
+####2.12 `sdo-download-i16 ( data subindex index n --)`
 
 Download data (i16) of index:subidex to slave n by SDO
 
-#### `sdo-download-i8 ( data subindex index n --)`
+####2.13 `sdo-download-i8 ( data subindex index n --)`
 
 Download data (i8) of index:subidex to slave n by SDO
 
-#### `sdo-download-u32 ( data subindex index n --)`
+####2.14 `sdo-download-u32 ( data subindex index n --)`
 
 Download data (u32) of index:subidex to slave n by SDO
 
-#### `sdo-download-u16 ( data subindex index n --)`
+####2.15 `sdo-download-u16 ( data subindex index n --)`
 
 Download data (u16) of index:subidex to slave n by SDO
 
-#### `sdo-download-u8 ( data subindex index n --)`
+####2.16 `sdo-download-u8 ( data subindex index n --)`
 
 Download data (u8) of index:subidex to slave n by SDO
 
-#### `sdo-data@ ( n -- data)`
+####2.17 `sdo-data@ ( n -- data)`
 
 Fetch SDO data of slave n to stack
 
@@ -275,7 +275,7 @@ sdo-download-u16,sdo-download-u8 命令所讀取或是設定的值取出放入�
 
     2 sdo-data@                                                               
 
-#### `sdo-error? ( n -- flag)`
+####2.18 `sdo-error? ( n -- flag)`
 
 Fetch error flag of SDO data of slave n to stack
     
@@ -283,7 +283,7 @@ Fetch error flag of SDO data of slave n to stack
 
     2 sdo-error? 
 
-#### `sdo-busy? ( n -- flag)`
+####2.19 `sdo-busy? ( n -- flag)`
 
 Fetch busy flag of SDO data of slave n to stack
 
@@ -306,12 +306,12 @@ Fetch busy flag of SDO data of slave n to stack
             就無法再處理後續由 Client 端送進來的指令。                 
 
 
-#### `ec-ready? ( -- flag )`
+####2.20 `ec-ready? ( -- flag )`
 
 Is EtherCAT Communication ready ?
     
     
-#### `.link-states ( -- )`
+####2.21 `.link-states ( -- )`
 
 輸出 EtherCAT Communication 的狀態
 
@@ -339,9 +339,9 @@ Is EtherCAT Communication ready ?
                         當 EtherCAT Master 與 slave 交握成功後就不會再增加。
     
 
-### EtherCAT IO primitives
+###3 EtherCAT IO primitives
 
-#### `ec-dout@ ( channel n -- t=on )`
+####3.1 `ec-dout@ ( channel n -- t=on )`
 
 Get DOUT from EtherCAT slave n
 
@@ -350,7 +350,7 @@ Get DOUT from EtherCAT slave n
     2 3 ec-dout@
     
 
-#### `ec-dout! ( t=on channel n -- )`
+####3.2 `ec-dout! ( t=on channel n -- )`
 
 Set DOUT of EtherCAT slave n
 
@@ -362,7 +362,7 @@ Set DOUT of EtherCAT slave n
 
     0 2 3 ec-dout!
 
-#### `ec-din@ ( channel n -- t=on )`
+####3.3 `ec-din@ ( channel n -- t=on )`
 
 Get DIN from EtherCAT slave n
 
@@ -370,7 +370,7 @@ Get DIN from EtherCAT slave n
 
     3 5 ec-din@
 
-#### `-ec-aout ( channel n )`
+####3.4 `-ec-aout ( channel n )`
 
 Disable AOUT of EtherCAT slave n
 
@@ -378,7 +378,7 @@ Disable AOUT of EtherCAT slave n
 
     1 2 -ec-aout
 
-#### `+ec-aout ( channel n )`
+####3.5 `+ec-aout ( channel n )`
 
 Enable AOUT of EtherCAT slave n
 
@@ -387,7 +387,7 @@ Enable AOUT of EtherCAT slave n
     1 2 +ec-aout
 
 
-#### `ec-aout@ ( channel n -- value )`
+####3.6 `ec-aout@ ( channel n -- value )`
 
 Get AOUT from EtherCAT slave n
 
@@ -395,7 +395,7 @@ Get AOUT from EtherCAT slave n
 
     1 2 ec-aout@
 
-#### `ec-aout! ( value channel n -- )`
+####3.7 `ec-aout! ( value channel n -- )`
 
 Set AOUT of EtherCAT slave n
 
@@ -403,7 +403,7 @@ Set AOUT of EtherCAT slave n
     
     100 1 2 ec-aout!
 
-#### `-ec-ain ( channel n )`
+####3.8 `-ec-ain ( channel n )`
 
 Disable AIN of EtherCAT slave n
 
@@ -411,7 +411,7 @@ Disable AIN of EtherCAT slave n
 
     1 6 -ec-ain
 
-#### `+ec-ain ( channel n )`
+####3.9 `+ec-ain ( channel n )`
 
 Enable AIN of EtherCAT slave n
 
@@ -419,7 +419,7 @@ Enable AIN of EtherCAT slave n
 
     1 6 +ec-ain
 
-#### `ec-ain@ ( channel n -- value )`
+####3.10 `ec-ain@ ( channel n -- value )`
 
 Get AIN from EtherCAT slave n
 
@@ -428,11 +428,11 @@ Get AIN from EtherCAT slave n
     1 6 ec-ain@
 
 
-### EtherCAT Drive primitives
+###4 EtherCAT Drive primitives
 
 和設定檔的 API 不同，此法設定的參數會立即生效。
 
-#### `op-mode! ( mode ch n -- )`
+####4.1 `op-mode! ( mode ch n -- )`
 
 Set operation mode of channel `ch` of slave `n`
     
@@ -451,8 +451,7 @@ Set operation mode of channel `ch` of slave `n`
 
     6 2 3 op-mode!
 
-
-#### `pp ( -- 1)`
+####4.2 `pp ( -- 1)`
 
 將 1 放入整數堆疊
 
@@ -460,11 +459,11 @@ Set operation mode of channel `ch` of slave `n`
 
     PP 2 3 op-mode! 
   
-#### `pv ( -- 3)`
+####4.3 `pv ( -- 3)`
 
 將 3 放入整數堆疊    
 
-#### `hm ( -- 6)`
+####4.4 `hm ( -- 6)`
 
 將 6 放入整數堆疊    
 
@@ -472,11 +471,11 @@ Set operation mode of channel `ch` of slave `n`
 
     hm 2 3 op-mode! 。    
 
-#### `csp ( -- 8)`
+####4.5 `csp ( -- 8)`
 
 將 8 放入整數堆疊            
 
-#### `servo-on ( ch n -- )`
+####4.6 `servo-on ( ch n -- )`
 
 Servo on of channel `ch` of slave `n`
 
@@ -486,15 +485,15 @@ Servo on of channel `ch` of slave `n`
     
     2 3 servo-on    
 
-#### `servo-off ( ch n -- )`
+####4.7 `servo-off ( ch n -- )`
 
 Servo off of channel `ch` of slave `n`
 
-#### `servo-stop ( ch n -- )`
+####4.8 `servo-stop ( ch n -- )`
 
 Servo stop of channel `ch` of slave `n`
 
-#### `reset-fault ( ch n -- )`
+####4.9 `reset-fault ( ch n -- )`
 
 Reset fault of channel `ch` of slave `n`
 
@@ -505,7 +504,7 @@ Reset fault of channel `ch` of slave `n`
 
     2 3 reset-fault
 
-#### `go ( ch n -- )`
+####4.10 `go ( ch n -- )`
 
 Set point of channel `ch` of slave `n`
 
@@ -515,7 +514,7 @@ Set point of channel `ch` of slave `n`
     
     2 3 go    
     
-#### `target-p! ( p ch n -- )`
+####4.11 `target-p! ( p ch n -- )`
 
 Set target position of channel `ch` of slave `n`
 
@@ -526,7 +525,7 @@ CSP 模式適合用來多軸同動的場合, 通常需要搭配上位控制器�
                
     1000 2 3 target-p!
     
-#### `target-v! ( v ch n -- )`
+####4.12 `target-v! ( v ch n -- )`
 
 Set target velocity of channel `ch` of slave `n`
 
@@ -536,7 +535,7 @@ Set target velocity of channel `ch` of slave `n`
     
     1000 2 3 target-v!
 
-#### `target-reached? ( ch n -- t=reached )`
+####4.13 `target-reached? ( ch n -- t=reached )`
 
 Has of channel `ch` of slave `n` reached its target position?
 
@@ -546,7 +545,7 @@ Has of channel `ch` of slave `n` reached its target position?
     
     2 3 target-reached?    
 
-#### `until-target-reached? ( ch n -- )`
+####4.14 `until-target-reached? ( ch n -- )`
 
 等待指定的驅動器到達目標。
 
@@ -567,7 +566,7 @@ Has of channel `ch` of slave `n` reached its target position?
     
     2 3 until-target-reached    
 
-#### `homing-a! ( acceleration ch n -- )`
+####4.15 `homing-a! ( acceleration ch n -- )`
 
 Set homing acceleration of channel `ch` of slave `n`
 
@@ -577,7 +576,7 @@ Set homing acceleration of channel `ch` of slave `n`
     
     50000 2 3 homing-a!    
 
-#### `homing-method! ( method ch n -- )`
+####4.16 `homing-method! ( method ch n -- )`
 
 Set homing method of channel `ch` of slave `n`
 
@@ -587,7 +586,7 @@ Set homing method of channel `ch` of slave `n`
     
     1 2 3 homing-method!    
 
-#### `homing-v1! ( speed ch n -- )`
+####4.17 `homing-v1! ( speed ch n -- )`
 
 Set homing speed 1 of channel `ch` of slave `n`
 
@@ -597,7 +596,7 @@ Set homing speed 1 of channel `ch` of slave `n`
     
     1000 2 3 homing-v1!  
 
-#### `homing-v2! ( speed ch n -- )`
+####4.18 `homing-v2! ( speed ch n -- )`
 
 Set homing speed 2 of channel `ch` of slave `n`
 
@@ -607,8 +606,7 @@ Set homing speed 2 of channel `ch` of slave `n`
     
     1000 2 3 homing-v2!  
 
-
-#### `profile-a1! ( acceleration ch n -- )`
+####4.19 `profile-a1! ( acceleration ch n -- )`
 
 Set profile acceleration of channel `ch` of slave `n`
 
@@ -618,7 +616,7 @@ Set profile acceleration of channel `ch` of slave `n`
     
     1000 2 3 profile-a1!  
 
-#### `profile-a2! ( deceleration ch n -- )`
+####4.20 `profile-a2! ( deceleration ch n -- )`
 
 Set profile deceleration of channel `ch` of slave `n`
 
@@ -628,7 +626,7 @@ Set profile deceleration of channel `ch` of slave `n`
     
     1000 2 3 profile-a2!  
 
-#### `profile-v! ( velocity ch n -- )`
+####4.21 `profile-v! ( velocity ch n -- )`
 
 Set profile velocity of channel `ch` of slave `n`
 
@@ -639,7 +637,7 @@ Set profile velocity of channel `ch` of slave `n`
     1000 2 3 profile-v! 
 
 
-#### `waiting-requests? ( -- flag)` 
+####4.22 `waiting-requests? ( -- flag)` 
 
 Is any waiting sdo request?
 
@@ -657,11 +655,11 @@ Is any waiting sdo request?
             pause
         repeat ;
 
-#### `drive-fault? ( ch n -- flag)`
+####4.23 `drive-fault? ( ch n -- flag)`
 
 Has dive fault of channel `ch` of slave `n`
 
-#### `until-no-fault ( ch n -- )`
+####4.24 `until-no-fault ( ch n -- )`
 
 Until no fault of channel `ch` of slave `n`
 
@@ -678,11 +676,11 @@ Until no fault of channel `ch` of slave `n`
         drop drop ; 
 
 
-#### `drive-op? ( ch n -- flag)`
+####4.25 `drive-op? ( ch n -- flag)`
 
 Is dive servo-on of channel `ch` of slave `n`
 
-#### `until-servo-on ( ch n -- )`
+####4.26 `until-servo-on ( ch n -- )`
 
 Until servo-on of channel `ch` of slave `n`
 
@@ -698,7 +696,7 @@ Until servo-on of channel `ch` of slave `n`
         repeat
         drop drop ;
 
-#### pp-test 範例 
+####4.27 pp-test 範例 
 
     : pp-test
         pp 2 3 op-mode!          \ 切換到 PP Mode
@@ -715,33 +713,33 @@ Until servo-on of channel `ch` of slave `n`
     deploy pp-test ;deploy       \ 在背景執行 pp-test
 
 
-#### `drive-dis@ ( ch n -- dis )`
+####4.28 `drive-dis@ ( ch n -- dis )`
 
 將指定 Channel `ch` Slave `n` 的驅動器之數位輸入資訊放到整數堆疊上。
 
 
-#### `drive-org? ( ch n -- org )`
+####4.29 `drive-org? ( ch n -- org )`
 
 將指定 Channel `ch` Slave `n` 的驅動器之 home switch 狀態放到整數堆疊上。
 
-#### `drive-nl? ( ch n -- nl )`
+####4.30 `drive-nl? ( ch n -- nl )`
 
 將指定 Channel `ch` Slave `n` 的驅動器之負向極限開關狀態放到整數堆疊上。
 
 
-#### `drive-pl? ( ch n -- pl )`
+####4.31 `drive-pl? ( ch n -- pl )`
 
 將指定 Channel `ch` Slave `n` 的驅動器之正向極限開關狀態放到整數堆疊上。
 
-#### `?ec-emcy ( slave -- )`
+####4.32 `?ec-emcy ( slave -- )`
 
 當驅動器發生異警時，可以使用此命令讓驅動器將異警訊息（emergency message）傳送回來。
 
-#### `ec-emcy-busy? ( slave -- flag )`
+####4.33 `ec-emcy-busy? ( slave -- flag )`
 
 將 `?ec-emcy` 指令的執行狀況放到整數堆疊上 
 
-#### `.ec-emcy ( slave -- )`
+####4.34 `.ec-emcy ( slave -- )`
 
 回傳 emergemcy message 訊息。目前 Botnana-Control
 會依據 status word 中的 Fault Bit 自動送出 ?ec-emcy 的命令。
@@ -764,35 +762,13 @@ Until servo-on of channel `ch` of slave `n`
         A2-E 異警碼 0x13 (緊急停止)
 
 
-### Start, Stop and Reset
+### 5. 軸組 (Axis Group) 
 
-針對軸組運動使用
-
-#### `start (--)`
-
-start 
-
-#### `stop (--)`
-
-stop
-
-#### `ems (--)`
-
-emergency stop
-
-#### `reset-job (--)`
-
-reset job
-
-###  Axis Group
-
-#### System
-
-#### `.motion (--)`
+####5.1 `.motion (--)`
     
 Print information of motion. 
 
-只能透過 Json API 設定。 
+只能透過 Json API 進行設定。 
  
 命令範例:   
     
@@ -804,9 +780,9 @@ Print information of motion.
     |group_capacity|7
     |axis_capacity|10 
 
-#### Group
+####5.2 Group
 
-#### `gvmax! (g --) (F: v)`
+####5.2.1 `gvmax! (g --) (F: v)`
 
 Set vmax of group (g).
 
@@ -814,7 +790,7 @@ Set vmax of group (g).
     
     1000.0e mm/min 2 gvmax!
 
-#### `gamax! (g --) (F: a)`
+####5.2.2 `gamax! (g --) (F: a)`
 
 Set amax of group (g).
 
@@ -824,7 +800,7 @@ Set amax of group (g).
     2.0e 2 gamax!
 
 
-#### `gjmax! (g --) (F: j)`
+####5.2.3 `gjmax! (g --) (F: j)`
 
 Set jmax of group (g).
 
@@ -833,7 +809,7 @@ Set jmax of group (g).
     40.0e 2 gjmax!
 
 
-#### `map1d (x g --)`
+####5.2.4 `map1d (x g --)`
 
 Set axis mapping (x) of group (g). The group shall be Group1D.
 
@@ -841,7 +817,7 @@ Set axis mapping (x) of group (g). The group shall be Group1D.
     
     3 2 map1d    
    
-#### `map2d (x y g --)`
+####5.2.5 `map2d (x y g --)`
 
 Set axis mapping (x, y) of group (g). The group shall be Group2D.
 
@@ -850,7 +826,7 @@ Set axis mapping (x, y) of group (g). The group shall be Group2D.
     
     3 5 2 map2d    
 
-#### `map3d (x y z g --)`
+####5.2.6 `map3d (x y z g --)`
 
 Set axis mapping (x, y, z) of group (g). The group shall be Group3D.
 
@@ -859,7 +835,7 @@ Set axis mapping (x, y, z) of group (g). The group shall be Group3D.
     3 5 6 2 map3d  
 
 
-#### `.grpcfg (g --)`
+####5.2.7 `.grpcfg (g --)`
 
 Print information of group g.
 
@@ -876,16 +852,16 @@ Print information of group g.
     |group_amax.1|5.000
     |group_jmax.1|80.00  
 
-#### Axis
+####5.3 Axis
 
-#### `enc-ppu! (j --) (F: ppu --)`
+####5.3.1 `enc-ppu! (j --) (F: ppu --)`
 
 Set encoder ppu (pulses_per_unit) of axis j.
   
 
 命令範例可以參考 `enc-u!` 
 
-#### `enc-u! (u j --)`
+####5.3.2 `enc-u! (u j --)`
 
 Set encoder length unit of axis j.
 
@@ -903,7 +879,7 @@ Set encoder length unit of axis j.
     以上的命令設定表示 1 m 有 1000000 個pulse (編碼器脈波數),
     表示 1 pulse 為 1 um 
 
-#### `enc-dir! (dir j --) `
+####5.3.3 `enc-dir! (dir j --) `
 
 Set encoder direction of axis j.
 
@@ -918,7 +894,7 @@ dir 可以設定的值為：
     
     1 3 enc-dir!
 
-#### `hmofs! (j --) (F: ofs --)`
+####5.3.4 `hmofs! (j --) (F: ofs --)`
 
 Set home offset of axis j.
 
@@ -931,7 +907,7 @@ Set home offset of axis j.
     
     0.5e 3 hmofs!
     
-#### `axis-vmax! (j --) (F: vmax --)`
+####5.3.5 `axis-vmax! (j --) (F: vmax --)`
 
 設定運動軸的最大速度
 
@@ -945,7 +921,7 @@ Set home offset of axis j.
     
     0.5e mm/min 3 axis-vmax!
 
-#### `axis-amax! (j --) (F: amax --)`
+####5.3.6 `axis-amax! (j --) (F: amax --)`
 
 設定運動軸的最大加速度
 
@@ -955,7 +931,7 @@ Set home offset of axis j.
     2.0e 3 axis-amax!
 
 
-#### `slave-axis! (slave j --)`
+####5.3.7 `slave-axis! (slave j --)`
 
 設定運動軸 `j` 對應到的 EtherCAT Slave Postion, 如果沒有實際的驅動器存在則會以虛擬運動軸處理。
 
@@ -963,7 +939,7 @@ Set home offset of axis j.
      
     2 3 slave-axis!
 
-#### `channel-axis! (ch j --)`
+####5.3.8 `channel-axis! (ch j --)`
 
 設定運動軸 `j` 對應到的 Channel `ch` of EtherCAT Slave Postion, 如果沒有實際的驅動器存在則會以虛擬運動軸處理。
 
@@ -971,7 +947,7 @@ Set home offset of axis j.
      
     1 3 slave-axis!    
     
-#### `.axiscfg (j --)`
+####5.3.9 `.axiscfg (j --)`
 
 Print information of axis j. 
 
@@ -990,16 +966,32 @@ Print information of axis j.
     |axis_drive_channel.1|1
     |axis_amax.1|5.00000
     |axis_vmax.1|0.10000
-    
-#### Path Planning Commands for All Dimensions
 
-#### `group! ( n -- )`
+####5.4 Axis Group Operation 
+
+####5.4.1 `start (--)`
+
+start 
+
+####5.4.2 `stop (--)`
+
+stop
+
+####5.4.3 `ems (--)`
+
+emergency stop
+
+####5.4.4 `reset-job (--)`
+
+reset job
+
+####5.4.5 `group! ( n -- )`
 
 Select group `n`, `n` start by 1.
 
 與 group 的命令，必須要利用此命令進行 group 的切換。命令範例參考 `group@`
 
-#### `group@ ( -- n)`
+####5.4.6 `group@ ( -- n)`
 
 Get current group index `n`.
 
@@ -1015,7 +1007,7 @@ Get current group index `n`.
     group@ .  \ 取出目前 Group index, 並輸出整數堆疊訊息, 其值應該為 5
 
 
-#### `0path` ( -- )
+####5.4.7 `0path` ( -- )
 
 Clear path.
 
@@ -1027,7 +1019,7 @@ Clear path.
           
     1 group! 0ptah  \ 清除 Group 1 的路經      
 
-#### `feedrate! ( F: v -- )`
+####5.4.8 `feedrate! ( F: v -- )`
 
 Set programmed segment feedrate. `v` shall be > 0.
 
@@ -1040,7 +1032,7 @@ Set programmed segment feedrate. `v` shall be > 0.
     1 group!  100.0e mm/min feedrate! \ 設定 Group 1 的 segment feedrate 為 100.0 mm/min 
 
 
-#### `feedrate@ ( F: -- v )`
+####5.4.9 `feedrate@ ( F: -- v )`
 
 Get programmed segment feedrate. 
 
@@ -1053,7 +1045,7 @@ Get programmed segment feedrate.
     1 group! feedrate@
 
 
-#### `+coordinator (--)`
+####5.4.10 `+coordinator (--)`
 
 Enable coordinator.
 
@@ -1064,7 +1056,7 @@ Enable coordinator.
     
     +coordinator
 
-#### `-coordinator (--)`
+####5.4.11 `-coordinator (--)`
 
 Disable coordinator.
 
@@ -1073,7 +1065,7 @@ Disable coordinator.
     -coordinator
 
 
-#### `+group (--)`
+####5.4.12 `+group (--)`
 
 Enable current group.
 
@@ -1086,12 +1078,12 @@ Enable current group.
     1 group! feedrate@
     
 
-#### `-group (--)`
+####5.4.13 `-group (--)`
 
 Disable current group.
 
 
-#### `vcmd! ( F: v -- )`
+####5.4.14 `vcmd! ( F: v -- )`
 
 Set execution velocity command. 
 
@@ -1101,39 +1093,39 @@ Set execution velocity command.
 
 **TODO: 提供 V < 0 的運動能力 （沿路徑後退）**
 
-#### `gend? (-- flag )`
+####5.4.15 `gend? (-- flag )`
 
 Has path of current group ended ?
 
-#### `gstop? (-- flag )`
+####5.4.16 `gstop? (-- flag )`
 
 Has path of current group stopped ?
 
-#### `empty? (-- flag)`
+####5.4.17 `empty? (-- flag)`
 
 Is path of current group empty?
 
-#### `end? (-- flag)`
+####5.4.18 `end? (-- flag)`
 
 Has path of all groups of coordinator ended ?
 
-#### `stop? (-- flag)`
+####5.4.19 `stop? (-- flag)`
 
 Has path of all groups of coordinator stopped ?
 
-#### 1D Path Planning
+####5.5 1D Path Planning
 
 Current axis group should be 1D for the following commands to work without failure.
 
-#### `move1d (F: x -- )` 
+####5.5.1 `move1d (F: x -- )` 
 
     Declare the current absolute coordinate to be `x`. (G92)
 
-#### `line1d (F: x -- )` 
+####5.5.2 `line1d (F: x -- )` 
 
     Add a line to `x` into path.
     
-#### 範例 test-1d
+####5.5.3 範例 test-1d
     
 假設 Group 2 為  1D group, 以100.0 mm.min 速度運動通過相對起點為 -0.5, 1.0，終點為 0.0 的座標位置。
      
@@ -1158,25 +1150,25 @@ Current axis group should be 1D for the following commands to work without failu
     deploy test-1d ;deploy         \ 在背景執行 test-1d
 
     
-#### 2D Path Planning
+####5.6 2D Path Planning
 
-Current joint group should be 2D for the following commands to work without failure.
+Current aixs group should be 2D for the following commands to work without failure.
 
-#### `move2d (F: x y -- )`
+####5.6.1 `move2d (F: x y -- )`
 
 Declare the current absolute coordinate to be `(x, y)`. (G92)
 
-#### `line2d (F: x y -- )`
+####5.6.2 `line2d (F: x y -- )`
 
 Add a line to `(x, y)` into path.
 
-#### `arc2d ( n --)(F: cx cy x y -- )`
+####5.6.3 `arc2d ( n --)(F: cx cy x y -- )`
 
 Add an arc to `(x, y)` with center `(cx, cy)` into path.
 
 `n` 不可以為 0, 如果 n > 0 表示逆時針運動，n < 0 表示順時針運動。
 
-#### 範例 test-2d
+####5.6.4 範例 test-2d
     
 假設 Group 5 為  2D group
      
@@ -1201,25 +1193,25 @@ Add an arc to `(x, y)` with center `(cx, cy)` into path.
     
     deploy test-2d ;deploy         \ 在背景執行 test-2d
 
-#### 3D Path Planning
+####5.7 3D Path Planning
 
-Current joint group should be 3D for the following commands to work without failure.
+Current axis group should be 3D for the following commands to work without failure.
 
-#### `move3d (F: x y z -- )`
+####5.7.1 `move3d (F: x y z -- )`
 
 Declare the current absolute coordinate to be `(x, y, z)`. (G92)
 
-#### `line3d (F: x y z -- )`
+####5.7.2 `line3d (F: x y z -- )`
 
 Add a line to `(x, y, z)` into path.
 
-#### `helix3d ( n --)(F: cx cy x y z -- )`
+####5.7.3 `helix3d ( n --)(F: cx cy x y z -- )`
 
 Add a helix to `(x, y, z)` with center `(cx, cy)` into path. If z is the current z, the added curve is an arc.
 
 `n` 不可以為 0, 如果 n > 0 表示逆時針運動，n < 0 表示順時針運動。
 
-#### 範例 test-3d
+####5.7.4 範例 test-3d
     
 假設 Group 1 為 3D group
      
@@ -1244,49 +1236,57 @@ Add a helix to `(x, y, z)` with center `(cx, cy)` into path. If z is the current
     deploy test-3d ;deploy         \ 在背景執行 test-3d
 
 
-#### 4D Path Planning (TODO)
+####5.8 Sine Wave
 
-Current joint group should be 4D for the following commands to work without failure.
+Current axis group should be SINE for the following commands to work without failure.
 
-* `move4d (F: x y z c -- )` Declare the current absolute coordinate to be `x, y, z, c`. (G92)
-* `line4d (F: x y z c -- )` Add a line to `(x, y, z, c)` into path.
+####5.8.1 `move-sine (F: x -- )`
 
-#### 5D Path Planning (TODO)
+Declare the current absolute coordinate to be `x`. (G92)
 
-Current joint group should be 5D for the following commands to work without failure.
+####5.8.2 `sine-f! (F: f -- )`
 
-* `move5d (F: x y z a b -- )` Declare the current absolute coordinate to be `x, y, z, a, b`. (G92)
-* `line5d (F: x y z a b -- )` Add a line to `(x, y, z, a, b)` into path.
+Set frequency `f` of sine wave
 
-#### 6D Path Planning (TODO)
+####5.8.3 `sine-amp! (F: amp -- )`
 
-Current joint group should be 6D for the following commands to work without failure.
+Set amplitude `amp` of sin wave
 
-* `move6d (F: x y z a b c -- )` Declare the current absolute coordinate to be `x, y, z, a, b, c`. (G92)
-* `line6d (F: x y z a b c -- )` Add a line to `(x, y, z, a, b, c)` into path.
-
-
-#### 插值後加減速
+####5.8.4 範例 test-sine
+    
+假設 Group 1 為 SINE group
+     
+    +coordinator          \ 啟動軸運動控制模式                    
+    start                 \ 啟動加減速機制
+    1 group! +group       \ 啟動 Group 1
+    0path                 \ 清除 Group 1 路徑
+    0.0e   move-sine      \ 宣告目前位置為起始運動位置，座標為 (0.0) 
+    1.0e   sine-f!        \ 設定sine wave 頻率為 1.0 Hz
+    0.01e  sine-amp!      \ 設定sine wave 振幅為 0.01
+    ...
+    stop                  \ 停止加減速機制
+    
+####5.9 插值後加減速
 
 命令針對單一運動軸，可以同時讓多個運動軸同時運行。如果該運動軸受到軸組控制則不可執行插值後加減速機制。  
 
-#### `+interpolator ( j --)`
+####5.9.1 `+interpolator ( j --)`
 
 啟動 Axis `j` 插值後加減速機制。
 
-#### `-interpolator ( j --)`
+####5.9.2 `-interpolator ( j --)`
 
 關閉 Axis `j` 插值後加減速機制。如果插值器運作中，會以當下的位置開始減速到 0。
 
-#### `interpolator-v! ( j --)（F: v -- ）` 
+####5.9.3 `interpolator-v! ( j --)（F: v -- ）` 
 
 設定 Axis  `j` 插值器得最大運動速度。
  
-#### `axis-cmd-p! ( j --)(F: pos --)`
+####5.9.4 `axis-cmd-p! ( j --)(F: pos --)`
 
 設定 Axis  `j` command position
 
-#### 插值後加減速範例
+####5.9.5 插值後加減速範例
 
 以 Axis 1 為例：
 
@@ -1294,18 +1294,17 @@ Current joint group should be 6D for the following commands to work without fail
     100.0 mm/min  1  interpolator-v! \ 設定 Axis 1 插值速度為 100.0 mm/min
     0.3 1 axis-cmd-p!                \ 設定 Axis 1 的目標位置為座標位置 0.3 m 
 
-#### 運動軸追隨
+####5.10 運動軸追隨
 
-
-#### `axis-demand-p@ ( j --)(F: -- pos)`
+####5.10.1 `axis-demand-p@ ( j --)(F: -- pos)`
 
 取得 Axis j 的命令位置 
 
-#### `axis-real-p@ ( j --)(F: -- pos)`
+####5.10.2 `axis-real-p@ ( j --)(F: -- pos)`
 
 取得 Axis j 的實際位置 
 
-#### 命令範例：
+####5.10.3 命令範例：
 
 以 Axis 2 追隨 Axis 1 的命令位置運動
 
@@ -1320,9 +1319,9 @@ Current joint group should be 6D for the following commands to work without fail
     ...
 
 
-#### Information
+####5.11 Information
 
-#### `.group (g --)`
+####5.11.1 `.group (g --)`
 
 Print information of group g.
 
@@ -1348,7 +1347,7 @@ Print information of group g.
     |PCS.1|0.00000
     
     
-#### `.axis (j --)`
+####5.11.2 `.axis (j --)`
 
 Print information of axis j.
 
@@ -1365,25 +1364,23 @@ Print information of axis j.
     |following_error.1|0.00001
     |axis_interpolator_enabled.1|false
 
+###6. Pitch Corrector
 
-
-### Pitch Corrector
-
-#### `+pcorr ( channel slave -- )`
+####6.1 `+pcorr ( channel slave -- )`
 
 開啟指定驅動器的 Pitch Corrector
 
-#### `-pcorr ( channel slave -- )`
+####6.2 `-pcorr ( channel slave -- )`
 
 關閉指定驅動器的 Pitch Corrector
 
 
-#### `>pcorr ( channel slave -- )`
+####6.3 `>pcorr ( channel slave -- )`
 
 讀取指定驅動器的 Pitch Corrector，此命令會造成 real time cycle overrun, 要在安全的情況下使用，例如 Servo off 的情況下。
 
 
-#### `.pcorr ( channel slave -- )`
+####6.4 `.pcorr ( channel slave -- )`
 
 輸出目前 Pitch Corrector 的查表結果
 
@@ -1405,19 +1402,19 @@ Print information of axis j.
     |pcorr_enabled.1.1|0
 
 
-### CPU Timing Profiler
+###7 CPU Timing Profiler
 
-#### `.cpu-timing ( -- )`
+####7.1 `.cpu-timing ( -- )`
 
 Print information of CPU timing
 
-#### `0cpu-timing ( -- )`
+####7.2 `0cpu-timing ( -- )`
 
 Reset CPU timing
 
-### misc
+###8. misc
 
-#### `.verbose ( -- )`
+####8.1 `.verbose ( -- )`
 
 Print verbose infornatiom
 
