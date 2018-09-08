@@ -1481,14 +1481,6 @@ r2g、g2y、y2r 分別是紅轉綠、綠轉黃、黃轉紅三種轉態。以下�
     ' yellow  ' y2r  -->
     ' y2r  ' red  -->
 
-### 取消連結
-
-當連結有問題時，可以使用指令 `-x->` 移除這連結。和 `-->` 類似，指令 `-x->` 從堆疊上取得兩個指令的令牌，移除它們之間的連結。
-
-### 強制轉態
-
-在測試順序狀態流程圖，或排除設計不良的流程圖造成的問題時，可以使用 `force-t`、`lock-t`、`release-t` 和 `release-all` 這幾個指令。`force-t` 強制轉態一個週期。`lock-t` 強制轉態直到被取消為止。`release-t` 取消某轉態的強制行為，`release-all` 則取消所有轉態的強制行為。
-
 ### 平行 AND 結構
 
 順序狀態流程有所有的平行處理的結構，或稱 AND 結構，如下圖，當轉態 t1 發生時，步驟 B 和步驟 C 都會 active。
@@ -1568,8 +1560,3 @@ r2g、g2y、y2r 分別是紅轉綠、綠轉黃、黃轉紅三種轉態。以下�
 | `activate` | ( xt -- ) &emsp; 設令牌 xt 對應的步驟為 active 。 | activate |
 | `transition <name>` | ( -- ) &emsp; 在順序狀態流程引擎中定義一個名為 `<name>` 的轉態，並指派它的邏輯條件為指令 `<name>`。當轉態 `<name>` 之前的**所有**的步驟都為 active 時，指令 `<name>` 會被執行。順序狀態流程引擎會檢查執行後留在堆疊上的布林值，如果為真，就會轉態至其後的步驟 | transition |
 | `-->` | ( xt1 xt2 -- ) &emsp; 連結對應令牌 `xt1` 和 `xt2` 的步驟或轉態。步驟只能連結到轉態，而轉態只能連結到步驟，其他情況會產生錯誤訊息。 | link-to |
-| `-x->` | ( xt1 xt2 -- ) &emsp; 移除對應令牌 `xt1` 和 `xt2` 的步驟或轉態間的連結。 | remove-link |
-| `force-t <name>` | ( bool -- ) &emsp; 強制轉態 `<name>` 的邏輯條件為 `bool`，常用來測試順序狀態流程圖。 強制的效果只會維持一個週期。| force-transition |
-| `lock-t <name>` | ( bool -- ) &emsp; 強制轉態 `<name>` 的邏輯條件為 `bool`，常用來測試順序狀態流程圖。 強制的效果會一直維持到以 `release-t` 或 `release-all` 取消為止。| lock-transition |
-| `release-t <name>` | ( bool -- ) &emsp; 取消對轉態 `<name>` 的強制行為。| release-transition |
-| `release-all` | ( bool -- ) &emsp; 取消對所有轉態的強制行為。| release-all |
