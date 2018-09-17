@@ -1385,6 +1385,7 @@ Print verbose infornatiom
 
     version_number|1.3.1|period_us|2000|launch_time|2018-08-09T10:19:21Z
 
+----------------
 ## 順序功能流程指令
 
 順序功能流程圖 (SFC) 是 PLC 五種語言中的一種，是一種圖形程式語言。它的主要成份有：
