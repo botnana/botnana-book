@@ -45,19 +45,78 @@ Botnana Control 若回傳資料，格式一律為
 
 修改設定參數並不會立刻將設定值儲存至參數設定檔，也不會影響到各裝置目前使用的參數。
 
-範例：修改 slave 1 的回歸原點方法。
+#### 設定 EtherCAT Slave 參數 `config.slave.set`
+
+方法：
+
+    "method": "config.slave.set" 
+
+必要參數：
+    
+    "position": Slave Position, 從 1 開始計數。
+    "channel: Device Channel，從 1 開始計數。
+
+可設定參數：可以單獨設定一個或是多個
+       
+    "homing_method" : Homing method。參照選用驅動器 0x6098:0x00的描述。
+    "homing_speed_1" : Speed during search for switch。參照選用驅動器 0x6099:0x01的描述。
+    "homing_speed_2" : Speed during search for zero。參照選用驅動器 0x6099:0x02的描述。
+    "homing_acceleration": Homing acceleration。參照選用驅動器 0x609A:0x00的描述。
+    "profile_velocity": Profile velocity。參照選用驅動器 0x6081:0x00的描述。
+    "profile_acceleration": Profile acceleration。參照選用驅動器 0x6083:0x00的描述。
+    "profile_deceleration": Profile deceleration。參照選用驅動器 0x6084:0x00的描述。
+    "baud_rate": UART baud rate。參照Beckhoff EL600x 或是 EL602X 0x8000:0x11 的描述。
+    "data_frame": UART data frame。參照Beckhoff EL600x 或是 EL602X 0x8000:0x15 的描述。
+    "half_duplex": Uart Half Duplex Transmission。參照Beckhoff EL600x 或是 EL602X 0x8000:0x06 的描述。
+    "uart_p2p":  UART point to point。參照Beckhoff EL600x 或是 EL602X 0x8000:0x07 的描述。
+    "tx_optimization": UART Tx optimization。參照Beckhoff EL600x 或是 EL602X 0x8000:0x07 的描述。
+    
+
+範例 1：修改 slave 1 channel 1 驅動器的回歸原點方法。
 
     {
       "jsonrpc": "2.0",
       "method": "config.set_slave",
       "params": {
         "position": 1,
-        "tag": "homing_method",
-        "value": 33
+        "channel": 1,
+        "homing_method" : 33,
       }
     }
+    
+範例 2：修改 slave 2 channel 3 驅動器的回歸原點的速度與加速度。
 
-範例： 修改  motion 參數。可以同時設定多個參數或是單獨一個參數。 
+    {
+      "jsonrpc": "2.0",
+      "method": "config.set_slave",
+      "params": {
+        "position": 2,
+        "channel": 3,
+        "homing_speed_1" : 10000,
+        "homing_speed_2" : 100,
+        "homing_acceleration": 5000,
+      }
+    }    
+
+
+#### 設定運動控制參數 `config.motion.set`
+
+方法：
+
+    "method": "config.motion.set" 
+    
+必要參數：
+    
+    None
+    
+    
+可設定參數：可以單獨設定一個或是多個    
+    
+    "period_us": 執行周期 [us]
+    "group_capacity": 軸組數
+    "axis_capacity": 軸數
+   
+範例： 
 
     {
       "jsonrpc": "2.0",
@@ -69,7 +128,27 @@ Botnana Control 若回傳資料，格式一律為
        }
     }
 
-範例：修改 group 的設定，依據 position 設定對應的 group，可以同時設定多個參數或是單獨一個參數。 
+
+#### 設定軸組參數 `config.group.set`
+
+方法：
+
+    "method": "config.group.set" 
+
+必要參數：
+    
+    "position": 指定軸組，從 1 開始計數。
+    
+可設定參數：可以單獨設定一個或是多個    
+    
+    "name": 軸組名稱
+    "gtype": 軸組型態，可以設定 "1D","2D","3D","SINE"
+    "mapping": 指定對應的運動軸，例如 [1, 2] 或是 [2, 1, 3]
+    "vmax": 最大速度 [m/s],[rad/s],[pulse/s]
+    "amax": 最大加速度 [m/s^2],[rad/s^2],[pulse/s^2]
+    "jmax": 最大加加速度 [m/s^3],[rad/s^3],[pulse/s^3]    
+
+範例： 設定 Group 1 的參數 
 
     {
       "jsonrpc": "2.0",
@@ -85,9 +164,29 @@ Botnana Control 若回傳資料，格式一律為
       }
     }
 
+#### 設定運動軸參數 `config.axis.set`
 
+方法：
+
+    "method": "config.axis.set" 
+
+必要參數：
     
-範例：修改 axis 的設定，依據 position 設定對應的 axis，可以同時設定多個參數或是單獨一個參數，`encoder_length_unit`可以設定為 `Meter`, `Revolution`或是 `Pulse`。 
+    "position": 指定運動軸，從 1 開始計數。
+    
+可設定參數：可以單獨設定一個或是多個    
+    
+    "name": 運動軸名稱,
+    "home_offset": Home offset,
+    "encoder_ppu": encoder pulses per unitm [pulses]
+    "encoder_length_unit": encoder length unit [m],[rev],[pulse]
+    "encoder_direction": encode direction, 1 or -1
+    "vmax": 最大速度 [m/s],[rad/s],[pulse/s]
+    "amax": 最大加速度 [m/s^2],[rad/s^2],[pulse/s^2]
+    "slave_position": 對應驅動器的EtherCAT 從站位置。
+    "drive_channel": 對應驅動器上的第幾個 Channel。一般設定為 1,如果是東方馬達AZ系列多軸驅動器，就有可能是 2~3 。
+   
+範例： 
 
     {
       "jsonrpc": "2.0",
@@ -97,12 +196,62 @@ Botnana Control 若回傳資料，格式一律為
         "name": "X",
         "home_offset": 0.05,
         "encoder_ppu": 2000000.0,
-        "encoder_length_unit": "Meter",
-        "encoder_direction": 1
+        "encoder_length_unit":"Meter",
+        "encoder_direction": 1,
       }
     }
     
 ### 取得設定參數
+
+#### 取得 EtherCAT slave 參數 `config.slave.get`
+
+方法：
+
+    "method": "config.slave.get" 
+
+必要參數：
+    
+    "position": Slave Position, 從 1 開始計數。
+    "channel: Device Channel，從 1 開始計數。
+
+範例：
+
+    {
+      "jsonrpc": "2.0",
+      "method": "config.set_slave",
+      "params": {
+        "position": 1,
+        "channel": 1,
+      }
+    }
+    
+    回傳封包
+
+    config_slave_alias.1|0
+    |config_homing_method.1.1|33
+    |config_homing_speed_1.1.1|1000
+    |config_homing_speed_2.1.1|250
+    |config_homing_acceleration.1.1|500
+    |config_profile_velocity.1.1|1000000
+    |config_profile_acceleration.1.1|50000
+    |config_profile_deceleration.1.1|50000
+    |config_baud_rate.1.1|6
+    |config_data_frame.1.1|3
+    |config_half_duplex.1.1|1
+    |config_uart_p2p.1.1|0
+    |config_tx_optimization.1.1|1
+
+
+#### 取得運動參數 `config.motion.get`
+
+方法：
+
+    "method": "config.motion.get" 
+    
+必要參數：
+    
+    None
+
 
 範例： 取得 motion 設定
 
@@ -111,10 +260,22 @@ Botnana Control 若回傳資料，格式一律為
       "method": "config.motion.get",
     }
 
-輸出範例：
+    回傳封包:
   
-    config_period_us|2000|config_group_capacity|7|config_axis_capacity|10
+    config_period_us|2000
+    |config_group_capacity|7
+    |config_axis_capacity|10
   
+#### 取得軸組參數 `config.group.get`
+
+方法：
+
+    "method": "config.motion.get" 
+    
+必要參數：
+    
+    "position": 指定軸組，從 1 開始計數。
+
 
 範例： 取得 Group 1 設定
 
@@ -126,9 +287,25 @@ Botnana Control 若回傳資料，格式一律為
       }
     }
 
-輸出範例：
+    回傳封包
     
-    config_group_name.1|BotnanaGo|config_group_type.1|2D|config_group_mapping.1|2,3|config_group_vmax.1|0.200|config_group_amax.1|5.000|config_group_jmax.1|40.000
+    config_group_name.1|BotnanaGo
+    |config_group_type.1|2D
+    |config_group_mapping.1|2,3
+    |config_group_vmax.1|0.200
+    |config_group_amax.1|5.000
+    |config_group_jmax.1|40.000
+
+#### 取得軸組參數 `config.axis.get`
+
+方法：
+
+    "method": "config.axis.get" 
+    
+必要參數：
+    
+    "position": 指定運動軸，從 1 開始計數。
+
 
 範例： 取得 Axis 1
 
@@ -141,9 +318,15 @@ Botnana Control 若回傳資料，格式一律為
     }
 
 
-輸出範例：
+    回傳封包
 
-    config_axis_name.1|X|config_axis_home_offset.1|0.0500|config_encoder_ppu.1|120000.00000|config_encoder_length_unit.1|Meter|config_encoder_direction.1|-1
+    config_axis_name.1|Anonymous
+    |config_axis_home_offset.1|0.0000
+    |config_encoder_ppu.1|1000000.00000
+    |config_encoder_length_unit.1|Meter
+    |config_encoder_direction.1|1
+    |config_slave_position.1|2
+    |config_drive_channel.1|2
 
 
 ### 儲存設定參數
@@ -158,165 +341,81 @@ Botnana Control 若回傳資料，格式一律為
       "jsonrpc": "2.0",
       "method": "config.save"
     }
+    
+    
+### 取得 Pitch 補正表內容
 
-## Slave API
+方法：
 
-### 讀取 Slave 狀態
+    "method": "corrector.pitch.get" 
+    
+必要參數：
+    
+    "name": 補正表檔案名稱。檔案名稱格式為 PXXXX-YY.sdx，XXXX 表示 EtherCAT Slave Position 的位置（16 進位表示），YY 表示該  EtherCAT Slave 上的第幾個驅動器（16 進位表示）。
 
-使用者可以使用 get 取得所有參數。使用 get_diff 取得自上次執行 get 後被改變的狀態。
-如果上次執行 get 後狀態都沒有改變，回傳資料為空字串。
 
-    {
-      "jsonrpc": "2.0",
-      "method": "ethercat.slave.get",
-      "params": {
-        "position": 1
-      }
-    }
-
-    {
-      "jsonrpc": "2.0",
-      "method": "ethercat.slave.get_diff",
-      "params": {
-        "position": 1
-      }
-    }
-
-驅動器回傳資料範例，
-
-    vendor.1|Panasonic|product.1|MBDHT|control_word.1|0|status_word.1|1616|
-    pds_state.1|Switch On Disabled|pds_goal.1|Switch On Disabled|
-    operation_mode.1|home|real_position.1|0|target_position.1|0|
-    home_offset.1|0|homing_method.1|33|homing_speed_1.1|1000|
-    homing_speed_2.1|250|homing_acceleration.1|500|
-    profile_velocity.1|500000|profile_acceleration.1|200|profile_deceleration.1|200
-
-其中的 `.1` 代表資料來自位置為 1 的 slave。
-
-數位輸出回傳資料範例，以台達電 EC7062 為例：
-
-    vendor.3|Delta|product.3|EC7062|dout.1.3|0|dout.2.3|0|dout.3.3|0|
-    dout.4.3|0|dout.5.3|0|dout.6.3|0|dout.7.3|0|dout.8.3|0|dout.9.3|0|
-    dout.10.3|0|dout.11.3|0|dout.12.3|0|dout.13.3|0|dout.14.3|0|
-    dout.15.3|0|dout.16.3|0
-
-其中的 dout.11.3 代表是第三個 Slave 的第 11 個數位輸出。
-
-數位輸入回傳資料範例，以台達電 EC6022 為例：
-
-    vendor.7|Delta|product.7|EC6022|din.1.7|0|din.2.7|0|din.3.7|0|
-    din.4.7|0|din.5.7|0|din.6.7|0|din.7.7|0|din.8.7|0|din.9.7|0|
-    din.10.7|0|din.11.7|0|din.12.7|0|din.13.7|0|din.14.7|0|din.15.7|0|
-    din.16.7|0
-
-其中的 din.15.7 代表是第七個 Slave 的第 15 個數位輸入。
-
-類比輸出回傳資料範例，以台達電 EC9144 為例：
-
-    vendor.5|Delta|product.5|EC9144|aout.1.5|0|aout.2.5|0|
-    aout.3.5|0|aout.4.5|0
-
-類比輸入回傳資料範例，以台達電 EC8124 為例：
-
-    vendor.4|Delta|product.4|EC8124|ain.1.4|0|ain.2.4|0|
-    ain.3.4|0|ain.4.4|0
-
-### 設定馬達驅動器參數
-
-和設定檔的 API 不同，此法設定的參數會立即生效。
-
-馬達驅動器部份目前提供以下參數：
-
-* `homing_method`
-* `home_offset`
-* `homing_speed_1`
-* `homing_speed_2`
-* `homing_acceleration`
-* `profile_velocity`
-* `profile_acceleration`
-* `profile_deceleration`
-
-使者用可以使用 set 命令設定這些參數。
+範例：取得 EtherCAT Slave Position 1 Drive Channel 1 的補正表
 
     {
       "jsonrpc": "2.0",
-      "method": "ethercat.slave.set",
+      "method": "corrector.pitch.get",
       "params": {
-        "position": 1,
-        "tag": "homing_method",
-        "value": 33
+        "name": "P0001-01.sdx",
       }
     }
+    
+### 設定 Pitch 補正表內容
 
-### 清除馬達驅動器異警
+方法：
 
-範例，清除第一個 Slave 的異警：
+    "method": "corrector.pitch.set" 
+    
+必要參數：
+    
+    "name": 補正表檔案名稱。檔案名稱格式為 PXXXX-YY.sdx，XXXX 表示 EtherCAT Slave Position 的位置（16 進位表示），YY 表示該  EtherCAT Slave 上的第幾個驅動器（16 進位表示）。
+    "script": 補正表內容
+
+範例：取得：
 
     {
       "jsonrpc": "2.0",
-      "method": "ethercat.slave.reset_fault",
+      "method": "corrector.pitch.set",
       "params": {
-          "position": 1,
+        "name": "P0001-01.sdx",
+        "script": "內容範例如下"
       }
-    }
+    }        
 
-### 設定 IO 點狀態
 
+    補正表內容範例：
+    
     {
-      "jsonrpc": "2.0",
-      "method": "ethercat.slave.set_dout",
-      "params": {
-          "position": 1,
-          "channel": 2,
-          "value": 1,
-      }
+        "description": "example",
+        "date": "date",
+        "name": "P0001-01.sdx",
+        "factor": 0.001,
+        "entries": [
+            {
+                "position": 0.0,
+                "forward": 0.0,
+                "backward": 0.0
+            },
+            {
+                "position": 10.0,
+                "forward": 10.0,
+                "backward": 10.0
+            },
+       ]
     }
+    
+    position 表示命令位置。 Botnana-Control 的軸運動命令是 axis command = drive_command + home offset,
+             查表時是使用 drive_command （避免受 home offset 調整影響）。
+    forward  表示正向運動時的實際位置。
+    backward 表示負向運動時的實際位置。
+    factor   表示 position, forward, backward 轉換到 Botnana-Control 的單位係數，
+             一般 Botnana-Control 的單位可能會是 [m], [rad], [pulse]
 
-    {
-      "jsonrpc": "2.0",
-      "method": "ethercat.slave.set_aout",
-      "params": {
-          "position": 1,
-          "channel": 2,
-          "value": 20,
-      }
-    }
 
-    {
-      "jsonrpc": "2.0",
-      "method": "ethercat.slave.disable_aout",
-      "params": {
-          "position": 1,
-          "channel": 2,
-      }
-    }
-
-    {
-      "jsonrpc": "2.0",
-      "method": "ethercat.slave.enable_aout",
-      "params": {
-          "position": 1,
-          "channel": 2,
-      }
-    }
-
-    {
-      "jsonrpc": "2.0",
-      "method": "ethercat.slave.disable_ain",
-      "params": {
-          "position": 1,
-          "channel": 2,
-      }
-    }
-
-    {
-      "jsonrpc": "2.0",
-      "method": "ethercat.slave.enable_ain",
-      "params": {
-          "position": 1,
-          "channel": 2,
-      }
-    }
 
 ## Real-time Scripting API
 
@@ -332,22 +431,45 @@ TODO: 未來將改名為
 
 Real-time script 的指令集請見 [Real-time scripting API](./real-time-script-api.md)
 
-範例：以下 RPC 呼叫設定 Slave 1 回歸原點方法的 JSON 命令。
+#### 解議 real-time script `motion.evaluate`
+
+方法：
+
+    "method": "motion.evaluate" 
+    
+必要參數：
+    
+    "script":real-time script 。
+
+
+範例：以下 RPC 呼叫設定 Drive channel 1 of Slave 1 回歸原點方法的 JSON 命令。
 
     {
       "jsonrpc": "2.0",
       "method": "motion.evaluate",
       "params": {
-        "script": "33 1 homing-method!"
+        "script": "33 1 1 homing-method!"
       }
     }
 
-範例：以下 RPC 呼叫編譯了一名為 p1 的程式。當 p1 執行時會設定 Slave 1 回歸原點方法。
+
+#### 編譯 real-time script `script.deploye`
+
+方法：
+
+    "method": "script.deploy" 
+    
+必要參數：
+    
+    "script":real-time script 。
+
+
+範例：以下 RPC 呼叫編譯了一名為 p1 的程式。當 p1 執行時會設定 Drive channel 1 of Slave 1 回歸原點方法。
 
     {
       "jsonrpc": "2.0",
       "method": "script.deploy",
       "params": {
-        "script": ": p1  33 1 homing-method! ;"
+        "script": ": p1  33 1 1 homing-method! ;"
       }
     }

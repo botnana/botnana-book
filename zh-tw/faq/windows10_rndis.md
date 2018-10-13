@@ -11,8 +11,8 @@
 ![](./win10_2_remove_com_device.png)
 
 
-#### 3. 修改 C:\Windows\INF\usbser.inf
-將底下這個
+#### 3. 修改 C:\Windows\INF\usbser.inf （[關於 usbser.inf 權限問題](./win10_permission.md)）
+將底下這個 
 ![](./win10_3_modify_usbser_inf.png)
 改成如下
 ![](./win10_4_mark_usbser_inf_com_port.png)
