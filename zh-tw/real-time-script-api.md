@@ -451,7 +451,6 @@ Set operation mode of channel `ch` of slave `n`
 
     6 2 3 op-mode!
 
-
 #### `pp ( -- 1)`
 
 將 1 放入整數堆疊
@@ -607,7 +606,6 @@ Set homing speed 2 of channel `ch` of slave `n`
     
     1000 2 3 homing-v2!  
 
-
 #### `profile-a1! ( acceleration ch n -- )`
 
 Set profile acceleration of channel `ch` of slave `n`
@@ -639,7 +637,7 @@ Set profile velocity of channel `ch` of slave `n`
     1000 2 3 profile-v! 
 
 
-#### `waiting-requests? ( -- flag)` 
+#### `waiting-requests? ( -- flag)`
 
 Is any waiting sdo request?
 
@@ -698,7 +696,7 @@ Until servo-on of channel `ch` of slave `n`
         repeat
         drop drop ;
 
-#### pp-test 範例 
+#### pp-test 範例
 
     : pp-test
         pp 2 3 op-mode!          \ 切換到 PP Mode
@@ -764,35 +762,13 @@ Until servo-on of channel `ch` of slave `n`
         A2-E 異警碼 0x13 (緊急停止)
 
 
-### Start, Stop and Reset
-
-針對軸組運動使用
-
-#### `start (--)`
-
-start 
-
-#### `stop (--)`
-
-stop
-
-#### `ems (--)`
-
-emergency stop
-
-#### `reset-job (--)`
-
-reset job
-
-###  Axis Group
-
-#### System
+### 軸組 (Axis Group)
 
 #### `.motion (--)`
     
 Print information of motion. 
 
-只能透過 Json API 設定。 
+只能透過 Json API 進行設定。 
  
 命令範例:   
     
@@ -990,8 +966,24 @@ Print information of axis j.
     |axis_drive_channel.1|1
     |axis_amax.1|5.00000
     |axis_vmax.1|0.10000
-    
-#### Path Planning Commands for All Dimensions
+
+#### Axis Group Operation
+
+#### `start (--)`
+
+start 
+
+#### `stop (--)`
+
+stop
+
+#### `ems (--)`
+
+emergency stop
+
+#### `reset-job (--)`
+
+reset job
 
 #### `group! ( n -- )`
 
@@ -1125,11 +1117,11 @@ Has path of all groups of coordinator stopped ?
 
 Current axis group should be 1D for the following commands to work without failure.
 
-#### `move1d (F: x -- )` 
+#### `move1d (F: x -- )`
 
     Declare the current absolute coordinate to be `x`. (G92)
 
-#### `line1d (F: x -- )` 
+#### `line1d (F: x -- )`
 
     Add a line to `x` into path.
     
@@ -1160,7 +1152,7 @@ Current axis group should be 1D for the following commands to work without failu
     
 #### 2D Path Planning
 
-Current joint group should be 2D for the following commands to work without failure.
+Current aixs group should be 2D for the following commands to work without failure.
 
 #### `move2d (F: x y -- )`
 
@@ -1203,7 +1195,7 @@ Add an arc to `(x, y)` with center `(cx, cy)` into path.
 
 #### 3D Path Planning
 
-Current joint group should be 3D for the following commands to work without failure.
+Current axis group should be 3D for the following commands to work without failure.
 
 #### `move3d (F: x y z -- )`
 
@@ -1244,28 +1236,36 @@ Add a helix to `(x, y, z)` with center `(cx, cy)` into path. If z is the current
     deploy test-3d ;deploy         \ 在背景執行 test-3d
 
 
-#### 4D Path Planning (TODO)
+#### Sine Wave
 
-Current joint group should be 4D for the following commands to work without failure.
+Current axis group should be SINE for the following commands to work without failure.
 
-* `move4d (F: x y z c -- )` Declare the current absolute coordinate to be `x, y, z, c`. (G92)
-* `line4d (F: x y z c -- )` Add a line to `(x, y, z, c)` into path.
+#### `move-sine (F: x -- )`
 
-#### 5D Path Planning (TODO)
+Declare the current absolute coordinate to be `x`. (G92)
 
-Current joint group should be 5D for the following commands to work without failure.
+#### `sine-f! (F: f -- )`
 
-* `move5d (F: x y z a b -- )` Declare the current absolute coordinate to be `x, y, z, a, b`. (G92)
-* `line5d (F: x y z a b -- )` Add a line to `(x, y, z, a, b)` into path.
+Set frequency `f` of sine wave
 
-#### 6D Path Planning (TODO)
+#### `sine-amp! (F: amp -- )`
 
-Current joint group should be 6D for the following commands to work without failure.
+Set amplitude `amp` of sin wave
 
-* `move6d (F: x y z a b c -- )` Declare the current absolute coordinate to be `x, y, z, a, b, c`. (G92)
-* `line6d (F: x y z a b c -- )` Add a line to `(x, y, z, a, b, c)` into path.
-
-
+#### 範例 test-sine
+    
+假設 Group 1 為 SINE group
+     
+    +coordinator          \ 啟動軸運動控制模式                    
+    start                 \ 啟動加減速機制
+    1 group! +group       \ 啟動 Group 1
+    0path                 \ 清除 Group 1 路徑
+    0.0e   move-sine      \ 宣告目前位置為起始運動位置，座標為 (0.0) 
+    1.0e   sine-f!        \ 設定sine wave 頻率為 1.0 Hz
+    0.01e  sine-amp!      \ 設定sine wave 振幅為 0.01
+    ...
+    stop                  \ 停止加減速機制
+    
 #### 插值後加減速
 
 命令針對單一運動軸，可以同時讓多個運動軸同時運行。如果該運動軸受到軸組控制則不可執行插值後加減速機制。  
@@ -1278,7 +1278,7 @@ Current joint group should be 6D for the following commands to work without fail
 
 關閉 Axis `j` 插值後加減速機制。如果插值器運作中，會以當下的位置開始減速到 0。
 
-#### `interpolator-v! ( j --)（F: v -- ）` 
+#### `interpolator-v! ( j --)（F: v -- ）`
 
 設定 Axis  `j` 插值器得最大運動速度。
  
@@ -1295,7 +1295,6 @@ Current joint group should be 6D for the following commands to work without fail
     0.3 1 axis-cmd-p!                \ 設定 Axis 1 的目標位置為座標位置 0.3 m 
 
 #### 運動軸追隨
-
 
 #### `axis-demand-p@ ( j --)(F: -- pos)`
 
@@ -1364,6 +1363,44 @@ Print information of axis j.
     |encoder_position.1|-0.00001
     |following_error.1|0.00001
     |axis_interpolator_enabled.1|false
+
+###. Pitch Corrector
+
+#### `+pcorr ( channel slave -- )`
+
+開啟指定驅動器的 Pitch Corrector
+
+#### `-pcorr ( channel slave -- )`
+
+關閉指定驅動器的 Pitch Corrector
+
+
+#### `>pcorr ( channel slave -- )`
+
+讀取指定驅動器的 Pitch Corrector，此命令會造成 real time cycle overrun, 要在安全的情況下使用，例如 Servo off 的情況下。
+
+
+#### `.pcorr ( channel slave -- )`
+
+輸出目前 Pitch Corrector 的查表結果
+
+命令範例:  
+    
+    1 1 .pcorr
+
+回傳訊息 :
+
+    pcorr_name.1.1|P0001-01.sdx
+    |pcorr_len.1.1|10
+    |pcorr_position.1.1|0.0000000
+    |pcorr_forward.1.1|0.0000000
+    |pcorr_backward.1.1|0.0000000
+    |pcorr_corrected_position.1.1|0.0000000
+    |pcorr_backlash.1.1|0.0000000
+    |pcorr_direction.1.1|1
+    |pcorr_factor.1.1|0.0020000
+    |pcorr_enabled.1.1|0
+
 
 ### CPU Timing Profiler
 
