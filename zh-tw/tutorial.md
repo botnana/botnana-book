@@ -5,27 +5,27 @@
 
 ```
     +---------------+------------+               +-----------+
-    | User          |  Botnana   |               |           |
-    | Program       |  API       |               |           |
-    | +-------------+------------|   JSON  1ms   |           |
-    | | Main thread |         Tx |-------------->|           |
-    | |       call -----> Thread |               | Websocket |
-    | |             |------------|   tag|value   | Server    |
-    | |             |         Rx |<--------------|           |
-    | |   callback <----- Thread |               |           |
-    | |             |------------|               |           |
-    | |             |       Poll |               |           |
-    | |             |     Thread |               |         | |
-    | +-------------+------------|               |---------|-|
-    |               |  Websocket |               | Config. v |
-    |               |     Client |               | File      |
-    |---------------+------------|               |           |
-    | Device management(Browser) |   Webapp      |-----------|
-    |       Learning             |<--------------| HTTP      |
-    |       Testing              |               | Server    |
-    |       Configuration        |               |           |
-    |       Software update      |               |-----------|
-    |                            |               | Linux     |
+    | User Program  |  Botnana   |               |           |
+    |               |  API       |               |           |
+    | Main thread   |------------|   JSON  1ms   |           |
+    |               |         Tx |-------------->|           |
+    |         call -----> Thread |               | Websocket |
+    |               |------------|   tag|value   | Server    |
+    |               |         Rx |<--------------|           |
+    |     callback <----- Thread |               |           |
+    |               |------------|               |           |
+    |               |       Poll |               |           |
+    |               |     Thread |               |         | |
+    |---------------+------------|               |---------|-|
+    | Device management software |               | Config. v |
+    | on Browser                 |               | File      |
+    |                            |               |           |
+    |     Learning               |   Webapp      |-----------|
+    |     Testing                |<--------------| HTTP      |
+    |     Configuration          |               | Server    |
+    |     Software update        |               |           |
+    |----------------------------|               |-----------|
+    | Windows/Linux              |               | Linux     |
     +----------------------------+               +-----------+
 ```
 
