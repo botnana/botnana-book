@@ -9,7 +9,6 @@
 - [Roadmap](./roadmap.md)
 - [入門教學](./tutorial.md)
     - [Botnana A2 入門](./botnana-a2-tutorial.md)
-    - [EtherCAT Master 入門](./ethercat-master-tutorial.md)
     - [Botnana Control 入門](./botnana-control-tutorial.md)
 - [設定檔](./configuration-file.md)
 - [程式開發界面](programming.md)
