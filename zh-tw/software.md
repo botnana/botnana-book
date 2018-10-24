@@ -1,12 +1,6 @@
 # 軟體規格
 
-霸那控制器出廠時預裝以下開源軟體，
-
-* Debian Linux
-* IgH EtherCAT Master for Linux
-* nodejs
-
-以及動程科技自行開發的
+霸那控制器出廠時預裝了 Linux 以及實時作業系統，以及動程科技自行開發的
 
 * Botnana Control P2P: 針對 EtherCAT 以及工業物聯網運用開發的多軸控制軟體。
 
