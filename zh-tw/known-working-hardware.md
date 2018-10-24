@@ -11,31 +11,39 @@
 
 ### CiA DSP 401 Compatible
 
-* Digital Input Module (X)
-* Digital Output Module (X)
-* Analogue Input Module (X)
-* Analogue Output Module (X)
+* Digital Input Module 
+* Digital Output Module 
+* Analogue Input Module 
+* Analogue Output Module 
 
 ### CiA DSP 402 Compatible
 
 * Frequency converter (X)
 * Servo drive 
 * Stepper motor
-* Multiple drive module (X)
+* Multiple drive module 
 
+### (研華) Advantech
+
+* AMAX_4830, DIO
+ 
 ### Beckhoff
 
-* EK1100, EtherCAT Bus Coupler(測試中)
+* EK1100, EtherCAT Bus Coupler
 * EL1088, 8-channel digital input terminal 24 V DC, negative switching
-* EL1809, 16-channel digital input 24 V DC (測試中)
+* EL1809, 16-channel digital input 24 V DC
 * EL2088, 8-channel digital output terminal 24 V DC, negative switching
-* EL2809, 16-channel digital output 24 V DC,(測試中)
-* EL3058, 8-channel analog input terminal 4...20 mA, single-ended, 12 bit (測試中)
-* EL5032, 2-channel EnDat 2.2 interface (測試中)
+* EL2809, 16-channel digital output 24 V DC
+* EL3058, 8-channel analog input terminal 4...20 mA, single-ended, 12 bit
+* EL3062, analog input
+* EL4002, analog output
+* EL5032, 2-channel EnDat 2.2 interface
+* EL6021, Serial terminal
+* EL6022, Serial terminal
 
-### 士林電機 （Shihlin）
+### Copley Controls
 
-* SDP, EtherCAT Servo Driver 
+* Xenus XEL-230-36, EtherCAT Servo Drive
 
 ### 台達電 (Delta)
 
@@ -47,13 +55,25 @@
 * R1-EC8124, 4 channels 16-bit single-ended A/D control module
 * R1-EC5621, Single-axis pulse output motion control module
 
-### Copley Controls
+### ELMO
 
-* Xenus XEL-230-36, EtherCAT Servo Drive
+* GOLD_BASSOON Servo Drive
 
-### SANYO DENKI
+### FASTECH
 
-* SANMOTION R ADVANCED MODEL
+* Ezi-SERVOⅡ EtherCAT Series
+
+### ICPDAS
+
+* ECAT-2512, EtherCAT junction 
+
+### MITSUBISHI
+
+* MR-J4-10TM Servo Drive
+
+### OMRON
+
+* R88D_1SN04H_ECT Servo Drive
 
 ### Oriental Motor
 
@@ -62,11 +82,22 @@
 ### Panasonic
 
 * EtherCAT communication driver MINAS A5B Series
+* MCDLT35BF (A6B)
+
+### SANYO DENKI
+
+* SANMOTION R ADVANCED MODEL
+
+### 士林電機 （Shihlin）
+
+* SDP, EtherCAT Servo Driver 
+
+### TPM
+
+* TPM_207_D240_NX, Digital Input
+* TPM_207_D204_XN, Digital Output
 
 ### Yaskawa
 
 * SGDV-2R8AE1A
 
-### Others
-
-* Fastech Ezi-SERVOⅡ EtherCAT Series
