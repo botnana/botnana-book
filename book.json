@@ -1,0 +1,27 @@
+{
+    "title": "Botnana Book",
+    "description": "",
+    "author": "MAPACODE INC.",
+    "language": "en",
+    "output.name": "botnana-book",
+    "root": ".",
+    "links": {
+        "sidebar": {
+            "link to github": "https://botnana.github.io/botnana-book/"
+        }
+    },
+    "pdf": {
+        "fontSize": 12,
+        "footerTemplate": "MAPACODE INC.",
+        "headerTemplate": "Botnana Book",
+        "margin": {
+            "bottom": 36,
+            "left": 62,
+            "right": 62,
+            "top": 36
+        },
+        "pageNumbers": true,
+        "paperSize": "a4",
+        "output": "Botnana-Book"
+    } 
+}
