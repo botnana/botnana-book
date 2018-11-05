@@ -54,29 +54,29 @@ Botnana Control 若回傳資料，格式一律為
 必要參數：
     
     "position": Slave Position, 從 1 開始計數。
-    "channel: Device Channel，從 1 開始計數。
+    "channel": Device Channel，從 1 開始計數。
 
 可設定參數：可以單獨設定一個或是多個
        
-    "homing_method" : Homing method。參照選用驅動器 0x6098:0x00的描述。
-    "homing_speed_1" : Speed during search for switch。參照選用驅動器 0x6099:0x01的描述。
-    "homing_speed_2" : Speed during search for zero。參照選用驅動器 0x6099:0x02的描述。
-    "homing_acceleration": Homing acceleration。參照選用驅動器 0x609A:0x00的描述。
-    "profile_velocity": Profile velocity。參照選用驅動器 0x6081:0x00的描述。
-    "profile_acceleration": Profile acceleration。參照選用驅動器 0x6083:0x00的描述。
-    "profile_deceleration": Profile deceleration。參照選用驅動器 0x6084:0x00的描述。
-    "baud_rate": UART baud rate。參照Beckhoff EL600x 或是 EL602X 0x8000:0x11 的描述。
-    "data_frame": UART data frame。參照Beckhoff EL600x 或是 EL602X 0x8000:0x15 的描述。
-    "half_duplex": Uart Half Duplex Transmission。參照Beckhoff EL600x 或是 EL602X 0x8000:0x06 的描述。
-    "uart_p2p":  UART point to point。參照Beckhoff EL600x 或是 EL602X 0x8000:0x07 的描述。
-    "tx_optimization": UART Tx optimization。參照Beckhoff EL600x 或是 EL602X 0x8000:0x07 的描述。
+    "homing_method" : Homing method ,參考驅動器 0x6098:0x00 的描述。
+    "homing_speed_1" : Speed during search for switch ,參考驅動器 0x6099:0x01 的描述。
+    "homing_speed_2" : Speed during search for zero。參照選用驅動器 0x6099:0x02 的描述。
+    "homing_acceleration": Homing acceleration。參照選用驅動器 0x609A:0x00 的描述。
+    "profile_velocity": Profile velocity。參照選用驅動器 0x6081:0x00 的描述。
+    "profile_acceleration": Profile acceleration。參照選用驅動器 0x6083:0x00 的描述。
+    "profile_deceleration": Profile deceleration。參照選用驅動器 0x6084:0x00 的描述。
+    "baud_rate": UART baud rate。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x11 的描述。
+    "data_frame": UART data frame。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x15 的描述。
+    "half_duplex": Uart Half Duplex Transmission。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x06 的描述。
+    "uart_p2p":  UART point to point。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x07 的描述。
+    "tx_optimization": UART Tx optimization。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x07 的描述。
     
 
 範例 1：修改 slave 1 channel 1 驅動器的回歸原點方法。
 
     {
       "jsonrpc": "2.0",
-      "method": "config.set_slave",
+      "method": "config.slave.set",
       "params": {
         "position": 1,
         "channel": 1,
@@ -88,7 +88,7 @@ Botnana Control 若回傳資料，格式一律為
 
     {
       "jsonrpc": "2.0",
-      "method": "config.set_slave",
+      "method": "config.slave.set",
       "params": {
         "position": 2,
         "channel": 3,
@@ -178,12 +178,12 @@ Botnana Control 若回傳資料，格式一律為
     
     "name": 運動軸名稱,
     "home_offset": Home offset,
-    "encoder_ppu": encoder pulses per unitm [pulses]
+    "encoder_ppu": encoder pulses per unit [pulses]
     "encoder_length_unit": encoder length unit [m],[rev],[pulse]
     "encoder_direction": encode direction, 1 or -1
     "vmax": 最大速度 [m/s],[rad/s],[pulse/s]
     "amax": 最大加速度 [m/s^2],[rad/s^2],[pulse/s^2]
-    "slave_position": 對應驅動器的EtherCAT 從站位置。
+    "slave_position": 對應驅動器的 EtherCAT 從站位置。
     "drive_channel": 對應驅動器上的第幾個 Channel。一般設定為 1,如果是東方馬達AZ系列多軸驅動器，就有可能是 2~3 。
    
 範例： 
@@ -212,13 +212,13 @@ Botnana Control 若回傳資料，格式一律為
 必要參數：
     
     "position": Slave Position, 從 1 開始計數。
-    "channel: Device Channel，從 1 開始計數。
+    "channel": Device Channel，從 1 開始計數。
 
 範例：
 
     {
       "jsonrpc": "2.0",
-      "method": "config.set_slave",
+      "method": "config.slave.get",
       "params": {
         "position": 1,
         "channel": 1,
@@ -421,21 +421,16 @@ Botnana Control 若回傳資料，格式一律為
 
 Botnana Control 在其 real-time event loop 提供 Real-time script 來滿足更複雜的程式需求。為此提供兩個 JSON-RPC：
 
-* motion.evaluate: 解譯 real-time script。注意不可以使用 `motion.evaluate` 來編譯 real-time script。
+* script.evaluate: 解譯 real-time script。注意不可以使用 `script.evaluate` 來編譯 real-time script。
 * script.deploy: 編譯 real-time script。
-
-TODO: 未來將改名為
-
-* script.evaluate
-* script.deploy
 
 Real-time script 的指令集請見 [Real-time scripting API](./real-time-script-api.md)
 
-#### 解議 real-time script `motion.evaluate`
+#### 解譯 real-time script `script.evaluate`
 
 方法：
 
-    "method": "motion.evaluate" 
+    "method": "script.evaluate" 
     
 必要參數：
     
@@ -446,14 +441,17 @@ Real-time script 的指令集請見 [Real-time scripting API](./real-time-script
 
     {
       "jsonrpc": "2.0",
-      "method": "motion.evaluate",
+      "method": "script.evaluate",
       "params": {
         "script": "33 1 1 homing-method!"
       }
     }
 
 
-#### 編譯 real-time script `script.deploye`
+#### 部署 real-time script `script.deploy`
+
+此一命令將 script 轉交至背景執行的 Task 解譯或編譯，避免影響和使用者互動中的 Task。常用於大型 script 的解譯和執行。
+
 
 方法：
 
@@ -461,7 +459,7 @@ Real-time script 的指令集請見 [Real-time scripting API](./real-time-script
     
 必要參數：
     
-    "script":real-time script 。
+    "script": real-time script 。
 
 
 範例：以下 RPC 呼叫編譯了一名為 p1 的程式。當 p1 執行時會設定 Drive channel 1 of Slave 1 回歸原點方法。
