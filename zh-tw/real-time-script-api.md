@@ -2,10 +2,12 @@
 
 Botnana Control 在其 real-time event loop 中使用了 Forth VM 以滿足更複雜的程式需求。透過 Forth 執行的命令會立刻影響裝置的行為。
 
+---
 ## 指令集
 
 除了標準的 Forth 指令，Botnana Control 增加了以下 Forth 指令集。
 
+---
 ### Host primitives
 
 #### `mtime ( -- n )`
@@ -44,7 +46,6 @@ Print information of motion.
     |group_capacity|7
     |axis_capacity|10 
 
-
 #### 本節指令集
 
 | 指令 | 堆疊效果       |
@@ -55,7 +56,7 @@ Print information of motion.
 | `.verbose`     | ( -- ) |
 | `.motion`     | ( -- ) |
 
-
+---
 ### EtherCAT primitives
 
 #### `.slave ( n -- )` Print information of slave n
@@ -195,7 +196,6 @@ Print information difference of slave n
 
     2 .slave-diff
     
-
 #### `list-slaves ( -- )`
 
 List vendor id and  product code of detected slaves. 
@@ -214,7 +214,6 @@ List vendor id and  product code of detected slaves.
                  product_code =  271601776 (0x10305070)
     士林電機 SDP: vendor_id = 1468 (0x5BC)
                  product_code =  1 (0x1)          
-
 
 #### `sdo-upload-i32 ( subindex index n -- )`
 
@@ -343,12 +342,10 @@ Print SDO information of slave n.
     sdo_data    : 該 位址 （index:subindex）的值。
     sdo_data_hex: 以 16 進位表示該位址的值。
 
-
-
 #### `ec-ready? ( -- flag )`
 
 Is EtherCAT Communication ready ?
-        
+     
 #### `.ec-links ( -- )`
 
 輸出 EtherCAT Communication 的狀態.
@@ -436,6 +433,7 @@ Is there any waiting sdo request?
 | `ec-encoder?` | ( channel n -- flag )  |
 
 
+---
 ### EtherCAT IO primitives
 
 #### `ec-dout@ ( channel n -- t=on )`
@@ -445,7 +443,6 @@ Get digital output state from EtherCAT slave n.
 命令範例: 將 slave 3 的 channel 2 digital output state 放到整數堆疊 
     
     2 3 ec-dout@
-
 
 #### `ec-dout! ( t=on channel n -- )`
 
@@ -482,7 +479,6 @@ Enable analog output of EtherCAT slave n
 命令範例: 將 Slave 2 的 Channel 1 analog output 致能。 
 
     1 2 +ec-aout
-
 
 #### `ec-aout@ ( channel n -- value )`
 
@@ -541,7 +537,7 @@ Get analog input data from EtherCAT slave n.
 | `ec-ain-error` |( channel n -- error ) |
 | `ec-ain-validity` |( channel n -- validity ) | 
 
-
+---
 ### EtherCAT Drive primitives
 
 #### `op-mode! ( mode ch n -- )`
@@ -563,19 +559,19 @@ Set operation mode of drive channel `ch` of slave `n`
 
     6 2 3 op-mode!
 
-#### `pp ( -- 1)`
+#### `pp ( -- 1 )`
 
 將 1 放入整數堆疊
 
 命令範例: 等同於 `1 2 3 op-mode!`
 
     pp 2 3 op-mode! 
-  
-#### `pv ( -- 3)`
+
+#### `pv ( -- 3 )`
 
 將 3 放入整數堆疊    
 
-#### `hm ( -- 6)`
+#### `hm ( -- 6 )`
 
 將 6 放入整數堆疊    
 
@@ -583,7 +579,7 @@ Set operation mode of drive channel `ch` of slave `n`
 
     hm 2 3 op-mode! 。    
 
-#### `csp ( -- 8)`
+#### `csp ( -- 8 )`
 
 將 8 放入整數堆疊            
 
@@ -593,7 +589,7 @@ Drive on of channel `ch` of slave `n`
 
 使用 PDO 指令搭配有限狀態機。    
 
-命令範例: 將 slave 3 drive hannel 2 的驅動器 servo on。
+命令範例: 將 slave 3 drive channel 2 的驅動器 drive on。
     
     2 3 drive-on    
 
@@ -624,7 +620,7 @@ Set point of drive channel `ch` of slave `n`.
 命令範例: slave 3 Channel 2 的 set point or start homing 。
     
     2 3 go    
-    
+ 
 #### `target-p! ( p ch n -- )`
 
 Set target position of drive channel `ch` of slave `n`.
@@ -635,7 +631,7 @@ CSP 模式適合用來多軸同動的場合, 通常需要搭配上位控制器�
 命令範例: 設定 slave 3 drive channel 2 的 target position 為 1000。
                
     1000 2 3 target-p!
-    
+ 
 #### `target-v! ( v ch n -- )`
 
 Set target velocity of channel `ch` of slave `n`
@@ -767,8 +763,7 @@ Until no fault of channel `ch` of slave `n`
         repeat
         drop drop ; 
 
-
-#### `drive-on? ( ch n -- flag)`
+#### `drive-on? ( ch n -- flag )`
 
 Is dive-on of channel `ch` of slave `n` ?
 
@@ -804,11 +799,9 @@ Until drive-on of channel `ch` of slave `n`
     
     deploy pp-test ;deploy       \ 在背景執行 pp-test
 
-
 #### `drive-dins@ ( ch n -- dins )`
 
 將 drive channel `ch` of slave `n` 的驅動器之數位輸入資訊放到整數堆疊上。
-
 
 #### `drive-org? ( ch n -- org )`
 
@@ -851,7 +844,7 @@ Until drive-on of channel `ch` of slave `n`
         error_data.1 ~ error_data.5 為驅動器廠家定義的異警訊息。
         此範例為台達電A2-E 驅動器所回傳的訊息, error_data.2.1 = 19 表示這是
         A2-E 異警碼 0x13 (緊急停止)
-        
+  
 #### 本節指令集
 
 | 指令 | 堆疊效果                       |
@@ -905,9 +898,9 @@ Until drive-on of channel `ch` of slave `n`
 | `+drive-halt` |( channel n -- ) | 
 | `-drive-halt` |( channel n -- ) | 
 
+---
 ### EtherCAT UART primitives
                                           
-
 #### 本節指令集
 
 | 指令 | 堆疊效果                       |
@@ -929,10 +922,9 @@ Until drive-on of channel `ch` of slave `n`
 | `uart-data!` |( d1 d2 .. len channel n -- ) |
 | `uart-data@` |( len channel n -- d1 d2 .. ) |
 
-
+---
 ### EtherCAT Encoder primitives
                                           
-
 #### 本節指令集
 
 | 指令 | 堆疊效果                       |
@@ -947,7 +939,7 @@ Until drive-on of channel `ch` of slave `n`
 | `ec-enc-ofs!` |( ofs channel n -- ) |
 | `ec-enc-ofs@` |( channel n -- ofs ) | 
                 
-
+---
 ### Job Operation
 
 針對軸組運動使用。Job 指的是所有軸組合作完成的工作。
@@ -999,7 +991,6 @@ Has path of all groups of coordinator ended ?
 
 Has path of all groups of coordinator stopped ?
 
-
 #### 本節指令集
 
 | 指令 | 堆疊效果                       |
@@ -1011,9 +1002,10 @@ Has path of all groups of coordinator stopped ?
 | `+coordinator` |( -- ) | 
 | `-coordinator` |( -- ) | 
 | `empty?` |( -- flag ) | 
-| `end?` |( -- flag) | 
-| `stop?` |( -- flag) | 
+| `end?` |( -- flag ) | 
+| `stop?` |( -- flag ) | 
 
+---
 ### Axis Group
 
 #### `gvmax! ( g -- ) ( F: v -- )`
@@ -1047,7 +1039,7 @@ Set axis mapping (x) of group (g). The group shall be Group1D.
 命令範例： 設定 Group 2 的輸出軸為 Axis 3
     
     3 2 map1d    
-   
+
 #### `map2d ( x y g -- )`
 
 Set axis mapping (x, y) of group (g). The group shall be Group2D.
@@ -1080,7 +1072,6 @@ Print information of group g.
     |group_vmax.1|0.100
     |group_amax.1|5.000
     |group_jmax.1|80.00  
-
 
 #### `.group ( g -- )`
 
@@ -1152,7 +1143,6 @@ Set programmed segment feedrate. `v` shall be > 0.
 
     1 group!  100.0e mm/min feedrate! \ 設定 Group 1 的 segment feedrate 為 100.0 mm/min 
 
-
 #### `feedrate@ ( F: -- v )`
 
 Get programmed segment feedrate. 
@@ -1177,7 +1167,6 @@ Enable current group.
     
     1 group! feedrate@
     
-
 #### `-group`
 
 Disable current group.
@@ -1200,7 +1189,6 @@ Has path of current group ended ?
 
 Has path of current group stopped ?
 
-    
 #### 本節指令集
 
 | 指令 | 堆疊效果                       |
@@ -1226,14 +1214,13 @@ Has path of current group stopped ?
 | gstart  | ( -- ) |
 | gstop  | ( -- ) |
    
-
+---
 #### Axis
 
 #### `enc-ppu! ( j --) ( F: ppu -- )`
 
 Set encoder ppu (pulses_per_unit) of axis j.
   
-
 命令範例可以參考 `enc-u!` 
 
 #### `enc-u! ( u j -- )`
@@ -1281,7 +1268,7 @@ Set home offset of axis j.
 命令範例： 設定 Axis 3 home offset
     
     0.5e 3 hmofs!
-    
+ 
 #### `axis-vmax! ( j -- ) ( F: vmax -- )`
 
 設定運動軸的最大速度
@@ -1305,7 +1292,6 @@ Set home offset of axis j.
     
     2.0e 3 axis-amax!
 
-
 #### `drive-slave! ( slave j -- )`
 
 設定運動軸 `j` 對應到的 EtherCAT Slave Postion, 如果沒有實際的驅動器存在則會以虛擬運動軸處理。
@@ -1321,7 +1307,7 @@ Set home offset of axis j.
 命令範例： 設定 Axis 3 對應的 Channel of EtherCAT Slave 為 1
      
     1 3 drive-channel!    
-    
+  
 #### `.axiscfg ( j -- )`
 
 Print information of axis j. 
@@ -1341,7 +1327,7 @@ Print information of axis j.
     |axis_drive_channel.1|1
     |axis_amax.1|5.00000
     |axis_vmax.1|0.10000
-    
+  
 #### `.axis ( j -- )`
 
 Print information of axis j.
@@ -1385,7 +1371,6 @@ Print information of axis j.
     repeat         
     ...
 
-
 #### 本節指令集
 
 | 指令 | 堆疊效果                       |
@@ -1416,6 +1401,7 @@ Print information of axis j.
 | axis-real-p@   | ( j -- )(F: -- pos ) |
 |axis-cmd-p!     | ( j -- )( F: pos -- ) |
 
+---
 ### 1D Path Planning
 
 Current axis group should be 1D for the following commands to work without failure.
@@ -1427,7 +1413,7 @@ Current axis group should be 1D for the following commands to work without failu
 #### `line1d ( F: x -- )` 
 
     Add a line to `x` into path.
-    
+
 #### 範例 test-1d
     
 假設 Group 2 為  1D group, 以100.0 mm.min 速度運動通過相對起點為 -0.5, 1.0，終點為 0.0 的座標位置。
@@ -1452,14 +1438,14 @@ Current axis group should be 1D for the following commands to work without failu
     
     deploy test-1d ;deploy         \ 在背景執行 test-1d
 
-
 #### 本節指令集
 
 | 指令 | 堆疊效果                       |
 |-----|------------------------------|
 | move1d | ( F: x -- ) |
 | line1d | ( F: x -- ) |
-    
+   
+---    
 ### 2D Path Planning
 
 Current aixs group should be 2D for the following commands to work without failure.
@@ -1511,6 +1497,7 @@ Add an arc to `(x, y)` with center `(cx, cy)` into path.
 | line2d | ( F: x y -- ) |
 | arc2d | ( n -- )( F: cx cy x y -- ) |
 
+---
 ### 3D Path Planning
 
 Current axis group should be 3D for the following commands to work without failure.
@@ -1561,7 +1548,7 @@ Add a helix to `(x, y, z)` with center `(cx, cy)` into path. If z is the current
 | line3d | ( F: x y z -- ) |
 | helix3d | ( n -- )( F: cx cy x y z -- ) |
 
-
+---
 ### Sine Wave
 
 Current axis group should be SINE for the following commands to work without failure.
@@ -1599,7 +1586,8 @@ Set amplitude `amp` of sin wave
 | move-sine  | ( F: x -- ) |
 | sine-f! | ( F: f -- ) |
 | sine-amp! | ( F: amp -- ) |
-    
+
+---    
 ### 插值後加減速
 
 命令針對單一運動軸，可以同時讓多個運動軸同時運行。如果該運動軸受到軸組控制則不可執行插值後加減速機制。  
@@ -1633,7 +1621,7 @@ Set amplitude `amp` of sin wave
 | interpolator-v! | ( j -- )（ F: v -- ） |
 | axis-cmd-p! | ( j -- )( F: pos -- ) |
 
-
+---
 ###. Pitch Corrector
 
 #### `+pcorr ( channel slave -- )`
@@ -1644,11 +1632,9 @@ Set amplitude `amp` of sin wave
 
 關閉指定驅動器的 Pitch Corrector
 
-
 #### `>pcorr ( channel slave -- )`
 
 讀取指定驅動器的 Pitch Corrector，此命令會造成 real time cycle overrun, 要在安全的情況下使用，例如 Servo off 的情況下。
-
 
 #### `.pcorr ( channel slave -- )`
 
