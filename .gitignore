@@ -1,4 +1,5 @@
 _book
 .project
 **/*.md.html
-
+node_modules/*
+botnana-book_zh-tw.pdf
