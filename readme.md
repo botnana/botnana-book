@@ -1,1 +1,1 @@
-gitbook 格式請參考 [https://botnana.github.io/botnana-book/](https://botnana.github.io/botnana-book/)
+文件連結： [https://botnana.github.io/botnana-book/](https://botnana.github.io/botnana-book/)
