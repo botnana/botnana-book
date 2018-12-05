@@ -1,8 +1,8 @@
-## Botnana A2
+## Botnana BN-A2A
 
-霸那控制器 (Botnana Control) 支援霸那 A2 (Botnana A2)。
+霸那控制器 (Botnana Control) 支援霸那  BN-A2A (Botnana BN-A2A)。
 
-霸那 A2 規格如下：
+霸那  BN-A2A 規格如下：
 
 * AM3357 800MHz ARM Cortex A8
 * 512MB DDR3L@400MHz RAM

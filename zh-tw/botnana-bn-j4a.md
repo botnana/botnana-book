@@ -1,4 +1,4 @@
-## Botnana A2
+## Botnana BN-J4A
 
 霸那控制器 (Botnana Control) 支援 x86 電腦。
 

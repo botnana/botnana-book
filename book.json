@@ -7,7 +7,7 @@
     "root": ".",
     "links": {
         "sidebar": {
-            "link to github": "https://botnana.github.io/botnana-book/"
+            "連結到 GitHub": "https://botnana.github.io/botnana-book/"
         }
     },
     "pdf": {
