@@ -20,7 +20,7 @@
         - [EtherCAT UART 指令集](./ethercat-uart-primitives.md)
         - [EtherCAT Encoder 指令集](./ethercat-encoder-primitives.md)
         - [軸組 Axis Group 指令集](./axis-group.md)   
-    - [狀態流程圖 Sequential Function Chart (SFC)](./sfc.md)
+        - [狀態流程圖 Sequential Function Chart (SFC)](./sfc.md)
 - [支援的硬體清單](./known-working-hardware.md)
 - [常見問題](./faq.md)
     - [網路設定](./faq/network.md)
