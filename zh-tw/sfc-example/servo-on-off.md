@@ -205,7 +205,7 @@ variable servo-lag-err
         dup axes-len <=   
     while
         dup axis-enabled? if
-            dup axis@ axis-staying? not if
+            dup axis@ axis-rest? not if
                 ." error|Axis (" dup axis@ 0 .r  ." ) is not stopped" cr
                 false servo-off-accepted !
             then
