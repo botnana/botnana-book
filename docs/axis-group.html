@@ -1,0 +1,1414 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>軸組 Axis Group 指令集 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="sfc.html" />
+    
+    
+    <link rel="prev" href="ethercat-encoder-primitives.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    簡介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="hardware.html">
+            
+                <a href="hardware.html">
+            
+                    
+                    硬體規格
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="botnana-a2.html">
+            
+                <a href="botnana-a2.html">
+            
+                    
+                    Botnana BN-A2A
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="botnana-bn-j4a.html">
+            
+                <a href="botnana-bn-j4a.html">
+            
+                    
+                    Botnana BN-J4A
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="software.html">
+            
+                <a href="software.html">
+            
+                    
+                    軟體規格
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="roadmap.html">
+            
+                <a href="roadmap.html">
+            
+                    
+                    Roadmap
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="tutorial.html">
+            
+                <a href="tutorial.html">
+            
+                    
+                    入門教學
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="botnana-a2-tutorial.html">
+            
+                <a href="botnana-a2-tutorial.html">
+            
+                    
+                    Botnana A2 入門
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="botnana-control-tutorial.html">
+            
+                <a href="botnana-control-tutorial.html">
+            
+                    
+                    Botnana Control 入門
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="configuration-file.html">
+            
+                <a href="configuration-file.html">
+            
+                    
+                    設定檔
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="programming.html">
+            
+                <a href="programming.html">
+            
+                    
+                    程式開發界面
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="json-api.html">
+            
+                <a href="json-api.html">
+            
+                    
+                    JSON API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="real-time-script-api.html">
+            
+                <a href="real-time-script-api.html">
+            
+                    
+                    Real-time Script API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.1" data-path="host-primitives.html">
+            
+                <a href="host-primitives.html">
+            
+                    
+                    Botnana 基本指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.2" data-path="ethercat-primitives.html">
+            
+                <a href="ethercat-primitives.html">
+            
+                    
+                    EtherCAT 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.3" data-path="ethercat-drive-primitives.html">
+            
+                <a href="ethercat-drive-primitives.html">
+            
+                    
+                    EtherCAT Drive 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.4" data-path="ethercat-io-primitives.html">
+            
+                <a href="ethercat-io-primitives.html">
+            
+                    
+                    EtherCAT IO 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5" data-path="ethercat-uart-primitives.html">
+            
+                <a href="ethercat-uart-primitives.html">
+            
+                    
+                    EtherCAT UART 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.6" data-path="ethercat-encoder-primitives.html">
+            
+                <a href="ethercat-encoder-primitives.html">
+            
+                    
+                    EtherCAT Encoder 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7.2.7" data-path="axis-group.html">
+            
+                <a href="axis-group.html">
+            
+                    
+                    軸組 Axis Group 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.8" data-path="sfc.html">
+            
+                <a href="sfc.html">
+            
+                    
+                    狀態流程圖 Sequential Function Chart (SFC)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.8.1" data-path="sfc-example/servo-on-off.html">
+            
+                <a href="sfc-example/servo-on-off.html">
+            
+                    
+                    Servo On/OFF
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="known-working-hardware.html">
+            
+                <a href="known-working-hardware.html">
+            
+                    
+                    支援的硬體清單
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="faq.html">
+            
+                <a href="faq.html">
+            
+                    
+                    常見問題
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="faq/network.html">
+            
+                <a href="faq/network.html">
+            
+                    
+                    網路設定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="faq/gadget.html">
+            
+                <a href="faq/gadget.html">
+            
+                    
+                    USB連線IP設定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="faq/windows7_rndis.html">
+            
+                <a href="faq/windows7_rndis.html">
+            
+                    
+                    Windows 7 RNDIS 驅動程式安裝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="faq/windows10_rndis.html">
+            
+                <a href="faq/windows10_rndis.html">
+            
+                    
+                    Windows 10 RNDIS 驅動程式安裝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="faq/win10_permission.html">
+            
+                <a href="faq/win10_permission.html">
+            
+                    
+                    Windows 10 檔案權限修改
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >軸組 Axis Group 指令集</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h3 id="job-operation">Job Operation</h3>
+<p>&#x91DD;&#x5C0D;&#x8EF8;&#x7D44;&#x904B;&#x52D5;&#x4F7F;&#x7528;&#x3002;Job &#x6307;&#x7684;&#x662F;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x5408;&#x4F5C;&#x5B8C;&#x6210;&#x7684;&#x5DE5;&#x4F5C;&#x3002;</p>
+<h4 id="start-job-----"><code>start-job ( -- )</code></h4>
+<p>Start job.</p>
+<h4 id="stop-job-----"><code>stop-job ( -- )</code></h4>
+<p>Stop job.</p>
+<h4 id="ems-job-----"><code>ems-job ( -- )</code></h4>
+<p>Emergency stop job.</p>
+<h4 id="reset-job-----"><code>reset-job ( -- )</code></h4>
+<p>Reset job.</p>
+<h4 id="coordinator-----"><code>+coordinator ( -- )</code></h4>
+<p>Enable coordinator.</p>
+<p>&#x7531; Botnana-Control &#x9032;&#x884C;&#x8EF8;&#x904B;&#x52D5;&#x63A7;&#x5236;&#xFF0C;Botnana-Control&#x6703;&#x904B;&#x884C;&#x8EF8;&#x7D44;&#x7684;&#x8DEF;&#x5F91;&#x898F;&#x5283;&#x8207;&#x4F4D;&#x7F6E;&#x88DC;&#x9593;&#x3002;
+&#x5728;&#x6B64;&#x6A21;&#x5F0F;&#x4E4B;&#x4E0B;&#xFF0C;&#x9A45;&#x52D5;&#x5668;&#x5FC5;&#x9808;&#x8981;&#x5207;&#x63DB;&#x5230; CSP Mode&#x3002;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+<pre><code>+coordinator
+</code></pre><h4 id="coordinator-----"><code>-coordinator ( -- )</code></h4>
+<p>Disable coordinator.</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+<pre><code>-coordinator
+</code></pre><h4 id="empty-----flag"><code>empty? ( -- flag)</code></h4>
+<p>Has path of all groups of coordinator empty ?</p>
+<h4 id="end-----flag"><code>end? ( -- flag)</code></h4>
+<p>Has path of all groups of coordinator ended ?</p>
+<h4 id="stop-----flag"><code>stop? ( -- flag)</code></h4>
+<p>Has path of all groups of coordinator stopped ?</p>
+<h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x6307;&#x4EE4;</th>
+<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start-job</code></td>
+<td>( -- )</td>
+</tr>
+<tr>
+<td><code>stop-job</code></td>
+<td>( -- )</td>
+</tr>
+<tr>
+<td><code>ems-job</code></td>
+<td>( -- )</td>
+</tr>
+<tr>
+<td><code>reset-job</code></td>
+<td>( -- )</td>
+</tr>
+<tr>
+<td><code>+coordinator</code></td>
+<td>( -- )</td>
+</tr>
+<tr>
+<td><code>-coordinator</code></td>
+<td>( -- )</td>
+</tr>
+<tr>
+<td><code>empty?</code></td>
+<td>( -- flag )</td>
+</tr>
+<tr>
+<td><code>end?</code></td>
+<td>( -- flag )</td>
+</tr>
+<tr>
+<td><code>stop?</code></td>
+<td>( -- flag )</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="axis-group">Axis Group</h3>
+<h4 id="gvmax--g------f-v----"><code>gvmax! ( g -- ) ( F: v -- )</code></h4>
+<p>Set vmax of group (g).</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A; &#x8A2D;&#x5B9A; Group 2 &#x7684;&#x6700;&#x9AD8;&#x901F;&#x5EA6;&#x70BA;  1000.0 mm/min</p>
+<pre><code>1000.0e mm/min 2 gvmax!
+</code></pre><h4 id="gamax--g------f-a----"><code>gamax! ( g -- ) ( F: a -- )</code></h4>
+<p>Set amax of group (g).</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A; &#x8A2D;&#x5B9A; Group 2 &#x7684;&#x6700;&#x5927;&#x52A0;&#x901F;&#x5EA6;&#x70BA;  2.0 m/s^2</p>
+<pre><code>2.0e 2 gamax!
+</code></pre><h4 id="gjmax--g------f-j----"><code>gjmax! ( g -- ) ( F: j -- )</code></h4>
+<p>Set jmax of group (g).</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A; &#x8A2D;&#x5B9A; Group 2 &#x7684;&#x6700;&#x5927;&#x52A0;&#x52A0;&#x901F;&#x5EA6;&#x70BA;  40.0 m/s^3</p>
+<pre><code>40.0e 2 gjmax!
+</code></pre><h4 id="map1d--x-g----"><code>map1d ( x g -- )</code></h4>
+<p>Set axis mapping (x) of group (g). The group shall be Group1D.</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A; &#x8A2D;&#x5B9A; Group 2 &#x7684;&#x8F38;&#x51FA;&#x8EF8;&#x70BA; Axis 3</p>
+<pre><code>3 2 map1d    
+</code></pre><h4 id="map2d--x-y-g----"><code>map2d ( x y g -- )</code></h4>
+<p>Set axis mapping (x, y) of group (g). The group shall be Group2D.</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A; &#x8A2D;&#x5B9A; Group 2 &#x7684;&#x8F38;&#x51FA;&#x8EF8;&#x70BA; Axis 3, 5</p>
+<pre><code>3 5 2 map2d    
+</code></pre><h4 id="map3d--x-y-z-g----"><code>map3d ( x y z g -- )</code></h4>
+<p>Set axis mapping (x, y, z) of group (g). The group shall be Group3D.</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A; &#x8A2D;&#x5B9A; Group 2 &#x7684;&#x8F38;&#x51FA;&#x8EF8;&#x70BA; Axis 3, 5, 6</p>
+<pre><code>3 5 6 2 map3d  
+</code></pre><h4 id="grpcfg--g----"><code>.grpcfg ( g -- )</code></h4>
+<p>Print information of group g.</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
+<pre><code>1 .grpcfg
+</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;:</p>
+<pre><code>group_name.1|BotnanaGo
+|group_type.1|1D
+|group_mapping.1|1
+|group_vmax.1|0.100
+|group_amax.1|5.000
+|group_jmax.1|80.00  
+</code></pre><h4 id="group--g----"><code>.group ( g -- )</code></h4>
+<p>Print information of group g.</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:  </p>
+<pre><code>1 .group
+</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F; :</p>
+<pre><code>group_enabled.1|false
+|group_stopping.1|true
+|move_count.1|0
+|path_event_count.1|0
+|focus.1|0
+|source.1|0
+|pva.1|0.00000,0.00000,0.00000
+|move_length.1|0.00000
+|total_length.1|0.00000
+|feedrate.1|0.000
+|vcmd.1|0.000
+|max_look_ahead_count.1|0
+|ACS.1|0.00000
+|PCS.1|0.00000
+</code></pre><h4 id="group--n----"><code>group! ( n -- )</code></h4>
+<p>Select group <code>n</code>, <code>n</code> start by 1.</p>
+<p>&#x8207; group &#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5FC5;&#x9808;&#x8981;&#x5229;&#x7528;&#x6B64;&#x547D;&#x4EE4;&#x9032;&#x884C; group &#x7684;&#x5207;&#x63DB;&#x3002;&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#x53C3;&#x8003; <code>group@</code></p>
+<h4 id="group-----n-"><code>group@ ( -- n )</code></h4>
+<p>Get current group index <code>n</code>.</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+<pre><code>group@ .  \ &#x53D6;&#x51FA;&#x76EE;&#x524D; Group index, &#x4E26;&#x8F38;&#x51FA;&#x6574;&#x6578;&#x5806;&#x758A;&#x8A0A;&#x606F;, &#x5047;&#x8A2D;&#x70BA; 5 
+group@    \ &#x53D6;&#x51FA;&#x76EE;&#x524D; Group index, &#x5806;&#x758A;&#x4E0A;&#x6703;&#x6709; 5  
+1 group!  \ &#x8A2D;&#x5B9A; Group index &#x70BA; 1
+group@ .  \ &#x53D6;&#x51FA;&#x76EE;&#x524D; Group index, &#x4E26;&#x8F38;&#x51FA;&#x6574;&#x6578;&#x5806;&#x758A;&#x8A0A;&#x606F;, &#x5176;&#x503C;&#x61C9;&#x8A72;&#x70BA; 1
+2 group!  \ &#x8A2D;&#x5B9A; Group index &#x70BA; 2
+group@ .  \ &#x53D6;&#x51FA;&#x76EE;&#x524D; Group index, &#x4E26;&#x8F38;&#x51FA;&#x6574;&#x6578;&#x5806;&#x758A;&#x8A0A;&#x606F;, &#x5176;&#x503C;&#x61C9;&#x8A72;&#x70BA; 2
+group!    \ &#x8A2D;&#x5B9A; Group index &#x70BA;&#x6574;&#x6578;&#x5806;&#x758A;&#x7684;&#x4E0A;&#x503C; &#xFF08;5&#xFF09;
+group@ .  \ &#x53D6;&#x51FA;&#x76EE;&#x524D; Group index, &#x4E26;&#x8F38;&#x51FA;&#x6574;&#x6578;&#x5806;&#x758A;&#x8A0A;&#x606F;, &#x5176;&#x503C;&#x61C9;&#x8A72;&#x70BA; 5
+</code></pre><h4 id="0path"><code>0path</code></h4>
+<p>Clear path.</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;1:</p>
+<pre><code>0path           \ &#x6E05;&#x9664;&#x7576;&#x4E0B; Group &#x7684;&#x8DEF;&#x7D93;
+</code></pre><p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;2:</p>
+<pre><code>1 group! 0ptah  \ &#x6E05;&#x9664; Group 1 &#x7684;&#x8DEF;&#x7D93;      
+</code></pre><h4 id="feedrate--f-v----"><code>feedrate! ( F: v -- )</code></h4>
+<p>Set programmed segment feedrate. <code>v</code> shall be &gt; 0.</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;1:</p>
+<pre><code>100.0e mm/min feedrate!           \ &#x8A2D;&#x5B9A;&#x7576;&#x4E0B; Group &#x7684; segment feedrate &#x70BA; 100.0 mm/min      
+</code></pre><p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;2:</p>
+<pre><code>1 group!  100.0e mm/min feedrate! \ &#x8A2D;&#x5B9A; Group 1 &#x7684; segment feedrate &#x70BA; 100.0 mm/min 
+</code></pre><h4 id="feedrate--f----v-"><code>feedrate@ ( F: -- v )</code></h4>
+<p>Get programmed segment feedrate. </p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;1:</p>
+<pre><code>feedrate@
+</code></pre><p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;2:</p>
+<pre><code>1 group! feedrate@
+</code></pre><h4 id="group"><code>+group</code></h4>
+<p>Enable current group.</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;1:</p>
+<pre><code>+group
+</code></pre><p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;2:</p>
+<pre><code>1 group! feedrate@
+</code></pre><h4 id="group"><code>-group</code></h4>
+<p>Disable current group.</p>
+<h4 id="vcmd--f-v----"><code>vcmd! ( F: v -- )</code></h4>
+<p>Set execution velocity command. </p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;: &#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x901F;&#x5EA6;&#x70BA; 100.0 mm/min</p>
+<pre><code>100.0e mm/min vcmd!
+</code></pre><p><strong>TODO: &#x63D0;&#x4F9B; V &lt; 0 &#x7684;&#x904B;&#x52D5;&#x80FD;&#x529B; &#xFF08;&#x6CBF;&#x8DEF;&#x5F91;&#x5F8C;&#x9000;&#xFF09;</strong></p>
+<h4 id="gend-----flag-"><code>gend? ( -- flag )</code></h4>
+<p>Has path of current group ended ?</p>
+<h4 id="gstop-----flag-"><code>gstop? ( -- flag )</code></h4>
+<p>Has path of current group stopped ?</p>
+<h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x6307;&#x4EE4;</th>
+<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gvmax!</td>
+<td>( g -- )( F: v --)</td>
+</tr>
+<tr>
+<td>gamax!</td>
+<td>( g -- )( F: a --)</td>
+</tr>
+<tr>
+<td>gjmax!</td>
+<td>( g -- )( F: j --)</td>
+</tr>
+<tr>
+<td>map1d</td>
+<td>( x g -- )</td>
+</tr>
+<tr>
+<td>map2d</td>
+<td>( x y g -- )</td>
+</tr>
+<tr>
+<td>map3d</td>
+<td>( x y z g -- )</td>
+</tr>
+<tr>
+<td>.grpcfg</td>
+<td>( g -- )</td>
+</tr>
+<tr>
+<td>.group</td>
+<td>( g -- )</td>
+</tr>
+<tr>
+<td>group!</td>
+<td>( n -- )</td>
+</tr>
+<tr>
+<td>group@</td>
+<td>( -- n )</td>
+</tr>
+<tr>
+<td>0path</td>
+<td>( -- )</td>
+</tr>
+<tr>
+<td>feedrate!</td>
+<td>( F: v -- )</td>
+</tr>
+<tr>
+<td>feedrate@</td>
+<td>( F: -- v )</td>
+</tr>
+<tr>
+<td>+group</td>
+<td>( -- )</td>
+</tr>
+<tr>
+<td>-group</td>
+<td>( -- )</td>
+</tr>
+<tr>
+<td>vcmd!</td>
+<td>( F: v -- )</td>
+</tr>
+<tr>
+<td>gend?</td>
+<td>( -- flag )</td>
+</tr>
+<tr>
+<td>gstop?</td>
+<td>( -- flag )</td>
+</tr>
+<tr>
+<td>gstart</td>
+<td>( -- )</td>
+</tr>
+<tr>
+<td>gstop</td>
+<td>( -- )</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h4 id="axis">Axis</h4>
+<h4 id="enc-ppu--j-----f-ppu----"><code>enc-ppu! ( j --) ( F: ppu -- )</code></h4>
+<p>Set encoder ppu (pulses_per_unit) of axis j.</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#x53EF;&#x4EE5;&#x53C3;&#x8003; <code>enc-u!</code> </p>
+<h4 id="enc-u--u-j----"><code>enc-u! ( u j -- )</code></h4>
+<p>Set encoder length unit of axis j.</p>
+<p>&#x53EF;&#x4EE5;&#x8A2D;&#x5B9A;&#x7684;&#x55AE;&#x4F4D;&#x6709;&#xFF1A;</p>
+<ul>
+<li>u = 0 as Meter,</li>
+<li>u = 1 as Revolution</li>
+<li>u = 2 as Pulse</li>
+</ul>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A; &#x8A2D;&#x5B9A; Axis 3 &#x7684;&#x7DE8;&#x78BC;&#x5668;&#x89E3;&#x6790;&#x5EA6;</p>
+<pre><code>1000000.0e 3 enc-ppu!
+0 3 enc-u!
+
+&#x4EE5;&#x4E0A;&#x7684;&#x547D;&#x4EE4;&#x8A2D;&#x5B9A;&#x8868;&#x793A; 1 m &#x6709; 1000000 &#x500B;pulse (&#x7DE8;&#x78BC;&#x5668;&#x8108;&#x6CE2;&#x6578;),
+&#x8868;&#x793A; 1 pulse &#x70BA; 1 um 
+</code></pre><h4 id="enc-dir--dir-j----"><code>enc-dir! ( dir j -- )</code></h4>
+<p>Set encoder direction of axis j.</p>
+<p>&#x7576;&#x6A5F;&#x5668;&#x7684;&#x8EF8;&#x5411;&#x8207;&#x99AC;&#x9054;&#x7684;&#x904B;&#x8F49;&#x65B9;&#x5411;&#x5B9A;&#x7FA9;&#x76F8;&#x53CD;&#x6642;&#x53EF;&#x4EE5;&#x85C9;&#x7531;&#x6B64;&#x53C3;&#x6578;&#x4F86;&#x8F49;&#x63DB;&#x3002;</p>
+<p>dir &#x53EF;&#x4EE5;&#x8A2D;&#x5B9A;&#x7684;&#x503C;&#x70BA;&#xFF1A;</p>
+<ul>
+<li>1: &#x540C;&#x65B9;&#x5411;</li>
+<li>-1: &#x53CD;&#x65B9;&#x5411;</li>
+</ul>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A; &#x8A2D;&#x5B9A; Axis 3 &#x7DE8;&#x78BC;&#x5668;&#x65B9;&#x5411;</p>
+<pre><code>1 3 enc-dir!
+</code></pre><h4 id="hmofs--j------f-ofs----"><code>hmofs! ( j -- ) ( F: ofs -- )</code></h4>
+<p>Set home offset of axis j.</p>
+<p>&#x53EF;&#x4EE5;&#x7528;&#x4F86;&#x8ABF;&#x6574;&#x904B;&#x52D5;&#x8EF8;&#x8207;&#x9A45;&#x52D5;&#x5668;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x7684;&#x4F4D;&#x7F6E;&#x504F;&#x79FB;&#x91CF;&#x3002;  </p>
+<pre><code>drive_command = axis_command - home_offset;
+drive_pulse_command = drive_command/encoder_resolution*encoder_direction;
+</code></pre><p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A; &#x8A2D;&#x5B9A; Axis 3 home offset</p>
+<pre><code>0.5e 3 hmofs!
+</code></pre><h4 id="axis-vmax--j------f-vmax----"><code>axis-vmax! ( j -- ) ( F: vmax -- )</code></h4>
+<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x6700;&#x5927;&#x901F;&#x5EA6;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;1&#xFF1A; &#x8A2D;&#x5B9A; Axis 3 vmax &#x70BA; 0.5 m/s</p>
+<pre><code>0.5e 3 axis-vmax!
+</code></pre><p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;2&#xFF1A; &#x8A2D;&#x5B9A; Axis 3 vmax &#x70BA; 0.5 mm/min</p>
+<pre><code>0.5e mm/min 3 axis-vmax!
+</code></pre><h4 id="axis-amax--j------f-amax----"><code>axis-amax! ( j -- ) ( F: amax -- )</code></h4>
+<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x6700;&#x5927;&#x52A0;&#x901F;&#x5EA6;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A; &#x8A2D;&#x5B9A; Axis 3 amax &#x70BA; 2.0 m/s^2</p>
+<pre><code>2.0e 3 axis-amax!
+</code></pre><h4 id="drive-slave--slave-j----"><code>drive-slave! ( slave j -- )</code></h4>
+<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x5C0D;&#x61C9;&#x5230;&#x7684; EtherCAT Slave Postion, &#x5982;&#x679C;&#x6C92;&#x6709;&#x5BE6;&#x969B;&#x7684;&#x9A45;&#x52D5;&#x5668;&#x5B58;&#x5728;&#x5247;&#x6703;&#x4EE5;&#x865B;&#x64EC;&#x904B;&#x52D5;&#x8EF8;&#x8655;&#x7406;&#x3002;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A; &#x8A2D;&#x5B9A; Axis 3 &#x5C0D;&#x61C9;&#x7684; Slave Position &#x70BA; 2</p>
+<pre><code>2 3 drive-slave!
+</code></pre><h4 id="drive-channel--ch-j----"><code>drive-channel! ( ch j -- )</code></h4>
+<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x5C0D;&#x61C9;&#x5230;&#x7684; Channel <code>ch</code> of EtherCAT Slave Postion, &#x5982;&#x679C;&#x6C92;&#x6709;&#x5BE6;&#x969B;&#x7684;&#x9A45;&#x52D5;&#x5668;&#x5B58;&#x5728;&#x5247;&#x6703;&#x4EE5;&#x865B;&#x64EC;&#x904B;&#x52D5;&#x8EF8;&#x8655;&#x7406;&#x3002;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A; &#x8A2D;&#x5B9A; Axis 3 &#x5C0D;&#x61C9;&#x7684; Channel of EtherCAT Slave &#x70BA; 1</p>
+<pre><code>1 3 drive-channel!    
+</code></pre><h4 id="axiscfg--j----"><code>.axiscfg ( j -- )</code></h4>
+<p>Print information of axis j. </p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A; </p>
+<pre><code>1 .axiscfg
+</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#xFF1A;</p>
+<pre><code>axis_name.1|Anonymous
+|axis_home_offset.1|0.0000
+|encoder_ppu.1|1000000.00000
+|encoder_length_unit.1|Meter
+|encoder_direction.1|1
+|axis_slave_position.1|1
+|axis_drive_channel.1|1
+|axis_amax.1|5.00000
+|axis_vmax.1|0.10000
+</code></pre><h4 id="axis--j----"><code>.axis ( j -- )</code></h4>
+<p>Print information of axis j.</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:  </p>
+<pre><code>1 .axis
+</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F; :</p>
+<pre><code>axis_command_position.1|-0.00000
+|axis_demand_position.1|-0.00000
+|axis_corrected_position.1|-0.00001
+|encoder_position.1|-0.00001
+|following_error.1|0.00001
+|axis_interpolator_enabled.1|false    
+</code></pre><h4 id="axis-demand-p--j-----f----pos-"><code>axis-demand-p@ ( j -- )( F: -- pos )</code></h4>
+<p>&#x53D6;&#x5F97; Axis j &#x7684;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E; </p>
+<h4 id="axis-real-p--j----f----pos-"><code>axis-real-p@ ( j -- )(F: -- pos )</code></h4>
+<p>&#x53D6;&#x5F97; Axis j &#x7684;&#x5BE6;&#x969B;&#x4F4D;&#x7F6E; </p>
+<h4 id="axis-cmd-p--j-----f-pos----"><code>axis-cmd-p! ( j -- )( F: pos -- )</code></h4>
+<p>&#x8A2D;&#x5B9A; Axis  <code>j</code> command position</p>
+<h4 id="&#x904B;&#x52D5;&#x8EF8;&#x8FFD;&#x96A8;&#x7BC4;&#x4F8B;">&#x904B;&#x52D5;&#x8EF8;&#x8FFD;&#x96A8;&#x7BC4;&#x4F8B;</h4>
+<p>&#x4EE5; Axis 2 &#x8FFD;&#x96A8; Axis 1 &#x7684;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x904B;&#x52D5;</p>
+<pre><code>...
+begin
+    ... \&#x67D0;&#x500B;&#x689D;&#x4EF6;&#x6210;&#x7ACB;&#x57F7;&#x884C;
+while
+    ........
+    2 axis-demand-p@ 1 axis-cmd-p! 
+    pause
+repeat         
+...
+</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x6307;&#x4EE4;</th>
+<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enc-ppu!</td>
+<td>( j -- )( F: ppu -- )</td>
+</tr>
+<tr>
+<td>enc-u!</td>
+<td>( u j -- )</td>
+</tr>
+<tr>
+<td>enc-dir!</td>
+<td>( dir j -- )</td>
+</tr>
+<tr>
+<td>ext-enc-ppu!</td>
+<td>( j -- )( F: ppu -- )</td>
+</tr>
+<tr>
+<td>ext-enc-dir!</td>
+<td>( dir j -- )</td>
+</tr>
+<tr>
+<td>hmofs!</td>
+<td>( j -- ) ( F: ofs -- )</td>
+</tr>
+<tr>
+<td>axis-vmax!</td>
+<td>( j -- ) ( F: vmax -- )</td>
+</tr>
+<tr>
+<td>axis-amax!</td>
+<td>( j -- ) ( F: amax -- )</td>
+</tr>
+<tr>
+<td>axis-vmax@</td>
+<td>( j -- ) ( F: -- vmax )</td>
+</tr>
+<tr>
+<td>axis-amax@</td>
+<td>( j -- ) ( F: -- amax )</td>
+</tr>
+<tr>
+<td>drive-alias!</td>
+<td>( drive-alias j -- )</td>
+</tr>
+<tr>
+<td>drive-slave!</td>
+<td>( drive-slave j -- )</td>
+</tr>
+<tr>
+<td>drive-channel!</td>
+<td>( drive-channel j -- )</td>
+</tr>
+<tr>
+<td>ext-enc-alias!</td>
+<td>( enc-alias j -- )</td>
+</tr>
+<tr>
+<td>ext-enc-slave!</td>
+<td>( enc-slave j -- )</td>
+</tr>
+<tr>
+<td>ext-enc-channel!</td>
+<td>( enc-channel j -- )</td>
+</tr>
+<tr>
+<td>.axiscfg</td>
+<td>( j -- )</td>
+</tr>
+<tr>
+<td>.axis</td>
+<td>( j -- )</td>
+</tr>
+<tr>
+<td>axis-len</td>
+<td>( --  len )</td>
+</tr>
+<tr>
+<td>virtual-axis?</td>
+<td>( j --  flag )</td>
+</tr>
+<tr>
+<td>axis-drive@</td>
+<td>( j --  channel slave )</td>
+</tr>
+<tr>
+<td>axis-ext-enc@</td>
+<td>( j --  channel slave )</td>
+</tr>
+<tr>
+<td>axis-demand-p@</td>
+<td>( j -- )(F: -- pos )</td>
+</tr>
+<tr>
+<td>axis-real-p@</td>
+<td>( j -- )(F: -- pos )</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><a href="ethercat_encoder_primitives.md">EtherCAT Encoder &#x6307;&#x4EE4;&#x96C6;</a>|axis-cmd-p!     | ( j -- )( F: pos -- ) |</li>
+</ul>
+<hr>
+<h3 id="1d-path-planning">1D Path Planning</h3>
+<p>Current axis group should be 1D for the following commands to work without failure.</p>
+<h4 id="move1d--f-x----"><code>move1d ( F: x -- )</code></h4>
+<pre><code>Declare the current absolute coordinate to be `x`. (G92)
+</code></pre><h4 id="line1d--f-x----"><code>line1d ( F: x -- )</code></h4>
+<pre><code>Add a line to `x` into path.
+</code></pre><h4 id="&#x7BC4;&#x4F8B;-test-1d">&#x7BC4;&#x4F8B; test-1d</h4>
+<p>&#x5047;&#x8A2D; Group 2 &#x70BA;  1D group, &#x4EE5;100.0 mm.min &#x901F;&#x5EA6;&#x904B;&#x52D5;&#x901A;&#x904E;&#x76F8;&#x5C0D;&#x8D77;&#x9EDE;&#x70BA; -0.5, 1.0&#xFF0C;&#x7D42;&#x9EDE;&#x70BA; 0.0 &#x7684;&#x5EA7;&#x6A19;&#x4F4D;&#x7F6E;&#x3002;</p>
+<pre><code>: test-1d                      \ &#x5B9A;&#x7FA9; test-1d &#x6307;&#x4EE4;
+    +coordinator               \ &#x555F;&#x52D5;&#x8EF8;&#x904B;&#x52D5;&#x63A7;&#x5236;&#x6A21;&#x5F0F;                    
+    start-job                  \ &#x555F;&#x52D5;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
+    2 group! +group            \ &#x555F;&#x52D5; Group 2
+    0path                      \ &#x6E05;&#x9664; Group 2 &#x8DEF;&#x5F91;
+    0.0e move1d                \ &#x5BA3;&#x544A;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x70BA;&#x8D77;&#x59CB;&#x904B;&#x52D5;&#x4F4D;&#x7F6E;&#xFF0C;&#x5EA7;&#x6A19;&#x70BA; 0.0 
+    -0.5e line1d               \ &#x63D2;&#x5165;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; -0.5 &#x7684; 1D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;
+    1.0e line1d                \ &#x63D2;&#x5165;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; 1.0 &#x7684; 1D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;
+    0.0e line1d                \ &#x63D2;&#x5165;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; 0.0 &#x7684; 1D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;  
+    100.0e mm/min vcmd!        \ &#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x901F;&#x5EA6;&#x70BA; 100.0 mm/min
+    begin                      \ &#x7B49;&#x5F85;&#x5230;&#x9054;&#x7D42;&#x9EDE;&#x4F4D;&#x7F6E;
+        2 group! gend? not     \ &#x6AA2;&#x67E5;&#x662F;&#x5426;&#x5230;&#x7D42;&#x9EDE;, &#x6B64;&#x8655; 2 group! &#x907F;&#x514D;&#x5728;&#x7B49;&#x5F85;&#x904E;&#x7A0B;&#x4E2D;&#x88AB;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x4FEE;&#x6539;&#x4E86; Group index
+    while
+        pause                  \ &#x82E5;&#x662F;&#x672A;&#x5230;&#x7D42;&#x9EDE;&#x5C31;&#x7B49;&#x5F85;&#x4E0B;&#x4E00;&#x500B;&#x5468;&#x671F;&#x518D;&#x9032;&#x884C;&#x6AA2;&#x67E5;       
+    repeat 
+    2 group! -group            \ &#x95DC;&#x9589; Group 2 
+;
+
+deploy test-1d ;deploy         \ &#x5728;&#x80CC;&#x666F;&#x57F7;&#x884C; test-1d
+</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x6307;&#x4EE4;</th>
+<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>move1d</td>
+<td>( F: x -- )</td>
+</tr>
+<tr>
+<td>line1d</td>
+<td>( F: x -- )</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="2d-path-planning">2D Path Planning</h3>
+<p>Current aixs group should be 2D for the following commands to work without failure.</p>
+<h4 id="move2d--f-x-y----"><code>move2d ( F: x y -- )</code></h4>
+<p>Declare the current absolute coordinate to be <code>(x, y)</code>. (G92)</p>
+<h4 id="line2d--f-x-y----"><code>line2d ( F: x y -- )</code></h4>
+<p>Add a line to <code>(x, y)</code> into path.</p>
+<h4 id="arc2d--n-----f-cx-cy-x-y----"><code>arc2d ( n -- )( F: cx cy x y -- )</code></h4>
+<p>Add an arc to <code>(x, y)</code> with center <code>(cx, cy)</code> into path.</p>
+<p><code>n</code> &#x4E0D;&#x53EF;&#x4EE5;&#x70BA; 0, &#x5982;&#x679C; n &gt; 0 &#x8868;&#x793A;&#x9006;&#x6642;&#x91DD;&#x904B;&#x52D5;&#xFF0C;n &lt; 0 &#x8868;&#x793A;&#x9806;&#x6642;&#x91DD;&#x904B;&#x52D5;&#x3002;</p>
+<h4 id="&#x7BC4;&#x4F8B;-test-2d">&#x7BC4;&#x4F8B; test-2d</h4>
+<p>&#x5047;&#x8A2D; Group 5 &#x70BA;  2D group</p>
+<pre><code>: test-2d                          \ &#x5B9A;&#x7FA9; test-2d &#x6307;&#x4EE4;
+    +coordinator                   \ &#x555F;&#x52D5;&#x8EF8;&#x904B;&#x52D5;&#x63A7;&#x5236;&#x6A21;&#x5F0F;                    
+    start-job                      \ &#x555F;&#x52D5;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
+    5 group! +group                \ &#x555F;&#x52D5; Group 5
+    0path                          \ &#x6E05;&#x9664; Group 5 &#x8DEF;&#x5F91;
+    0.0e  0.0e  move2d             \ &#x5BA3;&#x544A;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x70BA;&#x8D77;&#x59CB;&#x904B;&#x52D5;&#x4F4D;&#x7F6E;&#xFF0C;&#x5EA7;&#x6A19;&#x70BA; (0.0, 0.0) 
+    0.1e  0.0e  line2d             \ &#x63D2;&#x5165;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; (0.1, 0.0) &#x7684; 2D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;
+    0.1e  0.1e  line2d             \ &#x63D2;&#x5165;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; (0.1, 0.1) &#x7684; 2D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91; 
+    0.0e  0.1e  line2d             \ &#x63D2;&#x5165;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; (0.0, 0.1) &#x7684; 2D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91; 
+    0.0e  0.05e 0.0e 0.0e 1 arc2d  \ &#x4EE5;&#x5713;&#x5FC3;&#x4F4D;&#x7F6E; &#xFF08;0.0, 0.05&#xFF09;&#x9006;&#x6642;&#x91DD;&#x8D70;&#x5230;&#x76EE;&#x6A19;&#x9EDE; &#xFF08;0.0, 0.0&#xFF09; 
+    100.0e mm/min vcmd!            \ &#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x901F;&#x5EA6;&#x70BA; 100.0 mm/min
+    begin                          \ &#x7B49;&#x5F85;&#x5230;&#x9054;&#x7D42;&#x9EDE;&#x4F4D;&#x7F6E;
+        5 group! gend? not         \ &#x6AA2;&#x67E5;&#x662F;&#x5426;&#x5230;&#x7D42;&#x9EDE;, &#x6B64;&#x8655; 5 group! &#x907F;&#x514D;&#x5728;&#x7B49;&#x5F85;&#x904E;&#x7A0B;&#x4E2D;&#x88AB;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x4FEE;&#x6539;&#x4E86; Group index
+    while
+        pause                      \ &#x82E5;&#x662F;&#x672A;&#x5230;&#x7D42;&#x9EDE;&#x5C31;&#x7B49;&#x5F85;&#x4E0B;&#x4E00;&#x500B;&#x5468;&#x671F;&#x518D;&#x9032;&#x884C;&#x6AA2;&#x67E5;       
+    repeat 
+    5 group! -group                \ &#x95DC;&#x9589; Group 5 
+;
+
+deploy test-2d ;deploy         \ &#x5728;&#x80CC;&#x666F;&#x57F7;&#x884C; test-2d
+</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x6307;&#x4EE4;</th>
+<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>move2d</td>
+<td>( F: x y -- )</td>
+</tr>
+<tr>
+<td>line2d</td>
+<td>( F: x y -- )</td>
+</tr>
+<tr>
+<td>arc2d</td>
+<td>( n -- )( F: cx cy x y -- )</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="3d-path-planning">3D Path Planning</h3>
+<p>Current axis group should be 3D for the following commands to work without failure.</p>
+<h4 id="move3d--f-x-y-z----"><code>move3d ( F: x y z -- )</code></h4>
+<p>Declare the current absolute coordinate to be <code>(x, y, z)</code>. (G92)</p>
+<h4 id="line3d--f-x-y-z----"><code>line3d ( F: x y z -- )</code></h4>
+<p>Add a line to <code>(x, y, z)</code> into path.</p>
+<h4 id="helix3d--n-----f-cx-cy-x-y-z----"><code>helix3d ( n -- )( F: cx cy x y z -- )</code></h4>
+<p>Add a helix to <code>(x, y, z)</code> with center <code>(cx, cy)</code> into path. If z is the current z, the added curve is an arc.</p>
+<p><code>n</code> &#x4E0D;&#x53EF;&#x4EE5;&#x70BA; 0, &#x5982;&#x679C; n &gt; 0 &#x8868;&#x793A;&#x9006;&#x6642;&#x91DD;&#x904B;&#x52D5;&#xFF0C;n &lt; 0 &#x8868;&#x793A;&#x9806;&#x6642;&#x91DD;&#x904B;&#x52D5;&#x3002;</p>
+<h4 id="&#x7BC4;&#x4F8B;-test-3d">&#x7BC4;&#x4F8B; test-3d</h4>
+<p>&#x5047;&#x8A2D; Group 1 &#x70BA; 3D group</p>
+<pre><code>: test-3d                          \ &#x5B9A;&#x7FA9; test-3d &#x6307;&#x4EE4;
+    +coordinator                   \ &#x555F;&#x52D5;&#x8EF8;&#x904B;&#x52D5;&#x63A7;&#x5236;&#x6A21;&#x5F0F;                    
+    start-job                      \ &#x555F;&#x52D5;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
+    1 group! +group                \ &#x555F;&#x52D5; Group 1
+    0path                          \ &#x6E05;&#x9664; Group 1 &#x8DEF;&#x5F91;
+    0.0e  0.0e  0.0e   move3d      \ &#x5BA3;&#x544A;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x70BA;&#x8D77;&#x59CB;&#x904B;&#x52D5;&#x4F4D;&#x7F6E;&#xFF0C;&#x5EA7;&#x6A19;&#x70BA; (0.0, 0.0, 0.0) 
+    0.0e  0.1e  0.0e  line3d       \ &#x63D2;&#x5165;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; (0.0, 0.1, 0.0) &#x7684; 3D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;
+    -0.1e  0.1e -0.2e 0.1e 0.1e  1 helix3d 
+                                   \ &#x4EE5;&#x5713;&#x5FC3;&#x4F4D;&#x7F6E; &#xFF08;-0.1, 0.1&#xFF09;&#x9006;&#x6642;&#x91DD;&#x8D70;&#x5230;&#x76EE;&#x6A19;&#x9EDE; &#xFF08;-0.2, 0.1, 0.1 &#xFF09;&#x7684;&#x87BA;&#x65CB;&#x8DEF;&#x5F91; 
+    100.0e mm/min vcmd!            \ &#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x901F;&#x5EA6;&#x70BA; 100.0 mm/min
+    begin                          \ &#x7B49;&#x5F85;&#x5230;&#x9054;&#x7D42;&#x9EDE;&#x4F4D;&#x7F6E;
+        1 group! gend? not         \ &#x6AA2;&#x67E5;&#x662F;&#x5426;&#x5230;&#x7D42;&#x9EDE;, &#x6B64;&#x8655; 1 group! &#x907F;&#x514D;&#x5728;&#x7B49;&#x5F85;&#x904E;&#x7A0B;&#x4E2D;&#x88AB;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x4FEE;&#x6539;&#x4E86; Group index
+    while
+        pause                      \ &#x82E5;&#x662F;&#x672A;&#x5230;&#x7D42;&#x9EDE;&#x5C31;&#x7B49;&#x5F85;&#x4E0B;&#x4E00;&#x500B;&#x5468;&#x671F;&#x518D;&#x9032;&#x884C;&#x6AA2;&#x67E5;       
+    repeat 
+    1 group! -group                \ &#x95DC;&#x9589; Group 1 
+;
+
+deploy test-3d ;deploy         \ &#x5728;&#x80CC;&#x666F;&#x57F7;&#x884C; test-3d
+</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x6307;&#x4EE4;</th>
+<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>move3d</td>
+<td>( F: x y z -- )</td>
+</tr>
+<tr>
+<td>line3d</td>
+<td>( F: x y z -- )</td>
+</tr>
+<tr>
+<td>helix3d</td>
+<td>( n -- )( F: cx cy x y z -- )</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="sine-wave">Sine Wave</h3>
+<p>Current axis group should be SINE for the following commands to work without failure.</p>
+<h4 id="move-sine--f-x----"><code>move-sine ( F: x -- )</code></h4>
+<p>Declare the current absolute coordinate to be <code>x</code>. (G92)</p>
+<h4 id="sine-f--f-f----"><code>sine-f! ( F: f -- )</code></h4>
+<p>Set frequency <code>f</code> of sine wave</p>
+<h4 id="sine-amp-f-amp----"><code>sine-amp! (F: amp -- )</code></h4>
+<p>Set amplitude <code>amp</code> of sin wave</p>
+<h4 id="&#x7BC4;&#x4F8B;-test-sine">&#x7BC4;&#x4F8B; test-sine</h4>
+<p>&#x5047;&#x8A2D; Group 1 &#x70BA; SINE group</p>
+<pre><code>+coordinator          \ &#x555F;&#x52D5;&#x8EF8;&#x904B;&#x52D5;&#x63A7;&#x5236;&#x6A21;&#x5F0F;                    
+start-job             \ &#x555F;&#x52D5;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
+1 group! +group       \ &#x555F;&#x52D5; Group 1
+0path                 \ &#x6E05;&#x9664; Group 1 &#x8DEF;&#x5F91;
+0.0e   move-sine      \ &#x5BA3;&#x544A;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x70BA;&#x8D77;&#x59CB;&#x904B;&#x52D5;&#x4F4D;&#x7F6E;&#xFF0C;&#x5EA7;&#x6A19;&#x70BA; (0.0) 
+1.0e   sine-f!        \ &#x8A2D;&#x5B9A;sine wave &#x983B;&#x7387;&#x70BA; 1.0 Hz
+0.01e  sine-amp!      \ &#x8A2D;&#x5B9A;sine wave &#x632F;&#x5E45;&#x70BA; 0.01
+...
+stop-job              \ &#x505C;&#x6B62;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
+</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x6307;&#x4EE4;</th>
+<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>move-sine</td>
+<td>( F: x -- )</td>
+</tr>
+<tr>
+<td>sine-f!</td>
+<td>( F: f -- )</td>
+</tr>
+<tr>
+<td>sine-amp!</td>
+<td>( F: amp -- )</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="&#x63D2;&#x503C;&#x5F8C;&#x52A0;&#x6E1B;&#x901F;">&#x63D2;&#x503C;&#x5F8C;&#x52A0;&#x6E1B;&#x901F;</h3>
+<p>&#x547D;&#x4EE4;&#x91DD;&#x5C0D;&#x55AE;&#x4E00;&#x904B;&#x52D5;&#x8EF8;&#xFF0C;&#x53EF;&#x4EE5;&#x540C;&#x6642;&#x8B93;&#x591A;&#x500B;&#x904B;&#x52D5;&#x8EF8;&#x540C;&#x6642;&#x904B;&#x884C;&#x3002;&#x5982;&#x679C;&#x8A72;&#x904B;&#x52D5;&#x8EF8;&#x53D7;&#x5230;&#x8EF8;&#x7D44;&#x63A7;&#x5236;&#x5247;&#x4E0D;&#x53EF;&#x57F7;&#x884C;&#x63D2;&#x503C;&#x5F8C;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;&#x3002;  </p>
+<h4 id="interpolator--j----"><code>+interpolator ( j -- )</code></h4>
+<p>&#x555F;&#x52D5; Axis <code>j</code> &#x63D2;&#x503C;&#x5F8C;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;&#x3002;</p>
+<h4 id="interpolator--j----"><code>-interpolator ( j -- )</code></h4>
+<p>&#x95DC;&#x9589; Axis <code>j</code> &#x63D2;&#x503C;&#x5F8C;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;&#x3002;&#x5982;&#x679C;&#x63D2;&#x503C;&#x5668;&#x904B;&#x4F5C;&#x4E2D;&#xFF0C;&#x6703;&#x4EE5;&#x7576;&#x4E0B;&#x7684;&#x4F4D;&#x7F6E;&#x958B;&#x59CB;&#x6E1B;&#x901F;&#x5230; 0&#x3002;</p>
+<h4 id="interpolator-v--j----&#xFF08;-f-v----&#xFF09;"><code>interpolator-v! ( j -- )&#xFF08; F: v -- &#xFF09;</code></h4>
+<p>&#x8A2D;&#x5B9A; Axis  <code>j</code> &#x63D2;&#x503C;&#x5668;&#x5F97;&#x6700;&#x5927;&#x904B;&#x52D5;&#x901F;&#x5EA6;&#x3002;</p>
+<h4 id="&#x63D2;&#x503C;&#x5F8C;&#x52A0;&#x6E1B;&#x901F;&#x7BC4;&#x4F8B;">&#x63D2;&#x503C;&#x5F8C;&#x52A0;&#x6E1B;&#x901F;&#x7BC4;&#x4F8B;</h4>
+<p>&#x4EE5; Axis 1 &#x70BA;&#x4F8B;&#xFF1A;</p>
+<pre><code>1  +interpolator                 \ &#x555F;&#x52D5; Axis 1 &#x63D2;&#x503C;&#x5F8C;&#x52A0;&#x6E1B;&#x901F;
+100.0 mm/min  1  interpolator-v! \ &#x8A2D;&#x5B9A; Axis 1 &#x63D2;&#x503C;&#x901F;&#x5EA6;&#x70BA; 100.0 mm/min
+0.3 1 axis-cmd-p!                \ &#x8A2D;&#x5B9A; Axis 1 &#x7684;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;&#x70BA;&#x5EA7;&#x6A19;&#x4F4D;&#x7F6E; 0.3 m 
+</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x6307;&#x4EE4;</th>
+<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>+interpolator</td>
+<td>( j -- )</td>
+</tr>
+<tr>
+<td>-interpolator</td>
+<td>( j -- )</td>
+</tr>
+<tr>
+<td>interpolator-v!</td>
+<td>( j -- )&#xFF08; F: v -- &#xFF09;</td>
+</tr>
+<tr>
+<td>axis-cmd-p!</td>
+<td>( j -- )( F: pos -- )</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="pitch-corrector">. Pitch Corrector</h3>
+<h4 id="pcorr--channel-slave----"><code>+pcorr ( channel slave -- )</code></h4>
+<p>&#x958B;&#x555F;&#x6307;&#x5B9A;&#x9A45;&#x52D5;&#x5668;&#x7684; Pitch Corrector</p>
+<h4 id="pcorr--channel-slave----"><code>-pcorr ( channel slave -- )</code></h4>
+<p>&#x95DC;&#x9589;&#x6307;&#x5B9A;&#x9A45;&#x52D5;&#x5668;&#x7684; Pitch Corrector</p>
+<h4 id="pcorr--channel-slave----"><code>&gt;pcorr ( channel slave -- )</code></h4>
+<p>&#x8B80;&#x53D6;&#x6307;&#x5B9A;&#x9A45;&#x52D5;&#x5668;&#x7684; Pitch Corrector&#xFF0C;&#x6B64;&#x547D;&#x4EE4;&#x6703;&#x9020;&#x6210; real time cycle overrun, &#x8981;&#x5728;&#x5B89;&#x5168;&#x7684;&#x60C5;&#x6CC1;&#x4E0B;&#x4F7F;&#x7528;&#xFF0C;&#x4F8B;&#x5982; Servo off &#x7684;&#x60C5;&#x6CC1;&#x4E0B;&#x3002;</p>
+<h4 id="pcorr--channel-slave----"><code>.pcorr ( channel slave -- )</code></h4>
+<p>&#x8F38;&#x51FA;&#x76EE;&#x524D; Pitch Corrector &#x7684;&#x67E5;&#x8868;&#x7D50;&#x679C;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:  </p>
+<pre><code>1 1 .pcorr
+</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F; :</p>
+<pre><code>pcorr_name.1.1|P0001-01.sdx
+|pcorr_len.1.1|10
+|pcorr_position.1.1|0.0000000
+|pcorr_forward.1.1|0.0000000
+|pcorr_backward.1.1|0.0000000
+|pcorr_corrected_position.1.1|0.0000000
+|pcorr_backlash.1.1|0.0000000
+|pcorr_direction.1.1|1
+|pcorr_factor.1.1|0.0020000
+|pcorr_enabled.1.1|0
+</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x6307;&#x4EE4;</th>
+<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>+pcorr</code></td>
+<td>( channel n -- )</td>
+</tr>
+<tr>
+<td><code>-pcorr</code></td>
+<td>( channel n -- )</td>
+</tr>
+<tr>
+<td><code>&gt;pcorr</code></td>
+<td>( channel n -- )</td>
+</tr>
+<tr>
+<td><code>pcorr&gt;</code></td>
+<td>( channel n -- )</td>
+</tr>
+<tr>
+<td><code>pcorr-entry!</code></td>
+<td>( index channel n -- )( F: position forward backward -- )</td>
+</tr>
+<tr>
+<td><code>pcorr-factor!</code></td>
+<td>( channel n -- )( F: factor -- )</td>
+</tr>
+<tr>
+<td><code>pcorr-resize</code></td>
+<td>( len channel n -- )</td>
+</tr>
+<tr>
+<td><code>.pcorr</code></td>
+<td>( channel n -- )</td>
+</tr>
+<tr>
+<td><code>.pcorr-entry</code></td>
+<td>( index channel n -- )</td>
+</tr>
+</tbody>
+</table>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="ethercat-encoder-primitives.html" class="navigation navigation-prev " aria-label="Previous page: EtherCAT Encoder 指令集">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="sfc.html" class="navigation navigation-next " aria-label="Next page: 狀態流程圖 Sequential Function Chart (SFC)">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"軸組 Axis Group 指令集","level":"1.7.2.7","depth":3,"next":{"title":"狀態流程圖 Sequential Function Chart (SFC)","level":"1.7.2.8","depth":3,"path":"sfc.md","ref":"./sfc.md","articles":[{"title":"Servo On/OFF","level":"1.7.2.8.1","depth":4,"path":"sfc-example/servo-on-off.md","ref":"./sfc-example/servo-on-off.md","articles":[]}]},"previous":{"title":"EtherCAT Encoder 指令集","level":"1.7.2.6","depth":3,"path":"ethercat-encoder-primitives.md","ref":"./ethercat-encoder-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"axis-group.md","mtime":"2018-12-20T06:43:38.421Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-20T07:02:52.354Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

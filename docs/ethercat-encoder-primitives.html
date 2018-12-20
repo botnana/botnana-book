@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Botnana x86 · GitBook</title>
+        <title>EtherCAT Encoder 指令集 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="software.html" />
+    <link rel="next" href="axis-group.html" />
     
     
-    <link rel="prev" href="botnana-box.md" />
+    <link rel="prev" href="ethercat-uart-primitives.html" />
     
 
     </head>
@@ -121,7 +121,7 @@
                 <a href="botnana-a2.html">
             
                     
-                    Botnana A2
+                    Botnana BN-A2A
             
                 </a>
             
@@ -129,25 +129,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2" data-path="botnana-box.md">
+        <li class="chapter " data-level="1.2.2" data-path="botnana-bn-j4a.html">
             
-                <span>
-            
-                    
-                    Botnana Box
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.2.3" data-path="botnana-x86.html">
-            
-                <a href="botnana-x86.html">
+                <a href="botnana-bn-j4a.html">
             
                     
-                    Botnana x86
+                    Botnana BN-J4A
             
                 </a>
             
@@ -271,20 +258,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.2" data-path="javascript-api.html">
-            
-                <a href="javascript-api.html">
-            
-                    
-                    Javascript API
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.7.3" data-path="real-time-script-api.html">
+        <li class="chapter " data-level="1.7.2" data-path="real-time-script-api.html">
             
                 <a href="real-time-script-api.html">
             
@@ -294,6 +268,135 @@
                 </a>
             
 
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.1" data-path="host-primitives.html">
+            
+                <a href="host-primitives.html">
+            
+                    
+                    Botnana 基本指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.2" data-path="ethercat-primitives.html">
+            
+                <a href="ethercat-primitives.html">
+            
+                    
+                    EtherCAT 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.3" data-path="ethercat-drive-primitives.html">
+            
+                <a href="ethercat-drive-primitives.html">
+            
+                    
+                    EtherCAT Drive 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.4" data-path="ethercat-io-primitives.html">
+            
+                <a href="ethercat-io-primitives.html">
+            
+                    
+                    EtherCAT IO 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.5" data-path="ethercat-uart-primitives.html">
+            
+                <a href="ethercat-uart-primitives.html">
+            
+                    
+                    EtherCAT UART 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.7.2.6" data-path="ethercat-encoder-primitives.html">
+            
+                <a href="ethercat-encoder-primitives.html">
+            
+                    
+                    EtherCAT Encoder 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.7" data-path="axis-group.html">
+            
+                <a href="axis-group.html">
+            
+                    
+                    軸組 Axis Group 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2.8" data-path="sfc.html">
+            
+                <a href="sfc.html">
+            
+                    
+                    狀態流程圖 Sequential Function Chart (SFC)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.2.8.1" data-path="sfc-example/servo-on-off.html">
+            
+                <a href="sfc-example/servo-on-off.html">
+            
+                    
+                    Servo On/OFF
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -429,7 +532,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Botnana x86</a>
+        <a href="." >EtherCAT Encoder 指令集</a>
     </h1>
 </div>
 
@@ -444,37 +547,54 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="botnana-a2">Botnana A2</h2>
-<p>&#x9738;&#x90A3;&#x63A7;&#x5236;&#x5668; (Botnana Control) &#x652F;&#x63F4; x86 &#x96FB;&#x8166;&#x3002;</p>
-<p><img src="Q190.png" alt=""></p>
-<p>x86 &#x96FB;&#x8166;&#x898F;&#x683C;&#x5982;&#x4E0B;&#xFF1A;</p>
-<ul>
-<li>Dimension   : <ul>
-<li>134x126x38mm  </li>
-</ul>
-</li>
-<li>Onboard CPU :<ul>
-<li>Intel Celeron Processor J1900 |</li>
-</ul>
-</li>
-<li>Front-Panel Connectors:<ul>
-<li>Power on/off</li>
-<li>Power LED</li>
-<li>2 x USB 2.0 Ports </li>
-<li>1 x VGA Port</li>
-<li>WiFi  </li>
-</ul>
-</li>
-<li>Back-Panel Connectors<ul>
-<li>1 &#xD7; DV 12V input</li>
-<li>Power LED, HDD LED</li>
-<li>LAN1 (EtherCAT)</li>
-<li>LAN2 (Reserved for EtherCAT)</li>
-<li>LAN3 (Reserved for Ethernet)</li>
-<li>LAN4 (Ethernet) (ip: 192.168.7.2)</li>
-</ul>
-</li>
-</ul>
+                                <h3 id="ethercat-encoder-primitives">EtherCAT Encoder primitives</h3>
+<h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x6307;&#x4EE4;</th>
+<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ec-enc-validity</code></td>
+<td>( channel n -- validity )</td>
+</tr>
+<tr>
+<td><code>ec-enc-warning</code></td>
+<td>( channel n -- warning )</td>
+</tr>
+<tr>
+<td><code>ec-enc-err</code></td>
+<td>( channel n -- err )</td>
+</tr>
+<tr>
+<td><code>ec-enc-ready</code></td>
+<td>( channel n -- ready )</td>
+</tr>
+<tr>
+<td><code>ec-enc-pos</code></td>
+<td>( channel n -- position )</td>
+</tr>
+<tr>
+<td><code>+ec-enc-reversed</code></td>
+<td>( channel n -- )</td>
+</tr>
+<tr>
+<td><code>-ec-enc-reversed</code></td>
+<td>( channel n -- )</td>
+</tr>
+<tr>
+<td><code>ec-enc-ofs!</code></td>
+<td>( ofs channel n -- )</td>
+</tr>
+<tr>
+<td><code>ec-enc-ofs@</code></td>
+<td>( channel n -- ofs )</td>
+</tr>
+</tbody>
+</table>
 
                                 
                                 </section>
@@ -502,12 +622,12 @@
 
             
                 
-                <a href="botnana-box.md" class="navigation navigation-prev " aria-label="Previous page: Botnana Box">
+                <a href="ethercat-uart-primitives.html" class="navigation navigation-prev " aria-label="Previous page: EtherCAT UART 指令集">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="software.html" class="navigation navigation-next " aria-label="Next page: 軟體規格">
+                <a href="axis-group.html" class="navigation navigation-next " aria-label="Next page: 軸組 Axis Group 指令集">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -518,7 +638,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Botnana x86","level":"1.2.3","depth":2,"next":{"title":"軟體規格","level":"1.3","depth":1,"path":"software.md","ref":"./software.md","articles":[]},"previous":{"title":"Botnana Box","level":"1.2.2","depth":2,"path":"botnana-box.md","ref":"./botnana-box.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"botnana-x86.md","mtime":"2018-10-24T02:51:18.533Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-02T07:29:11.429Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"EtherCAT Encoder 指令集","level":"1.7.2.6","depth":3,"next":{"title":"軸組 Axis Group 指令集","level":"1.7.2.7","depth":3,"path":"axis-group.md","ref":"./axis-group.md","articles":[]},"previous":{"title":"EtherCAT UART 指令集","level":"1.7.2.5","depth":3,"path":"ethercat-uart-primitives.md","ref":"./ethercat-uart-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ethercat-encoder-primitives.md","mtime":"2018-12-20T06:43:38.421Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-20T07:02:52.354Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
