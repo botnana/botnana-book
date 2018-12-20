@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>硬體規格 · GitBook</title>
+        <title>EtherCAT Encoder 指令集 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="botnana-a2.html" />
+    <link rel="next" href="axis-group.html" />
     
     
-    <link rel="prev" href="./" />
+    <link rel="prev" href="ethercat-uart-primitives.html" />
     
 
     </head>
@@ -102,7 +102,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2" data-path="hardware.html">
+        <li class="chapter " data-level="1.2" data-path="hardware.html">
             
                 <a href="hardware.html">
             
@@ -337,7 +337,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.2.6" data-path="ethercat-encoder-primitives.html">
+        <li class="chapter active" data-level="1.7.2.6" data-path="ethercat-encoder-primitives.html">
             
                 <a href="ethercat-encoder-primitives.html">
             
@@ -513,7 +513,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >硬體規格</a>
+        <a href="." >EtherCAT Encoder 指令集</a>
     </h1>
 </div>
 
@@ -528,14 +528,54 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x786C;&#x9AD4;&#x898F;&#x683C;">&#x786C;&#x9AD4;&#x898F;&#x683C;</h1>
-<p>Botnana Control &#x652F;&#x63F4;&#x4EE5;&#x4E0B;&#x5E7E;&#x7A2E;&#x786C;&#x9AD4;&#xFF1A;</p>
-<ul>
-<li><p><a href="botnana-a2.html">Botnana A2</a></p>
-</li>
-<li><p><a href="botnana-box.md">Botnana Box</a></p>
-</li>
-</ul>
+                                <h3 id="ethercat-encoder-primitives">EtherCAT Encoder primitives</h3>
+<h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x6307;&#x4EE4;</th>
+<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ec-enc-validity</code></td>
+<td>( channel n -- validity )</td>
+</tr>
+<tr>
+<td><code>ec-enc-warning</code></td>
+<td>( channel n -- warning )</td>
+</tr>
+<tr>
+<td><code>ec-enc-err</code></td>
+<td>( channel n -- err )</td>
+</tr>
+<tr>
+<td><code>ec-enc-ready</code></td>
+<td>( channel n -- ready )</td>
+</tr>
+<tr>
+<td><code>ec-enc-pos</code></td>
+<td>( channel n -- position )</td>
+</tr>
+<tr>
+<td><code>+ec-enc-reversed</code></td>
+<td>( channel n -- )</td>
+</tr>
+<tr>
+<td><code>-ec-enc-reversed</code></td>
+<td>( channel n -- )</td>
+</tr>
+<tr>
+<td><code>ec-enc-ofs!</code></td>
+<td>( ofs channel n -- )</td>
+</tr>
+<tr>
+<td><code>ec-enc-ofs@</code></td>
+<td>( channel n -- ofs )</td>
+</tr>
+</tbody>
+</table>
 
                                 
                                 </section>
@@ -563,12 +603,12 @@
 
             
                 
-                <a href="./" class="navigation navigation-prev " aria-label="Previous page: 簡介">
+                <a href="ethercat-uart-primitives.html" class="navigation navigation-prev " aria-label="Previous page: EtherCAT UART 指令集">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="botnana-a2.html" class="navigation navigation-next " aria-label="Next page: Botnana BN-A2A">
+                <a href="axis-group.html" class="navigation navigation-next " aria-label="Next page: 軸組 Axis Group 指令集">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -579,7 +619,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"硬體規格","level":"1.2","depth":1,"next":{"title":"Botnana BN-A2A","level":"1.2.1","depth":2,"path":"botnana-a2.md","ref":"./botnana-a2.md","articles":[]},"previous":{"title":"簡介","level":"1.1","depth":1,"path":"README.md","ref":"./README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"hardware.md","mtime":"2018-10-24T02:51:18.541Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-20T06:50:44.254Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"EtherCAT Encoder 指令集","level":"1.7.2.6","depth":3,"next":{"title":"軸組 Axis Group 指令集","level":"1.7.2.7","depth":3,"path":"axis-group.md","ref":"./axis-group.md","articles":[]},"previous":{"title":"EtherCAT UART 指令集","level":"1.7.2.5","depth":3,"path":"ethercat-uart-primitives.md","ref":"./ethercat-uart-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ethercat-encoder-primitives.md","mtime":"2018-12-20T06:43:38.421Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-12-20T06:50:44.254Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
