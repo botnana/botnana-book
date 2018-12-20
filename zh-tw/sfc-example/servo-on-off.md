@@ -151,7 +151,7 @@ variable servo-off-accepted
 \ 取得目前適用的 following error limit
 \ Servo Off 或是運動軸靜止的時候採用 min-ferr-limit
 : ferr-limit@ ( index -- )( F: -- limit )
-    axis@ dup axis-staying? servo-on? not or if
+    axis@ dup axis-rest? servo-on? not or if
         min-ferr-limit  
     else
         max-ferr-limit
