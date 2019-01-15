@@ -16,7 +16,7 @@
 |                               |
 |            +------------------+-------------------+
 |            |                  |                   |
-|    homing-accepting?  jogging-accepted?  machining accepted?
+|    homing-accepted?  jogging-accepted?  machining accepted?
 |            |                  |                   |
 |       +----v----+       +-----v----+        +-----v-----+
 |       | Homing  |       |  Jogging |        | Machining |
