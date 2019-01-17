@@ -25,6 +25,7 @@
             - [Motion State](./sfc-example/motion-state.md)
             - [Homing State](./sfc-example/axes-homing.md)
 - [支援的硬體清單](./known-working-hardware.md)
+- [軟體更新](./update-software.md)
 - [常見問題](./faq.md)
     - [網路設定](./faq/network.md)
     - [USB連線IP設定](./faq/gadget.md)
