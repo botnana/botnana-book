@@ -58,6 +58,22 @@ EtherCAT IO 包含以下部份：
 
     1 6 ec-ain@  \ 取得 EtherCAT 從站編號 6，第 1 管道的類比輸入
 
+#### `ec-ain-error  ( ch n -- error )`
+
+取得 EtherCAT 從站編號 `n`，第 `ch` 管道的類比輸入是否有錯誤。
+
+BECKHOFF AI 模組有提供此一狀態，其錯誤的狀況有以下兩種：
+
+* Over range
+* Under range
+
+#### `ec-ain-validity  ( ch n -- validity )`
+
+取得 EtherCAT 從站編號 `n`，第 `ch` 管道的類比輸入是否有效。
+
+BECKHOFF AI 模組有提供此一狀態，表示該管道資料有正確地被主站使用 EtherCAT PDO 讀取。
+原始資料 `0 = valid, 1 = invalid`，為避免字義上混淆，主站在取得資料時就進行反向的操作。
+
 #### `ec-aout! ( value ch n -- )`
 
 設定 EtherCAT 從站編號 `n`，第 `ch` 管道的類比輸出為 `value`。
