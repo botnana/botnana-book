@@ -5,7 +5,7 @@
 **座標系解釋**
 
 * ACS ：Axes Coordinate System (運動軸座標系)
-* MCS ：Machine Coordinate System/ (機械座標系或是大地座標系)
+* MCS ：Machine Coordinate System (機械座標系或是大地座標系)
 * PCS ：Product Coordinate System/Program Coordinate System (工件座標系)
 
 **軸組概念說明**
