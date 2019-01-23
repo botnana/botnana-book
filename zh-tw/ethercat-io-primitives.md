@@ -3,7 +3,7 @@
 EtherCAT IO 包含以下部份：
 
 1. EtherCAT DIN/DOUT/AIN/AOUT 模組。單一種或是綜合的訊號模組。
-2. EtherCAT PWM 模組。目前只有支援 BECKHOFF EL2502 模組。因為該模組可以使用同步命令（PDO）控制 PWM Period 與 Duty。如果是非同步命令 （SDO）的控制方式，使用 SDO upload/download 命令即可。
+2. EtherCAT PWM 模組。目前只有支援 BECKHOFF EL2502 模組。因為該模組可以使用同步命令（PDO）控制 PWM Period 與 Duty Cycle。如果是非同步命令 （SDO）的控制方式，使用 SDO upload/download 命令即可。
 
 ---
 #### `+ec-ain ( ch n -- )`
@@ -28,7 +28,7 @@ EtherCAT IO 包含以下部份：
 
 #### `+pwm-user-scale ( ch n -- )`
 
-開啟 EtherCAT 從站編號 `n`，第 `ch` 管道的 PWM 自定義工作循環命令功能。
+開啟 EtherCAT 從站編號 `n`，第 `ch` 管道的 PWM 自定義 Duty Cycle 命令功能。
 
 #### `-ec-ain ( ch n -- )`
 
@@ -48,11 +48,11 @@ EtherCAT IO 包含以下部份：
 
 #### `-pwm-user-scale ( ch n -- )`
 
-關閉 EtherCAT 從站編號 `n`，第 `ch` 管道的 PWM 自定義工作循環命令功能。
+關閉 EtherCAT 從站編號 `n`，第 `ch` 管道的 PWM 自定義 Duty Cycle 命令功能。
 
 #### `ec-ain@ ( ch n -- value )`
 
-取得 EtherCAT 從站編號 `n`，第 `ch` 管道的類比輸入
+取得 EtherCAT 從站編號 `n`，第 `ch` 管道的類比輸入。
 
 命令範例:
 
@@ -88,25 +88,25 @@ BECKHOFF AI 模組有提供此一狀態，表示該管道資料有正確地被�
 
     1 2 ec-aout@  \ 取得 EtherCAT 從站編號 2，第 1 管道的類比輸出
 
-#### `ec-din@ ( ch n -- t=on )`
+#### `ec-din@ ( ch n -- t )`
 
-取得 EtherCAT 從站編號 `n`，第 `ch` 管道的數位輸入訊號 `t=on`。
+取得 EtherCAT 從站編號 `n`，第 `ch` 管道的數位輸入訊號 `t`。
 
 命令範例:
 
     3 5 ec-din@  \ 取得 EtherCAT 從站編號 5 的第 3 管道的數位輸入訊號
 
-#### `ec-dout! ( t=on channel n -- )`
+#### `ec-dout! ( t channel n -- )`
 
-設定 EtherCAT 從站編號 `n`，第 `ch` 管道的數位輸出訊號為 `t=on`。
+設定 EtherCAT 從站編號 `n`，第 `ch` 管道的數位輸出訊號為 `t`。
 
 命令範例:
 
     1 2 3 ec-dout!  \ 設定 EtherCAT 從站編號 3，第 2 管道的數位輸出訊號為 1
 
-#### `ec-dout@ ( ch n -- t=on )`
+#### `ec-dout@ ( ch n -- t )`
 
-取得 EtherCAT 從站編號 `n`，第 `ch` 管道的數位輸出訊號 `t=on`。
+取得 EtherCAT 從站編號 `n`，第 `ch` 管道的數位輸出訊號 `t`。
 
 命令範例:
 
@@ -131,31 +131,31 @@ BECKHOFF AI 模組有提供此一狀態，表示該管道資料有正確地被�
 
 #### `pwm-def-out!  ( output ch n -- )`
 
-設定 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號， 在通訊錯誤時的工作循環預設值 `output`。
+設定 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號， 在通訊錯誤時的 Duty Cycle 預設值 `output`。
 
 #### `pwm-def-out-ramp!  ( ramp ch n -- )`
 
-設定 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號， 在通訊錯誤時的工作循環斜降率 `ramp`。
+設定 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號， 在通訊錯誤時的 Duty Cycle 斜降率 `ramp`。
 
 ### `pwm-duty!  ( duty ch n -- period )`
 
-設定 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號的工作循環 `duty`。工作循環物理值可以參考 `pwm-presentation!`指令。
+設定 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號的 Duty Cycle `duty`。 Duty Cycle 物理值可以參考 `pwm-presentation!`指令。
 
 #### `pwm-duty@  ( ch n -- duty )`
 
-取得 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號的工作循環 `duty`。
+取得 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號的 Duty Cycle `duty`。
 
 #### `pwm-period!  ( period ch n -- period )`
 
-設定 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號輸出周期 `period` [us]。
+設定 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號 Period `period` [us]。
 
 #### `pwm-period@  ( ch n -- period )`
 
-取得 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號輸出周期 `period` [us]。。
+取得 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號 Period `period` [us]。。
 
 #### `pwm-presentation!  ( presentation ch n -- )`
 
-設定 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號工作循環解析度 `presentation`。
+設定 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號 Duty Cycle 解析度 `presentation`。
 
 BECKHOFF EL2502 可以設定的模式有：
 
@@ -178,13 +178,13 @@ BECKHOFF EL2502 可以設定的模式有：
 
 #### `pwm-user-gain!  ( gain ch n -- )`
 
-設定 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號自定義工作循環命令增益 `gain`。
+設定 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號自定義 Duty Cycle 命令增益 `gain`。
 
 參考 BECKHOFF EL2502 文件中針對 Object 0x8000:0x01 的說明。
 
 #### `pwm-user-offset!  ( offset ch n -- )`
 
-設定 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號自定義工作循環命令偏移量 `offset`。
+設定 EtherCAT 從站編號 `n`，第 `ch` 管道 PWM 訊號自定義 Duty Cycle 命令偏移量 `offset`。
 
 #### 本節指令集
 
@@ -192,28 +192,28 @@ BECKHOFF EL2502 可以設定的模式有：
 |-----|---------|-----|
 | +ec-ain           | ( ch n -- )               | 啟動 AIN 功能
 | +ec-aout          | ( ch n -- )               | 啟動 AOUT 功能
-| +pwm-user-scale   | ( ch n -- )               | 啟動 PWM 自定義工作循環命令功能
+| +pwm-user-scale   | ( ch n -- )               | 啟動 PWM 自定義 Duty Cycle 命令功能
 | -ec-ain           | ( ch n -- )               | 關閉 AIN 功能
 | -ec-aout          | ( ch n -- )               | 關閉 AOUT 功能
-| -pwm-user-scale   | ( ch n -- )               | 關閉 PWM 自定義工作循環命令功能
+| -pwm-user-scale   | ( ch n -- )               | 關閉 PWM 自定義 Duty Cycle 命令功能
 | ec-ain@           | ( ch n -- value )         | 取得 AIN 量測值
 | ec-ain-error      | ( ch n -- error )         | 取得 AIN 量測值是否有錯誤
 | ec-ain-validity   | ( ch n -- validity )      | 取得 AIN 量測值是否有效
 | ec-aout!          | ( value ch n -- )         | 設定 AOUT
 | ec-aout@          | ( ch n -- value )         | 取得 AOUT
-| ec-din@           | ( ch n -- t=on )          | 取得 DIN
-| ec-dout!          | ( t=on ch n -- )          | 設定 DOUT
-| ec-dout@          | ( ch n -- t=on )          | 取得 DOUT
+| ec-din@           | ( ch n -- t )             | 取得 DIN
+| ec-dout!          | ( t ch n -- )             | 設定 DOUT
+| ec-dout@          | ( ch n -- t )             | 取得 DOUT
 | ec-wdout!         | ( value index n -- )      | 設定 DOUTs
 | max-pwm-period@   | ( n -- period )           | 取得 PWM 模組支援的最大周期時間
 | min-pwm-period@   | ( n -- period )           | 取得 PWM 模組支援的最小周期時間
-| pwm-def-out!      | ( output ch n -- )        | 當通訊錯誤時，PWM 工作循環的預設值
-| pwm-def-out-ramp! | ( ramp ch n -- )          | 當通訊錯誤時，PWM 工作循環的斜降率
-| pwm-duty!         | ( duty ch n -- )          | 設定 PWM 工作循環
-| pwm-duty@         | ( ch n -- duty )          | 取得 PWM 工作循環
-| pwm-period!       | ( period ch n -- )        | 設定 PWM 輸出周期
-| pwm-period@       | ( ch n -- period )        | 取得 PWM 輸出周期
-| pwm-presentation! | ( presentation ch n -- )  | 設定 PWM 工作循環解析度
+| pwm-def-out!      | ( output ch n -- )        | 當通訊錯誤時，PWM Duty Cycle 的預設值
+| pwm-def-out-ramp! | ( ramp ch n -- )          | 當通訊錯誤時，PWM Duty Cycle 的斜降率
+| pwm-duty!         | ( duty ch n -- )          | 設定 PWM Duty Cycle
+| pwm-duty@         | ( ch n -- duty )          | 取得 PWM Duty Cycle
+| pwm-period!       | ( period ch n -- )        | 設定 PWM Period
+| pwm-period@       | ( ch n -- period )        | 取得 PWM Period
+| pwm-presentation! | ( presentation ch n -- )  | 設定 PWM Duty Cycle 解析度
 | pwm-wdt!          | ( wdt ch n -- )           | 當通訊錯誤時，PWM 輸出模式
-| pwm-user-gain!    | ( gain ch n - )           | PWM 自定義工作循環命令增益
-| pwm-user-offset!  | ( offset ch n -- )        | PWM 自定義工作循環命令偏移量
+| pwm-user-gain!    | ( gain ch n - )           | PWM 自定義 Duty Cycle 命令增益
+| pwm-user-offset!  | ( offset ch n -- )        | PWM 自定義 Duty Cycle 命令偏移量
