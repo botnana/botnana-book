@@ -10,6 +10,11 @@
             "連結到 GitHub": "https://botnana.github.io/botnana-book/"
         }
     },
+    "pluginsConfig": {
+        "theme-default": {
+            "showLevel": true
+        }
+    },
     "pdf": {
         "fontSize": 12,
         "footerTemplate": "MAPACODE INC.",
@@ -23,5 +28,5 @@
         "pageNumbers": true,
         "paperSize": "a4",
         "output": "Botnana-Book"
-    } 
+    }
 }
