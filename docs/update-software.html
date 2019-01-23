@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>EtherCAT Encoder 指令集 · GitBook</title>
+        <title>軟體更新 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="axis-group.html" />
+    <link rel="next" href="faq.html" />
     
     
-    <link rel="prev" href="ethercat-uart-primitives.html" />
+    <link rel="prev" href="known-working-hardware.html" />
     
 
     </head>
@@ -359,7 +359,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.3.6" data-path="ethercat-encoder-primitives.html">
+        <li class="chapter " data-level="4.3.6" data-path="ethercat-encoder-primitives.html">
             
                 <a href="ethercat-encoder-primitives.html">
             
@@ -468,7 +468,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5.2" data-path="update-software.html">
+        <li class="chapter active" data-level="5.2" data-path="update-software.html">
             
                 <a href="update-software.html">
             
@@ -595,7 +595,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >EtherCAT Encoder 指令集</a>
+        <a href="." >軟體更新</a>
     </h1>
 </div>
 
@@ -610,54 +610,59 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h3 id="ethercat-encoder-primitives">EtherCAT Encoder primitives</h3>
-<h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+                                <h1 id="&#x8EDF;&#x9AD4;&#x66F4;&#x65B0;">&#x8EDF;&#x9AD4;&#x66F4;&#x65B0;</h1>
+<p>&#x7576;&#x4E3B;&#x7AD9;&#x8EDF;&#x9AD4;&#x56E0;&#x65B0;&#x589E;&#x529F;&#x80FD;&#x6216;&#x662F;&#x4FEE;&#x6B63;&#x932F;&#x8AA4;&#xFF0C;&#x9700;&#x8981;&#x9032;&#x884C;&#x8EDF;&#x9AD4;&#x66F4;&#x65B0;&#xFF0C;&#x5C31;&#x5FC5;&#x9808;&#x4F9D;&#x5FAA;&#x4EE5;&#x4E0B;&#x6B65;&#x9A5F;&#x3002;</p>
+<h2 id="&#x53D6;&#x5F97;&#x8EDF;&#x9AD4;&#x66F4;&#x65B0;&#x6A94;">&#x53D6;&#x5F97;&#x8EDF;&#x9AD4;&#x66F4;&#x65B0;&#x6A94;</h2>
+<p>&#x53EF;&#x4EE5;&#x7531;&#x52D5;&#x7A0B;&#x516C;&#x53F8;&#x53D6;&#x5F97;&#x66F4;&#x65B0;&#x6A94;&#x3002;&#x4F9D;&#x64DA;&#x4E0D;&#x540C;&#x7684;&#x5E73;&#x53F0;&#x5176;&#x66F4;&#x65B0;&#x6A94;&#x540D;&#x7A31;&#x5982;&#x4E0B;&#xFF1A;</p>
 <table>
 <thead>
 <tr>
-<th>&#x6307;&#x4EE4;</th>
-<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+<th>&#x642D;&#x8F09;&#x5E73;&#x53F0;</th>
+<th>&#x66F4;&#x65B0;&#x6A94;&#x540D;&#x7A31;</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>ec-enc-validity</code></td>
-<td>( channel n -- validity )</td>
+<td>BN-A2A</td>
+<td>botnana-control_*_armhf.deb</td>
 </tr>
 <tr>
-<td><code>ec-enc-warning</code></td>
-<td>( channel n -- warning )</td>
+<td>BN-B2A</td>
+<td>botnana-control_*_armhf.deb</td>
 </tr>
 <tr>
-<td><code>ec-enc-err</code></td>
-<td>( channel n -- err )</td>
+<td>BN-J2A</td>
+<td>botnana-control_*_x86.deb</td>
 </tr>
 <tr>
-<td><code>ec-enc-ready</code></td>
-<td>( channel n -- ready )</td>
-</tr>
-<tr>
-<td><code>ec-enc-pos</code></td>
-<td>( channel n -- position )</td>
-</tr>
-<tr>
-<td><code>+ec-enc-reversed</code></td>
-<td>( channel n -- )</td>
-</tr>
-<tr>
-<td><code>-ec-enc-reversed</code></td>
-<td>( channel n -- )</td>
-</tr>
-<tr>
-<td><code>ec-enc-ofs!</code></td>
-<td>( ofs channel n -- )</td>
-</tr>
-<tr>
-<td><code>ec-enc-ofs@</code></td>
-<td>( channel n -- ofs )</td>
+<td>BN-J4A</td>
+<td>botnana-control_*_x86.deb</td>
 </tr>
 </tbody>
 </table>
+<h2 id="&#x66F4;&#x65B0;&#x6B65;&#x9A5F;">&#x66F4;&#x65B0;&#x6B65;&#x9A5F;</h2>
+<p>&#x4EE5;&#x66F4;&#x65B0; BN-B2A &#x7684;&#x4E3B;&#x63A7;&#x8EDF;&#x9AD4;&#x5F9E;&#x7248;&#x865F; 1.10.14 &#x66F4;&#x65B0;&#x5230; 1.10.15 &#x70BA;&#x4F8B;&#x3002;</p>
+<p>&#x66F4;&#x65B0;&#x6A94;&#x7684;&#x6A94;&#x540D;&#x70BA;  botnana-control_1.10.15-117_armhf.deb</p>
+<ol>
+<li>&#x9996;&#x5148;&#x8981;&#x5148;&#x6E96;&#x5099;&#x4E00;&#x90E8;&#x8A2D;&#x7F6E;&#x597D;&#x8207; Botnana Control &#x7DB2;&#x8DEF;&#x9023;&#x7DDA;&#x7684;&#x96FB;&#x8166;&#x3002;&#x6B64;&#x96FB;&#x8166;&#x5EFA;&#x8B70;&#x6709;&#x5B89;&#x88DD; Google Chrome &#x7684;&#x700F;&#x89BD;&#x5668;&#x3002; </li>
+<li>&#x958B;&#x555F; Google Chrome &#x700F;&#x89BD;&#x5668;&#xFF0C;&#x4E26;&#x9023;&#x7DDA;&#x5230; <a href="http://192.168.7.2:3000" target="_blank">http://192.168.7.2:3000</a>&#xFF0C;&#x4E00;&#x822C;&#x4F86;&#x8AAA;  Botnana Control &#x7684;&#x63A7;&#x5236;&#x76D2;&#x7684;IP &#x4F4D;&#x7F6E;&#x8A2D;&#x7F6E;&#x90FD;&#x662F; 192.168.7.2&#xFF0C;&#x5982;&#x679C;&#x662F;&#x5176;&#x5B83;&#x8A2D;&#x5B9A;&#x5C31;&#x8981;&#x9023;&#x7DDA;&#x5230;&#x6307;&#x5B9A;&#x7684; IP &#x4F4D;&#x7F6E;&#x3002;</li>
+<li>&#x9032;&#x5165; Botnana Control &#x9996;&#x9801;&#xFF0C;&#x9EDE;&#x9078;&#x53F3;&#x4E0A;&#x65B9;&#x7684; [ABOUT]&#x3002;
+<br>
+<img src="botnana-control-homepage.png" alt=""></li>
+<li>&#x9032;&#x5165;&#x5230; [ABOUT] &#x756B;&#x9762;&#xFF0C;&#x6B64;&#x756B;&#x9762;&#x6703;&#x6709;&#x76EE;&#x524D;&#x7684;&#x7248;&#x672C;&#x8CC7;&#x8A0A;&#xFF0C;&#x6B64;&#x6642;&#x7248;&#x865F;&#x662F; 1.10.14&#x3002;&#x9EDE;&#x9078; [UPLOAD MANUALLY]&#xFF0C;&#x6703;&#x51FA;&#x73FE;&#x6A94;&#x6848;&#x700F;&#x89BD;&#x5668;&#xFF0C;&#x5207;&#x63DB;&#x5230; botnana-control_1.10.15-117_armhf.deb &#x6240;&#x5728;&#x7684;&#x76EE;&#x9304;&#xFF0C;&#x9078;&#x64C7;&#x8A72;&#x6A94;&#x6848;&#x5373;&#x53EF;&#x3002;
+<br>
+<img src="botnana-control-about.png" alt="">  </li>
+<li>&#x6B64;&#x6642; [ABOUT] &#x756B;&#x9762;&#x6703;&#x51FA;&#x73FE; &quot;Uploading, Please wait&quot; &#x7684;&#x63D0;&#x793A;&#x8A0A;&#x606F;&#x3002;
+<br>
+<img src="botnana-control-uploading.png" alt=""></li>
+<li>&#x7B49;&#x5F85; &quot;Upload successful, please reboot Botnana&quot; &#x7684;&#x63D0;&#x793A;&#x8A0A;&#x606F;&#x51FA;&#x73FE;&#xFF0C;&#x8A72;&#x63D0;&#x793A;&#x8A0A;&#x606F;&#x51FA;&#x73FE;&#x5F8C;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x9EDE;&#x9078; [REBOOT]&#x3002; 
+<br>
+<img src="botnana-control-reboot.png" alt=""></li>
+<li>&#x7B49;&#x5F85;&#x91CD;&#x65B0;&#x958B;&#x6A5F;&#x5230;&#x5B89;&#x88DD;&#x5B8C;&#x6210;&#x7684;&#x904E;&#x7A0B;&#x4E2D;&#xFF0C;&#x63D0;&#x793A;&#x8A0A;&#x606F;&#x6703;&#x986F;&#x793A; &quot;Rebooting&quot;&#x3002;&#x5B89;&#x88DD;&#x5B8C;&#x6210;&#x5F8C;&#xFF0C;&#x7248;&#x865F;&#x5C31;&#x6703;&#x8B8A;&#x6210; 1.10.15&#x3002;&#x642D;&#x8F09;&#x7684;&#x5E73;&#x53F0;&#x662F; BN-A2A/BN-B2A &#x5927;&#x7D04;&#x662F; 3 &#x5206;&#x9418;&#x5DE6;&#x53F3;&#xFF0C;BN-J2A/BN-J4A &#x5927;&#x7D04;&#x662F; 1 &#x5206;&#x9418;&#x5DE6;&#x53F3;&#x3002;
+<br>
+<img src="botnana-control-updated.png" alt=""></li>
+<li><strong>&#x66F4;&#x65B0;&#x5B8C;&#x6210;</strong>&#x3002;&#x56E0;&#x70BA;&#x700F;&#x89BD;&#x5668;&#x4E0A;&#x7684;&#x90E8;&#x4EFD;&#x8CC7;&#x6599;&#x662F;&#x5728;&#x4E00;&#x958B;&#x59CB;&#x9023;&#x7DDA;&#x6642;&#x53D6;&#x5F97;&#xFF0C;&#x6240;&#x4EE5;&#x5EFA;&#x8B70;&#x91CD;&#x65B0;&#x8F09;&#x5165;&#x756B;&#x9762;&#x3002;</li>
+</ol>
 
                                 
                                 </section>
@@ -685,12 +690,12 @@
 
             
                 
-                <a href="ethercat-uart-primitives.html" class="navigation navigation-prev " aria-label="Previous page: EtherCAT UART 指令集">
+                <a href="known-working-hardware.html" class="navigation navigation-prev " aria-label="Previous page: 支援的硬體清單">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="axis-group.html" class="navigation navigation-next " aria-label="Next page: 軸組 Axis Group 指令集">
+                <a href="faq.html" class="navigation navigation-next " aria-label="Next page: 常見問題">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -701,7 +706,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"EtherCAT Encoder 指令集","level":"4.3.6","depth":2,"next":{"title":"軸組 Axis Group 指令集","level":"4.3.7","depth":2,"path":"axis-group.md","ref":"./axis-group.md","articles":[]},"previous":{"title":"EtherCAT UART 指令集","level":"4.3.5","depth":2,"path":"ethercat-uart-primitives.md","ref":"./ethercat-uart-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ethercat-encoder-primitives.md","mtime":"2018-12-20T06:43:38.421Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-23T02:36:26.414Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"軟體更新","level":"5.2","depth":1,"next":{"title":"常見問題","level":"5.3","depth":1,"path":"faq.md","ref":"./faq.md","articles":[{"title":"網路設定","level":"5.3.1","depth":2,"path":"faq/network.md","ref":"./faq/network.md","articles":[]},{"title":"USB連線IP設定","level":"5.3.2","depth":2,"path":"faq/gadget.md","ref":"./faq/gadget.md","articles":[]},{"title":"Windows 7 RNDIS 驅動程式安裝","level":"5.3.3","depth":2,"path":"faq/windows7_rndis.md","ref":"./faq/windows7_rndis.md","articles":[]},{"title":"Windows 10 RNDIS 驅動程式安裝","level":"5.3.4","depth":2,"path":"faq/windows10_rndis.md","ref":"./faq/windows10_rndis.md","articles":[]},{"title":"Windows 10 檔案權限修改","level":"5.3.5","depth":2,"path":"faq/win10_permission.md","ref":"./faq/win10_permission.md","articles":[]}]},"previous":{"title":"支援的硬體清單","level":"5.1","depth":1,"path":"known-working-hardware.md","ref":"./known-working-hardware.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"update-software.md","mtime":"2019-01-23T02:33:53.552Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-23T02:36:26.414Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

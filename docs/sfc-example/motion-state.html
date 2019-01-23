@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Windows 10 檔案權限修改 · GitBook</title>
+        <title>Motion State · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="axes-homing.html" />
     
-    <link rel="prev" href="windows10_rndis.html" />
+    
+    <link rel="prev" href="servo-on-off.html" />
     
 
     </head>
@@ -397,9 +399,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.3.8.1" data-path="../sfc-example/servo-on-off.html">
+        <li class="chapter " data-level="4.3.8.1" data-path="servo-on-off.html">
             
-                <a href="../sfc-example/servo-on-off.html">
+                <a href="servo-on-off.html">
             
                     
                     Servo On/OFF
@@ -410,9 +412,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.8.2" data-path="../sfc-example/motion-state.html">
+        <li class="chapter active" data-level="4.3.8.2" data-path="motion-state.html">
             
-                <a href="../sfc-example/motion-state.html">
+                <a href="motion-state.html">
             
                     
                     Motion State
@@ -423,9 +425,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.8.3" data-path="../sfc-example/axes-homing.html">
+        <li class="chapter " data-level="4.3.8.3" data-path="axes-homing.html">
             
-                <a href="../sfc-example/axes-homing.html">
+                <a href="axes-homing.html">
             
                     
                     Homing State
@@ -493,9 +495,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="5.3.1" data-path="network.html">
+        <li class="chapter " data-level="5.3.1" data-path="../faq/network.html">
             
-                <a href="network.html">
+                <a href="../faq/network.html">
             
                     
                     網路設定
@@ -506,9 +508,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.3.2" data-path="gadget.html">
+        <li class="chapter " data-level="5.3.2" data-path="../faq/gadget.html">
             
-                <a href="gadget.html">
+                <a href="../faq/gadget.html">
             
                     
                     USB連線IP設定
@@ -519,9 +521,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.3.3" data-path="windows7_rndis.html">
+        <li class="chapter " data-level="5.3.3" data-path="../faq/windows7_rndis.html">
             
-                <a href="windows7_rndis.html">
+                <a href="../faq/windows7_rndis.html">
             
                     
                     Windows 7 RNDIS 驅動程式安裝
@@ -532,9 +534,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.3.4" data-path="windows10_rndis.html">
+        <li class="chapter " data-level="5.3.4" data-path="../faq/windows10_rndis.html">
             
-                <a href="windows10_rndis.html">
+                <a href="../faq/windows10_rndis.html">
             
                     
                     Windows 10 RNDIS 驅動程式安裝
@@ -545,9 +547,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="5.3.5" data-path="win10_permission.html">
+        <li class="chapter " data-level="5.3.5" data-path="../faq/win10_permission.html">
             
-                <a href="win10_permission.html">
+                <a href="../faq/win10_permission.html">
             
                     
                     Windows 10 檔案權限修改
@@ -593,7 +595,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Windows 10 檔案權限修改</a>
+        <a href=".." >Motion State</a>
     </h1>
 </div>
 
@@ -608,35 +610,252 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="&#x4FEE;&#x6539;&#x6B0A;&#x9650;&#x7684;&#x6B65;&#x9A5F;">&#x4FEE;&#x6539;&#x6B0A;&#x9650;&#x7684;&#x6B65;&#x9A5F;<a id="permission"></a></h2>
+                                <h2 id="motion-state-sfc-&#x7BC4;&#x4F8B;">Motion State SFC &#x7BC4;&#x4F8B;</h2>
+<p>&#x6B64;&#x7BC4;&#x4F8B;&#x5C07;&#x4E3B;&#x7AD9;&#x7684;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x898F;&#x5283;&#x70BA; 3 &#x7A2E;&#xFF0C;&#x9019; 3 &#x7A2E;&#x6A21;&#x5F0F;&#x4E0D;&#x6703;&#x540C;&#x6642;&#x904B;&#x884C;&#x3002;</p>
 <ol>
-<li>&#x4EE5; C:\Windows\INF\usbstor.inf &#x6A94;&#x6848;&#x70BA;&#x7BC4;&#x4F8B;</li>
-<li>&#x5047;&#x8A2D;&#x767B;&#x5165; Windows 10 &#x7684;&#x4F7F;&#x7528;&#x8005;&#x5E33;&#x865F;&#x70BA; felix</li>
+<li>Homing: &#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x6A21;&#x5F0F;&#x3002;</li>
+<li>Jogging: &#x8EF8;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x3002;</li>
+<li>Machining: &#x52A0;&#x5DE5;&#x6A21;&#x5F0F;&#x3002;</li>
 </ol>
-<h4 id="step-1-&#x5C07;&#x6ED1;&#x9F20;&#x79FB;&#x5230;-usbstorinf-&#x4E0A;&#xFF0C;&#x4E26;&#x6309;&#x6ED1;&#x9F20;&#x53F3;&#x9375;&#xFF0C;&#x9078;-&#x5167;&#x5BB9;-&#x3002;">step 1. &#x5C07;&#x6ED1;&#x9F20;&#x79FB;&#x5230; usbstor.inf &#x4E0A;&#xFF0C;&#x4E26;&#x6309;&#x6ED1;&#x9F20;&#x53F3;&#x9375;&#xFF0C;&#x9078; &#x5167;&#x5BB9; &#x3002;</h4>
-<h4 id="step-2-&#x9078;-&#x5B89;&#x5168;&#x6027;--&#x3009;-&#x9032;&#x968E;-&#x3002;">step 2. &#x9078; &#x5B89;&#x5168;&#x6027; -&#x3009; &#x9032;&#x968E; &#x3002;</h4>
-<p><img src="win10_15_mod_permission_0.png" alt=""></p>
-<h4 id="step-3-&#x6309;-&#x8B8A;&#x66F4;-&#x64C1;&#x6709;&#x8005;&#xFF0C;&#x8F38;&#x5165;&#x4F7F;&#x7528;&#x8005;&#x5E33;&#x865F;&#xFF0C;&#x6309;-&#x6AA2;&#x67E5;&#x540D;&#x7A31;&#xFF0C;&#x6B64;&#x6642;&#x6703;&#x986F;&#x793A;&#x5B8C;&#x6574;&#x7684;&#x5E33;&#x865F;&#x8CC7;&#x8A0A;&#xFF0C;&#x6309;-&#x78BA;&#x5B9A;-&#x96E2;&#x958B;&#x3002;">step 3. &#x6309; &#x8B8A;&#x66F4; &#x64C1;&#x6709;&#x8005;&#xFF0C;&#x8F38;&#x5165;&#x4F7F;&#x7528;&#x8005;&#x5E33;&#x865F;&#xFF0C;&#x6309; &#x6AA2;&#x67E5;&#x540D;&#x7A31;&#xFF0C;&#x6B64;&#x6642;&#x6703;&#x986F;&#x793A;&#x5B8C;&#x6574;&#x7684;&#x5E33;&#x865F;&#x8CC7;&#x8A0A;&#xFF0C;&#x6309; &#x78BA;&#x5B9A; &#x96E2;&#x958B;&#x3002;</h4>
-<p><img src="win10_15_mod_permission_1.png" alt="">
-<img src="win10_15_mod_permission_2.png" alt=""></p>
-<h4 id="step-4-&#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x5C64;&#x5F8C;&#xFF0C;&#x6309;-&#x5957;&#x7528;-&#xFF0C;&#x986F;&#x793A;&#x8B66;&#x544A;&#x8A0A;&#x606F;&#xFF0C;&#x6309;-&#x78BA;&#x5B9A;&#x3002;">step 4. &#x56DE;&#x5230;&#x4E0A;&#x4E00;&#x5C64;&#x5F8C;&#xFF0C;&#x6309; &#x5957;&#x7528; &#xFF0C;&#x986F;&#x793A;&#x8B66;&#x544A;&#x8A0A;&#x606F;&#xFF0C;&#x6309; &#x78BA;&#x5B9A;&#x3002;</h4>
-<p><img src="win10_15_mod_permission_3.png" alt="">
-<img src="win10_15_mod_permission_4.png" alt=""></p>
-<h4 id="step-5-&#x5C07;&#x986F;&#x793A;-usbstorinf-&#x5167;&#x5BB9;&#x7684;&#x8996;&#x7A97;&#x5168;&#x90E8;&#x95DC;&#x9589;&#x5F8C;&#xFF0C;&#x518D;&#x91CD;&#x958B;-&#x5167;&#x5BB9;-&#x8996;&#x7A97;&#x3002;">step 5. &#x5C07;&#x986F;&#x793A; usbstor.inf &#x5167;&#x5BB9;&#x7684;&#x8996;&#x7A97;&#x5168;&#x90E8;&#x95DC;&#x9589;&#x5F8C;&#xFF0C;&#x518D;&#x91CD;&#x958B; &#x5167;&#x5BB9; &#x8996;&#x7A97;&#x3002;</h4>
-<h4 id="step-6-&#x65B0;&#x589E;-&#x4E00;&#x500B;&#x4E3B;&#x9AD4;&#x3002;">step 6. &#x65B0;&#x589E; &#x4E00;&#x500B;&#x4E3B;&#x9AD4;&#x3002;</h4>
-<p><img src="win10_15_mod_permission_5.png" alt=""></p>
-<h4 id="step-7-&#x9078;&#x53D6;&#x4E00;&#x500B;&#x4E3B;&#x9AD4;&#x3002;">step 7. &#x9078;&#x53D6;&#x4E00;&#x500B;&#x4E3B;&#x9AD4;&#x3002;</h4>
-<p><img src="win10_15_mod_permission_6.png" alt=""></p>
-<h4 id="step-8-&#x8F38;&#x5165;&#x5E33;&#x865F;&#x4E26;&#x6AA2;&#x67E5;&#x540D;&#x7A31;&#xFF0C;&#x518D;&#x6309;&#x78BA;&#x5B9A;&#x3002;">step 8. &#x8F38;&#x5165;&#x5E33;&#x865F;&#x4E26;&#x6AA2;&#x67E5;&#x540D;&#x7A31;&#xFF0C;&#x518D;&#x6309;&#x78BA;&#x5B9A;&#x3002;</h4>
-<p><img src="win10_15_mod_permission_7.png" alt="">
-<img src="win10_15_mod_permission_8.png" alt=""></p>
-<h4 id="step-9-&#x4FEE;&#x6539;&#x57FA;&#x672C;&#x6B0A;&#x9650;&#x5F8C;&#xFF0C;&#x6309;&#x78BA;&#x5B9A;&#x3002;">step 9. &#x4FEE;&#x6539;&#x57FA;&#x672C;&#x6B0A;&#x9650;&#x5F8C;&#xFF0C;&#x6309;&#x78BA;&#x5B9A;&#x3002;</h4>
-<p><img src="win10_15_mod_permission_9.png" alt=""></p>
-<h4 id="step-10-&#x78BA;&#x8A8D;&#x5E33;&#x865F;&#x5DF2;&#x6B63;&#x78BA;&#x52A0;&#x5165;&#xFF0C;&#x4E26;&#x64C1;&#x6709;&#x5B8C;&#x5168;&#x63A7;&#x5236;&#x7684;&#x6B0A;&#x9650;&#x3002;">step 10. &#x78BA;&#x8A8D;&#x5E33;&#x865F;&#x5DF2;&#x6B63;&#x78BA;&#x52A0;&#x5165;&#xFF0C;&#x4E26;&#x64C1;&#x6709;&#x5B8C;&#x5168;&#x63A7;&#x5236;&#x7684;&#x6B0A;&#x9650;&#x3002;</h4>
-<p><img src="win10_15_mod_permission_10.png" alt=""></p>
-<h4 id="step-11-&#x6309;-&#x5957;&#x7528;&#x53CA;&#x78BA;&#x5B9A;&#xFF0C;&#x986F;&#x793A;&#x5B89;&#x5168;&#x8B66;&#x544A;&#x7684;&#x8A0A;&#x606F;&#xFF0C;&#x6309;-&#x662F;&#x3002;">step 11. &#x6309; &#x5957;&#x7528;&#x53CA;&#x78BA;&#x5B9A;&#xFF0C;&#x986F;&#x793A;&#x5B89;&#x5168;&#x8B66;&#x544A;&#x7684;&#x8A0A;&#x606F;&#xFF0C;&#x6309; &#x662F;&#x3002;</h4>
-<p><img src="win10_15_mod_permission_11.png" alt=""></p>
+<pre><code>
+                            +--------+
++---------------------------+  Idle  |
+|                           |        |
+|                           +---+----+
+|                               |
+|            +------------------+-------------------+
+|            |                  |                   |
+|    homing-accepted?  jogging-accepted?  machining accepted?
+|            |                  |                   |
+|       +----v----+       +-----v----+        +-----v-----+
+|       | Homing  |       |  Jogging |        | Machining |
+|       |         |       |          |        |           |
+|       +----+----+       +-----+----+        +-----+-----+
+|            |                  |                   |
+|     homing-stopped?    jogging stopped?   machining-stopped?
+|            |                  |                   |
+|            +------------------+-------------------+
+|                               |
+|                         +-----v-------+
+|                         | post action |
+|                         |             |
+|                         +-----+-------+
+|                               |
+|                             True
+|                               |
++------------------------&lt;------+
+</code></pre><h2 id="sfc-&#x5BE6;&#x4F5C;&#xFF1A;">SFC &#x5BE6;&#x4F5C;&#xFF1A;</h2>
+<pre><code>
+\ &#x5B9A;&#x7FA9;&#x662F;&#x5426;&#x63A5;&#x53D7;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x8981;&#x6C42;&#x7684;&#x8B8A;&#x6578;
+variable homing-accepted
+variable jogging-accepted
+variable machining-accepted
 
+\ &#x5B9A;&#x7FA9;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x662F;&#x5426;&#x7D50;&#x675F;&#x7684;&#x8B8A;&#x6578;
+variable homing-stopped
+variable jogging-stopped
+variable machining-stopped
+
+\ &#x8981;&#x6C42;&#x904B;&#x52D5;&#x505C;&#x6B62;
+variable motion-stopping
+
+\ &#x7D00;&#x9304;&#x76EE;&#x524D;&#x7684;&#x904B;&#x52D5;&#x6A21;&#x5F0F;
+variable motion-state
+
+\ &#x662F;&#x5426;&#x8655;&#x65BC; Motion Idle &#x72C0;&#x614B;
+: is-motion-idle?  ( -- flag )
+    motion-state @ 0=
+    ;
+
+\ &#x662F;&#x5426;&#x8981;&#x6C42;&#x904B;&#x52D5;&#x505C;&#x6B62;?
+: is-motion-stopping? ( -- flag )
+    motion-stopping @
+    ;
+
+\ &#x958B;&#x59CB;&#x9032;&#x884C;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;
+\ &#x53EF;&#x4EE5;&#x898F;&#x5283;&#x4E0D;&#x540C;&#x7684;&#x5224;&#x65B7;&#x908F;&#x8F2F;&#xFF0C;&#x767C;&#x51FA;&#x56DE;&#x6B78;&#x539F;&#x9EDE;&#x7684;&#x6307;&#x4EE4;&#x6216;&#x662F;&#x555F;&#x52D5;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x7684; SFC&#x3002;
+: start-homing ( -- )
+    is-motion-idle? if
+        true homing-accepted !
+        1 motion-state !
+        .&quot; log|Start homing&quot; cr
+    else
+        .&quot; log|Not Motion Idle&quot; cr
+    then
+    ;
+
+\ &#x958B;&#x59CB;&#x9032;&#x884C;&#x8EF8;&#x79FB;&#x52D5;
+\ &#x53EF;&#x4EE5;&#x898F;&#x5283;&#x4E0D;&#x540C;&#x7684;&#x5224;&#x65B7;&#x908F;&#x8F2F;&#xFF0C;&#x767C;&#x51FA;&#x8EF8;&#x904B;&#x52D5;&#x6307;&#x4EE4;&#x6216;&#x662F;&#x555F;&#x52D5;&#x8EF8;&#x904B;&#x52D5;&#x7684; SFC&#x3002;
+: start-jogging ( -- )
+    is-motion-idle? if
+        true jogging-accepted !
+        2 motion-state !
+        .&quot; log|Start jogging&quot; cr
+    else
+        .&quot; log|Not Motion Idle&quot; cr
+    then
+    ;
+
+\ &#x958B;&#x59CB;&#x9032;&#x884C;&#x52A0;&#x5DE5;
+\ &#x53EF;&#x4EE5;&#x898F;&#x5283;&#x4E0D;&#x540C;&#x7684;&#x5224;&#x65B7;&#x908F;&#x8F2F;&#xFF0C;&#x767C;&#x51FA;&#x52A0;&#x5DE5;&#x6307;&#x4EE4;&#x6216;&#x662F;&#x555F;&#x52D5;&#x8EF8;&#x904B;&#x52D5;&#x7684; SFC&#x3002;
+: start-machining  ( -- )
+    is-motion-idle? if
+        true machining-accepted !
+        3 motion-state !
+        .&quot; log|Start machining&quot; cr
+    else
+        .&quot; log|Not Motion Idle&quot; cr
+    then
+    ;
+
+\ &#x8981;&#x6C42;&#x904B;&#x52D5;&#x505C;&#x6B62;
+\ &#x53EF;&#x4EE5;&#x4F9D;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x767C;&#x51FA;&#x4E0D;&#x540C;&#x7684;&#x505C;&#x6B62;&#x547D;&#x4EE4;
+: stop-motion  ( -- )
+    is-motion-idle? not if
+        motion-state @ case
+            1 of  .&quot; log|Stop Homing&quot; cr endof
+            2 of  .&quot; log|Stop Jogging&quot; cr endof
+            3 of  .&quot; log|Stop machining&quot; cr endof
+        endcase
+        true motion-stopping !
+    else
+        .&quot; log|motion idle&quot; cr
+    then
+    ;
+
+\ &#x8981;&#x6C42;&#x904B;&#x52D5;&#x7DCA;&#x6025;&#x505C;&#x6B62;
+: ems-motion  ( -- )
+    true homing-stopped !
+    true jogging-stopped !
+    true machining-stopped !
+    .&quot; log|EMS motion&quot; cr
+    ;
+
+
+\ Motion Idle Step
+: motion-idle ( -- )
+    ;
+
+\ Motion Homing Step
+\ &#x53EF;&#x4EE5;&#x5728;&#x6B64;&#x898F;&#x5283; Homing &#x6642;&#x7684;&#x6D3B;&#x52D5;&#xFF0C;&#x8207;&#x6536;&#x5230;&#x505C;&#x6B62;&#x547D;&#x4EE4;&#x6642;&#x7684;&#x8655;&#x7F6E;
+: motion-homing ( -- )
+    is-motion-stopping? if
+        true homing-stopped !
+    then
+    ;
+
+
+\ Motion Jogging Step
+\ &#x53EF;&#x4EE5;&#x5728;&#x6B64;&#x898F;&#x5283; Jogging &#x6642;&#x7684;&#x6D3B;&#x52D5;&#xFF0C;&#x8207;&#x6536;&#x5230;&#x505C;&#x6B62;&#x547D;&#x4EE4;&#x6642;&#x7684;&#x8655;&#x7F6E;
+: motion-jogging ( -- )
+    is-motion-stopping? if
+        true jogging-stopped !
+    then
+    ;
+
+\ Motion Machining Step
+\ &#x53EF;&#x4EE5;&#x5728;&#x6B64;&#x898F;&#x5283; Machining &#x6642;&#x7684;&#x6D3B;&#x52D5;&#xFF0C;&#x8207;&#x6536;&#x5230;&#x505C;&#x6B62;&#x547D;&#x4EE4;&#x6642;&#x7684;&#x8655;&#x7F6E;
+: motion-machining ( -- )
+    is-motion-stopping? if
+        true machining-stopped !
+    then
+    ;
+
+\ Motion Post Action
+\ &#x904B;&#x52D5;&#x505C;&#x6B62;&#x5F8C;&#x7684;&#x8655;&#x7F6E;
+: motion-post-action ( -- )
+    false homing-accepted !
+    false jogging-accepted !
+    false machining-accepted !
+    false homing-stopped !
+    false jogging-stopped !
+    false machining-stopped !
+    false motion-stopping !
+    0 motion-state !
+    .&quot; log|motion-post-action&quot; cr
+    ;
+
+\ Is homing accepted ?
+\ &#x662F;&#x5426;&#x63A5;&#x53D7; Start homing &#x547D;&#x4EE4; &#xFF1F;
+: homing-accepted?  ( -- flag )
+    homing-accepted @
+    ;
+
+\ Is homing stopped ?
+\ Homing &#x6A21;&#x5F0F;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x505C;&#x6B62; ?
+: homing-stopped? ( -- flag )
+    homing-stopped @
+    ;
+
+
+\ Is jogging accepted ?
+\ &#x662F;&#x5426;&#x63A5;&#x53D7; Start jogging &#x547D;&#x4EE4; &#xFF1F;
+: jogging-accepted? ( -- flag )
+    jogging-accepted @
+    ;
+
+\ Is jogging stopped ?
+\ Jogging &#x6A21;&#x5F0F;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x505C;&#x6B62; ?
+: jogging-stopped? ( -- flag )
+    jogging-stopped @
+    ;
+
+\ Is machining accepted ?
+\ &#x662F;&#x5426;&#x63A5;&#x53D7; Start Machining &#x547D;&#x4EE4; &#xFF1F;
+: machining-accepted? ( -- flag )
+    machining-accepted @
+    ;
+
+\ Is Machining stopped ?
+\ Machining &#x6A21;&#x5F0F;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x505C;&#x6B62; ?
+: machining-stopped? ( -- flag )
+    machining-stopped @
+    ;
+
+\ Motion Post Action &#x81EA;&#x52D5;&#x5207;&#x63DB;&#x5230; Motion Idle
+: motion-auto-passed? ( -- flag )
+    true
+    ;
+
+
+\ &#x5BA3;&#x544A; SFC Step
+step motion-idle
+step motion-homing
+step motion-jogging
+step motion-machining
+step motion-post-action
+
+\ &#x5BA3;&#x544A; SFC Transition
+transition  homing-accepted?
+transition  homing-stopped?
+transition  jogging-accepted?
+transition  jogging-stopped?
+transition  machining-accepted?
+transition  machining-stopped?
+transition  motion-auto-passed?
+
+
+\ SFC Link
+&apos; motion-idle           &apos; homing-accepted?    --&gt;
+&apos; homing-accepted?      &apos; motion-homing       --&gt;
+&apos; motion-homing         &apos; homing-stopped?     --&gt;
+&apos; homing-stopped?       &apos; motion-post-action  --&gt;
+&apos; motion-post-action    &apos; motion-auto-passed? --&gt;
+&apos; motion-auto-passed?   &apos; motion-idle         --&gt;
+
+&apos; motion-idle           &apos; jogging-accepted?   --&gt;
+&apos; jogging-accepted?     &apos; motion-jogging      --&gt;
+&apos; motion-jogging        &apos; jogging-stopped?    --&gt;
+&apos; jogging-stopped?      &apos; motion-post-action  --&gt;
+
+&apos; motion-idle           &apos; machining-accepted? --&gt;
+&apos; machining-accepted?   &apos; motion-machining    --&gt;
+&apos; motion-machining      &apos; machining-stopped?  --&gt;
+&apos; machining-stopped?    &apos; motion-post-action  --&gt;
+
+\ Activate motion-idle step
+&apos; motion-idle +step
+</code></pre>
                                 
                                 </section>
                             
@@ -663,10 +882,14 @@
 
             
                 
-                <a href="windows10_rndis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Windows 10 RNDIS 驅動程式安裝">
+                <a href="servo-on-off.html" class="navigation navigation-prev " aria-label="Previous page: Servo On/OFF">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
+                
+                <a href="axes-homing.html" class="navigation navigation-next " aria-label="Next page: Homing State">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -675,7 +898,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Windows 10 檔案權限修改","level":"5.3.5","depth":2,"previous":{"title":"Windows 10 RNDIS 驅動程式安裝","level":"5.3.4","depth":2,"path":"faq/windows10_rndis.md","ref":"./faq/windows10_rndis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"faq/win10_permission.md","mtime":"2018-11-05T08:20:38.079Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-23T02:36:26.414Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Motion State","level":"4.3.8.2","depth":3,"next":{"title":"Homing State","level":"4.3.8.3","depth":3,"path":"sfc-example/axes-homing.md","ref":"./sfc-example/axes-homing.md","articles":[]},"previous":{"title":"Servo On/OFF","level":"4.3.8.1","depth":3,"path":"sfc-example/servo-on-off.md","ref":"./sfc-example/servo-on-off.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"sfc-example/motion-state.md","mtime":"2019-01-19T07:08:45.482Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-23T02:36:26.414Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
