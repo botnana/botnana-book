@@ -18,7 +18,6 @@
 
 ### CiA DSP 402 Compatible
 
-* Frequency converter (X)
 * Servo drive 
 * Stepper motor
 * Multiple drive module 
@@ -26,7 +25,7 @@
 ### (研華) Advantech
 
 * AMAX_4830, DIO
- 
+
 ### Beckhoff
 
 * EK1100, EtherCAT Bus Coupler
@@ -76,6 +75,7 @@
 ### OMRON
 
 * R88D_1SN04H_ECT Servo Drive (only BN-J2A, BN-J4A)
+* GX-MD1611 REMOTE TERMINAL (8 Ch. Digital Input， 8 Ch. Digital Output)
 * NX-ECC203, ID5342, OD5121 (IO 模組，測試中)
 
 ### Oriental Motor
@@ -99,7 +99,7 @@
 
 * TPM_207_D240_NX, 32 Ch. Digital Input
 * TPM_207_D204_XN, 32 Ch. Digital Output
-* TPM_207_A220FD, 8 Ch. Analog Input, 8 Ch. Digital Output (發現第 1 個 Channel DO 模式設定有問題，處理中)
+* TPM_207_A220FD, 8 Ch. Analog Input, 8 Ch. Digital Output
 * TPM_207_A204F，8 Ch. Anaglo Output
 
 ### Yaskawa
