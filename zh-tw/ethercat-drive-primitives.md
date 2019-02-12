@@ -378,7 +378,7 @@ FSA (Finite States Automaton) of PDS (Power Drive System)
 +-------------------+   11 +---------------+  |
 |     Operation     |----->|Quick stop     |  |
 |     Enabled       |<-----|active         |  |
-|              )    | 16   | (Deceleration |  |
+|                   | 16   | (Deceleration |  |
 |     (Servo on)    |      |  processing)  |  |
 +-------------------+      +---------------+  |
                                               Error Occurs 
@@ -647,11 +647,11 @@ FSA State:
 
 #### `drive-on (ch n -- )`
 
-將 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 FSA State 切換到 Operation enabled。
+將 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 FSA State 切換到 Operation Enabled。
 
 #### `drive-on? ( ch n -- flag )`
 
-取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 FSA State 是否在 Operation enabled `flag`。 
+取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 FSA State 是否在 Operation Enabled `flag`。
 
 #### `drive-org? ( ch n -- org )`
 
@@ -679,13 +679,13 @@ FSA State:
 
 #### `drive-rpdo1@ ( ch n -- r1 )`
 
-取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器使用者規劃的第一個 PDO 資料 （slave -> master）`r1`。
+取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器使用者規劃的第一個 Rx PDO 資料 （slave -> master）`r1`。
 
 需要設定主站參數檔，而且該管道的馬達驅動器可以將對應的 object 映射到 PDO Mapping 上。
 
 #### `drive-rpdo2@ ( ch n -- r2 )`
 
-取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器使用者規劃的第二個 PDO 資料 （slave -> master）`r2`。
+取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器使用者規劃的第二個 Rx PDO 資料 （slave -> master）`r2`。
 
 需要設定主站參數檔，而且該管道的馬達驅動器可以將對應的 object 映射到 PDO Mapping 上。
 
@@ -703,110 +703,263 @@ FSA State:
 
 對應的 Object 0x6080:0x01。
 
-#### `op-mode! ( mode ch n -- )`
+#### `drive-wpdo1! ( w1 ch n -- )`
 
-Set operation mode of drive channel `ch` of slave `n`
-    
-使用 SDO 指令, 目前有支援的 mode 如下：
+設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器使用者規劃的第一個 Tx PDO 資料 （master -> slave）`w1`。
 
-    1: profile position mode (PP)
-    3: profile velocity mode (PV)
-    6: homing mode (HM)              
-    8: cyclic sync. position mode (CSP)
+需要設定主站參數檔，而且該管道的馬達驅動器可以將對應的 object 映射到 PDO Mapping 上。
 
-命令範例: 將 slave 3 的 drive channel 2 的驅動器模式切換到 PP Mode 。
+#### `drive-wpdo1@ ( ch n -- w1 )`
 
-    1 2 3 op-mode!
+取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器使用者規劃的第一個 Tx PDO 資料 （master -> slave）`w1`。
 
-命令範例: 將 slave 3 的 drive channel 2 的驅動器模式切換到 HM Mode 。         
+需要設定主站參數檔，而且該管道的馬達驅動器可以將對應的 object 映射到 PDO Mapping 上。
 
-    6 2 3 op-mode!
+#### `drive-wpdo2! ( w2 ch n -- )`
 
-#### `pp ( -- 1 )`
+設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器使用者規劃的第二個 Tx PDO 資料 （master -> slave）`w2`。
 
-將 1 放入整數堆疊
+需要設定主站參數檔，而且該管道的馬達驅動器可以將對應的 object 映射到 PDO Mapping 上。
 
-命令範例: 等同於 `1 2 3 op-mode!`
+#### `drive-wpdo2@ ( ch n -- w2 )`
 
-    pp 2 3 op-mode! 
+取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器使用者規劃的第二個 Tx PDO 資料 （master -> slave）`w2`。
 
-#### `pv ( -- 3 )`
-
-將 3 放入整數堆疊    
-
-#### `hm ( -- 6 )`
-
-將 6 放入整數堆疊    
-
-命令範例: 等同於 6 2 3 op-mode!  
-
-    hm 2 3 op-mode! 。    
-
-#### `csp ( -- 8 )`
-
-將 8 放入整數堆疊            
-
-
-#### `reset-fault ( ch n -- )`
-
-Reset fault of drive channel `ch` of slave `n`.
-
-使用 PDO 指令搭配有限狀態機。 
-    
-命令範例: 解除 slave 3 drive channel 2 的驅動器異警 。
-
-    2 3 reset-fault
+需要設定主站參數檔，而且該管道的馬達驅動器可以將對應的 object 映射到 PDO Mapping 上。
 
 #### `go ( ch n -- )`
 
-Set point of drive channel `ch` of slave `n`.
+設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器 Control Word 的 Bit 4 為 1。
 
-使用 PDO 指令。當驅動器在 PP 或是 HM 模式，參數設定完成後需要透過此命令開始運動。相當於驅動器 control word 0x6040::0x00 Bit 4。
+該管道馬達驅動器在 PP 模式時為 new set-point，在 HM 模式時為 start homing。當主站接受到該管道的回應訊息時，會自動將 Control Word 的 Bit 4 設定為 0。
 
-命令範例: slave 3 Channel 2 的 set point or start homing 。
+#### `homing-a! ( acceleration ch n -- )`
+
+使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 homing acceleration `acceleration`。
+
+對應的 Object 為 0x609A。要留意馬達驅動器的設定單位。
+
+#### `homing-method! ( method ch n -- )`
+
+使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 homing method `method`。
+
+對應的 Object 為 0x6098。
+
+#### `homing-v1! ( v1 ch n -- )`
+
+使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 homing speed for switch `v1`。
+
+對應的 Object 為 0x6099:0x01。要留意馬達驅動器的設定單位。
+
+#### `homing-v2! ( v2 ch n -- )`
+
+使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 homing speed for zero `v2`。
+
+對應的 Object 為 0x6099:0x02。要留意馬達驅動器的設定單位。
+
+#### `op-mode! ( mode ch n -- )`
+
+使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的操作模式 `mode`。
+
+對應的 Object 為 0x6060。
+
+目前有支援的 mode 如下：
+
+    1: PP
+    3: PV
+    4: TQ
+    6: HM
+    8: CSP
+    9: CSV
+    10: CST
+
+也有已經定義好的模式代號命令：
+
+    : pp ( -- mode ) 1 ;
+    : pv ( -- mode ) 3 ;
+    : tq ( -- mode ) 4 ;
+    : hm ( -- mode ) 6 ;
+    : csp ( -- mode ) 8 ;
+    : csv ( -- mode ) 9 ;
+    : cst ( -- mode ) 10 ;
+
+命令範例:
+
+    1  1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 PP 模式
+    pp 1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 PP 模式
+    3  1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 PV 模式
+    pv 1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 PV 模式
+    4  1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 TQ 模式
+    tq 1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 TQ 模式
+    6  1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 HM 模式
+    hm 1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 HM 模式
+    8   1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CSP 模式
+    csp 1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CSP 模式
+    9   1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CSV 模式
+    csv 1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CSV 模式
+    10  1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CST 模式
+    cst 1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CST 模式
+
+#### `pds-goal! ( goal ch n -- )`
+
+切換 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 FSA State `goal`。主站會依據 FSA State 自動設定 Control Word。
+
+可以切換的 FSA state of PDS 如下：
+
+    : switch-on-disabled ( -- goal ) 1 ;
+    : ready-to-switch-on ( -- goal ) 2 ;
+    : switched-on        ( -- goal ) 3 ;
+    : operation-enabled  ( -- goal ) 4 ;
+    : quick-stop-active  ( -- goal ) 5 ;
+
+`drive-on`, `drive-on` 與 `drive-stop` 命令就是以 `pds-goal` 命令組合而成：
+
+    : drive-on ( ch n -- )
+        operation-enabled -rot pds-goal! ;
+
+    : drive-off ( ch n -- )
+        switch-on-disabled -rot pds-goal! ;
+
+    : drive-stop ( ch n -- )
+        quick-stop-active -rot pds-goal! ;
+
+#### `profile-a1! ( a1 ch n -- )`
+
+使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 profile acceleration `a1`。
+
+對應的 Object 為 0x6083。在 PP 與 PV 模式時會使用到此加速度進行位置或是速度規劃，要留意馬達驅動器的設定單位。
+
+#### `profile-a2! ( a2 ch n -- )`
+
+使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 profile deceleration `a2`。
+
+對應的 Object 為 0x6084。在 PP 與 PV 模式時會使用到此減速進行位置或是速度規劃，要留意馬達驅動器的設定單位。
+
+#### `profile-v! ( vel ch n -- )`
+
+使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 profile velocity `vel`。
+
+對應的 Object 為 0x6081。在 PP 模式時會使用速度進行位置與速度規劃，要留意馬達驅動器的設定單位。
+
+#### `real-p@ ( ch n -- pos )`
+
+取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的真實位置 `pos`。(由 PDO 取得資料)。
+
+對應的 Object 為 0x6064。通常單位是脈波數。
+
+#### `real-tq@ ( ch n -- tq )`
+
+取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的真實扭力輸出 `tq`。(由 PDO 取得資料)。
+
+需要設定主站參數檔，而且該管道的馬達驅動器可以將 real torque (object 0x6077) 映射到 PDO Mapping 上。通常單位是 0.1 %。
+
+#### `real-v@ ( ch n -- vel )`
+
+取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的真實速度 `vel`。(由 PDO 取得資料)。
+
+需要設定主站參數檔，而且該管道的馬達驅動器可以將 real velocity (object 0x606C) 映射到 PDO Mapping 上。單位有可能是 pulse/s 或是 0.1 rpm。
+
+#### `reset-fault ( ch n -- )`
+
+當 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器處於 Fault of FAS State 時，將該管道馬達驅動器切換到 Switch on Disabled 的狀態。主站會自動設定對應的 Control Word。
+
+#### `target-p! ( pos ch n -- )`
+
+設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的目標位置 `pos`。(由 PDO 設定位置)。
+
+對應的 Object 為 0x607A。通常單位是脈波數。
+
+#### `target-p@ ( ch n -- pos )`
+
+取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的目標位置 `pos`。
+
+#### `target-reached? ( ch n -- flag )`
+
+取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 Status Word Bit 10 (target reached) 是否為 1 。
+
+其狀態來源與 `drive-sw@` 相同。
+
+#### `target-tq! ( tq ch n -- )`
+
+使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的目標扭力 `tq`。
+
+對應的 Object 為 0x6071。通常單位是 0.1 %。
+
+此命令只適合在 TQ 模式下使用，如果是 CST 模式要設定目標扭力則是要使用 `drive-wpdo1!` 或是 `drive-wpdo2!`。
+
+#### `target-v! ( vel ch n -- )`
+
+使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的目標速度 `v`。
+
+對應的 Object 為 0x60FF。單位有可能是 pulse/s 或是 0.1 rpm。
+
+此命令只適合在 PV 模式下使用，如果是 CSV 模式要設定目標速度則是要使用 `drive-wpdo1!` 或是 `drive-wpdo2!`。
+
+### `tq-ofs! ( ofs ch n -- )`
+
+設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 Torque Offset `ofs`。
+
+需要設定主站參數檔，而且該管道的馬達驅動器可以將 Torque Offset (object 0x60B2) 映射到 PDO Mapping 上。
+
+此依命令通常用於 CSP，CSV 或是 CST 模式下，可以在馬達驅動器內的扭力控制迴路額外調整扭力目標值。單位通常是 0.1%。
+
+### `tq-ofs@  ( ch n -- ofs )`
+
+取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 Torque Offset `ofs`。
+
+需要設定主站參數檔，而且該管道的馬達驅動器可以將 Torque Offset (object 0x60B2) 映射到 PDO Mapping 上。
+
+#### `tq-slope! ( slope ch n -- )`
+
+使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的扭力輸出變化率 `slope`。
+
+對應的 Object 為 0x6087。通常單位是 0.1%/s。
+
+在 TQ 模式下，使用此設定值進行扭力輸出規劃，通常會搭配 `drive-vmax!`一起使用，避免馬達扭力輸出未到達目標時，其運動速度過快。
+
+#### `until-drive-on ( ch n -- )`
+
+等待 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 FSA State 到達 Operation Enabled。
+
+因此命令內含有 `pause`，所以只適合用於 Background Task。
+
+此命令相當於:
+
+    : until-drive-on ( ch n -- )
+        begin
+            over over drive-on? not
+        while
+            pause
+        repeat
+        drop drop ;
+
+#### `until-no-fault ( ch n -- )`
+
+等待 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 Status Word Bit 3 (Fault) 為 0。
+
+因此命令內含有 `pause`，所以只適合用於 Background Task。
+
+相當於 
     
-    2 3 go    
- 
-#### `target-p! ( p ch n -- )`
-
-Set target position of drive channel `ch` of slave `n`.
-
-使用 PDO 指令。如果是在驅動器 CSP mode 直接設定 target position 可能會造成驅動器落後誤差過大異警。
-CSP 模式適合用來多軸同動的場合, 通常需要搭配上位控制器的路徑規劃, 加減速機制與位置補間。     
-
-命令範例: 設定 slave 3 drive channel 2 的 target position 為 1000。
-               
-    1000 2 3 target-p!
- 
-#### `target-v! ( v ch n -- )`
-
-Set target velocity of channel `ch` of slave `n`
-
-使用 SDO 指令。
-
-命令範例: 設定 Slave 3 Channel 2 的 Target Vecloity 為 1000。   
-    
-    1000 2 3 target-v!
-
-#### `target-reached? ( ch n -- t=reached )`
-
-Has drive channel `ch` of slave `n` reached its target position?
-
-使用 PDO 指令。相當於驅動器 0x6041:0x00 
-
-命令範例: 取得 slave 3 drive channel 2 的 target reached state 到整數堆疊。   
-    
-    2 3 target-reached?    
+    : until-no-fault ( channel slave -- )     
+        pause pause pause pause pause pause \ 確保收到驅動器最新的 status word
+        begin
+            over over drive-fault?
+        while
+            pause
+        repeat
+        drop drop ; 
 
 #### `until-target-reached ( ch n -- )`
 
-等待指定的驅動器到達目標。
+等待 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 Status Word Bit 10 (target reached) 為 1。
 
-相當於:
+因此命令內含有 `pause`，所以只適合用於 Background Task。
+
+此命令相當於:
 
     : until-target-reached ( channel slave -- )
-        ." log|" over over swap . . ." until-target-reached" cr
-        pause pause pause pause pause pause \ 確保收到驅動器回應的 status word
+        pause pause pause pause pause pause \ 確保收到驅動器最新的 status word
         begin
             over over target-reached? not
         while
@@ -815,166 +968,38 @@ Has drive channel `ch` of slave `n` reached its target position?
         drop drop
     ;
 
-命令範例: 等待 slave 3 drive channel 2 的目標到達 。   
-    
-    2 3 until-target-reached    
+#### `v-ofs! ( ofs ch n -- )`
 
-#### `homing-a! ( acceleration ch n -- )`
+設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 Velocity Offset `ofs`。
 
-Set homing acceleration of drive channel `ch` of slave `n`.
+需要設定主站參數檔，而且該管道的馬達驅動器可以將 Velocity Offset (object 0x60B1) 映射到 PDO Mapping 上。
 
-使用 SDO 指令設定 0x609A:0x00 homing acceleration.
+此依命令通常用於 CSP 或是 CSV 模式下，可以在馬達驅動器內的速度控制迴路額外調整速度目標值。單位通常是 pulse/s 或是 0.1 rpm。
 
-命令範例:   
-    
-    50000 2 3 homing-a!    
+#### `v-ofs@  ( ch n -- ofs )`
 
-#### `homing-method! ( method ch n -- )`
+取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 Velocity Offset `ofs`。
 
-Set homing method of drive channel `ch` of slave `n`.
+需要設定主站參數檔，而且該管道的馬達驅動器可以將 Velocity Offset (object 0x60B1) 映射到 PDO Mapping 上。
 
-使用 SDO 指令設定 0x6098:0x00 homing method.
+#### PP-TEST 範例
 
-命令範例:   
-    
-    1 2 3 homing-method!    
-
-#### `homing-v1! ( speed ch n -- )`
-
-Set homing speed 1 of drive channel `ch` of slave `n`.
-
-使用 SDO 指令設定 0x6099:0x01 homing speed for switch.
-
-命令範例:   
-    
-    1000 2 3 homing-v1!  
-
-#### `homing-v2! ( speed ch n -- )`
-
-Set homing speed 2 of drive channel `ch` of slave `n`.
-
-使用 SDO 指令設定 0x6099:0x02 homing speed for zero.
-
-命令範例:   
-    
-    1000 2 3 homing-v2!  
-
-#### `profile-a1! ( acceleration ch n -- )`
-
-Set profile acceleration of drive channel `ch` of slave `n`.
-
-使用 SDO 指令設定 0x6083:0x00 profile acceleration。在驅動器 PP 與 PV Mode 時的加速度。
-
-命令範例:   
-    
-    1000 2 3 profile-a1!  
-
-#### `profile-a2! ( deceleration ch n -- )`
-
-Set profile deceleration of drive channel `ch` of slave `n`
-
-使用 SDO 指令設定 0x6084:0x00 profile deceleration。在驅動器 PP 與 PV Mode 時的減速度。
-
-命令範例:   
-    
-    1000 2 3 profile-a2!  
-
-#### `profile-v! ( velocity ch n -- )`
-
-Set profile velocity of drive channel `ch` of slave `n`
-
-使用 SDO 指令設定 0x6081:0x00 profile velocity。在驅動器 PP Mode 時的最大的規劃速度。
-
-命令範例:   
-    
-    1000 2 3 profile-v! 
-
-
-
-#### `until-no-fault ( ch n -- )`
-
-Until no fault of channel `ch` of slave `n`
-
-相當於 
-    
-    : until-no-fault ( channel slave -- )     
-        ." log|" over over swap . . ." until-no-fault" cr
-        pause pause pause pause pause pause
-        begin
-            over over drive-fault?
-        while
-            pause
-        repeat
-        drop drop ; 
-
-#### `until-drive-on ( ch n -- )`
-
-Until drive-on of channel `ch` of slave `n`
-
-相當於
-
-    : until-drive-on ( channel slave -- )
-        ." log|" over over swap . . ." until-drive-on" cr
-        pause pause pause pause pause pause
-        begin
-            over over drive-on? not
-        while
-            pause
-        repeat
-        drop drop ;
-
-#### pp-test 範例
+使用 EtherCAT 從站編號 1 第 1 管道的馬達驅動器。
 
     : pp-test
-        pp 2 3 op-mode!          \ 切換到 PP Mode
+        pp 1 1 op-mode!          \ 切換到 PP Mode
         until-no-requests        \ 等待 op-mode! 命令實際設定到驅動器
-        2 3 reset-fault          \ 解除驅動器異警
-        2 3 until-no-fault       \ 等待解除驅動器異警完成  
-        2 3 drive-on             \ Drive On 
-        2 3 until-drive-on       \ 等待 Drive on 程序完成
-        1000 2 3 target-p!       \ Set target position to 1000
-        2 3 go                   \ Start
-        2 3 until-target-reached \ 等待到達目標點
+        1 1 reset-fault          \ 解除驅動器異警
+        1 1 until-no-fault       \ 等待解除驅動器異警完成
+        1 1 drive-on             \ Drive On
+        1 1 until-drive-on       \ 等待 Drive on 程序完成
+        1000 1 1 target-p!       \ Set target position to 1000
+        1 1 go                   \ New set-point
+        1 1 until-target-reached \ 等待到達目標點
     ;
-    
-    deploy pp-test ;deploy       \ 在背景執行 pp-test
 
+    deploy pp-test ;deploy       \ 在 Background Task 執行 pp-test
 
-
-
-
-
-
-#### `?ec-emcy ( slave -- )`
-
-當驅動器發生異警時，可以使用此命令讓驅動器將異警訊息（emergency message）傳送回來。
-
-#### `ec-emcy-busy? ( slave -- flag )`
-
-將 `?ec-emcy` 指令的執行狀況放到整數堆疊上 
-
-#### `.ec-emcy ( slave -- )`
-
-回傳 emergemcy message 訊息。目前 Botnana-Control
-會依據 status word 中的 fault bit 自動送出 ?ec-emcy 的命令。
-
-回傳訊息範例：
-
-    error_code.1|0x5441
-    |error_register.1|0x20
-    |error_data.1.1|0
-    |error_data.2.1|19
-    |error_data.3.1|0
-    |error_data.4.1|0
-    |error_data.5.1|0
-    |error_message_cout|1
-
-    其中 error code 等同於 0x603F:00 
-        error register 等同於 0x1001: 00
-        error_data.1 ~ error_data.5 為驅動器廠家定義的異警訊息。
-        此範例為台達電A2-E 驅動器所回傳的訊息, error_data.2.1 = 19 表示這是
-        A2-E 異警碼 0x13 (緊急停止)
-  
 #### 本節指令集
 
 | 指令 | 堆疊效果                       |
@@ -1019,7 +1044,7 @@ Until drive-on of channel `ch` of slave `n`
 | drive-wpdo1@          | ( ch n -- w1 )        |
 | drive-wpdo2!          | ( w2 ch n -- )        |
 | drive-wpdo2@          | ( ch n -- w2 )        |
-| go                    | ( ch n -- )           | 
+| go                    | ( ch n -- )           |
 | hm                    | ( -- 6 )              |
 | homing-a!             | ( acc ch n -- )       |
 | homing-method!        | ( method ch n -- )    |
@@ -1035,7 +1060,7 @@ Until drive-on of channel `ch` of slave `n`
 | real-p@               | ( ch n -- pos )       |
 | real-tq@              | ( ch n -- tq )        |
 | real-v@               | ( ch n -- vel )       |
-| reset-fault           | ( chl n -- )          |
+| reset-fault           | ( ch n -- )           |
 | target-p!             | ( pos ch n -- )       |
 | target-p@             | ( ch n -- pos )       |
 | target-reached?       | ( channel n -- flag ) |

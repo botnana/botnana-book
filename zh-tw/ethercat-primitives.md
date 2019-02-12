@@ -332,6 +332,36 @@ Is there any waiting sdo request?
             pause
         repeat ;
 
+#### `?ec-emcy ( slave -- )`
+
+當驅動器發生異警時，可以使用此命令讓驅動器將異警訊息（emergency message）傳送回來。
+
+#### `ec-emcy-busy? ( slave -- flag )`
+
+將 `?ec-emcy` 指令的執行狀況放到整數堆疊上 
+
+#### `.ec-emcy ( slave -- )`
+
+回傳 emergemcy message 訊息。目前 Botnana-Control
+會依據 status word 中的 fault bit 自動送出 ?ec-emcy 的命令。
+
+回傳訊息範例：
+
+    error_code.1|0x5441
+    |error_register.1|0x20
+    |error_data.1.1|0
+    |error_data.2.1|19
+    |error_data.3.1|0
+    |error_data.4.1|0
+    |error_data.5.1|0
+    |error_message_cout|1
+
+    其中 error code 等同於 0x603F:00 
+        error register 等同於 0x1001: 00
+        error_data.1 ~ error_data.5 為驅動器廠家定義的異警訊息。
+        此範例為台達電A2-E 驅動器所回傳的訊息, error_data.2.1 = 19 表示這是
+        A2-E 異警碼 0x13 (緊急停止)
+
 #### 本節指令集
 
 | 指令 | 堆疊效果                       |
@@ -372,3 +402,7 @@ Is there any waiting sdo request?
 | `ec-ain?` | ( channel n -- flag )  |
 | `ec-aout?` | ( channel n -- flag )  |
 | `ec-encoder?` | ( channel n -- flag )  |
+| `?ec-emcy` |( n -- ) |  
+| `ec-emcy-busy?` |( n -- flag ) |
+| `.ec-emcy` |( n -- ) |   
+
