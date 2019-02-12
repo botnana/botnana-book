@@ -145,9 +145,9 @@ Connected ethernet_00ecacce3a79_cable
 設定案例：
 
 * service : `ethernet_00ecacce3a79_cable`
-* ip      : 192.168.10.2
+* ip      : 192.168.7.2
 * netmask : 255.255.255.0
-* gateway : 192.168.10.1
+* gateway : 192.168.7.1
 
 
 ```
@@ -155,7 +155,7 @@ Connected ethernet_00ecacce3a79_cable
 connmanctl config <service> --ipv4 manual <ip address> <netmask> <gateway>
 
 案例設定：
-sudo connmanctl config  ethernet_00ecacce3a79_cable --ipv4 manual 192.168.10.2 255.255.255.0 192.168.10.1
+sudo connmanctl config  ethernet_00ecacce3a79_cable --ipv4 manual 192.168.7.2 255.255.255.0 192.168.7.1
 ```
 
 ### 自動指派IP
