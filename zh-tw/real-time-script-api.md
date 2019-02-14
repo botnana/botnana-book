@@ -2,6 +2,10 @@
 
 Botnana Control 在其 real-time event loop 中使用了 Forth VM 以滿足更複雜的程式需求。透過 Forth 執行的命令會立刻影響裝置的行為。
 
+文件網址:
+
+[https://botnana.github.io/botnana-book/real-time-script-api.html](https://botnana.github.io/botnana-book/real-time-script-api.html)
+
 ---
 ## 指令集
 
