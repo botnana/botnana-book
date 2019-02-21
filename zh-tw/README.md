@@ -16,3 +16,9 @@
 * 類 PLC 控制：可透過 EtherCAT IO 模組進行類似 PLC 的控制，目前支援台達電及 Beckhoff 的 IO 模組。
 * IIoT：透過內建的 Websocket 或 MTConnect 伺服器，和客戶的雲端服務或 HMI 整合。
 * CNC 控制器。
+
+## 文件網址：
+
+Botnana Book: [https://botnana.github.io/botnana-book/](https://botnana.github.io/botnana-book/)<br>
+rtForth: [https://mapacode.github.io/rtforth/](https://mapacode.github.io/rtforth/)<br>
+API 函式庫: [https://github.com/botnana/botnana-apis](https://github.com/botnana/botnana-apis)<br>
