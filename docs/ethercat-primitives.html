@@ -854,6 +854,28 @@ output_wc_error   : output_wc_state &#x7570;&#x5E38;&#x6B21;&#x6578;&#x5728;&#x9
     while
         pause
     repeat ;
+</code></pre><h4 id="ec-emcy--slave----"><code>?ec-emcy ( slave -- )</code></h4>
+<p>&#x7576;&#x9A45;&#x52D5;&#x5668;&#x767C;&#x751F;&#x7570;&#x8B66;&#x6642;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6B64;&#x547D;&#x4EE4;&#x8B93;&#x9A45;&#x52D5;&#x5668;&#x5C07;&#x7570;&#x8B66;&#x8A0A;&#x606F;&#xFF08;emergency message&#xFF09;&#x50B3;&#x9001;&#x56DE;&#x4F86;&#x3002;</p>
+<h4 id="ec-emcy-busy--slave----flag-"><code>ec-emcy-busy? ( slave -- flag )</code></h4>
+<p>&#x5C07; <code>?ec-emcy</code> &#x6307;&#x4EE4;&#x7684;&#x57F7;&#x884C;&#x72C0;&#x6CC1;&#x653E;&#x5230;&#x6574;&#x6578;&#x5806;&#x758A;&#x4E0A; </p>
+<h4 id="ec-emcy--slave----"><code>.ec-emcy ( slave -- )</code></h4>
+<p>&#x56DE;&#x50B3; emergemcy message &#x8A0A;&#x606F;&#x3002;&#x76EE;&#x524D; Botnana-Control
+&#x6703;&#x4F9D;&#x64DA; status word &#x4E2D;&#x7684; fault bit &#x81EA;&#x52D5;&#x9001;&#x51FA; ?ec-emcy &#x7684;&#x547D;&#x4EE4;&#x3002;</p>
+<p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#x7BC4;&#x4F8B;&#xFF1A;</p>
+<pre><code>error_code.1|0x5441
+|error_register.1|0x20
+|error_data.1.1|0
+|error_data.2.1|19
+|error_data.3.1|0
+|error_data.4.1|0
+|error_data.5.1|0
+|error_message_cout|1
+
+&#x5176;&#x4E2D; error code &#x7B49;&#x540C;&#x65BC; 0x603F:00 
+    error register &#x7B49;&#x540C;&#x65BC; 0x1001: 00
+    error_data.1 ~ error_data.5 &#x70BA;&#x9A45;&#x52D5;&#x5668;&#x5EE0;&#x5BB6;&#x5B9A;&#x7FA9;&#x7684;&#x7570;&#x8B66;&#x8A0A;&#x606F;&#x3002;
+    &#x6B64;&#x7BC4;&#x4F8B;&#x70BA;&#x53F0;&#x9054;&#x96FB;A2-E &#x9A45;&#x52D5;&#x5668;&#x6240;&#x56DE;&#x50B3;&#x7684;&#x8A0A;&#x606F;, error_data.2.1 = 19 &#x8868;&#x793A;&#x9019;&#x662F;
+    A2-E &#x7570;&#x8B66;&#x78BC; 0x13 (&#x7DCA;&#x6025;&#x505C;&#x6B62;)
 </code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
 <table>
 <thead>
@@ -1007,6 +1029,18 @@ output_wc_error   : output_wc_state &#x7570;&#x5E38;&#x6B21;&#x6578;&#x5728;&#x9
 <td><code>ec-encoder?</code></td>
 <td>( channel n -- flag )</td>
 </tr>
+<tr>
+<td><code>?ec-emcy</code></td>
+<td>( n -- )</td>
+</tr>
+<tr>
+<td><code>ec-emcy-busy?</code></td>
+<td>( n -- flag )</td>
+</tr>
+<tr>
+<td><code>.ec-emcy</code></td>
+<td>( n -- )</td>
+</tr>
 </tbody>
 </table>
 
@@ -1052,7 +1086,7 @@ output_wc_error   : output_wc_state &#x7570;&#x5E38;&#x6B21;&#x6578;&#x5728;&#x9
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"EtherCAT 指令集","level":"4.3.2","depth":2,"next":{"title":"EtherCAT Drive 指令集","level":"4.3.3","depth":2,"path":"ethercat-drive-primitives.md","ref":"./ethercat-drive-primitives.md","articles":[]},"previous":{"title":"Botnana 基本指令集","level":"4.3.1","depth":2,"path":"host-primitives.md","ref":"./host-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ethercat-primitives.md","mtime":"2019-01-17T03:25:26.629Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-11T03:46:39.443Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"EtherCAT 指令集","level":"4.3.2","depth":2,"next":{"title":"EtherCAT Drive 指令集","level":"4.3.3","depth":2,"path":"ethercat-drive-primitives.md","ref":"./ethercat-drive-primitives.md","articles":[]},"previous":{"title":"Botnana 基本指令集","level":"4.3.1","depth":2,"path":"host-primitives.md","ref":"./host-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ethercat-primitives.md","mtime":"2019-02-23T03:27:43.909Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-23T05:57:47.484Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
