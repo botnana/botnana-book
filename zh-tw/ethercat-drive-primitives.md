@@ -517,15 +517,19 @@ FSA State:
 
 #### `+pp-cosp ( ch n -- )`
 
-當 EtherCAT 從站編號 `n` 第 `ch` 管道的馬達驅動器處於 PP 模式時，設定 Control Word 的 Bit 9 （Change on set-point）。
+當 EtherCAT 從站編號 `n` 第 `ch` 管道的馬達驅動器處於 PP 模式時，設定 Control Word 的 Bit 9 （Change on set-point） 為 1。
 
-細部功能請參考選用驅動器的 PP 模式描述。當 Control Word 的 Bit 5 （change set immediately） 為 0 時，同方向運動不減速到 0 通過中繼點。
+當 Control Word Bit 9 為 1 （Change on set-point）與 Bit 5 （change set immediately） 為 0 時，同方向運動不減速到 0 通過中繼點。
+
+細部功能請參考選用驅動器的 PP 模式描述。
 
 #### `+pp-imt ( ch n -- )`
 
 當 EtherCAT 從站編號 `n` 第 `ch` 管道的馬達驅動器處於 PP 模式時，設定 Control Word 的 Bit 5 （change set immediately）為 1。
 
-細部功能請參考選用驅動器的 PP 模式描述。當 Control Word 的 Bit 5 （change set immediately） 為 1 時，表示要通過每一個馬達驅動器所接受的目標位置。
+當 Control Word 的 Bit 5 （change set immediately） 為 1 時，表示要馬達驅動器只朝向最後所接受的目標位置運動。
+
+細部功能請參考選用驅動器的 PP 模式描述。
 
 #### `+pp-rel ( ch n -- )`
 
@@ -547,15 +551,19 @@ FSA State:
 
 #### `-pp-cosp ( ch n -- )`
 
-當 EtherCAT 從站編號 `n` 第 `ch` 管道的馬達驅動器處於 PP 模式時，設定 Control Word 的 Bit 9 （Change on set-point）。
+當 EtherCAT 從站編號 `n` 第 `ch` 管道的馬達驅動器處於 PP 模式時，設定 Control Word 的 Bit 9 （Change on set-point）為 0。
 
-細部功能請參考選用驅動器的 PP 模式描述。當 Control Word 的 Bit 5 （change set immediately） 為 0 時 （Set of set-points，通過），同方向運動減速到 0 通過中繼點。
+當 Control Word Bit 9 為 0 （Change on set-point）與 Bit 5 （change set immediately） 為 0 時，同方向運動減速到 0 通過中繼點。
+
+細部功能請參考選用驅動器的 PP 模式描述。
 
 #### `-pp-imt ( ch n -- )`
 
 當 EtherCAT 從站編號 `n` 第 `ch` 管道的馬達驅動器處於 PP 模式時，設定 Control Word 的 Bit 5 （change set immediately）為 0。
 
-細部功能請參考選用驅動器的 PP 模式描述。當 Control Word 的 Bit 5 （change set immediately） 為 0 時，表示要馬達驅動器只朝向最後所接受的目標位置。
+當 Control Word 的 Bit 5 （change set immediately） 為 0 時，表示要通過每一個馬達驅動器所接受的目標位置。
+
+細部功能請參考選用驅動器的 PP 模式描述。
 
 #### `-pp-rel ( ch n -- )`
 
@@ -974,7 +982,7 @@ FSA State:
 
 需要設定主站參數檔，而且該管道的馬達驅動器可以將 Velocity Offset (object 0x60B1) 映射到 PDO Mapping 上。
 
-此依命令通常用於 CSP 或是 CSV 模式下，可以在馬達驅動器內的速度控制迴路額外調整速度目標值。單位通常是 pulse/s 或是 0.1 rpm。
+此一命令通常用於 CSP 或是 CSV 模式下，可以在馬達驅動器內的速度控制迴路額外調整速度目標值。單位通常是 pulse/s 或是 0.1 rpm。
 
 #### `v-ofs@  ( ch n -- ofs )`
 
