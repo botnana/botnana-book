@@ -151,7 +151,7 @@ variable servo-off-accepted
 \ 取得目前適用的 following error limit
 \ Servo Off 或是運動軸靜止的時候採用 min-ferr-limit
 : ferr-limit@ ( index -- )( F: -- limit )
-    axis@ dup axis-rest? servo-on? not or if
+    dup axis@ axis-rest? servo-on? not or if
         min-ferr-limit  
     else
         max-ferr-limit
@@ -170,7 +170,7 @@ variable servo-lag-err
         dup axes-len <=   
     while
         dup axis-enabled? if
-            dup axis@ dup ferr-limit@ axis-ferr@ fabs f< if
+            dup ferr-limit@ dup axis@ axis-ferr@ fabs f< if
                 ." error|Axis (" dup axis@ 0 .r  ." ) Following error too large" cr
                 servo-on? not if
                     dup axis@ 0axis-ferr
