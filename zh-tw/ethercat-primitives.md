@@ -1,4 +1,4 @@
-### EtherCAT primitives
+### EtherCAT 指令集
 
 #### `.ec-dc (  -- )`
 
