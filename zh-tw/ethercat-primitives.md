@@ -1,6 +1,6 @@
 ### EtherCAT 指令集
 
-#### `.ec-dc (  -- )`
+#### `.ec-dc ( -- )`
 
 顯示 EtherCAT 通訊時間同步的狀況。
 
@@ -47,7 +47,7 @@
                                     此範例為台達電A2-E 驅動器所回傳的訊息,
                                     error_data.2.1 = 19 表示異警碼 0x13 (緊急停止)
 
-#### `.ec-links (  -- )`
+#### `.ec-links ( -- )`
 
 顯示 EtherCAT 通訊的連線狀態
 
@@ -256,9 +256,9 @@ Note:
 1. `alias` 不可以為零
 2. 假如 `alias` 不存在，則會回傳錯誤訊息
 
-#### `ec-ain? ( channel n -- flag )`
+#### `ec-ain? ( channel n -- t )`
 
-EtherCAT slave position `n` Channe `channel` 是否為類比輸入 `flag` ?
+EtherCAT slave position `n` Channel `channel` 是否為類比輸入？
 
 #### `ec-alias! ( alias n -- )`
 
@@ -271,33 +271,33 @@ Note:
 3. 不可以有重複的 alias。
 4. 此命令會造成 Real Time Cycle Overrun。要在所有驅動器 Servo OFF 情況執行。
 
-#### `ec-alias? ( alias -- flag )`
+#### `ec-alias? ( alias -- t )`
 
-EtherCAT slave alias `alias` 是否存在 `flag` ? 
+EtherCAT slave alias `alias` 是否存在？ 
 
-#### `ec-aout? ( channel n -- flag )`
+#### `ec-aout? ( channel n -- t )`
 
-EtherCAT slave position `n` Channe `channel` 是否為類比輸出 `flag` ?
+EtherCAT slave position `n` Channel `channel` 是否為類比輸出？
 
-#### `ec-din? ( channel n -- flag )`
+#### `ec-din? ( channel n -- t )`
 
-EtherCAT slave position `n` Channe `channel` 是否為數位輸入 `flag` ?
+EtherCAT slave position `n` Channel `channel` 是否為數位輸入？
 
-#### `ec-dout? ( channel n -- flag )`
+#### `ec-dout? ( channel n -- t )`
 
-EtherCAT slave position `n` Channe `channel` 是否為數位輸出 `flag` ?
+EtherCAT slave position `n` Channel `channel` 是否為數位輸出？
 
-#### `ec-drive? ( channel n -- flag )`
+#### `ec-drive? ( channel n -- t )`
 
-EtherCAT slave position `n` Channe `channel` 是否為馬達驅動器 `flag` ?
+EtherCAT slave position `n` Channel `channel` 是否為馬達驅動器？
 
-#### `ec-emcy-busy? ( n -- flag )`
+#### `ec-emcy-busy? ( n -- t )`
 
-EtherCAT slave position `n` 的 `?ec-emcy` 是否等待執行中 `flag` ?
+EtherCAT slave position `n` 的 `?ec-emcy` 是否等待執行中？
 
-#### `ec-encoder? ( channel n -- flag )`
+#### `ec-encoder? ( channel n -- t )`
 
-EtherCAT slave position `n` Channe `channel` 是否為編碼器輸入模組 `flag` ?
+EtherCAT slave position `n` Channel `channel` 是否為編碼器輸入模組？
 
 #### `ec-load ( n -- )`
 
@@ -305,10 +305,9 @@ EtherCAT slave position `n` Channe `channel` 是否為編碼器輸入模組 `fla
 
 如果 EtherCAT slave 有提供回復到原廠預設值功能，大部份會使用此方式。
 
-#### `ec-ready? ( -- flag )`
+#### `ec-ready? ( -- t )`
 
-EtherCAT 通訊是否備妥或是正常 `flag` ?
-
+EtherCAT 通訊是否備妥或是正常？
 
 #### `ec-save ( n -- )`
 
@@ -316,9 +315,9 @@ EtherCAT 通訊是否備妥或是正常 `flag` ?
 
 如果 EtherCAT slave 有提供設定參數到 EEPROM 的功能，大部份會使用此方式。
 
-#### `ec-uart?  ( channel n -- flag ) `
+#### `ec-uart?  ( channel n -- t ) `
 
-EtherCAT slave position `n` Channe `channel` 是否為 UART 模組 `flag` ?
+EtherCAT slave position `n` Channel `channel` 是否為 UART 模組？
 
 #### `list-slaves ( -- )`
 
@@ -335,9 +334,9 @@ EtherCAT slave position `n` Channe `channel` 是否為 UART 模組 `flag` ?
     士林電機 SDP: vendor_id = 1468 (0x5BC)
                  product_code =  1 (0x1)
 
-#### `sdo-busy? ( n -- flag )`
+#### `sdo-busy? ( n -- t )`
 
-EtherCAT slave  position `n` 的 SDO 命令是否等待執行 `flag` ？
+EtherCAT slave  position `n` 的 SDO 命令是否等待執行？
 
 命令範例 1: 
 
@@ -360,9 +359,9 @@ EtherCAT slave  position `n` 的 SDO 命令是否等待執行 `flag` ？
 
 取得 EtherCAT slave  position `n` 的 SDO 命令的資料 `data`。
 
-#### `sdo-error? ( n -- flag )`
+#### `sdo-error? ( n -- t )`
 
-EtherCAT slave  position `n` 的 SDO 命令的執行結果是否有問題 `flag`？
+EtherCAT slave  position `n` 的 SDO 命令的執行結果是否有問題？
 
 #### `sdo-download-i16 ( data subindex index n -- )`
 
@@ -434,9 +433,9 @@ EtherCAT slave  position `n` 的 SDO 命令的執行結果是否有問題 `flag`
             pause
         repeat ;
 
-#### `waiting-requests? ( -- flag )`
+#### `waiting-requests? ( -- t )`
 
-是否所有的 SDO 命令都已經執行完畢 `flag`？
+是否所有的 SDO 命令都已經執行完畢 ？
 
 #### 本節指令集
 
@@ -450,23 +449,23 @@ EtherCAT slave  position `n` 的 SDO 命令的執行結果是否有問題 `flag`
 | `.slave-diff`         | ( n -- ) |
 | `?ec-emcy`            | ( n -- ) |
 | `ec-a>n`              | ( alias -- n ) |
-| `ec-ain?`             | ( channel n -- flag ) |
+| `ec-ain?`             | ( channel n -- t ) |
 | `ec-alias!`           | ( alias n -- ) |
-| `ec-alias?`           | ( alias -- flag ) |
-| `ec-aout?`            | ( channel n -- flag ) |
-| `ec-din?`             | ( channel n -- flag ) |
-| `ec-dout?`            | ( channel n -- flag ) |
-| `ec-drive?`           | ( channel n -- flag ) |
-| `ec-emcy-busy?`       |( n -- flag ) |
-| `ec-encoder?`         | ( channel n -- flag ) |
+| `ec-alias?`           | ( alias -- t ) |
+| `ec-aout?`            | ( channel n -- t ) |
+| `ec-din?`             | ( channel n -- t ) |
+| `ec-dout?`            | ( channel n -- t ) |
+| `ec-drive?`           | ( channel n -- t ) |
+| `ec-emcy-busy?`       |( n -- t ) |
+| `ec-encoder?`         | ( channel n -- t ) |
 | `ec-load`             | ( n -- ) |
-| `ec-ready?`           | ( -- flag ) |
+| `ec-ready?`           | ( -- t ) |
 | `ec-save`             | ( n -- ) |
-| `ec-uart?`            | ( channel n -- flag ) |
+| `ec-uart?`            | ( channel n -- t ) |
 | `list-slaves`         | ( -- ) |
-| `sdo-busy?`           | ( n -- flag ) |
+| `sdo-busy?`           | ( n -- t ) |
 | `sdo-data@`           | ( n -- data ) |
-| `sdo-error?`          | ( n -- flag ) |
+| `sdo-error?`          | ( n -- t ) |
 | `sdo-download-i16`    |( data subindex index n -- ) |
 | `sdo-download-i32`    |( data subindex index n -- ) |
 | `sdo-download-i8`     |( data subindex index n -- ) |
@@ -480,4 +479,4 @@ EtherCAT slave  position `n` 的 SDO 命令的執行結果是否有問題 `flag`
 | `sdo-upload-u32`      |( subindex index n -- ) |
 | `sdo-upload-u8`       | ( subindex index n -- ) |
 | `until-no-requests`   | ( -- ) |
-| `waiting-requests?`   | ( -- flag ) |
+| `waiting-requests?`   | ( -- t ) |
