@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Windows 10 RNDIS 驅動程式安裝 · GitBook</title>
+        <title>磁碟掛載 Mount · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="win10_permission.html" />
     
-    
-    <link rel="prev" href="windows7_rndis.html" />
+    <link rel="prev" href="win10_permission.html" />
     
 
     </head>
@@ -534,7 +532,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="5.3.4" data-path="windows10_rndis.html">
+        <li class="chapter " data-level="5.3.4" data-path="windows10_rndis.html">
             
                 <a href="windows10_rndis.html">
             
@@ -560,7 +558,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5.3.6" data-path="mount.html">
+        <li class="chapter active" data-level="5.3.6" data-path="mount.html">
             
                 <a href="mount.html">
             
@@ -608,7 +606,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Windows 10 RNDIS 驅動程式安裝</a>
+        <a href=".." >磁碟掛載 Mount</a>
     </h1>
 </div>
 
@@ -623,38 +621,71 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h2 id="windows-10-&#x900F;&#x904E;-microusb-&#x8207;-botnana-a2-&#x9023;&#x7DDA;&#x6642;&#x9700;&#x5148;&#x5B89;&#x88DD;-rndis-&#x9A45;&#x52D5;&#x7A0B;&#x5F0F;">WINDOWS 10 &#x900F;&#x904E; MicroUSB &#x8207; Botnana A2 &#x9023;&#x7DDA;&#x6642;&#x9700;&#x5148;&#x5B89;&#x88DD; RNDIS &#x9A45;&#x52D5;&#x7A0B;&#x5F0F;</h2>
-<h4 id="0-&#x5C07;-botnana-a2-microusb&#x57E0;-&#x8207;-&#x96FB;&#x8166;-&#x9023;&#x63A5;&#x3002;">0. &#x5C07; Botnana-A2 microUSB&#x57E0; &#x8207; &#x96FB;&#x8166; &#x9023;&#x63A5;&#x3002;</h4>
-<p>&#x8A3B;&#x89E3;&#xFE30;&#x82E5;&#x5DF2;&#x5617;&#x8A66;&#x904E;&#x5B89;&#x88DD; RNDIS &#x9A45;&#x52D5;&#x7A0B;&#x5F0F;&#xFF0C;&#x8ACB;&#x5F9E;&#x6B65;&#x9A5F; 1 &#x958B;&#x59CB;&#xFF1B;&#x5426;&#x5247;&#xFF0C;&#x8ACB;&#x76F4;&#x63A5;&#x5F9E;&#x6B65;&#x9A5F; 3 &#x958B;&#x59CB;&#x3002;</p>
-<h4 id="1-&#x88DD;&#x7F6E;&#x7BA1;&#x7406;&#x54E1;-&#x51FA;&#x73FE;&#x5982;&#x4E0B;&#x88DD;&#x7F6E;">1. &#x88DD;&#x7F6E;&#x7BA1;&#x7406;&#x54E1; &#x51FA;&#x73FE;&#x5982;&#x4E0B;&#x88DD;&#x7F6E;</h4>
-<p><img src="win10_1_com_port.png" alt=""></p>
-<h4 id="2-&#x89E3;&#x9664;&#x5B89;&#x88DD;&#x88DD;&#x7F6E;">2. &#x89E3;&#x9664;&#x5B89;&#x88DD;&#x88DD;&#x7F6E;</h4>
-<p><img src="win10_2_remove_com_device.png" alt=""></p>
-<h4 id="3-&#x4FEE;&#x6539;-cwindowsinfusbserinf-&#xFF08;&#x95DC;&#x65BC;-usbserinf-&#x6B0A;&#x9650;&#x554F;&#x984C;&#xFF09;">3. &#x4FEE;&#x6539; C:\Windows\INF\usbser.inf &#xFF08;<a href="win10_permission.html">&#x95DC;&#x65BC; usbser.inf &#x6B0A;&#x9650;&#x554F;&#x984C;</a>&#xFF09;</h4>
-<p>&#x5C07;&#x5E95;&#x4E0B;&#x9019;&#x500B; 
-<img src="win10_3_modify_usbser_inf.png" alt="">
-&#x6539;&#x6210;&#x5982;&#x4E0B;
-<img src="win10_4_mark_usbser_inf_com_port.png" alt=""></p>
-<h4 id="4-&#x9078;&#x88DD;&#x7F6E;&#x7BA1;&#x7406;&#x54E1;&#x4E2D;&#x7684;--botnana-a2&#xFF0C;&#x4E26;&#x66F4;&#x65B0;&#x9A45;&#x52D5;&#x7A0B;&#x5F0F;">4. &#x9078;&#x88DD;&#x7F6E;&#x7BA1;&#x7406;&#x54E1;&#x4E2D;&#x7684;  Botnana-A2&#xFF0C;&#x4E26;&#x66F4;&#x65B0;&#x9A45;&#x52D5;&#x7A0B;&#x5F0F;</h4>
-<p><img src="win10_5_upgrade_drive.png" alt=""></p>
-<h4 id="5-&#x9078;-&#x700F;&#x89BD;&#x96FB;&#x8166;&#x4E0A;&#x7684;&#x9A45;&#x52D5;&#x7A0B;&#x5F0F;&#x8EDF;&#x9AD4;">5. &#x9078; &#x700F;&#x89BD;&#x96FB;&#x8166;&#x4E0A;&#x7684;&#x9A45;&#x52D5;&#x7A0B;&#x5F0F;&#x8EDF;&#x9AD4;</h4>
-<p><img src="win10_6_browse_drive.png" alt=""></p>
-<h4 id="6-&#x9078;-&#x8B93;&#x6211;&#x5F9E;&#x96FB;&#x8166;&#x4E0A;&#x7684;&#x53EF;&#x7528;&#x9A45;&#x52D5;&#x7A0B;&#x5F0F;&#x6E05;&#x55AE;&#x4E2D;&#x6311;&#x9078;">6. &#x9078; &#x8B93;&#x6211;&#x5F9E;&#x96FB;&#x8166;&#x4E0A;&#x7684;&#x53EF;&#x7528;&#x9A45;&#x52D5;&#x7A0B;&#x5F0F;&#x6E05;&#x55AE;&#x4E2D;&#x6311;&#x9078;</h4>
-<p><img src="win10_7_choose_drive.png" alt=""></p>
-<h4 id="7-&#x786C;&#x9AD4;&#x985E;&#x578B;&#x9078;-&#x7DB2;&#x8DEF;&#x4ECB;&#x9762;&#x5361;">7. &#x786C;&#x9AD4;&#x985E;&#x578B;&#x9078; &#x7DB2;&#x8DEF;&#x4ECB;&#x9762;&#x5361;</h4>
-<p><img src="win10_8_select_network_interface.png" alt=""></p>
-<h4 id="8-&#x88FD;&#x9020;&#x5546;--&#x578B;&#x865F;&#xFE30;microsoft--usb-rndis&#x4ECB;&#x9762;&#x5361;">8. &#x88FD;&#x9020;&#x5546; / &#x578B;&#x865F;&#xFE30;Microsoft / USB RNDIS&#x4ECB;&#x9762;&#x5361;</h4>
-<p><img src="win10_9_select_rndis_drive.png" alt=""></p>
-<h4 id="9-&#x5FFD;&#x7565;&#x8B66;&#x544A;&#x8A0A;&#x606F;">9. &#x5FFD;&#x7565;&#x8B66;&#x544A;&#x8A0A;&#x606F;</h4>
-<p><img src="win10_10_ignore_warning.png" alt=""></p>
-<h4 id="10-&#x9A45;&#x52D5;&#x7A0B;&#x5F0F;&#x66F4;&#x65B0;&#x6210;&#x529F;">10. &#x9A45;&#x52D5;&#x7A0B;&#x5F0F;&#x66F4;&#x65B0;&#x6210;&#x529F;</h4>
-<p><img src="win10_11_install_rndis_ok.png" alt=""></p>
-<h4 id="11-&#x6AA2;&#x67E5;&#x662F;&#x5426;&#x51FA;&#x73FE;&#x9019;&#x500B;&#x88DD;&#x7F6E;&#xFE30;&#x88DD;&#x7F6E;&#x7BA1;&#x7406;&#x54E1;&#x7DB2;&#x8DEF;&#x4ECB;&#x9762;&#x5361;usb-rndis&#x4ECB;&#x9762;&#x5361;">11. &#x6AA2;&#x67E5;&#x662F;&#x5426;&#x51FA;&#x73FE;&#x9019;&#x500B;&#x88DD;&#x7F6E;&#xFE30;&#x88DD;&#x7F6E;&#x7BA1;&#x7406;&#x54E1;/&#x7DB2;&#x8DEF;&#x4ECB;&#x9762;&#x5361;/USB RNDIS&#x4ECB;&#x9762;&#x5361;</h4>
-<p><img src="win10_12_got_usb_rndis_interface.png" alt=""></p>
-<h4 id="12-&#x9023;&#x7DDA;&#x6E2C;&#x8A66;&#xFF08;&#x5047;&#x8A2D;&#x7528;-putty-&#x9023;&#x7DDA;&#x8EDF;&#x9AD4;&#xFF09;">12. &#x9023;&#x7DDA;&#x6E2C;&#x8A66;&#xFF08;&#x5047;&#x8A2D;&#x7528; PuTTY &#x9023;&#x7DDA;&#x8EDF;&#x9AD4;&#xFF09;</h4>
-<p><img src="win10_13_connect_by_ssh.png" alt=""></p>
-<h4 id="13-username--password-debian--temppwd">13. username / password: debian / temppwd</h4>
-<p><img src="win10_14_login.png" alt=""></p>
+                                <h2 id="usb-&#x96A8;&#x8EAB;&#x789F;&#x639B;&#x8F09;">USB &#x96A8;&#x8EAB;&#x789F;&#x639B;&#x8F09;</h2>
+<ul>
+<li><strong>&#x5728;&#x63D2;&#x5165; USB &#x96A8;&#x8EAB;&#x789F;&#x524D;&#x5148;&#x4F7F;&#x7528; <code>fdisk -l</code>&#x6216;&#x662F; <code>lsblk</code> &#x67E5;&#x770B;&#x7CFB;&#x7D71;&#x76EE;&#x524D;&#x6240;&#x80FD;&#x8B58;&#x5225;&#x7684;&#x5132;&#x5B58;&#x88DD;&#x7F6E;&#x3002;&#x5167;&#x5BB9;&#x53EF;&#x80FD;&#x5982;&#x4E0B;&#xFF1A;</strong></li>
+</ul>
+<pre><code>debian@arm:~$ sudo fdisk -l
+
+Disk /dev/mmcblk0: 3.6 GiB, 3867148288 bytes, 7553024 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0xe67298e5
+
+Device         Boot  Start     End Sectors  Size Id Type
+/dev/mmcblk0p1 *      2048  206847  204800  100M  e W95 FAT16 (LBA)
+/dev/mmcblk0p2      206848 7553023 7346176  3.5G 83 Linux
+
+Disk /dev/mmcblk0boot1: 2 MiB, 2097152 bytes, 4096 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk /dev/mmcblk0boot0: 2 MiB, 2097152 bytes, 4096 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+</code></pre><ul>
+<li><strong>&#x63D2;&#x5165; USB &#x96A8;&#x8EAB;&#x789F;&#xFF0C;&#x518D;&#x6B21;&#x4F7F;&#x7528; <code>fdisk -l</code>&#xFF0C;&#x67E5;&#x770B;&#x65B0;&#x589E;&#x7684;&#x5132;&#x5B58;&#x88DD;&#x7F6E;&#x3002;&#x8207;&#x7B2C;&#x4E00;&#x6B21;&#x5167;&#x5BB9;&#x76F8;&#x6BD4;&#xFF0C;&#x65B0;&#x589E;&#x7684;&#x5167;&#x5BB9;&#x53EF;&#x80FD;&#x5982;&#x4E0B;&#xFF0C;&#x7531;&#x6B64;&#x5167;&#x5BB9;&#x53EF;&#x4EE5;&#x5F97;&#x77E5;&#x65B0;&#x589E;&#x7684;&#x5132;&#x5B58;&#x88DD;&#x7F6E;&#x4EE3;&#x865F;&#x662F; <code>/dev/sda1</code>&#x3002;</strong></li>
+</ul>
+<pre><code>Disklabel type: dos
+Disk identifier: 0x0009fbbc
+
+Device     Boot Start       End   Sectors  Size Id Type
+/dev/sda1  *     2048 121110527 121108480 57.8G  7 HPFS/NTFS/exFAT
+</code></pre><ul>
+<li><strong>&#x639B;&#x8F09;&#x6307;&#x4EE4;&#xFF0C;&#x4EE5;&#x5132;&#x5B58;&#x88DD;&#x7F6E;&#x4EE3;&#x865F;&#x662F; <code>/dev/sda1</code> &#x70BA;&#x7BC4;&#x4F8B;&#x3002;</strong></li>
+</ul>
+<pre><code>debian@arm:~$ sudo mkdir /mnt/usb
+debian@arm:~$ sudo mount /dev/sda1 /mnt/usb
+</code></pre><ul>
+<li><strong>&#x639B;&#x8F09;&#x5F8C;&#x5C31;&#x53EF;&#x4EE5;&#x5728; /mnt/usb &#x7684;&#x76EE;&#x9304;&#x4E0B;&#x5C0D; USB &#x96A8;&#x8EAB;&#x789F;&#x7684;&#x8CC7;&#x6599;&#x9032;&#x884C;&#x8A2A;&#x554F;&#x6216;&#x662F;&#x64CD;&#x4F5C;&#x3002;</strong></li>
+<li><strong>&#x5378;&#x8F09;&#x6307;&#x4EE4;&#xFF0C;&#x4EE5;&#x5132;&#x5B58;&#x88DD;&#x7F6E;&#x4EE3;&#x865F;&#x662F; <code>/dev/sda1</code> &#x70BA;&#x7BC4;&#x4F8B;&#x3002;</strong><pre><code>debian@arm:~$ sudo unmount /dev/sda1
+</code></pre></li>
+</ul>
+<h2 id="microsd-card-&#x639B;&#x8F09;">MicroSD Card &#x639B;&#x8F09;</h2>
+<p>&#x639B;&#x8F09;&#x7684;&#x65B9;&#x5F0F;&#x8207; USB &#x985E;&#x4F3C;&#xFF0C;&#x4E5F;&#x662F;&#x7531; <code>fdisk -l</code> &#x6307;&#x4EE4;&#x627E;&#x51FA;&#x639B;&#x8F09;&#x7684;&#x78C1;&#x789F;&#x540D;&#x7A31;&#x3002;</p>
+<ul>
+<li><strong><code>fdisk -l</code> &#x67E5;&#x8A62;&#x5F8C;&#x7684;&#x7BC4;&#x4F8B;&#x5982;&#x4E0B;&#xFF1A;</strong></li>
+</ul>
+<pre><code>Disklabel type: dos
+Disk identifier: 0x003a8823
+
+Device         Boot Start      End  Sectors  Size Id Type
+/dev/mmcblk1p1 *     2048 62333951 62331904 29.7G  c W95 FAT32 (LBA)
+</code></pre><ul>
+<li><strong>&#x639B;&#x8F09;&#x6307;&#x4EE4;&#xFF0C;&#x4EE5;&#x5132;&#x5B58;&#x88DD;&#x7F6E;&#x4EE3;&#x865F;&#x662F; <code>/dev/mmcblk1p1</code> &#x70BA;&#x7BC4;&#x4F8B;&#x3002;</strong></li>
+</ul>
+<pre><code>debian@arm:~$ sudo mkdir /mnt/mmc
+debian@arm:~$ sudo mount /dev/mmcblk1p1 /mnt/mmc
+</code></pre><ul>
+<li><strong>&#x639B;&#x8F09;&#x5F8C;&#x5C31;&#x53EF;&#x4EE5;&#x5728; /mnt/mmc &#x7684;&#x76EE;&#x9304;&#x4E0B;&#x5C0D; MicroSD Card &#x7684;&#x8CC7;&#x6599;&#x9032;&#x884C;&#x8A2A;&#x554F;&#x6216;&#x662F;&#x64CD;&#x4F5C;&#x3002;</strong></li>
+<li><strong>&#x5378;&#x8F09;&#x6307;&#x4EE4;&#xFF0C;&#x4EE5;&#x5132;&#x5B58;&#x88DD;&#x7F6E;&#x4EE3;&#x865F;&#x662F; <code>/dev/mmcblk1p1</code>&#x70BA;&#x7BC4;&#x4F8B;&#x3002;</strong></li>
+</ul>
+<pre><code>debian@arm:~$ sudo unmount /dev/mmcblk1p1
+</code></pre><p><strong>&#x6CE8;&#x610F;&#x4E8B;&#x9805;&#xFF1A;</strong></p>
+<p>BN-A2A/BN-B2A &#x9810;&#x8A2D;&#x6703;&#x4EE5; MicroSD Card &#x958B;&#x6A5F;&#xFF0C;&#x5982;&#x679C;&#x53EA;&#x662F;&#x8CC7;&#x6599;&#x7684;&#x8A2A;&#x554F;&#x6216;&#x662F;&#x64CD;&#x4F5C;&#xFF0C;&#x5EFA;&#x8B70;&#x5728;&#x958B;&#x6A5F;&#x5F8C;&#x518D;&#x63D2;&#x5165; MicroSD Card&#x3002;</p>
 
                                 
                                 </section>
@@ -682,14 +713,10 @@
 
             
                 
-                <a href="windows7_rndis.html" class="navigation navigation-prev " aria-label="Previous page: Windows 7 RNDIS 驅動程式安裝">
+                <a href="win10_permission.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Windows 10 檔案權限修改">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="win10_permission.html" class="navigation navigation-next " aria-label="Next page: Windows 10 檔案權限修改">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -698,7 +725,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Windows 10 RNDIS 驅動程式安裝","level":"5.3.4","depth":2,"next":{"title":"Windows 10 檔案權限修改","level":"5.3.5","depth":2,"path":"faq/win10_permission.md","ref":"./faq/win10_permission.md","articles":[]},"previous":{"title":"Windows 7 RNDIS 驅動程式安裝","level":"5.3.3","depth":2,"path":"faq/windows7_rndis.md","ref":"./faq/windows7_rndis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"faq/windows10_rndis.md","mtime":"2018-11-05T08:20:38.079Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-21T05:46:28.428Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"磁碟掛載 Mount","level":"5.3.6","depth":2,"previous":{"title":"Windows 10 檔案權限修改","level":"5.3.5","depth":2,"path":"faq/win10_permission.md","ref":"./faq/win10_permission.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"faq/mount.md","mtime":"2019-06-16T03:18:03.894Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-21T05:46:28.428Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
