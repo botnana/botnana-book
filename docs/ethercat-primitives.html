@@ -560,6 +560,19 @@
             
         </li>
     
+        <li class="chapter " data-level="5.3.6" data-path="faq/mount.html">
+            
+                <a href="faq/mount.html">
+            
+                    
+                    磁碟掛載 Mount
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -610,8 +623,81 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h3 id="ethercat-primitives">EtherCAT primitives</h3>
-<h4 id="slave--n-----print-information-of-slave-n"><code>.slave ( n -- )</code> Print information of slave n</h4>
+                                <h3 id="ethercat-&#x6307;&#x4EE4;&#x96C6;">EtherCAT &#x6307;&#x4EE4;&#x96C6;</h3>
+<h4 id="ec-dc-----"><code>.ec-dc ( -- )</code></h4>
+<p>&#x986F;&#x793A; EtherCAT &#x901A;&#x8A0A;&#x6642;&#x9593;&#x540C;&#x6B65;&#x7684;&#x72C0;&#x6CC1;&#x3002;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+<pre><code>.dc-dc
+</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;:</p>
+<pre><code>dc_adjust_ns|65|dc_diff_ns|-865935|reference_time_diff_ns|2003080
+|application_time_diff_ns|2052185
+</code></pre><p>&#x5176;&#x4E2D;&#x7684;&#xFF1A;</p>
+<pre><code>dc_adjust_ns:               EtherCAT &#x4E3B;&#x7AD9;&#x5468;&#x671F;&#x7684;&#x8ABF;&#x6574;&#x91CF;&#x3002;
+dc_diff_ns:                 EtherCAT &#x4E3B;&#x5F9E;&#x7AD9;&#x4E4B;&#x9593;&#x7684;&#x6642;&#x9593;&#x76F8;&#x4F4D;&#x5DEE;&#x3002;
+reference_time_diff_ns:     EtherCAT &#x5F9E;&#x7AD9;&#x7684;&#x5468;&#x671F;&#x3002;
+application_time_diff_ns:   EtherCAT &#x4E3B;&#x7AD9;&#x7684;&#x5468;&#x671F;&#x3002;
+</code></pre><h4 id="ec-emcy--n----"><code>.ec-emcy ( n -- )</code></h4>
+<p>&#x986F;&#x793A; EtherCAT Slave Position <code>n</code> &#x7684;emergemcy message &#x8A0A;&#x606F;&#x3002;&#x76EE;&#x524D; Botnana-Control &#x6703;&#x4F9D;&#x64DA; status word &#x4E2D;&#x7684; fault bit &#x81EA;&#x52D5;&#x9001;&#x51FA; ?ec-emcy &#x7684;&#x547D;&#x4EE4;&#x3002;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+<pre><code>1 .ec-emcy  \ &#x53D6;&#x5F97; EtherCAT &#x7B2C; 1 &#x500B;&#x5F9E;&#x7AD9;&#x7684; emergemcy message
+</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;:</p>
+<pre><code>error_code.1|0x5441
+|error_register.1|0x20
+|error_data.1.1|0
+|error_data.2.1|19
+|error_data.3.1|0
+|error_data.4.1|0
+|error_data.5.1|0
+|error_message_cout|1
+</code></pre><p>&#x5176;&#x4E2D;&#x7684;&#xFF1A;</p>
+<pre><code>error code:                     &#x7B49;&#x540C;&#x65BC; Object 0x603F:00
+error register:                 &#x7B49;&#x540C;&#x65BC; Object 0x1001: 00
+error_data.1 ~ error_data.5:    &#x70BA;&#x9A45;&#x52D5;&#x5668;&#x5EE0;&#x5BB6;&#x5B9A;&#x7FA9;&#x7684;&#x7570;&#x8B66;&#x8A0A;&#x606F;&#x3002;
+                                &#x6B64;&#x7BC4;&#x4F8B;&#x70BA;&#x53F0;&#x9054;&#x96FB;A2-E &#x9A45;&#x52D5;&#x5668;&#x6240;&#x56DE;&#x50B3;&#x7684;&#x8A0A;&#x606F;,
+                                error_data.2.1 = 19 &#x8868;&#x793A;&#x7570;&#x8B66;&#x78BC; 0x13 (&#x7DCA;&#x6025;&#x505C;&#x6B62;)
+</code></pre><h4 id="ec-links-----"><code>.ec-links ( -- )</code></h4>
+<p>&#x986F;&#x793A; EtherCAT &#x901A;&#x8A0A;&#x7684;&#x9023;&#x7DDA;&#x72C0;&#x614B;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+<pre><code>.ec-links
+</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;:</p>
+<pre><code>slaves_responding|3|al_states|8|link_up|1
+|input_wc|3|output_wc|3|input_wc_state|1|output_wc_state|1
+|input_wc_error|8187|output_wc_error|8233
+|waiting_sdos_len|0
+</code></pre><p>&#x5176;&#x4E2D;&#x7684;&#xFF1A;</p>
+<pre><code>slaves_responding:  EtherCAT &#x5F9E;&#x7AD9;&#x7684;&#x9023;&#x7DDA;&#x6578;
+al_states:          &#x6240;&#x6709; EtherCAT &#x5F9E;&#x7AD9;&#x7684;&#x72C0;&#x614B;&#x3002;8 &#x4EE3;&#x8868;&#x6240;&#x6709;&#x5F9E;&#x7AD9;&#x90FD;&#x5728;&#x64CD;&#x4F5C;&#x6A21;&#x5F0F;&#x3002;
+input_wc:           Input Data Working Count&#x3002;&#x6709;&#x8655;&#x7406; Input Data &#x7684;&#x5F9E;&#x7AD9;&#x6578;&#x3002;
+output_wc:          Output Data Working Count&#x3002;&#x6709;&#x8655;&#x7406; Output Data &#x7684;&#x5F9E;&#x7AD9;&#x6578;&#x3002;
+input_wc_state:     Input Data Working Count &#x6B63;&#x5E38;&#x8207;&#x5426;&#xFF0C;1 &#x8868;&#x793A;&#x6B63;&#x5E38;&#x3002;
+output_wc_state:    Output Data Working Count &#x6B63;&#x5E38;&#x8207;&#x5426;&#xFF0C;1 &#x8868;&#x793A;&#x6B63;&#x5E38;&#x3002;
+input_wc_error:     &#x8A08;&#x6578; input_wc_state = 0 &#x7684;&#x5468;&#x671F;&#x6578;&#x3002;
+                    &#x901A;&#x5E38;&#x5728;&#x958B;&#x6A5F;&#x6642;&#x56E0;&#x70BA;&#x6642;&#x9593;&#x9084;&#x4E0D;&#x80FD;&#x540C;&#x6B65;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x958B;&#x6A5F;&#x521D;&#x671F;&#x6703;&#x589E;&#x52A0;&#x3002;
+output_wc_error:    &#x8A08;&#x6578; output_wc_state = 0 &#x7684;&#x5468;&#x671F;&#x6578;&#x3002;
+                    &#x901A;&#x5E38;&#x5728;&#x958B;&#x6A5F;&#x6642;&#x56E0;&#x70BA;&#x6642;&#x9593;&#x9084;&#x4E0D;&#x80FD;&#x540C;&#x6B65;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x958B;&#x6A5F;&#x521D;&#x671F;&#x6703;&#x589E;&#x52A0;&#x3002;
+waiting_sdos_len:   &#x7B49;&#x5F85;&#x8655;&#x7406;&#x7684; SDO &#x547D;&#x4EE4;&#x6578;&#x3002;
+</code></pre><h4 id="sdo--n----"><code>.sdo ( n -- )</code></h4>
+<p>&#x986F;&#x793A; EtherCAT Slave Position <code>n</code> &#x7684; SDO &#x6307;&#x4EE4;&#x57F7;&#x884C;&#x7D50;&#x679C;&#x3002;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+<pre><code>2 .sdo
+</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#xFF1A;</p>
+<pre><code>sdo_index.2|0x6041
+|sdo_subindex.2|0x00
+|sdo_error.2|false
+|sdo_busy.2|false
+|sdo_data.2|24
+|sdo_data_hex.2|0x0018
+</code></pre><p>&#x5176;&#x4E2D;&#x7684;&#xFF1A;</p>
+<pre><code>&#x4EE5; sdo_index.2 &#x70BA;&#x4F8B;, .2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave&#x3002;
+sdo_index   : EtherCAT object index&#x3002;
+sdo_subindex: EtherCAT object subindex&#x3002;
+sdo_error   : &#x6B64; sdo request &#x662F;&#x5426;&#x6709;&#x554F;&#x984C;,
+              &#x53EF;&#x80FD;&#x539F;&#x56E0;&#x6709; index &#x932F;&#x8AA4;, &#x8CC7;&#x6599;&#x578B;&#x614B;&#x932F;&#x8AA4; ... &#x7B49;&#x7B49;&#x3002;
+sdo_busy    : &#x6B64; SDO request &#x662F;&#x5426;&#x9084;&#x5728;&#x8655;&#x7406;&#x4E2D;&#x3002;
+sdo_data    : Object &#x7684;&#x503C;&#x3002;
+sdo_data_hex: &#x4EE5; 16 &#x9032;&#x4F4D;&#x8868;&#x793A; Object &#x7684;&#x503C;&#x3002;
+</code></pre><h4 id="slave--n----"><code>.slave ( n -- )</code></h4>
+<p>&#x986F;&#x793A; EtherCAT Slave Position <code>n</code> &#x7684;&#x8CC7;&#x8A0A;&#x3002;</p>
 <p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
 <pre><code>2 .slave
 </code></pre><p>&#x4EE5;&#x7B2C; 2 &#x500B; slave &#x70BA;&#x58EB;&#x6797;&#x96FB;&#x6A5F; SDP &#x9A45;&#x52D5;&#x5668;&#x70BA;&#x4F8B;&#xFF0C;</p>
@@ -699,7 +785,7 @@ digital_inputs.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 
     Bit 2 : home switch
     &#x5176;&#x4ED6;: &#x53C3;&#x8003;&#x9A45;&#x52D5;&#x5668; 0x60FD::0x00 &#x7684;&#x8AAA;&#x660E; 
 
-Note: &#x55AE;&#x4F4D;&#x6703;&#x56E0;&#x9A45;&#x52D5;&#x5668;&#x800C;&#x6709;&#x4E0D;&#x540C;    
+Note: &#x55AE;&#x4F4D;&#x6703;&#x56E0;&#x9A45;&#x52D5;&#x5668;&#x800C;&#x6709;&#x4E0D;&#x540C;
 </code></pre><p>&#x6578;&#x4F4D;&#x8F38;&#x51FA;&#x56DE;&#x50B3;&#x8CC7;&#x6599;&#x7BC4;&#x4F8B;&#xFF0C;&#x4EE5;&#x53F0;&#x9054;&#x96FB; EC7062 &#x70BA;&#x4F8B;&#xFF1A;</p>
 <pre><code>vendor.3|Delta|product.3|EC7062|dout.1.3|0|dout.2.3|0|dout.3.3|0|
 dout.4.3|0|dout.5.3|0|dout.6.3|0|dout.7.3|0|dout.8.3|0|dout.9.3|0|
@@ -721,70 +807,70 @@ aout.3.5|0|aout.4.5|0
 <pre><code>vendor.4|Delta|product.4|EC8124|ain.1.4|0|ain.2.4|0|
 ain.3.4|0|ain.4.4|0
 </code></pre><h4 id="slave-diff--n----"><code>.slave-diff ( n -- )</code></h4>
-<p>Print information difference of slave n</p>
+<p>&#x986F;&#x793A; EtherCAT Slave Position <code>n</code> &#x7684;&#x8CC7;&#x8A0A;&#x3002; &#x53EA;&#x56DE;&#x50B3;&#x8207;&#x4E0A;&#x6B21;&#x8981;&#x6C42;&#x4E0D;&#x540C;&#x7684;&#x8CC7;&#x8A0A;&#x3002;</p>
 <p>&#x4F7F;&#x7528;&#x8005;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>.slave</code> &#x53D6;&#x5F97;&#x6240;&#x6709;&#x53C3;&#x6578;&#x3002;&#x4F7F;&#x7528; <code>.slave-diff</code> &#x53D6;&#x5F97;&#x81EA;&#x4E0A;&#x6B21;&#x57F7;&#x884C; <code>.slave</code>
 &#x6216;&#x662F; <code>.slave-diff</code> &#x5F8C;&#x88AB;&#x6539;&#x8B8A;&#x7684;&#x72C0;&#x614B;&#x3002; &#x5982;&#x679C;&#x4E0A;&#x6B21;&#x57F7;&#x884C; <code>.slave</code> &#x6216; <code>.slave-diff</code> &#x5F8C;&#x72C0;&#x614B;&#x90FD;&#x6C92;&#x6709;&#x6539;&#x8B8A;&#xFF0C;
 &#x56DE;&#x50B3;&#x8CC7;&#x6599;&#x70BA;&#x7A7A;&#x5B57;&#x4E32;&#x3002;</p>
 <p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;: </p>
 <pre><code>2 .slave-diff
-</code></pre><h4 id="list-slaves-----"><code>list-slaves ( -- )</code></h4>
-<p>List vendor id and  product code of detected slaves. </p>
-<p>&#x6E2C;&#x8A66;&#x7BC4;&#x4F8B;&#xFF1A; &#x7B2C; 1 &#x500B; slave &#x70BA;&#x53F0;&#x9054;&#x96FB; A2-E&#x9A45;&#x52D5;&#x5668; , &#x7B2C; 2 &#x500B; slave &#x70BA;&#x58EB;&#x6797;&#x96FB;&#x6A5F;&#x9A45;&#x52D5;&#x5668;, </p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;: </p>
-<pre><code>list-slaves
-</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#xFF1A; </p>
+</code></pre><h4 id="ec-emcy--n----"><code>?ec-emcy ( n -- )</code></h4>
+<p>&#x7576;&#x9A45;&#x52D5;&#x5668;&#x767C;&#x751F;&#x7570;&#x8B66;&#x6642;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6B64;&#x547D;&#x4EE4;&#x8B93;&#x9A45;&#x52D5;&#x5668;&#x5C07;&#x7570;&#x8B66;&#x8A0A;&#x606F;&#xFF08;emergency message&#xFF09;&#x50B3;&#x9001;&#x56DE;&#x4F86;&#x3002;</p>
+<h4 id="ec-an--alias----n-"><code>ec-a&gt;n ( alias -- n )</code></h4>
+<p>&#x5229;&#x7528; EtherCAT slaves alias <code>alias</code> &#x627E;&#x5230;&#x5C0D;&#x61C9;&#x7684; Slave position <code>n</code></p>
+<p>Note:</p>
+<ol>
+<li><code>alias</code> &#x4E0D;&#x53EF;&#x4EE5;&#x70BA;&#x96F6;</li>
+<li>&#x5047;&#x5982; <code>alias</code> &#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x5247;&#x6703;&#x56DE;&#x50B3;&#x932F;&#x8AA4;&#x8A0A;&#x606F;</li>
+</ol>
+<h4 id="ec-ain--channel-n----t-"><code>ec-ain? ( channel n -- t )</code></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>channel</code> &#x662F;&#x5426;&#x70BA;&#x985E;&#x6BD4;&#x8F38;&#x5165;&#xFF1F;</p>
+<h4 id="ec-alias--alias-n----"><code>ec-alias! ( alias n -- )</code></h4>
+<p>&#x8A2D;&#x5B9A; EtherCAT slave position <code>n</code> &#x7684; alias &#x70BA; <code>alias</code>&#x3002;</p>
+<p>Note:</p>
+<ol>
+<li><code>alias</code> &#x9664;&#x4E86; 0 &#x4EE5;&#x5916;&#xFF0C;&#x4E0D;&#x53EF;&#x91CD;&#x8907;&#x3002;</li>
+<li>&#x6B64;&#x8A2D;&#x5B9A;&#x547D;&#x4EE4;&#x662F;&#x4FEE;&#x6539; SII EEPROM &#x5C0D;&#x61C9;&#x7684;&#x66AB;&#x5B58;&#x5668;&#x3002;&#x5982;&#x679C;&#x662F;&#x7531;&#x786C;&#x9AD4;&#x65CB;&#x9215;&#x63A7;&#x5236;&#x7684;&#xFF0C;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x7531;&#x6B64;&#x547D;&#x4EE4;&#x8A2D;&#x5B9A;&#x3002;</li>
+<li>&#x4E0D;&#x53EF;&#x4EE5;&#x6709;&#x91CD;&#x8907;&#x7684; alias&#x3002;</li>
+<li>&#x6B64;&#x547D;&#x4EE4;&#x6703;&#x9020;&#x6210; Real Time Cycle Overrun&#x3002;&#x8981;&#x5728;&#x6240;&#x6709;&#x9A45;&#x52D5;&#x5668; Servo OFF &#x60C5;&#x6CC1;&#x57F7;&#x884C;&#x3002;</li>
+</ol>
+<h4 id="ec-alias--alias----t-"><code>ec-alias? ( alias -- t )</code></h4>
+<p>EtherCAT slave alias <code>alias</code> &#x662F;&#x5426;&#x5B58;&#x5728;&#xFF1F; </p>
+<h4 id="ec-aout--channel-n----t-"><code>ec-aout? ( channel n -- t )</code></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>channel</code> &#x662F;&#x5426;&#x70BA;&#x985E;&#x6BD4;&#x8F38;&#x51FA;&#xFF1F;</p>
+<h4 id="ec-din--channel-n----t-"><code>ec-din? ( channel n -- t )</code></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>channel</code> &#x662F;&#x5426;&#x70BA;&#x6578;&#x4F4D;&#x8F38;&#x5165;&#xFF1F;</p>
+<h4 id="ec-dout--channel-n----t-"><code>ec-dout? ( channel n -- t )</code></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>channel</code> &#x662F;&#x5426;&#x70BA;&#x6578;&#x4F4D;&#x8F38;&#x51FA;&#xFF1F;</p>
+<h4 id="ec-drive--channel-n----t-"><code>ec-drive? ( channel n -- t )</code></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>channel</code> &#x662F;&#x5426;&#x70BA;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#xFF1F;</p>
+<h4 id="ec-emcy-busy--n----t-"><code>ec-emcy-busy? ( n -- t )</code></h4>
+<p>EtherCAT slave position <code>n</code> &#x7684; <code>?ec-emcy</code> &#x662F;&#x5426;&#x7B49;&#x5F85;&#x57F7;&#x884C;&#x4E2D;&#xFF1F;</p>
+<h4 id="ec-encoder--channel-n----t-"><code>ec-encoder? ( channel n -- t )</code></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>channel</code> &#x662F;&#x5426;&#x70BA;&#x7DE8;&#x78BC;&#x5668;&#x8F38;&#x5165;&#x6A21;&#x7D44;&#xFF1F;</p>
+<h4 id="ec-load--n----"><code>ec-load ( n -- )</code></h4>
+<p>&#x5C07; EtherCAT slave position <code>n</code> &#x7684;&#x8A2D;&#x5B9A;&#x503C;&#x56DE;&#x5FA9;&#x5230;&#x539F;&#x5EE0;&#x9810;&#x8A2D;&#x503C;&#x3002;&#x76F8;&#x7576;&#x8A2D;&#x5B9A; Object 0x1011:1 &#x70BA; 0x64616F6C (ASCII: l:0x6C, o:0x6F, a:61, d:64)&#x3002;</p>
+<p>&#x5982;&#x679C; EtherCAT slave &#x6709;&#x63D0;&#x4F9B;&#x56DE;&#x5FA9;&#x5230;&#x539F;&#x5EE0;&#x9810;&#x8A2D;&#x503C;&#x529F;&#x80FD;&#xFF0C;&#x5927;&#x90E8;&#x4EFD;&#x6703;&#x4F7F;&#x7528;&#x6B64;&#x65B9;&#x5F0F;&#x3002;</p>
+<h4 id="ec-ready-----t-"><code>ec-ready? ( -- t )</code></h4>
+<p>EtherCAT &#x901A;&#x8A0A;&#x662F;&#x5426;&#x5099;&#x59A5;&#x6216;&#x662F;&#x6B63;&#x5E38;&#xFF1F;</p>
+<h4 id="ec-save--n----"><code>ec-save ( n -- )</code></h4>
+<p>&#x5C07; EtherCAT slave position <code>n</code> &#x76EE;&#x524D;&#x7684;&#x8A2D;&#x5B9A;&#x503C;&#x5B58;&#x5230; EEPROM&#x3002;&#x76F8;&#x7576;&#x8A2D;&#x5B9A; Object 0x1010:1 &#x70BA; 0x65766173 (ASCII: s:0x73, a:0x61, v:76, e:65)&#x3002;</p>
+<p>&#x5982;&#x679C; EtherCAT slave &#x6709;&#x63D0;&#x4F9B;&#x8A2D;&#x5B9A;&#x53C3;&#x6578;&#x5230; EEPROM &#x7684;&#x529F;&#x80FD;&#xFF0C;&#x5927;&#x90E8;&#x4EFD;&#x6703;&#x4F7F;&#x7528;&#x6B64;&#x65B9;&#x5F0F;&#x3002;</p>
+<h4 id="ec-uart---channel-n----t-"><code>ec-uart?  ( channel n -- t )</code></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>channel</code> &#x662F;&#x5426;&#x70BA; UART &#x6A21;&#x7D44;&#xFF1F;</p>
+<h4 id="list-slaves-----"><code>list-slaves ( -- )</code></h4>
+<p>&#x986F;&#x793A;&#x6240;&#x4EE5; EtherCAT &#x5F9E;&#x7AD9;&#x7684; vendor id &#x8207; product code&#x3002;</p>
+<p>&#x6E2C;&#x8A66;&#x7BC4;&#x4F8B;&#xFF1A; &#x7B2C; 1 &#x500B;&#x5F9E;&#x7AD9;&#x70BA;&#x53F0;&#x9054;&#x96FB; A2-E&#x9A45;&#x52D5;&#x5668; , &#x7B2C; 2 &#x500B;&#x5F9E;&#x7AD9;&#x70BA;&#x58EB;&#x6797;&#x96FB;&#x6A5F;&#x9A45;&#x52D5;&#x5668;&#x3002;</p>
+<p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#xFF1A;</p>
 <pre><code>slaves|477,271601776,1468,1
 
 &#x53F0;&#x9054;&#x96FB; A2-E:  vendor_id = 477 (0x1DD)
              product_code =  271601776 (0x10305070)
 &#x58EB;&#x6797;&#x96FB;&#x6A5F; SDP: vendor_id = 1468 (0x5BC)
-             product_code =  1 (0x1)          
-</code></pre><h4 id="sdo-upload-i32--subindex-index-n----"><code>sdo-upload-i32 ( subindex index n -- )</code></h4>
-<p>Upload data (i32) of index:subidex of slave n by SDO.</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;: &#x4F7F;&#x7528; SDO &#x8B80;&#x53D6; slave 2 &#x4F4D;&#x65BC; 0x6064::0x00 &#x7684;&#x503C;&#x3002; &#x5047;&#x8A2D; slave 2 &#x662F;&#x9A45;&#x52D5;&#x5668;, 0 &#x8868;&#x793A; subindex,
-$6064 &#x8868;&#x793A; index ($&#x8868;&#x793A; 16&#x9032;&#x4F4D;), 0x6064:0x00 &#x7684;&#x4F4D;&#x5740;&#x662F; position actual value &#x5176;&#x578B;&#x614B;&#x662F; integer 32&#xFF0C;
-&#x53EF;&#x4EE5;&#x7531;&#x6B64;&#x6307;&#x4EE4;&#x8B80;&#x56DE; position actual value.</p>
-<pre><code>0 $6064 2 sdo-upload-i32             
-</code></pre><h4 id="sdo-upload-i16--subindex-index-n----"><code>sdo-upload-i16 ( subindex index n -- )</code></h4>
-<p>Upload data (i16) of index:subidex of slave n by SDO.</p>
-<h4 id="sdo-upload-i8---subindex-index-n----"><code>sdo-upload-i8  ( subindex index n -- )</code></h4>
-<p>Upload data (i8) of index:subidex of slave n by SDO.</p>
-<h4 id="sdo-upload-u32--subindex-index-n----"><code>sdo-upload-u32 ( subindex index n -- )</code></h4>
-<p>Upload data (u32) of index:subidex of slave n by SDO.</p>
-<h4 id="sdo-upload-u16--subindex-index-n----"><code>sdo-upload-u16 ( subindex index n -- )</code></h4>
-<p>Upload data (u16) of index:subidex of slave n by SDO.</p>
-<h4 id="sdo-upload-u8---subindex-index-n----"><code>sdo-upload-u8  ( subindex index n -- )</code></h4>
-<p>Upload data (u8) of index:subidex of slave n by SDO.</p>
-<h4 id="sdo-download-i32--data-subindex-index-n----"><code>sdo-download-i32 ( data subindex index n -- )</code></h4>
-<p>Download data (i32) of index:subidex of slave n by SDO.</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;: &#x4F7F;&#x7528; SDO &#x8A2D;&#x5B9A; slave 2 &#x4F4D;&#x65BC; 0x60FF::0x00 &#x7684;&#x503C;&#x70BA; 100, &#x5047;&#x8A2D; slave 2 &#x662F;&#x9A45;&#x52D5;&#x5668;, 0 &#x8868;&#x793A; subindex,
-$60FF &#x8868;&#x793A; index ($&#x8868;&#x793A; 16&#x9032;&#x4F4D;), 0x60FF:0x00 &#x7684;&#x4F4D;&#x5740;&#x662F; target velocity &#x5176;&#x578B;&#x614B;&#x662F; integer 32&#xFF0C;
-&#x53EF;&#x4EE5;&#x7531;&#x6B64;&#x6307;&#x4EE4;&#x8A2D;&#x5B9A; target velocity            </p>
-<pre><code>100 0 $60FF 2 sdo-download-i32
-</code></pre><h4 id="sdo-download-i16--data-subindex-index-n----"><code>sdo-download-i16 ( data subindex index n -- )</code></h4>
-<p>Download data (i16) of index:subidex of slave n by SDO.</p>
-<h4 id="sdo-download-i8--data-subindex-index-n----"><code>sdo-download-i8 ( data subindex index n -- )</code></h4>
-<p>Download data (i8) of index:subidex of slave n by SDO.</p>
-<h4 id="sdo-download-u32--data-subindex-index-n----"><code>sdo-download-u32 ( data subindex index n -- )</code></h4>
-<p>Download data (u32) of index:subidex of slave n by SDO.</p>
-<h4 id="sdo-download-u16--data-subindex-index-n----"><code>sdo-download-u16 ( data subindex index n -- )</code></h4>
-<p>Download data (u16) of index:subidex of slave n by SDO.</p>
-<h4 id="sdo-download-u8--data-subindex-index-n----"><code>sdo-download-u8 ( data subindex index n -- )</code></h4>
-<p>Download data (u8) of index:subidex fo slave n by SDO.</p>
-<h4 id="sdo-data--n----data-"><code>sdo-data@ ( n -- data )</code></h4>
-<p>Fetch SDO data of slave n to stack.</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;: &#x5C07; sdo-upload-i32, sdo-upload-i16, sdo-upload-i8, sdo-upload-u32, sdo-upload-u16,
-sdo-upload-u8, sdo-download-i32, sdo-download-i16, sdo-download-i8, sdo-download-u32,
-sdo-download-u16,sdo-download-u8 &#x547D;&#x4EE4;&#x6240;&#x8B80;&#x53D6;&#x6216;&#x662F;&#x8A2D;&#x5B9A;&#x7684;&#x503C;&#x53D6;&#x51FA;&#x653E;&#x5165;&#x6574;&#x6578;&#x5806;&#x758A;.</p>
-<pre><code>2 sdo-data@                                                               
-</code></pre><h4 id="sdo-error--n----flag-"><code>sdo-error? ( n -- flag )</code></h4>
-<p>Fetch error flag of SDO data of slave n to stack</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
-<pre><code>2 sdo-error? 
-</code></pre><h4 id="sdo-busy--n----flag-"><code>sdo-busy? ( n -- flag )</code></h4>
-<p>Fetch busy flag of SDO data of slave n to stack</p>
+             product_code =  1 (0x1)
+</code></pre><h4 id="sdo-busy--n----t-"><code>sdo-busy? ( n -- t )</code></h4>
+<p>EtherCAT slave  position <code>n</code> &#x7684; SDO &#x547D;&#x4EE4;&#x662F;&#x5426;&#x7B49;&#x5F85;&#x57F7;&#x884C;&#xFF1F;</p>
 <p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B; 1: </p>
-<pre><code>2 sdo-busy? 
+<pre><code>2 sdo-busy?
 </code></pre><p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B; 2: &#x8B80;&#x53D6; Slave 2 0x6064:0x00 &#x4F4D;&#x5740;&#x7684;&#x503C;&#xFF0C;&#x7B49;&#x5F85;&#x8A72;&#x547D;&#x4EE4;&#x5B8C;&#x6210;&#x5F8C;&#x8F38;&#x51FA;&#x8A0A;&#x606F;&#x3002;</p>
 <pre><code>: test-sdo 0 $6064 2 sdo-upload-i32 
            begin 2 sdo-busy? while pause repeat
@@ -792,58 +878,42 @@ sdo-download-u16,sdo-download-u8 &#x547D;&#x4EE4;&#x6240;&#x8B80;&#x53D6;&#x6216
  deploy test-sdo ;deploy
 
  Note: 
- pause: &#x8868;&#x793A;&#x7576;&#x4E0B;&#x7684;&#x547D;&#x4EE4;&#x66AB;&#x505C;, &#x7B49;&#x5F85;&#x4E0B;&#x4E00;&#x500B;real time cycle &#x57F7;&#x884C;&#x6642;
-        &#x518D;&#x5F9E;&#x547D;&#x4EE4;&#x66AB;&#x505C;&#x7684;&#x5730;&#x65B9;&#x958B;&#x59CB;&#x57F7;&#x884C;&#x3002;
- deploy test-sdo ;deploy : &#x8868;&#x793A;&#x5C07; test-sdo &#x6307;&#x4EE4;&#x653E;&#x5230;&#x80CC;&#x666F;&#x57F7;&#x884C;&#x3002;
+ 1. pause: &#x8868;&#x793A;&#x7576;&#x4E0B;&#x7684;&#x547D;&#x4EE4;&#x66AB;&#x505C;, &#x7B49;&#x5F85;&#x4E0B;&#x4E00;&#x500B;real time cycle &#x57F7;&#x884C;&#x6642;&#xFF0C;&#x518D;&#x5F9E;&#x547D;&#x4EE4;&#x66AB;&#x505C;&#x7684;&#x5730;&#x65B9;&#x958B;&#x59CB;&#x57F7;&#x884C;&#x3002;
+ 2. deploy test-sdo ;deploy : &#x5C07; test-sdo &#x6307;&#x4EE4;&#x653E;&#x5230;&#x80CC;&#x666F;&#x57F7;&#x884C;&#x3002;
         &#x56E0;&#x70BA; test-sdo &#x6240;&#x5B9A;&#x7FA9;&#x7684;&#x547D;&#x4EE4;&#x4E2D;&#x6709;&#x542B;&#x6709;&#x7B49;&#x5F85;&#x7684;&#x6307;&#x4EE4;, &#x5982;&#x5728;&#x7576;&#x524D;&#x7684; Task &#x57F7;&#x884C;&#xFF0C;
-        &#x5C31;&#x7121;&#x6CD5;&#x518D;&#x8655;&#x7406;&#x5F8C;&#x7E8C;&#x7531; Client &#x7AEF;&#x9001;&#x9032;&#x4F86;&#x7684;&#x6307;&#x4EE4;&#x3002;                 
-</code></pre><h4 id="sdo--n----"><code>.sdo ( n -- )</code></h4>
-<p>Print SDO information of slave n.</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;: &#x8F38;&#x51FA;&#x7B2C; 2 &#x500B; slave SDO Request &#x7684;&#x7D50;&#x679C;</p>
-<pre><code>2 .sdo
-</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#xFF1A;</p>
-<pre><code>sdo_index.2|0x6041
-|sdo_subindex.2|0x00
-|sdo_error.2|false
-|sdo_busy.2|false
-|sdo_data.2|24
-|sdo_data_hex.2|0x0018
-
-&#x4EE5; sdo_index.2 &#x70BA;&#x4F8B;, .2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave&#x3002;
-sdo_index   : EtherCAT object index&#x3002;
-sdo_subindex: EtherCAT object subindex&#x3002;
-sdo_error   : &#x6B64; sdo request &#x662F;&#x5426;&#x6709;&#x554F;&#x984C;,
-              &#x53EF;&#x80FD;&#x539F;&#x56E0;&#x6709; sdo_index &#x932F;&#x8AA4;, &#x8CC7;&#x6599;&#x578B;&#x614B;&#x932F;&#x8AA4; ... &#x7B49;&#x7B49;&#x3002;
-sdo_busy    : &#x6B64; sdo request &#x662F;&#x5426;&#x9084;&#x5728;&#x8655;&#x7406;&#x4E2D;&#x3002;
-sdo_data    : &#x8A72; &#x4F4D;&#x5740; &#xFF08;index:subindex&#xFF09;&#x7684;&#x503C;&#x3002;
-sdo_data_hex: &#x4EE5; 16 &#x9032;&#x4F4D;&#x8868;&#x793A;&#x8A72;&#x4F4D;&#x5740;&#x7684;&#x503C;&#x3002;
-</code></pre><h4 id="ec-ready-----flag-"><code>ec-ready? ( -- flag )</code></h4>
-<p>Is EtherCAT Communication ready ?</p>
-<h4 id="ec-links-----"><code>.ec-links ( -- )</code></h4>
-<p>&#x8F38;&#x51FA; EtherCAT Communication &#x7684;&#x72C0;&#x614B;.</p>
-<p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#x7BC4;&#x4F8B;:</p>
-<pre><code>slaves_responding|2       
-|al_states|8
-|link_up|1
-|input_wc|2
-|output_wc|2
-|input_wc_state|1
-|output_wc_state|1
-|input_wc_error|3547
-|output_wc_error|3568
-
-slaves_responding : EtherCAT slaves &#x7684;&#x9023;&#x7DDA;&#x6578;
-al_states         : &#x6240;&#x6709;&#x7684; EtherCAT slaves &#x7684;&#x72C0;&#x614B;&#x6307;&#x6A19;&#xFF0C;&#x6B63;&#x5E38;&#x70BA; 8
-input_wc          : input working count
-output_wc         : output working count
-input_wc_state    : &#x6B63;&#x5E38;&#x70BA; 1
-output_wc_state   : &#x6B63;&#x5E38;&#x70BA; 1
-input_wc_error    : input_wc_state &#x7570;&#x5E38;&#x6B21;&#x6578;, &#x5728;&#x958B;&#x6A5F;&#x521D;&#x59CB;&#x5316;&#x6642;&#x6703;&#x589E;&#x52A0;&#xFF0C;
-                    &#x7576; EtherCAT master &#x8207; slave &#x4EA4;&#x63E1;&#x6210;&#x529F;&#x5F8C;&#x5C31;&#x4E0D;&#x6703;&#x518D;&#x589E;&#x52A0;&#x3002;
-output_wc_error   : output_wc_state &#x7570;&#x5E38;&#x6B21;&#x6578;&#x5728;&#x958B;&#x6A5F;&#x521D;&#x59CB;&#x5316;&#x6642;&#x6703;&#x589E;&#x52A0;&#xFF0C;
-                    &#x7576; EtherCAT master &#x8207; slave &#x4EA4;&#x63E1;&#x6210;&#x529F;&#x5F8C;&#x5C31;&#x4E0D;&#x6703;&#x518D;&#x589E;&#x52A0;&#x3002;
-</code></pre><h4 id="waiting-requests-----flag-"><code>waiting-requests? ( -- flag )</code></h4>
-<p>Is there any waiting sdo request?</p>
+        &#x5C31;&#x7121;&#x6CD5;&#x518D;&#x8655;&#x7406;&#x5F8C;&#x7E8C;&#x7531; client &#x7AEF;&#x9001;&#x9032;&#x4F86;&#x7684;&#x6307;&#x4EE4;&#x3002;
+</code></pre><h4 id="sdo-data--n----data-"><code>sdo-data@ ( n -- data )</code></h4>
+<p>&#x53D6;&#x5F97; EtherCAT slave  position <code>n</code> &#x7684; SDO &#x547D;&#x4EE4;&#x7684;&#x8CC7;&#x6599; <code>data</code>&#x3002;</p>
+<h4 id="sdo-error--n----t-"><code>sdo-error? ( n -- t )</code></h4>
+<p>EtherCAT slave  position <code>n</code> &#x7684; SDO &#x547D;&#x4EE4;&#x7684;&#x57F7;&#x884C;&#x7D50;&#x679C;&#x662F;&#x5426;&#x6709;&#x554F;&#x984C;&#xFF1F;</p>
+<h4 id="sdo-download-i16--data-subindex-index-n----"><code>sdo-download-i16 ( data subindex index n -- )</code></h4>
+<p>&#x5C07;&#x8A2D;&#x5B9A;&#x503C; <code>data</code> &#x4EE5; 16 bits &#x6709;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x5BEB;&#x5230; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
+<h4 id="sdo-download-i32--data-subindex-index-n----"><code>sdo-download-i32 ( data subindex index n -- )</code></h4>
+<p>&#x5C07;&#x8A2D;&#x5B9A;&#x503C; <code>data</code> &#x4EE5; 32 bits &#x6709;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x5BEB;&#x5230; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
+<pre><code>100 0 $60FF 2 sdo-download-i32 \ &#x5C07; `100` &#x5BEB;&#x5230; slave position `2` Object `0x60ff`:`0`
+</code></pre><h4 id="sdo-download-i8--data-subindex-index-n----"><code>sdo-download-i8 ( data subindex index n -- )</code></h4>
+<p>&#x5C07;&#x8A2D;&#x5B9A;&#x503C; <code>data</code> &#x4EE5; 8 bits &#x6709;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x5BEB;&#x5230; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
+<h4 id="sdo-download-u16--data-subindex-index-n----"><code>sdo-download-u16 ( data subindex index n -- )</code></h4>
+<p>&#x5C07;&#x8A2D;&#x5B9A;&#x503C; <code>data</code> &#x4EE5; 16 bits &#x7121;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x5BEB;&#x5230; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
+<h4 id="sdo-download-u32--data-subindex-index-n----"><code>sdo-download-u32 ( data subindex index n -- )</code></h4>
+<p>&#x5C07;&#x8A2D;&#x5B9A;&#x503C; <code>data</code> &#x4EE5; 32 bits &#x7121;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x5BEB;&#x5230; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
+<h4 id="sdo-download-u8--data-subindex-index-n----"><code>sdo-download-u8 ( data subindex index n -- )</code></h4>
+<p>&#x5C07;&#x8A2D;&#x5B9A;&#x503C; <code>data</code> &#x4EE5; 8 bits &#x7121;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x5BEB;&#x5230; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
+<h4 id="sdo-upload-i16--subindex-index-n----"><code>sdo-upload-i16 ( subindex index n -- )</code></h4>
+<p>&#x4EE5; 16 bits &#x6709;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x8B80;&#x53D6; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
+<h4 id="sdo-upload-i32--subindex-index-n----"><code>sdo-upload-i32 ( subindex index n -- )</code></h4>
+<p>&#x4EE5; 32 bits &#x6709;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x8B80;&#x53D6; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+<pre><code>0 $6064 2 sdo-upload-i32 \ &#x8B80;&#x53D6; slave position `2` Object `0x6064`:`0`
+</code></pre><h4 id="sdo-upload-i8---subindex-index-n----"><code>sdo-upload-i8  ( subindex index n -- )</code></h4>
+<p>&#x4EE5; 8 bits &#x6709;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x8B80;&#x53D6; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
+<h4 id="sdo-upload-u16--subindex-index-n----"><code>sdo-upload-u16 ( subindex index n -- )</code></h4>
+<p>&#x4EE5; 16 bits &#x7121;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x8B80;&#x53D6; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
+<h4 id="sdo-upload-u32--subindex-index-n----"><code>sdo-upload-u32 ( subindex index n -- )</code></h4>
+<p>&#x4EE5; 32 bits &#x7121;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x8B80;&#x53D6; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
+<h4 id="sdo-upload-u8---subindex-index-n----"><code>sdo-upload-u8  ( subindex index n -- )</code></h4>
+<p>&#x4EE5; 8 bits &#x7121;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x8B80;&#x53D6; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
 <h4 id="until-no-requests-----"><code>until-no-requests ( -- )</code></h4>
 <p>&#x7B49;&#x5F85;&#x6240;&#x6709;&#x7684; SDO Requests &#x5B8C;&#x6210;&#x3002;</p>
 <p>&#x76F8;&#x7576;&#x65BC;</p>
@@ -854,29 +924,9 @@ output_wc_error   : output_wc_state &#x7570;&#x5E38;&#x6B21;&#x6578;&#x5728;&#x9
     while
         pause
     repeat ;
-</code></pre><h4 id="ec-emcy--slave----"><code>?ec-emcy ( slave -- )</code></h4>
-<p>&#x7576;&#x9A45;&#x52D5;&#x5668;&#x767C;&#x751F;&#x7570;&#x8B66;&#x6642;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6B64;&#x547D;&#x4EE4;&#x8B93;&#x9A45;&#x52D5;&#x5668;&#x5C07;&#x7570;&#x8B66;&#x8A0A;&#x606F;&#xFF08;emergency message&#xFF09;&#x50B3;&#x9001;&#x56DE;&#x4F86;&#x3002;</p>
-<h4 id="ec-emcy-busy--slave----flag-"><code>ec-emcy-busy? ( slave -- flag )</code></h4>
-<p>&#x5C07; <code>?ec-emcy</code> &#x6307;&#x4EE4;&#x7684;&#x57F7;&#x884C;&#x72C0;&#x6CC1;&#x653E;&#x5230;&#x6574;&#x6578;&#x5806;&#x758A;&#x4E0A; </p>
-<h4 id="ec-emcy--slave----"><code>.ec-emcy ( slave -- )</code></h4>
-<p>&#x56DE;&#x50B3; emergemcy message &#x8A0A;&#x606F;&#x3002;&#x76EE;&#x524D; Botnana-Control
-&#x6703;&#x4F9D;&#x64DA; status word &#x4E2D;&#x7684; fault bit &#x81EA;&#x52D5;&#x9001;&#x51FA; ?ec-emcy &#x7684;&#x547D;&#x4EE4;&#x3002;</p>
-<p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>error_code.1|0x5441
-|error_register.1|0x20
-|error_data.1.1|0
-|error_data.2.1|19
-|error_data.3.1|0
-|error_data.4.1|0
-|error_data.5.1|0
-|error_message_cout|1
-
-&#x5176;&#x4E2D; error code &#x7B49;&#x540C;&#x65BC; 0x603F:00 
-    error register &#x7B49;&#x540C;&#x65BC; 0x1001: 00
-    error_data.1 ~ error_data.5 &#x70BA;&#x9A45;&#x52D5;&#x5668;&#x5EE0;&#x5BB6;&#x5B9A;&#x7FA9;&#x7684;&#x7570;&#x8B66;&#x8A0A;&#x606F;&#x3002;
-    &#x6B64;&#x7BC4;&#x4F8B;&#x70BA;&#x53F0;&#x9054;&#x96FB;A2-E &#x9A45;&#x52D5;&#x5668;&#x6240;&#x56DE;&#x50B3;&#x7684;&#x8A0A;&#x606F;, error_data.2.1 = 19 &#x8868;&#x793A;&#x9019;&#x662F;
-    A2-E &#x7570;&#x8B66;&#x78BC; 0x13 (&#x7DCA;&#x6025;&#x505C;&#x6B62;)
-</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+</code></pre><h4 id="waiting-requests-----t-"><code>waiting-requests? ( -- t )</code></h4>
+<p>&#x662F;&#x5426;&#x6240;&#x6709;&#x7684; SDO &#x547D;&#x4EE4;&#x90FD;&#x5DF2;&#x7D93;&#x57F7;&#x884C;&#x5B8C;&#x7562; &#xFF1F;</p>
+<h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
 <table>
 <thead>
 <tr>
@@ -886,6 +936,22 @@ output_wc_error   : output_wc_state &#x7570;&#x5E38;&#x6B21;&#x6578;&#x5728;&#x9
 </thead>
 <tbody>
 <tr>
+<td><code>.ec-dc</code></td>
+<td>( -- )</td>
+</tr>
+<tr>
+<td><code>.ec-emcy</code></td>
+<td>( n -- )</td>
+</tr>
+<tr>
+<td><code>.ec-links</code></td>
+<td>( -- )</td>
+</tr>
+<tr>
+<td><code>.sdo</code></td>
+<td>( n --  )</td>
+</tr>
+<tr>
 <td><code>.slave</code></td>
 <td>( n -- )</td>
 </tr>
@@ -894,84 +960,16 @@ output_wc_error   : output_wc_state &#x7570;&#x5E38;&#x6B21;&#x6578;&#x5728;&#x9
 <td>( n -- )</td>
 </tr>
 <tr>
-<td><code>list-slaves</code></td>
-<td>( -- )</td>
+<td><code>?ec-emcy</code></td>
+<td>( n -- )</td>
 </tr>
 <tr>
-<td><code>sdo-upload-i32</code></td>
-<td>( subindex index n -- )</td>
+<td><code>ec-a&gt;n</code></td>
+<td>( alias -- n )</td>
 </tr>
 <tr>
-<td><code>sdo-upload-i16</code></td>
-<td>( subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-upload-i8</code></td>
-<td>( subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-upload-u32</code></td>
-<td>( subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-upload-u16</code></td>
-<td>( subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-upload-u8</code></td>
-<td>( subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-download-i32</code></td>
-<td>( data subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-download-i16</code></td>
-<td>( data subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-download-i8</code></td>
-<td>( data subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-download-u32</code></td>
-<td>( data subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-download-u16</code></td>
-<td>( data subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-download-u8</code></td>
-<td>( data subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-data@</code></td>
-<td>( n -- data )</td>
-</tr>
-<tr>
-<td><code>sdo-error?</code></td>
-<td>( n -- flag )</td>
-</tr>
-<tr>
-<td><code>sdo-busy?</code></td>
-<td>( n -- flag )</td>
-</tr>
-<tr>
-<td><code>.sdo</code></td>
-<td>( n --  )</td>
-</tr>
-<tr>
-<td><code>ec-ready?</code></td>
-<td>( -- flag )</td>
-</tr>
-<tr>
-<td><code>.ec-links</code></td>
-<td>( -- )</td>
-</tr>
-<tr>
-<td><code>.ec-dc</code></td>
-<td>( -- )</td>
+<td><code>ec-ain?</code></td>
+<td>( channel n -- t )</td>
 </tr>
 <tr>
 <td><code>ec-alias!</code></td>
@@ -979,67 +977,119 @@ output_wc_error   : output_wc_state &#x7570;&#x5E38;&#x6B21;&#x6578;&#x5728;&#x9
 </tr>
 <tr>
 <td><code>ec-alias?</code></td>
-<td>( alias -- flag )</td>
+<td>( alias -- t )</td>
 </tr>
 <tr>
-<td><code>ec-a&gt;n</code></td>
-<td>( alias -- n )</td>
+<td><code>ec-aout?</code></td>
+<td>( channel n -- t )</td>
 </tr>
 <tr>
-<td><code>ec-save</code></td>
-<td>( -- )</td>
+<td><code>ec-din?</code></td>
+<td>( channel n -- t )</td>
+</tr>
+<tr>
+<td><code>ec-dout?</code></td>
+<td>( channel n -- t )</td>
+</tr>
+<tr>
+<td><code>ec-drive?</code></td>
+<td>( channel n -- t )</td>
+</tr>
+<tr>
+<td><code>ec-emcy-busy?</code></td>
+<td>( n -- t )</td>
+</tr>
+<tr>
+<td><code>ec-encoder?</code></td>
+<td>( channel n -- t )</td>
 </tr>
 <tr>
 <td><code>ec-load</code></td>
+<td>( n -- )</td>
+</tr>
+<tr>
+<td><code>ec-ready?</code></td>
+<td>( -- t )</td>
+</tr>
+<tr>
+<td><code>ec-save</code></td>
+<td>( n -- )</td>
+</tr>
+<tr>
+<td><code>ec-uart?</code></td>
+<td>( channel n -- t )</td>
+</tr>
+<tr>
+<td><code>list-slaves</code></td>
 <td>( -- )</td>
 </tr>
 <tr>
-<td><code>waiting-requests?</code></td>
-<td>( -- flag )</td>
+<td><code>sdo-busy?</code></td>
+<td>( n -- t )</td>
+</tr>
+<tr>
+<td><code>sdo-data@</code></td>
+<td>( n -- data )</td>
+</tr>
+<tr>
+<td><code>sdo-error?</code></td>
+<td>( n -- t )</td>
+</tr>
+<tr>
+<td><code>sdo-download-i16</code></td>
+<td>( data subindex index n -- )</td>
+</tr>
+<tr>
+<td><code>sdo-download-i32</code></td>
+<td>( data subindex index n -- )</td>
+</tr>
+<tr>
+<td><code>sdo-download-i8</code></td>
+<td>( data subindex index n -- )</td>
+</tr>
+<tr>
+<td><code>sdo-download-u16</code></td>
+<td>( data subindex index n -- )</td>
+</tr>
+<tr>
+<td><code>sdo-download-u32</code></td>
+<td>( data subindex index n -- )</td>
+</tr>
+<tr>
+<td><code>sdo-download-u8</code></td>
+<td>( data subindex index n -- )</td>
+</tr>
+<tr>
+<td><code>sdo-upload-i16</code></td>
+<td>( subindex index n -- )</td>
+</tr>
+<tr>
+<td><code>sdo-upload-i32</code></td>
+<td>( subindex index n -- )</td>
+</tr>
+<tr>
+<td><code>sdo-upload-i8</code></td>
+<td>( subindex index n -- )</td>
+</tr>
+<tr>
+<td><code>sdo-upload-u16</code></td>
+<td>( subindex index n -- )</td>
+</tr>
+<tr>
+<td><code>sdo-upload-u32</code></td>
+<td>( subindex index n -- )</td>
+</tr>
+<tr>
+<td><code>sdo-upload-u8</code></td>
+<td>( subindex index n -- )</td>
 </tr>
 <tr>
 <td><code>until-no-requests</code></td>
 <td>( -- )</td>
 </tr>
 <tr>
-<td><code>ec-drive?</code></td>
-<td>( channel n -- flag )</td>
-</tr>
-<tr>
-<td><code>ec-uart?</code></td>
-<td>( channel n -- flag )</td>
-</tr>
-<tr>
-<td><code>ec-din?</code></td>
-<td>( channel n -- flag )</td>
-</tr>
-<tr>
-<td><code>ec-dout?</code></td>
-<td>( channel n -- flag )</td>
-</tr>
-<tr>
-<td><code>ec-ain?</code></td>
-<td>( channel n -- flag )</td>
-</tr>
-<tr>
-<td><code>ec-aout?</code></td>
-<td>( channel n -- flag )</td>
-</tr>
-<tr>
-<td><code>ec-encoder?</code></td>
-<td>( channel n -- flag )</td>
-</tr>
-<tr>
-<td><code>?ec-emcy</code></td>
-<td>( n -- )</td>
-</tr>
-<tr>
-<td><code>ec-emcy-busy?</code></td>
-<td>( n -- flag )</td>
-</tr>
-<tr>
-<td><code>.ec-emcy</code></td>
-<td>( n -- )</td>
+<td><code>waiting-requests?</code></td>
+<td>( -- t )</td>
 </tr>
 </tbody>
 </table>
@@ -1086,7 +1136,7 @@ output_wc_error   : output_wc_state &#x7570;&#x5E38;&#x6B21;&#x6578;&#x5728;&#x9
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"EtherCAT 指令集","level":"4.3.2","depth":2,"next":{"title":"EtherCAT Drive 指令集","level":"4.3.3","depth":2,"path":"ethercat-drive-primitives.md","ref":"./ethercat-drive-primitives.md","articles":[]},"previous":{"title":"Botnana 基本指令集","level":"4.3.1","depth":2,"path":"host-primitives.md","ref":"./host-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ethercat-primitives.md","mtime":"2019-02-23T03:27:43.909Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-23T05:57:47.484Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"EtherCAT 指令集","level":"4.3.2","depth":2,"next":{"title":"EtherCAT Drive 指令集","level":"4.3.3","depth":2,"path":"ethercat-drive-primitives.md","ref":"./ethercat-drive-primitives.md","articles":[]},"previous":{"title":"Botnana 基本指令集","level":"4.3.1","depth":2,"path":"host-primitives.md","ref":"./host-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ethercat-primitives.md","mtime":"2019-06-21T05:44:25.053Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-21T05:46:28.428Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
