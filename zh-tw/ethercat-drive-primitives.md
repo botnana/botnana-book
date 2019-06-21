@@ -183,7 +183,7 @@ Positive Limit Switch                                        |
 
 * Methods 11 to 14: Homing on negative limit switch, home switch and index pulse
 
-與 Methods 3 to 6 的方法類似，遇到附極限開關後反轉，會依其設定方式尋找 index pulse。
+與 Methods 3 to 6 的方法類似，遇到負極限開關後反轉，會依其設定方式尋找 index pulse。
 
 ```
 ++                                                                       ++
@@ -675,7 +675,7 @@ FSA State:
 
 #### `drive-psl! ( psl ch n -- )`
 
-使用 SDO 命令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的負向軟體極限為 `psl`。
+使用 SDO 命令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的正向軟體極限為 `psl`。
 
 對應的 Object 0x607D:0x02。
 
