@@ -32,6 +32,7 @@ API 函式庫: [https://github.com/botnana/botnana-apis](https://github.com/botn
   * [EtherCAT IO 指令集](./ethercat-io-primitives.md)
   * [EtherCAT UART 指令集](./ethercat-uart-primitives.md)
   * [EtherCAT Encoder 指令集](./ethercat-encoder-primitives.md)
+  * [EtherCAT Gateway 指令集](./ethercat-gateway-primitives.md)
   * [軸組 Axis Group 指令集](./axis-group.md)
   * [狀態流程圖 Sequential Function Chart (SFC)](./sfc.md)
     * [Servo On/OFF](./sfc-example/servo-on-off.md)
