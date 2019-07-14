@@ -12,7 +12,7 @@
 
 ```
 
-         +--------------+
+        +--------------+
         |  Coordinator |
         |              |
         +-------+------+
@@ -77,8 +77,98 @@
 
 實際的馬達驅動裝置。可以是不同廠牌/型態的馬達驅動器。如果是屬於同一軸組的運動軸則需要考慮應用場合使用同一型號馬達驅動裝置，以保有相同的運動特性。
 
+**運動單位**
+
+Botnana Control 的長度單位默認為公尺 [m]，時間單位為秒 [s]。
+所以速度單位為 `m/s`, 加速度單位`m/s^2`，加加速度單位`m/s^3`。
+
+假設有一個 1D 的直線運動系統，馬達編碼器的解析度設定為 1000000 pulse = 1 m。
+
+以長度單位為公尺的設定範例：
+
+* Group vmax = 0.01 [m/s]
+* Group amax = 5.0  [m/s^3]
+* Group jmax = 40.0 [m/s^3]
+* Group ignorable distance = 0.0000005 [m]
+* Axis encoder_ppu = 1000000
+* Axis encoder_length_unit = Meter
+* Axis vmax = 0.01 [m/s]
+* Axis amax = 5.0  [m/s^3]
+* Axis ignorable distance = 0.0000005 [m]
+
+以長度單位為 pulse 的設定範例：
+
+* Group vmax = 10000.0 [pulse/s]
+* Group amax = 5000000.0  [pulse/s^3]
+* Group jmax = 40000000.0 [pulse/s^3]
+* Group ignorable distance = 0.5 [pulse]
+* Axis encoder_ppu = 1
+* Axis encoder_length_unit = Pulse
+* Axis vmax = 10000.0 [pulse/s]
+* Axis amax = 5000000.0  [pulse/s^3]
+* Axis ignorable distance = 0.5 [pulse]
+
+假設有一個 1D 的旋轉運動系統，馬達編碼器的解析度設定為 3600000 pulse = 1 rev，以半徑 100 mm 處比擬線性速度。
+Botnana Control 是以徑度計算，所以轉換時需要留意。
+
+以長度單位為公尺的設定範例：
+
+* Group vmax = 0.1 [rad/s]
+* Group amax = 50.0  [rad/s^3]
+* Group jmax = 400.0 [rad/s^3]
+* Group ignorable distance = 0.0000005 [rad]
+* Axis encoder_ppu = 3600000
+* Axis encoder_length_unit = Revolution
+* Axis vmax = 0.1 [rad/s]
+* Axis amax = 50.0  [rad/s^3]
+* Axis ignorable distance = 0.0000005 [m]
+
+**命令位置**：
+
+當同動控制功能（+coordinator）開啟後，Botnana Control 會依據運動軸的設定，將運動軸的命令轉換到馬達驅動器的命令位置。
+所以當同動控制功能 （+coordinator）開啟後，如果該控制器被運動軸所控制，就無法直接設定馬達驅動器的命令位置。
+
+如果軸組啟動中，且依據路徑規劃開始運動，或是運動中暫停，Botnana Control 會依據軸組的設定將運動命令分配給對應的運動軸，
+此時運動軸的命令就會受到軸組控制。如果軸組間有共用運動軸，切換時就必須要留意是否會造成運動軸命令位置不連續。
+
+**落後誤差過大處置方式**
+
+當實體軸運動時，如果命令位置與實際位置相差過大，通常表示有軸控的問題發生，當停止運動且排除故障後，消除落後誤差過大的方法如下：
+
+* 當同動控制功能沒有開啟或是該馬達驅動器不受運動軸控制時，直接以馬達驅動器的實際位置設定命令位置。例如：
+
+```
+    1 1 real-p@ 1 1 target-p!
+```
+
+* 當同動控制功能開啟，且運動軸不受軸組控制，例如：
+
+```
+    1 0axis-ferr    \ 清除第 1 個運動軸的落後誤差
+```
+
+* 當同動控制功能開啟，且運動軸受軸組控制，例如：
+
+```
+    1 group! 0path     \ 假設是第 1 個軸組，切換軸組為 1，清除路徑
+    1 0axis-ferr       \ 假設第 1 個運動軸受控於第 1 個軸組，清除第 1 個運動軸的落後誤差
+    2 0axis-ferr       \ 假設第 2 個運動軸受控於第 1 個軸組，清除第 2 個運動軸的落後誤差
+```
+
 ---
 ### Coordinator
+
+#### `.coordinator ( -- )`
+
+輸出軸組狀態。
+
+輸出訊息如下：
+
+```
+    coordinator_enabled|0
+
+    coordinator_enabled: 1 表示同動功能開啟，0 表示同動功能關閉。
+```
 
 #### `+coordinator ( -- )`
 
@@ -92,7 +182,11 @@
 
 關閉同動控制功能。
 
-#### `empty? ( -- flag )`
+#### `coordinator? ( -- t )`
+
+軸組是否開啟？
+
+#### `empty? ( -- t )`
 
 所有軸組的路徑是否已經清空？
 
@@ -100,7 +194,7 @@
 
 執行同動功能緊急停止。所有軸組與運動軸的點對點運動都會立即停止。軸組的路徑資訊都會被清除。
 
-#### `end? ( -- flag )`
+#### `end? ( -- t )`
 
 所以軸組與運動軸點對點運動是否到達路徑終點？
 
@@ -112,7 +206,7 @@
 
 命令所有軸組開始運動。
 
-#### `stop? ( -- flag )`
+#### `stop? ( -- t )`
 
 所以軸組與運動軸點對點運動是否已經停止？
 
@@ -124,14 +218,16 @@
 
 | 指令 | 堆疊效果                       | 說明 |
 |-----|------------------------------|----|
+| `.coordinator` |( --  ) | 輸出軸組狀態
 | `+coordinator` |( -- ) | 啟動軸組功能
 | `-coordinator` |( -- ) | 關閉軸組功能
-| `empty?` |( -- flag ) |  是否所有軸組路徑已經清空 ？
+| `coordinator?` |( -- t ) | 軸組是否開啟？
+| `empty?` |( -- t ) |  是否所有軸組路徑已經清空 ？
 | `ems-job` |( -- ) | 命令所以軸組緊急停止
-| `end?` |( -- flag ) | 是否所有軸組已經到達路徑終點 ？
+| `end?` |( -- t ) | 是否所有軸組已經到達路徑終點 ？
 | `reset-job` |( -- ) | 清除所有軸組路徑
 | `start-job` |( -- ) | 命令所有軸組開始運動
-| `stop?` |( -- flag ) | 是否所有軸組已經停止運動 ？
+| `stop?` |( -- t ) | 是否所有軸組已經停止運動 ？
 | `stop-job` |( -- ) | 命令所有軸組停止運動
 
 ---
@@ -182,6 +278,7 @@
     |group_vmax.1|0.10000
     |group_amax.1|5.00000
     |group_jmax.1|80.00000
+    |group_ignorable_distance.1|0.0000005
 
 #### `+group`
 
@@ -248,6 +345,12 @@
 #### `gend? ( -- flag )`
 
 所選定的軸組是否到達路徑終點？
+
+#### `gignore-dist! ( g -- ) ( F: dist --)`
+
+設定指定軸組 `g` 可忽略的長度計算誤差 `dist`。
+
+通常在 pulse 的系統下，設定為 0.5 或是 0.1 [pulse]。其它設定為 0.5e-6 或是 0.1e-6 [m] or [rad]
 
 #### `gjmax! ( g -- ) ( F: j -- )`
 
@@ -498,6 +601,7 @@
 | feedrate@             | ( F: -- v )               | 取得後續安插路徑的最大運動速度
 | gamax!                | ( g -- ) ( F: a --)       | 設定指定軸組的最大加速度
 | gend?                 | ( -- flag )               | 所選定的軸組是否到達路徑終點？
+| gignore-dist!         | ( g -- ) ( F: dist --)    | 設定指定軸組可忽略的長度計算誤差
 | gjmax!                | ( g -- ) ( F: j --)       | 設定指定軸組的最大加加速度
 | gmap!                 | ( j1 j2 j3 ... g -- )     | 設定軸組所控制的運動軸，需要注意軸組型態與運動軸數量
 | gmap@                 | ( g -- j1 j2 j3 ... )     | 取得軸組所控制的運動軸，需要注意軸組型態與運動軸數量
@@ -826,6 +930,7 @@
     |ext_encoder_channel.1|0
     |axis_amax.1|5.00000
     |axis_vmax.1|0.10000
+    |axis_ignorable_distance.1|0.0000005
 
 #### `+homed ( j -- )`
 
@@ -854,6 +959,12 @@
 命令範例：
 
     1 axis-amax@  \ 取得 Axis 1 amax
+
+#### `axis-clerr  ( j -- ) ( F: clerr -- )`
+
+取得運動軸 `j` 雙位置回授誤差 `clerr`。
+
+通常外部編碼器安裝在靠近軌道或是工作台的位置，如果和馬達編碼器的位置相差過大代表機械傳動系的運作出現問題，此時可以優先檢查皮帶輪或是聯軸器。
 
 #### `axis-cmd-p! ( j -- )( F: pos -- )`
 
@@ -887,11 +998,11 @@
 
 取得運動軸 `j` 取得落後誤差 `ferr`。
 
-#### `axis-clerr  ( j -- ) ( F: clerr -- )`
+#### `axis-ignore-dist! ( j --  ) ( F: dist -- )`
 
-取得運動軸 `j` 雙位置回授誤差 `clerr`。
+設定指定運動軸 `j` 可忽略的長度計算誤差 `dist`。
 
-通常外部編碼器安裝在靠近軌道或是工作台的位置，如果和馬達編碼器的位置相差過大代表機械傳動系的運作出現問題，此時可以優先檢查皮帶輪或是聯軸器。
+通常在 pulse 的系統下，設定為 0.5 或是 0.1 [pulse]。其它設定為 0.5e-6 或是 0.1e-6 [m] or [rad]
 
 #### `axis-len ( -- len )`
 
@@ -1071,13 +1182,14 @@ dir 可以設定的值為：
 | axis-afactor!     | ( j -- ) ( F: afactor -- )    | 設定加速度前饋命令轉換常數 （功能未實現）
 | axis-amax!        | ( j -- ) ( F: amax -- )       | 設定運動軸最大加速度
 | axis-amax@        | ( j -- ) ( F: -- amax )       | 取得運動軸最大加速度
+| axis-clerr        | ( j --  ) ( F: clerr -- )     | 取得雙位置回授誤差
 | axis-cmd-p!       | ( j -- ) ( F: pos -- )        | 設定運動軸的目標位置
 | axis-cmd-p@       | ( j -- ) ( F: -- pos )        | 取得運動軸的目標位置
 | axis-demand-p@    | ( j -- ) (F: -- pos )         | 取得運動軸現在的命令位置
 | axis-drive@       | ( j --  channel slave )       | 取得馬達驅動器的 EtherCAT 站號
 | axis-ext-enc@     | ( j --  channel slave )       | 取得外部編碼器的 EtherCAT 站號
 | axis-ferr@        | ( j --  ) ( F: ferr -- )      | 取得落後誤差
-| axis-clerr        | ( j --  ) ( F: clerr -- )     | 取得雙位置回授誤差
+| axis-ignore-dist! | ( j --  ) ( F: dist -- )      | 設定可以忽略的長度計算誤差
 | axis-len          | ( -- len )                    | 取得運動軸總數
 | axis-real-p@      | ( j -- ) (F: -- pos )         | 取得運動軸實際位置
 | axis-rest?        | ( j -- flag )                 | 運動軸命令是否靜止？
