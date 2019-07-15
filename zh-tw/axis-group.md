@@ -75,7 +75,7 @@
 
 **Drive（驅動裝置）**：
 
-實際的馬達驅動裝置。可以是不同廠牌/型態的馬達驅動器。如果是屬於同一軸組的運動軸則需要考慮應用場合使用同一型號馬達驅動裝置，以保有相同的運動特性。
+實際的馬達驅動裝置。可以是不同廠牌/型態的馬達驅動器。
 
 **運動單位**
 
@@ -96,7 +96,7 @@ Botnana Control 的長度單位默認為公尺 [m]，時間單位為秒 [s]。
 * Axis amax = 5.0  [m/s^3]
 * Axis ignorable distance = 0.0000005 [m]
 
-以長度單位為 pulse 的設定範例：
+以長度單位為脈衝數 (Pulse) 的設定範例：
 
 * Group vmax = 10000.0 [pulse/s]
 * Group amax = 5000000.0  [pulse/s^3]
@@ -108,10 +108,10 @@ Botnana Control 的長度單位默認為公尺 [m]，時間單位為秒 [s]。
 * Axis amax = 5000000.0  [pulse/s^3]
 * Axis ignorable distance = 0.5 [pulse]
 
-假設有一個 1D 的旋轉運動系統，馬達編碼器的解析度設定為 3600000 pulse = 1 rev，以半徑 100 mm 處比擬線性速度。
-Botnana Control 是以徑度計算，所以轉換時需要留意。
+假設有一個 1D 的旋轉運動系統，馬達編碼器的解析度設定為 3600000 pulse = 1 rev，以旋轉半徑 100 mm 的切線速度來比擬線性速度。
+Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。
 
-以長度單位為公尺的設定範例：
+以長度單位為徑度的設定範例：
 
 * Group vmax = 0.1 [rad/s]
 * Group amax = 50.0  [rad/s^3]
@@ -121,7 +121,7 @@ Botnana Control 是以徑度計算，所以轉換時需要留意。
 * Axis encoder_length_unit = Revolution
 * Axis vmax = 0.1 [rad/s]
 * Axis amax = 50.0  [rad/s^3]
-* Axis ignorable distance = 0.0000005 [m]
+* Axis ignorable distance = 0.0000005 [rad]
 
 **命令位置**：
 
