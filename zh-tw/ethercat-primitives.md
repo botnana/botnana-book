@@ -76,6 +76,24 @@
                         通常在開機時因為時間還不能同步，所以在開機初期會增加。
     waiting_sdos_len:   等待處理的 SDO 命令數。
 
+#### `.ec-wdt-proc-data ( n -- )`
+
+顯示 EtherCAT Slave Position `n` 的 ESC Watchdog Time Process Data 的暫存器設定值。
+
+命令範例:
+
+    1 .ec-wdt-proc-data
+
+回傳訊息:
+
+    ec_wdt_proc_data.1|1000|ec_wdt_proc_data_busy.1|0|ec_wdt_proc_data_error.1|0
+
+其中的：
+
+    ec_wdt_proc_data: ESC Watchdog Time Process Data 的暫存器設定值
+    ec_wdt_proc_data_busy: 要求設定或是讀取的指令是否還在執行中?
+    ec_wdt_proc_data_error: 要求設定或是讀取的指令是否執行失敗?
+
 #### `.sdo ( n -- )`
 
 顯示 EtherCAT Slave Position `n` 的 SDO 指令執行結果。
@@ -467,6 +485,7 @@ EtherCAT slave  position `n` 的 SDO 命令的執行結果是否有問題？
 | `.ec-dc`              | ( -- ) |
 | `.ec-emcy`            | ( n -- ) |
 | `.ec-links`           | ( -- ) |
+| `.ec-wdt-proc-data`  | ( n -- ) |
 | `.sdo`                | ( n --  ) |
 | `.slave`              | ( n -- ) |
 | `.slave-diff`         | ( n -- ) |
