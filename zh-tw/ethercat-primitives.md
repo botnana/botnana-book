@@ -60,7 +60,7 @@
     slaves_responding|3|al_states|8|link_up|1
     |input_wc|3|output_wc|3|input_wc_state|1|output_wc_state|1
     |input_wc_error|8187|output_wc_error|8233
-    |waiting_sdos_len|0
+    |waiting_sdos_len|0|ec_ready|1
 
 其中的：
 
@@ -75,6 +75,7 @@
     output_wc_error:    計數 output_wc_state = 0 的周期數。
                         通常在開機時因為時間還不能同步，所以在開機初期會增加。
     waiting_sdos_len:   等待處理的 SDO 命令數。
+    ec_ready:           1 表示 EtherCAT 通訊正常。
 
 #### `.ec-wdt-proc-data ( n -- )`
 
@@ -90,8 +91,8 @@
 
 其中的：
 
-    ec_wdt_proc_data: ESC Watchdog Time Process Data 的暫存器設定值
-    ec_wdt_proc_data_busy: 要求設定或是讀取的指令是否還在執行中?
+    ec_wdt_proc_data:       ESC Watchdog Time Process Data 的暫存器設定值
+    ec_wdt_proc_data_busy:  要求設定或是讀取的指令是否還在執行中?
     ec_wdt_proc_data_error: 要求設定或是讀取的指令是否執行失敗?
 
 #### `.sdo ( n -- )`
