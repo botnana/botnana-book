@@ -87,25 +87,25 @@ Botnana Control 的長度單位默認為公尺 [m]，時間單位為秒 [s]。
 以長度單位為公尺的設定範例：
 
 * Group vmax = 0.01 [m/s]
-* Group amax = 5.0  [m/s^3]
+* Group amax = 5.0  [m/s^2]
 * Group jmax = 40.0 [m/s^3]
 * Group ignorable distance = 0.0000005 [m]
 * Axis encoder_ppu = 1000000
 * Axis encoder_length_unit = Meter
 * Axis vmax = 0.01 [m/s]
-* Axis amax = 5.0  [m/s^3]
+* Axis amax = 5.0  [m/s^2]
 * Axis ignorable distance = 0.0000005 [m]
 
 以長度單位為脈衝數 (Pulse) 的設定範例：
 
 * Group vmax = 10000.0 [pulse/s]
-* Group amax = 5000000.0  [pulse/s^3]
+* Group amax = 5000000.0  [pulse/s^2]
 * Group jmax = 40000000.0 [pulse/s^3]
 * Group ignorable distance = 0.5 [pulse]
 * Axis encoder_ppu = 1
 * Axis encoder_length_unit = Pulse
 * Axis vmax = 10000.0 [pulse/s]
-* Axis amax = 5000000.0  [pulse/s^3]
+* Axis amax = 5000000.0  [pulse/s^2]
 * Axis ignorable distance = 0.5 [pulse]
 
 假設有一個 1D 的旋轉運動系統，馬達編碼器的解析度設定為 3600000 pulse = 1 rev，以旋轉半徑 100 mm 的切線速度來比擬線性速度。
@@ -114,13 +114,13 @@ Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。
 以長度單位為徑度的設定範例：
 
 * Group vmax = 0.1 [rad/s]
-* Group amax = 50.0  [rad/s^3]
+* Group amax = 50.0  [rad/s^2]
 * Group jmax = 400.0 [rad/s^3]
 * Group ignorable distance = 0.0000005 [rad]
 * Axis encoder_ppu = 3600000
 * Axis encoder_length_unit = Revolution
 * Axis vmax = 0.1 [rad/s]
-* Axis amax = 50.0  [rad/s^3]
+* Axis amax = 50.0  [rad/s^2]
 * Axis ignorable distance = 0.0000005 [rad]
 
 **命令位置**：
