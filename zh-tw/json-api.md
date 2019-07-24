@@ -11,11 +11,6 @@ Botnana Control 的 JSON API 採用 [JSON-RPC 2.0](http://www.jsonrpc.org/specif
 * Ruby
 * Go
 
-以下程式語言雖然支援 JSON，但建議使用 Botnana Control 另行提供的 APIs：
-
-* [Javascript API](./javascript-api.md)
-
-
 ## 回傳資料格式
 
 Botnana Control 若回傳資料，格式一律為
@@ -45,6 +40,18 @@ Botnana Control 若回傳資料，格式一律為
 
 修改設定參數並不會立刻將設定值儲存至參數設定檔，也不會影響到各裝置目前使用的參數。
 
+#### EtherCAT Position 與 Alias 說明：
+
+**EtherCAT Position**: 依據 EtherCAT 網路佈局，最靠近主站的 Position 為 1, 依序遞增。
+
+**EtherCAT Alias**: 每一個 EtherCAT 從站都可以設定一個站號的別名。一般設定此別名的方法有兩種：
+
+1. EtherCAT 從站內的 EEPROM，
+2. EtherCAT 從站的硬體旋鈕。
+
+在設定參數時,如果 alias 不為 0，就會以 alias 選擇從站。當 alias 為 0，就以 position 選擇從站。
+
+
 #### 設定 EtherCAT Slave 參數 `config.slave.set`
 
 方法：
@@ -53,7 +60,8 @@ Botnana Control 若回傳資料，格式一律為
 
 必要參數：
     
-    "position": Slave Position, 從 1 開始計數。
+    "alias": Slave Alis。
+    "position": Slave Position。
     "channel": Device Channel，從 1 開始計數。
 
 可設定參數：可以單獨設定一個或是多個
@@ -78,6 +86,7 @@ Botnana Control 若回傳資料，格式一律為
       "jsonrpc": "2.0",
       "method": "config.slave.set",
       "params": {
+        "alias": 0,
         "position": 1,
         "channel": 1,
         "homing_method" : 33,
@@ -90,6 +99,7 @@ Botnana Control 若回傳資料，格式一律為
       "jsonrpc": "2.0",
       "method": "config.slave.set",
       "params": {
+        "alias": 0,
         "position": 2,
         "channel": 3,
         "homing_speed_1" : 10000,
@@ -211,7 +221,8 @@ Botnana Control 若回傳資料，格式一律為
 
 必要參數：
     
-    "position": Slave Position, 從 1 開始計數。
+    "alias": Slave Alias。
+    "position": Slave Position。
     "channel": Device Channel，從 1 開始計數。
 
 範例：
@@ -220,6 +231,7 @@ Botnana Control 若回傳資料，格式一律為
       "jsonrpc": "2.0",
       "method": "config.slave.get",
       "params": {
+        "alias": 0,
         "position": 1,
         "channel": 1,
       }
