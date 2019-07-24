@@ -60,7 +60,7 @@
     <link rel="next" href="sfc.html" />
     
     
-    <link rel="prev" href="ethercat-encoder-primitives.html" />
+    <link rel="prev" href="ethercat-gateway-primitives.html" />
     
 
     </head>
@@ -372,7 +372,20 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.3.7" data-path="axis-group.html">
+        <li class="chapter " data-level="4.3.7" data-path="ethercat-gateway-primitives.html">
+            
+                <a href="ethercat-gateway-primitives.html">
+            
+                    
+                    EtherCAT Gateway 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.3.8" data-path="axis-group.html">
             
                 <a href="axis-group.html">
             
@@ -385,7 +398,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.8" data-path="sfc.html">
+        <li class="chapter " data-level="4.3.9" data-path="sfc.html">
             
                 <a href="sfc.html">
             
@@ -399,7 +412,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.3.8.1" data-path="sfc-example/servo-on-off.html">
+        <li class="chapter " data-level="4.3.9.1" data-path="sfc-example/servo-on-off.html">
             
                 <a href="sfc-example/servo-on-off.html">
             
@@ -412,7 +425,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.8.2" data-path="sfc-example/motion-state.html">
+        <li class="chapter " data-level="4.3.9.2" data-path="sfc-example/motion-state.html">
             
                 <a href="sfc-example/motion-state.html">
             
@@ -425,7 +438,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.8.3" data-path="sfc-example/axes-homing.html">
+        <li class="chapter " data-level="4.3.9.3" data-path="sfc-example/axes-homing.html">
             
                 <a href="sfc-example/axes-homing.html">
             
@@ -633,7 +646,7 @@
 </ul>
 <p><strong>&#x8EF8;&#x7D44;&#x6982;&#x5FF5;&#x8AAA;&#x660E;</strong></p>
 <pre><code>
-         +--------------+
+        +--------------+
         |  Coordinator |
         |              |
         +-------+------+
@@ -686,26 +699,101 @@
 <li>&#x904B;&#x52D5;&#x4E2D;&#x53EF;&#x4EE5;&#x96A8;&#x6642;&#x6539;&#x8B8A;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;&#x3002;</li>
 </ol>
 <p><strong>Drive&#xFF08;&#x9A45;&#x52D5;&#x88DD;&#x7F6E;&#xFF09;</strong>&#xFF1A;</p>
-<p>&#x5BE6;&#x969B;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x88DD;&#x7F6E;&#x3002;&#x53EF;&#x4EE5;&#x662F;&#x4E0D;&#x540C;&#x5EE0;&#x724C;/&#x578B;&#x614B;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x3002;&#x5982;&#x679C;&#x662F;&#x5C6C;&#x65BC;&#x540C;&#x4E00;&#x8EF8;&#x7D44;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#x5247;&#x9700;&#x8981;&#x8003;&#x616E;&#x61C9;&#x7528;&#x5834;&#x5408;&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x578B;&#x865F;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x88DD;&#x7F6E;&#xFF0C;&#x4EE5;&#x4FDD;&#x6709;&#x76F8;&#x540C;&#x7684;&#x904B;&#x52D5;&#x7279;&#x6027;&#x3002;</p>
-<hr>
+<p>&#x5BE6;&#x969B;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x88DD;&#x7F6E;&#x3002;&#x53EF;&#x4EE5;&#x662F;&#x4E0D;&#x540C;&#x5EE0;&#x724C;/&#x578B;&#x614B;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x3002;</p>
+<p><strong>&#x904B;&#x52D5;&#x55AE;&#x4F4D;</strong></p>
+<p>Botnana Control &#x7684;&#x9577;&#x5EA6;&#x55AE;&#x4F4D;&#x9ED8;&#x8A8D;&#x70BA;&#x516C;&#x5C3A; [m]&#xFF0C;&#x6642;&#x9593;&#x55AE;&#x4F4D;&#x70BA;&#x79D2; [s]&#x3002;
+&#x6240;&#x4EE5;&#x901F;&#x5EA6;&#x55AE;&#x4F4D;&#x70BA; <code>m/s</code>, &#x52A0;&#x901F;&#x5EA6;&#x55AE;&#x4F4D;<code>m/s^2</code>&#xFF0C;&#x52A0;&#x52A0;&#x901F;&#x5EA6;&#x55AE;&#x4F4D;<code>m/s^3</code>&#x3002;</p>
+<p>&#x5047;&#x8A2D;&#x6709;&#x4E00;&#x500B; 1D &#x7684;&#x76F4;&#x7DDA;&#x904B;&#x52D5;&#x7CFB;&#x7D71;&#xFF0C;&#x99AC;&#x9054;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x89E3;&#x6790;&#x5EA6;&#x8A2D;&#x5B9A;&#x70BA; 1000000 pulse = 1 m&#x3002;</p>
+<p>&#x4EE5;&#x9577;&#x5EA6;&#x55AE;&#x4F4D;&#x70BA;&#x516C;&#x5C3A;&#x7684;&#x8A2D;&#x5B9A;&#x7BC4;&#x4F8B;&#xFF1A;</p>
+<ul>
+<li>Group vmax = 0.01 [m/s]</li>
+<li>Group amax = 5.0  [m/s^2]</li>
+<li>Group jmax = 40.0 [m/s^3]</li>
+<li>Group ignorable distance = 0.0000005 [m]</li>
+<li>Axis encoder_ppu = 1000000</li>
+<li>Axis encoder_length_unit = Meter</li>
+<li>Axis vmax = 0.01 [m/s]</li>
+<li>Axis amax = 5.0  [m/s^2]</li>
+<li>Axis ignorable distance = 0.0000005 [m]</li>
+</ul>
+<p>&#x4EE5;&#x9577;&#x5EA6;&#x55AE;&#x4F4D;&#x70BA;&#x8108;&#x885D;&#x6578; (Pulse) &#x7684;&#x8A2D;&#x5B9A;&#x7BC4;&#x4F8B;&#xFF1A;</p>
+<ul>
+<li>Group vmax = 10000.0 [pulse/s]</li>
+<li>Group amax = 5000000.0  [pulse/s^2]</li>
+<li>Group jmax = 40000000.0 [pulse/s^3]</li>
+<li>Group ignorable distance = 0.5 [pulse]</li>
+<li>Axis encoder_ppu = 1</li>
+<li>Axis encoder_length_unit = Pulse</li>
+<li>Axis vmax = 10000.0 [pulse/s]</li>
+<li>Axis amax = 5000000.0  [pulse/s^2]</li>
+<li>Axis ignorable distance = 0.5 [pulse]</li>
+</ul>
+<p>&#x5047;&#x8A2D;&#x6709;&#x4E00;&#x500B; 1D &#x7684;&#x65CB;&#x8F49;&#x904B;&#x52D5;&#x7CFB;&#x7D71;&#xFF0C;&#x99AC;&#x9054;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x89E3;&#x6790;&#x5EA6;&#x8A2D;&#x5B9A;&#x70BA; 3600000 pulse = 1 rev&#xFF0C;&#x4EE5;&#x65CB;&#x8F49;&#x534A;&#x5F91; 100 mm &#x7684;&#x5207;&#x7DDA;&#x901F;&#x5EA6;&#x4F86;&#x6BD4;&#x64EC;&#x7DDA;&#x6027;&#x901F;&#x5EA6;&#x3002;
+Botnana Control &#x662F;&#x4EE5;&#x5F91;&#x5EA6; (radian) &#x8A08;&#x7B97;&#xFF0C;&#x6240;&#x4EE5;&#x8F49;&#x63DB;&#x6642;&#x9700;&#x8981;&#x7559;&#x610F;&#x3002;</p>
+<p>&#x4EE5;&#x9577;&#x5EA6;&#x55AE;&#x4F4D;&#x70BA;&#x5F91;&#x5EA6;&#x7684;&#x8A2D;&#x5B9A;&#x7BC4;&#x4F8B;&#xFF1A;</p>
+<ul>
+<li>Group vmax = 0.1 [rad/s]</li>
+<li>Group amax = 50.0  [rad/s^2]</li>
+<li>Group jmax = 400.0 [rad/s^3]</li>
+<li>Group ignorable distance = 0.0000005 [rad]</li>
+<li>Axis encoder_ppu = 3600000</li>
+<li>Axis encoder_length_unit = Revolution</li>
+<li>Axis vmax = 0.1 [rad/s]</li>
+<li>Axis amax = 50.0  [rad/s^2]</li>
+<li>Axis ignorable distance = 0.0000005 [rad]</li>
+</ul>
+<p><strong>&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;</strong>&#xFF1A;</p>
+<p>&#x7576;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD;&#xFF08;+coordinator&#xFF09;&#x958B;&#x555F;&#x5F8C;&#xFF0C;Botnana Control &#x6703;&#x4F9D;&#x64DA;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x8A2D;&#x5B9A;&#xFF0C;&#x5C07;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x547D;&#x4EE4;&#x8F49;&#x63DB;&#x5230;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x3002;
+&#x6240;&#x4EE5;&#x7576;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD; &#xFF08;+coordinator&#xFF09;&#x958B;&#x555F;&#x5F8C;&#xFF0C;&#x5982;&#x679C;&#x8A72;&#x63A7;&#x5236;&#x5668;&#x88AB;&#x904B;&#x52D5;&#x8EF8;&#x6240;&#x63A7;&#x5236;&#xFF0C;&#x5C31;&#x7121;&#x6CD5;&#x76F4;&#x63A5;&#x8A2D;&#x5B9A;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x8EF8;&#x7D44;&#x555F;&#x52D5;&#x4E2D;&#xFF0C;&#x4E14;&#x4F9D;&#x64DA;&#x8DEF;&#x5F91;&#x898F;&#x5283;&#x958B;&#x59CB;&#x904B;&#x52D5;&#xFF0C;&#x6216;&#x662F;&#x904B;&#x52D5;&#x4E2D;&#x66AB;&#x505C;&#xFF0C;Botnana Control &#x6703;&#x4F9D;&#x64DA;&#x8EF8;&#x7D44;&#x7684;&#x8A2D;&#x5B9A;&#x5C07;&#x904B;&#x52D5;&#x547D;&#x4EE4;&#x5206;&#x914D;&#x7D66;&#x5C0D;&#x61C9;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#xFF0C;
+&#x6B64;&#x6642;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x547D;&#x4EE4;&#x5C31;&#x6703;&#x53D7;&#x5230;&#x8EF8;&#x7D44;&#x63A7;&#x5236;&#x3002;&#x5982;&#x679C;&#x8EF8;&#x7D44;&#x9593;&#x6709;&#x5171;&#x7528;&#x904B;&#x52D5;&#x8EF8;&#xFF0C;&#x5207;&#x63DB;&#x6642;&#x5C31;&#x5FC5;&#x9808;&#x8981;&#x7559;&#x610F;&#x662F;&#x5426;&#x6703;&#x9020;&#x6210;&#x904B;&#x52D5;&#x8EF8;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x4E0D;&#x9023;&#x7E8C;&#x3002;</p>
+<p><strong>&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;&#x904E;&#x5927;&#x8655;&#x7F6E;&#x65B9;&#x5F0F;</strong></p>
+<p>&#x7576;&#x5BE6;&#x9AD4;&#x8EF8;&#x904B;&#x52D5;&#x6642;&#xFF0C;&#x5982;&#x679C;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x8207;&#x5BE6;&#x969B;&#x4F4D;&#x7F6E;&#x76F8;&#x5DEE;&#x904E;&#x5927;&#xFF0C;&#x901A;&#x5E38;&#x8868;&#x793A;&#x6709;&#x8EF8;&#x63A7;&#x7684;&#x554F;&#x984C;&#x767C;&#x751F;&#xFF0C;&#x7576;&#x505C;&#x6B62;&#x904B;&#x52D5;&#x4E14;&#x6392;&#x9664;&#x6545;&#x969C;&#x5F8C;&#xFF0C;&#x6D88;&#x9664;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;&#x904E;&#x5927;&#x7684;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li>&#x7576;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD;&#x6C92;&#x6709;&#x958B;&#x555F;&#x6216;&#x662F;&#x8A72;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x4E0D;&#x53D7;&#x904B;&#x52D5;&#x8EF8;&#x63A7;&#x5236;&#x6642;&#xFF0C;&#x76F4;&#x63A5;&#x4EE5;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x5BE6;&#x969B;&#x4F4D;&#x7F6E;&#x8A2D;&#x5B9A;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</li>
+</ul>
+<pre><code>    1 1 real-p@ 1 1 target-p!
+</code></pre><ul>
+<li>&#x7576;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD;&#x958B;&#x555F;&#xFF0C;&#x4E14;&#x904B;&#x52D5;&#x8EF8;&#x4E0D;&#x53D7;&#x8EF8;&#x7D44;&#x63A7;&#x5236;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</li>
+</ul>
+<pre><code>    1 0axis-ferr    \ &#x6E05;&#x9664;&#x7B2C; 1 &#x500B;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;
+</code></pre><ul>
+<li>&#x7576;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD;&#x958B;&#x555F;&#xFF0C;&#x4E14;&#x904B;&#x52D5;&#x8EF8;&#x53D7;&#x8EF8;&#x7D44;&#x63A7;&#x5236;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</li>
+</ul>
+<pre><code>    1 group! 0path     \ &#x5047;&#x8A2D;&#x662F;&#x7B2C; 1 &#x500B;&#x8EF8;&#x7D44;&#xFF0C;&#x5207;&#x63DB;&#x8EF8;&#x7D44;&#x70BA; 1&#xFF0C;&#x6E05;&#x9664;&#x8DEF;&#x5F91;
+    1 0axis-ferr       \ &#x5047;&#x8A2D;&#x7B2C; 1 &#x500B;&#x904B;&#x52D5;&#x8EF8;&#x53D7;&#x63A7;&#x65BC;&#x7B2C; 1 &#x500B;&#x8EF8;&#x7D44;&#xFF0C;&#x6E05;&#x9664;&#x7B2C; 1 &#x500B;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;
+    2 0axis-ferr       \ &#x5047;&#x8A2D;&#x7B2C; 2 &#x500B;&#x904B;&#x52D5;&#x8EF8;&#x53D7;&#x63A7;&#x65BC;&#x7B2C; 1 &#x500B;&#x8EF8;&#x7D44;&#xFF0C;&#x6E05;&#x9664;&#x7B2C; 2 &#x500B;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;
+</code></pre><hr>
 <h3 id="coordinator">Coordinator</h3>
-<h4 id="coordinator-----"><code>+coordinator ( -- )</code></h4>
+<h4 id="coordinator-----"><code>.coordinator ( -- )</code></h4>
+<p>&#x8F38;&#x51FA;&#x8EF8;&#x7D44;&#x72C0;&#x614B;&#x3002;</p>
+<p>&#x8F38;&#x51FA;&#x8A0A;&#x606F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>    coordinator_enabled|0
+
+    coordinator_enabled: 1 &#x8868;&#x793A;&#x540C;&#x52D5;&#x529F;&#x80FD;&#x958B;&#x555F;&#xFF0C;0 &#x8868;&#x793A;&#x540C;&#x52D5;&#x529F;&#x80FD;&#x95DC;&#x9589;&#x3002;
+</code></pre><h4 id="coordinator-----"><code>+coordinator ( -- )</code></h4>
 <p>&#x555F;&#x52D5;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD;&#x3002;</p>
 <p>&#x7531; Botnana Control &#x9032;&#x884C;&#x8EF8;&#x904B;&#x52D5;&#x63A7;&#x5236;&#xFF0C;Botnana Control&#x6703;&#x4F9D;&#x8EF8;&#x7D44;&#x8DEF;&#x5F91;&#x6216;&#x662F;&#x904B;&#x52D5;&#x8EF8;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;&#x9032;&#x884C;&#x52A0;&#x6E1B;&#x901F;&#x898F;&#x5283;&#x8207;&#x4F4D;&#x7F6E;&#x88DC;&#x9593;&#x3002;</p>
 <p>&#x5728;&#x6B64;&#x6A21;&#x5F0F;&#x4E4B;&#x4E0B;&#xFF0C;&#x9A45;&#x52D5;&#x5668;&#x5FC5;&#x9808;&#x8981;&#x5207;&#x63DB;&#x5230; CSP Mode&#x3002;</p>
 <h4 id="coordinator-----"><code>-coordinator ( -- )</code></h4>
 <p>&#x95DC;&#x9589;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD;&#x3002;</p>
-<h4 id="empty-----flag-"><code>empty? ( -- flag )</code></h4>
+<h4 id="groups-----len-"><code>#groups ( -- len )</code></h4>
+<p>&#x53D6;&#x5F97;&#x8EF8;&#x7D44;&#x6578;&#x91CF; <code>len</code>&#x3002;</p>
+<h4 id="axes-----len-"><code>#axes ( -- len )</code></h4>
+<p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8;&#x6578;&#x91CF; <code>len</code> &#x3002;</p>
+<h4 id="coordinator-----t-"><code>coordinator? ( -- t )</code></h4>
+<p>&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x958B;&#x555F;&#xFF1F;</p>
+<h4 id="empty-----t-"><code>empty? ( -- t )</code></h4>
 <p>&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x7684;&#x8DEF;&#x5F91;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x6E05;&#x7A7A;&#xFF1F;</p>
 <h4 id="ems-job-----"><code>ems-job ( -- )</code></h4>
 <p>&#x57F7;&#x884C;&#x540C;&#x52D5;&#x529F;&#x80FD;&#x7DCA;&#x6025;&#x505C;&#x6B62;&#x3002;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x8207;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#x90FD;&#x6703;&#x7ACB;&#x5373;&#x505C;&#x6B62;&#x3002;&#x8EF8;&#x7D44;&#x7684;&#x8DEF;&#x5F91;&#x8CC7;&#x8A0A;&#x90FD;&#x6703;&#x88AB;&#x6E05;&#x9664;&#x3002;</p>
-<h4 id="end-----flag-"><code>end? ( -- flag )</code></h4>
+<h4 id="end-----t-"><code>end? ( -- t )</code></h4>
 <p>&#x6240;&#x4EE5;&#x8EF8;&#x7D44;&#x8207;&#x904B;&#x52D5;&#x8EF8;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#x662F;&#x5426;&#x5230;&#x9054;&#x8DEF;&#x5F91;&#x7D42;&#x9EDE;&#xFF1F;</p>
 <h4 id="reset-job-----"><code>reset-job ( -- )</code></h4>
 <p>&#x6E05;&#x9664;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x7684;&#x8DEF;&#x7D93;&#x8CC7;&#x8A0A;&#x3002;</p>
 <h4 id="start-job-----"><code>start-job ( -- )</code></h4>
 <p>&#x547D;&#x4EE4;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x958B;&#x59CB;&#x904B;&#x52D5;&#x3002;</p>
-<h4 id="stop-----flag-"><code>stop? ( -- flag )</code></h4>
+<h4 id="stop-----t-"><code>stop? ( -- t )</code></h4>
 <p>&#x6240;&#x4EE5;&#x8EF8;&#x7D44;&#x8207;&#x904B;&#x52D5;&#x8EF8;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x505C;&#x6B62;&#xFF1F;</p>
 <h4 id="stop-job-----"><code>stop-job ( -- )</code></h4>
 <p>&#x547D;&#x4EE4;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x8207;&#x904B;&#x52D5;&#x8EF8;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#x6E1B;&#x901F;&#x505C;&#x6B62;&#x3002;</p>
@@ -720,6 +808,11 @@
 </thead>
 <tbody>
 <tr>
+<td><code>.coordinator</code></td>
+<td>( --  )</td>
+<td>&#x8F38;&#x51FA;&#x8EF8;&#x7D44;&#x72C0;&#x614B;</td>
+</tr>
+<tr>
 <td><code>+coordinator</code></td>
 <td>( -- )</td>
 <td>&#x555F;&#x52D5;&#x8EF8;&#x7D44;&#x529F;&#x80FD;</td>
@@ -730,8 +823,23 @@
 <td>&#x95DC;&#x9589;&#x8EF8;&#x7D44;&#x529F;&#x80FD;</td>
 </tr>
 <tr>
+<td><code>#groups</code></td>
+<td>( -- len )</td>
+<td>&#x53D6;&#x5F97;&#x8EF8;&#x7D44;&#x6578;&#x91CF;</td>
+</tr>
+<tr>
+<td><code>#axes</code></td>
+<td>( -- len )</td>
+<td>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8;&#x6578;&#x91CF;</td>
+</tr>
+<tr>
+<td><code>coordinator?</code></td>
+<td>( -- t )</td>
+<td>&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x958B;&#x555F;&#xFF1F;</td>
+</tr>
+<tr>
 <td><code>empty?</code></td>
-<td>( -- flag )</td>
+<td>( -- t )</td>
 <td>&#x662F;&#x5426;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x8DEF;&#x5F91;&#x5DF2;&#x7D93;&#x6E05;&#x7A7A; &#xFF1F;</td>
 </tr>
 <tr>
@@ -741,7 +849,7 @@
 </tr>
 <tr>
 <td><code>end?</code></td>
-<td>( -- flag )</td>
+<td>( -- t )</td>
 <td>&#x662F;&#x5426;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x5DF2;&#x7D93;&#x5230;&#x9054;&#x8DEF;&#x5F91;&#x7D42;&#x9EDE; &#xFF1F;</td>
 </tr>
 <tr>
@@ -756,7 +864,7 @@
 </tr>
 <tr>
 <td><code>stop?</code></td>
-<td>( -- flag )</td>
+<td>( -- t )</td>
 <td>&#x662F;&#x5426;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x5DF2;&#x7D93;&#x505C;&#x6B62;&#x904B;&#x52D5; &#xFF1F;</td>
 </tr>
 <tr>
@@ -801,6 +909,7 @@
 |group_vmax.1|0.10000
 |group_amax.1|5.00000
 |group_jmax.1|80.00000
+|group_ignorable_distance.1|0.0000005
 </code></pre><h4 id="group"><code>+group</code></h4>
 <p>&#x555F;&#x52D5;&#x76EE;&#x524D;&#x9078;&#x7528;&#x7684;&#x8EF8;&#x7D44;&#x3002;</p>
 <p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
@@ -835,6 +944,9 @@
 <pre><code>2.0e 1 gamax! \ &#x8A2D;&#x5B9A; Group 1 &#x7684;&#x6700;&#x5927;&#x52A0;&#x901F;&#x5EA6;&#x70BA; 2.0
 </code></pre><h4 id="gend-----flag-"><code>gend? ( -- flag )</code></h4>
 <p>&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x5230;&#x9054;&#x8DEF;&#x5F91;&#x7D42;&#x9EDE;&#xFF1F;</p>
+<h4 id="gignore-dist--g------f-dist---"><code>gignore-dist! ( g -- ) ( F: dist --)</code></h4>
+<p>&#x8A2D;&#x5B9A;&#x6307;&#x5B9A;&#x8EF8;&#x7D44; <code>g</code> &#x53EF;&#x5FFD;&#x7565;&#x7684;&#x9577;&#x5EA6;&#x8A08;&#x7B97;&#x8AA4;&#x5DEE; <code>dist</code>&#x3002;</p>
+<p>&#x901A;&#x5E38;&#x5728; pulse &#x7684;&#x7CFB;&#x7D71;&#x4E0B;&#xFF0C;&#x8A2D;&#x5B9A;&#x70BA; 0.5 &#x6216;&#x662F; 0.1 [pulse]&#x3002;&#x5176;&#x5B83;&#x8A2D;&#x5B9A;&#x70BA; 0.5e-6 &#x6216;&#x662F; 0.1e-6 [m] or [rad]</p>
 <h4 id="gjmax--g------f-j----"><code>gjmax! ( g -- ) ( F: j -- )</code></h4>
 <p>&#x8A2D;&#x5B9A; group <code>g</code> &#x7684;&#x6700;&#x5927;&#x52A0;&#x52A0;&#x901F;&#x5EA6;&#x70BA; <code>j</code>&#x3002;</p>
 <p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
@@ -1039,6 +1151,11 @@ group!                  \ &#x5207;&#x63DB;&#x56DE;&#x539F;&#x4F86;&#x7684;&#x8EF
 <td>gend?</td>
 <td>( -- flag )</td>
 <td>&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x5230;&#x9054;&#x8DEF;&#x5F91;&#x7D42;&#x9EDE;&#xFF1F;</td>
+</tr>
+<tr>
+<td>gignore-dist!</td>
+<td>( g -- ) ( F: dist --)</td>
+<td>&#x8A2D;&#x5B9A;&#x6307;&#x5B9A;&#x8EF8;&#x7D44;&#x53EF;&#x5FFD;&#x7565;&#x7684;&#x9577;&#x5EA6;&#x8A08;&#x7B97;&#x8AA4;&#x5DEE;</td>
 </tr>
 <tr>
 <td>gjmax!</td>
@@ -1535,6 +1652,7 @@ stop-job              \ &#x505C;&#x6B62;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
 |ext_encoder_channel.1|0
 |axis_amax.1|5.00000
 |axis_vmax.1|0.10000
+|axis_ignorable_distance.1|0.0000005
 </code></pre><h4 id="homed--j----"><code>+homed ( j -- )</code></h4>
 <p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x5DF2;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x3002;</p>
 <h4 id="homed--j----"><code>-homed ( j -- )</code></h4>
@@ -1549,7 +1667,10 @@ stop-job              \ &#x505C;&#x6B62;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
 <p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x7684;&#x6700;&#x5927;&#x52A0;&#x901F;&#x5EA6; <code>amax</code>&#x3002;</p>
 <p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
 <pre><code>1 axis-amax@  \ &#x53D6;&#x5F97; Axis 1 amax
-</code></pre><h4 id="axis-cmd-p--j-----f-pos----"><code>axis-cmd-p! ( j -- )( F: pos -- )</code></h4>
+</code></pre><h4 id="axis-clerr---j------f-clerr----"><code>axis-clerr  ( j -- ) ( F: clerr -- )</code></h4>
+<p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x96D9;&#x4F4D;&#x7F6E;&#x56DE;&#x6388;&#x8AA4;&#x5DEE; <code>clerr</code>&#x3002;</p>
+<p>&#x901A;&#x5E38;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x5B89;&#x88DD;&#x5728;&#x9760;&#x8FD1;&#x8ECC;&#x9053;&#x6216;&#x662F;&#x5DE5;&#x4F5C;&#x53F0;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x5982;&#x679C;&#x548C;&#x99AC;&#x9054;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x4F4D;&#x7F6E;&#x76F8;&#x5DEE;&#x904E;&#x5927;&#x4EE3;&#x8868;&#x6A5F;&#x68B0;&#x50B3;&#x52D5;&#x7CFB;&#x7684;&#x904B;&#x4F5C;&#x51FA;&#x73FE;&#x554F;&#x984C;&#xFF0C;&#x6B64;&#x6642;&#x53EF;&#x4EE5;&#x512A;&#x5148;&#x6AA2;&#x67E5;&#x76AE;&#x5E36;&#x8F2A;&#x6216;&#x662F;&#x806F;&#x8EF8;&#x5668;&#x3002;</p>
+<h4 id="axis-cmd-p--j-----f-pos----"><code>axis-cmd-p! ( j -- )( F: pos -- )</code></h4>
 <p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x7684;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E; <code>pos</code>&#x3002;</p>
 <h4 id="axis-cmd-p--j-----f----pos-"><code>axis-cmd-p@ ( j -- )( F: -- pos )</code></h4>
 <p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x7684;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E; <code>pos</code>&#x3002;</p>
@@ -1565,9 +1686,9 @@ stop-job              \ &#x505C;&#x6B62;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
 <p>&#x7576;&#x6C92;&#x6709;&#x914D;&#x7F6E;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x6642;&#x6703;&#x4F7F;&#x5F97; <code>axis-ext-enc@</code> &#x56DE;&#x50B3; <code>channel = 0</code>, <code>slave = 0</code>&#x3002;</p>
 <h4 id="axis-ferr--j------f-ferr----"><code>axis-ferr@ ( j -- ) ( F: ferr -- )</code></h4>
 <p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x53D6;&#x5F97;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE; <code>ferr</code>&#x3002;</p>
-<h4 id="axis-clerr---j------f-clerr----"><code>axis-clerr  ( j -- ) ( F: clerr -- )</code></h4>
-<p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x96D9;&#x4F4D;&#x7F6E;&#x56DE;&#x6388;&#x8AA4;&#x5DEE; <code>clerr</code>&#x3002;</p>
-<p>&#x901A;&#x5E38;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x5B89;&#x88DD;&#x5728;&#x9760;&#x8FD1;&#x8ECC;&#x9053;&#x6216;&#x662F;&#x5DE5;&#x4F5C;&#x53F0;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x5982;&#x679C;&#x548C;&#x99AC;&#x9054;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x4F4D;&#x7F6E;&#x76F8;&#x5DEE;&#x904E;&#x5927;&#x4EE3;&#x8868;&#x6A5F;&#x68B0;&#x50B3;&#x52D5;&#x7CFB;&#x7684;&#x904B;&#x4F5C;&#x51FA;&#x73FE;&#x554F;&#x984C;&#xFF0C;&#x6B64;&#x6642;&#x53EF;&#x4EE5;&#x512A;&#x5148;&#x6AA2;&#x67E5;&#x76AE;&#x5E36;&#x8F2A;&#x6216;&#x662F;&#x806F;&#x8EF8;&#x5668;&#x3002;</p>
+<h4 id="axis-ignore-dist--j-------f-dist----"><code>axis-ignore-dist! ( j --  ) ( F: dist -- )</code></h4>
+<p>&#x8A2D;&#x5B9A;&#x6307;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x53EF;&#x5FFD;&#x7565;&#x7684;&#x9577;&#x5EA6;&#x8A08;&#x7B97;&#x8AA4;&#x5DEE; <code>dist</code>&#x3002;</p>
+<p>&#x901A;&#x5E38;&#x5728; pulse &#x7684;&#x7CFB;&#x7D71;&#x4E0B;&#xFF0C;&#x8A2D;&#x5B9A;&#x70BA; 0.5 &#x6216;&#x662F; 0.1 [pulse]&#x3002;&#x5176;&#x5B83;&#x8A2D;&#x5B9A;&#x70BA; 0.5e-6 &#x6216;&#x662F; 0.1e-6 [m] or [rad]</p>
 <h4 id="axis-len-----len-"><code>axis-len ( -- len )</code></h4>
 <p>&#x53D6;&#x5F97; Botnana Control &#x6240;&#x898F;&#x5283;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#x7E3D;&#x6578; <code>len</code>&#x3002;</p>
 <h4 id="axis-real-p--j----f----pos-"><code>axis-real-p@ ( j -- )(F: -- pos )</code></h4>
@@ -1718,6 +1839,11 @@ repeat
 <td>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8;&#x6700;&#x5927;&#x52A0;&#x901F;&#x5EA6;</td>
 </tr>
 <tr>
+<td>axis-clerr</td>
+<td>( j --  ) ( F: clerr -- )</td>
+<td>&#x53D6;&#x5F97;&#x96D9;&#x4F4D;&#x7F6E;&#x56DE;&#x6388;&#x8AA4;&#x5DEE;</td>
+</tr>
+<tr>
 <td>axis-cmd-p!</td>
 <td>( j -- ) ( F: pos -- )</td>
 <td>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;</td>
@@ -1748,9 +1874,9 @@ repeat
 <td>&#x53D6;&#x5F97;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;</td>
 </tr>
 <tr>
-<td>axis-clerr</td>
-<td>( j --  ) ( F: clerr -- )</td>
-<td>&#x53D6;&#x5F97;&#x96D9;&#x4F4D;&#x7F6E;&#x56DE;&#x6388;&#x8AA4;&#x5DEE;</td>
+<td>axis-ignore-dist!</td>
+<td>( j --  ) ( F: dist -- )</td>
+<td>&#x8A2D;&#x5B9A;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x7684;&#x9577;&#x5EA6;&#x8A08;&#x7B97;&#x8AA4;&#x5DEE;</td>
 </tr>
 <tr>
 <td>axis-len</td>
@@ -2045,7 +2171,7 @@ repeat
 
             
                 
-                <a href="ethercat-encoder-primitives.html" class="navigation navigation-prev " aria-label="Previous page: EtherCAT Encoder 指令集">
+                <a href="ethercat-gateway-primitives.html" class="navigation navigation-prev " aria-label="Previous page: EtherCAT Gateway 指令集">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -2061,7 +2187,7 @@ repeat
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"軸組 Axis Group 指令集","level":"4.3.7","depth":2,"next":{"title":"狀態流程圖 Sequential Function Chart (SFC)","level":"4.3.8","depth":2,"path":"sfc.md","ref":"./sfc.md","articles":[{"title":"Servo On/OFF","level":"4.3.8.1","depth":3,"path":"sfc-example/servo-on-off.md","ref":"./sfc-example/servo-on-off.md","articles":[]},{"title":"Motion State","level":"4.3.8.2","depth":3,"path":"sfc-example/motion-state.md","ref":"./sfc-example/motion-state.md","articles":[]},{"title":"Homing State","level":"4.3.8.3","depth":3,"path":"sfc-example/axes-homing.md","ref":"./sfc-example/axes-homing.md","articles":[]}]},"previous":{"title":"EtherCAT Encoder 指令集","level":"4.3.6","depth":2,"path":"ethercat-encoder-primitives.md","ref":"./ethercat-encoder-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"axis-group.md","mtime":"2019-01-23T02:33:53.548Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-21T05:46:28.428Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"軸組 Axis Group 指令集","level":"4.3.8","depth":2,"next":{"title":"狀態流程圖 Sequential Function Chart (SFC)","level":"4.3.9","depth":2,"path":"sfc.md","ref":"./sfc.md","articles":[{"title":"Servo On/OFF","level":"4.3.9.1","depth":3,"path":"sfc-example/servo-on-off.md","ref":"./sfc-example/servo-on-off.md","articles":[]},{"title":"Motion State","level":"4.3.9.2","depth":3,"path":"sfc-example/motion-state.md","ref":"./sfc-example/motion-state.md","articles":[]},{"title":"Homing State","level":"4.3.9.3","depth":3,"path":"sfc-example/axes-homing.md","ref":"./sfc-example/axes-homing.md","articles":[]}]},"previous":{"title":"EtherCAT Gateway 指令集","level":"4.3.7","depth":2,"path":"ethercat-gateway-primitives.md","ref":"./ethercat-gateway-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"axis-group.md","mtime":"2019-07-24T07:37:58.385Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-24T07:38:29.531Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>支援的硬體清單 · GitBook</title>
+        <title>EtherCAT Gateway 指令集 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="update-software.html" />
+    <link rel="next" href="axis-group.html" />
     
     
-    <link rel="prev" href="sfc-example/axes-homing.html" />
+    <link rel="prev" href="ethercat-encoder-primitives.html" />
     
 
     </head>
@@ -372,7 +372,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.7" data-path="ethercat-gateway-primitives.html">
+        <li class="chapter active" data-level="4.3.7" data-path="ethercat-gateway-primitives.html">
             
                 <a href="ethercat-gateway-primitives.html">
             
@@ -468,7 +468,7 @@
         
         
     
-        <li class="chapter active" data-level="5.1" data-path="known-working-hardware.html">
+        <li class="chapter " data-level="5.1" data-path="known-working-hardware.html">
             
                 <a href="known-working-hardware.html">
             
@@ -621,7 +621,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >支援的硬體清單</a>
+        <a href="." >EtherCAT Gateway 指令集</a>
     </h1>
 </div>
 
@@ -636,112 +636,92 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="&#x5DF2;&#x77E5;&#x53EF;&#x652F;&#x63F4;&#x7684;&#x786C;&#x9AD4;&#x6E05;&#x55AE;">&#x5DF2;&#x77E5;&#x53EF;&#x652F;&#x63F4;&#x7684;&#x786C;&#x9AD4;&#x6E05;&#x55AE;</h1>
-<h2 id="wifi-adapters">WiFi Adapters</h2>
-<ul>
-<li>D-Link DWA-171</li>
-<li>D-Link DWA-172</li>
-</ul>
-<h2 id="ethercat-slave-&#x6E05;&#x55AE;">EtherCAT Slave &#x6E05;&#x55AE;</h2>
-<p>&#x76EE;&#x524D; Botnana Control &#x652F;&#x63F4;&#x4EE5;&#x4E0B; EtherCAT Slaves&#xFF1A;</p>
-<h3 id="cia-dsp-401-compatible">CiA DSP 401 Compatible</h3>
-<ul>
-<li>Digital Input Module </li>
-<li>Digital Output Module </li>
-<li>Analogue Input Module </li>
-<li>Analogue Output Module </li>
-</ul>
-<h3 id="cia-dsp-402-compatible">CiA DSP 402 Compatible</h3>
-<ul>
-<li>Servo drive </li>
-<li>Stepper motor</li>
-<li>Multiple drive module </li>
-</ul>
-<h3 id="&#x7814;&#x83EF;-advantech">(&#x7814;&#x83EF;) Advantech</h3>
-<ul>
-<li>AMAX_4830, DIO</li>
-</ul>
-<h3 id="beckhoff">Beckhoff</h3>
-<ul>
-<li>EK1100, EtherCAT Bus Coupler</li>
-<li>EL1088, 8-channel digital input terminal 24 V DC, negative switching</li>
-<li>EL1809, 16-channel digital input 24 V DC</li>
-<li>EL2088, 8-channel digital output terminal 24 V DC, negative switching</li>
-<li>EL2502, 2-channel pulse width output terminal</li>
-<li>EL2088, 8-channel digital output terminal </li>
-<li>EL2809, 16-channel digital output 24 V DC</li>
-<li>EL3058, 8-channel analog input terminal 4...20 mA, single-ended, 12 bit</li>
-<li>EL3062, analog input</li>
-<li>EL4002, analog output</li>
-<li>EL5032, 2-channel EnDat 2.2 interface</li>
-<li>EL6021, Serial terminal</li>
-<li>EL6022, Serial terminal</li>
-</ul>
-<h3 id="copley-controls">Copley Controls</h3>
-<ul>
-<li>Xenus XEL-230-36, EtherCAT Servo Drive</li>
-</ul>
-<h3 id="&#x53F0;&#x9054;&#x96FB;-delta">&#x53F0;&#x9054;&#x96FB; (Delta)</h3>
-<ul>
-<li>ASDA-A2-E, EtherCAT(CoE) Drive</li>
-<li>R1-EC5500, EtherCAT to E-BUS power module</li>
-<li>R1-EC6022, 16 digital inputs, sink/source type</li>
-<li>R1-EC7062, 16 digital outputs, sink type</li>
-<li>R1-EC9144, 4 channels 16-bit D/A control module</li>
-<li>R1-EC8124, 4 channels 16-bit single-ended A/D control module</li>
-<li>R1-EC5621, Single-axis pulse output motion control module</li>
-</ul>
-<h3 id="elmo">ELMO</h3>
-<ul>
-<li>GOLD_BASSOON Servo Drive</li>
-</ul>
-<h3 id="fastech">FASTECH</h3>
-<ul>
-<li>Ezi-SERVO&#x2161; EtherCAT Series</li>
-</ul>
-<h3 id="icpdas">ICPDAS</h3>
-<ul>
-<li>ECAT-2512, EtherCAT junction </li>
-</ul>
-<h3 id="mitsubishi">MITSUBISHI</h3>
-<ul>
-<li>MR-J4-10TM Servo Drive</li>
-</ul>
-<h3 id="omron">OMRON</h3>
-<ul>
-<li>R88D_1SN04H_ECT Servo Drive (only BN-J2A, BN-J4A)</li>
-<li>GX-MD1611 REMOTE TERMINAL (8 Ch. Digital Input&#xFF0C; 8 Ch. Digital Output)</li>
-<li>NX-ECC203, ID5342, OD5121 (IO &#x6A21;&#x7D44;&#xFF0C;&#x6E2C;&#x8A66;&#x4E2D;)</li>
-</ul>
-<h3 id="oriental-motor">Oriental Motor</h3>
-<ul>
-<li>AZ Series DC power input Multi-Axis Driver</li>
-</ul>
-<h3 id="panasonic">Panasonic</h3>
-<ul>
-<li>EtherCAT communication driver MINAS A5B Series</li>
-<li>MCDLT35BF (A6B)</li>
-</ul>
-<h3 id="sanyo-denki">SANYO DENKI</h3>
-<ul>
-<li>SANMOTION R ADVANCED MODEL</li>
-</ul>
-<h3 id="&#x58EB;&#x6797;&#x96FB;&#x6A5F;-&#xFF08;shihlin&#xFF09;">&#x58EB;&#x6797;&#x96FB;&#x6A5F; &#xFF08;Shihlin&#xFF09;</h3>
-<ul>
-<li>SDP, EtherCAT Servo Driver </li>
-</ul>
-<h3 id="tpm">TPM</h3>
-<ul>
-<li>TPM_207_D240_NX, 32 Ch. Digital Input</li>
-<li>TPM_207_D204_XN, 32 Ch. Digital Output</li>
-<li>TPM_207_A220FD, 8 Ch. Analog Input, 8 Ch. Digital Output</li>
-<li>TPM_207_A204F&#xFF0C;8 Ch. Anaglo Output</li>
-</ul>
-<h3 id="yaskawa">Yaskawa</h3>
-<ul>
-<li>SGDV-2R8AE1A</li>
-<li>SGD7S-7R6AA0A (&#x6E2C;&#x8A66;&#x4E2D;)</li>
-</ul>
+                                <h3 id="ethercat-gateway-&#x6307;&#x4EE4;&#x96C6;">EtherCAT Gateway &#x6307;&#x4EE4;&#x96C6;</h3>
+<p>&#x9598;&#x9053;&#x5668; Gateway &#x7684;&#x8CC7;&#x6599;&#x64CD;&#x4F5C;&#x662F;&#x4EE5; Byte &#x70BA;&#x55AE;&#x4F4D;&#x3002;&#x4EE5;&#x985E;&#x4F3C;&#x8A18;&#x61B6;&#x9AD4;&#x5B58;&#x53D6;&#x7684;&#x65B9;&#x5F0F;&#x9032;&#x884C;&#x8B80;&#x53D6;/&#x5BEB;&#x5165;&#x3002;</p>
+<p>&#x76EE;&#x524D;&#x652F;&#x63F4;&#x7684;&#x786C;&#x9AD4;&#x662F;&#xFF1A; Anybus X-Gateway</p>
+<p><strong>&#x6CE8;&#x610F;&#x4E8B;&#x9805;&#xFF1A;</strong></p>
+<ol>
+<li>&#x8B80;&#x53D6;/&#x5BEB;&#x5165;&#x8CC7;&#x6599;&#x9577;&#x5EA6;&#x9650;&#x5236; 1 ~ 4 byte</li>
+<li>&#x8D77;&#x59CB;&#x4F4D;&#x7F6E;&#x5FC5;&#x9808;&#x5F9E; 0 &#x958B;&#x59CB;</li>
+</ol>
+<hr>
+<h4 id="0gateway--ch-n----"><code>0gateway ( ch n -- )</code></h4>
+<p>&#x91CD;&#x7F6E; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code>&#xFF0C;&#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x9598;&#x9053;&#x5668;&#x3002;</p>
+<h4 id="gateway-in-be--len-start-ch-n----data-"><code>gateway-in-be@ ( len start ch n -- data )</code></h4>
+<p>&#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code>&#xFF0C;&#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x9598;&#x9053;&#x5668;&#x7684;&#x8F38;&#x5165;&#x8CC7;&#x6599;&#xFF0C;&#x7531;&#x8D77;&#x59CB;&#x4F4D;&#x7F6E; <code>start</code>&#xFF0C;&#x8CC7;&#x6599;&#x9577;&#x5EA6; <code>len</code> bytes&#xFF0C;
+&#x4EE5; Big-Endian &#x7684;&#x4F4D;&#x5143;&#x7D44;&#x9806;&#x5E8F;&#x8B80;&#x51FA;&#xFF0C;&#x653E;&#x5230;&#x6574;&#x6578;&#x5806;&#x758A;&#x4E0A; <code>data</code>&#x3002;</p>
+<h4 id="gateway-in-le--len-start-ch-n----data-"><code>gateway-in-le@ ( len start ch n -- data )</code></h4>
+<p>&#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code>&#xFF0C;&#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x9598;&#x9053;&#x5668;&#x7684;&#x8F38;&#x5165;&#x8CC7;&#x6599;&#xFF0C;&#x7531;&#x8D77;&#x59CB;&#x4F4D;&#x7F6E; <code>start</code>&#xFF0C;&#x8CC7;&#x6599;&#x9577;&#x5EA6; <code>len</code> bytes&#xFF0C;
+&#x4EE5; Little-Endian &#x7684;&#x4F4D;&#x5143;&#x7D44;&#x9806;&#x5E8F;&#x8B80;&#x51FA;&#xFF0C;&#x653E;&#x5230;&#x6574;&#x6578;&#x5806;&#x758A;&#x4E0A; <code>data</code>&#x3002;  </p>
+<h4 id="gateway-in-len--ch-n----len-"><code>gateway-in-len@ ( ch n -- len )</code></h4>
+<p>&#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code>&#xFF0C;&#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x9598;&#x9053;&#x5668;&#x7684;&#x8F38;&#x5165;&#x66AB;&#x5B58;&#x5668;&#x5927;&#x5C0F; <code>len</code> bytes &#x653E;&#x5230;&#x6574;&#x6578;&#x5806;&#x758A;&#x4E0A;&#x3002;</p>
+<h4 id="gateway-out-be--cmd-len-start-ch-n----"><code>gateway-out-be! ( cmd len start ch n -- )</code></h4>
+<p>&#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code>&#xFF0C;&#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x9598;&#x9053;&#x5668;&#x7684;&#x8F38;&#x51FA;&#x8CC7;&#x6599;&#xFF0C;&#x8D77;&#x59CB;&#x4F4D;&#x7F6E; <code>start</code>&#xFF0C;&#x8CC7;&#x6599;&#x9577;&#x5EA6; <code>len</code> bytes&#xFF0C;
+&#x4EE5; Big-Endian &#x7684;&#x4F4D;&#x5143;&#x7D44;&#x9806;&#x5E8F;&#x5BEB;&#x5165; <code>cmd</code>&#x3002;</p>
+<h4 id="gateway-out-be--len-start-ch-n----data-"><code>gateway-out-be@ ( len start ch n -- data )</code></h4>
+<p>&#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code>&#xFF0C;&#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x9598;&#x9053;&#x5668;&#x7684;&#x8F38;&#x51FA;&#x8CC7;&#x6599;&#xFF0C;&#x7531;&#x8D77;&#x59CB;&#x4F4D;&#x7F6E; <code>start</code>&#xFF0C;&#x8CC7;&#x6599;&#x9577;&#x5EA6; <code>len</code> bytes&#xFF0C;
+&#x4EE5; Big-Endian &#x7684;&#x4F4D;&#x5143;&#x7D44;&#x9806;&#x5E8F;&#x8B80;&#x51FA;&#xFF0C;&#x653E;&#x5230;&#x6574;&#x6578;&#x5806;&#x758A;&#x4E0A; <code>data</code>&#x3002;</p>
+<h4 id="gateway-out-le--cmd-len-start-ch-n----"><code>gateway-out-le! ( cmd len start ch n -- )</code></h4>
+<p>&#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code>&#xFF0C;&#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x9598;&#x9053;&#x5668;&#x7684;&#x8F38;&#x51FA;&#x8CC7;&#x6599;&#xFF0C;&#x8D77;&#x59CB;&#x4F4D;&#x7F6E; <code>start</code>&#xFF0C;&#x8CC7;&#x6599;&#x9577;&#x5EA6; <code>len</code> bytes&#xFF0C;
+&#x4EE5; Little-Endian &#x7684;&#x4F4D;&#x5143;&#x7D44;&#x9806;&#x5E8F;&#x5BEB;&#x5165; <code>cmd</code>&#x3002;</p>
+<h4 id="gateway-out-le--len-start-ch-n----data-"><code>gateway-out-le@ ( len start ch n -- data )</code></h4>
+<p>&#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code>&#xFF0C;&#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x9598;&#x9053;&#x5668;&#x7684;&#x8F38;&#x51FA;&#x8CC7;&#x6599;&#xFF0C;&#x7531;&#x8D77;&#x59CB;&#x4F4D;&#x7F6E; <code>start</code>&#xFF0C;&#x8CC7;&#x6599;&#x9577;&#x5EA6; <code>len</code> bytes&#xFF0C;
+&#x4EE5; Little-Endian &#x7684;&#x4F4D;&#x5143;&#x7D44;&#x9806;&#x5E8F;&#x8B80;&#x51FA;&#xFF0C;&#x653E;&#x5230;&#x6574;&#x6578;&#x5806;&#x758A;&#x4E0A; <code>data</code>&#x3002;</p>
+<h4 id="gateway-out-len--ch-n----len-"><code>gateway-out-len@ ( ch n -- len )</code></h4>
+<p>&#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code>&#xFF0C;&#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x9598;&#x9053;&#x5668;&#x7684;&#x8F38;&#x51FA;&#x66AB;&#x5B58;&#x5668;&#x5927;&#x5C0F; <code>len</code> bytes &#x653E;&#x5230;&#x6574;&#x6578;&#x5806;&#x758A;&#x4E0A;&#x3002;</p>
+<h4 id="gateway-ready--ch-n----t-"><code>gateway-ready? ( ch n -- t )</code></h4>
+<p>EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code>&#xFF0C;&#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x9598;&#x9053;&#x5668;&#x662F;&#x5426;&#x5099;&#x59A5; &#xFF1F;</p>
+<h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x6307;&#x4EE4;</th>
+<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0gateway</code></td>
+<td>( ch n -- )</td>
+</tr>
+<tr>
+<td><code>gateway-in-be@</code></td>
+<td>( len start ch n -- data )</td>
+</tr>
+<tr>
+<td><code>gateway-in-le@</code></td>
+<td>( len start ch n -- data )</td>
+</tr>
+<tr>
+<td><code>gateway-in-len@</code></td>
+<td>( ch n -- len )</td>
+</tr>
+<tr>
+<td><code>gateway-out-be!</code></td>
+<td>( data len start ch n -- )</td>
+</tr>
+<tr>
+<td><code>gateway-out-be@</code></td>
+<td>( len start ch n -- data )</td>
+</tr>
+<tr>
+<td><code>gateway-out-le!</code></td>
+<td>( data len start ch n -- )</td>
+</tr>
+<tr>
+<td><code>gateway-out-le@</code></td>
+<td>( len start ch n -- data )</td>
+</tr>
+<tr>
+<td><code>gateway-out-len@</code></td>
+<td>( ch n -- len )</td>
+</tr>
+<tr>
+<td><code>gateway-ready?</code></td>
+<td>( ch n -- t )</td>
+</tr>
+</tbody>
+</table>
 
                                 
                                 </section>
@@ -769,12 +749,12 @@
 
             
                 
-                <a href="sfc-example/axes-homing.html" class="navigation navigation-prev " aria-label="Previous page: Homing State">
+                <a href="ethercat-encoder-primitives.html" class="navigation navigation-prev " aria-label="Previous page: EtherCAT Encoder 指令集">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="update-software.html" class="navigation navigation-next " aria-label="Next page: 軟體更新">
+                <a href="axis-group.html" class="navigation navigation-next " aria-label="Next page: 軸組 Axis Group 指令集">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -785,7 +765,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"支援的硬體清單","level":"5.1","depth":1,"next":{"title":"軟體更新","level":"5.2","depth":1,"path":"update-software.md","ref":"./update-software.md","articles":[]},"previous":{"title":"Homing State","level":"4.3.9.3","depth":3,"path":"sfc-example/axes-homing.md","ref":"./sfc-example/axes-homing.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"known-working-hardware.md","mtime":"2019-02-23T03:27:31.377Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-24T07:38:29.531Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"EtherCAT Gateway 指令集","level":"4.3.7","depth":2,"next":{"title":"軸組 Axis Group 指令集","level":"4.3.8","depth":2,"path":"axis-group.md","ref":"./axis-group.md","articles":[]},"previous":{"title":"EtherCAT Encoder 指令集","level":"4.3.6","depth":2,"path":"ethercat-encoder-primitives.md","ref":"./ethercat-encoder-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ethercat-gateway-primitives.md","mtime":"2019-07-24T07:37:58.385Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-24T07:38:29.531Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
