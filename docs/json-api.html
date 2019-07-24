@@ -372,7 +372,20 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.7" data-path="axis-group.html">
+        <li class="chapter " data-level="4.3.7" data-path="ethercat-gateway-primitives.html">
+            
+                <a href="ethercat-gateway-primitives.html">
+            
+                    
+                    EtherCAT Gateway 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.8" data-path="axis-group.html">
             
                 <a href="axis-group.html">
             
@@ -385,7 +398,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.8" data-path="sfc.html">
+        <li class="chapter " data-level="4.3.9" data-path="sfc.html">
             
                 <a href="sfc.html">
             
@@ -399,7 +412,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.3.8.1" data-path="sfc-example/servo-on-off.html">
+        <li class="chapter " data-level="4.3.9.1" data-path="sfc-example/servo-on-off.html">
             
                 <a href="sfc-example/servo-on-off.html">
             
@@ -412,7 +425,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.8.2" data-path="sfc-example/motion-state.html">
+        <li class="chapter " data-level="4.3.9.2" data-path="sfc-example/motion-state.html">
             
                 <a href="sfc-example/motion-state.html">
             
@@ -425,7 +438,7 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3.8.3" data-path="sfc-example/axes-homing.html">
+        <li class="chapter " data-level="4.3.9.3" data-path="sfc-example/axes-homing.html">
             
                 <a href="sfc-example/axes-homing.html">
             
@@ -634,10 +647,6 @@
 <li>Ruby</li>
 <li>Go</li>
 </ul>
-<p>&#x4EE5;&#x4E0B;&#x7A0B;&#x5F0F;&#x8A9E;&#x8A00;&#x96D6;&#x7136;&#x652F;&#x63F4; JSON&#xFF0C;&#x4F46;&#x5EFA;&#x8B70;&#x4F7F;&#x7528; Botnana Control &#x53E6;&#x884C;&#x63D0;&#x4F9B;&#x7684; APIs&#xFF1A;</p>
-<ul>
-<li><a href="javascript-api.md">Javascript API</a></li>
-</ul>
 <h2 id="&#x56DE;&#x50B3;&#x8CC7;&#x6599;&#x683C;&#x5F0F;">&#x56DE;&#x50B3;&#x8CC7;&#x6599;&#x683C;&#x5F0F;</h2>
 <p>Botnana Control &#x82E5;&#x56DE;&#x50B3;&#x8CC7;&#x6599;&#xFF0C;&#x683C;&#x5F0F;&#x4E00;&#x5F8B;&#x70BA;</p>
 <pre><code>tag1|value1|tag2|value2...
@@ -654,11 +663,20 @@
 <p>&#x7A0B;&#x5F0F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; Configuration API &#x4F86;&#x8655;&#x7406;&#x53C3;&#x6578;&#x8A2D;&#x5B9A;&#x6A94;&#x3002;&#x53C3;&#x6578;&#x6A94;&#x7684;&#x8A2D;&#x5B9A;&#xFF0C;&#x5728;&#x91CD;&#x958B;&#x6A5F;&#x6216;&#x91CD;&#x65B0;&#x8B80;&#x53D6;&#x53C3;&#x6578;&#x6A94;&#x5F8C;&#x751F;&#x6548;&#x3002;</p>
 <h3 id="&#x4FEE;&#x6539;&#x8A2D;&#x5B9A;&#x53C3;&#x6578;">&#x4FEE;&#x6539;&#x8A2D;&#x5B9A;&#x53C3;&#x6578;</h3>
 <p>&#x4FEE;&#x6539;&#x8A2D;&#x5B9A;&#x53C3;&#x6578;&#x4E26;&#x4E0D;&#x6703;&#x7ACB;&#x523B;&#x5C07;&#x8A2D;&#x5B9A;&#x503C;&#x5132;&#x5B58;&#x81F3;&#x53C3;&#x6578;&#x8A2D;&#x5B9A;&#x6A94;&#xFF0C;&#x4E5F;&#x4E0D;&#x6703;&#x5F71;&#x97FF;&#x5230;&#x5404;&#x88DD;&#x7F6E;&#x76EE;&#x524D;&#x4F7F;&#x7528;&#x7684;&#x53C3;&#x6578;&#x3002;</p>
+<h4 id="ethercat-position-&#x8207;-alias-&#x8AAA;&#x660E;&#xFF1A;">EtherCAT Position &#x8207; Alias &#x8AAA;&#x660E;&#xFF1A;</h4>
+<p><strong>EtherCAT Position</strong>: &#x4F9D;&#x64DA; EtherCAT &#x7DB2;&#x8DEF;&#x4F48;&#x5C40;&#xFF0C;&#x6700;&#x9760;&#x8FD1;&#x4E3B;&#x7AD9;&#x7684; Position &#x70BA; 1, &#x4F9D;&#x5E8F;&#x905E;&#x589E;&#x3002;</p>
+<p><strong>EtherCAT Alias</strong>: &#x6BCF;&#x4E00;&#x500B; EtherCAT &#x5F9E;&#x7AD9;&#x90FD;&#x53EF;&#x4EE5;&#x8A2D;&#x5B9A;&#x4E00;&#x500B;&#x7AD9;&#x865F;&#x7684;&#x5225;&#x540D;&#x3002;&#x4E00;&#x822C;&#x8A2D;&#x5B9A;&#x6B64;&#x5225;&#x540D;&#x7684;&#x65B9;&#x6CD5;&#x6709;&#x5169;&#x7A2E;&#xFF1A;</p>
+<ol>
+<li>EtherCAT &#x5F9E;&#x7AD9;&#x5167;&#x7684; EEPROM&#xFF0C;</li>
+<li>EtherCAT &#x5F9E;&#x7AD9;&#x7684;&#x786C;&#x9AD4;&#x65CB;&#x9215;&#x3002;</li>
+</ol>
+<p>&#x5728;&#x8A2D;&#x5B9A;&#x53C3;&#x6578;&#x6642;,&#x5982;&#x679C; alias &#x4E0D;&#x70BA; 0&#xFF0C;&#x5C31;&#x6703;&#x4EE5; alias &#x9078;&#x64C7;&#x5F9E;&#x7AD9;&#x3002;&#x7576; alias &#x70BA; 0&#xFF0C;&#x5C31;&#x4EE5; position &#x9078;&#x64C7;&#x5F9E;&#x7AD9;&#x3002;</p>
 <h4 id="&#x8A2D;&#x5B9A;-ethercat-slave-&#x53C3;&#x6578;-configslaveset">&#x8A2D;&#x5B9A; EtherCAT Slave &#x53C3;&#x6578; <code>config.slave.set</code></h4>
 <p>&#x65B9;&#x6CD5;&#xFF1A;</p>
 <pre><code>&quot;method&quot;: &quot;config.slave.set&quot; 
 </code></pre><p>&#x5FC5;&#x8981;&#x53C3;&#x6578;&#xFF1A;</p>
-<pre><code>&quot;position&quot;: Slave Position, &#x5F9E; 1 &#x958B;&#x59CB;&#x8A08;&#x6578;&#x3002;
+<pre><code>&quot;alias&quot;: Slave Alis&#x3002;
+&quot;position&quot;: Slave Position&#x3002;
 &quot;channel&quot;: Device Channel&#xFF0C;&#x5F9E; 1 &#x958B;&#x59CB;&#x8A08;&#x6578;&#x3002;
 </code></pre><p>&#x53EF;&#x8A2D;&#x5B9A;&#x53C3;&#x6578;&#xFF1A;&#x53EF;&#x4EE5;&#x55AE;&#x7368;&#x8A2D;&#x5B9A;&#x4E00;&#x500B;&#x6216;&#x662F;&#x591A;&#x500B;</p>
 <pre><code>&quot;homing_method&quot; : Homing method ,&#x53C3;&#x8003;&#x9A45;&#x52D5;&#x5668; 0x6098:0x00 &#x7684;&#x63CF;&#x8FF0;&#x3002;
@@ -678,6 +696,7 @@
   &quot;jsonrpc&quot;: &quot;2.0&quot;,
   &quot;method&quot;: &quot;config.slave.set&quot;,
   &quot;params&quot;: {
+    &quot;alias&quot;: 0,
     &quot;position&quot;: 1,
     &quot;channel&quot;: 1,
     &quot;homing_method&quot; : 33,
@@ -688,6 +707,7 @@
   &quot;jsonrpc&quot;: &quot;2.0&quot;,
   &quot;method&quot;: &quot;config.slave.set&quot;,
   &quot;params&quot;: {
+    &quot;alias&quot;: 0,
     &quot;position&quot;: 2,
     &quot;channel&quot;: 3,
     &quot;homing_speed_1&quot; : 10000,
@@ -773,13 +793,15 @@
 <p>&#x65B9;&#x6CD5;&#xFF1A;</p>
 <pre><code>&quot;method&quot;: &quot;config.slave.get&quot; 
 </code></pre><p>&#x5FC5;&#x8981;&#x53C3;&#x6578;&#xFF1A;</p>
-<pre><code>&quot;position&quot;: Slave Position, &#x5F9E; 1 &#x958B;&#x59CB;&#x8A08;&#x6578;&#x3002;
+<pre><code>&quot;alias&quot;: Slave Alias&#x3002;
+&quot;position&quot;: Slave Position&#x3002;
 &quot;channel&quot;: Device Channel&#xFF0C;&#x5F9E; 1 &#x958B;&#x59CB;&#x8A08;&#x6578;&#x3002;
 </code></pre><p>&#x7BC4;&#x4F8B;&#xFF1A;</p>
 <pre><code>{
   &quot;jsonrpc&quot;: &quot;2.0&quot;,
   &quot;method&quot;: &quot;config.slave.get&quot;,
   &quot;params&quot;: {
+    &quot;alias&quot;: 0,
     &quot;position&quot;: 1,
     &quot;channel&quot;: 1,
   }
@@ -1004,7 +1026,7 @@ factor   &#x8868;&#x793A; position, forward, backward &#x8F49;&#x63DB;&#x5230; B
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"JSON API","level":"4.2","depth":1,"next":{"title":"Real-time Script API","level":"4.3","depth":1,"path":"real-time-script-api.md","ref":"./real-time-script-api.md","articles":[{"title":"Botnana 基本指令集","level":"4.3.1","depth":2,"path":"host-primitives.md","ref":"./host-primitives.md","articles":[]},{"title":"EtherCAT 指令集","level":"4.3.2","depth":2,"path":"ethercat-primitives.md","ref":"./ethercat-primitives.md","articles":[]},{"title":"EtherCAT Drive 指令集","level":"4.3.3","depth":2,"path":"ethercat-drive-primitives.md","ref":"./ethercat-drive-primitives.md","articles":[]},{"title":"EtherCAT IO 指令集","level":"4.3.4","depth":2,"path":"ethercat-io-primitives.md","ref":"./ethercat-io-primitives.md","articles":[]},{"title":"EtherCAT UART 指令集","level":"4.3.5","depth":2,"path":"ethercat-uart-primitives.md","ref":"./ethercat-uart-primitives.md","articles":[]},{"title":"EtherCAT Encoder 指令集","level":"4.3.6","depth":2,"path":"ethercat-encoder-primitives.md","ref":"./ethercat-encoder-primitives.md","articles":[]},{"title":"軸組 Axis Group 指令集","level":"4.3.7","depth":2,"path":"axis-group.md","ref":"./axis-group.md","articles":[]},{"title":"狀態流程圖 Sequential Function Chart (SFC)","level":"4.3.8","depth":2,"path":"sfc.md","ref":"./sfc.md","articles":[{"title":"Servo On/OFF","level":"4.3.8.1","depth":3,"path":"sfc-example/servo-on-off.md","ref":"./sfc-example/servo-on-off.md","articles":[]},{"title":"Motion State","level":"4.3.8.2","depth":3,"path":"sfc-example/motion-state.md","ref":"./sfc-example/motion-state.md","articles":[]},{"title":"Homing State","level":"4.3.8.3","depth":3,"path":"sfc-example/axes-homing.md","ref":"./sfc-example/axes-homing.md","articles":[]}]}]},"previous":{"title":"程式開發界面","level":"4.1","depth":1,"path":"programming.md","ref":"programming.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"json-api.md","mtime":"2018-11-05T08:20:38.079Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-06-21T05:46:28.428Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"JSON API","level":"4.2","depth":1,"next":{"title":"Real-time Script API","level":"4.3","depth":1,"path":"real-time-script-api.md","ref":"./real-time-script-api.md","articles":[{"title":"Botnana 基本指令集","level":"4.3.1","depth":2,"path":"host-primitives.md","ref":"./host-primitives.md","articles":[]},{"title":"EtherCAT 指令集","level":"4.3.2","depth":2,"path":"ethercat-primitives.md","ref":"./ethercat-primitives.md","articles":[]},{"title":"EtherCAT Drive 指令集","level":"4.3.3","depth":2,"path":"ethercat-drive-primitives.md","ref":"./ethercat-drive-primitives.md","articles":[]},{"title":"EtherCAT IO 指令集","level":"4.3.4","depth":2,"path":"ethercat-io-primitives.md","ref":"./ethercat-io-primitives.md","articles":[]},{"title":"EtherCAT UART 指令集","level":"4.3.5","depth":2,"path":"ethercat-uart-primitives.md","ref":"./ethercat-uart-primitives.md","articles":[]},{"title":"EtherCAT Encoder 指令集","level":"4.3.6","depth":2,"path":"ethercat-encoder-primitives.md","ref":"./ethercat-encoder-primitives.md","articles":[]},{"title":"EtherCAT Gateway 指令集","level":"4.3.7","depth":2,"path":"ethercat-gateway-primitives.md","ref":"./ethercat-gateway-primitives.md","articles":[]},{"title":"軸組 Axis Group 指令集","level":"4.3.8","depth":2,"path":"axis-group.md","ref":"./axis-group.md","articles":[]},{"title":"狀態流程圖 Sequential Function Chart (SFC)","level":"4.3.9","depth":2,"path":"sfc.md","ref":"./sfc.md","articles":[{"title":"Servo On/OFF","level":"4.3.9.1","depth":3,"path":"sfc-example/servo-on-off.md","ref":"./sfc-example/servo-on-off.md","articles":[]},{"title":"Motion State","level":"4.3.9.2","depth":3,"path":"sfc-example/motion-state.md","ref":"./sfc-example/motion-state.md","articles":[]},{"title":"Homing State","level":"4.3.9.3","depth":3,"path":"sfc-example/axes-homing.md","ref":"./sfc-example/axes-homing.md","articles":[]}]}]},"previous":{"title":"程式開發界面","level":"4.1","depth":1,"path":"programming.md","ref":"programming.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"json-api.md","mtime":"2019-07-24T07:37:58.385Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-24T07:38:29.531Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

@@ -60,7 +60,7 @@
     slaves_responding|3|al_states|8|link_up|1
     |input_wc|3|output_wc|3|input_wc_state|1|output_wc_state|1
     |input_wc_error|8187|output_wc_error|8233
-    |waiting_sdos_len|0
+    |waiting_sdos_len|0|ec_ready|1
 
 其中的：
 
@@ -75,6 +75,25 @@
     output_wc_error:    計數 output_wc_state = 0 的周期數。
                         通常在開機時因為時間還不能同步，所以在開機初期會增加。
     waiting_sdos_len:   等待處理的 SDO 命令數。
+    ec_ready:           1 表示 EtherCAT 通訊正常。
+
+#### `.ec-wdt-proc-data ( n -- )`
+
+顯示 EtherCAT Slave Position `n` 的 ESC Watchdog Time Process Data 的暫存器設定值。
+
+命令範例:
+
+    1 .ec-wdt-proc-data
+
+回傳訊息:
+
+    ec_wdt_proc_data.1|1000|ec_wdt_proc_data_busy.1|0|ec_wdt_proc_data_error.1|0
+
+其中的：
+
+    ec_wdt_proc_data:       ESC Watchdog Time Process Data 的暫存器設定值
+    ec_wdt_proc_data_busy:  要求設定或是讀取的指令是否還在執行中?
+    ec_wdt_proc_data_error: 要求設定或是讀取的指令是否執行失敗?
 
 #### `.sdo ( n -- )`
 
@@ -247,6 +266,11 @@
 
 當驅動器發生異警時，可以使用此命令讓驅動器將異警訊息（emergency message）傳送回來。
 
+#### `@ec-wdt-proc-data ( n -- ) `
+
+從 EtherCAT 從站 `n` 讀回 ESC Watchdog Time Process data 暫存器的值。此命令是要求 EtherCAT 從站將暫存器值傳送回來，不會馬上取得結果。
+可以透過 `ec-wdt-proc-data-busy?` 的結果得知是否已經回傳。
+
 #### `ec-a>n ( alias -- n )`
 
 利用 EtherCAT slaves alias `alias` 找到對應的 Slave position `n`
@@ -256,7 +280,7 @@ Note:
 1. `alias` 不可以為零
 2. 假如 `alias` 不存在，則會回傳錯誤訊息
 
-#### `ec-ain? ( channel n -- t )`
+#### `ec-ain? ( ch n -- t )`
 
 EtherCAT slave position `n` Channel `channel` 是否為類比輸入？
 
@@ -275,29 +299,29 @@ Note:
 
 EtherCAT slave alias `alias` 是否存在？ 
 
-#### `ec-aout? ( channel n -- t )`
+#### `ec-aout? ( ch n -- t )`
 
-EtherCAT slave position `n` Channel `channel` 是否為類比輸出？
+EtherCAT slave position `n` Channel `ch` 是否為類比輸出？
 
-#### `ec-din? ( channel n -- t )`
+#### `ec-din? ( ch n -- t )`
 
-EtherCAT slave position `n` Channel `channel` 是否為數位輸入？
+EtherCAT slave position `n` Channel `ch` 是否為數位輸入？
 
-#### `ec-dout? ( channel n -- t )`
+#### `ec-dout? ( ch n -- t )`
 
-EtherCAT slave position `n` Channel `channel` 是否為數位輸出？
+EtherCAT slave position `n` Channel `ch` 是否為數位輸出？
 
-#### `ec-drive? ( channel n -- t )`
+#### `ec-drive? ( ch n -- t )`
 
-EtherCAT slave position `n` Channel `channel` 是否為馬達驅動器？
+EtherCAT slave position `n` Channel `ch` 是否為馬達驅動器？
 
 #### `ec-emcy-busy? ( n -- t )`
 
 EtherCAT slave position `n` 的 `?ec-emcy` 是否等待執行中？
 
-#### `ec-encoder? ( channel n -- t )`
+#### `ec-encoder? ( ch n -- t )`
 
-EtherCAT slave position `n` Channel `channel` 是否為編碼器輸入模組？
+EtherCAT slave position `n` Channel `ch` 是否為編碼器輸入模組？
 
 #### `ec-load ( n -- )`
 
@@ -315,9 +339,27 @@ EtherCAT 通訊是否備妥或是正常？
 
 如果 EtherCAT slave 有提供設定參數到 EEPROM 的功能，大部份會使用此方式。
 
-#### `ec-uart?  ( channel n -- t ) `
+#### `ec-uart?  ( ch n -- t ) `
 
-EtherCAT slave position `n` Channel `channel` 是否為 UART 模組？
+EtherCAT slave position `n` Channel `ch` 是否為 UART 模組？
+
+#### `ec-wdt-proc-data@  ( n -- interval )`
+
+將 EtherCAT 從站 `n` 的 Watchdog time `interval` 放到整數堆疊上。
+
+#### `ec-wdt-proc-data!  ( interval n -- )`
+
+設定 EtherCAT 從站 `n` 的 Watchdog time 設定為 `interval`。其 `interval` 的時間必須參考從站的 Watchdog 設定。
+
+如果要將 Watchdog 關閉就將 `interval` 設定為 0 。
+
+#### `ec-wdt-proc-data-busy?  ( n -- t )`
+
+是否正在執行 `@ec-wdt-proc-data` 中？
+
+#### `ec-wdt-proc-data-error? ( n -- t )`
+
+執行 `@ec-wdt-proc-data` 的結果是否有錯誤？
 
 #### `list-slaves ( -- )`
 
@@ -444,24 +486,30 @@ EtherCAT slave  position `n` 的 SDO 命令的執行結果是否有問題？
 | `.ec-dc`              | ( -- ) |
 | `.ec-emcy`            | ( n -- ) |
 | `.ec-links`           | ( -- ) |
+| `.ec-wdt-proc-data`  | ( n -- ) |
 | `.sdo`                | ( n --  ) |
 | `.slave`              | ( n -- ) |
 | `.slave-diff`         | ( n -- ) |
 | `?ec-emcy`            | ( n -- ) |
+| `@ec-wdt-proc-data` | ( n -- ) |
 | `ec-a>n`              | ( alias -- n ) |
-| `ec-ain?`             | ( channel n -- t ) |
+| `ec-ain?`             | ( ch n -- t ) |
 | `ec-alias!`           | ( alias n -- ) |
 | `ec-alias?`           | ( alias -- t ) |
-| `ec-aout?`            | ( channel n -- t ) |
-| `ec-din?`             | ( channel n -- t ) |
-| `ec-dout?`            | ( channel n -- t ) |
-| `ec-drive?`           | ( channel n -- t ) |
+| `ec-aout?`            | ( ch n -- t ) |
+| `ec-din?`             | ( ch n -- t ) |
+| `ec-dout?`            | ( ch n -- t ) |
+| `ec-drive?`           | ( ch n -- t ) |
 | `ec-emcy-busy?`       |( n -- t ) |
-| `ec-encoder?`         | ( channel n -- t ) |
+| `ec-encoder?`         | ( ch n -- t ) |
 | `ec-load`             | ( n -- ) |
 | `ec-ready?`           | ( -- t ) |
 | `ec-save`             | ( n -- ) |
-| `ec-uart?`            | ( channel n -- t ) |
+| `ec-uart?`            | ( ch n -- t ) |
+| `ec-wdt-proc-data@` | ( n -- data ) |
+| `ec-wdt-proc-data!` | ( cmd n -- ) |
+| `ec-wdt-proc-data-busy?` | ( n -- t ) |
+| `ec-wdt-proc-data-error?` | ( n -- t ) |
 | `list-slaves`         | ( -- ) |
 | `sdo-busy?`           | ( n -- t ) |
 | `sdo-data@`           | ( n -- data ) |
