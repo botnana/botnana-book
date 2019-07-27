@@ -17,4 +17,5 @@ Botnana Control 在其 real-time event loop 中使用了 Forth VM 以滿足更�
 - [EtherCAT IO 指令集](./ethercat-io-primitives.md)
 - [EtherCAT UART 指令集](./ethercat-uart-primitives.md)
 - [EtherCAT Encoder 指令集](./ethercat-encoder-primitives.md)
+- [EtherCAT Gateway 指令集](./ethercat-gateway-primitives.md)
 - [軸組 Axis Group 指令集](./axis-group.md)   
