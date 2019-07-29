@@ -323,6 +323,10 @@ EtherCAT slave position `n` 的 `?ec-emcy` 是否等待執行中？
 
 EtherCAT slave position `n` Channel `ch` 是否為編碼器輸入模組？
 
+#### `ec-gateway? ( ch n -- t )`
+
+EtherCAT slave position `n` Channel `ch` 是否為閘道器 (Gateway) 模組？
+
 #### `ec-load ( n -- )`
 
 將 EtherCAT slave position `n` 的設定值回復到原廠預設值。相當設定 Object 0x1011:1 為 0x64616F6C (ASCII: l:0x6C, o:0x6F, a:61, d:64)。
@@ -502,6 +506,7 @@ EtherCAT slave  position `n` 的 SDO 命令的執行結果是否有問題？
 | `ec-drive?`           | ( ch n -- t ) |
 | `ec-emcy-busy?`       |( n -- t ) |
 | `ec-encoder?`         | ( ch n -- t ) |
+| `ec-gateway?`         | ( ch n -- t ) |
 | `ec-load`             | ( n -- ) |
 | `ec-ready?`           | ( -- t ) |
 | `ec-save`             | ( n -- ) |
