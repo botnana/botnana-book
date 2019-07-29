@@ -402,6 +402,10 @@ Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。
     1 group! 0.1e feedrate! \ 選用軸組 1，設定 feedrate
     group!                  \ 切換回原來的軸組
 
+#### `group? ( -- t )`
+
+目前所選定的軸組是否啟動 ?
+
 #### `grp1d? ( g -- flag )`
 
 指定軸組 `g` 是否為 1D 軸組 ?
@@ -610,20 +614,21 @@ Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。
 | feedrate!             | ( F: v -- )               | 設定後續安插路徑的最大運動速度
 | feedrate@             | ( F: -- v )               | 取得後續安插路徑的最大運動速度
 | gamax!                | ( g -- ) ( F: a --)       | 設定指定軸組的最大加速度
-| gend?                 | ( -- flag )               | 所選定的軸組是否到達路徑終點？
+| gend?                 | ( -- flag )               | 所選定的軸組是否到達路徑終點 ?
 | gignore-dist!         | ( g -- ) ( F: dist --)    | 設定指定軸組可忽略的長度計算誤差
 | gjmax!                | ( g -- ) ( F: j --)       | 設定指定軸組的最大加加速度
 | gmap!                 | ( j1 j2 j3 ... g -- )     | 設定軸組所控制的運動軸，需要注意軸組型態與運動軸數量
 | gmap@                 | ( g -- j1 j2 j3 ... )     | 取得軸組所控制的運動軸，需要注意軸組型態與運動軸數量
 | group!                | ( g -- )                  | 選定軸組
 | group@                | ( -- g )                  | 取得目前所選定的軸組
+| group?                | ( -- t )                  | 目前所選定的軸組是否啟動 ?
 | grp1d?                | ( g -- flag )             | 指定軸組是否為 1D 軸組
 | grp2d?                | ( g -- flag )             | 指定軸組是否為 2D 軸組
 | grp3d?                | ( g -- flag )             | 指定軸組是否為 3D 軸組
 | grp-sine?             | ( g -- flag )             | 指定軸組是否為 Sine Wave 軸組
 | gstart                | ( -- )                    | 命令所選定的軸組開始運動
 | gstop                 | ( -- )                    | 命令所選定的軸組停止運動
-| gstop?                | ( -- flag )               | 所選定的軸組是否已經停止運動 ？
+| gstop?                | ( -- flag )               | 所選定的軸組是否已經停止運動 ?
 | gvmax!                | ( g -- ) ( F: v --)       | 設定指定軸組的最大運動速度
 | map-len@              | ( g -- len )              | 取得指定軸組的運動軸數量
 | map-sine              | ( j1 g -- )               | 設定 Sine Wave 軸組所控制的運動軸

@@ -874,6 +874,8 @@ ain.3.4|0|ain.4.4|0
 <p>EtherCAT slave position <code>n</code> &#x7684; <code>?ec-emcy</code> &#x662F;&#x5426;&#x7B49;&#x5F85;&#x57F7;&#x884C;&#x4E2D;&#xFF1F;</p>
 <h4 id="ec-encoder--ch-n----t-"><code>ec-encoder? ( ch n -- t )</code></h4>
 <p>EtherCAT slave position <code>n</code> Channel <code>ch</code> &#x662F;&#x5426;&#x70BA;&#x7DE8;&#x78BC;&#x5668;&#x8F38;&#x5165;&#x6A21;&#x7D44;&#xFF1F;</p>
+<h4 id="ec-gateway--ch-n----t-"><code>ec-gateway? ( ch n -- t )</code></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> &#x662F;&#x5426;&#x70BA;&#x9598;&#x9053;&#x5668; (Gateway) &#x6A21;&#x7D44;&#xFF1F;</p>
 <h4 id="ec-load--n----"><code>ec-load ( n -- )</code></h4>
 <p>&#x5C07; EtherCAT slave position <code>n</code> &#x7684;&#x8A2D;&#x5B9A;&#x503C;&#x56DE;&#x5FA9;&#x5230;&#x539F;&#x5EE0;&#x9810;&#x8A2D;&#x503C;&#x3002;&#x76F8;&#x7576;&#x8A2D;&#x5B9A; Object 0x1011:1 &#x70BA; 0x64616F6C (ASCII: l:0x6C, o:0x6F, a:61, d:64)&#x3002;</p>
 <p>&#x5982;&#x679C; EtherCAT slave &#x6709;&#x63D0;&#x4F9B;&#x56DE;&#x5FA9;&#x5230;&#x539F;&#x5EE0;&#x9810;&#x8A2D;&#x503C;&#x529F;&#x80FD;&#xFF0C;&#x5927;&#x90E8;&#x4EFD;&#x6703;&#x4F7F;&#x7528;&#x6B64;&#x65B9;&#x5F0F;&#x3002;</p>
@@ -1048,6 +1050,10 @@ ain.3.4|0|ain.4.4|0
 <td>( ch n -- t )</td>
 </tr>
 <tr>
+<td><code>ec-gateway?</code></td>
+<td>( ch n -- t )</td>
+</tr>
+<tr>
 <td><code>ec-load</code></td>
 <td>( n -- )</td>
 </tr>
@@ -1196,7 +1202,7 @@ ain.3.4|0|ain.4.4|0
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"EtherCAT 指令集","level":"4.3.2","depth":2,"next":{"title":"EtherCAT Drive 指令集","level":"4.3.3","depth":2,"path":"ethercat-drive-primitives.md","ref":"./ethercat-drive-primitives.md","articles":[]},"previous":{"title":"Botnana 基本指令集","level":"4.3.1","depth":2,"path":"host-primitives.md","ref":"./host-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ethercat-primitives.md","mtime":"2019-07-24T07:37:58.385Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-24T07:38:29.531Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"EtherCAT 指令集","level":"4.3.2","depth":2,"next":{"title":"EtherCAT Drive 指令集","level":"4.3.3","depth":2,"path":"ethercat-drive-primitives.md","ref":"./ethercat-drive-primitives.md","articles":[]},"previous":{"title":"Botnana 基本指令集","level":"4.3.1","depth":2,"path":"host-primitives.md","ref":"./host-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ethercat-primitives.md","mtime":"2019-07-29T02:57:10.879Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-29T02:58:28.726Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

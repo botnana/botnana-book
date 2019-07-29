@@ -972,7 +972,9 @@ Botnana Control &#x662F;&#x4EE5;&#x5F91;&#x5EA6; (radian) &#x8A08;&#x7B97;&#xFF0
 <pre><code>group@                  \ &#x53D6;&#x51FA;&#x76EE;&#x524D;&#x8EF8;&#x7D44;&#x7DE8;&#x865F;
 1 group! 0.1e feedrate! \ &#x9078;&#x7528;&#x8EF8;&#x7D44; 1&#xFF0C;&#x8A2D;&#x5B9A; feedrate
 group!                  \ &#x5207;&#x63DB;&#x56DE;&#x539F;&#x4F86;&#x7684;&#x8EF8;&#x7D44;
-</code></pre><h4 id="grp1d--g----flag-"><code>grp1d? ( g -- flag )</code></h4>
+</code></pre><h4 id="group-----t-"><code>group? ( -- t )</code></h4>
+<p>&#x76EE;&#x524D;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x555F;&#x52D5; ?</p>
+<h4 id="grp1d--g----flag-"><code>grp1d? ( g -- flag )</code></h4>
 <p>&#x6307;&#x5B9A;&#x8EF8;&#x7D44; <code>g</code> &#x662F;&#x5426;&#x70BA; 1D &#x8EF8;&#x7D44; ?</p>
 <h4 id="grp2d--g----flag-"><code>grp2d? ( g -- flag )</code></h4>
 <p>&#x6307;&#x5B9A;&#x8EF8;&#x7D44; <code>g</code> &#x662F;&#x5426;&#x70BA; 2D &#x8EF8;&#x7D44; ?</p>
@@ -1150,7 +1152,7 @@ group!                  \ &#x5207;&#x63DB;&#x56DE;&#x539F;&#x4F86;&#x7684;&#x8EF
 <tr>
 <td>gend?</td>
 <td>( -- flag )</td>
-<td>&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x5230;&#x9054;&#x8DEF;&#x5F91;&#x7D42;&#x9EDE;&#xFF1F;</td>
+<td>&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x5230;&#x9054;&#x8DEF;&#x5F91;&#x7D42;&#x9EDE; ?</td>
 </tr>
 <tr>
 <td>gignore-dist!</td>
@@ -1181,6 +1183,11 @@ group!                  \ &#x5207;&#x63DB;&#x56DE;&#x539F;&#x4F86;&#x7684;&#x8EF
 <td>group@</td>
 <td>( -- g )</td>
 <td>&#x53D6;&#x5F97;&#x76EE;&#x524D;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;</td>
+</tr>
+<tr>
+<td>group?</td>
+<td>( -- t )</td>
+<td>&#x76EE;&#x524D;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x555F;&#x52D5; ?</td>
 </tr>
 <tr>
 <td>grp1d?</td>
@@ -1215,7 +1222,7 @@ group!                  \ &#x5207;&#x63DB;&#x56DE;&#x539F;&#x4F86;&#x7684;&#x8EF
 <tr>
 <td>gstop?</td>
 <td>( -- flag )</td>
-<td>&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x505C;&#x6B62;&#x904B;&#x52D5; &#xFF1F;</td>
+<td>&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x505C;&#x6B62;&#x904B;&#x52D5; ?</td>
 </tr>
 <tr>
 <td>gvmax!</td>
@@ -2187,7 +2194,7 @@ repeat
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"軸組 Axis Group 指令集","level":"4.3.8","depth":2,"next":{"title":"狀態流程圖 Sequential Function Chart (SFC)","level":"4.3.9","depth":2,"path":"sfc.md","ref":"./sfc.md","articles":[{"title":"Servo On/OFF","level":"4.3.9.1","depth":3,"path":"sfc-example/servo-on-off.md","ref":"./sfc-example/servo-on-off.md","articles":[]},{"title":"Motion State","level":"4.3.9.2","depth":3,"path":"sfc-example/motion-state.md","ref":"./sfc-example/motion-state.md","articles":[]},{"title":"Homing State","level":"4.3.9.3","depth":3,"path":"sfc-example/axes-homing.md","ref":"./sfc-example/axes-homing.md","articles":[]}]},"previous":{"title":"EtherCAT Gateway 指令集","level":"4.3.7","depth":2,"path":"ethercat-gateway-primitives.md","ref":"./ethercat-gateway-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"axis-group.md","mtime":"2019-07-24T07:37:58.385Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-24T07:38:29.531Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"軸組 Axis Group 指令集","level":"4.3.8","depth":2,"next":{"title":"狀態流程圖 Sequential Function Chart (SFC)","level":"4.3.9","depth":2,"path":"sfc.md","ref":"./sfc.md","articles":[{"title":"Servo On/OFF","level":"4.3.9.1","depth":3,"path":"sfc-example/servo-on-off.md","ref":"./sfc-example/servo-on-off.md","articles":[]},{"title":"Motion State","level":"4.3.9.2","depth":3,"path":"sfc-example/motion-state.md","ref":"./sfc-example/motion-state.md","articles":[]},{"title":"Homing State","level":"4.3.9.3","depth":3,"path":"sfc-example/axes-homing.md","ref":"./sfc-example/axes-homing.md","articles":[]}]},"previous":{"title":"EtherCAT Gateway 指令集","level":"4.3.7","depth":2,"path":"ethercat-gateway-primitives.md","ref":"./ethercat-gateway-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"axis-group.md","mtime":"2019-07-29T02:57:10.879Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-29T02:58:28.726Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
