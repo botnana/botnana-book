@@ -127,6 +127,9 @@ Print information of motion.
 
    只要滿足 Hold Time 的時間，數位正反器就會切換為真（True）的狀態，
    反之則為假（False）。
+
+   當條件滿足，數位正反器可以一直持續輸出為 True，直到原始訊號轉態為 False。
+
 ```
 
 **低準位觸發條件**
@@ -141,6 +144,9 @@ Print information of motion.
 
    只要滿足 Hold Time 的時間，數位正反器就會切換為真（True）的狀態，
    反之則為假（False）。
+
+   當條件滿足，數位正反器可以一直持續輸出為 True，直到原始訊號轉態為 True。
+
 ```
 
 **上緣觸發條件**
@@ -156,6 +162,9 @@ Print information of motion.
 
    要同時滿足 Set-up time 與 Hold Time 的時間，數位正反器才會切換為真（True）的狀態，
    反之則為假（False）。
+
+   因為是邊緣觸發，所以數位正反器只有一個周期的輸出為 True。
+
 ```
 
 **下緣觸發條件**
@@ -171,6 +180,9 @@ Print information of motion.
 
    要同時滿足 Set-up time 與 Hold Time 的時間，數位正反器才會切換為真（True）的狀態，
    反之則為假（False）。
+
+   因為是邊緣觸發，所以數位正反器只有一個周期的輸出為 True。
+
 ```
 
 可以使用的數位正反器總計有 100 個，編號從 1 ~ 100。因為數位正反器常用於 SFC 邏輯內，為效率上的考量，
