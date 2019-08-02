@@ -648,9 +648,9 @@
 <p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#x7BC4;&#x4F8B; :</p>
 <pre><code>version_number|1.3.1|period_us|2000|launch_time|2018-08-09T10:19:21Z
 </code></pre><h4 id="motion-----"><code>.motion ( -- )</code></h4>
-<p>Print information of motion. </p>
-<p>&#x53EA;&#x80FD;&#x900F;&#x904E; Json API &#x9032;&#x884C;&#x8A2D;&#x5B9A;&#x3002; </p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:   </p>
+<p>Print information of motion.</p>
+<p>&#x53EA;&#x80FD;&#x900F;&#x904E; Json API &#x9032;&#x884C;&#x8A2D;&#x5B9A;&#x3002;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
 <pre><code>.motion
 </code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#xFF1A;</p>
 <pre><code>period_us|2000
@@ -684,6 +684,210 @@
 <tr>
 <td><code>.motion</code></td>
 <td>( -- )</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="&#x5B9A;&#x6642;&#x5668;&#x6307;&#x4EE4;-&#xFF08;timer&#xFF09;">&#x5B9A;&#x6642;&#x5668;&#x6307;&#x4EE4; &#xFF08;timer&#xFF09;</h3>
+<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x5B9A;&#x6642;&#x5668;&#x7E3D;&#x8A08;&#x6709; 100 &#x500B;&#xFF0C;&#x7DE8;&#x865F;&#x5F9E; 1 ~ 100&#x3002;</p>
+<p>&#x5167;&#x90E8;&#x4F7F;&#x7528;&#x7684;&#x8A08;&#x6642;&#x55AE;&#x4F4D;&#x662F; Nanosecond&#xFF0C;64 bits &#x7684;&#x7121;&#x865F;&#x9577;&#x6574;&#x6578;&#x8A08;&#x6578;&#xFF0C;&#x6574;&#x500B;&#x6642;&#x9593;&#x5468;&#x671F;&#x53EF;&#x4EE5;&#x63A5;&#x8FD1; 500 &#x5E74;&#x800C;&#x4E0D;&#x6EA2;&#x4F4D;&#x3002;</p>
+<p>&#x5B9A;&#x6642;&#x5668;&#x7684;&#x5B9A;&#x6642;&#x6642;&#x9593;&#x4F7F;&#x7528; 32 bits &#x7684;&#x6709;&#x865F;&#x6574;&#x6578;&#x8A2D;&#x5B9A;&#xFF0C; &#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x8A2D;&#x5B9A;&#x6700;&#x9577;&#x7684;&#x6642;&#x9593;&#x662F; 24.8 &#x5929;&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x7BC4;&#x4F8B;&#xFF1A;</p>
+<pre><code>   100 1 timer-dur-ms!  \ &#x8A2D;&#x5B9A;&#x7DE8;&#x865F; 1 &#x5B9A;&#x6642;&#x5668;&#x7684;&#x8A08;&#x6642;&#x6642;&#x9593;&#x70BA; 100 ms&#x3002;
+   1 0timer             \ &#x5B9A;&#x6642;&#x5668;&#x7DE8;&#x865F; 1 &#x91CD;&#x65B0;&#x8A08;&#x6642;&#x3002;
+   1 timer-expired? .   \ &#x6AA2;&#x8996;&#x5B9A;&#x6642;&#x5668;&#x7DE8;&#x865F; 1 &#x662F;&#x5426;&#x5DF2;&#x7D93;&#x8D85;&#x904E;&#x8A08;&#x6642;&#x6642;&#x9593;&#x3002;
+</code></pre><h4 id="timer--no----"><code>.timer ( no -- )</code></h4>
+<p>&#x986F;&#x793A;&#x5B9A;&#x6642;&#x5668;&#x7DE8;&#x865F; <code>no</code> &#x7684;&#x72C0;&#x614B;&#x3002;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+<pre><code>1 .timer
+</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#xFF1A;</p>
+<pre><code>timer_name.1|None|timer_duration.1|0.0 ms|
+timer_expired.1|1|elapsed_time.1|307537.1 ms|
+start_time.1|0.0 ms|current_time.1|307537.1 ms
+</code></pre><h4 id="0timer--no----"><code>0timer ( no -- )</code></h4>
+<p>&#x5B9A;&#x6642;&#x5668;&#x7DE8;&#x865F; <code>no</code> &#x91CD;&#x65B0;&#x8A08;&#x6642;&#x3002;</p>
+<h4 id="timer-dur-ms--ms-no----"><code>timer-dur-ms! ( ms no -- )</code></h4>
+<p>&#x8A2D;&#x5B9A;&#x5B9A;&#x6642;&#x5668;&#x7DE8;&#x865F; <code>no</code> &#x7684;&#x8A08;&#x6642;&#x6642;&#x9593;&#x70BA; <code>ms</code> Millisecond&#x3002;</p>
+<h4 id="timer-dur-us---us-no----"><code>timer-dur-us!  ( us no -- )</code></h4>
+<p>&#x8A2D;&#x5B9A;&#x5B9A;&#x6642;&#x5668;&#x7DE8;&#x865F; <code>no</code> &#x7684;&#x8A08;&#x6642;&#x6642;&#x9593;&#x70BA; <code>us</code> Microsecond&#x3002;</p>
+<h4 id="timer-expired---no----t-"><code>timer-expired?  ( no -- t )</code></h4>
+<p>&#x5B9A;&#x6642;&#x5668;&#x7DE8;&#x865F; <code>no</code> &#x662F;&#x5426;&#x5DF2;&#x7D93;&#x8D85;&#x904E;&#x8A08;&#x6642;&#x6642;&#x9593;&#xFF1F;</p>
+<h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x6307;&#x4EE4;</th>
+<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.timer</code></td>
+<td>( no -- )</td>
+</tr>
+<tr>
+<td><code>0timer</code></td>
+<td>( no -- )</td>
+</tr>
+<tr>
+<td><code>timer-dur-ms!</code></td>
+<td>( ms no -- )</td>
+</tr>
+<tr>
+<td><code>timer-dur-us!</code></td>
+<td>( us no -- )</td>
+</tr>
+<tr>
+<td><code>timer-expired?</code></td>
+<td>( no -- t )</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;-&#xFF08;flip-flop&#xFF09;">&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668; &#xFF08;Flip-flop&#xFF09;</h3>
+<p>&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x53EF;&#x7528;&#x4F86;&#x5075;&#x6E2C;&#x6578;&#x4F4D;&#x8A0A;&#x865F;&#x72C0;&#x614B;&#x8F49;&#x79FB;&#xFF0C;&#x53EF;&#x4EE5;&#x5075;&#x6E2C;&#x7684;&#x578B;&#x614B;&#x6709;&#xFF1A;</p>
+<ul>
+<li>&#x9AD8;&#x6E96;&#x4F4D;&#x89F8;&#x767C;(High Level Trigger&#xFF09;</li>
+<li>&#x4F4E;&#x6E96;&#x4F4D;&#x89F8;&#x767C;(Low Level Trigger&#xFF09;</li>
+<li>&#x4E0A;&#x7DE3;&#x89F8;&#x767C; (Rising Edge Trigger&#xFF09;</li>
+<li>&#x4E0B;&#x7DE3;&#x89F8;&#x767C; (Falling Edge Trigger&#xFF09;</li>
+</ul>
+<p><strong>&#x9AD8;&#x6E96;&#x4F4D;&#x89F8;&#x767C;&#x689D;&#x4EF6;</strong></p>
+<pre><code> True              +--------------
+                   |
+ False ------------+
+
+                   |-----------|
+                     Hold Time
+
+   &#x53EA;&#x8981;&#x6EFF;&#x8DB3; Hold Time &#x7684;&#x6642;&#x9593;&#xFF0C;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x5C31;&#x6703;&#x5207;&#x63DB;&#x70BA;&#x771F;&#xFF08;True&#xFF09;&#x7684;&#x72C0;&#x614B;&#xFF0C;
+   &#x53CD;&#x4E4B;&#x5247;&#x70BA;&#x5047;&#xFF08;False&#xFF09;&#x3002;
+
+   &#x7576;&#x689D;&#x4EF6;&#x6EFF;&#x8DB3;&#xFF0C;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x53EF;&#x4EE5;&#x4E00;&#x76F4;&#x6301;&#x7E8C;&#x8F38;&#x51FA;&#x70BA; True&#xFF0C;&#x76F4;&#x5230;&#x539F;&#x59CB;&#x8A0A;&#x865F;&#x8F49;&#x614B;&#x70BA; False&#x3002;
+</code></pre><p><strong>&#x4F4E;&#x6E96;&#x4F4D;&#x89F8;&#x767C;&#x689D;&#x4EF6;</strong></p>
+<pre><code> True  ------------+
+                   |
+ False             +--------------
+
+                   |-----------|
+                     Hold Time
+
+   &#x53EA;&#x8981;&#x6EFF;&#x8DB3; Hold Time &#x7684;&#x6642;&#x9593;&#xFF0C;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x5C31;&#x6703;&#x5207;&#x63DB;&#x70BA;&#x771F;&#xFF08;True&#xFF09;&#x7684;&#x72C0;&#x614B;&#xFF0C;
+   &#x53CD;&#x4E4B;&#x5247;&#x70BA;&#x5047;&#xFF08;False&#xFF09;&#x3002;
+
+   &#x7576;&#x689D;&#x4EF6;&#x6EFF;&#x8DB3;&#xFF0C;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x53EF;&#x4EE5;&#x4E00;&#x76F4;&#x6301;&#x7E8C;&#x8F38;&#x51FA;&#x70BA; True&#xFF0C;&#x76F4;&#x5230;&#x539F;&#x59CB;&#x8A0A;&#x865F;&#x8F49;&#x614B;&#x70BA; True&#x3002;
+</code></pre><p><strong>&#x4E0A;&#x7DE3;&#x89F8;&#x767C;&#x689D;&#x4EF6;</strong></p>
+<pre><code> True              +---------
+                   |
+ False ------------+
+
+         |---------|------|
+           Set-up    Hold
+           Time      Time
+
+   &#x8981;&#x540C;&#x6642;&#x6EFF;&#x8DB3; Set-up time &#x8207; Hold Time &#x7684;&#x6642;&#x9593;&#xFF0C;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x624D;&#x6703;&#x5207;&#x63DB;&#x70BA;&#x771F;&#xFF08;True&#xFF09;&#x7684;&#x72C0;&#x614B;&#xFF0C;
+   &#x53CD;&#x4E4B;&#x5247;&#x70BA;&#x5047;&#xFF08;False&#xFF09;&#x3002;
+
+   &#x56E0;&#x70BA;&#x662F;&#x908A;&#x7DE3;&#x89F8;&#x767C;&#xFF0C;&#x6240;&#x4EE5;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x53EA;&#x6709;&#x4E00;&#x500B;&#x5468;&#x671F;&#x7684;&#x8F38;&#x51FA;&#x70BA; True&#x3002;
+</code></pre><p><strong>&#x4E0B;&#x7DE3;&#x89F8;&#x767C;&#x689D;&#x4EF6;</strong></p>
+<pre><code> True  ------------+
+                   |
+ False             +---------
+
+         |---------|------|
+           Set-up    Hold
+           Time      Time
+
+   &#x8981;&#x540C;&#x6642;&#x6EFF;&#x8DB3; Set-up time &#x8207; Hold Time &#x7684;&#x6642;&#x9593;&#xFF0C;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x624D;&#x6703;&#x5207;&#x63DB;&#x70BA;&#x771F;&#xFF08;True&#xFF09;&#x7684;&#x72C0;&#x614B;&#xFF0C;
+   &#x53CD;&#x4E4B;&#x5247;&#x70BA;&#x5047;&#xFF08;False&#xFF09;&#x3002;
+
+   &#x56E0;&#x70BA;&#x662F;&#x908A;&#x7DE3;&#x89F8;&#x767C;&#xFF0C;&#x6240;&#x4EE5;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x53EA;&#x6709;&#x4E00;&#x500B;&#x5468;&#x671F;&#x7684;&#x8F38;&#x51FA;&#x70BA; True&#x3002;
+</code></pre><p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x7E3D;&#x8A08;&#x6709; 100 &#x500B;&#xFF0C;&#x7DE8;&#x865F;&#x5F9E; 1 ~ 100&#x3002;&#x56E0;&#x70BA;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x5E38;&#x7528;&#x65BC; SFC &#x908F;&#x8F2F;&#x5167;&#xFF0C;&#x70BA;&#x6548;&#x7387;&#x4E0A;&#x7684;&#x8003;&#x91CF;&#xFF0C;
+&#x6240;&#x4EE5;&#x540D;&#x7A31;&#x662F; <code>_uc</code> &#x7D50;&#x5C3E;&#x7684;&#x6307;&#x4EE4;&#x6C92;&#x6709;&#x6AA2;&#x67E5;&#x7DE8;&#x865F;&#x662F;&#x5426;&#x5728;&#x6B63;&#x78BA;&#x7684;&#x7BC4;&#x570D;&#xFF0C;&#x6240;&#x4EE5;&#x4F7F;&#x7528;&#x4E0A;&#x8981;&#x7279;&#x5225;&#x7559;&#x610F;&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x7BC4;&#x4F8B;&#xFF1A;</p>
+<pre><code>   3 1 timer-dur-ms!      \ &#x8A2D;&#x5B9A;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x7DE8;&#x865F; 1 &#x70BA;&#x4E0A;&#x7DE3;&#x89F8;&#x767C;&#x3002;
+   2000 1 ff-setup!       \ &#x8A2D;&#x5B9A;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x7DE8;&#x865F; 1 &#x7684;&#x5EFA;&#x7ACB;&#x6642;&#x9593;&#x3002;
+   2000 1 ff-hold!        \ &#x8A2D;&#x5B9A;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x7DE8;&#x865F; 1 &#x7684;&#x4FDD;&#x6301;&#x6642;&#x9593;&#x3002;
+   true 1 ff-forth-uc     \ &#x8A2D;&#x5B9A;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x7DE8;&#x865F; 1 &#x7684;&#x539F;&#x59CB;&#x72C0;&#x614B;&#xFF0C;&#x61C9;&#x8A72;&#x6BCF;&#x500B;&#x5468;&#x671F;&#x57F7;&#x884C;&#x3002;
+   ...
+   1 ff-triggered-uc? .   \ &#x6AA2;&#x8996;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x7DE8;&#x865F; 1 &#x662F;&#x5426;&#x5DF2;&#x7D93;&#x89F8;&#x767C;&#xFF1F;
+</code></pre><h4 id="ff--no----"><code>.ff ( no -- )</code></h4>
+<p>&#x986F;&#x793A;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x7DE8;&#x865F; <code>no</code> &#x7684;&#x72C0;&#x614B;&#x3002;</p>
+<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+<pre><code>1 .ff
+</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#xFF1A;</p>
+<pre><code>ff_type.1|High Level|setup_time.1|2000|hold_time.1|2000|
+setup_count.1|0|hold_count.1|0|last.1|0|triggered.1|0
+</code></pre><h4 id="ff-forth-uc--t-no----"><code>ff-forth-uc ( t no -- )</code></h4>
+<p>&#x6BCF;&#x500B;&#x5468;&#x671F;&#x8A2D;&#x5B9A;&#x7D66;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x7DE8;&#x865F; <code>no</code> &#x7684;&#x72C0;&#x614B; <code>t</code>&#x3002;</p>
+<p><strong>&#x6B64;&#x547D;&#x4EE4;&#x6C92;&#x6709;&#x6AA2;&#x67E5;&#x5806;&#x758A;&#x500B;&#x6578;&#x8207; <code>no</code> &#x7BC4;&#x570D;&#xFF0C;&#x4F7F;&#x7528;&#x4E0A;&#x8981;&#x7279;&#x5225;&#x6CE8;&#x610F;&#x3002;</strong></p>
+<h4 id="ff-hold--us-no----"><code>ff-hold! ( us no -- )</code></h4>
+<p>&#x8A2D;&#x5B9A;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x7DE8;&#x865F; <code>no</code> &#x7684; Hold Time <code>us</code> Microsecond&#x3002;</p>
+<h4 id="ff-last-uc--no----t-"><code>ff-last-uc@ ( no -- t )</code></h4>
+<p>&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x7DE8;&#x865F; <code>no</code> &#x6700;&#x5F8C;/&#x65B0;&#x7684;&#x539F;&#x59CB;&#x72C0;&#x614B;&#xFF1F;</p>
+<p><strong>&#x6B64;&#x547D;&#x4EE4;&#x6C92;&#x6709;&#x6AA2;&#x67E5;&#x5806;&#x758A;&#x500B;&#x6578;&#x8207; <code>no</code> &#x7BC4;&#x570D;&#xFF0C;&#x4F7F;&#x7528;&#x4E0A;&#x8981;&#x7279;&#x5225;&#x6CE8;&#x610F;&#x3002;</strong></p>
+<h4 id="ff-setup--us-no----"><code>ff-setup! ( us no -- )</code></h4>
+<p>&#x8A2D;&#x5B9A;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x7DE8;&#x865F; <code>no</code> &#x7684; Setup Time <code>us</code> Microsecond&#x3002;</p>
+<h4 id="ff-triggered-uc--no----t-"><code>ff-triggered-uc? ( no -- t )</code></h4>
+<p>&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x7DE8;&#x865F; <code>no</code> &#x662F;&#x5426;&#x6EFF;&#x8DB3;&#x89F8;&#x767C;&#x689D;&#x4EF6;&#xFF1F;</p>
+<p><strong>&#x6B64;&#x547D;&#x4EE4;&#x6C92;&#x6709;&#x6AA2;&#x67E5;&#x5806;&#x758A;&#x500B;&#x6578;&#x8207; <code>no</code> &#x7BC4;&#x570D;&#xFF0C;&#x4F7F;&#x7528;&#x4E0A;&#x8981;&#x7279;&#x5225;&#x6CE8;&#x610F;&#x3002;</strong></p>
+<h4 id="ff-type--type-no----"><code>ff-type! ( type no -- )</code></h4>
+<p>&#x8A2D;&#x5B9A;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x7DE8;&#x865F; <code>no</code> &#x7684;&#x89F8;&#x767C;&#x578B;&#x614B; <code>type</code>&#x3002;</p>
+<p>&#x89F8;&#x767C;&#x578B;&#x614B; <code>type</code> &#x8A2D;&#x5B9A;&#x503C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ul>
+<li>1: &#x9AD8;&#x6E96;&#x4F4D;&#x89F8;&#x767C;</li>
+<li>2: &#x4F4E;&#x6E96;&#x4F4D;&#x89F8;&#x767C;</li>
+<li>3: &#x4E0A;&#x7DE3;&#x89F8;&#x767C;</li>
+<li>4: &#x4E0B;&#x7DE3;&#x89F8;&#x767C;</li>
+</ul>
+<h4 id="has-ff--no----t-"><code>has-ff? ( no -- t )</code></h4>
+<p>&#x662F;&#x5426;&#x6709;&#x7DE8;&#x865F; <code>no</code> &#x7684;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#xFF1F;</p>
+<h4 id="reset-ff--no----"><code>reset-ff ( no -- )</code></h4>
+<p>&#x91CD;&#x7F6E;&#x6578;&#x4F4D;&#x6B63;&#x53CD;&#x5668;&#x7DE8;&#x865F; <code>no</code>&#x3002;&#x4E0D;&#x4FEE;&#x6539;&#x689D;&#x4EF6;&#xFF0C;&#x53EA;&#x6E05;&#x9664;&#x5167;&#x90E8;&#x72C0;&#x614B;&#x3002;</p>
+<h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
+<table>
+<thead>
+<tr>
+<th>&#x6307;&#x4EE4;</th>
+<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.ff</code></td>
+<td>( no -- )</td>
+</tr>
+<tr>
+<td><code>ff-forth-uc</code></td>
+<td>( t no -- )</td>
+</tr>
+<tr>
+<td><code>ff-hold!</code></td>
+<td>( us no -- )</td>
+</tr>
+<tr>
+<td><code>ff-last-uc@</code></td>
+<td>( no -- t )</td>
+</tr>
+<tr>
+<td><code>ff-setup!</code></td>
+<td>( us no -- )</td>
+</tr>
+<tr>
+<td><code>ff-triggered-uc?</code></td>
+<td>( no -- t )</td>
+</tr>
+<tr>
+<td><code>ff-type!</code></td>
+<td>( type no -- )</td>
+</tr>
+<tr>
+<td><code>has-ff?</code></td>
+<td>( no -- t )</td>
+</tr>
+<tr>
+<td><code>reset-ff</code></td>
+<td>( no -- )</td>
 </tr>
 </tbody>
 </table>
@@ -730,7 +934,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Botnana 基本指令集","level":"4.3.1","depth":2,"next":{"title":"EtherCAT 指令集","level":"4.3.2","depth":2,"path":"ethercat-primitives.md","ref":"./ethercat-primitives.md","articles":[]},"previous":{"title":"Real-time Script API","level":"4.3","depth":1,"path":"real-time-script-api.md","ref":"./real-time-script-api.md","articles":[{"title":"Botnana 基本指令集","level":"4.3.1","depth":2,"path":"host-primitives.md","ref":"./host-primitives.md","articles":[]},{"title":"EtherCAT 指令集","level":"4.3.2","depth":2,"path":"ethercat-primitives.md","ref":"./ethercat-primitives.md","articles":[]},{"title":"EtherCAT Drive 指令集","level":"4.3.3","depth":2,"path":"ethercat-drive-primitives.md","ref":"./ethercat-drive-primitives.md","articles":[]},{"title":"EtherCAT IO 指令集","level":"4.3.4","depth":2,"path":"ethercat-io-primitives.md","ref":"./ethercat-io-primitives.md","articles":[]},{"title":"EtherCAT UART 指令集","level":"4.3.5","depth":2,"path":"ethercat-uart-primitives.md","ref":"./ethercat-uart-primitives.md","articles":[]},{"title":"EtherCAT Encoder 指令集","level":"4.3.6","depth":2,"path":"ethercat-encoder-primitives.md","ref":"./ethercat-encoder-primitives.md","articles":[]},{"title":"EtherCAT Gateway 指令集","level":"4.3.7","depth":2,"path":"ethercat-gateway-primitives.md","ref":"./ethercat-gateway-primitives.md","articles":[]},{"title":"軸組 Axis Group 指令集","level":"4.3.8","depth":2,"path":"axis-group.md","ref":"./axis-group.md","articles":[]},{"title":"狀態流程圖 Sequential Function Chart (SFC)","level":"4.3.9","depth":2,"path":"sfc.md","ref":"./sfc.md","articles":[{"title":"Servo On/OFF","level":"4.3.9.1","depth":3,"path":"sfc-example/servo-on-off.md","ref":"./sfc-example/servo-on-off.md","articles":[]},{"title":"Motion State","level":"4.3.9.2","depth":3,"path":"sfc-example/motion-state.md","ref":"./sfc-example/motion-state.md","articles":[]},{"title":"Homing State","level":"4.3.9.3","depth":3,"path":"sfc-example/axes-homing.md","ref":"./sfc-example/axes-homing.md","articles":[]}]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"host-primitives.md","mtime":"2018-12-20T06:43:38.421Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-29T02:58:28.726Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Botnana 基本指令集","level":"4.3.1","depth":2,"next":{"title":"EtherCAT 指令集","level":"4.3.2","depth":2,"path":"ethercat-primitives.md","ref":"./ethercat-primitives.md","articles":[]},"previous":{"title":"Real-time Script API","level":"4.3","depth":1,"path":"real-time-script-api.md","ref":"./real-time-script-api.md","articles":[{"title":"Botnana 基本指令集","level":"4.3.1","depth":2,"path":"host-primitives.md","ref":"./host-primitives.md","articles":[]},{"title":"EtherCAT 指令集","level":"4.3.2","depth":2,"path":"ethercat-primitives.md","ref":"./ethercat-primitives.md","articles":[]},{"title":"EtherCAT Drive 指令集","level":"4.3.3","depth":2,"path":"ethercat-drive-primitives.md","ref":"./ethercat-drive-primitives.md","articles":[]},{"title":"EtherCAT IO 指令集","level":"4.3.4","depth":2,"path":"ethercat-io-primitives.md","ref":"./ethercat-io-primitives.md","articles":[]},{"title":"EtherCAT UART 指令集","level":"4.3.5","depth":2,"path":"ethercat-uart-primitives.md","ref":"./ethercat-uart-primitives.md","articles":[]},{"title":"EtherCAT Encoder 指令集","level":"4.3.6","depth":2,"path":"ethercat-encoder-primitives.md","ref":"./ethercat-encoder-primitives.md","articles":[]},{"title":"EtherCAT Gateway 指令集","level":"4.3.7","depth":2,"path":"ethercat-gateway-primitives.md","ref":"./ethercat-gateway-primitives.md","articles":[]},{"title":"軸組 Axis Group 指令集","level":"4.3.8","depth":2,"path":"axis-group.md","ref":"./axis-group.md","articles":[]},{"title":"狀態流程圖 Sequential Function Chart (SFC)","level":"4.3.9","depth":2,"path":"sfc.md","ref":"./sfc.md","articles":[{"title":"Servo On/OFF","level":"4.3.9.1","depth":3,"path":"sfc-example/servo-on-off.md","ref":"./sfc-example/servo-on-off.md","articles":[]},{"title":"Motion State","level":"4.3.9.2","depth":3,"path":"sfc-example/motion-state.md","ref":"./sfc-example/motion-state.md","articles":[]},{"title":"Homing State","level":"4.3.9.3","depth":3,"path":"sfc-example/axes-homing.md","ref":"./sfc-example/axes-homing.md","articles":[]}]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"host-primitives.md","mtime":"2019-08-02T03:30:05.811Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-02T03:30:47.925Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
