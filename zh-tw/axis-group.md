@@ -1253,12 +1253,12 @@ dir 可以設定的值為：
 
 以 Axis 1 為例：
 
-    +coordinator                     \ 啟動軸組功能
-    1  +interpolator                 \ 啟動 Axis 1 單軸運動
-    100.0 mm/min  1  interpolator-v! \ 設定 Axis 1 單軸運動速度為 100.0 mm/min
-    0.3 1 axis-cmd-p!                \ 設定 Axis 1 的目標位置為座標位置 0.3 m 
-    1 axis-demand-p@                 \ 取得 Axis 1 目前的命令位置
-    1 axis-real-p@                   \ 取得 Axis 1 目前的實際位置
+    +coordinator                       \ 啟動軸組功能
+    1  +interpolator                   \ 啟動 Axis 1 單軸運動
+    100.0e  mm/min  1  interpolator-v! \ 設定 Axis 1 單軸運動速度為 100.0 mm/min
+    0.3e  1  axis-cmd-p!               \ 設定 Axis 1 的目標位置為座標位置 0.3 m 
+    1 axis-demand-p@                   \ 取得 Axis 1 目前的命令位置
+    1 axis-real-p@                     \ 取得 Axis 1 目前的實際位置
 
 #### 本節指令集
 
