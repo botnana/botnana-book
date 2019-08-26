@@ -633,7 +633,7 @@ FSA State:
 
 取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 status word Bit 3 (fault) 的狀態 `flag`。
 
-#### `drive-homd? ( ch n -- flag )`
+#### `drive-homed? ( ch n -- flag )`
 
 取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器是否已經回歸機械原點 `flag`。
 
@@ -1033,7 +1033,7 @@ FSA State:
 | drive-douts!          | ( douts ch n -- )     |
 | drive-douts-mask!     | ( mask ch n -- )      |
 | drive-fault?          | ( ch n -- flag )      |
-| drive-homd?           | ( ch n -- flag )      |
+| drive-homed?          | ( ch n -- flag )      |
 | drive-nl?             | ( ch n -- nl )        |
 | drive-nsl!            | ( nsl ch n -- )       |
 | drive-off             | ( ch n -- )           |
