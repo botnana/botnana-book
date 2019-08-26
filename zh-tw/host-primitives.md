@@ -191,7 +191,7 @@ Print information of motion.
 使用範例：
 
 ```
-   3 1 timer-dur-ms!      \ 設定數位正反器編號 1 為上緣觸發。
+   3 1 ff-type!           \ 設定數位正反器編號 1 為上緣觸發。
    2000 1 ff-setup!       \ 設定數位正反器編號 1 的建立時間。
    2000 1 ff-hold!        \ 設定數位正反器編號 1 的保持時間。
    true 1 ff-forth-uc     \ 設定數位正反器編號 1 的原始狀態，應該每個周期執行。
