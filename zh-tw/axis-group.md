@@ -1059,13 +1059,13 @@ Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。
 
 此截止頻率影響雙位置回授誤差的計算，如果調高，運動響應會比較貼近外部編碼器的回授位置，但是系統會比較不穩定。
 
-#### `drive-alias!  ( drive-alias j -- )`
+#### `drv-alias!  ( drive-alias j -- )`
 
 使用 EtherCAT Station Alias `drive-alias` 指定運動軸 `j` 馬達驅動器。
 
 當 `drive-alias` = 0 表示使用 slave position 指定馬達驅動器。 當 `drive-alias` 不存在時，此運動軸就會以虛擬軸處理。
 
-#### `drive-channel!  ( drive-channel j -- )`
+#### `drv-channel!  ( drive-channel j -- )`
 
 使用 `drive-channel` 指定運動軸 `j` 馬達驅動器的控制軸。
 
@@ -1073,15 +1073,15 @@ Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。
 
 命令範例：
 
-    1 3 drive-channel! \ 設定 Axis 3 對應的馬達驅動器的控制軸為 1
+    1 3 drv-channel! \ 設定 Axis 3 對應的馬達驅動器的控制軸為 1
 
-#### `drive-slave!  ( drive-slave j -- )`
+#### `drv-slave!  ( drive-slave j -- )`
 
 使用 EtherCAT Slave Position `drive-slave` 指定運動軸 `j` 馬達驅動器站號。
 
 命令範例：
 
-    2 1 drive-slave!  \ 設定 Axis 1 對應的馬達驅動器站號為 2
+    2 1 drv-slave!  \ 設定 Axis 1 對應的馬達驅動器站號為 2
 
 #### `enc-dir! ( dir j -- ) `
 
@@ -1215,9 +1215,9 @@ dir 可以設定的值為：
 | axis-vmax@        | ( j -- ) ( F: -- vmax )       | 取得運動軸的最大速度
 | axis>pulse        | ( j -- pulse ) ( F: pos -- )  | 轉換運動軸的位置為編碼器脈波位置
 | cl-cutoff!        | ( j -- ) ( F: freq -- )       | 設定雙位置回授誤差濾波器的截止頻率
-| drive-alias!      | ( drive-alias j -- )          | 使用 EtherCAT Station Alias 指定馬達驅動器
-| drive-channel!    | ( drive-channel j -- )        | 指定馬達驅動器的控制軸
-| drive-slave!      | ( drive-slave j -- )          | 使用 EtherCAT Slave Position 指定馬達驅動器
+| drv-alias!        | ( drive-alias j -- )          | 使用 EtherCAT Station Alias 指定馬達驅動器
+| drv-channel!      | ( drive-channel j -- )        | 指定馬達驅動器的控制軸
+| drv-slave!        | ( drive-slave j -- )          | 使用 EtherCAT Slave Position 指定馬達驅動器
 | enc-dir!          | ( dir j -- )                  | 設定馬達運動/編碼器方向
 | enc-ppu!          | ( j -- )( F: ppu -- )         | 設定運動距離單位對應馬達編碼器的脈波數
 | enc-u!            | ( u j -- )                    | 設定馬達編碼器的脈波數對應的距離單位
