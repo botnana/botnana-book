@@ -649,6 +649,12 @@ FSA State:
 
 對應的 Object 0x607D:0x01。
 
+#### `drive-nsl@ ( ch n -- nsl )`
+
+將 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的負向軟體極限放到堆疊上。
+
+此設定值會在開機時從馬達驅動器讀回到主站。在開機後設定負向軟體極限請使用 `drive-nsl!`，這樣 SDO 命令回應的記憶體位置才會正確。
+
 #### `drive-off (ch n -- )`
 
 將 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 FSA State 切換到 Switch On Disabled。
@@ -678,6 +684,12 @@ FSA State:
 使用 SDO 命令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的正向軟體極限為 `psl`。
 
 對應的 Object 0x607D:0x02。
+
+### `drive-psl@ ( ch n -- psl )`
+
+將 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的正向軟體極限放到堆疊上。
+
+此設定值會在開機時從馬達驅動器讀回到主站。在開機後設定正向軟體極限請使用 `drive-psl!`，這樣 SDO 命令回應的記憶體位置才會正確。
 
 #### `drive-polarity! ( polarity ch n -- )`
 
@@ -1036,12 +1048,14 @@ FSA State:
 | drive-homed?          | ( ch n -- flag )      |
 | drive-nl?             | ( ch n -- nl )        |
 | drive-nsl!            | ( nsl ch n -- )       |
+| drive-nsl@            | ( ch n -- nsl )       |
 | drive-off             | ( ch n -- )           |
 | drive-on              | ( ch n -- )           |
 | drive-on?             | ( ch n -- flag )      |
 | drive-org?            | ( ch n -- org )       |
 | drive-pl?             | ( ch n -- pl )        |
 | drive-psl!            | ( psl ch n -- )       |
+| drive-psl@            | ( ch n -- psl )       |
 | drive-polarity!       | ( polarity ch n -- )  |
 | drive-rpdo1@          | ( ch n -- r1 )        |
 | drive-rpdo2@          | ( ch n -- r2 )        |
