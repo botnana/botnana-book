@@ -127,11 +127,14 @@ ii  botnana-control   1.15.4    armhf          Botnana Control IIOT Platform
 ```
 botnana-control 名稱前面顯示 `ii` 表示正確安裝  
 
+如安裝檔的位置是在 `/opt/mapacode/botnana-control/update`，安裝完畢後，建議刪除安裝檔，避免重開機時再安裝一次。
+
+```
+debian@arm:/opt/mapacode/botnana-control/update$ sudo rm botnana-control_1.15.4-1202_armhf.deb
+```
+
 重新啟動 Botnana  
 
 ```
 $ sudo reboot
 ```
-
-重新啟動後 Botnana 將會自動按照正常的更新流程再次安裝我們剛才提供的更新檔，因此啟動時間會稍長。  
-靜待 Botnana 完成更新後(Botnana Web Utils 可以開啟)即修復且完成更新。  
