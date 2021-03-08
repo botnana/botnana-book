@@ -428,6 +428,33 @@ Botnana Control 若回傳資料，格式一律為
              一般 Botnana-Control 的單位可能會是 [m], [rad], [pulse]
 
 
+## Subscription API
+
+### Subscription
+
+```
+{
+    "jsonrpc": "2.0",
+    "method": "ec_slave.subscribe",
+    "params": {
+        "alias": 0,
+        "position": 1,
+    }
+}
+```
+
+### Unsubscription
+
+```
+{
+    "jsonrpc": "2.0",
+    "method": "ec_slave.subscribe",
+    "params": {
+        "alias": 0,
+        "position": 1,
+    }
+}
+```
 
 ## Real-time Scripting API
 
