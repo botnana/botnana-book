@@ -571,7 +571,7 @@ FSA State:
 
 細部功能請參考選用驅動器的 PP 模式描述。當 Control Word 的 Bit 6 （absolute/relative）為 1，馬達驅動器以絕對位置來處理目標位置。
 
-#### `cw! ( cw ch n -- )`
+#### `drive-cw! ( cw ch n -- )`
 
 直接設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 control word 為 `cw`。(由 PDO 設定)。
 
@@ -1037,7 +1037,7 @@ FSA State:
 | csp                   | ( -- 8 )              |
 | cst                   | ( -- 10 )             |
 | csv                   | ( -- 9 )              |
-| cw!                   | ( cw ch n -- )        |
+| drive-cw!             | ( cw ch n -- )        |
 | demand-p@             | ( ch n -- pos )       |
 | demand-tq@            | ( ch n -- tq )        |
 | demand-v@             | ( ch n -- vel )       |
