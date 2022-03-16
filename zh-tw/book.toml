@@ -1,0 +1,6 @@
+[book]
+authors = ["Sirius Wu"]
+language = "zh-TW"
+multilingual = false
+src = "src"
+title = "Botnana Book"
