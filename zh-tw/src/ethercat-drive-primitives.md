@@ -909,20 +909,6 @@ FSA State:
 
 此命令只適合在 PV 模式下使用，如果是 CSV 模式要設定目標速度則是要使用 `drive-wpdo1!` 或是 `drive-wpdo2!`。
 
-### `tq-ofs! ( ofs ch n -- )`
-
-設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 Torque Offset `ofs`。
-
-需要設定主站參數檔，而且該管道的馬達驅動器可以將 Torque Offset (object 0x60B2) 映射到 PDO Mapping 上。
-
-此依命令通常用於 CSP，CSV 或是 CST 模式下，可以在馬達驅動器內的扭力控制迴路額外調整扭力目標值。單位通常是 0.1%。
-
-### `tq-ofs@  ( ch n -- ofs )`
-
-取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 Torque Offset `ofs`。
-
-需要設定主站參數檔，而且該管道的馬達驅動器可以將 Torque Offset (object 0x60B2) 映射到 PDO Mapping 上。
-
 #### `tq-slope! ( slope ch n -- )`
 
 使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的扭力輸出變化率 `slope`。
@@ -1082,8 +1068,6 @@ FSA State:
 | target-tq!            | ( tq ch n -- )        |
 | target-v!             | ( vel ch n -- )       |
 | tq                    | ( -- 4 )              |
-| tq-ofs!               | ( ofs ch n -- )       |
-| tq-ofs@               | ( ch n -- ofs )       |
 | tq-slope!             | ( slope ch n -- )     |
 | until-drive-on        | ( ch n -- )           |
 | until-no-fault        | ( ch n -- )           |
