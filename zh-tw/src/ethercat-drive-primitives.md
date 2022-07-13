@@ -581,12 +581,6 @@ FSA State:
 
 需要設定主站參數檔，而且該管道的馬達驅動器可以將 demand position (object 0x6062) 映射到 PDO Mapping 上。
 
-#### `demand-tq@ ( ch n -- tq )`
-
-取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 demand torque `tq`。
-
-需要設定主站參數檔，而且該管道的馬達驅動器可以將 demand torque (object 0x6074) 映射到 PDO Mapping 上。
-
 #### `demand-v@ ( ch n -- vel )`
 
 取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的 demand velocity `vel`。
@@ -1039,7 +1033,6 @@ FSA State:
 | csv                   | ( -- 9 )              |
 | drive-cw!             | ( cw ch n -- )        |
 | demand-p@             | ( ch n -- pos )       |
-| demand-tq@            | ( ch n -- tq )        |
 | demand-v@             | ( ch n -- vel )       |
 | drive-dins@           | ( ch n -- dins )      |
 | drive-douts!          | ( douts ch n -- )     |
