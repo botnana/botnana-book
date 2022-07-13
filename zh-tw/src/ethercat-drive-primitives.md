@@ -893,14 +893,6 @@ FSA State:
 
 其狀態來源與 `drive-sw@` 相同。
 
-#### `target-tq! ( tq ch n -- )`
-
-使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的目標扭力 `tq`。
-
-對應的 Object 為 0x6071。通常單位是 0.1 %。
-
-此命令只適合在 TQ 模式下使用，如果是 CST 模式要設定目標扭力則是要使用 `drive-wpdo1!` 或是 `drive-wpdo2!`。
-
 #### `target-v! ( vel ch n -- )`
 
 使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的目標速度 `v`。
@@ -1065,7 +1057,6 @@ FSA State:
 | target-p!             | ( pos ch n -- )       |
 | target-p@             | ( ch n -- pos )       |
 | target-reached?       | ( channel n -- flag ) |
-| target-tq!            | ( tq ch n -- )        |
 | target-v!             | ( vel ch n -- )       |
 | tq                    | ( -- 4 )              |
 | tq-slope!             | ( slope ch n -- )     |
