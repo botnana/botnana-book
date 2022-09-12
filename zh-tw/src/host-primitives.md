@@ -59,7 +59,7 @@ Print information of motion.
 使用範例：
 
 ```
-   100 1 timer-dur-ms!  \ 設定編號 1 定時器的計時時間為 100 ms。
+   100 1 timer-ms!  \ 設定編號 1 定時器的計時時間為 100 ms。
    1 0timer             \ 定時器編號 1 重新計時。
    1 timer-expired? .   \ 檢視定時器編號 1 是否已經超過計時時間。
 ```
@@ -82,13 +82,9 @@ Print information of motion.
 
 定時器編號 `no` 重新計時。
 
-#### `timer-dur-ms! ( ms no -- )`
+#### `timer-ms! ( ms no -- )`
 
 設定定時器編號 `no` 的計時時間為 `ms` Millisecond。
-
-#### `timer-dur-us!  ( us no -- )`
-
-設定定時器編號 `no` 的計時時間為 `us` Microsecond。
 
 #### `timer-expired?  ( no -- t )`
 
@@ -100,8 +96,7 @@ Print information of motion.
 |-----|---------------|
 | `.timer`     | ( no -- ) |
 | `0timer`     | ( no -- ) |
-| `timer-dur-ms!`     | ( ms no -- ) |
-| `timer-dur-us!`     | ( us no -- ) |
+| `timer-ms!`     | ( ms no -- ) |
 | `timer-expired?`     | ( no -- t ) |
 
 ---
