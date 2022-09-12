@@ -1,662 +1,155 @@
-
 <!DOCTYPE HTML>
-<html lang="" >
+<html lang="zh-TW" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
+        <title>網路設定 - Botnana Book</title>
+
+
+        <!-- Custom HTML head -->
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>網路設定 · GitBook</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
-        
-        
-        
-    
-    <link rel="stylesheet" href="../gitbook/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
 
-    
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
-        
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
-    
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
-        
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="gadget.html" />
-    
-    
-    <link rel="prev" href="../faq.html" />
-    
+        <!-- Custom theme stylesheets -->
 
     </head>
     <body>
-        
-<div class="book">
-    <div class="book-summary">
-        
-            
-<div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
-</div>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
 
-            
-                <nav role="navigation">
-                
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
 
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
 
-<ul class="summary">
-    
-    
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
 
-    
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
 
-    
-        
-        <li class="header">1. 前言</li>
-        
-        
-    
-        <li class="chapter " data-level="1.1" data-path="../">
-            
-                <a href="../">
-            
-                    
-                    簡介
-            
-                </a>
-            
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
 
-            
-        </li>
-    
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> 簡介</a></li><li class="chapter-item expanded "><a href="../hardware.html"><strong aria-hidden="true">2.</strong> 硬體規格</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../botnana-a2.html"><strong aria-hidden="true">2.1.</strong> Botnana BN-A2A</a></li><li class="chapter-item expanded "><a href="../botnana-bn-j4a.html"><strong aria-hidden="true">2.2.</strong> Botnana BN-J4A</a></li></ol></li><li class="chapter-item expanded "><a href="../software.html"><strong aria-hidden="true">3.</strong> 軟體規格</a></li><li class="chapter-item expanded "><a href="../roadmap.html"><strong aria-hidden="true">4.</strong> Roadmap</a></li><li class="chapter-item expanded "><a href="../tutorial.html"><strong aria-hidden="true">5.</strong> 入門教學</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../botnana-a2-tutorial.html"><strong aria-hidden="true">5.1.</strong> Botnana A2 入門</a></li><li class="chapter-item expanded "><a href="../botnana-control-tutorial.html"><strong aria-hidden="true">5.2.</strong> Botnana Control 入門</a></li></ol></li><li class="chapter-item expanded "><a href="../configuration-file.html"><strong aria-hidden="true">6.</strong> 設定檔</a></li><li class="chapter-item expanded "><a href="../programming.html"><strong aria-hidden="true">7.</strong> 程式開發界面</a></li><li class="chapter-item expanded "><a href="../json-api.html"><strong aria-hidden="true">8.</strong> JSON API</a></li><li class="chapter-item expanded "><a href="../real-time-script-api.html"><strong aria-hidden="true">9.</strong> Real-time Script API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../host-primitives.html"><strong aria-hidden="true">9.1.</strong> Botnana 基本指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-primitives.html"><strong aria-hidden="true">9.2.</strong> EtherCAT 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-drive-primitives.html"><strong aria-hidden="true">9.3.</strong> EtherCAT Drive 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-io-primitives.html"><strong aria-hidden="true">9.4.</strong> EtherCAT IO 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-uart-primitives.html"><strong aria-hidden="true">9.5.</strong> EtherCAT UART 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-encoder-primitives.html"><strong aria-hidden="true">9.6.</strong> EtherCAT Encoder 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-gateway-primitives.html"><strong aria-hidden="true">9.7.</strong> EtherCAT Gateway 指令集</a></li><li class="chapter-item expanded "><a href="../axis-group.html"><strong aria-hidden="true">9.8.</strong> 軸組 Axis Group 指令集</a></li><li class="chapter-item expanded "><a href="../sfc.html"><strong aria-hidden="true">9.9.</strong> 狀態流程圖 Sequential Function Chart (SFC)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../sfc-example/servo-on-off.html"><strong aria-hidden="true">9.9.1.</strong> Servo On/OFF</a></li><li class="chapter-item expanded "><a href="../sfc-example/motion-state.html"><strong aria-hidden="true">9.9.2.</strong> Motion State</a></li><li class="chapter-item expanded "><a href="../sfc-example/axes-homing.html"><strong aria-hidden="true">9.9.3.</strong> Homing State</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../known-working-hardware.html"><strong aria-hidden="true">10.</strong> 支援的硬體清單</a></li><li class="chapter-item expanded "><a href="../update-software.html"><strong aria-hidden="true">11.</strong> 軟體更新</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">12.</strong> 常見問題</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../faq/network.html" class="active"><strong aria-hidden="true">12.1.</strong> 網路設定</a></li><li class="chapter-item expanded "><a href="../faq/gadget.html"><strong aria-hidden="true">12.2.</strong> USB連線IP設定</a></li><li class="chapter-item expanded "><a href="../faq/windows7_rndis.html"><strong aria-hidden="true">12.3.</strong> Windows 7 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="../faq/windows10_rndis.html"><strong aria-hidden="true">12.4.</strong> Windows 10 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="../faq/win10_permission.html"><strong aria-hidden="true">12.5.</strong> Windows 10 檔案權限修改</a></li><li class="chapter-item expanded "><a href="../faq/mount.html"><strong aria-hidden="true">12.6.</strong> 磁碟掛載 Mount</a></li><li class="chapter-item expanded "><a href="../faq/manual_install_deb/manual_install_deb.html"><strong aria-hidden="true">12.7.</strong> 手動安裝 Botnana Control 更新檔</a></li><li class="spacer"></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
 
-    
-        
-        <li class="header">2. 規格</li>
-        
-        
-    
-        <li class="chapter " data-level="2.1" data-path="../hardware.html">
-            
-                <a href="../hardware.html">
-            
-                    
-                    硬體規格
-            
-                </a>
-            
+        <div id="page-wrapper" class="page-wrapper">
 
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="2.1.1" data-path="../botnana-a2.html">
-            
-                <a href="../botnana-a2.html">
-            
-                    
-                    Botnana BN-A2A
-            
-                </a>
-            
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-            
-        </li>
-    
-        <li class="chapter " data-level="2.1.2" data-path="../botnana-bn-j4a.html">
-            
-                <a href="../botnana-bn-j4a.html">
-            
-                    
-                    Botnana BN-J4A
-            
-                </a>
-            
+                    <h1 class="menu-title">Botnana Book</h1>
 
-            
-        </li>
-    
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
 
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="2.2" data-path="../software.html">
-            
-                <a href="../software.html">
-            
-                    
-                    軟體規格
-            
-                </a>
-            
+                    </div>
+                </div>
 
-            
-        </li>
-    
-        <li class="chapter " data-level="2.3" data-path="../roadmap.html">
-            
-                <a href="../roadmap.html">
-            
-                    
-                    Roadmap
-            
-                </a>
-            
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
 
-            
-        </li>
-    
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
 
-    
-        
-        <li class="header">3. 入門</li>
-        
-        
-    
-        <li class="chapter " data-level="3.1" data-path="../tutorial.html">
-            
-                <a href="../tutorial.html">
-            
-                    
-                    入門教學
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="3.1.1" data-path="../botnana-a2-tutorial.html">
-            
-                <a href="../botnana-a2-tutorial.html">
-            
-                    
-                    Botnana A2 入門
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.1.2" data-path="../botnana-control-tutorial.html">
-            
-                <a href="../botnana-control-tutorial.html">
-            
-                    
-                    Botnana Control 入門
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="3.2" data-path="../configuration-file.html">
-            
-                <a href="../configuration-file.html">
-            
-                    
-                    設定檔
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
-        
-        <li class="header">4. 程式開發</li>
-        
-        
-    
-        <li class="chapter " data-level="4.1" data-path="../programming.html">
-            
-                <a href="../programming.html">
-            
-                    
-                    程式開發界面
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.2" data-path="../json-api.html">
-            
-                <a href="../json-api.html">
-            
-                    
-                    JSON API
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3" data-path="../real-time-script-api.html">
-            
-                <a href="../real-time-script-api.html">
-            
-                    
-                    Real-time Script API
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.3.1" data-path="../host-primitives.html">
-            
-                <a href="../host-primitives.html">
-            
-                    
-                    Botnana 基本指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.2" data-path="../ethercat-primitives.html">
-            
-                <a href="../ethercat-primitives.html">
-            
-                    
-                    EtherCAT 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.3" data-path="../ethercat-drive-primitives.html">
-            
-                <a href="../ethercat-drive-primitives.html">
-            
-                    
-                    EtherCAT Drive 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.4" data-path="../ethercat-io-primitives.html">
-            
-                <a href="../ethercat-io-primitives.html">
-            
-                    
-                    EtherCAT IO 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.5" data-path="../ethercat-uart-primitives.html">
-            
-                <a href="../ethercat-uart-primitives.html">
-            
-                    
-                    EtherCAT UART 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.6" data-path="../ethercat-encoder-primitives.html">
-            
-                <a href="../ethercat-encoder-primitives.html">
-            
-                    
-                    EtherCAT Encoder 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.7" data-path="../ethercat-gateway-primitives.html">
-            
-                <a href="../ethercat-gateway-primitives.html">
-            
-                    
-                    EtherCAT Gateway 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.8" data-path="../axis-group.html">
-            
-                <a href="../axis-group.html">
-            
-                    
-                    軸組 Axis Group 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9" data-path="../sfc.html">
-            
-                <a href="../sfc.html">
-            
-                    
-                    狀態流程圖 Sequential Function Chart (SFC)
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.3.9.1" data-path="../sfc-example/servo-on-off.html">
-            
-                <a href="../sfc-example/servo-on-off.html">
-            
-                    
-                    Servo On/OFF
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9.2" data-path="../sfc-example/motion-state.html">
-            
-                <a href="../sfc-example/motion-state.html">
-            
-                    
-                    Motion State
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9.3" data-path="../sfc-example/axes-homing.html">
-            
-                <a href="../sfc-example/axes-homing.html">
-            
-                    
-                    Homing State
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-        
-        <li class="header">5. 附錄</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="../known-working-hardware.html">
-            
-                <a href="../known-working-hardware.html">
-            
-                    
-                    支援的硬體清單
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.2" data-path="../update-software.html">
-            
-                <a href="../update-software.html">
-            
-                    
-                    軟體更新
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3" data-path="../faq.html">
-            
-                <a href="../faq.html">
-            
-                    
-                    常見問題
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter active" data-level="5.3.1" data-path="network.html">
-            
-                <a href="network.html">
-            
-                    
-                    網路設定
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.2" data-path="gadget.html">
-            
-                <a href="gadget.html">
-            
-                    
-                    USB連線IP設定
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.3" data-path="windows7_rndis.html">
-            
-                <a href="windows7_rndis.html">
-            
-                    
-                    Windows 7 RNDIS 驅動程式安裝
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.4" data-path="windows10_rndis.html">
-            
-                <a href="windows10_rndis.html">
-            
-                    
-                    Windows 10 RNDIS 驅動程式安裝
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.5" data-path="win10_permission.html">
-            
-                <a href="win10_permission.html">
-            
-                    
-                    Windows 10 檔案權限修改
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.6" data-path="mount.html">
-            
-                <a href="mount.html">
-            
-                    
-                    磁碟掛載 Mount
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.7" data-path="manual_install_deb/manual_install_deb.html">
-            
-                <a href="manual_install_deb/manual_install_deb.html">
-            
-                    
-                    手動安裝 Botnana Control 更新檔
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
-        </a>
-    </li>
-</ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
-<div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >網路設定</a>
-    </h1>
-</div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
-<div id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <h2 id="&#x7DB2;&#x8DEF;&#x8A2D;&#x5B9A;">&#x7DB2;&#x8DEF;&#x8A2D;&#x5B9A;</h2>
-<p>&#x4F7F;&#x7528; <code>connmanctl</code> &#x6307;&#x4EE4;&#x9032;&#x884C;&#x8A2D;&#x5B9A;&#x3002;&#x4EE5;&#x4E0B;&#x662F;&#x5E7E;&#x500B;&#x5E38;&#x7528;&#x7684;&#x8A2D;&#x5B9A;&#x9700;&#x6C42;&#xFF0C;&#x82E5;&#x662F;&#x9700;&#x8981;&#x8A73;&#x7D30;&#x8AAA;&#x660E;&#x53EF;&#x53C3;&#x8003; <a href="http://manpages.ubuntu.com/manpages/artful/man1/connmanctl.1.html" target="_blank">connmanctl - Connman CLI</a></p>
-<h3 id="wifi-&#x8A2D;&#x5B9A;">WIFI &#x8A2D;&#x5B9A;</h3>
-<p><strong>&#x67E5;&#x8A62;&#x7121;&#x7DDA;&#x7DB2;&#x5361;&#x7684;&#x72C0;&#x614B;</strong></p>
-<p>&#x5B89;&#x88DD;&#x7121;&#x7DDA;&#x7DB2;&#x5361;&#x5F8C;&#xFF0C;&#x4F7F;&#x7528; <code>sudo connmanctl technologies</code> &#x67E5;&#x8A62;&#x7121;&#x7DDA;&#x7DB2;&#x5361;&#x7684;&#x72C0;&#x614B;&#xFF0C;
-&#x547D;&#x4EE4;&#x8F38;&#x51FA;&#x5F8C;&#xFF0C;&#x72C0;&#x614B;&#x5982;&#x4E0B;&#xFF1A;</p>
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="網路設定"><a class="header" href="#網路設定">網路設定</a></h2>
+<p>使用 <code>connmanctl</code> 指令進行設定。以下是幾個常用的設定需求，若是需要詳細說明可參考 <a href="http://manpages.ubuntu.com/manpages/artful/man1/connmanctl.1.html">connmanctl - Connman CLI</a></p>
+<h3 id="wifi-設定"><a class="header" href="#wifi-設定">WIFI 設定</a></h3>
+<p><strong>查詢無線網卡的狀態</strong></p>
+<p>安裝無線網卡後，使用 <code>sudo connmanctl technologies</code> 查詢無線網卡的狀態，
+命令輸出後，狀態如下：</p>
 <pre><code>debian@arm:~$ sudo connmanctl technologies 
-[sudo] password for debian: // &#x8F38;&#x5165; temppwd
+[sudo] password for debian: // 輸入 temppwd
 /net/connman/technology/wifi
   Name = WiFi
   Type = wifi
@@ -669,161 +162,161 @@
   Powered = False
   Connected = False
   Tethering = False
-</code></pre><p>&#x5982;&#x679C;&#x7121;&#x7DDA;&#x7DB2;&#x5361;&#x5B89;&#x88DD;&#x59A5;&#x7576;&#xFF0C;&#x61C9;&#x53EF;&#x770B;&#x5230; <code>/net/connman/technology/wifi</code> &#x7684;&#x8CC7;&#x8A0A;&#xFF0C;
-&#x8ACB;&#x6CE8;&#x610F;&#x5176;&#x4E2D; <code>Powered = False</code>&#xFF0C; &#x8868;&#x793A;&#x5FC5;&#x9808;&#x5148;&#x555F;&#x52D5; WiFi&#xFF0C;&#x555F;&#x52D5;&#x65B9;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;</p>
+</code></pre>
+<p>如果無線網卡安裝妥當，應可看到 <code>/net/connman/technology/wifi</code> 的資訊，
+請注意其中 <code>Powered = False</code>， 表示必須先啟動 WiFi，啟動方式如下：</p>
 <pre><code>debian@arm:~$ sudo connmanctl enable wifi 
 Enabled wifi
-</code></pre><p>&#x6210;&#x529F;&#x5F8C;&#x6703;&#x51FA;&#x73FE; <code>Enable wifi</code> &#x7684;&#x8A0A;&#x606F;&#x3002;&#x4E5F;&#x53EF;&#x518D;&#x4F7F;&#x7528; <code>sudo connmanctl technologies</code> &#x78BA;&#x8A8D;&#x72C0;&#x614B;&#x3002;</p>
-<p>&#x6B64;&#x9023;&#x7DDA;&#x662F;&#x5C6C;&#x65BC; DHCP&#xFF0C; &#x5982;&#x8981;&#x4F7F;&#x7528;&#x6307;&#x5B9A;IP&#xFF0C;&#x8ACB;&#x770B;&#x4EE5;&#x4E0B;&#x7AE0;&#x7BC0;&#x3002;</p>
-<p><strong>&#x958B;&#x59CB;&#x9032;&#x884C;&#x9023;&#x7DDA;&#x8A2D;&#x5B9A;</strong></p>
-<p>&#x9996;&#x5148;&#x9032;&#x5230;&#x8A2D;&#x5B9A;&#x756B;&#x9762;&#xFF0C;&#x8F38;&#x5165; <code>sudo connmanctl</code>&#xFF0C;&#x6703;&#x51FA;&#x73FE; <code>connmanctl&gt;</code> &#x7B49;&#x5F85;&#x547D;&#x4EE4;&#x7684;&#x63D0;&#x793A;&#x8A0A;&#x606F;&#x3002;</p>
+</code></pre>
+<p>成功後會出現 <code>Enable wifi</code> 的訊息。也可再使用 <code>sudo connmanctl technologies</code> 確認狀態。</p>
+<p>此連線是屬於 DHCP， 如要使用指定IP，請看以下章節。</p>
+<p><strong>開始進行連線設定</strong></p>
+<p>首先進到設定畫面，輸入 <code>sudo connmanctl</code>，會出現 <code>connmanctl&gt;</code> 等待命令的提示訊息。</p>
 <pre><code>debian@arm:~$ sudo connmanctl
 connmanctl&gt;
-</code></pre><p>&#x5217;&#x51FA;&#x53EF;&#x4F7F;&#x7528;&#x7684;&#x7DB2;&#x8DEF;&#x7BC0;&#x9EDE;&#xFF0C;&#x4EE5;&#x52D5;&#x7A0B;&#x516C;&#x53F8;&#x70BA;&#x4F8B;&#xFF1A;</p>
+</code></pre>
+<p>列出可使用的網路節點，以動程公司為例：</p>
 <pre><code>connmanctl&gt; services
     Mapacode_5G          wifi_1c5f2bc586d1_4d617061636f64655f3547_managed_psk
     Mapacode             wifi_1c5f2bc586d1_4d617061636f6465_managed_psk
-</code></pre><p>&#x958B;&#x555F;&#x9023;&#x7DDA;&#x4EE3;&#x7406;:</p>
+</code></pre>
+<p>開啟連線代理:</p>
 <pre><code>connmanctl&gt; agent on
 Agent registered
-</code></pre><p>&#x9023;&#x7DDA;&#xFF0C; &#x4EE5;&#x9023;&#x7DDA;&#x5230;SSID&#x662F; Mapacode &#x70BA;&#x4F8B;&#xFF0C;</p>
-<pre><code>connmanctl&gt; connect wifi_1c5f2bc586d1_ //&#x53EF;&#x5617;&#x8A66;&#x6309; tab &#x9375;&#x88DC;&#x5168;
+</code></pre>
+<p>連線， 以連線到SSID是 Mapacode 為例，</p>
+<pre><code>connmanctl&gt; connect wifi_1c5f2bc586d1_ //可嘗試按 tab 鍵補全
 connmanctl&gt; connect wifi_1c5f2bc586d1_4d617061636f6465_managed_psk 
 Agent RequestInput wifi_1c5f2bc586d1_4d617061636f6465_managed_psk
   Passphrase = [ Type=psk, Requirement=mandatory, Alternates=[ WPS ] ]
   WPS = [ Type=wpspin, Requirement=alternate ]
-Passphrase?
-</code></pre><p>&#x8F38;&#x5165;&#x5BC6;&#x78BC;&#xFF0C;&#x7B49;&#x5F85;&#x51FA;&#x73FE; <code>Connected wifi_1c5f2bc586d1_4d617061636f6465_managed_psk</code> &#x5C31;&#x5927;&#x529F;&#x544A;&#x6210;&#x3002;</p>
-<pre><code>Passphrase? 062970665 // &#x8F38;&#x5165;&#x5BC6;&#x78BC;
+Passphrase? 
+</code></pre>
+<p>輸入密碼，等待出現 <code>Connected wifi_1c5f2bc586d1_4d617061636f6465_managed_psk</code> 就大功告成。</p>
+<pre><code>Passphrase? 062970665 // 輸入密碼
 Connected wifi_1c5f2bc586d1_4d617061636f6465_managed_psk
-connmanctl&gt;
-</code></pre><p>&#x8F38;&#x5165; exit &#x96E2;&#x958B;&#x8A2D;&#x5B9A;&#x756B;&#x9762;</p>
+connmanctl&gt;  
+</code></pre>
+<p>輸入 exit 離開設定畫面</p>
 <pre><code>connmanctl&gt; exit
-debian@arm:~$
-</code></pre><h3 id="&#x6709;&#x7DDA;&#x7DB2;&#x8DEF;&#x8A2D;&#x5B9A;">&#x6709;&#x7DDA;&#x7DB2;&#x8DEF;&#x8A2D;&#x5B9A;</h3>
-<p>&#x5148;&#x5C07;&#x7DB2;&#x8DEF;&#x7DDA;&#x9023;&#x4E0A;&#xFF0C; &#x4F7F;&#x7528; <code>sudo connmanctl technologies</code> &#x67E5;&#x8A62;&#x9023;&#x7DDA;&#x72C0;&#x614B;&#x3002;&#x61C9;&#x6703;&#x51FA;&#x73FE; <code>/net/connman/technology/ethernet</code> &#x9805;&#x76EE;</p>
+debian@arm:~$ 
+</code></pre>
+<h3 id="有線網路設定"><a class="header" href="#有線網路設定">有線網路設定</a></h3>
+<p>先將網路線連上， 使用 <code>sudo connmanctl technologies</code> 查詢連線狀態。應會出現 <code>/net/connman/technology/ethernet</code> 項目</p>
 <pre><code>debian@Q190G4:~$ sudo connmanctl technologies 
-[sudo] password for debian: // &#x8F38;&#x5165; temppwd
+[sudo] password for debian: // 輸入 temppwd
 /net/connman/technology/ethernet
   Name = Wired
   Type = ethernet
   Powered = True
   Connected = False
   Tethering = False
-</code></pre><p><strong>&#x958B;&#x59CB;&#x9032;&#x884C;&#x9023;&#x7DDA;&#x8A2D;&#x5B9A;</strong></p>
-<p>&#x9996;&#x5148;&#x9032;&#x5230;&#x8A2D;&#x5B9A;&#x756B;&#x9762;&#xFF0C;&#x8F38;&#x5165; <code>sudo connmanctl</code>&#xFF0C;&#x6703;&#x51FA;&#x73FE; <code>connmanctl&gt;</code> &#x7B49;&#x5F85;&#x547D;&#x4EE4;&#x7684;&#x63D0;&#x793A;&#x8A0A;&#x606F;&#x3002;</p>
+</code></pre>
+<p><strong>開始進行連線設定</strong></p>
+<p>首先進到設定畫面，輸入 <code>sudo connmanctl</code>，會出現 <code>connmanctl&gt;</code> 等待命令的提示訊息。</p>
 <pre><code>debian@arm:~$ sudo connmanctl
 connmanctl&gt;
-</code></pre><p>&#x5217;&#x51FA;&#x53EF;&#x4F7F;&#x7528;&#x7684;&#x7DB2;&#x8DEF;&#x7BC0;&#x9EDE;&#xFF1A;</p>
+</code></pre>
+<p>列出可使用的網路節點：</p>
 <pre><code>connmanctl&gt; services
 *A  Wired                ethernet_00ecacce3a79_cable
-connmanctl&gt;
-</code></pre><p>&#x958B;&#x555F;&#x9023;&#x7DDA;&#x4EE3;&#x7406;:</p>
+connmanctl&gt;  
+</code></pre>
+<p>開啟連線代理:</p>
 <pre><code>connmanctl&gt; agent on
 Agent registered
-</code></pre><p>&#x9023;&#x7DDA;:</p>
+</code></pre>
+<p>連線:</p>
 <pre><code>connmanctl&gt; connect ethernet_00ecacce3a79_cable
 Connected ethernet_00ecacce3a79_cable
-</code></pre><p>&#x5927;&#x529F;&#x544A;&#x6210;&#x3002;</p>
-<p>&#x6B64;&#x9023;&#x7DDA;&#x662F;&#x5C6C;&#x65BC; DHCP &#x3002;&#x5982;&#x8981;&#x4F7F;&#x7528;&#x6307;&#x5B9A;IP&#xFF0C;&#x8ACB;&#x770B;&#x4EE5;&#x4E0B;&#x7AE0;&#x7BC0;&#x3002;</p>
-<h3 id="&#x6307;&#x5B9A;ip">&#x6307;&#x5B9A;IP</h3>
-<p>&#x8A2D;&#x5B9A;&#x6848;&#x4F8B;&#xFF1A;</p>
+</code></pre>
+<p>大功告成。</p>
+<p>此連線是屬於 DHCP 。如要使用指定IP，請看以下章節。</p>
+<h3 id="指定ip"><a class="header" href="#指定ip">指定IP</a></h3>
+<p>設定案例：</p>
 <ul>
 <li>service : <code>ethernet_00ecacce3a79_cable</code></li>
 <li>ip      : 192.168.7.2</li>
 <li>netmask : 255.255.255.0</li>
 <li>gateway : 192.168.7.1</li>
 </ul>
-<pre><code>&#x6307;&#x4EE4;&#x683C;&#x5F0F;&#xFF1A;
+<pre><code>指令格式：
 connmanctl config &lt;service&gt; --ipv4 manual &lt;ip address&gt; &lt;netmask&gt; &lt;gateway&gt;
 
-&#x6848;&#x4F8B;&#x8A2D;&#x5B9A;&#xFF1A;
+案例設定：
 sudo connmanctl config  ethernet_00ecacce3a79_cable --ipv4 manual 192.168.7.2 255.255.255.0 192.168.7.1
-</code></pre><h3 id="&#x81EA;&#x52D5;&#x6307;&#x6D3E;ip">&#x81EA;&#x52D5;&#x6307;&#x6D3E;IP</h3>
-<p>&#x8A2D;&#x5B9A;&#x6848;&#x4F8B;&#xFF1A;</p>
+</code></pre>
+<h3 id="自動指派ip"><a class="header" href="#自動指派ip">自動指派IP</a></h3>
+<p>設定案例：</p>
 <p>service: <code>ethernet_00ecacce3a79_cable</code></p>
-<pre><code>&#x6307;&#x4EE4;&#x683C;&#x5F0F;&#xFF1A;
+<pre><code>指令格式：
 connmanctl config &lt;service&gt; --ipv4 dhcp
 
-&#x6848;&#x4F8B;&#x8A2D;&#x5B9A;&#xFF1A;
+案例設定：
 sudo connmanctl config  ethernet_00ecacce3a79_cable --ipv4 dhcp
 </code></pre>
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
-</div>
 
-                        </div>
-                    </div>
-                
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../faq.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../faq/gadget.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
             </div>
 
-            
-                
-                <a href="../faq.html" class="navigation navigation-prev " aria-label="Previous page: 常見問題">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="gadget.html" class="navigation navigation-next " aria-label="Next page: USB連線IP設定">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../faq.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-    <script>
-        var gitbook = gitbook || [];
-        gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"網路設定","level":"5.3.1","depth":2,"next":{"title":"USB連線IP設定","level":"5.3.2","depth":2,"path":"faq/gadget.md","ref":"./faq/gadget.md","articles":[]},"previous":{"title":"常見問題","level":"5.3","depth":1,"path":"faq.md","ref":"./faq.md","articles":[{"title":"網路設定","level":"5.3.1","depth":2,"path":"faq/network.md","ref":"./faq/network.md","articles":[]},{"title":"USB連線IP設定","level":"5.3.2","depth":2,"path":"faq/gadget.md","ref":"./faq/gadget.md","articles":[]},{"title":"Windows 7 RNDIS 驅動程式安裝","level":"5.3.3","depth":2,"path":"faq/windows7_rndis.md","ref":"./faq/windows7_rndis.md","articles":[]},{"title":"Windows 10 RNDIS 驅動程式安裝","level":"5.3.4","depth":2,"path":"faq/windows10_rndis.md","ref":"./faq/windows10_rndis.md","articles":[]},{"title":"Windows 10 檔案權限修改","level":"5.3.5","depth":2,"path":"faq/win10_permission.md","ref":"./faq/win10_permission.md","articles":[]},{"title":"磁碟掛載 Mount","level":"5.3.6","depth":2,"path":"faq/mount.md","ref":"./faq/mount.md","articles":[]},{"title":"手動安裝 Botnana Control 更新檔","level":"5.3.7","depth":2,"path":"faq/manual_install_deb/manual_install_deb.md","ref":"./faq/manual_install_deb/manual_install_deb.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"faq/network.md","mtime":"2019-02-23T03:27:31.377Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-03T09:03:35.732Z"},"basePath":"..","book":{"language":""}});
-        });
-    </script>
-</div>
+                    <a rel="next" href="../faq/gadget.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
 
-        
-    <script src="../gitbook/gitbook.js"></script>
-    <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
 
     </body>
 </html>
-

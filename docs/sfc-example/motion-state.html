@@ -1,660 +1,153 @@
-
 <!DOCTYPE HTML>
-<html lang="" >
+<html lang="zh-TW" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
+        <title>Motion State - Botnana Book</title>
+
+
+        <!-- Custom HTML head -->
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Motion State · GitBook</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
-        
-        
-        
-    
-    <link rel="stylesheet" href="../gitbook/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
 
-    
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
-        
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
-    
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
-        
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="axes-homing.html" />
-    
-    
-    <link rel="prev" href="servo-on-off.html" />
-    
+        <!-- Custom theme stylesheets -->
 
     </head>
     <body>
-        
-<div class="book">
-    <div class="book-summary">
-        
-            
-<div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
-</div>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
 
-            
-                <nav role="navigation">
-                
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
 
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
 
-<ul class="summary">
-    
-    
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
 
-    
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
 
-    
-        
-        <li class="header">1. 前言</li>
-        
-        
-    
-        <li class="chapter " data-level="1.1" data-path="../">
-            
-                <a href="../">
-            
-                    
-                    簡介
-            
-                </a>
-            
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
 
-            
-        </li>
-    
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> 簡介</a></li><li class="chapter-item expanded "><a href="../hardware.html"><strong aria-hidden="true">2.</strong> 硬體規格</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../botnana-a2.html"><strong aria-hidden="true">2.1.</strong> Botnana BN-A2A</a></li><li class="chapter-item expanded "><a href="../botnana-bn-j4a.html"><strong aria-hidden="true">2.2.</strong> Botnana BN-J4A</a></li></ol></li><li class="chapter-item expanded "><a href="../software.html"><strong aria-hidden="true">3.</strong> 軟體規格</a></li><li class="chapter-item expanded "><a href="../roadmap.html"><strong aria-hidden="true">4.</strong> Roadmap</a></li><li class="chapter-item expanded "><a href="../tutorial.html"><strong aria-hidden="true">5.</strong> 入門教學</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../botnana-a2-tutorial.html"><strong aria-hidden="true">5.1.</strong> Botnana A2 入門</a></li><li class="chapter-item expanded "><a href="../botnana-control-tutorial.html"><strong aria-hidden="true">5.2.</strong> Botnana Control 入門</a></li></ol></li><li class="chapter-item expanded "><a href="../configuration-file.html"><strong aria-hidden="true">6.</strong> 設定檔</a></li><li class="chapter-item expanded "><a href="../programming.html"><strong aria-hidden="true">7.</strong> 程式開發界面</a></li><li class="chapter-item expanded "><a href="../json-api.html"><strong aria-hidden="true">8.</strong> JSON API</a></li><li class="chapter-item expanded "><a href="../real-time-script-api.html"><strong aria-hidden="true">9.</strong> Real-time Script API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../host-primitives.html"><strong aria-hidden="true">9.1.</strong> Botnana 基本指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-primitives.html"><strong aria-hidden="true">9.2.</strong> EtherCAT 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-drive-primitives.html"><strong aria-hidden="true">9.3.</strong> EtherCAT Drive 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-io-primitives.html"><strong aria-hidden="true">9.4.</strong> EtherCAT IO 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-uart-primitives.html"><strong aria-hidden="true">9.5.</strong> EtherCAT UART 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-encoder-primitives.html"><strong aria-hidden="true">9.6.</strong> EtherCAT Encoder 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-gateway-primitives.html"><strong aria-hidden="true">9.7.</strong> EtherCAT Gateway 指令集</a></li><li class="chapter-item expanded "><a href="../axis-group.html"><strong aria-hidden="true">9.8.</strong> 軸組 Axis Group 指令集</a></li><li class="chapter-item expanded "><a href="../sfc.html"><strong aria-hidden="true">9.9.</strong> 狀態流程圖 Sequential Function Chart (SFC)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../sfc-example/servo-on-off.html"><strong aria-hidden="true">9.9.1.</strong> Servo On/OFF</a></li><li class="chapter-item expanded "><a href="../sfc-example/motion-state.html" class="active"><strong aria-hidden="true">9.9.2.</strong> Motion State</a></li><li class="chapter-item expanded "><a href="../sfc-example/axes-homing.html"><strong aria-hidden="true">9.9.3.</strong> Homing State</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../known-working-hardware.html"><strong aria-hidden="true">10.</strong> 支援的硬體清單</a></li><li class="chapter-item expanded "><a href="../update-software.html"><strong aria-hidden="true">11.</strong> 軟體更新</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">12.</strong> 常見問題</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../faq/network.html"><strong aria-hidden="true">12.1.</strong> 網路設定</a></li><li class="chapter-item expanded "><a href="../faq/gadget.html"><strong aria-hidden="true">12.2.</strong> USB連線IP設定</a></li><li class="chapter-item expanded "><a href="../faq/windows7_rndis.html"><strong aria-hidden="true">12.3.</strong> Windows 7 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="../faq/windows10_rndis.html"><strong aria-hidden="true">12.4.</strong> Windows 10 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="../faq/win10_permission.html"><strong aria-hidden="true">12.5.</strong> Windows 10 檔案權限修改</a></li><li class="chapter-item expanded "><a href="../faq/mount.html"><strong aria-hidden="true">12.6.</strong> 磁碟掛載 Mount</a></li><li class="chapter-item expanded "><a href="../faq/manual_install_deb/manual_install_deb.html"><strong aria-hidden="true">12.7.</strong> 手動安裝 Botnana Control 更新檔</a></li><li class="spacer"></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
 
-    
-        
-        <li class="header">2. 規格</li>
-        
-        
-    
-        <li class="chapter " data-level="2.1" data-path="../hardware.html">
-            
-                <a href="../hardware.html">
-            
-                    
-                    硬體規格
-            
-                </a>
-            
+        <div id="page-wrapper" class="page-wrapper">
 
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="2.1.1" data-path="../botnana-a2.html">
-            
-                <a href="../botnana-a2.html">
-            
-                    
-                    Botnana BN-A2A
-            
-                </a>
-            
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-            
-        </li>
-    
-        <li class="chapter " data-level="2.1.2" data-path="../botnana-bn-j4a.html">
-            
-                <a href="../botnana-bn-j4a.html">
-            
-                    
-                    Botnana BN-J4A
-            
-                </a>
-            
+                    <h1 class="menu-title">Botnana Book</h1>
 
-            
-        </li>
-    
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
 
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="2.2" data-path="../software.html">
-            
-                <a href="../software.html">
-            
-                    
-                    軟體規格
-            
-                </a>
-            
+                    </div>
+                </div>
 
-            
-        </li>
-    
-        <li class="chapter " data-level="2.3" data-path="../roadmap.html">
-            
-                <a href="../roadmap.html">
-            
-                    
-                    Roadmap
-            
-                </a>
-            
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
 
-            
-        </li>
-    
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
 
-    
-        
-        <li class="header">3. 入門</li>
-        
-        
-    
-        <li class="chapter " data-level="3.1" data-path="../tutorial.html">
-            
-                <a href="../tutorial.html">
-            
-                    
-                    入門教學
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="3.1.1" data-path="../botnana-a2-tutorial.html">
-            
-                <a href="../botnana-a2-tutorial.html">
-            
-                    
-                    Botnana A2 入門
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.1.2" data-path="../botnana-control-tutorial.html">
-            
-                <a href="../botnana-control-tutorial.html">
-            
-                    
-                    Botnana Control 入門
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="3.2" data-path="../configuration-file.html">
-            
-                <a href="../configuration-file.html">
-            
-                    
-                    設定檔
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
-        
-        <li class="header">4. 程式開發</li>
-        
-        
-    
-        <li class="chapter " data-level="4.1" data-path="../programming.html">
-            
-                <a href="../programming.html">
-            
-                    
-                    程式開發界面
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.2" data-path="../json-api.html">
-            
-                <a href="../json-api.html">
-            
-                    
-                    JSON API
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3" data-path="../real-time-script-api.html">
-            
-                <a href="../real-time-script-api.html">
-            
-                    
-                    Real-time Script API
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.3.1" data-path="../host-primitives.html">
-            
-                <a href="../host-primitives.html">
-            
-                    
-                    Botnana 基本指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.2" data-path="../ethercat-primitives.html">
-            
-                <a href="../ethercat-primitives.html">
-            
-                    
-                    EtherCAT 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.3" data-path="../ethercat-drive-primitives.html">
-            
-                <a href="../ethercat-drive-primitives.html">
-            
-                    
-                    EtherCAT Drive 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.4" data-path="../ethercat-io-primitives.html">
-            
-                <a href="../ethercat-io-primitives.html">
-            
-                    
-                    EtherCAT IO 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.5" data-path="../ethercat-uart-primitives.html">
-            
-                <a href="../ethercat-uart-primitives.html">
-            
-                    
-                    EtherCAT UART 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.6" data-path="../ethercat-encoder-primitives.html">
-            
-                <a href="../ethercat-encoder-primitives.html">
-            
-                    
-                    EtherCAT Encoder 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.7" data-path="../ethercat-gateway-primitives.html">
-            
-                <a href="../ethercat-gateway-primitives.html">
-            
-                    
-                    EtherCAT Gateway 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.8" data-path="../axis-group.html">
-            
-                <a href="../axis-group.html">
-            
-                    
-                    軸組 Axis Group 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9" data-path="../sfc.html">
-            
-                <a href="../sfc.html">
-            
-                    
-                    狀態流程圖 Sequential Function Chart (SFC)
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.3.9.1" data-path="servo-on-off.html">
-            
-                <a href="servo-on-off.html">
-            
-                    
-                    Servo On/OFF
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="4.3.9.2" data-path="motion-state.html">
-            
-                <a href="motion-state.html">
-            
-                    
-                    Motion State
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9.3" data-path="axes-homing.html">
-            
-                <a href="axes-homing.html">
-            
-                    
-                    Homing State
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-        
-        <li class="header">5. 附錄</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="../known-working-hardware.html">
-            
-                <a href="../known-working-hardware.html">
-            
-                    
-                    支援的硬體清單
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.2" data-path="../update-software.html">
-            
-                <a href="../update-software.html">
-            
-                    
-                    軟體更新
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3" data-path="../faq.html">
-            
-                <a href="../faq.html">
-            
-                    
-                    常見問題
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="5.3.1" data-path="../faq/network.html">
-            
-                <a href="../faq/network.html">
-            
-                    
-                    網路設定
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.2" data-path="../faq/gadget.html">
-            
-                <a href="../faq/gadget.html">
-            
-                    
-                    USB連線IP設定
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.3" data-path="../faq/windows7_rndis.html">
-            
-                <a href="../faq/windows7_rndis.html">
-            
-                    
-                    Windows 7 RNDIS 驅動程式安裝
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.4" data-path="../faq/windows10_rndis.html">
-            
-                <a href="../faq/windows10_rndis.html">
-            
-                    
-                    Windows 10 RNDIS 驅動程式安裝
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.5" data-path="../faq/win10_permission.html">
-            
-                <a href="../faq/win10_permission.html">
-            
-                    
-                    Windows 10 檔案權限修改
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.6" data-path="../faq/mount.html">
-            
-                <a href="../faq/mount.html">
-            
-                    
-                    磁碟掛載 Mount
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.7" data-path="../faq/manual_install_deb/manual_install_deb.html">
-            
-                <a href="../faq/manual_install_deb/manual_install_deb.html">
-            
-                    
-                    手動安裝 Botnana Control 更新檔
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
-        </a>
-    </li>
-</ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
-<div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Motion State</a>
-    </h1>
-</div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
-<div id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <h2 id="motion-state-sfc-&#x7BC4;&#x4F8B;">Motion State SFC &#x7BC4;&#x4F8B;</h2>
-<p>&#x6B64;&#x7BC4;&#x4F8B;&#x5C07;&#x4E3B;&#x7AD9;&#x7684;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x898F;&#x5283;&#x70BA; 3 &#x7A2E;&#xFF0C;&#x9019; 3 &#x7A2E;&#x6A21;&#x5F0F;&#x4E0D;&#x6703;&#x540C;&#x6642;&#x904B;&#x884C;&#x3002;</p>
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="motion-state-sfc-範例"><a class="header" href="#motion-state-sfc-範例">Motion State SFC 範例</a></h2>
+<p>此範例將主站的運動模式規劃為 3 種，這 3 種模式不會同時運行。</p>
 <ol>
-<li>Homing: &#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x6A21;&#x5F0F;&#x3002;</li>
-<li>Jogging: &#x8EF8;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x3002;</li>
-<li>Machining: &#x52A0;&#x5DE5;&#x6A21;&#x5F0F;&#x3002;</li>
+<li>Homing: 回歸機械原點模式。</li>
+<li>Jogging: 軸運動模式。</li>
+<li>Machining: 加工模式。</li>
 </ol>
 <pre><code>
                             +--------+
@@ -683,36 +176,38 @@
 |                             True
 |                               |
 +------------------------&lt;------+
-</code></pre><h2 id="sfc-&#x5BE6;&#x4F5C;&#xFF1A;">SFC &#x5BE6;&#x4F5C;&#xFF1A;</h2>
+
+</code></pre>
+<h2 id="sfc-實作"><a class="header" href="#sfc-實作">SFC 實作：</a></h2>
 <pre><code>
-\ &#x5B9A;&#x7FA9;&#x662F;&#x5426;&#x63A5;&#x53D7;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x8981;&#x6C42;&#x7684;&#x8B8A;&#x6578;
+\ 定義是否接受運動模式要求的變數
 variable homing-accepted
 variable jogging-accepted
 variable machining-accepted
 
-\ &#x5B9A;&#x7FA9;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x662F;&#x5426;&#x7D50;&#x675F;&#x7684;&#x8B8A;&#x6578;
+\ 定義運動模式是否結束的變數
 variable homing-stopped
 variable jogging-stopped
 variable machining-stopped
 
-\ &#x8981;&#x6C42;&#x904B;&#x52D5;&#x505C;&#x6B62;
+\ 要求運動停止
 variable motion-stopping
 
-\ &#x7D00;&#x9304;&#x76EE;&#x524D;&#x7684;&#x904B;&#x52D5;&#x6A21;&#x5F0F;
+\ 紀錄目前的運動模式
 variable motion-state
 
-\ &#x662F;&#x5426;&#x8655;&#x65BC; Motion Idle &#x72C0;&#x614B;
+\ 是否處於 Motion Idle 狀態
 : is-motion-idle?  ( -- flag )
     motion-state @ 0=
     ;
 
-\ &#x662F;&#x5426;&#x8981;&#x6C42;&#x904B;&#x52D5;&#x505C;&#x6B62;?
+\ 是否要求運動停止?
 : is-motion-stopping? ( -- flag )
     motion-stopping @
     ;
 
-\ &#x958B;&#x59CB;&#x9032;&#x884C;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;
-\ &#x53EF;&#x4EE5;&#x898F;&#x5283;&#x4E0D;&#x540C;&#x7684;&#x5224;&#x65B7;&#x908F;&#x8F2F;&#xFF0C;&#x767C;&#x51FA;&#x56DE;&#x6B78;&#x539F;&#x9EDE;&#x7684;&#x6307;&#x4EE4;&#x6216;&#x662F;&#x555F;&#x52D5;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x7684; SFC&#x3002;
+\ 開始進行回歸機械原點
+\ 可以規劃不同的判斷邏輯，發出回歸原點的指令或是啟動回歸機械原點的 SFC。
 : start-homing ( -- )
     is-motion-idle? if
         true homing-accepted !
@@ -723,8 +218,8 @@ variable motion-state
     then
     ;
 
-\ &#x958B;&#x59CB;&#x9032;&#x884C;&#x8EF8;&#x79FB;&#x52D5;
-\ &#x53EF;&#x4EE5;&#x898F;&#x5283;&#x4E0D;&#x540C;&#x7684;&#x5224;&#x65B7;&#x908F;&#x8F2F;&#xFF0C;&#x767C;&#x51FA;&#x8EF8;&#x904B;&#x52D5;&#x6307;&#x4EE4;&#x6216;&#x662F;&#x555F;&#x52D5;&#x8EF8;&#x904B;&#x52D5;&#x7684; SFC&#x3002;
+\ 開始進行軸移動
+\ 可以規劃不同的判斷邏輯，發出軸運動指令或是啟動軸運動的 SFC。
 : start-jogging ( -- )
     is-motion-idle? if
         true jogging-accepted !
@@ -735,8 +230,8 @@ variable motion-state
     then
     ;
 
-\ &#x958B;&#x59CB;&#x9032;&#x884C;&#x52A0;&#x5DE5;
-\ &#x53EF;&#x4EE5;&#x898F;&#x5283;&#x4E0D;&#x540C;&#x7684;&#x5224;&#x65B7;&#x908F;&#x8F2F;&#xFF0C;&#x767C;&#x51FA;&#x52A0;&#x5DE5;&#x6307;&#x4EE4;&#x6216;&#x662F;&#x555F;&#x52D5;&#x8EF8;&#x904B;&#x52D5;&#x7684; SFC&#x3002;
+\ 開始進行加工
+\ 可以規劃不同的判斷邏輯，發出加工指令或是啟動軸運動的 SFC。
 : start-machining  ( -- )
     is-motion-idle? if
         true machining-accepted !
@@ -747,8 +242,8 @@ variable motion-state
     then
     ;
 
-\ &#x8981;&#x6C42;&#x904B;&#x52D5;&#x505C;&#x6B62;
-\ &#x53EF;&#x4EE5;&#x4F9D;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x767C;&#x51FA;&#x4E0D;&#x540C;&#x7684;&#x505C;&#x6B62;&#x547D;&#x4EE4;
+\ 要求運動停止
+\ 可以依運動模式發出不同的停止命令
 : stop-motion  ( -- )
     is-motion-idle? not if
         motion-state @ case
@@ -762,7 +257,7 @@ variable motion-state
     then
     ;
 
-\ &#x8981;&#x6C42;&#x904B;&#x52D5;&#x7DCA;&#x6025;&#x505C;&#x6B62;
+\ 要求運動緊急停止
 : ems-motion  ( -- )
     true homing-stopped !
     true jogging-stopped !
@@ -776,7 +271,7 @@ variable motion-state
     ;
 
 \ Motion Homing Step
-\ &#x53EF;&#x4EE5;&#x5728;&#x6B64;&#x898F;&#x5283; Homing &#x6642;&#x7684;&#x6D3B;&#x52D5;&#xFF0C;&#x8207;&#x6536;&#x5230;&#x505C;&#x6B62;&#x547D;&#x4EE4;&#x6642;&#x7684;&#x8655;&#x7F6E;
+\ 可以在此規劃 Homing 時的活動，與收到停止命令時的處置
 : motion-homing ( -- )
     is-motion-stopping? if
         true homing-stopped !
@@ -785,7 +280,7 @@ variable motion-state
 
 
 \ Motion Jogging Step
-\ &#x53EF;&#x4EE5;&#x5728;&#x6B64;&#x898F;&#x5283; Jogging &#x6642;&#x7684;&#x6D3B;&#x52D5;&#xFF0C;&#x8207;&#x6536;&#x5230;&#x505C;&#x6B62;&#x547D;&#x4EE4;&#x6642;&#x7684;&#x8655;&#x7F6E;
+\ 可以在此規劃 Jogging 時的活動，與收到停止命令時的處置
 : motion-jogging ( -- )
     is-motion-stopping? if
         true jogging-stopped !
@@ -793,7 +288,7 @@ variable motion-state
     ;
 
 \ Motion Machining Step
-\ &#x53EF;&#x4EE5;&#x5728;&#x6B64;&#x898F;&#x5283; Machining &#x6642;&#x7684;&#x6D3B;&#x52D5;&#xFF0C;&#x8207;&#x6536;&#x5230;&#x505C;&#x6B62;&#x547D;&#x4EE4;&#x6642;&#x7684;&#x8655;&#x7F6E;
+\ 可以在此規劃 Machining 時的活動，與收到停止命令時的處置
 : motion-machining ( -- )
     is-motion-stopping? if
         true machining-stopped !
@@ -801,7 +296,7 @@ variable motion-state
     ;
 
 \ Motion Post Action
-\ &#x904B;&#x52D5;&#x505C;&#x6B62;&#x5F8C;&#x7684;&#x8655;&#x7F6E;
+\ 運動停止後的處置
 : motion-post-action ( -- )
     false homing-accepted !
     false jogging-accepted !
@@ -815,56 +310,56 @@ variable motion-state
     ;
 
 \ Is homing accepted ?
-\ &#x662F;&#x5426;&#x63A5;&#x53D7; Start homing &#x547D;&#x4EE4; &#xFF1F;
+\ 是否接受 Start homing 命令 ？
 : homing-accepted?  ( -- flag )
     homing-accepted @
     ;
 
 \ Is homing stopped ?
-\ Homing &#x6A21;&#x5F0F;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x505C;&#x6B62; ?
+\ Homing 模式是否已經停止 ?
 : homing-stopped? ( -- flag )
     homing-stopped @
     ;
 
 
 \ Is jogging accepted ?
-\ &#x662F;&#x5426;&#x63A5;&#x53D7; Start jogging &#x547D;&#x4EE4; &#xFF1F;
+\ 是否接受 Start jogging 命令 ？
 : jogging-accepted? ( -- flag )
     jogging-accepted @
     ;
 
 \ Is jogging stopped ?
-\ Jogging &#x6A21;&#x5F0F;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x505C;&#x6B62; ?
+\ Jogging 模式是否已經停止 ?
 : jogging-stopped? ( -- flag )
     jogging-stopped @
     ;
 
 \ Is machining accepted ?
-\ &#x662F;&#x5426;&#x63A5;&#x53D7; Start Machining &#x547D;&#x4EE4; &#xFF1F;
+\ 是否接受 Start Machining 命令 ？
 : machining-accepted? ( -- flag )
     machining-accepted @
     ;
 
 \ Is Machining stopped ?
-\ Machining &#x6A21;&#x5F0F;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x505C;&#x6B62; ?
+\ Machining 模式是否已經停止 ?
 : machining-stopped? ( -- flag )
     machining-stopped @
     ;
 
-\ Motion Post Action &#x81EA;&#x52D5;&#x5207;&#x63DB;&#x5230; Motion Idle
+\ Motion Post Action 自動切換到 Motion Idle
 : motion-auto-passed? ( -- flag )
     true
     ;
 
 
-\ &#x5BA3;&#x544A; SFC Step
+\ 宣告 SFC Step
 step motion-idle
 step motion-homing
 step motion-jogging
 step motion-machining
 step motion-post-action
 
-\ &#x5BA3;&#x544A; SFC Transition
+\ 宣告 SFC Transition
 transition  homing-accepted?
 transition  homing-stopped?
 transition  jogging-accepted?
@@ -875,102 +370,89 @@ transition  motion-auto-passed?
 
 
 \ SFC Link
-&apos; motion-idle           &apos; homing-accepted?    --&gt;
-&apos; homing-accepted?      &apos; motion-homing       --&gt;
-&apos; motion-homing         &apos; homing-stopped?     --&gt;
-&apos; homing-stopped?       &apos; motion-post-action  --&gt;
-&apos; motion-post-action    &apos; motion-auto-passed? --&gt;
-&apos; motion-auto-passed?   &apos; motion-idle         --&gt;
+' motion-idle           ' homing-accepted?    --&gt;
+' homing-accepted?      ' motion-homing       --&gt;
+' motion-homing         ' homing-stopped?     --&gt;
+' homing-stopped?       ' motion-post-action  --&gt;
+' motion-post-action    ' motion-auto-passed? --&gt;
+' motion-auto-passed?   ' motion-idle         --&gt;
 
-&apos; motion-idle           &apos; jogging-accepted?   --&gt;
-&apos; jogging-accepted?     &apos; motion-jogging      --&gt;
-&apos; motion-jogging        &apos; jogging-stopped?    --&gt;
-&apos; jogging-stopped?      &apos; motion-post-action  --&gt;
+' motion-idle           ' jogging-accepted?   --&gt;
+' jogging-accepted?     ' motion-jogging      --&gt;
+' motion-jogging        ' jogging-stopped?    --&gt;
+' jogging-stopped?      ' motion-post-action  --&gt;
 
-&apos; motion-idle           &apos; machining-accepted? --&gt;
-&apos; machining-accepted?   &apos; motion-machining    --&gt;
-&apos; motion-machining      &apos; machining-stopped?  --&gt;
-&apos; machining-stopped?    &apos; motion-post-action  --&gt;
+' motion-idle           ' machining-accepted? --&gt;
+' machining-accepted?   ' motion-machining    --&gt;
+' motion-machining      ' machining-stopped?  --&gt;
+' machining-stopped?    ' motion-post-action  --&gt;
 
 \ Activate motion-idle step
-&apos; motion-idle +step
-</code></pre>
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
-</div>
+' motion-idle +step
 
-                        </div>
-                    </div>
-                
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../sfc-example/servo-on-off.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../sfc-example/axes-homing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
             </div>
 
-            
-                
-                <a href="servo-on-off.html" class="navigation navigation-prev " aria-label="Previous page: Servo On/OFF">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="axes-homing.html" class="navigation navigation-next " aria-label="Next page: Homing State">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../sfc-example/servo-on-off.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-    <script>
-        var gitbook = gitbook || [];
-        gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Motion State","level":"4.3.9.2","depth":3,"next":{"title":"Homing State","level":"4.3.9.3","depth":3,"path":"sfc-example/axes-homing.md","ref":"./sfc-example/axes-homing.md","articles":[]},"previous":{"title":"Servo On/OFF","level":"4.3.9.1","depth":3,"path":"sfc-example/servo-on-off.md","ref":"./sfc-example/servo-on-off.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"sfc-example/motion-state.md","mtime":"2019-01-19T07:08:45.482Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-03T09:03:35.732Z"},"basePath":"..","book":{"language":""}});
-        });
-    </script>
-</div>
+                    <a rel="next" href="../sfc-example/axes-homing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
 
-        
-    <script src="../gitbook/gitbook.js"></script>
-    <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
 
     </body>
 </html>
-

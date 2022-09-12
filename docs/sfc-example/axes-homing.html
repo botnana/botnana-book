@@ -1,791 +1,287 @@
-
 <!DOCTYPE HTML>
-<html lang="" >
+<html lang="zh-TW" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
+        <title>Homing State - Botnana Book</title>
+
+
+        <!-- Custom HTML head -->
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Homing State · GitBook</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
-        
-        
-        
-    
-    <link rel="stylesheet" href="../gitbook/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
 
-    
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
-        
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
-    
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
-        
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="../known-working-hardware.html" />
-    
-    
-    <link rel="prev" href="motion-state.html" />
-    
+        <!-- Custom theme stylesheets -->
 
     </head>
     <body>
-        
-<div class="book">
-    <div class="book-summary">
-        
-            
-<div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
-</div>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
 
-            
-                <nav role="navigation">
-                
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
 
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
 
-<ul class="summary">
-    
-    
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
 
-    
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
 
-    
-        
-        <li class="header">1. 前言</li>
-        
-        
-    
-        <li class="chapter " data-level="1.1" data-path="../">
-            
-                <a href="../">
-            
-                    
-                    簡介
-            
-                </a>
-            
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
 
-            
-        </li>
-    
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> 簡介</a></li><li class="chapter-item expanded "><a href="../hardware.html"><strong aria-hidden="true">2.</strong> 硬體規格</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../botnana-a2.html"><strong aria-hidden="true">2.1.</strong> Botnana BN-A2A</a></li><li class="chapter-item expanded "><a href="../botnana-bn-j4a.html"><strong aria-hidden="true">2.2.</strong> Botnana BN-J4A</a></li></ol></li><li class="chapter-item expanded "><a href="../software.html"><strong aria-hidden="true">3.</strong> 軟體規格</a></li><li class="chapter-item expanded "><a href="../roadmap.html"><strong aria-hidden="true">4.</strong> Roadmap</a></li><li class="chapter-item expanded "><a href="../tutorial.html"><strong aria-hidden="true">5.</strong> 入門教學</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../botnana-a2-tutorial.html"><strong aria-hidden="true">5.1.</strong> Botnana A2 入門</a></li><li class="chapter-item expanded "><a href="../botnana-control-tutorial.html"><strong aria-hidden="true">5.2.</strong> Botnana Control 入門</a></li></ol></li><li class="chapter-item expanded "><a href="../configuration-file.html"><strong aria-hidden="true">6.</strong> 設定檔</a></li><li class="chapter-item expanded "><a href="../programming.html"><strong aria-hidden="true">7.</strong> 程式開發界面</a></li><li class="chapter-item expanded "><a href="../json-api.html"><strong aria-hidden="true">8.</strong> JSON API</a></li><li class="chapter-item expanded "><a href="../real-time-script-api.html"><strong aria-hidden="true">9.</strong> Real-time Script API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../host-primitives.html"><strong aria-hidden="true">9.1.</strong> Botnana 基本指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-primitives.html"><strong aria-hidden="true">9.2.</strong> EtherCAT 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-drive-primitives.html"><strong aria-hidden="true">9.3.</strong> EtherCAT Drive 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-io-primitives.html"><strong aria-hidden="true">9.4.</strong> EtherCAT IO 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-uart-primitives.html"><strong aria-hidden="true">9.5.</strong> EtherCAT UART 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-encoder-primitives.html"><strong aria-hidden="true">9.6.</strong> EtherCAT Encoder 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-gateway-primitives.html"><strong aria-hidden="true">9.7.</strong> EtherCAT Gateway 指令集</a></li><li class="chapter-item expanded "><a href="../axis-group.html"><strong aria-hidden="true">9.8.</strong> 軸組 Axis Group 指令集</a></li><li class="chapter-item expanded "><a href="../sfc.html"><strong aria-hidden="true">9.9.</strong> 狀態流程圖 Sequential Function Chart (SFC)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../sfc-example/servo-on-off.html"><strong aria-hidden="true">9.9.1.</strong> Servo On/OFF</a></li><li class="chapter-item expanded "><a href="../sfc-example/motion-state.html"><strong aria-hidden="true">9.9.2.</strong> Motion State</a></li><li class="chapter-item expanded "><a href="../sfc-example/axes-homing.html" class="active"><strong aria-hidden="true">9.9.3.</strong> Homing State</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../known-working-hardware.html"><strong aria-hidden="true">10.</strong> 支援的硬體清單</a></li><li class="chapter-item expanded "><a href="../update-software.html"><strong aria-hidden="true">11.</strong> 軟體更新</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">12.</strong> 常見問題</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../faq/network.html"><strong aria-hidden="true">12.1.</strong> 網路設定</a></li><li class="chapter-item expanded "><a href="../faq/gadget.html"><strong aria-hidden="true">12.2.</strong> USB連線IP設定</a></li><li class="chapter-item expanded "><a href="../faq/windows7_rndis.html"><strong aria-hidden="true">12.3.</strong> Windows 7 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="../faq/windows10_rndis.html"><strong aria-hidden="true">12.4.</strong> Windows 10 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="../faq/win10_permission.html"><strong aria-hidden="true">12.5.</strong> Windows 10 檔案權限修改</a></li><li class="chapter-item expanded "><a href="../faq/mount.html"><strong aria-hidden="true">12.6.</strong> 磁碟掛載 Mount</a></li><li class="chapter-item expanded "><a href="../faq/manual_install_deb/manual_install_deb.html"><strong aria-hidden="true">12.7.</strong> 手動安裝 Botnana Control 更新檔</a></li><li class="spacer"></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
 
-    
-        
-        <li class="header">2. 規格</li>
-        
-        
-    
-        <li class="chapter " data-level="2.1" data-path="../hardware.html">
-            
-                <a href="../hardware.html">
-            
-                    
-                    硬體規格
-            
-                </a>
-            
+        <div id="page-wrapper" class="page-wrapper">
 
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="2.1.1" data-path="../botnana-a2.html">
-            
-                <a href="../botnana-a2.html">
-            
-                    
-                    Botnana BN-A2A
-            
-                </a>
-            
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-            
-        </li>
-    
-        <li class="chapter " data-level="2.1.2" data-path="../botnana-bn-j4a.html">
-            
-                <a href="../botnana-bn-j4a.html">
-            
-                    
-                    Botnana BN-J4A
-            
-                </a>
-            
+                    <h1 class="menu-title">Botnana Book</h1>
 
-            
-        </li>
-    
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
 
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="2.2" data-path="../software.html">
-            
-                <a href="../software.html">
-            
-                    
-                    軟體規格
-            
-                </a>
-            
+                    </div>
+                </div>
 
-            
-        </li>
-    
-        <li class="chapter " data-level="2.3" data-path="../roadmap.html">
-            
-                <a href="../roadmap.html">
-            
-                    
-                    Roadmap
-            
-                </a>
-            
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
 
-            
-        </li>
-    
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
 
-    
-        
-        <li class="header">3. 入門</li>
-        
-        
-    
-        <li class="chapter " data-level="3.1" data-path="../tutorial.html">
-            
-                <a href="../tutorial.html">
-            
-                    
-                    入門教學
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="3.1.1" data-path="../botnana-a2-tutorial.html">
-            
-                <a href="../botnana-a2-tutorial.html">
-            
-                    
-                    Botnana A2 入門
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.1.2" data-path="../botnana-control-tutorial.html">
-            
-                <a href="../botnana-control-tutorial.html">
-            
-                    
-                    Botnana Control 入門
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="3.2" data-path="../configuration-file.html">
-            
-                <a href="../configuration-file.html">
-            
-                    
-                    設定檔
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
-        
-        <li class="header">4. 程式開發</li>
-        
-        
-    
-        <li class="chapter " data-level="4.1" data-path="../programming.html">
-            
-                <a href="../programming.html">
-            
-                    
-                    程式開發界面
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.2" data-path="../json-api.html">
-            
-                <a href="../json-api.html">
-            
-                    
-                    JSON API
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3" data-path="../real-time-script-api.html">
-            
-                <a href="../real-time-script-api.html">
-            
-                    
-                    Real-time Script API
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.3.1" data-path="../host-primitives.html">
-            
-                <a href="../host-primitives.html">
-            
-                    
-                    Botnana 基本指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.2" data-path="../ethercat-primitives.html">
-            
-                <a href="../ethercat-primitives.html">
-            
-                    
-                    EtherCAT 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.3" data-path="../ethercat-drive-primitives.html">
-            
-                <a href="../ethercat-drive-primitives.html">
-            
-                    
-                    EtherCAT Drive 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.4" data-path="../ethercat-io-primitives.html">
-            
-                <a href="../ethercat-io-primitives.html">
-            
-                    
-                    EtherCAT IO 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.5" data-path="../ethercat-uart-primitives.html">
-            
-                <a href="../ethercat-uart-primitives.html">
-            
-                    
-                    EtherCAT UART 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.6" data-path="../ethercat-encoder-primitives.html">
-            
-                <a href="../ethercat-encoder-primitives.html">
-            
-                    
-                    EtherCAT Encoder 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.7" data-path="../ethercat-gateway-primitives.html">
-            
-                <a href="../ethercat-gateway-primitives.html">
-            
-                    
-                    EtherCAT Gateway 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.8" data-path="../axis-group.html">
-            
-                <a href="../axis-group.html">
-            
-                    
-                    軸組 Axis Group 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9" data-path="../sfc.html">
-            
-                <a href="../sfc.html">
-            
-                    
-                    狀態流程圖 Sequential Function Chart (SFC)
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.3.9.1" data-path="servo-on-off.html">
-            
-                <a href="servo-on-off.html">
-            
-                    
-                    Servo On/OFF
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9.2" data-path="motion-state.html">
-            
-                <a href="motion-state.html">
-            
-                    
-                    Motion State
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="4.3.9.3" data-path="axes-homing.html">
-            
-                <a href="axes-homing.html">
-            
-                    
-                    Homing State
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-        
-        <li class="header">5. 附錄</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="../known-working-hardware.html">
-            
-                <a href="../known-working-hardware.html">
-            
-                    
-                    支援的硬體清單
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.2" data-path="../update-software.html">
-            
-                <a href="../update-software.html">
-            
-                    
-                    軟體更新
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3" data-path="../faq.html">
-            
-                <a href="../faq.html">
-            
-                    
-                    常見問題
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="5.3.1" data-path="../faq/network.html">
-            
-                <a href="../faq/network.html">
-            
-                    
-                    網路設定
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.2" data-path="../faq/gadget.html">
-            
-                <a href="../faq/gadget.html">
-            
-                    
-                    USB連線IP設定
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.3" data-path="../faq/windows7_rndis.html">
-            
-                <a href="../faq/windows7_rndis.html">
-            
-                    
-                    Windows 7 RNDIS 驅動程式安裝
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.4" data-path="../faq/windows10_rndis.html">
-            
-                <a href="../faq/windows10_rndis.html">
-            
-                    
-                    Windows 10 RNDIS 驅動程式安裝
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.5" data-path="../faq/win10_permission.html">
-            
-                <a href="../faq/win10_permission.html">
-            
-                    
-                    Windows 10 檔案權限修改
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.6" data-path="../faq/mount.html">
-            
-                <a href="../faq/mount.html">
-            
-                    
-                    磁碟掛載 Mount
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.7" data-path="../faq/manual_install_deb/manual_install_deb.html">
-            
-                <a href="../faq/manual_install_deb/manual_install_deb.html">
-            
-                    
-                    手動安裝 Botnana Control 更新檔
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
-        </a>
-    </li>
-</ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
-<div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Homing State</a>
-    </h1>
-</div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
-<div id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <h2 id="homing-sfc-&#x7BC4;&#x4F8B;">Homing SFC &#x7BC4;&#x4F8B;</h2>
-<p>&#x6B64;&#x7BC4;&#x4F8B;&#x70BA; 3 &#x8EF8;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x7684;SFC &#x3002;&#x53EF;&#x4EE5;&#x8207; Servo On/OFF SFC &#x914D;&#x5408;&#x5C07;&#x6240;&#x6709;&#x5C0D;&#x61C9;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x5230; Operation Enabled &#x7684;&#x72C0;&#x614B;&#xFF0C;
-&#x4E5F;&#x53EF;&#x4EE5;&#x624B;&#x52D5;&#x5C07;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x5230; Operation Enabled &#x4EE5;&#x9032;&#x884C;&#x6B64; SFC &#x7684;&#x904B;&#x4F5C;&#x3002;</p>
-<p>&#x6B64;&#x7BC4;&#x4F8B;&#x8A2D;&#x8A08;&#x70BA;&#x5169;&#x500B;&#x512A;&#x5148;&#x9806;&#x5E8F;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#xFF0C;&#x53EF;&#x4EE5;&#x5B8C;&#x6210;&#x4EE5;&#x4E0B;&#x5169;&#x7A2E;&#x61C9;&#x7528;&#xFF1A;</p>
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="homing-sfc-範例"><a class="header" href="#homing-sfc-範例">Homing SFC 範例</a></h2>
+<p>此範例為 3 軸回歸機械原點的SFC 。可以與 Servo On/OFF SFC 配合將所有對應的馬達驅動器切換到 Operation Enabled 的狀態，
+也可以手動將驅動器切換到 Operation Enabled 以進行此 SFC 的運作。</p>
+<p>此範例設計為兩個優先順序的運動軸回歸機械原點，可以完成以下兩種應用：</p>
 <ol>
-<li>&#x5C07;&#x904B;&#x52D5;&#x8EF8;&#x5206;&#x914D;&#x70BA;&#x5169;&#x500B;&#x512A;&#x5148;&#x9806;&#x5E8F;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x3002;&#x4F8B;&#x5982;&#x5148;&#x5B8C;&#x6210; Z &#x8EF8;&#x5F8C;&#x518D;&#x9032;&#x884C; X&#xFF0C;Y&#x8EF8;&#x3002;</li>
-<li>&#x7D50;&#x5408;&#x5169;&#x7A2E;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x5FEB;&#x901F;&#x627E;&#x5230;&#x6E96;&#x78BA;&#x7684;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x3002;&#x8B6C;&#x5982;&#x5148;&#x4F7F;&#x7528;&#x901F;&#x5EA6;&#x8F03;&#x9AD8;&#x7684; homing method 1 &#x6216;&#x662F; 2 &#x627E;&#x5230; encoder index &#x5927;&#x81F4;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x518D;&#x4F7F;&#x7528; homing method 33 &#x6216;&#x662F; 34 &#x642D;&#x914D;&#x8F03;&#x4F4E;&#x7684;&#x901F;&#x5EA6;&#x627E;&#x5230;&#x7CBE;&#x78BA;&#x7684; encoder index &#x3002;</li>
+<li>將運動軸分配為兩個優先順序回歸機械原點。例如先完成 Z 軸後再進行 X，Y軸。</li>
+<li>結合兩種回歸機械原點的方法，快速找到準確的機械原點。譬如先使用速度較高的 homing method 1 或是 2 找到 encoder index 大致的地方，再使用 homing method 33 或是 34 搭配較低的速度找到精確的 encoder index 。</li>
 </ol>
-<p>&#x4EE5;&#x4E0B;&#x662F;&#x7BC0;&#x9304; SANMOTION EtherCAT &#x9A45;&#x52D5;&#x5668; Instruction Manual &#x4E2D;&#x5C0D;&#x65BC; homing method 1, 2, 33 &#x8207; 34 &#x7684;&#x8AAA;&#x660E;&#xFF1A;</p>
-<hr>
-<p><img src="homing_method_1_and_2.png" alt=""></p>
-<p><img src="homing_method_33_and_34.png" alt=""></p>
-<hr>
-<p>SFC &#x8A2D;&#x8A08;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>以下是節錄 SANMOTION EtherCAT 驅動器 Instruction Manual 中對於 homing method 1, 2, 33 與 34 的說明：</p>
+<hr />
+<p><img src="homing_method_1_and_2.png" alt="" /></p>
+<p><img src="homing_method_33_and_34.png" alt="" /></p>
+<hr />
+<p>SFC 設計流程如下：</p>
 <pre><code>         +-------------+
-         |    Init     |  &#x6AA2;&#x67E5;&#x662F;&#x5426;&#x5C0D;&#x61C9;&#x7684;&#x9A45;&#x52D5;&#x5668;&#x88DD;&#x7F6E;&#xFF0C;
-         |             |  &#x8A2D;&#x5B9A; device-ok? &#x65D7;&#x6A19;&#x3002;
+         |    Init     |  檢查是否對應的驅動器裝置，
+         |             |  設定 device-ok? 旗標。
          +-----+-------+
                |
            device-ok?
                |
          +-----v-------+
-         |    Idle     |  &#x7B49;&#x5F85; homing-accepted? &#x70BA;&#x771F;&#x3002;
+         |    Idle     |  等待 homing-accepted? 為真。
 +--------+             |
 |        +-----+-------+
 |              |
 |        homing-accepted?
 |              |
 |        +-----v-------+
-|        |   Config    |  &#x5207;&#x63DB;&#x5C0D;&#x61C9;&#x9A45;&#x52D5;&#x5668;&#x70BA; HM &#x6A21;&#x5F0F;
-|        |             |  &#x8A2D;&#x5B9A; homing speed, homing method
+|        |   Config    |  切換對應驅動器為 HM 模式
+|        |             |  設定 homing speed, homing method
 |        +-----+-------+
 |              |
-|         config-ok?      &#x7B49;&#x5F85; config &#x8A2D;&#x5B9A;&#x6307;&#x4EE4;&#xFF08;EtherCAT SDO&#xFF09;&#x5B8C;&#x6210;&#x3002;
+|         config-ok?      等待 config 設定指令（EtherCAT SDO）完成。
 |              |
 |        +-----v-------+
-|        |   Trigger   |  &#x555F;&#x52D5;&#x9A45;&#x52D5;&#x5668;&#x958B;&#x59CB;&#x9032;&#x884C;&#x56DE;&#x6B78;&#x539F;&#x9EDE;&#x52D5;&#x4F5C;&#x3002;&#xFF08;EtherCAT PDO&#xFF09;
+|        |   Trigger   |  啟動驅動器開始進行回歸原點動作。（EtherCAT PDO）
 |        |             |
 |        +-----+-------+
-|              |          &#x7B49;&#x5F85; 50 ms &#x5F8C;&#xFF0C;&#x624D;&#x958B;&#x59CB;&#x6AA2;&#x67E5;&#x56DE;&#x6B78;&#x539F;&#x9EDE;&#x7684;&#x7D50;&#x679C;&#x3002;
-|         trigger-ok?     &#x907F;&#x514D;&#x9A45;&#x52D5;&#x5668;&#x9084;&#x672A;&#x958B;&#x59CB;&#x56DE;&#x6B78;&#x539F;&#x9EDE;&#xFF0C;&#x6AA2;&#x67E5;&#x5230;&#x932F;&#x8AA4;&#x6642;&#x6A5F;&#x7684;&#x72C0;&#x614B;&#x3002;
+|              |          等待 50 ms 後，才開始檢查回歸原點的結果。
+|         trigger-ok?     避免驅動器還未開始回歸原點，檢查到錯誤時機的狀態。
 |              |
-|        +-----v-------+  &#x6AA2;&#x67E5;&#x9A45;&#x52D5;&#x5668;&#x72C0;&#x614B;&#xFF0C;&#x5224;&#x65B7;&#x56DE;&#x6B78;&#x539F;&#x9EDE;&#x662F;&#x5426;&#x5B8C;&#x6210;&#x3002;
-|        |    Loop     |  &#x5982;&#x679C;&#x6240;&#x8A2D;&#x5B9A;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#x90FD;&#x5B8C;&#x6210;&#x56DE;&#x6B78;&#x539F;&#x9EDE;&#x5C31;&#x8A2D;&#x5B9A; loop-stopped? &#x65D7;&#x6A19;&#x3002;
+|        +-----v-------+  檢查驅動器狀態，判斷回歸原點是否完成。
+|        |    Loop     |  如果所設定的運動軸都完成回歸原點就設定 loop-stopped? 旗標。
 |        |             |
 |        +-----+-------+
 |              |
 |         loop-stopped?
 |              |
-|        +-----v-------+  &#x5C07;&#x76EE;&#x524D;&#x4F47;&#x5217;&#x4E2D;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#x5207;&#x63DB;&#x5230; CSP mode
-|        | Post Action |  &#x5207;&#x63DB;&#x5230;&#x4E0B;&#x4E00;&#x500B;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x4F47;&#x5217;&#xFF0C;
-|        |             |  &#x5982;&#x679C;&#x6240;&#x6709;&#x4F47;&#x5217;&#x90FD;&#x5DF2;&#x7D93;&#x5B8C;&#x6210;&#xFF0C;&#x5C31;&#x5C07; homing-accepted? &#x8A2D;&#x5B9A;&#x70BA; false&#x3002;
+|        +-----v-------+  將目前佇列中的運動軸切換到 CSP mode
+|        | Post Action |  切換到下一個回歸機械原點佇列，
+|        |             |  如果所有佇列都已經完成，就將 homing-accepted? 設定為 false。
 |        +-----+-------+
 |              |
 |        post-action-ok?
 |              |
 +------&lt;-------+
-</code></pre><h2 id="sfc-&#x5BE6;&#x4F5C;&#xFF1A;">SFC &#x5BE6;&#x4F5C;&#xFF1A;</h2>
+
+
+</code></pre>
+<h2 id="sfc-實作"><a class="header" href="#sfc-實作">SFC 實作：</a></h2>
 <pre><code>
 \ Axes Description
-\ &#x5206;&#x5225;&#x70BA;&#x7B2C; 1, 2 , 3 &#x904B;&#x52D5;&#x8EF8;
-\ &#x4E0D;&#x4F7F;&#x7528; index 0 &#x7684;&#x904B;&#x52D5;&#x8EF8;
+\ 分別為第 1, 2 , 3 運動軸
+\ 不使用 index 0 的運動軸
 3 constant axes-len
 create axes 0 , 1 , 2 , 3 ,
 
-\ &#x4F7F;&#x7528; axes-enabled &#x53EF;&#x4EE5;&#x66AB;&#x6642;&#x5C07;&#x6307;&#x5B9A;&#x8EF8;&#x6392;&#x9664;&#x5728;&#x6B64; SFC &#x7684;&#x904B;&#x4F5C;&#x908F;&#x8F2F;&#x4E4B;&#x5916;
+\ 使用 axes-enabled 可以暫時將指定軸排除在此 SFC 的運作邏輯之外
 create axes-enabled false , true , true , true ,
 
-\ &#x53D6;&#x5F97;&#x53D7;&#x63A7;&#x904B;&#x52D5;&#x8EF8;&#x6E05;&#x55AE;&#x4E2D;&#x7684;&#x8EF8;&#x7DE8;&#x865F;
+\ 取得受控運動軸清單中的軸編號
 : axis@ ( index -- axis-no )
     cells axes + @
     ;
 
-\ &#x53D6;&#x5F97;&#x53D7;&#x63A7;&#x904B;&#x52D5;&#x8EF8;&#x6E05;&#x55AE;&#x4E2D;&#x7684;&#x81F4;&#x80FD;&#x72C0;&#x614B; (enabled/disabled)
+\ 取得受控運動軸清單中的致能狀態 (enabled/disabled)
 : axis-enabled? ( index -- flag )
     cells axes-enabled + @
     ;
 
-\ &#x5C07;&#x904B;&#x52D5;&#x8EF8;&#x6E05;&#x55AE;&#x4E2D;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#x81F4;&#x80FD;
+\ 將運動軸清單中的運動軸致能
 : +axis  ( index -- )
     cells axes-enabled + true swap !
     ;
 
-\ &#x5C07;&#x904B;&#x52D5;&#x8EF8;&#x6E05;&#x55AE;&#x4E2D;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#x7981;&#x80FD;
+\ 將運動軸清單中的運動軸禁能
 : -axis  ( index -- )
     cells axes-enabled + false swap !
     ;
 
-\ &#x5B9A;&#x7FA9;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x7684;&#x904B;&#x52D5;&#x8EF8; &#xFF08;enabled/disbaled)
-\ &#x5206;&#x70BA;&#x5169;&#x500B;&#x512A;&#x5148;&#x9806;&#x5E8F;&#xFF0C;first-homing-axes &#x57F7;&#x884C;&#x5B8C;&#x5F8C;&#xFF0C;&#x624D;&#x57F7;&#x884C; second-homing-axes
+\ 定義回歸機械原點的運動軸 （enabled/disbaled)
+\ 分為兩個優先順序，first-homing-axes 執行完後，才執行 second-homing-axes
 create first-homing-axes false , false , false , false ,
 create second-homing-axes false , false , false , false ,
 
-\ &#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x7684;&#x901F;&#x5EA6;&#x8207;&#x65B9;&#x6CD5;
-\ &#x901F;&#x5EA6;&#x55AE;&#x4F4D;&#x53C3;&#x8003;&#x9A45;&#x52D5;&#x5668; 0x6099 &#x5B9A;&#x7FA9;&#x7684;&#x55AE;&#x4F4D;&#xFF0C;&#x901A;&#x5E38;&#x662F; pulses/sec
+\ 回歸機械原點的速度與方法
+\ 速度單位參考驅動器 0x6099 定義的單位，通常是 pulses/sec
 create axes-homing-v1     0 , 1000 , 1000 , 1000 ,
 create axes-homing-v2     0 , 10 , 10 , 10 ,
-\ &#x8981;&#x53C3;&#x7167;&#x9A45;&#x52D5;&#x5668;&#x6709;&#x652F;&#x63F4;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x901A;&#x5E38;&#x540C;&#x4E00;&#x500B;&#x4EE3;&#x865F;&#x6703;&#x662F;&#x76F8;&#x540C;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x4E0D;&#x662F;&#x6BCF;&#x4E00;&#x7A2E;&#x9A45;&#x52D5;&#x5668;&#x90FD;&#x6709;&#x652F;&#x63F4;&#x3002;
+\ 要參照驅動器有支援的方法，通常同一個代號會是相同的方法，但不是每一種驅動器都有支援。
 create axes-homing-method 0 , 33 , 33 , 33 ,
 
-\ &#x53D6;&#x5F97; homing-v1 &#x53C3;&#x6578;
+\ 取得 homing-v1 參數
 : axis-homing-v1@ ( index -- v1 )
     cells axes-homing-v1 + @
     ;
 
-\ &#x53D6;&#x5F97; homing-v2 &#x53C3;&#x6578;
+\ 取得 homing-v2 參數
 : axis-homing-v2@ ( index -- v2 )
     cells axes-homing-v2 + @
     ;
 
-\ &#x53D6;&#x5F97; homing-method &#x53C3;&#x6578;
+\ 取得 homing-method 參數
 : axis-homing-method@ ( index -- method )
     cells axes-homing-method + @
     ;
 
-\ &#x8A2D;&#x5B9A; homing-v1 &#x53C3;&#x6578;
+\ 設定 homing-v1 參數
 : axis-homing-v1! ( v1 index -- )
     cells axes-homing-v1 + !
     ;
 
-\ &#x8A2D;&#x5B9A; homing-v2 &#x53C3;&#x6578;
+\ 設定 homing-v2 參數
 : axis-homing-v2! ( v2 index -- )
     cells axes-homing-v2 + !
     ;
 
-\ &#x8A2D;&#x5B9A; homing-method &#x53C3;&#x6578;
+\ 設定 homing-method 參數
 : axis-homing-method! ( method index -- )
     cells axes-homing-method + !
     ;
 
-\ &#x76EE;&#x524D;&#x8655;&#x7406;&#x7684; homing-priority
-\ 1 &#x8868;&#x793A;&#x8655;&#x7406; first-homing-axes &#x4E2D;&#x555F;&#x52D5;&#x7684;&#x904B;&#x52D5;&#x8EF8;
-\ 2 &#x8868;&#x793A;&#x8655;&#x7406; second-homing-axes &#x4E2D;&#x555F;&#x52D5;&#x7684;&#x904B;&#x52D5;&#x8EF8;
+\ 目前處理的 homing-priority
+\ 1 表示處理 first-homing-axes 中啟動的運動軸
+\ 2 表示處理 second-homing-axes 中啟動的運動軸
 variable homing-priority
 
 
-\ &#x5728;&#x5C0D;&#x61C9;&#x7684;&#x512A;&#x5148;&#x4F47;&#x5217;&#x5167;&#x555F;&#x52D5;&#x8981;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x7684;&#x904B;&#x52D5;&#x8EF8;
+\ 在對應的優先佇列內啟動要回歸機械原點的運動軸
 : +homing-axis ( index priority -- )
     case
         1 of cells first-homing-axes + true swap ! endof
@@ -795,7 +291,7 @@ variable homing-priority
     endcase
     ;
 
-\ &#x5728;&#x5C0D;&#x61C9;&#x7684;&#x512A;&#x5148;&#x4F47;&#x5217;&#x5167;&#x53D6;&#x6D88;&#x8981;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x7684;&#x904B;&#x52D5;&#x8EF8;
+\ 在對應的優先佇列內取消要回歸機械原點的運動軸
 : -homing-axis ( index priority -- )
     case
         1 of cells first-homing-axes + false swap ! endof
@@ -805,7 +301,7 @@ variable homing-priority
     endcase
     ;
 
-\ &#x5728;&#x5C0D;&#x61C9;&#x7684;&#x512A;&#x5148;&#x4F47;&#x5217;&#x5167;&#xFF0C;&#x53D6;&#x5F97;&#x8A72;&#x904B;&#x52D5;&#x8EF8;&#x662F;&#x5426;&#x8981;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;?
+\ 在對應的優先佇列內，取得該運動軸是否要回歸機械原點?
 : homing-axis? ( index priority -- flag )
     case
         1 of cells first-homing-axes + @ endof
@@ -815,7 +311,7 @@ variable homing-priority
     endcase
     ;
 
-\ &#x5B9A;&#x7FA9; Axes Homing &#x6D41;&#x7A0B;&#x4E2D;&#x6240;&#x9700;&#x8981;&#x7684;&#x8B8A;&#x6578;
+\ 定義 Axes Homing 流程中所需要的變數
 variable homing-devices-ok
 variable axes-homing-accetped
 variable homing-config-once
@@ -824,9 +320,9 @@ variable homing-loop-stopped
 variable homing-post-action-once
 variable axes-homing-stopping
 
-\ &#x555F;&#x52D5; axes homing
-\ &#x4F7F;&#x7528;&#x6B64;&#x6307;&#x4EE4;&#xFF0C;&#x6C7A;&#x5B9A;&#x662F;&#x5426;&#x8981;&#x958B;&#x59CB;&#x9032;&#x884C;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x7684;&#x6D3B;&#x52D5;
-\ &#x4F9D;&#x64DA;&#x4E0D;&#x540C;&#x7684;&#x61C9;&#x7528;&#x8ABF;&#x6574;&#x555F;&#x52D5;&#x7684;&#x689D;&#x4EF6;
+\ 啟動 axes homing
+\ 使用此指令，決定是否要開始進行回歸機械原點的活動
+\ 依據不同的應用調整啟動的條件
 : start-axes-homing ( -- )
     homing-priority @ 0= if
         true axes-homing-accetped !
@@ -836,8 +332,8 @@ variable axes-homing-stopping
     then
 ;
 
-\ &#x505C;&#x6B62; axes homing
-\ Homing &#x57F7;&#x884C;&#x4E2D;&#x8981;&#x505C;&#x6B62;&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x6703;&#x5C07;&#x5C0D;&#x61C9;&#x7684;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x5230; Quick Stop Activate &#x7684;&#x72C0;&#x614B;
+\ 停止 axes homing
+\ Homing 執行中要停止的命令，會將對應的驅動器切換到 Quick Stop Activate 的狀態
 : stop-axes-homing ( -- )
     homing-priority @ 0&lt;&gt; if
         1
@@ -855,7 +351,7 @@ variable axes-homing-stopping
 ;
 
 \ Homing Init Step
-\ &#x6AA2;&#x67E5;&#x5C0D;&#x61C9;&#x7684;&#x786C;&#x9AD4;&#x88DD;&#x7F6E;&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF0C;&#x53EA;&#x5728;&#x4E00;&#x958B;&#x59CB;&#x7684;&#x6642;&#x5019;&#x505A;&#x4E00;&#x6B21;&#xFF0C;&#x5982;&#x679C;&#x6AA2;&#x67E5;&#x6C92;&#x6709;&#x901A;&#x904E;&#xFF0C;SFC &#x6703;&#x505C;&#x7559;&#x5728;&#x9019;&#x500B; step&#x3002;
+\ 檢查對應的硬體裝置是否存在，只在一開始的時候做一次，如果檢查沒有通過，SFC 會停留在這個 step。
 variable homing-init-once
 : homing-init ( -- )
     homing-init-once @ not if
@@ -877,12 +373,12 @@ variable homing-init-once
     ;
 
 \ Homing Idle Step
-\ &#x5728;&#x6B64;&#x72C0;&#x614B;&#x7B49;&#x5F85; axes-homing-accetped &#x70BA;&#x771F;
+\ 在此狀態等待 axes-homing-accetped 為真
 : homing-idle ( -- )
     ;
 
 \ Homing Config Step
-\ &#x4F9D;&#x64DA;&#x512A;&#x5148;&#x4F47;&#x5217;&#x8A2D;&#x5B9A;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x7684;&#x53C3;&#x6578;&#x7D66;&#x9A45;&#x52D5;&#x5668;
+\ 依據優先佇列設定回歸機械原點的參數給驅動器
 : homing-config
     homing-config-once @ not if
         1
@@ -906,7 +402,7 @@ variable homing-init-once
 ;
 
 \ Homing Trigger Step
-\ &#x4F9D;&#x64DA;&#x512A;&#x5148;&#x4F47;&#x5217;&#x8A2D;&#x5B9A;&#xFF0C;&#x547D;&#x4EE4;&#x9A45;&#x52D5;&#x5668;&#x958B;&#x59CB;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;
+\ 依據優先佇列設定，命令驅動器開始回歸機械原點
 : homing-trigger
     homing-trigger-once @ not if
         1
@@ -929,8 +425,8 @@ variable homing-init-once
     ;
 
 \ Homing Loop Step
-\ &#x4F9D;&#x64DA;&#x9A45;&#x52D5;&#x5668;&#x72C0;&#x614B;&#x5224;&#x5B9A;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x7D50;&#x679C;
-\ &#x4F9D;&#x64DA;&#x7D50;&#x679C;&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8;&#x72C0;&#x614B;
+\ 依據驅動器狀態判定回歸機械原點結果
+\ 依據結果設定運動軸狀態
 : homing-loop
     true homing-loop-stopped !
     1
@@ -944,7 +440,7 @@ variable homing-init-once
                     dup +homed
                 else
                     dup .&quot; log|Axis (&quot;  0 .r  .&quot; ) homing error&quot; cr
-                    \ &#x5982;&#x679C;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x5931;&#x6557;&#xFF0C;&#x505C;&#x6B62;&#x6240;&#x6709;&#x904B;&#x52D5;&#x8EF8;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;
+                    \ 如果回歸機械原點失敗，停止所有運動軸回歸機械原點
                     stop-axes-homing
                     dup -homed
                 then
@@ -952,13 +448,13 @@ variable homing-init-once
                 false homing-loop-stopped !
             then
 
-            \ &#x5982;&#x679C;&#x9A45;&#x52D5;&#x5668;&#x4E0D;&#x662F;&#x5728; Operation Enabled &#x72C0;&#x614B;&#xFF0C;&#x505C;&#x6B62;&#x6240;&#x6709;&#x904B;&#x52D5;&#x8EF8;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;
+            \ 如果驅動器不是在 Operation Enabled 狀態，停止所有運動軸回歸機械原點
             dup axis-drive@ drive-on? not if
                 stop-axes-homing
                 true homing-loop-stopped !
             then
 
-            \ &#x6E05;&#x9664;&#x904B;&#x52D5;&#x8EF8;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;&#xFF0C;&#x4F9D;&#x5BE6;&#x969B;&#x4F4D;&#x7F6E;&#x4FEE;&#x6B63;&#x547D;&#x4EE4;
+            \ 清除運動軸落後誤差，依實際位置修正命令
             0axis-ferr
 
         then
@@ -969,9 +465,9 @@ variable homing-init-once
     ;
 
 \ Homing Post Action
-\ &#x5C07;&#x76EE;&#x524D;&#x4F47;&#x5217;&#x4E2D;&#x7684;&#x9A45;&#x52D5;&#x5668;&#x63DB;&#x5230; CSP &#x6A21;&#x5F0F;
-\ &#x6E05;&#x9664;&#x76EE;&#x524D;&#x4F47;&#x5217;&#x4E2D;&#x7684;&#x904B;&#x52D5;&#x8EF8;
-\ &#x5224;&#x65B7;&#x662F;&#x5426;&#x8981;&#x5207;&#x63DB;&#x5230;&#x4E0B;&#x4E00;&#x500B;&#x4F47;&#x5217;&#x6216;&#x662F;&#x505C;&#x6B62;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;
+\ 將目前佇列中的驅動器換到 CSP 模式
+\ 清除目前佇列中的運動軸
+\ 判斷是否要切換到下一個佇列或是停止回歸機械原點
 : homing-post-action
     homing-post-action-once @ not if
         1
@@ -998,39 +494,39 @@ variable homing-init-once
     then
     ;
 
-\ &#x5C0D;&#x61C9;&#x7684;&#x88DD;&#x7F6E;&#x6AA2;&#x67E5;&#x662F;&#x5426;&#x901A;&#x904E; &#xFF1F;
+\ 對應的裝置檢查是否通過 ？
 : homing-devices-ok? ( -- flag )
     homing-devices-ok @
     ;
 
-\ &#x662F;&#x5426;&#x63A5;&#x53D7; homing &#x7684;&#x6307;&#x4EE4; &#xFF1F;
+\ 是否接受 homing 的指令 ？
 : axes-homing-accetped?
     axes-homing-accetped @
     ;
 
-\ Homing &#x6307;&#x4EE4;&#x662F;&#x5426;&#x8A2D;&#x5B9A;&#x5B8C;&#x6210; &#xFF1F;
-\ &#x6AA2;&#x67E5; EtherCAT SDO &#x53EA;&#x5426;&#x90FD;&#x5DF2;&#x7D93;&#x57F7;&#x884C;&#x5B8C;&#x7562;&#x3002;
+\ Homing 指令是否設定完成 ？
+\ 檢查 EtherCAT SDO 只否都已經執行完畢。
 : homing-config-ok?
     waiting-requests? not
     ;
 
-\ &#x5728; Homing trigger &#x5F8C;&#x7B49;&#x5F85; 50 ms
+\ 在 Homing trigger 後等待 50 ms
 : homing-trigger-ok?
-    [&apos;] homing-trigger elapsed 50 &gt;
+    ['] homing-trigger elapsed 50 &gt;
     ;
 
-\ &#x662F;&#x5426;&#x8981;&#x812B;&#x96E2; Homing Loop &#xFF1F;
+\ 是否要脫離 Homing Loop ？
 : homing-loop-stopped?
     homing-loop-stopped @
     ;
 
-\ Homing Post Action &#x662F;&#x5426;&#x5B8C;&#x6210;&#xFF1F;
-\ &#x6AA2;&#x67E5; EtherCAT SDO &#x53EA;&#x5426;&#x90FD;&#x5DF2;&#x7D93;&#x57F7;&#x884C;&#x5B8C;&#x7562;&#x3002;
+\ Homing Post Action 是否完成？
+\ 檢查 EtherCAT SDO 只否都已經執行完畢。
 : homing-post-action-ok?
     waiting-requests? not
     ;
 
-\ &#x5BA3;&#x544A; SFC Step
+\ 宣告 SFC Step
 step homing-init
 step homing-idle
 step homing-config
@@ -1038,7 +534,7 @@ step homing-trigger
 step homing-loop
 step homing-post-action
 
-\ &#x5BA3;&#x544A; SFC Transition
+\ 宣告 SFC Transition
 transition homing-devices-ok?
 transition axes-homing-accetped?
 transition homing-config-ok?
@@ -1048,98 +544,85 @@ transition homing-post-action-ok?
 
 
 \ Link SFC
-&apos; homing-init               &apos; homing-devices-ok?        --&gt;
-&apos; homing-devices-ok?        &apos; homing-idle               --&gt;
-&apos; homing-idle               &apos; axes-homing-accetped?     --&gt;
-&apos; axes-homing-accetped?     &apos; homing-config             --&gt;
-&apos; homing-config             &apos; homing-config-ok?         --&gt;
-&apos; homing-config-ok?         &apos; homing-trigger            --&gt;
-&apos; homing-trigger            &apos; homing-trigger-ok?        --&gt;
-&apos; homing-trigger-ok?        &apos; homing-loop               --&gt;
-&apos; homing-loop               &apos; homing-loop-stopped?      --&gt;
-&apos; homing-loop-stopped?      &apos; homing-post-action        --&gt;
-&apos; homing-post-action        &apos; homing-post-action-ok?    --&gt;
-&apos; homing-post-action-ok?    &apos; homing-idle               --&gt;
+' homing-init               ' homing-devices-ok?        --&gt;
+' homing-devices-ok?        ' homing-idle               --&gt;
+' homing-idle               ' axes-homing-accetped?     --&gt;
+' axes-homing-accetped?     ' homing-config             --&gt;
+' homing-config             ' homing-config-ok?         --&gt;
+' homing-config-ok?         ' homing-trigger            --&gt;
+' homing-trigger            ' homing-trigger-ok?        --&gt;
+' homing-trigger-ok?        ' homing-loop               --&gt;
+' homing-loop               ' homing-loop-stopped?      --&gt;
+' homing-loop-stopped?      ' homing-post-action        --&gt;
+' homing-post-action        ' homing-post-action-ok?    --&gt;
+' homing-post-action-ok?    ' homing-idle               --&gt;
 
 \ Activate homing-init step
-&apos; homing-init +step
-</code></pre>
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
-</div>
+' homing-init +step
 
-                        </div>
-                    </div>
-                
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../sfc-example/motion-state.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../known-working-hardware.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
             </div>
 
-            
-                
-                <a href="motion-state.html" class="navigation navigation-prev " aria-label="Previous page: Motion State">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="../known-working-hardware.html" class="navigation navigation-next " aria-label="Next page: 支援的硬體清單">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../sfc-example/motion-state.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-    <script>
-        var gitbook = gitbook || [];
-        gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Homing State","level":"4.3.9.3","depth":3,"next":{"title":"支援的硬體清單","level":"5.1","depth":1,"path":"known-working-hardware.md","ref":"./known-working-hardware.md","articles":[]},"previous":{"title":"Motion State","level":"4.3.9.2","depth":3,"path":"sfc-example/motion-state.md","ref":"./sfc-example/motion-state.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"sfc-example/axes-homing.md","mtime":"2019-01-19T07:08:45.482Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-03T09:03:35.732Z"},"basePath":"..","book":{"language":""}});
-        });
-    </script>
-</div>
+                    <a rel="next" href="../known-working-hardware.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
 
-        
-    <script src="../gitbook/gitbook.js"></script>
-    <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
 
     </body>
 </html>
-

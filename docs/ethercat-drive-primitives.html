@@ -1,668 +1,161 @@
-
 <!DOCTYPE HTML>
-<html lang="" >
+<html lang="zh-TW" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
+        <title>EtherCAT Drive 指令集 - Botnana Book</title>
+
+
+        <!-- Custom HTML head -->
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>EtherCAT Drive 指令集 · GitBook</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
-        
-        
-        
-    
-    <link rel="stylesheet" href="gitbook/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
 
-    
-            
-                
-                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
-        
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
-    
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
-        
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="ethercat-io-primitives.html" />
-    
-    
-    <link rel="prev" href="ethercat-primitives.html" />
-    
+        <!-- Custom theme stylesheets -->
 
     </head>
     <body>
-        
-<div class="book">
-    <div class="book-summary">
-        
-            
-<div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
-</div>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
 
-            
-                <nav role="navigation">
-                
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
 
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
 
-<ul class="summary">
-    
-    
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
 
-    
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
 
-    
-        
-        <li class="header">1. 前言</li>
-        
-        
-    
-        <li class="chapter " data-level="1.1" data-path="./">
-            
-                <a href="./">
-            
-                    
-                    簡介
-            
-                </a>
-            
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
 
-            
-        </li>
-    
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> 簡介</a></li><li class="chapter-item expanded "><a href="hardware.html"><strong aria-hidden="true">2.</strong> 硬體規格</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="botnana-a2.html"><strong aria-hidden="true">2.1.</strong> Botnana BN-A2A</a></li><li class="chapter-item expanded "><a href="botnana-bn-j4a.html"><strong aria-hidden="true">2.2.</strong> Botnana BN-J4A</a></li></ol></li><li class="chapter-item expanded "><a href="software.html"><strong aria-hidden="true">3.</strong> 軟體規格</a></li><li class="chapter-item expanded "><a href="roadmap.html"><strong aria-hidden="true">4.</strong> Roadmap</a></li><li class="chapter-item expanded "><a href="tutorial.html"><strong aria-hidden="true">5.</strong> 入門教學</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="botnana-a2-tutorial.html"><strong aria-hidden="true">5.1.</strong> Botnana A2 入門</a></li><li class="chapter-item expanded "><a href="botnana-control-tutorial.html"><strong aria-hidden="true">5.2.</strong> Botnana Control 入門</a></li></ol></li><li class="chapter-item expanded "><a href="configuration-file.html"><strong aria-hidden="true">6.</strong> 設定檔</a></li><li class="chapter-item expanded "><a href="programming.html"><strong aria-hidden="true">7.</strong> 程式開發界面</a></li><li class="chapter-item expanded "><a href="json-api.html"><strong aria-hidden="true">8.</strong> JSON API</a></li><li class="chapter-item expanded "><a href="real-time-script-api.html"><strong aria-hidden="true">9.</strong> Real-time Script API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="host-primitives.html"><strong aria-hidden="true">9.1.</strong> Botnana 基本指令集</a></li><li class="chapter-item expanded "><a href="ethercat-primitives.html"><strong aria-hidden="true">9.2.</strong> EtherCAT 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-drive-primitives.html" class="active"><strong aria-hidden="true">9.3.</strong> EtherCAT Drive 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-io-primitives.html"><strong aria-hidden="true">9.4.</strong> EtherCAT IO 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-uart-primitives.html"><strong aria-hidden="true">9.5.</strong> EtherCAT UART 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-encoder-primitives.html"><strong aria-hidden="true">9.6.</strong> EtherCAT Encoder 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-gateway-primitives.html"><strong aria-hidden="true">9.7.</strong> EtherCAT Gateway 指令集</a></li><li class="chapter-item expanded "><a href="axis-group.html"><strong aria-hidden="true">9.8.</strong> 軸組 Axis Group 指令集</a></li><li class="chapter-item expanded "><a href="sfc.html"><strong aria-hidden="true">9.9.</strong> 狀態流程圖 Sequential Function Chart (SFC)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="sfc-example/servo-on-off.html"><strong aria-hidden="true">9.9.1.</strong> Servo On/OFF</a></li><li class="chapter-item expanded "><a href="sfc-example/motion-state.html"><strong aria-hidden="true">9.9.2.</strong> Motion State</a></li><li class="chapter-item expanded "><a href="sfc-example/axes-homing.html"><strong aria-hidden="true">9.9.3.</strong> Homing State</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="known-working-hardware.html"><strong aria-hidden="true">10.</strong> 支援的硬體清單</a></li><li class="chapter-item expanded "><a href="update-software.html"><strong aria-hidden="true">11.</strong> 軟體更新</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">12.</strong> 常見問題</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="faq/network.html"><strong aria-hidden="true">12.1.</strong> 網路設定</a></li><li class="chapter-item expanded "><a href="faq/gadget.html"><strong aria-hidden="true">12.2.</strong> USB連線IP設定</a></li><li class="chapter-item expanded "><a href="faq/windows7_rndis.html"><strong aria-hidden="true">12.3.</strong> Windows 7 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="faq/windows10_rndis.html"><strong aria-hidden="true">12.4.</strong> Windows 10 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="faq/win10_permission.html"><strong aria-hidden="true">12.5.</strong> Windows 10 檔案權限修改</a></li><li class="chapter-item expanded "><a href="faq/mount.html"><strong aria-hidden="true">12.6.</strong> 磁碟掛載 Mount</a></li><li class="chapter-item expanded "><a href="faq/manual_install_deb/manual_install_deb.html"><strong aria-hidden="true">12.7.</strong> 手動安裝 Botnana Control 更新檔</a></li><li class="spacer"></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
 
-    
-        
-        <li class="header">2. 規格</li>
-        
-        
-    
-        <li class="chapter " data-level="2.1" data-path="hardware.html">
-            
-                <a href="hardware.html">
-            
-                    
-                    硬體規格
-            
-                </a>
-            
+        <div id="page-wrapper" class="page-wrapper">
 
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="2.1.1" data-path="botnana-a2.html">
-            
-                <a href="botnana-a2.html">
-            
-                    
-                    Botnana BN-A2A
-            
-                </a>
-            
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-            
-        </li>
-    
-        <li class="chapter " data-level="2.1.2" data-path="botnana-bn-j4a.html">
-            
-                <a href="botnana-bn-j4a.html">
-            
-                    
-                    Botnana BN-J4A
-            
-                </a>
-            
+                    <h1 class="menu-title">Botnana Book</h1>
 
-            
-        </li>
-    
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
 
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="2.2" data-path="software.html">
-            
-                <a href="software.html">
-            
-                    
-                    軟體規格
-            
-                </a>
-            
+                    </div>
+                </div>
 
-            
-        </li>
-    
-        <li class="chapter " data-level="2.3" data-path="roadmap.html">
-            
-                <a href="roadmap.html">
-            
-                    
-                    Roadmap
-            
-                </a>
-            
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
 
-            
-        </li>
-    
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
 
-    
-        
-        <li class="header">3. 入門</li>
-        
-        
-    
-        <li class="chapter " data-level="3.1" data-path="tutorial.html">
-            
-                <a href="tutorial.html">
-            
-                    
-                    入門教學
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="3.1.1" data-path="botnana-a2-tutorial.html">
-            
-                <a href="botnana-a2-tutorial.html">
-            
-                    
-                    Botnana A2 入門
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.1.2" data-path="botnana-control-tutorial.html">
-            
-                <a href="botnana-control-tutorial.html">
-            
-                    
-                    Botnana Control 入門
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="3.2" data-path="configuration-file.html">
-            
-                <a href="configuration-file.html">
-            
-                    
-                    設定檔
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
-        
-        <li class="header">4. 程式開發</li>
-        
-        
-    
-        <li class="chapter " data-level="4.1" data-path="programming.html">
-            
-                <a href="programming.html">
-            
-                    
-                    程式開發界面
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.2" data-path="json-api.html">
-            
-                <a href="json-api.html">
-            
-                    
-                    JSON API
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3" data-path="real-time-script-api.html">
-            
-                <a href="real-time-script-api.html">
-            
-                    
-                    Real-time Script API
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.3.1" data-path="host-primitives.html">
-            
-                <a href="host-primitives.html">
-            
-                    
-                    Botnana 基本指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.2" data-path="ethercat-primitives.html">
-            
-                <a href="ethercat-primitives.html">
-            
-                    
-                    EtherCAT 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="4.3.3" data-path="ethercat-drive-primitives.html">
-            
-                <a href="ethercat-drive-primitives.html">
-            
-                    
-                    EtherCAT Drive 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.4" data-path="ethercat-io-primitives.html">
-            
-                <a href="ethercat-io-primitives.html">
-            
-                    
-                    EtherCAT IO 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.5" data-path="ethercat-uart-primitives.html">
-            
-                <a href="ethercat-uart-primitives.html">
-            
-                    
-                    EtherCAT UART 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.6" data-path="ethercat-encoder-primitives.html">
-            
-                <a href="ethercat-encoder-primitives.html">
-            
-                    
-                    EtherCAT Encoder 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.7" data-path="ethercat-gateway-primitives.html">
-            
-                <a href="ethercat-gateway-primitives.html">
-            
-                    
-                    EtherCAT Gateway 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.8" data-path="axis-group.html">
-            
-                <a href="axis-group.html">
-            
-                    
-                    軸組 Axis Group 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9" data-path="sfc.html">
-            
-                <a href="sfc.html">
-            
-                    
-                    狀態流程圖 Sequential Function Chart (SFC)
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.3.9.1" data-path="sfc-example/servo-on-off.html">
-            
-                <a href="sfc-example/servo-on-off.html">
-            
-                    
-                    Servo On/OFF
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9.2" data-path="sfc-example/motion-state.html">
-            
-                <a href="sfc-example/motion-state.html">
-            
-                    
-                    Motion State
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9.3" data-path="sfc-example/axes-homing.html">
-            
-                <a href="sfc-example/axes-homing.html">
-            
-                    
-                    Homing State
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-        
-        <li class="header">5. 附錄</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="known-working-hardware.html">
-            
-                <a href="known-working-hardware.html">
-            
-                    
-                    支援的硬體清單
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.2" data-path="update-software.html">
-            
-                <a href="update-software.html">
-            
-                    
-                    軟體更新
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3" data-path="faq.html">
-            
-                <a href="faq.html">
-            
-                    
-                    常見問題
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="5.3.1" data-path="faq/network.html">
-            
-                <a href="faq/network.html">
-            
-                    
-                    網路設定
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.2" data-path="faq/gadget.html">
-            
-                <a href="faq/gadget.html">
-            
-                    
-                    USB連線IP設定
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.3" data-path="faq/windows7_rndis.html">
-            
-                <a href="faq/windows7_rndis.html">
-            
-                    
-                    Windows 7 RNDIS 驅動程式安裝
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.4" data-path="faq/windows10_rndis.html">
-            
-                <a href="faq/windows10_rndis.html">
-            
-                    
-                    Windows 10 RNDIS 驅動程式安裝
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.5" data-path="faq/win10_permission.html">
-            
-                <a href="faq/win10_permission.html">
-            
-                    
-                    Windows 10 檔案權限修改
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.6" data-path="faq/mount.html">
-            
-                <a href="faq/mount.html">
-            
-                    
-                    磁碟掛載 Mount
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.7" data-path="faq/manual_install_deb/manual_install_deb.html">
-            
-                <a href="faq/manual_install_deb/manual_install_deb.html">
-            
-                    
-                    手動安裝 Botnana Control 更新檔
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
-        </a>
-    </li>
-</ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
-<div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >EtherCAT Drive 指令集</a>
-    </h1>
-</div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
-<div id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <h3 id="ethercat-drive-&#x6307;&#x4EE4;&#x96C6;">EtherCAT Drive &#x6307;&#x4EE4;&#x96C6;</h3>
-<p>EtherCAT &#x9A45;&#x52D5;&#x5668;&#x901A;&#x5E38;&#x90FD;&#x6703;&#x7B26;&#x5408; CiA 402 &#x898F;&#x7BC4;&#xFF0C;&#x6B64;&#x898F;&#x7BC4;&#x5B9A;&#x7FA9;&#x4E86;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x64CD;&#x4F5C;&#x6A21;&#x5F0F;&#x8207;&#x4ECB;&#x9762;&#x3002;&#x5BE6;&#x969B;&#x4E0A;&#x9A45;&#x52D5;&#x5668;&#x4E26;&#x4E0D;&#x6703;&#x5BE6;&#x73FE;&#x6240;&#x6709; CiA 402 &#x898F;&#x7BC4;&#x63D0;&#x5230;&#x7684;&#x6240;&#x6709;&#x529F;&#x80FD;&#xFF0C;&#x5728;&#x9078;&#x7528;&#x9A45;&#x52D5;&#x5668;&#x6642;&#x9084;&#x662F;&#x8981;&#x7559;&#x610F;&#x3002;</p>
-<p>&#x76EE;&#x524D; Botnana Control &#x652F;&#x63F4;&#x4EE5;&#x4E0B;&#x5E7E;&#x7A2E;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#xFF1A;</p>
+                <div id="content" class="content">
+                    <main>
+                        <h3 id="ethercat-drive-指令集"><a class="header" href="#ethercat-drive-指令集">EtherCAT Drive 指令集</a></h3>
+<p>EtherCAT 驅動器通常都會符合 CiA 402 規範，此規範定義了驅動器的操作模式與介面。實際上驅動器並不會實現所有 CiA 402 規範提到的所有功能，在選用驅動器時還是要留意。</p>
+<p>目前 Botnana Control 支援以下幾種驅動器的運動模式：</p>
 <ul>
-<li>&#x4F4D;&#x7F6E;&#x63A7;&#x5236;&#x6A21;&#x5F0F; PP (Profile Position Mode&#xFF09;</li>
-<li>&#x901F;&#x5EA6;&#x63A7;&#x5236;&#x6A21;&#x5F0F; PV (Profile Velocity Mode&#xFF09;</li>
-<li>&#x539F;&#x9EDE;&#x5FA9;&#x6B78;&#x6A21;&#x5F0F; HM (Homing mode)</li>
-<li>&#x626D;&#x529B;&#x63A7;&#x5236;&#x6A21;&#x5F0F; TQ (Profile  Torque Mode)</li>
-<li>&#x9031;&#x671F;&#x540C;&#x6B65;&#x4F4D;&#x7F6E;&#x6A21;&#x5F0F; CSP (Cyclic Sync Position Mode)</li>
-<li>&#x9031;&#x671F;&#x540C;&#x6B65;&#x901F;&#x5EA6;&#x6A21;&#x5F0F; CSV (Cyclic Sync Velocity Mode)</li>
-<li>&#x9031;&#x671F;&#x540C;&#x6B65;&#x626D;&#x529B;&#x6A21;&#x5F0F; CST (Cyclic Sync Torque Mode)</li>
+<li>位置控制模式 PP (Profile Position Mode）</li>
+<li>速度控制模式 PV (Profile Velocity Mode）</li>
+<li>原點復歸模式 HM (Homing mode)</li>
+<li>扭力控制模式 TQ (Profile  Torque Mode)</li>
+<li>週期同步位置模式 CSP (Cyclic Sync Position Mode)</li>
+<li>週期同步速度模式 CSV (Cyclic Sync Velocity Mode)</li>
+<li>週期同步扭力模式 CST (Cyclic Sync Torque Mode)</li>
 </ul>
-<p>&#x5C31;&#x61C9;&#x7528;&#x9762;&#x4F86;&#x770B;&#x9031;&#x671F;&#x540C;&#x6B65;&#x6A21;&#x5F0F;&#x9069;&#x5408;&#x7528;&#x4F86;&#x505A;&#x591A;&#x8EF8;&#x540C;&#x52D5;&#x6216;&#x662F;&#x7279;&#x6B8A;&#x7684;&#x8ECC;&#x8DE1;&#x898F;&#x5283;&#x3002;</p>
-<p><strong>&#x4F4D;&#x7F6E;&#x6A21;&#x5F0F;&#x65B9;&#x584A;&#x5716;&#xFF1A;</strong></p>
+<p>就應用面來看週期同步模式適合用來做多軸同動或是特殊的軌跡規劃。</p>
+<p><strong>位置模式方塊圖：</strong></p>
 <pre><code>               +--------+
                | +----&gt; |----------------------- +
                | |CSP   |                        |
@@ -672,7 +165,9 @@ Position       |  PP    |      | Trajectory  |        |  Control  |      Effect
                |        |      | Generation  |        |           |
                +--------+      +-------------+        +-----------+
               Mode Seletor
-</code></pre><p><strong>&#x901F;&#x5EA6;&#x6A21;&#x5F0F;&#x65B9;&#x584A;&#x5716;&#xFF1A;</strong></p>
+
+</code></pre>
+<p><strong>速度模式方塊圖：</strong></p>
 <pre><code>               +--------+
                | +----&gt; |----------------------- +
                | |CSV   |                        |
@@ -682,7 +177,9 @@ Velocity       |  PV    |      | Trajectory  |        |  Control  |      Effect
                |        |      | Generation  |        |           |
                +--------+      +-------------+        +-----------+
               Mode Seletor
-</code></pre><p><strong>&#x626D;&#x529B;&#x6A21;&#x5F0F;&#x65B9;&#x584A;&#x5716;&#xFF1A;</strong></p>
+
+</code></pre>
+<p><strong>扭力模式方塊圖：</strong></p>
 <pre><code>               +--------+
                | +----&gt; |----------------------- +
                | |CST   |                        |
@@ -692,11 +189,13 @@ Torque         |  TQ    |      | Trajectory  |        |  Control  |      Effect
                |        |      | Generation  |        |           |
                +--------+      +-------------+        +-----------+
               Mode Seletor
-</code></pre><p><strong>&#x539F;&#x9EDE;&#x5FA9;&#x6B78;&#x6A21;&#x5F0F;</strong>&#xFF1A;&#x4EE5;&#x4E0B;&#x662F;&#x5E7E;&#x7A2E;&#x5E38;&#x898B;&#x7684;&#x5FA9;&#x6B78;&#x65B9;&#x6CD5;&#xFF0C;&#x6BCF;&#x4E00;&#x7A2E;&#x9A45;&#x52D5;&#x5668;&#x5FC5;&#x9808;&#x4F9D;&#x8A72;&#x5EE0;&#x5BB6;&#x7684;&#x6240;&#x652F;&#x63F4;&#x7684;&#x65B9;&#x6CD5;&#x70BA;&#x6E96;&#x3002;</p>
+
+</code></pre>
+<p><strong>原點復歸模式</strong>：以下是幾種常見的復歸方法，每一種驅動器必須依該廠家的所支援的方法為準。</p>
 <ul>
 <li>Method 1 and 2 : Homing on the limit switch and index pulse</li>
 </ul>
-<p>&#x4F9D;&#x64DA;&#x6240;&#x9078;&#x64C7;&#x7684;&#x8CA0;/&#x6B63;&#x65B9;&#x5411;&#xFF0C;&#x539F;&#x9EDE;&#x4F4D;&#x7F6E;&#x5728;&#x9047;&#x5230; limit switch &#x53CD;&#x8F49;&#x5F8C;&#x6700;&#x9760;&#x8FD1;&#x7684; index pulse&#x3002;</p>
+<p>依據所選擇的負/正方向，原點位置在遇到 limit switch 反轉後最靠近的 index pulse。</p>
 <pre><code>++                    ++                     ++
 ||--------------------||---------------------||
 ||--------------------||---------------------||
@@ -722,10 +221,11 @@ Index Pulse            |       |     |   .
                                          +------
 Positive Limit Switch                    |
 -----------------------------------------+
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>Methods 3 to 6: Homing on the home switch and index pulse</li>
 </ul>
-<p>&#x4F9D;&#x64DA;&#x6240;&#x9078;&#x64C7;&#x7684;&#x8CA0;/&#x6B63;&#x65B9;&#x5411;&#x8207;&#x65B9;&#x6CD5;&#xFF0C;&#x539F;&#x9EDE;&#x4F4D;&#x7F6E;&#x5728;&#x9047;&#x5230; home switch &#x5F8C;&#x6700;&#x9760;&#x8FD1;&#x7684; index pulse&#x3002;</p>
+<p>依據所選擇的負/正方向與方法，原點位置在遇到 home switch 後最靠近的 index pulse。</p>
 <pre><code>++                                           ++
 ||-------------------------------------------||
 ||-------------------------------------------||
@@ -768,10 +268,11 @@ Home Switch            .
 -----------------------+
                        |
                        +-------------------------
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>Methods 7 to 10: Homing on positive limit switch, home switch and index pulse</li>
 </ul>
-<p>&#x8207; Methods 3 to 6 &#x7684;&#x65B9;&#x6CD5;&#x985E;&#x4F3C;&#xFF0C;&#x9047;&#x5230;&#x6B63;&#x6975;&#x9650;&#x958B;&#x95DC;&#x5F8C;&#x53CD;&#x8F49;&#xFF0C;&#x6703;&#x4F9D;&#x5176;&#x8A2D;&#x5B9A;&#x65B9;&#x5F0F;&#x5C0B;&#x627E; index pulse&#x3002;</p>
+<p>與 Methods 3 to 6 的方法類似，遇到正極限開關後反轉，會依其設定方式尋找 index pulse。</p>
 <pre><code>++                                                                ++
 ||----------------------------------------------------------------||
 ||----------------------------------------------------------------||
@@ -804,10 +305,11 @@ Home Switch           |                         |            .
                                                              +-----
 Positive Limit Switch                                        |
 -------------------------------------------------------------+
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>Methods 11 to 14: Homing on negative limit switch, home switch and index pulse</li>
 </ul>
-<p>&#x8207; Methods 3 to 6 &#x7684;&#x65B9;&#x6CD5;&#x985E;&#x4F3C;&#xFF0C;&#x9047;&#x5230;&#x8CA0;&#x6975;&#x9650;&#x958B;&#x95DC;&#x5F8C;&#x53CD;&#x8F49;&#xFF0C;&#x6703;&#x4F9D;&#x5176;&#x8A2D;&#x5B9A;&#x65B9;&#x5F0F;&#x5C0B;&#x627E; index pulse&#x3002;</p>
+<p>與 Methods 3 to 6 的方法類似，遇到負極限開關後反轉，會依其設定方式尋找 index pulse。</p>
 <pre><code>++                                                                       ++
 ||-----------------------------------------------------------------------||
 ||-----------------------------------------------------------------------||
@@ -840,10 +342,11 @@ Home Switch              |                        |
        +-------------------------------------------------------------
        |                                      Negative Limit Switch
 +------+
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>Methods 17 and 18: Homing on limit switch without an index pulse</li>
 </ul>
-<p>&#x4F9D;&#x64DA;&#x6240;&#x9078;&#x64C7;&#x7684;&#x8CA0;/&#x6B63;&#x65B9;&#x5411;&#xFF0C;&#x539F;&#x9EDE;&#x4F4D;&#x7F6E;&#x5728; limit switch &#x4E0A;&#x3002;</p>
+<p>依據所選擇的負/正方向，原點位置在 limit switch 上。</p>
 <pre><code> ++                 ++                        ++
  ||-----------------||------------------------||
  ||-----------------||------------------------||
@@ -864,10 +367,11 @@ Home Switch              |                        |
                                           +------
 Positive Limit Switch                     |
 ------------------------------------------+
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>Methods 19 to 22: Homing on home switch without an index pulse</li>
 </ul>
-<p>&#x4F9D;&#x64DA;&#x6240;&#x9078;&#x64C7;&#x7684;&#x8CA0;/&#x6B63;&#x65B9;&#x5411;&#x8207;&#x65B9;&#x5F0F;&#xFF0C;&#x539F;&#x9EDE;&#x4F4D;&#x7F6E;&#x5728; home switch &#x4E0A;&#x3002;</p>
+<p>依據所選擇的負/正方向與方式，原點位置在 home switch 上。</p>
 <pre><code> ++    ++                                     ++
  ||----||-------------------------------------||
  ||----||-------------------------------------||
@@ -909,10 +413,11 @@ Home Switch               .
 --------------------------+
                           |
                           +--------------------
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>Methods 33 and 34: Homing on the index pulse</li>
 </ul>
-<p>&#x4F9D;&#x64DA;&#x6240;&#x9078;&#x64C7;&#x7684;&#x8CA0;/&#x6B63;&#x65B9;&#x5411;&#xFF0C;&#x539F;&#x9EDE;&#x4F4D;&#x7F6E;&#x5728;&#x6700;&#x9760;&#x8FD1;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x7684; index pulse&#x3002;</p>
+<p>依據所選擇的負/正方向，原點位置在最靠近目前位置的 index pulse。</p>
 <pre><code>++                   ++                      ++
 ||-------------------||----------------------||
 ||-------------------||----------------------||
@@ -924,22 +429,25 @@ Home Switch               .
  Index Pulse    .           .
     |           |           |            |
  -------------------------------------------------
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>Methods 35 and 37: Homing on current position</li>
 </ul>
-<p>&#x539F;&#x9EDE;&#x4F4D;&#x7F6E;&#x5C31;&#x5728;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x3002;</p>
+<p>原點位置就在目前位置。</p>
 <pre><code>++                   ++                      ++
 ||-------------------||----------------------||
 ||-------------------||----------------------||
 ++                   ++                      ++
                     (35)
                     (37)
-</code></pre><p><strong>&#x9A45;&#x52D5;&#x5668;&#x904B;&#x884C;&#x72C0;&#x614B;</strong></p>
+</code></pre>
+<p><strong>驅動器運行狀態</strong></p>
 <pre><code>               +-------+
 --------------&gt;| FSA   +--------------&gt;
 Control Word   |       |   Status Word
 (0x6040)       +-------+   (0x6041)
-</code></pre><p>FSA (Finite States Automaton) of PDS (Power Drive System)</p>
+</code></pre>
+<p>FSA (Finite States Automaton) of PDS (Power Drive System)</p>
 <pre><code>             Start
                |
                |
@@ -983,91 +491,34 @@ Control Word   |       |   Status Word
 |                   | 16   | (Deceleration |  |
 |     (Servo on)    |      |  processing)  |  |
 +-------------------+      +---------------+  |
-                                              Error Occurs
-</code></pre><p>FSA Transition</p>
-<table>
-<thead>
-<tr>
-<th>No</th>
-<th>FSA Transition</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>Auto skip</td>
-</tr>
-<tr>
-<td>1</td>
-<td>Auto skip</td>
-</tr>
-<tr>
-<td>2</td>
-<td>[Shutdown]</td>
-</tr>
-<tr>
-<td>3</td>
-<td>[Switch On]</td>
-</tr>
-<tr>
-<td>4</td>
-<td>[Enable operation]</td>
-</tr>
-<tr>
-<td>5</td>
-<td>[Disable operation]</td>
-</tr>
-<tr>
-<td>6</td>
-<td>[Shutdown]</td>
-</tr>
-<tr>
-<td>7</td>
-<td>[Disable voltage]</td>
-</tr>
-<tr>
-<td>8</td>
-<td>[Shutdown]</td>
-</tr>
-<tr>
-<td>9</td>
-<td>[Disable voltage]</td>
-</tr>
-<tr>
-<td>10</td>
-<td>[Disable voltage]</td>
-</tr>
-<tr>
-<td>11</td>
-<td>[Quick stop]</td>
-</tr>
-<tr>
-<td>12</td>
-<td>[Disable voltage]</td>
-</tr>
-<tr>
-<td>13</td>
-<td>Error Occurs</td>
-</tr>
-<tr>
-<td>14</td>
-<td>Auto skip</td>
-</tr>
-<tr>
-<td>15</td>
-<td>[Fault reset]</td>
-</tr>
-<tr>
-<td>16</td>
-<td>[Enable operation]</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Control Word (0x6040:0x0)</strong>&#xFF1A;</p>
+                                              Error Occurs 
+</code></pre>
+<p>FSA Transition</p>
+<table><thead><tr><th>No</th><th>FSA Transition</th></tr></thead><tbody>
+<tr><td>0</td><td>Auto skip</td></tr>
+<tr><td>1</td><td>Auto skip</td></tr>
+<tr><td>2</td><td>[Shutdown]</td></tr>
+<tr><td>3</td><td>[Switch On]</td></tr>
+<tr><td>4</td><td>[Enable operation]</td></tr>
+<tr><td>5</td><td>[Disable operation]</td></tr>
+<tr><td>6</td><td>[Shutdown]</td></tr>
+<tr><td>7</td><td>[Disable voltage]</td></tr>
+<tr><td>8</td><td>[Shutdown]</td></tr>
+<tr><td>9</td><td>[Disable voltage]</td></tr>
+<tr><td>10</td><td>[Disable voltage]</td></tr>
+<tr><td>11</td><td>[Quick stop]</td></tr>
+<tr><td>12</td><td>[Disable voltage]</td></tr>
+<tr><td>13</td><td>Error Occurs</td></tr>
+<tr><td>14</td><td>Auto skip</td></tr>
+<tr><td>15</td><td>[Fault reset]</td></tr>
+<tr><td>16</td><td>[Enable operation]</td></tr>
+</tbody></table>
+<p><strong>Control Word (0x6040:0x0)</strong>：</p>
 <pre><code>+-----------------------------------------------------------+
 +-----------------------------------------------------------+
 Bit 15                                                  Bit 0
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>Bit 0: Switch On</li>
 <li>Bit 1: Enable Voltage</li>
 <li>Bit 2: Quick Stop</li>
@@ -1086,154 +537,31 @@ Bit 15                                                  Bit 0
 <li>Bit 15: Reserved</li>
 </ul>
 <p>Operation Mode Specification:</p>
-<table>
-<thead>
-<tr>
-<th>OP mode</th>
-<th>Bit 9</th>
-<th>Bit 6</th>
-<th>Bit 5</th>
-<th>Bit 4</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PP</td>
-<td>change on set-point</td>
-<td>absolute/relative</td>
-<td>change set immediately</td>
-<td>new set-point</td>
-</tr>
-<tr>
-<td>PV</td>
-<td>--</td>
-<td>--</td>
-<td>--</td>
-</tr>
-<tr>
-<td>TQ</td>
-<td>--</td>
-<td>--</td>
-<td>--</td>
-</tr>
-<tr>
-<td>HM</td>
-<td>--</td>
-<td>--</td>
-<td>start homing</td>
-</tr>
-<tr>
-<td>CSP</td>
-<td>--</td>
-<td>--</td>
-<td>--</td>
-</tr>
-<tr>
-<td>CSV</td>
-<td>--</td>
-<td>--</td>
-<td>--</td>
-</tr>
-<tr>
-<td>CST</td>
-<td>--</td>
-<td>--</td>
-<td>--</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>Commnad</th>
-<th>bit 7</th>
-<th>bit 3</th>
-<th>bit 2</th>
-<th>bit 1</th>
-<th>bit 0</th>
-<th>Transitions</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Shutdown</td>
-<td>0</td>
-<td>-</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>2,6,8</td>
-</tr>
-<tr>
-<td>Switch on</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>3</td>
-</tr>
-<tr>
-<td>Switch on + Enable operation</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>3+4</td>
-</tr>
-<tr>
-<td>Enable operation</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>4,16</td>
-</tr>
-<tr>
-<td>Disable voltage</td>
-<td>0</td>
-<td>-</td>
-<td>-</td>
-<td>0</td>
-<td>-</td>
-<td>7,9,10,12</td>
-</tr>
-<tr>
-<td>Quick stop</td>
-<td>0</td>
-<td>-</td>
-<td>0</td>
-<td>1</td>
-<td>-</td>
-<td>7,10,11</td>
-</tr>
-<tr>
-<td>Disable operation</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>5</td>
-</tr>
-<tr>
-<td>Fault Reset</td>
-<td>0 -&gt; 1</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>-</td>
-<td>15</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Status Word (0x6041:0x0)</strong>&#xFF1A;</p>
+<table><thead><tr><th>OP mode</th><th>Bit 9</th><th>Bit 6</th><th>Bit 5</th><th>Bit 4</th></tr></thead><tbody>
+<tr><td>PP</td><td>change on set-point</td><td>absolute/relative</td><td>change set immediately</td><td>new set-point</td></tr>
+<tr><td>PV</td><td>--</td><td>--</td><td>--</td><td></td></tr>
+<tr><td>TQ</td><td>--</td><td>--</td><td>--</td><td></td></tr>
+<tr><td>HM</td><td>--</td><td>--</td><td>start homing</td><td></td></tr>
+<tr><td>CSP</td><td>--</td><td>--</td><td>--</td><td></td></tr>
+<tr><td>CSV</td><td>--</td><td>--</td><td>--</td><td></td></tr>
+<tr><td>CST</td><td>--</td><td>--</td><td>--</td><td></td></tr>
+</tbody></table>
+<table><thead><tr><th>Commnad</th><th>bit 7</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th><th>Transitions</th></tr></thead><tbody>
+<tr><td>Shutdown</td><td>0</td><td>-</td><td>1</td><td>1</td><td>0</td><td>2,6,8</td></tr>
+<tr><td>Switch on</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>3</td></tr>
+<tr><td>Switch on + Enable operation</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>3+4</td></tr>
+<tr><td>Enable operation</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>4,16</td></tr>
+<tr><td>Disable voltage</td><td>0</td><td>-</td><td>-</td><td>0</td><td>-</td><td>7,9,10,12</td></tr>
+<tr><td>Quick stop</td><td>0</td><td>-</td><td>0</td><td>1</td><td>-</td><td>7,10,11</td></tr>
+<tr><td>Disable operation</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>5</td></tr>
+<tr><td>Fault Reset</td><td>0 -&gt; 1</td><td>-</td><td>-</td><td>-</td><td>-</td><td>15</td></tr>
+</tbody></table>
+<p><strong>Status Word (0x6041:0x0)</strong>：</p>
 <pre><code>+-----------------------------------------------------------+
 +-----------------------------------------------------------+
 Bit 15                                                  Bit 0
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>Bit 0: Ready to Switch On</li>
 <li>Bit 1: Switched On</li>
 <li>Bit 2: Operation Enabled</li>
@@ -1252,298 +580,175 @@ Bit 15                                                  Bit 0
 <li>Bit 15: Reserved</li>
 </ul>
 <p>Operation Mode Specification:</p>
-<table>
-<thead>
-<tr>
-<th>OP mode</th>
-<th>Bit 13</th>
-<th>Bit 12</th>
-<th>Bit 10</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PP</td>
-<td>following error</td>
-<td>set-point acknowledge</td>
-<td>target reached</td>
-</tr>
-<tr>
-<td>PV</td>
-<td>--</td>
-<td>speed</td>
-<td>target reached</td>
-</tr>
-<tr>
-<td>TQ</td>
-<td>--</td>
-<td>--</td>
-<td>target reached</td>
-</tr>
-<tr>
-<td>HM</td>
-<td>homing error</td>
-<td>homing attained</td>
-<td>target reached</td>
-</tr>
-<tr>
-<td>CSP</td>
-<td>following error</td>
-<td></td>
-<td>--</td>
-</tr>
-<tr>
-<td>CSV</td>
-<td>--</td>
-<td></td>
-<td>--</td>
-</tr>
-<tr>
-<td>CST</td>
-<td>--</td>
-<td></td>
-<td>--</td>
-</tr>
-</tbody>
-</table>
+<table><thead><tr><th>OP mode</th><th>Bit 13</th><th>Bit 12</th><th>Bit 10</th></tr></thead><tbody>
+<tr><td>PP</td><td>following error</td><td>set-point acknowledge</td><td>target reached</td></tr>
+<tr><td>PV</td><td>--</td><td>speed</td><td>target reached</td></tr>
+<tr><td>TQ</td><td>--</td><td>--</td><td>target reached</td></tr>
+<tr><td>HM</td><td>homing error</td><td>homing attained</td><td>target reached</td></tr>
+<tr><td>CSP</td><td>following error</td><td></td><td>--</td></tr>
+<tr><td>CSV</td><td>--</td><td></td><td>--</td></tr>
+<tr><td>CST</td><td>--</td><td></td><td>--</td></tr>
+</tbody></table>
 <p>FSA State:</p>
-<table>
-<thead>
-<tr>
-<th>FSA State</th>
-<th>Bit 6</th>
-<th>Bit 5</th>
-<th>Bit 3</th>
-<th>Bit 2</th>
-<th>Bit 1</th>
-<th>Bit 0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Not Ready to Switch on</td>
-<td>0</td>
-<td>-</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>Switch on Disabled</td>
-<td>1</td>
-<td>-</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<td>Ready To Switch On</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-</tr>
-<tr>
-<td>Switch on</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>Operation Enabled</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>Quick Stop Active</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>Faut Reaction Active</td>
-<td>0</td>
-<td>-</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>Fault</td>
-<td>0</td>
-<td>-</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h4 id="drive-halt--ch-n----"><code>+drive-halt ( ch n -- )</code></h4>
-<p>&#x547D;&#x4EE4; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x529F;&#x80FD;&#x66AB;&#x505C;&#x3002;</p>
-<p>&#x6B64;&#x6642;&#x99AC;&#x9054;&#x6703;&#x4F9D;&#x64DA; 0x605D (Halt option code) &#x8A2D;&#x5B9A;&#xFF0C;&#x66AB;&#x6642;&#x6027;&#x7684;&#x6E1B;&#x901F;&#x8207;&#x505C;&#x6B62;&#x3002;</p>
-<h4 id="drive-homed--ch-n----"><code>+drive-homed ( ch n -- )</code></h4>
-<p>&#x6A19;&#x8A18; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5DF2;&#x7D93;&#x5B8C;&#x6210;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x3002;</p>
-<p>&#x6B64;&#x72C0;&#x614B;&#x70BA;&#x4E3B;&#x7AD9;&#x6240;&#x63D0;&#x4F9B;&#x7684;&#x72C0;&#x614B;&#x7D00;&#x9304;&#x3002;</p>
-<h4 id="pp-cosp--ch-n----"><code>+pp-cosp ( ch n -- )</code></h4>
-<p>&#x7576; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x8655;&#x65BC; PP &#x6A21;&#x5F0F;&#x6642;&#xFF0C;&#x8A2D;&#x5B9A; Control Word &#x7684; Bit 9 &#xFF08;Change on set-point&#xFF09; &#x70BA; 1&#x3002;</p>
-<p>&#x7576; Control Word Bit 9 &#x70BA; 1 &#xFF08;Change on set-point&#xFF09;&#x8207; Bit 5 &#xFF08;change set immediately&#xFF09; &#x70BA; 0 &#x6642;&#xFF0C;&#x540C;&#x65B9;&#x5411;&#x904B;&#x52D5;&#x4E0D;&#x6E1B;&#x901F;&#x5230; 0 &#x901A;&#x904E;&#x4E2D;&#x7E7C;&#x9EDE;&#x3002;</p>
-<p>&#x7D30;&#x90E8;&#x529F;&#x80FD;&#x8ACB;&#x53C3;&#x8003;&#x9078;&#x7528;&#x9A45;&#x52D5;&#x5668;&#x7684; PP &#x6A21;&#x5F0F;&#x63CF;&#x8FF0;&#x3002;</p>
-<h4 id="pp-imt--ch-n----"><code>+pp-imt ( ch n -- )</code></h4>
-<p>&#x7576; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x8655;&#x65BC; PP &#x6A21;&#x5F0F;&#x6642;&#xFF0C;&#x8A2D;&#x5B9A; Control Word &#x7684; Bit 5 &#xFF08;change set immediately&#xFF09;&#x70BA; 1&#x3002;</p>
-<p>&#x7576; Control Word &#x7684; Bit 5 &#xFF08;change set immediately&#xFF09; &#x70BA; 1 &#x6642;&#xFF0C;&#x8868;&#x793A;&#x8981;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EA;&#x671D;&#x5411;&#x6700;&#x5F8C;&#x6240;&#x63A5;&#x53D7;&#x7684;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;&#x904B;&#x52D5;&#x3002;</p>
-<p>&#x7D30;&#x90E8;&#x529F;&#x80FD;&#x8ACB;&#x53C3;&#x8003;&#x9078;&#x7528;&#x9A45;&#x52D5;&#x5668;&#x7684; PP &#x6A21;&#x5F0F;&#x63CF;&#x8FF0;&#x3002;</p>
-<h4 id="pp-rel--ch-n----"><code>+pp-rel ( ch n -- )</code></h4>
-<p>&#x7576; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x8655;&#x65BC; PP &#x6A21;&#x5F0F;&#x6642;&#xFF0C;&#x8A2D;&#x5B9A; Control Word &#x7684; Bit 6 &#xFF08;absolute/relative&#xFF09;&#x70BA; 1&#x3002;</p>
-<p>&#x7D30;&#x90E8;&#x529F;&#x80FD;&#x8ACB;&#x53C3;&#x8003;&#x9078;&#x7528;&#x9A45;&#x52D5;&#x5668;&#x7684; PP &#x6A21;&#x5F0F;&#x63CF;&#x8FF0;&#x3002;&#x7576; Control Word &#x7684; Bit 6 &#xFF08;absolute/relative&#xFF09;&#x70BA; 1&#xFF0C;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x4EE5;&#x76F8;&#x5C0D;&#x4F4D;&#x7F6E;&#x4F86;&#x8655;&#x7406;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;&#x3002;</p>
-<h4 id="drive-halt--ch-n----"><code>-drive-halt ( ch n -- )</code></h4>
-<p>&#x547D;&#x4EE4; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x529F;&#x80FD;&#x7E7C;&#x7E8C;&#x3002;</p>
-<p>&#x53C3;&#x8003;&#x547D;&#x4EE4; <code>+drive-halt</code></p>
-<h4 id="drive-homed--ch-n----"><code>-drive-homed ( ch n -- )</code></h4>
-<p>&#x6A19;&#x8A18; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x672A;&#x5B8C;&#x6210;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x3002;</p>
-<p>&#x6B64;&#x72C0;&#x614B;&#x70BA;&#x4E3B;&#x7AD9;&#x6240;&#x63D0;&#x4F9B;&#x7684;&#x72C0;&#x614B;&#x7D00;&#x9304;&#x3002;</p>
-<h4 id="pp-cosp--ch-n----"><code>-pp-cosp ( ch n -- )</code></h4>
-<p>&#x7576; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x8655;&#x65BC; PP &#x6A21;&#x5F0F;&#x6642;&#xFF0C;&#x8A2D;&#x5B9A; Control Word &#x7684; Bit 9 &#xFF08;Change on set-point&#xFF09;&#x70BA; 0&#x3002;</p>
-<p>&#x7576; Control Word Bit 9 &#x70BA; 0 &#xFF08;Change on set-point&#xFF09;&#x8207; Bit 5 &#xFF08;change set immediately&#xFF09; &#x70BA; 0 &#x6642;&#xFF0C;&#x540C;&#x65B9;&#x5411;&#x904B;&#x52D5;&#x6E1B;&#x901F;&#x5230; 0 &#x901A;&#x904E;&#x4E2D;&#x7E7C;&#x9EDE;&#x3002;</p>
-<p>&#x7D30;&#x90E8;&#x529F;&#x80FD;&#x8ACB;&#x53C3;&#x8003;&#x9078;&#x7528;&#x9A45;&#x52D5;&#x5668;&#x7684; PP &#x6A21;&#x5F0F;&#x63CF;&#x8FF0;&#x3002;</p>
-<h4 id="pp-imt--ch-n----"><code>-pp-imt ( ch n -- )</code></h4>
-<p>&#x7576; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x8655;&#x65BC; PP &#x6A21;&#x5F0F;&#x6642;&#xFF0C;&#x8A2D;&#x5B9A; Control Word &#x7684; Bit 5 &#xFF08;change set immediately&#xFF09;&#x70BA; 0&#x3002;</p>
-<p>&#x7576; Control Word &#x7684; Bit 5 &#xFF08;change set immediately&#xFF09; &#x70BA; 0 &#x6642;&#xFF0C;&#x8868;&#x793A;&#x8981;&#x901A;&#x904E;&#x6BCF;&#x4E00;&#x500B;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x6240;&#x63A5;&#x53D7;&#x7684;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;&#x3002;</p>
-<p>&#x7D30;&#x90E8;&#x529F;&#x80FD;&#x8ACB;&#x53C3;&#x8003;&#x9078;&#x7528;&#x9A45;&#x52D5;&#x5668;&#x7684; PP &#x6A21;&#x5F0F;&#x63CF;&#x8FF0;&#x3002;</p>
-<h4 id="pp-rel--ch-n----"><code>-pp-rel ( ch n -- )</code></h4>
-<p>&#x7576; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x8655;&#x65BC; PP &#x6A21;&#x5F0F;&#x6642;&#xFF0C;&#x8A2D;&#x5B9A; Control Word &#x7684; Bit 6 &#xFF08;absolute/relative&#xFF09;&#x70BA; 0&#x3002;</p>
-<p>&#x7D30;&#x90E8;&#x529F;&#x80FD;&#x8ACB;&#x53C3;&#x8003;&#x9078;&#x7528;&#x9A45;&#x52D5;&#x5668;&#x7684; PP &#x6A21;&#x5F0F;&#x63CF;&#x8FF0;&#x3002;&#x7576; Control Word &#x7684; Bit 6 &#xFF08;absolute/relative&#xFF09;&#x70BA; 1&#xFF0C;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x4EE5;&#x7D55;&#x5C0D;&#x4F4D;&#x7F6E;&#x4F86;&#x8655;&#x7406;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;&#x3002;</p>
-<h4 id="cw--cw-ch-n----"><code>cw! ( cw ch n -- )</code></h4>
-<p>&#x76F4;&#x63A5;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; control word &#x70BA; <code>cw</code>&#x3002;(&#x7531; PDO &#x8A2D;&#x5B9A;)&#x3002;</p>
-<h4 id="demand-p--ch-n----pos-"><code>demand-p@ ( ch n -- pos )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; demand position <code>pos</code>&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07; demand position (object 0x6062) &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;</p>
-<h4 id="demand-tq--ch-n----tq-"><code>demand-tq@ ( ch n -- tq )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; demand torque <code>tq</code>&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07; demand torque (object 0x6074) &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;</p>
-<h4 id="demand-v--ch-n----vel-"><code>demand-v@ ( ch n -- vel )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; demand velocity <code>vel</code>&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07; demand velocity (object 0x606B) &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;</p>
-<h4 id="drive-dins--ch-n----dins-"><code>drive-dins@ ( ch n -- dins )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x6578;&#x4F4D;&#x8F38;&#x5165;&#x72C0;&#x614B; <code>dins</code>&#x3002;(&#x7531; PDO &#x53D6;&#x5F97;&#x8CC7;&#x6599;)&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x5230; object 0x60FD&#x3002;&#x5B9A;&#x7FA9;&#x5982;&#x4E0B;&#xFF1A;</p>
+<table><thead><tr><th>FSA State</th><th>Bit 6</th><th>Bit 5</th><th>Bit 3</th><th>Bit 2</th><th>Bit 1</th><th>Bit 0</th></tr></thead><tbody>
+<tr><td>Not Ready to Switch on</td><td>0</td><td>-</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Switch on Disabled</td><td>1</td><td>-</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>Ready To Switch On</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+<tr><td>Switch on</td><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>Operation Enabled</td><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>Quick Stop Active</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>Faut Reaction Active</td><td>0</td><td>-</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>Fault</td><td>0</td><td>-</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
+</tbody></table>
+<hr />
+<h4 id="drive-halt--ch-n----"><a class="header" href="#drive-halt--ch-n----"><code>+drive-halt ( ch n -- )</code></a></h4>
+<p>命令 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道的馬達驅動器功能暫停。</p>
+<p>此時馬達會依據 0x605D (Halt option code) 設定，暫時性的減速與停止。</p>
+<h4 id="drive-homed--ch-n----"><a class="header" href="#drive-homed--ch-n----"><code>+drive-homed ( ch n -- )</code></a></h4>
+<p>標記 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道的馬達驅動器已經完成回歸機械原點。</p>
+<p>此狀態為主站所提供的狀態紀錄。</p>
+<h4 id="pp-cosp--ch-n----"><a class="header" href="#pp-cosp--ch-n----"><code>+pp-cosp ( ch n -- )</code></a></h4>
+<p>當 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道的馬達驅動器處於 PP 模式時，設定 Control Word 的 Bit 9 （Change on set-point） 為 1。</p>
+<p>當 Control Word Bit 9 為 1 （Change on set-point）與 Bit 5 （change set immediately） 為 0 時，同方向運動不減速到 0 通過中繼點。</p>
+<p>細部功能請參考選用驅動器的 PP 模式描述。</p>
+<h4 id="pp-imt--ch-n----"><a class="header" href="#pp-imt--ch-n----"><code>+pp-imt ( ch n -- )</code></a></h4>
+<p>當 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道的馬達驅動器處於 PP 模式時，設定 Control Word 的 Bit 5 （change set immediately）為 1。</p>
+<p>當 Control Word 的 Bit 5 （change set immediately） 為 1 時，表示要馬達驅動器只朝向最後所接受的目標位置運動。</p>
+<p>細部功能請參考選用驅動器的 PP 模式描述。</p>
+<h4 id="pp-rel--ch-n----"><a class="header" href="#pp-rel--ch-n----"><code>+pp-rel ( ch n -- )</code></a></h4>
+<p>當 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道的馬達驅動器處於 PP 模式時，設定 Control Word 的 Bit 6 （absolute/relative）為 1。</p>
+<p>細部功能請參考選用驅動器的 PP 模式描述。當 Control Word 的 Bit 6 （absolute/relative）為 1，馬達驅動器以相對位置來處理目標位置。</p>
+<h4 id="-drive-halt--ch-n----"><a class="header" href="#-drive-halt--ch-n----"><code>-drive-halt ( ch n -- )</code></a></h4>
+<p>命令 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道的馬達驅動器功能繼續。</p>
+<p>參考命令 <code>+drive-halt</code></p>
+<h4 id="-drive-homed--ch-n----"><a class="header" href="#-drive-homed--ch-n----"><code>-drive-homed ( ch n -- )</code></a></h4>
+<p>標記 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道的馬達驅動器未完成回歸機械原點。</p>
+<p>此狀態為主站所提供的狀態紀錄。</p>
+<h4 id="-pp-cosp--ch-n----"><a class="header" href="#-pp-cosp--ch-n----"><code>-pp-cosp ( ch n -- )</code></a></h4>
+<p>當 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道的馬達驅動器處於 PP 模式時，設定 Control Word 的 Bit 9 （Change on set-point）為 0。</p>
+<p>當 Control Word Bit 9 為 0 （Change on set-point）與 Bit 5 （change set immediately） 為 0 時，同方向運動減速到 0 通過中繼點。</p>
+<p>細部功能請參考選用驅動器的 PP 模式描述。</p>
+<h4 id="-pp-imt--ch-n----"><a class="header" href="#-pp-imt--ch-n----"><code>-pp-imt ( ch n -- )</code></a></h4>
+<p>當 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道的馬達驅動器處於 PP 模式時，設定 Control Word 的 Bit 5 （change set immediately）為 0。</p>
+<p>當 Control Word 的 Bit 5 （change set immediately） 為 0 時，表示要通過每一個馬達驅動器所接受的目標位置。</p>
+<p>細部功能請參考選用驅動器的 PP 模式描述。</p>
+<h4 id="-pp-rel--ch-n----"><a class="header" href="#-pp-rel--ch-n----"><code>-pp-rel ( ch n -- )</code></a></h4>
+<p>當 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道的馬達驅動器處於 PP 模式時，設定 Control Word 的 Bit 6 （absolute/relative）為 0。</p>
+<p>細部功能請參考選用驅動器的 PP 模式描述。當 Control Word 的 Bit 6 （absolute/relative）為 1，馬達驅動器以絕對位置來處理目標位置。</p>
+<h4 id="drive-cw--cw-ch-n----"><a class="header" href="#drive-cw--cw-ch-n----"><code>drive-cw! ( cw ch n -- )</code></a></h4>
+<p>直接設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 control word 為 <code>cw</code>。(由 PDO 設定)。</p>
+<h4 id="demand-p--ch-n----pos-"><a class="header" href="#demand-p--ch-n----pos-"><code>demand-p@ ( ch n -- pos )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 demand position <code>pos</code>。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將 demand position (object 0x6062) 映射到 PDO Mapping 上。</p>
+<h4 id="demand-v--ch-n----vel-"><a class="header" href="#demand-v--ch-n----vel-"><code>demand-v@ ( ch n -- vel )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 demand velocity <code>vel</code>。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將 demand velocity (object 0x606B) 映射到 PDO Mapping 上。</p>
+<h4 id="drive-dins--ch-n----dins-"><a class="header" href="#drive-dins--ch-n----dins-"><code>drive-dins@ ( ch n -- dins )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的數位輸入狀態 <code>dins</code>。(由 PDO 取得資料)。</p>
+<p>對應到 object 0x60FD。定義如下：</p>
 <pre><code>+-----------------------------------------------------------+
 +-----------------------------------------------------------+
 Bit 31                                                  Bit 0
-</code></pre><ul>
+</code></pre>
+<ul>
 <li>Bit 0: Negative Limit</li>
 <li>Bit 1: Positive Limit</li>
 <li>Bit 2: Home Switch</li>
-<li>Bit 3 ~ 31: &#x4F9D;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5EE0;&#x5546;&#x5B9A;&#x7FA9;&#x3002;</li>
+<li>Bit 3 ~ 31: 依馬達驅動器廠商定義。</li>
 </ul>
-<h4 id="drive-douts--douts-ch-n----"><code>drive-douts! ( douts ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x547D;&#x4EE4;&#xFF0C;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x6578;&#x4F4D;&#x8F38;&#x51FA;&#x70BA; <code>douts</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x5230; object 0x60FE:0x01&#x3002;&#x5B9A;&#x7FA9;&#x5982;&#x4E0B;&#xFF1A;</p>
+<h4 id="drive-douts--douts-ch-n----"><a class="header" href="#drive-douts--douts-ch-n----"><code>drive-douts! ( douts ch n -- )</code></a></h4>
+<p>使用 SDO 命令，設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的數位輸出為 <code>douts</code>。</p>
+<p>對應到 object 0x60FE:0x01。定義如下：</p>
 <pre><code>+-----------------------------------------------------------+
 +-----------------------------------------------------------+
 Bit 31                                                  Bit 0
-</code></pre><ul>
-<li>Bit 0: Brake&#x3002;</li>
-<li>Bit 1 ~ 31: &#x4F9D;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5EE0;&#x5546;&#x5B9A;&#x7FA9;&#x3002;</li>
+</code></pre>
+<ul>
+<li>Bit 0: Brake。</li>
+<li>Bit 1 ~ 31: 依馬達驅動器廠商定義。</li>
 </ul>
-<p>&#x4E00;&#x822C;&#x800C;&#x8A00;&#xFF0C;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x6578;&#x4F4D;&#x8F38;&#x51FA;&#x662F;&#x7531;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x76F4;&#x63A5;&#x63A7;&#x5236;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x7531;&#x4E3B;&#x7AD9;&#x76F4;&#x63A5;&#x63A7;&#x5236;&#x8F38;&#x51FA;&#xFF0C;&#x5C31;&#x8981;&#x642D;&#x914D; <code>drive-douts-mask!</code> &#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x3002;</p>
-<h4 id="drive-douts-mask--mask-ch-n----"><code>drive-douts-mask! ( mask ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x547D;&#x4EE4;&#xFF0C;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x6578;&#x4F4D;&#x8F38;&#x51FA;&#x906E;&#x7F69;&#x70BA; <code>mask</code>&#x3002;</p>
-<p>&#x8207; <code>drive-douts!</code> &#x4E00;&#x8D77;&#x4F7F;&#x7528;&#x3002;</p>
-<h4 id="drive-fault--ch-n----flag-"><code>drive-fault? ( ch n -- flag )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; status word Bit 3 (fault) &#x7684;&#x72C0;&#x614B; <code>flag</code>&#x3002;</p>
-<h4 id="drive-homed--ch-n----flag-"><code>drive-homed? ( ch n -- flag )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE; <code>flag</code>&#x3002;</p>
-<h4 id="drive-nl--ch-n----nl-"><code>drive-nl? ( ch n -- nl )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x8CA0;&#x5411;&#x6975;&#x9650;&#x958B;&#x95DC;&#x662F;&#x5426;&#x88AB;&#x89F8;&#x767C; <code>nl</code>&#x3002;</p>
-<p>&#x5176;&#x72C0;&#x614B;&#x4F86;&#x6E90;&#x8207; <code>drive-dins@</code> &#x76F8;&#x540C;&#x3002;</p>
-<h4 id="drive-nsl--nsl-ch-n----"><code>drive-nsl! ( nsl ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x547D;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x8CA0;&#x5411;&#x8EDF;&#x9AD4;&#x6975;&#x9650;&#x70BA; <code>nsl</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object 0x607D:0x01&#x3002;</p>
-<h4 id="drive-nsl--ch-n----nsl-"><code>drive-nsl@ ( ch n -- nsl )</code></h4>
-<p>&#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x8CA0;&#x5411;&#x8EDF;&#x9AD4;&#x6975;&#x9650;&#x653E;&#x5230;&#x5806;&#x758A;&#x4E0A;&#x3002;</p>
-<p>&#x6B64;&#x8A2D;&#x5B9A;&#x503C;&#x6703;&#x5728;&#x958B;&#x6A5F;&#x6642;&#x5F9E;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x8B80;&#x56DE;&#x5230;&#x4E3B;&#x7AD9;&#x3002;&#x5728;&#x958B;&#x6A5F;&#x5F8C;&#x8A2D;&#x5B9A;&#x8CA0;&#x5411;&#x8EDF;&#x9AD4;&#x6975;&#x9650;&#x8ACB;&#x4F7F;&#x7528; <code>drive-nsl!</code>&#xFF0C;&#x9019;&#x6A23; SDO &#x547D;&#x4EE4;&#x56DE;&#x61C9;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x4F4D;&#x7F6E;&#x624D;&#x6703;&#x6B63;&#x78BA;&#x3002;</p>
-<h4 id="drive-off-ch-n----"><code>drive-off (ch n -- )</code></h4>
-<p>&#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; FSA State &#x5207;&#x63DB;&#x5230; Switch On Disabled&#x3002;</p>
-<h4 id="drive-on-ch-n----"><code>drive-on (ch n -- )</code></h4>
-<p>&#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; FSA State &#x5207;&#x63DB;&#x5230; Operation Enabled&#x3002;</p>
-<h4 id="drive-on--ch-n----flag-"><code>drive-on? ( ch n -- flag )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; FSA State &#x662F;&#x5426;&#x5728; Operation Enabled <code>flag</code>&#x3002;</p>
-<h4 id="drive-org--ch-n----org-"><code>drive-org? ( ch n -- org )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; home switch &#x662F;&#x5426;&#x88AB;&#x89F8;&#x767C; <code>org</code>&#x3002;</p>
-<p>&#x5176;&#x72C0;&#x614B;&#x4F86;&#x6E90;&#x8207; <code>drive-dins@</code> &#x76F8;&#x540C;&#x3002;</p>
-<h4 id="drive-pl--ch-n----pl-"><code>drive-pl? ( ch n -- pl )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x6B63;&#x5411;&#x6975;&#x9650;&#x958B;&#x95DC;&#x662F;&#x5426;&#x88AB;&#x89F8;&#x767C; <code>nl</code>&#x3002;</p>
-<p>&#x5176;&#x72C0;&#x614B;&#x4F86;&#x6E90;&#x8207; <code>drive-dins@</code> &#x76F8;&#x540C;&#x3002;</p>
-<h4 id="drive-psl--psl-ch-n----"><code>drive-psl! ( psl ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x547D;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x6B63;&#x5411;&#x8EDF;&#x9AD4;&#x6975;&#x9650;&#x70BA; <code>psl</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object 0x607D:0x02&#x3002;</p>
-<h3 id="drive-psl--ch-n----psl-"><code>drive-psl@ ( ch n -- psl )</code></h3>
-<p>&#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x6B63;&#x5411;&#x8EDF;&#x9AD4;&#x6975;&#x9650;&#x653E;&#x5230;&#x5806;&#x758A;&#x4E0A;&#x3002;</p>
-<p>&#x6B64;&#x8A2D;&#x5B9A;&#x503C;&#x6703;&#x5728;&#x958B;&#x6A5F;&#x6642;&#x5F9E;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x8B80;&#x56DE;&#x5230;&#x4E3B;&#x7AD9;&#x3002;&#x5728;&#x958B;&#x6A5F;&#x5F8C;&#x8A2D;&#x5B9A;&#x6B63;&#x5411;&#x8EDF;&#x9AD4;&#x6975;&#x9650;&#x8ACB;&#x4F7F;&#x7528; <code>drive-psl!</code>&#xFF0C;&#x9019;&#x6A23; SDO &#x547D;&#x4EE4;&#x56DE;&#x61C9;&#x7684;&#x8A18;&#x61B6;&#x9AD4;&#x4F4D;&#x7F6E;&#x624D;&#x6703;&#x6B63;&#x78BA;&#x3002;</p>
-<h4 id="drive-polarity--polarity-ch-n----"><code>drive-polarity! ( polarity ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x547D;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x65B9;&#x5411;&#x5B9A;&#x7FA9; <code>polarity</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object 0x607E&#x3002;</p>
-<h4 id="drive-rpdo1--ch-n----r1-"><code>drive-rpdo1@ ( ch n -- r1 )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x4F7F;&#x7528;&#x8005;&#x898F;&#x5283;&#x7684;&#x7B2C;&#x4E00;&#x500B; Rx PDO &#x8CC7;&#x6599; &#xFF08;slave -&gt; master&#xFF09;<code>r1</code>&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07;&#x5C0D;&#x61C9;&#x7684; object &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;</p>
-<h4 id="drive-rpdo2--ch-n----r2-"><code>drive-rpdo2@ ( ch n -- r2 )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x4F7F;&#x7528;&#x8005;&#x898F;&#x5283;&#x7684;&#x7B2C;&#x4E8C;&#x500B; Rx PDO &#x8CC7;&#x6599; &#xFF08;slave -&gt; master&#xFF09;<code>r2</code>&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07;&#x5C0D;&#x61C9;&#x7684; object &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;</p>
-<h4 id="drive-stop--ch-n----"><code>drive-stop ( ch n -- )</code></h4>
-<p>&#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; FSA State &#x5207;&#x63DB;&#x5230; Quick stop actived&#x3002;</p>
-<h4 id="drive-sw--ch-n----sw-"><code>drive-sw@ ( ch n -- sw )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; Status Word <code>sw</code>&#x3002;(&#x7531; PDO &#x53D6;&#x5F97;&#x8CC7;&#x6599;)&#x3002;</p>
-<h4 id="drive-vmax--vmax-ch-n----"><code>drive-vmax! ( vmax ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x547D;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x6700;&#x9AD8;&#x901F;&#x5EA6; <code>vmax</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object 0x6080:0x01&#x3002;</p>
-<h4 id="drive-wpdo1--w1-ch-n----"><code>drive-wpdo1! ( w1 ch n -- )</code></h4>
-<p>&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x4F7F;&#x7528;&#x8005;&#x898F;&#x5283;&#x7684;&#x7B2C;&#x4E00;&#x500B; Tx PDO &#x8CC7;&#x6599; &#xFF08;master -&gt; slave&#xFF09;<code>w1</code>&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07;&#x5C0D;&#x61C9;&#x7684; object &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;</p>
-<h4 id="drive-wpdo1--ch-n----w1-"><code>drive-wpdo1@ ( ch n -- w1 )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x4F7F;&#x7528;&#x8005;&#x898F;&#x5283;&#x7684;&#x7B2C;&#x4E00;&#x500B; Tx PDO &#x8CC7;&#x6599; &#xFF08;master -&gt; slave&#xFF09;<code>w1</code>&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07;&#x5C0D;&#x61C9;&#x7684; object &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;</p>
-<h4 id="drive-wpdo2--w2-ch-n----"><code>drive-wpdo2! ( w2 ch n -- )</code></h4>
-<p>&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x4F7F;&#x7528;&#x8005;&#x898F;&#x5283;&#x7684;&#x7B2C;&#x4E8C;&#x500B; Tx PDO &#x8CC7;&#x6599; &#xFF08;master -&gt; slave&#xFF09;<code>w2</code>&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07;&#x5C0D;&#x61C9;&#x7684; object &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;</p>
-<h4 id="drive-wpdo2--ch-n----w2-"><code>drive-wpdo2@ ( ch n -- w2 )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x4F7F;&#x7528;&#x8005;&#x898F;&#x5283;&#x7684;&#x7B2C;&#x4E8C;&#x500B; Tx PDO &#x8CC7;&#x6599; &#xFF08;master -&gt; slave&#xFF09;<code>w2</code>&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07;&#x5C0D;&#x61C9;&#x7684; object &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;</p>
-<h4 id="go--ch-n----"><code>go ( ch n -- )</code></h4>
-<p>&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668; Control Word &#x7684; Bit 4 &#x70BA; 1&#x3002;</p>
-<p>&#x8A72;&#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5728; PP &#x6A21;&#x5F0F;&#x6642;&#x70BA; new set-point&#xFF0C;&#x5728; HM &#x6A21;&#x5F0F;&#x6642;&#x70BA; start homing&#x3002;&#x7576;&#x4E3B;&#x7AD9;&#x63A5;&#x53D7;&#x5230;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x56DE;&#x61C9;&#x8A0A;&#x606F;&#x6642;&#xFF0C;&#x6703;&#x81EA;&#x52D5;&#x5C07; Control Word &#x7684; Bit 4 &#x8A2D;&#x5B9A;&#x70BA; 0&#x3002;</p>
-<h4 id="homing-a--acceleration-ch-n----"><code>homing-a! ( acceleration ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x6307;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; homing acceleration <code>acceleration</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object &#x70BA; 0x609A&#x3002;&#x8981;&#x7559;&#x610F;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x8A2D;&#x5B9A;&#x55AE;&#x4F4D;&#x3002;</p>
-<h4 id="homing-method--method-ch-n----"><code>homing-method! ( method ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x6307;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; homing method <code>method</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object &#x70BA; 0x6098&#x3002;</p>
-<h4 id="homing-v1--v1-ch-n----"><code>homing-v1! ( v1 ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x6307;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; homing speed for switch <code>v1</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object &#x70BA; 0x6099:0x01&#x3002;&#x8981;&#x7559;&#x610F;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x8A2D;&#x5B9A;&#x55AE;&#x4F4D;&#x3002;</p>
-<h4 id="homing-v2--v2-ch-n----"><code>homing-v2! ( v2 ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x6307;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; homing speed for zero <code>v2</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object &#x70BA; 0x6099:0x02&#x3002;&#x8981;&#x7559;&#x610F;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x8A2D;&#x5B9A;&#x55AE;&#x4F4D;&#x3002;</p>
-<h4 id="op-mode--mode-ch-n----"><code>op-mode! ( mode ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x6307;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x64CD;&#x4F5C;&#x6A21;&#x5F0F; <code>mode</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object &#x70BA; 0x6060&#x3002;</p>
-<p>&#x76EE;&#x524D;&#x6709;&#x652F;&#x63F4;&#x7684; mode &#x5982;&#x4E0B;&#xFF1A;</p>
+<p>一般而言，驅動器的數位輸出是由馬達驅動器直接控制，如果需要由主站直接控制輸出，就要搭配 <code>drive-douts-mask!</code> 一起使用。</p>
+<h4 id="drive-douts-mask--mask-ch-n----"><a class="header" href="#drive-douts-mask--mask-ch-n----"><code>drive-douts-mask! ( mask ch n -- )</code></a></h4>
+<p>使用 SDO 命令，設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的數位輸出遮罩為 <code>mask</code>。</p>
+<p>與 <code>drive-douts!</code> 一起使用。</p>
+<h4 id="drive-fault--ch-n----flag-"><a class="header" href="#drive-fault--ch-n----flag-"><code>drive-fault? ( ch n -- flag )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 status word Bit 3 (fault) 的狀態 <code>flag</code>。</p>
+<h4 id="drive-homed--ch-n----flag-"><a class="header" href="#drive-homed--ch-n----flag-"><code>drive-homed? ( ch n -- flag )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器是否已經回歸機械原點 <code>flag</code>。</p>
+<h4 id="drive-nl--ch-n----nl-"><a class="header" href="#drive-nl--ch-n----nl-"><code>drive-nl? ( ch n -- nl )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的負向極限開關是否被觸發 <code>nl</code>。</p>
+<p>其狀態來源與 <code>drive-dins@</code> 相同。</p>
+<h4 id="drive-nsl--nsl-ch-n----"><a class="header" href="#drive-nsl--nsl-ch-n----"><code>drive-nsl! ( nsl ch n -- )</code></a></h4>
+<p>使用 SDO 命令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的負向軟體極限為 <code>nsl</code>。</p>
+<p>對應的 Object 0x607D:0x01。</p>
+<h4 id="drive-nsl--ch-n----nsl-"><a class="header" href="#drive-nsl--ch-n----nsl-"><code>drive-nsl@ ( ch n -- nsl )</code></a></h4>
+<p>將 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的負向軟體極限放到堆疊上。</p>
+<p>此設定值會在開機時從馬達驅動器讀回到主站。在開機後設定負向軟體極限請使用 <code>drive-nsl!</code>，這樣 SDO 命令回應的記憶體位置才會正確。</p>
+<h4 id="drive-off-ch-n----"><a class="header" href="#drive-off-ch-n----"><code>drive-off (ch n -- )</code></a></h4>
+<p>將 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 FSA State 切換到 Switch On Disabled。</p>
+<h4 id="drive-on-ch-n----"><a class="header" href="#drive-on-ch-n----"><code>drive-on (ch n -- )</code></a></h4>
+<p>將 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 FSA State 切換到 Operation Enabled。</p>
+<h4 id="drive-on--ch-n----flag-"><a class="header" href="#drive-on--ch-n----flag-"><code>drive-on? ( ch n -- flag )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 FSA State 是否在 Operation Enabled <code>flag</code>。</p>
+<h4 id="drive-org--ch-n----org-"><a class="header" href="#drive-org--ch-n----org-"><code>drive-org? ( ch n -- org )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 home switch 是否被觸發 <code>org</code>。</p>
+<p>其狀態來源與 <code>drive-dins@</code> 相同。</p>
+<h4 id="drive-pl--ch-n----pl-"><a class="header" href="#drive-pl--ch-n----pl-"><code>drive-pl? ( ch n -- pl )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的正向極限開關是否被觸發 <code>nl</code>。</p>
+<p>其狀態來源與 <code>drive-dins@</code> 相同。</p>
+<h4 id="drive-psl--psl-ch-n----"><a class="header" href="#drive-psl--psl-ch-n----"><code>drive-psl! ( psl ch n -- )</code></a></h4>
+<p>使用 SDO 命令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的正向軟體極限為 <code>psl</code>。</p>
+<p>對應的 Object 0x607D:0x02。</p>
+<h3 id="drive-psl--ch-n----psl-"><a class="header" href="#drive-psl--ch-n----psl-"><code>drive-psl@ ( ch n -- psl )</code></a></h3>
+<p>將 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的正向軟體極限放到堆疊上。</p>
+<p>此設定值會在開機時從馬達驅動器讀回到主站。在開機後設定正向軟體極限請使用 <code>drive-psl!</code>，這樣 SDO 命令回應的記憶體位置才會正確。</p>
+<h4 id="drive-polarity--polarity-ch-n----"><a class="header" href="#drive-polarity--polarity-ch-n----"><code>drive-polarity! ( polarity ch n -- )</code></a></h4>
+<p>使用 SDO 命令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的方向定義 <code>polarity</code>。</p>
+<p>對應的 Object 0x607E。</p>
+<h4 id="drive-rpdo1--ch-n----r1-"><a class="header" href="#drive-rpdo1--ch-n----r1-"><code>drive-rpdo1@ ( ch n -- r1 )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器使用者規劃的第一個 Rx PDO 資料 （slave -&gt; master）<code>r1</code>。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將對應的 object 映射到 PDO Mapping 上。</p>
+<h4 id="drive-rpdo2--ch-n----r2-"><a class="header" href="#drive-rpdo2--ch-n----r2-"><code>drive-rpdo2@ ( ch n -- r2 )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器使用者規劃的第二個 Rx PDO 資料 （slave -&gt; master）<code>r2</code>。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將對應的 object 映射到 PDO Mapping 上。</p>
+<h4 id="drive-stop--ch-n----"><a class="header" href="#drive-stop--ch-n----"><code>drive-stop ( ch n -- )</code></a></h4>
+<p>將 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 FSA State 切換到 Quick stop actived。</p>
+<h4 id="drive-sw--ch-n----sw-"><a class="header" href="#drive-sw--ch-n----sw-"><code>drive-sw@ ( ch n -- sw )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 Status Word <code>sw</code>。(由 PDO 取得資料)。</p>
+<h4 id="drive-vmax--vmax-ch-n----"><a class="header" href="#drive-vmax--vmax-ch-n----"><code>drive-vmax! ( vmax ch n -- )</code></a></h4>
+<p>使用 SDO 命令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的最高速度 <code>vmax</code>。</p>
+<p>對應的 Object 0x6080:0x01。</p>
+<h4 id="drive-wpdo1--w1-ch-n----"><a class="header" href="#drive-wpdo1--w1-ch-n----"><code>drive-wpdo1! ( w1 ch n -- )</code></a></h4>
+<p>設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器使用者規劃的第一個 Tx PDO 資料 （master -&gt; slave）<code>w1</code>。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將對應的 object 映射到 PDO Mapping 上。</p>
+<h4 id="drive-wpdo1--ch-n----w1-"><a class="header" href="#drive-wpdo1--ch-n----w1-"><code>drive-wpdo1@ ( ch n -- w1 )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器使用者規劃的第一個 Tx PDO 資料 （master -&gt; slave）<code>w1</code>。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將對應的 object 映射到 PDO Mapping 上。</p>
+<h4 id="drive-wpdo2--w2-ch-n----"><a class="header" href="#drive-wpdo2--w2-ch-n----"><code>drive-wpdo2! ( w2 ch n -- )</code></a></h4>
+<p>設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器使用者規劃的第二個 Tx PDO 資料 （master -&gt; slave）<code>w2</code>。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將對應的 object 映射到 PDO Mapping 上。</p>
+<h4 id="drive-wpdo2--ch-n----w2-"><a class="header" href="#drive-wpdo2--ch-n----w2-"><code>drive-wpdo2@ ( ch n -- w2 )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器使用者規劃的第二個 Tx PDO 資料 （master -&gt; slave）<code>w2</code>。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將對應的 object 映射到 PDO Mapping 上。</p>
+<h4 id="go--ch-n----"><a class="header" href="#go--ch-n----"><code>go ( ch n -- )</code></a></h4>
+<p>設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器 Control Word 的 Bit 4 為 1。</p>
+<p>該管道馬達驅動器在 PP 模式時為 new set-point，在 HM 模式時為 start homing。當主站接受到該管道的回應訊息時，會自動將 Control Word 的 Bit 4 設定為 0。</p>
+<h4 id="homing-a--acceleration-ch-n----"><a class="header" href="#homing-a--acceleration-ch-n----"><code>homing-a! ( acceleration ch n -- )</code></a></h4>
+<p>使用 SDO 指令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 homing acceleration <code>acceleration</code>。</p>
+<p>對應的 Object 為 0x609A。要留意馬達驅動器的設定單位。</p>
+<h4 id="homing-method--method-ch-n----"><a class="header" href="#homing-method--method-ch-n----"><code>homing-method! ( method ch n -- )</code></a></h4>
+<p>使用 SDO 指令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 homing method <code>method</code>。</p>
+<p>對應的 Object 為 0x6098。</p>
+<h4 id="homing-v1--v1-ch-n----"><a class="header" href="#homing-v1--v1-ch-n----"><code>homing-v1! ( v1 ch n -- )</code></a></h4>
+<p>使用 SDO 指令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 homing speed for switch <code>v1</code>。</p>
+<p>對應的 Object 為 0x6099:0x01。要留意馬達驅動器的設定單位。</p>
+<h4 id="homing-v2--v2-ch-n----"><a class="header" href="#homing-v2--v2-ch-n----"><code>homing-v2! ( v2 ch n -- )</code></a></h4>
+<p>使用 SDO 指令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 homing speed for zero <code>v2</code>。</p>
+<p>對應的 Object 為 0x6099:0x02。要留意馬達驅動器的設定單位。</p>
+<h4 id="op-mode--mode-ch-n----"><a class="header" href="#op-mode--mode-ch-n----"><code>op-mode! ( mode ch n -- )</code></a></h4>
+<p>使用 SDO 指令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的操作模式 <code>mode</code>。</p>
+<p>對應的 Object 為 0x6060。</p>
+<p>目前有支援的 mode 如下：</p>
 <pre><code>1: PP
 3: PV
 4: TQ
@@ -1551,7 +756,8 @@ Bit 31                                                  Bit 0
 8: CSP
 9: CSV
 10: CST
-</code></pre><p>&#x4E5F;&#x6709;&#x5DF2;&#x7D93;&#x5B9A;&#x7FA9;&#x597D;&#x7684;&#x6A21;&#x5F0F;&#x4EE3;&#x865F;&#x547D;&#x4EE4;&#xFF1A;</p>
+</code></pre>
+<p>也有已經定義好的模式代號命令：</p>
 <pre><code>: pp ( -- mode ) 1 ;
 : pv ( -- mode ) 3 ;
 : tq ( -- mode ) 4 ;
@@ -1559,30 +765,33 @@ Bit 31                                                  Bit 0
 : csp ( -- mode ) 8 ;
 : csv ( -- mode ) 9 ;
 : cst ( -- mode ) 10 ;
-</code></pre><p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
-<pre><code>1  1 1 op-mode!  \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x70BA; PP &#x6A21;&#x5F0F;
-pp 1 1 op-mode!  \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x70BA; PP &#x6A21;&#x5F0F;
-3  1 1 op-mode!  \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x70BA; PV &#x6A21;&#x5F0F;
-pv 1 1 op-mode!  \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x70BA; PV &#x6A21;&#x5F0F;
-4  1 1 op-mode!  \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x70BA; TQ &#x6A21;&#x5F0F;
-tq 1 1 op-mode!  \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x70BA; TQ &#x6A21;&#x5F0F;
-6  1 1 op-mode!  \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x70BA; HM &#x6A21;&#x5F0F;
-hm 1 1 op-mode!  \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x70BA; HM &#x6A21;&#x5F0F;
-8   1 1 op-mode! \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x70BA; CSP &#x6A21;&#x5F0F;
-csp 1 1 op-mode! \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x70BA; CSP &#x6A21;&#x5F0F;
-9   1 1 op-mode! \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x70BA; CSV &#x6A21;&#x5F0F;
-csv 1 1 op-mode! \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x70BA; CSV &#x6A21;&#x5F0F;
-10  1 1 op-mode! \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x70BA; CST &#x6A21;&#x5F0F;
-cst 1 1 op-mode! \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x70BA; CST &#x6A21;&#x5F0F;
-</code></pre><h4 id="pds-goal--goal-ch-n----"><code>pds-goal! ( goal ch n -- )</code></h4>
-<p>&#x5207;&#x63DB; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; FSA State <code>goal</code>&#x3002;&#x4E3B;&#x7AD9;&#x6703;&#x4F9D;&#x64DA; FSA State &#x81EA;&#x52D5;&#x8A2D;&#x5B9A; Control Word&#x3002;</p>
-<p>&#x53EF;&#x4EE5;&#x5207;&#x63DB;&#x7684; FSA state of PDS &#x5982;&#x4E0B;&#xFF1A;</p>
+</code></pre>
+<p>命令範例:</p>
+<pre><code>1  1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 PP 模式
+pp 1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 PP 模式
+3  1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 PV 模式
+pv 1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 PV 模式
+4  1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 TQ 模式
+tq 1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 TQ 模式
+6  1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 HM 模式
+hm 1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 HM 模式
+8   1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CSP 模式
+csp 1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CSP 模式
+9   1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CSV 模式
+csv 1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CSV 模式
+10  1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CST 模式
+cst 1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CST 模式
+</code></pre>
+<h4 id="pds-goal--goal-ch-n----"><a class="header" href="#pds-goal--goal-ch-n----"><code>pds-goal! ( goal ch n -- )</code></a></h4>
+<p>切換 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 FSA State <code>goal</code>。主站會依據 FSA State 自動設定 Control Word。</p>
+<p>可以切換的 FSA state of PDS 如下：</p>
 <pre><code>: switch-on-disabled ( -- goal ) 1 ;
 : ready-to-switch-on ( -- goal ) 2 ;
 : switched-on        ( -- goal ) 3 ;
 : operation-enabled  ( -- goal ) 4 ;
 : quick-stop-active  ( -- goal ) 5 ;
-</code></pre><p><code>drive-on</code>, <code>drive-on</code> &#x8207; <code>drive-stop</code> &#x547D;&#x4EE4;&#x5C31;&#x662F;&#x4EE5; <code>pds-goal</code> &#x547D;&#x4EE4;&#x7D44;&#x5408;&#x800C;&#x6210;&#xFF1A;</p>
+</code></pre>
+<p><code>drive-on</code>, <code>drive-on</code> 與 <code>drive-stop</code> 命令就是以 <code>pds-goal</code> 命令組合而成：</p>
 <pre><code>: drive-on ( ch n -- )
     operation-enabled -rot pds-goal! ;
 
@@ -1591,57 +800,47 @@ cst 1 1 op-mode! \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C;
 
 : drive-stop ( ch n -- )
     quick-stop-active -rot pds-goal! ;
-</code></pre><h4 id="profile-a1--a1-ch-n----"><code>profile-a1! ( a1 ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x6307;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; profile acceleration <code>a1</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object &#x70BA; 0x6083&#x3002;&#x5728; PP &#x8207; PV &#x6A21;&#x5F0F;&#x6642;&#x6703;&#x4F7F;&#x7528;&#x5230;&#x6B64;&#x52A0;&#x901F;&#x5EA6;&#x9032;&#x884C;&#x4F4D;&#x7F6E;&#x6216;&#x662F;&#x901F;&#x5EA6;&#x898F;&#x5283;&#xFF0C;&#x8981;&#x7559;&#x610F;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x8A2D;&#x5B9A;&#x55AE;&#x4F4D;&#x3002;</p>
-<h4 id="profile-a2--a2-ch-n----"><code>profile-a2! ( a2 ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x6307;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; profile deceleration <code>a2</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object &#x70BA; 0x6084&#x3002;&#x5728; PP &#x8207; PV &#x6A21;&#x5F0F;&#x6642;&#x6703;&#x4F7F;&#x7528;&#x5230;&#x6B64;&#x6E1B;&#x901F;&#x9032;&#x884C;&#x4F4D;&#x7F6E;&#x6216;&#x662F;&#x901F;&#x5EA6;&#x898F;&#x5283;&#xFF0C;&#x8981;&#x7559;&#x610F;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x8A2D;&#x5B9A;&#x55AE;&#x4F4D;&#x3002;</p>
-<h4 id="profile-v--vel-ch-n----"><code>profile-v! ( vel ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x6307;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; profile velocity <code>vel</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object &#x70BA; 0x6081&#x3002;&#x5728; PP &#x6A21;&#x5F0F;&#x6642;&#x6703;&#x4F7F;&#x7528;&#x901F;&#x5EA6;&#x9032;&#x884C;&#x4F4D;&#x7F6E;&#x8207;&#x901F;&#x5EA6;&#x898F;&#x5283;&#xFF0C;&#x8981;&#x7559;&#x610F;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x8A2D;&#x5B9A;&#x55AE;&#x4F4D;&#x3002;</p>
-<h4 id="real-p--ch-n----pos-"><code>real-p@ ( ch n -- pos )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x771F;&#x5BE6;&#x4F4D;&#x7F6E; <code>pos</code>&#x3002;(&#x7531; PDO &#x53D6;&#x5F97;&#x8CC7;&#x6599;)&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object &#x70BA; 0x6064&#x3002;&#x901A;&#x5E38;&#x55AE;&#x4F4D;&#x662F;&#x8108;&#x6CE2;&#x6578;&#x3002;</p>
-<h4 id="real-tq--ch-n----tq-"><code>real-tq@ ( ch n -- tq )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x771F;&#x5BE6;&#x626D;&#x529B;&#x8F38;&#x51FA; <code>tq</code>&#x3002;(&#x7531; PDO &#x53D6;&#x5F97;&#x8CC7;&#x6599;)&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07; real torque (object 0x6077) &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;&#x901A;&#x5E38;&#x55AE;&#x4F4D;&#x662F; 0.1 %&#x3002;</p>
-<h4 id="real-v--ch-n----vel-"><code>real-v@ ( ch n -- vel )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x771F;&#x5BE6;&#x901F;&#x5EA6; <code>vel</code>&#x3002;(&#x7531; PDO &#x53D6;&#x5F97;&#x8CC7;&#x6599;)&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07; real velocity (object 0x606C) &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;&#x55AE;&#x4F4D;&#x6709;&#x53EF;&#x80FD;&#x662F; pulse/s &#x6216;&#x662F; 0.1 rpm&#x3002;</p>
-<h4 id="reset-fault--ch-n----"><code>reset-fault ( ch n -- )</code></h4>
-<p>&#x7576; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x8655;&#x65BC; Fault of FAS State &#x6642;&#xFF0C;&#x5C07;&#x8A72;&#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x5230; Switch on Disabled &#x7684;&#x72C0;&#x614B;&#x3002;&#x4E3B;&#x7AD9;&#x6703;&#x81EA;&#x52D5;&#x8A2D;&#x5B9A;&#x5C0D;&#x61C9;&#x7684; Control Word&#x3002;</p>
-<h4 id="target-p--pos-ch-n----"><code>target-p! ( pos ch n -- )</code></h4>
-<p>&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E; <code>pos</code>&#x3002;(&#x7531; PDO &#x8A2D;&#x5B9A;&#x4F4D;&#x7F6E;)&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object &#x70BA; 0x607A&#x3002;&#x901A;&#x5E38;&#x55AE;&#x4F4D;&#x662F;&#x8108;&#x6CE2;&#x6578;&#x3002;</p>
-<h4 id="target-p--ch-n----pos-"><code>target-p@ ( ch n -- pos )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E; <code>pos</code>&#x3002;</p>
-<h4 id="target-reached--ch-n----flag-"><code>target-reached? ( ch n -- flag )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; Status Word Bit 10 (target reached) &#x662F;&#x5426;&#x70BA; 1 &#x3002;</p>
-<p>&#x5176;&#x72C0;&#x614B;&#x4F86;&#x6E90;&#x8207; <code>drive-sw@</code> &#x76F8;&#x540C;&#x3002;</p>
-<h4 id="target-tq--tq-ch-n----"><code>target-tq! ( tq ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x6307;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x76EE;&#x6A19;&#x626D;&#x529B; <code>tq</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object &#x70BA; 0x6071&#x3002;&#x901A;&#x5E38;&#x55AE;&#x4F4D;&#x662F; 0.1 %&#x3002;</p>
-<p>&#x6B64;&#x547D;&#x4EE4;&#x53EA;&#x9069;&#x5408;&#x5728; TQ &#x6A21;&#x5F0F;&#x4E0B;&#x4F7F;&#x7528;&#xFF0C;&#x5982;&#x679C;&#x662F; CST &#x6A21;&#x5F0F;&#x8981;&#x8A2D;&#x5B9A;&#x76EE;&#x6A19;&#x626D;&#x529B;&#x5247;&#x662F;&#x8981;&#x4F7F;&#x7528; <code>drive-wpdo1!</code> &#x6216;&#x662F; <code>drive-wpdo2!</code>&#x3002;</p>
-<h4 id="target-v--vel-ch-n----"><code>target-v! ( vel ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x6307;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x76EE;&#x6A19;&#x901F;&#x5EA6; <code>v</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object &#x70BA; 0x60FF&#x3002;&#x55AE;&#x4F4D;&#x6709;&#x53EF;&#x80FD;&#x662F; pulse/s &#x6216;&#x662F; 0.1 rpm&#x3002;</p>
-<p>&#x6B64;&#x547D;&#x4EE4;&#x53EA;&#x9069;&#x5408;&#x5728; PV &#x6A21;&#x5F0F;&#x4E0B;&#x4F7F;&#x7528;&#xFF0C;&#x5982;&#x679C;&#x662F; CSV &#x6A21;&#x5F0F;&#x8981;&#x8A2D;&#x5B9A;&#x76EE;&#x6A19;&#x901F;&#x5EA6;&#x5247;&#x662F;&#x8981;&#x4F7F;&#x7528; <code>drive-wpdo1!</code> &#x6216;&#x662F; <code>drive-wpdo2!</code>&#x3002;</p>
-<h3 id="tq-ofs--ofs-ch-n----"><code>tq-ofs! ( ofs ch n -- )</code></h3>
-<p>&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; Torque Offset <code>ofs</code>&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07; Torque Offset (object 0x60B2) &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;</p>
-<p>&#x6B64;&#x4F9D;&#x547D;&#x4EE4;&#x901A;&#x5E38;&#x7528;&#x65BC; CSP&#xFF0C;CSV &#x6216;&#x662F; CST &#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5167;&#x7684;&#x626D;&#x529B;&#x63A7;&#x5236;&#x8FF4;&#x8DEF;&#x984D;&#x5916;&#x8ABF;&#x6574;&#x626D;&#x529B;&#x76EE;&#x6A19;&#x503C;&#x3002;&#x55AE;&#x4F4D;&#x901A;&#x5E38;&#x662F; 0.1%&#x3002;</p>
-<h3 id="tq-ofs---ch-n----ofs-"><code>tq-ofs@  ( ch n -- ofs )</code></h3>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; Torque Offset <code>ofs</code>&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07; Torque Offset (object 0x60B2) &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;</p>
-<h4 id="tq-slope--slope-ch-n----"><code>tq-slope! ( slope ch n -- )</code></h4>
-<p>&#x4F7F;&#x7528; SDO &#x6307;&#x4EE4;&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x626D;&#x529B;&#x8F38;&#x51FA;&#x8B8A;&#x5316;&#x7387; <code>slope</code>&#x3002;</p>
-<p>&#x5C0D;&#x61C9;&#x7684; Object &#x70BA; 0x6087&#x3002;&#x901A;&#x5E38;&#x55AE;&#x4F4D;&#x662F; 0.1%/s&#x3002;</p>
-<p>&#x5728; TQ &#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x4F7F;&#x7528;&#x6B64;&#x8A2D;&#x5B9A;&#x503C;&#x9032;&#x884C;&#x626D;&#x529B;&#x8F38;&#x51FA;&#x898F;&#x5283;&#xFF0C;&#x901A;&#x5E38;&#x6703;&#x642D;&#x914D; <code>drive-vmax!</code>&#x4E00;&#x8D77;&#x4F7F;&#x7528;&#xFF0C;&#x907F;&#x514D;&#x99AC;&#x9054;&#x626D;&#x529B;&#x8F38;&#x51FA;&#x672A;&#x5230;&#x9054;&#x76EE;&#x6A19;&#x6642;&#xFF0C;&#x5176;&#x904B;&#x52D5;&#x901F;&#x5EA6;&#x904E;&#x5FEB;&#x3002;</p>
-<h4 id="until-drive-on--ch-n----"><code>until-drive-on ( ch n -- )</code></h4>
-<p>&#x7B49;&#x5F85; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; FSA State &#x5230;&#x9054; Operation Enabled&#x3002;</p>
-<p>&#x56E0;&#x6B64;&#x547D;&#x4EE4;&#x5167;&#x542B;&#x6709; <code>pause</code>&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x9069;&#x5408;&#x7528;&#x65BC; Background Task&#x3002;</p>
-<p>&#x6B64;&#x547D;&#x4EE4;&#x76F8;&#x7576;&#x65BC;:</p>
+</code></pre>
+<h4 id="profile-a1--a1-ch-n----"><a class="header" href="#profile-a1--a1-ch-n----"><code>profile-a1! ( a1 ch n -- )</code></a></h4>
+<p>使用 SDO 指令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 profile acceleration <code>a1</code>。</p>
+<p>對應的 Object 為 0x6083。在 PP 與 PV 模式時會使用到此加速度進行位置或是速度規劃，要留意馬達驅動器的設定單位。</p>
+<h4 id="profile-a2--a2-ch-n----"><a class="header" href="#profile-a2--a2-ch-n----"><code>profile-a2! ( a2 ch n -- )</code></a></h4>
+<p>使用 SDO 指令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 profile deceleration <code>a2</code>。</p>
+<p>對應的 Object 為 0x6084。在 PP 與 PV 模式時會使用到此減速進行位置或是速度規劃，要留意馬達驅動器的設定單位。</p>
+<h4 id="profile-v--vel-ch-n----"><a class="header" href="#profile-v--vel-ch-n----"><code>profile-v! ( vel ch n -- )</code></a></h4>
+<p>使用 SDO 指令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 profile velocity <code>vel</code>。</p>
+<p>對應的 Object 為 0x6081。在 PP 模式時會使用速度進行位置與速度規劃，要留意馬達驅動器的設定單位。</p>
+<h4 id="real-p--ch-n----pos-"><a class="header" href="#real-p--ch-n----pos-"><code>real-p@ ( ch n -- pos )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的真實位置 <code>pos</code>。(由 PDO 取得資料)。</p>
+<p>對應的 Object 為 0x6064。通常單位是脈波數。</p>
+<h4 id="real-tq--ch-n----tq-"><a class="header" href="#real-tq--ch-n----tq-"><code>real-tq@ ( ch n -- tq )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的真實扭力輸出 <code>tq</code>。(由 PDO 取得資料)。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將 real torque (object 0x6077) 映射到 PDO Mapping 上。通常單位是 0.1 %。</p>
+<h4 id="real-v--ch-n----vel-"><a class="header" href="#real-v--ch-n----vel-"><code>real-v@ ( ch n -- vel )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的真實速度 <code>vel</code>。(由 PDO 取得資料)。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將 real velocity (object 0x606C) 映射到 PDO Mapping 上。單位有可能是 pulse/s 或是 0.1 rpm。</p>
+<h4 id="reset-fault--ch-n----"><a class="header" href="#reset-fault--ch-n----"><code>reset-fault ( ch n -- )</code></a></h4>
+<p>當 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器處於 Fault of FAS State 時，將該管道馬達驅動器切換到 Switch on Disabled 的狀態。主站會自動設定對應的 Control Word。</p>
+<h4 id="target-p--pos-ch-n----"><a class="header" href="#target-p--pos-ch-n----"><code>target-p! ( pos ch n -- )</code></a></h4>
+<p>設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的目標位置 <code>pos</code>。(由 PDO 設定位置)。</p>
+<p>對應的 Object 為 0x607A。通常單位是脈波數。</p>
+<h4 id="target-p--ch-n----pos-"><a class="header" href="#target-p--ch-n----pos-"><code>target-p@ ( ch n -- pos )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的目標位置 <code>pos</code>。</p>
+<h4 id="target-reached--ch-n----flag-"><a class="header" href="#target-reached--ch-n----flag-"><code>target-reached? ( ch n -- flag )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 Status Word Bit 10 (target reached) 是否為 1 。</p>
+<p>其狀態來源與 <code>drive-sw@</code> 相同。</p>
+<h4 id="target-v--vel-ch-n----"><a class="header" href="#target-v--vel-ch-n----"><code>target-v! ( vel ch n -- )</code></a></h4>
+<p>使用 SDO 指令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的目標速度 <code>v</code>。</p>
+<p>對應的 Object 為 0x60FF。單位有可能是 pulse/s 或是 0.1 rpm。</p>
+<p>此命令只適合在 PV 模式下使用，如果是 CSV 模式要設定目標速度則是要使用 <code>drive-wpdo1!</code> 或是 <code>drive-wpdo2!</code>。</p>
+<h4 id="tq-slope--slope-ch-n----"><a class="header" href="#tq-slope--slope-ch-n----"><code>tq-slope! ( slope ch n -- )</code></a></h4>
+<p>使用 SDO 指令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的扭力輸出變化率 <code>slope</code>。</p>
+<p>對應的 Object 為 0x6087。通常單位是 0.1%/s。</p>
+<p>在 TQ 模式下，使用此設定值進行扭力輸出規劃，通常會搭配 <code>drive-vmax!</code>一起使用，避免馬達扭力輸出未到達目標時，其運動速度過快。</p>
+<h4 id="until-drive-on--ch-n----"><a class="header" href="#until-drive-on--ch-n----"><code>until-drive-on ( ch n -- )</code></a></h4>
+<p>等待 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 FSA State 到達 Operation Enabled。</p>
+<p>因此命令內含有 <code>pause</code>，所以只適合用於 Background Task。</p>
+<p>此命令相當於:</p>
 <pre><code>: until-drive-on ( ch n -- )
     begin
         over over drive-on? not
@@ -1649,24 +848,26 @@ cst 1 1 op-mode! \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C;
         pause
     repeat
     drop drop ;
-</code></pre><h4 id="until-no-fault--ch-n----"><code>until-no-fault ( ch n -- )</code></h4>
-<p>&#x7B49;&#x5F85; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; Status Word Bit 3 (Fault) &#x70BA; 0&#x3002;</p>
-<p>&#x56E0;&#x6B64;&#x547D;&#x4EE4;&#x5167;&#x542B;&#x6709; <code>pause</code>&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x9069;&#x5408;&#x7528;&#x65BC; Background Task&#x3002;</p>
-<p>&#x76F8;&#x7576;&#x65BC; </p>
+</code></pre>
+<h4 id="until-no-fault--ch-n----"><a class="header" href="#until-no-fault--ch-n----"><code>until-no-fault ( ch n -- )</code></a></h4>
+<p>等待 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 Status Word Bit 3 (Fault) 為 0。</p>
+<p>因此命令內含有 <code>pause</code>，所以只適合用於 Background Task。</p>
+<p>相當於 </p>
 <pre><code>: until-no-fault ( channel slave -- )     
-    pause pause pause pause pause pause \ &#x78BA;&#x4FDD;&#x6536;&#x5230;&#x9A45;&#x52D5;&#x5668;&#x6700;&#x65B0;&#x7684; status word
+    pause pause pause pause pause pause \ 確保收到驅動器最新的 status word
     begin
         over over drive-fault?
     while
         pause
     repeat
     drop drop ; 
-</code></pre><h4 id="until-target-reached--ch-n----"><code>until-target-reached ( ch n -- )</code></h4>
-<p>&#x7B49;&#x5F85; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; Status Word Bit 10 (target reached) &#x70BA; 1&#x3002;</p>
-<p>&#x56E0;&#x6B64;&#x547D;&#x4EE4;&#x5167;&#x542B;&#x6709; <code>pause</code>&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x9069;&#x5408;&#x7528;&#x65BC; Background Task&#x3002;</p>
-<p>&#x6B64;&#x547D;&#x4EE4;&#x76F8;&#x7576;&#x65BC;:</p>
+</code></pre>
+<h4 id="until-target-reached--ch-n----"><a class="header" href="#until-target-reached--ch-n----"><code>until-target-reached ( ch n -- )</code></a></h4>
+<p>等待 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 Status Word Bit 10 (target reached) 為 1。</p>
+<p>因此命令內含有 <code>pause</code>，所以只適合用於 Background Task。</p>
+<p>此命令相當於:</p>
 <pre><code>: until-target-reached ( channel slave -- )
-    pause pause pause pause pause pause \ &#x78BA;&#x4FDD;&#x6536;&#x5230;&#x9A45;&#x52D5;&#x5668;&#x6700;&#x65B0;&#x7684; status word
+    pause pause pause pause pause pause \ 確保收到驅動器最新的 status word
     begin
         over over target-reached? not
     while
@@ -1674,408 +875,164 @@ cst 1 1 op-mode! \ &#x5C07; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C;
     repeat
     drop drop
 ;
-</code></pre><h4 id="v-ofs--ofs-ch-n----"><code>v-ofs! ( ofs ch n -- )</code></h4>
-<p>&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; Velocity Offset <code>ofs</code>&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07; Velocity Offset (object 0x60B1) &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;</p>
-<p>&#x6B64;&#x4E00;&#x547D;&#x4EE4;&#x901A;&#x5E38;&#x7528;&#x65BC; CSP &#x6216;&#x662F; CSV &#x6A21;&#x5F0F;&#x4E0B;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x5167;&#x7684;&#x901F;&#x5EA6;&#x63A7;&#x5236;&#x8FF4;&#x8DEF;&#x984D;&#x5916;&#x8ABF;&#x6574;&#x901F;&#x5EA6;&#x76EE;&#x6A19;&#x503C;&#x3002;&#x55AE;&#x4F4D;&#x901A;&#x5E38;&#x662F; pulse/s &#x6216;&#x662F; 0.1 rpm&#x3002;</p>
-<h4 id="v-ofs---ch-n----ofs-"><code>v-ofs@  ( ch n -- ofs )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; <code>n</code> &#x7B2C; <code>ch</code> &#x7BA1;&#x9053;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; Velocity Offset <code>ofs</code>&#x3002;</p>
-<p>&#x9700;&#x8981;&#x8A2D;&#x5B9A;&#x4E3B;&#x7AD9;&#x53C3;&#x6578;&#x6A94;&#xFF0C;&#x800C;&#x4E14;&#x8A72;&#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x53EF;&#x4EE5;&#x5C07; Velocity Offset (object 0x60B1) &#x6620;&#x5C04;&#x5230; PDO Mapping &#x4E0A;&#x3002;</p>
-<h4 id="pp-test-&#x7BC4;&#x4F8B;">PP-TEST &#x7BC4;&#x4F8B;</h4>
-<p>&#x4F7F;&#x7528; EtherCAT &#x5F9E;&#x7AD9;&#x7DE8;&#x865F; 1 &#x7B2C; 1 &#x7BA1;&#x9053;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x3002;</p>
+</code></pre>
+<h4 id="v-ofs--ofs-ch-n----"><a class="header" href="#v-ofs--ofs-ch-n----"><code>v-ofs! ( ofs ch n -- )</code></a></h4>
+<p>設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 Velocity Offset <code>ofs</code>。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將 Velocity Offset (object 0x60B1) 映射到 PDO Mapping 上。</p>
+<p>此一命令通常用於 CSP 或是 CSV 模式下，可以在馬達驅動器內的速度控制迴路額外調整速度目標值。單位通常是 pulse/s 或是 0.1 rpm。</p>
+<h4 id="v-ofs---ch-n----ofs-"><a class="header" href="#v-ofs---ch-n----ofs-"><code>v-ofs@  ( ch n -- ofs )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 Velocity Offset <code>ofs</code>。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將 Velocity Offset (object 0x60B1) 映射到 PDO Mapping 上。</p>
+<h4 id="pp-test-範例"><a class="header" href="#pp-test-範例">PP-TEST 範例</a></h4>
+<p>使用 EtherCAT 從站編號 1 第 1 管道的馬達驅動器。</p>
 <pre><code>: pp-test
-    pp 1 1 op-mode!          \ &#x5207;&#x63DB;&#x5230; PP Mode
-    until-no-requests        \ &#x7B49;&#x5F85; op-mode! &#x547D;&#x4EE4;&#x5BE6;&#x969B;&#x8A2D;&#x5B9A;&#x5230;&#x9A45;&#x52D5;&#x5668;
-    1 1 reset-fault          \ &#x89E3;&#x9664;&#x9A45;&#x52D5;&#x5668;&#x7570;&#x8B66;
-    1 1 until-no-fault       \ &#x7B49;&#x5F85;&#x89E3;&#x9664;&#x9A45;&#x52D5;&#x5668;&#x7570;&#x8B66;&#x5B8C;&#x6210;
+    pp 1 1 op-mode!          \ 切換到 PP Mode
+    until-no-requests        \ 等待 op-mode! 命令實際設定到驅動器
+    1 1 reset-fault          \ 解除驅動器異警
+    1 1 until-no-fault       \ 等待解除驅動器異警完成
     1 1 drive-on             \ Drive On
-    1 1 until-drive-on       \ &#x7B49;&#x5F85; Drive on &#x7A0B;&#x5E8F;&#x5B8C;&#x6210;
+    1 1 until-drive-on       \ 等待 Drive on 程序完成
     1000 1 1 target-p!       \ Set target position to 1000
     1 1 go                   \ New set-point
-    1 1 until-target-reached \ &#x7B49;&#x5F85;&#x5230;&#x9054;&#x76EE;&#x6A19;&#x9EDE;
+    1 1 until-target-reached \ 等待到達目標點
 ;
 
-deploy pp-test ;deploy       \ &#x5728; Background Task &#x57F7;&#x884C; pp-test
-</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
-<table>
-<thead>
-<tr>
-<th>&#x6307;&#x4EE4;</th>
-<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>+drive-halt</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>+drive-homed</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>+pp-cosp</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>+pp-imt</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>+pp-rel</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>-drive-halt</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>-drive-homed</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>-pp-cosp</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>-pp-imt</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>-pp-rel</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>csp</td>
-<td>( -- 8 )</td>
-</tr>
-<tr>
-<td>cst</td>
-<td>( -- 10 )</td>
-</tr>
-<tr>
-<td>csv</td>
-<td>( -- 9 )</td>
-</tr>
-<tr>
-<td>cw!</td>
-<td>( cw ch n -- )</td>
-</tr>
-<tr>
-<td>demand-p@</td>
-<td>( ch n -- pos )</td>
-</tr>
-<tr>
-<td>demand-tq@</td>
-<td>( ch n -- tq )</td>
-</tr>
-<tr>
-<td>demand-v@</td>
-<td>( ch n -- vel )</td>
-</tr>
-<tr>
-<td>drive-dins@</td>
-<td>( ch n -- dins )</td>
-</tr>
-<tr>
-<td>drive-douts!</td>
-<td>( douts ch n -- )</td>
-</tr>
-<tr>
-<td>drive-douts-mask!</td>
-<td>( mask ch n -- )</td>
-</tr>
-<tr>
-<td>drive-fault?</td>
-<td>( ch n -- flag )</td>
-</tr>
-<tr>
-<td>drive-homed?</td>
-<td>( ch n -- flag )</td>
-</tr>
-<tr>
-<td>drive-nl?</td>
-<td>( ch n -- nl )</td>
-</tr>
-<tr>
-<td>drive-nsl!</td>
-<td>( nsl ch n -- )</td>
-</tr>
-<tr>
-<td>drive-nsl@</td>
-<td>( ch n -- nsl )</td>
-</tr>
-<tr>
-<td>drive-off</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>drive-on</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>drive-on?</td>
-<td>( ch n -- flag )</td>
-</tr>
-<tr>
-<td>drive-org?</td>
-<td>( ch n -- org )</td>
-</tr>
-<tr>
-<td>drive-pl?</td>
-<td>( ch n -- pl )</td>
-</tr>
-<tr>
-<td>drive-psl!</td>
-<td>( psl ch n -- )</td>
-</tr>
-<tr>
-<td>drive-psl@</td>
-<td>( ch n -- psl )</td>
-</tr>
-<tr>
-<td>drive-polarity!</td>
-<td>( polarity ch n -- )</td>
-</tr>
-<tr>
-<td>drive-rpdo1@</td>
-<td>( ch n -- r1 )</td>
-</tr>
-<tr>
-<td>drive-rpdo2@</td>
-<td>( ch n -- r2 )</td>
-</tr>
-<tr>
-<td>drive-stop</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>drive-sw@</td>
-<td>( ch n -- sw )</td>
-</tr>
-<tr>
-<td>drive-vmax!</td>
-<td>( vmax ch n -- )</td>
-</tr>
-<tr>
-<td>drive-wpdo1!</td>
-<td>( w1 ch n -- )</td>
-</tr>
-<tr>
-<td>drive-wpdo1@</td>
-<td>( ch n -- w1 )</td>
-</tr>
-<tr>
-<td>drive-wpdo2!</td>
-<td>( w2 ch n -- )</td>
-</tr>
-<tr>
-<td>drive-wpdo2@</td>
-<td>( ch n -- w2 )</td>
-</tr>
-<tr>
-<td>go</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>hm</td>
-<td>( -- 6 )</td>
-</tr>
-<tr>
-<td>homing-a!</td>
-<td>( acc ch n -- )</td>
-</tr>
-<tr>
-<td>homing-method!</td>
-<td>( method ch n -- )</td>
-</tr>
-<tr>
-<td>homing-v1!</td>
-<td>( v1 ch n -- )</td>
-</tr>
-<tr>
-<td>homing-v2!</td>
-<td>( v2 ch n -- )</td>
-</tr>
-<tr>
-<td>op-mode!</td>
-<td>( mode ch n -- )</td>
-</tr>
-<tr>
-<td>pds-goal!</td>
-<td>( goal ch n -- )</td>
-</tr>
-<tr>
-<td>pp</td>
-<td>( -- 1 )</td>
-</tr>
-<tr>
-<td>profile-a1!</td>
-<td>( a1 ch n -- )</td>
-</tr>
-<tr>
-<td>profile-a2!</td>
-<td>( a2 ch n -- )</td>
-</tr>
-<tr>
-<td>profile-v!</td>
-<td>( vel ch n -- )</td>
-</tr>
-<tr>
-<td>pv</td>
-<td>( -- 3 )</td>
-</tr>
-<tr>
-<td>real-p@</td>
-<td>( ch n -- pos )</td>
-</tr>
-<tr>
-<td>real-tq@</td>
-<td>( ch n -- tq )</td>
-</tr>
-<tr>
-<td>real-v@</td>
-<td>( ch n -- vel )</td>
-</tr>
-<tr>
-<td>reset-fault</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>target-p!</td>
-<td>( pos ch n -- )</td>
-</tr>
-<tr>
-<td>target-p@</td>
-<td>( ch n -- pos )</td>
-</tr>
-<tr>
-<td>target-reached?</td>
-<td>( channel n -- flag )</td>
-</tr>
-<tr>
-<td>target-tq!</td>
-<td>( tq ch n -- )</td>
-</tr>
-<tr>
-<td>target-v!</td>
-<td>( vel ch n -- )</td>
-</tr>
-<tr>
-<td>tq</td>
-<td>( -- 4 )</td>
-</tr>
-<tr>
-<td>tq-ofs!</td>
-<td>( ofs ch n -- )</td>
-</tr>
-<tr>
-<td>tq-ofs@</td>
-<td>( ch n -- ofs )</td>
-</tr>
-<tr>
-<td>tq-slope!</td>
-<td>( slope ch n -- )</td>
-</tr>
-<tr>
-<td>until-drive-on</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>until-no-fault</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>until-target-reached</td>
-<td>( ch n -- )</td>
-</tr>
-<tr>
-<td>v-ofs!</td>
-<td>( ofs ch n -- )</td>
-</tr>
-<tr>
-<td>v-ofs@</td>
-<td>( ch n -- ofs )</td>
-</tr>
-</tbody>
-</table>
+deploy pp-test ;deploy       \ 在 Background Task 執行 pp-test
+</code></pre>
+<h4 id="本節指令集"><a class="header" href="#本節指令集">本節指令集</a></h4>
+<table><thead><tr><th>指令</th><th>堆疊效果</th></tr></thead><tbody>
+<tr><td>+drive-halt</td><td>( ch n -- )</td></tr>
+<tr><td>+drive-homed</td><td>( ch n -- )</td></tr>
+<tr><td>+pp-cosp</td><td>( ch n -- )</td></tr>
+<tr><td>+pp-imt</td><td>( ch n -- )</td></tr>
+<tr><td>+pp-rel</td><td>( ch n -- )</td></tr>
+<tr><td>-drive-halt</td><td>( ch n -- )</td></tr>
+<tr><td>-drive-homed</td><td>( ch n -- )</td></tr>
+<tr><td>-pp-cosp</td><td>( ch n -- )</td></tr>
+<tr><td>-pp-imt</td><td>( ch n -- )</td></tr>
+<tr><td>-pp-rel</td><td>( ch n -- )</td></tr>
+<tr><td>csp</td><td>( -- 8 )</td></tr>
+<tr><td>cst</td><td>( -- 10 )</td></tr>
+<tr><td>csv</td><td>( -- 9 )</td></tr>
+<tr><td>drive-cw!</td><td>( cw ch n -- )</td></tr>
+<tr><td>demand-p@</td><td>( ch n -- pos )</td></tr>
+<tr><td>demand-v@</td><td>( ch n -- vel )</td></tr>
+<tr><td>drive-dins@</td><td>( ch n -- dins )</td></tr>
+<tr><td>drive-douts!</td><td>( douts ch n -- )</td></tr>
+<tr><td>drive-douts-mask!</td><td>( mask ch n -- )</td></tr>
+<tr><td>drive-fault?</td><td>( ch n -- flag )</td></tr>
+<tr><td>drive-homed?</td><td>( ch n -- flag )</td></tr>
+<tr><td>drive-nl?</td><td>( ch n -- nl )</td></tr>
+<tr><td>drive-nsl!</td><td>( nsl ch n -- )</td></tr>
+<tr><td>drive-nsl@</td><td>( ch n -- nsl )</td></tr>
+<tr><td>drive-off</td><td>( ch n -- )</td></tr>
+<tr><td>drive-on</td><td>( ch n -- )</td></tr>
+<tr><td>drive-on?</td><td>( ch n -- flag )</td></tr>
+<tr><td>drive-org?</td><td>( ch n -- org )</td></tr>
+<tr><td>drive-pl?</td><td>( ch n -- pl )</td></tr>
+<tr><td>drive-psl!</td><td>( psl ch n -- )</td></tr>
+<tr><td>drive-psl@</td><td>( ch n -- psl )</td></tr>
+<tr><td>drive-polarity!</td><td>( polarity ch n -- )</td></tr>
+<tr><td>drive-rpdo1@</td><td>( ch n -- r1 )</td></tr>
+<tr><td>drive-rpdo2@</td><td>( ch n -- r2 )</td></tr>
+<tr><td>drive-stop</td><td>( ch n -- )</td></tr>
+<tr><td>drive-sw@</td><td>( ch n -- sw )</td></tr>
+<tr><td>drive-vmax!</td><td>( vmax ch n -- )</td></tr>
+<tr><td>drive-wpdo1!</td><td>( w1 ch n -- )</td></tr>
+<tr><td>drive-wpdo1@</td><td>( ch n -- w1 )</td></tr>
+<tr><td>drive-wpdo2!</td><td>( w2 ch n -- )</td></tr>
+<tr><td>drive-wpdo2@</td><td>( ch n -- w2 )</td></tr>
+<tr><td>go</td><td>( ch n -- )</td></tr>
+<tr><td>hm</td><td>( -- 6 )</td></tr>
+<tr><td>homing-a!</td><td>( acc ch n -- )</td></tr>
+<tr><td>homing-method!</td><td>( method ch n -- )</td></tr>
+<tr><td>homing-v1!</td><td>( v1 ch n -- )</td></tr>
+<tr><td>homing-v2!</td><td>( v2 ch n -- )</td></tr>
+<tr><td>op-mode!</td><td>( mode ch n -- )</td></tr>
+<tr><td>pds-goal!</td><td>( goal ch n -- )</td></tr>
+<tr><td>pp</td><td>( -- 1 )</td></tr>
+<tr><td>profile-a1!</td><td>( a1 ch n -- )</td></tr>
+<tr><td>profile-a2!</td><td>( a2 ch n -- )</td></tr>
+<tr><td>profile-v!</td><td>( vel ch n -- )</td></tr>
+<tr><td>pv</td><td>( -- 3 )</td></tr>
+<tr><td>real-p@</td><td>( ch n -- pos )</td></tr>
+<tr><td>real-tq@</td><td>( ch n -- tq )</td></tr>
+<tr><td>real-v@</td><td>( ch n -- vel )</td></tr>
+<tr><td>reset-fault</td><td>( ch n -- )</td></tr>
+<tr><td>target-p!</td><td>( pos ch n -- )</td></tr>
+<tr><td>target-p@</td><td>( ch n -- pos )</td></tr>
+<tr><td>target-reached?</td><td>( channel n -- flag )</td></tr>
+<tr><td>target-v!</td><td>( vel ch n -- )</td></tr>
+<tr><td>tq</td><td>( -- 4 )</td></tr>
+<tr><td>tq-slope!</td><td>( slope ch n -- )</td></tr>
+<tr><td>until-drive-on</td><td>( ch n -- )</td></tr>
+<tr><td>until-no-fault</td><td>( ch n -- )</td></tr>
+<tr><td>until-target-reached</td><td>( ch n -- )</td></tr>
+<tr><td>v-ofs!</td><td>( ofs ch n -- )</td></tr>
+<tr><td>v-ofs@</td><td>( ch n -- ofs )</td></tr>
+</tbody></table>
 
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
-</div>
+                    </main>
 
-                        </div>
-                    </div>
-                
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ethercat-primitives.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ethercat-io-primitives.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
             </div>
 
-            
-                
-                <a href="ethercat-primitives.html" class="navigation navigation-prev " aria-label="Previous page: EtherCAT 指令集">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="ethercat-io-primitives.html" class="navigation navigation-next " aria-label="Next page: EtherCAT IO 指令集">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ethercat-primitives.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-    <script>
-        var gitbook = gitbook || [];
-        gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"EtherCAT Drive 指令集","level":"4.3.3","depth":2,"next":{"title":"EtherCAT IO 指令集","level":"4.3.4","depth":2,"path":"ethercat-io-primitives.md","ref":"./ethercat-io-primitives.md","articles":[]},"previous":{"title":"EtherCAT 指令集","level":"4.3.2","depth":2,"path":"ethercat-primitives.md","ref":"./ethercat-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ethercat-drive-primitives.md","mtime":"2020-01-03T08:40:45.700Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-03T09:03:35.732Z"},"basePath":".","book":{"language":""}});
-        });
-    </script>
-</div>
+                    <a rel="next" href="ethercat-io-primitives.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
 
-        
-    <script src="gitbook/gitbook.js"></script>
-    <script src="gitbook/theme.js"></script>
-    
-        
-        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-search/search.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
 
     </body>
 </html>
-

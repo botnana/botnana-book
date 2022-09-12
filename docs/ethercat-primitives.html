@@ -1,672 +1,169 @@
-
 <!DOCTYPE HTML>
-<html lang="" >
+<html lang="zh-TW" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
+        <title>EtherCAT 指令集 - Botnana Book</title>
+
+
+        <!-- Custom HTML head -->
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>EtherCAT 指令集 · GitBook</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
-        
-        
-        
-    
-    <link rel="stylesheet" href="gitbook/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
 
-    
-            
-                
-                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
-        
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
-    
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
-        
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="ethercat-drive-primitives.html" />
-    
-    
-    <link rel="prev" href="host-primitives.html" />
-    
+        <!-- Custom theme stylesheets -->
 
     </head>
     <body>
-        
-<div class="book">
-    <div class="book-summary">
-        
-            
-<div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
-</div>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
 
-            
-                <nav role="navigation">
-                
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
 
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
 
-<ul class="summary">
-    
-    
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
 
-    
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
 
-    
-        
-        <li class="header">1. 前言</li>
-        
-        
-    
-        <li class="chapter " data-level="1.1" data-path="./">
-            
-                <a href="./">
-            
-                    
-                    簡介
-            
-                </a>
-            
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
 
-            
-        </li>
-    
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> 簡介</a></li><li class="chapter-item expanded "><a href="hardware.html"><strong aria-hidden="true">2.</strong> 硬體規格</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="botnana-a2.html"><strong aria-hidden="true">2.1.</strong> Botnana BN-A2A</a></li><li class="chapter-item expanded "><a href="botnana-bn-j4a.html"><strong aria-hidden="true">2.2.</strong> Botnana BN-J4A</a></li></ol></li><li class="chapter-item expanded "><a href="software.html"><strong aria-hidden="true">3.</strong> 軟體規格</a></li><li class="chapter-item expanded "><a href="roadmap.html"><strong aria-hidden="true">4.</strong> Roadmap</a></li><li class="chapter-item expanded "><a href="tutorial.html"><strong aria-hidden="true">5.</strong> 入門教學</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="botnana-a2-tutorial.html"><strong aria-hidden="true">5.1.</strong> Botnana A2 入門</a></li><li class="chapter-item expanded "><a href="botnana-control-tutorial.html"><strong aria-hidden="true">5.2.</strong> Botnana Control 入門</a></li></ol></li><li class="chapter-item expanded "><a href="configuration-file.html"><strong aria-hidden="true">6.</strong> 設定檔</a></li><li class="chapter-item expanded "><a href="programming.html"><strong aria-hidden="true">7.</strong> 程式開發界面</a></li><li class="chapter-item expanded "><a href="json-api.html"><strong aria-hidden="true">8.</strong> JSON API</a></li><li class="chapter-item expanded "><a href="real-time-script-api.html"><strong aria-hidden="true">9.</strong> Real-time Script API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="host-primitives.html"><strong aria-hidden="true">9.1.</strong> Botnana 基本指令集</a></li><li class="chapter-item expanded "><a href="ethercat-primitives.html" class="active"><strong aria-hidden="true">9.2.</strong> EtherCAT 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-drive-primitives.html"><strong aria-hidden="true">9.3.</strong> EtherCAT Drive 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-io-primitives.html"><strong aria-hidden="true">9.4.</strong> EtherCAT IO 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-uart-primitives.html"><strong aria-hidden="true">9.5.</strong> EtherCAT UART 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-encoder-primitives.html"><strong aria-hidden="true">9.6.</strong> EtherCAT Encoder 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-gateway-primitives.html"><strong aria-hidden="true">9.7.</strong> EtherCAT Gateway 指令集</a></li><li class="chapter-item expanded "><a href="axis-group.html"><strong aria-hidden="true">9.8.</strong> 軸組 Axis Group 指令集</a></li><li class="chapter-item expanded "><a href="sfc.html"><strong aria-hidden="true">9.9.</strong> 狀態流程圖 Sequential Function Chart (SFC)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="sfc-example/servo-on-off.html"><strong aria-hidden="true">9.9.1.</strong> Servo On/OFF</a></li><li class="chapter-item expanded "><a href="sfc-example/motion-state.html"><strong aria-hidden="true">9.9.2.</strong> Motion State</a></li><li class="chapter-item expanded "><a href="sfc-example/axes-homing.html"><strong aria-hidden="true">9.9.3.</strong> Homing State</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="known-working-hardware.html"><strong aria-hidden="true">10.</strong> 支援的硬體清單</a></li><li class="chapter-item expanded "><a href="update-software.html"><strong aria-hidden="true">11.</strong> 軟體更新</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">12.</strong> 常見問題</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="faq/network.html"><strong aria-hidden="true">12.1.</strong> 網路設定</a></li><li class="chapter-item expanded "><a href="faq/gadget.html"><strong aria-hidden="true">12.2.</strong> USB連線IP設定</a></li><li class="chapter-item expanded "><a href="faq/windows7_rndis.html"><strong aria-hidden="true">12.3.</strong> Windows 7 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="faq/windows10_rndis.html"><strong aria-hidden="true">12.4.</strong> Windows 10 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="faq/win10_permission.html"><strong aria-hidden="true">12.5.</strong> Windows 10 檔案權限修改</a></li><li class="chapter-item expanded "><a href="faq/mount.html"><strong aria-hidden="true">12.6.</strong> 磁碟掛載 Mount</a></li><li class="chapter-item expanded "><a href="faq/manual_install_deb/manual_install_deb.html"><strong aria-hidden="true">12.7.</strong> 手動安裝 Botnana Control 更新檔</a></li><li class="spacer"></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
 
-    
-        
-        <li class="header">2. 規格</li>
-        
-        
-    
-        <li class="chapter " data-level="2.1" data-path="hardware.html">
-            
-                <a href="hardware.html">
-            
-                    
-                    硬體規格
-            
-                </a>
-            
+        <div id="page-wrapper" class="page-wrapper">
 
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="2.1.1" data-path="botnana-a2.html">
-            
-                <a href="botnana-a2.html">
-            
-                    
-                    Botnana BN-A2A
-            
-                </a>
-            
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-            
-        </li>
-    
-        <li class="chapter " data-level="2.1.2" data-path="botnana-bn-j4a.html">
-            
-                <a href="botnana-bn-j4a.html">
-            
-                    
-                    Botnana BN-J4A
-            
-                </a>
-            
+                    <h1 class="menu-title">Botnana Book</h1>
 
-            
-        </li>
-    
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
 
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="2.2" data-path="software.html">
-            
-                <a href="software.html">
-            
-                    
-                    軟體規格
-            
-                </a>
-            
+                    </div>
+                </div>
 
-            
-        </li>
-    
-        <li class="chapter " data-level="2.3" data-path="roadmap.html">
-            
-                <a href="roadmap.html">
-            
-                    
-                    Roadmap
-            
-                </a>
-            
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
 
-            
-        </li>
-    
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
 
-    
-        
-        <li class="header">3. 入門</li>
-        
-        
-    
-        <li class="chapter " data-level="3.1" data-path="tutorial.html">
-            
-                <a href="tutorial.html">
-            
-                    
-                    入門教學
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="3.1.1" data-path="botnana-a2-tutorial.html">
-            
-                <a href="botnana-a2-tutorial.html">
-            
-                    
-                    Botnana A2 入門
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.1.2" data-path="botnana-control-tutorial.html">
-            
-                <a href="botnana-control-tutorial.html">
-            
-                    
-                    Botnana Control 入門
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="3.2" data-path="configuration-file.html">
-            
-                <a href="configuration-file.html">
-            
-                    
-                    設定檔
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
-        
-        <li class="header">4. 程式開發</li>
-        
-        
-    
-        <li class="chapter " data-level="4.1" data-path="programming.html">
-            
-                <a href="programming.html">
-            
-                    
-                    程式開發界面
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.2" data-path="json-api.html">
-            
-                <a href="json-api.html">
-            
-                    
-                    JSON API
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3" data-path="real-time-script-api.html">
-            
-                <a href="real-time-script-api.html">
-            
-                    
-                    Real-time Script API
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.3.1" data-path="host-primitives.html">
-            
-                <a href="host-primitives.html">
-            
-                    
-                    Botnana 基本指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="4.3.2" data-path="ethercat-primitives.html">
-            
-                <a href="ethercat-primitives.html">
-            
-                    
-                    EtherCAT 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.3" data-path="ethercat-drive-primitives.html">
-            
-                <a href="ethercat-drive-primitives.html">
-            
-                    
-                    EtherCAT Drive 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.4" data-path="ethercat-io-primitives.html">
-            
-                <a href="ethercat-io-primitives.html">
-            
-                    
-                    EtherCAT IO 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.5" data-path="ethercat-uart-primitives.html">
-            
-                <a href="ethercat-uart-primitives.html">
-            
-                    
-                    EtherCAT UART 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.6" data-path="ethercat-encoder-primitives.html">
-            
-                <a href="ethercat-encoder-primitives.html">
-            
-                    
-                    EtherCAT Encoder 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.7" data-path="ethercat-gateway-primitives.html">
-            
-                <a href="ethercat-gateway-primitives.html">
-            
-                    
-                    EtherCAT Gateway 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.8" data-path="axis-group.html">
-            
-                <a href="axis-group.html">
-            
-                    
-                    軸組 Axis Group 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9" data-path="sfc.html">
-            
-                <a href="sfc.html">
-            
-                    
-                    狀態流程圖 Sequential Function Chart (SFC)
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.3.9.1" data-path="sfc-example/servo-on-off.html">
-            
-                <a href="sfc-example/servo-on-off.html">
-            
-                    
-                    Servo On/OFF
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9.2" data-path="sfc-example/motion-state.html">
-            
-                <a href="sfc-example/motion-state.html">
-            
-                    
-                    Motion State
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9.3" data-path="sfc-example/axes-homing.html">
-            
-                <a href="sfc-example/axes-homing.html">
-            
-                    
-                    Homing State
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-        
-        <li class="header">5. 附錄</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="known-working-hardware.html">
-            
-                <a href="known-working-hardware.html">
-            
-                    
-                    支援的硬體清單
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.2" data-path="update-software.html">
-            
-                <a href="update-software.html">
-            
-                    
-                    軟體更新
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3" data-path="faq.html">
-            
-                <a href="faq.html">
-            
-                    
-                    常見問題
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="5.3.1" data-path="faq/network.html">
-            
-                <a href="faq/network.html">
-            
-                    
-                    網路設定
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.2" data-path="faq/gadget.html">
-            
-                <a href="faq/gadget.html">
-            
-                    
-                    USB連線IP設定
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.3" data-path="faq/windows7_rndis.html">
-            
-                <a href="faq/windows7_rndis.html">
-            
-                    
-                    Windows 7 RNDIS 驅動程式安裝
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.4" data-path="faq/windows10_rndis.html">
-            
-                <a href="faq/windows10_rndis.html">
-            
-                    
-                    Windows 10 RNDIS 驅動程式安裝
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.5" data-path="faq/win10_permission.html">
-            
-                <a href="faq/win10_permission.html">
-            
-                    
-                    Windows 10 檔案權限修改
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.6" data-path="faq/mount.html">
-            
-                <a href="faq/mount.html">
-            
-                    
-                    磁碟掛載 Mount
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.7" data-path="faq/manual_install_deb/manual_install_deb.html">
-            
-                <a href="faq/manual_install_deb/manual_install_deb.html">
-            
-                    
-                    手動安裝 Botnana Control 更新檔
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
-        </a>
-    </li>
-</ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
-<div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >EtherCAT 指令集</a>
-    </h1>
-</div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
-<div id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <h3 id="ethercat-&#x6307;&#x4EE4;&#x96C6;">EtherCAT &#x6307;&#x4EE4;&#x96C6;</h3>
-<h4 id="ec-dc-----"><code>.ec-dc ( -- )</code></h4>
-<p>&#x986F;&#x793A; EtherCAT &#x901A;&#x8A0A;&#x6642;&#x9593;&#x540C;&#x6B65;&#x7684;&#x72C0;&#x6CC1;&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+                <div id="content" class="content">
+                    <main>
+                        <h3 id="ethercat-指令集"><a class="header" href="#ethercat-指令集">EtherCAT 指令集</a></h3>
+<h4 id="ec-dc-----"><a class="header" href="#ec-dc-----"><code>.ec-dc ( -- )</code></a></h4>
+<p>顯示 EtherCAT 通訊時間同步的狀況。</p>
+<p>命令範例:</p>
 <pre><code>.dc-dc
-</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;:</p>
+</code></pre>
+<p>回傳訊息:</p>
 <pre><code>dc_adjust_ns|65|dc_diff_ns|-865935|reference_time_diff_ns|2003080
 |application_time_diff_ns|2052185
-</code></pre><p>&#x5176;&#x4E2D;&#x7684;&#xFF1A;</p>
-<pre><code>dc_adjust_ns:               EtherCAT &#x4E3B;&#x7AD9;&#x5468;&#x671F;&#x7684;&#x8ABF;&#x6574;&#x91CF;&#x3002;
-dc_diff_ns:                 EtherCAT &#x4E3B;&#x5F9E;&#x7AD9;&#x4E4B;&#x9593;&#x7684;&#x6642;&#x9593;&#x76F8;&#x4F4D;&#x5DEE;&#x3002;
-reference_time_diff_ns:     EtherCAT &#x5F9E;&#x7AD9;&#x7684;&#x5468;&#x671F;&#x3002;
-application_time_diff_ns:   EtherCAT &#x4E3B;&#x7AD9;&#x7684;&#x5468;&#x671F;&#x3002;
-</code></pre><h4 id="ec-emcy--n----"><code>.ec-emcy ( n -- )</code></h4>
-<p>&#x986F;&#x793A; EtherCAT Slave Position <code>n</code> &#x7684;emergemcy message &#x8A0A;&#x606F;&#x3002;&#x76EE;&#x524D; Botnana-Control &#x6703;&#x4F9D;&#x64DA; status word &#x4E2D;&#x7684; fault bit &#x81EA;&#x52D5;&#x9001;&#x51FA; ?ec-emcy &#x7684;&#x547D;&#x4EE4;&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
-<pre><code>1 .ec-emcy  \ &#x53D6;&#x5F97; EtherCAT &#x7B2C; 1 &#x500B;&#x5F9E;&#x7AD9;&#x7684; emergemcy message
-</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;:</p>
+</code></pre>
+<p>其中的：</p>
+<pre><code>dc_adjust_ns:               EtherCAT 主站周期的調整量。
+dc_diff_ns:                 EtherCAT 主從站之間的時間相位差。
+reference_time_diff_ns:     EtherCAT 從站的周期。
+application_time_diff_ns:   EtherCAT 主站的周期。
+</code></pre>
+<h4 id="ec-emcy--n----"><a class="header" href="#ec-emcy--n----"><code>.ec-emcy ( n -- )</code></a></h4>
+<p>顯示 EtherCAT Slave Position <code>n</code> 的emergemcy message 訊息。目前 Botnana-Control 會依據 status word 中的 fault bit 自動送出 ?ec-emcy 的命令。</p>
+<p>命令範例:</p>
+<pre><code>1 .ec-emcy  \ 取得 EtherCAT 第 1 個從站的 emergemcy message
+</code></pre>
+<p>回傳訊息:</p>
 <pre><code>error_code.1|0x5441
 |error_register.1|0x20
 |error_data.1.1|0
@@ -675,70 +172,82 @@ application_time_diff_ns:   EtherCAT &#x4E3B;&#x7AD9;&#x7684;&#x5468;&#x671F;&#x
 |error_data.4.1|0
 |error_data.5.1|0
 |error_message_cout|1
-</code></pre><p>&#x5176;&#x4E2D;&#x7684;&#xFF1A;</p>
-<pre><code>error code:                     &#x7B49;&#x540C;&#x65BC; Object 0x603F:00
-error register:                 &#x7B49;&#x540C;&#x65BC; Object 0x1001: 00
-error_data.1 ~ error_data.5:    &#x70BA;&#x9A45;&#x52D5;&#x5668;&#x5EE0;&#x5BB6;&#x5B9A;&#x7FA9;&#x7684;&#x7570;&#x8B66;&#x8A0A;&#x606F;&#x3002;
-                                &#x6B64;&#x7BC4;&#x4F8B;&#x70BA;&#x53F0;&#x9054;&#x96FB;A2-E &#x9A45;&#x52D5;&#x5668;&#x6240;&#x56DE;&#x50B3;&#x7684;&#x8A0A;&#x606F;,
-                                error_data.2.1 = 19 &#x8868;&#x793A;&#x7570;&#x8B66;&#x78BC; 0x13 (&#x7DCA;&#x6025;&#x505C;&#x6B62;)
-</code></pre><h4 id="ec-links-----"><code>.ec-links ( -- )</code></h4>
-<p>&#x986F;&#x793A; EtherCAT &#x901A;&#x8A0A;&#x7684;&#x9023;&#x7DDA;&#x72C0;&#x614B;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+</code></pre>
+<p>其中的：</p>
+<pre><code>error code:                     等同於 Object 0x603F:00
+error register:                 等同於 Object 0x1001: 00
+error_data.1 ~ error_data.5:    為驅動器廠家定義的異警訊息。
+                                此範例為台達電A2-E 驅動器所回傳的訊息,
+                                error_data.2.1 = 19 表示異警碼 0x13 (緊急停止)
+</code></pre>
+<h4 id="ec-links-----"><a class="header" href="#ec-links-----"><code>.ec-links ( -- )</code></a></h4>
+<p>顯示 EtherCAT 通訊的連線狀態</p>
+<p>命令範例:</p>
 <pre><code>.ec-links
-</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;:</p>
+</code></pre>
+<p>回傳訊息:</p>
 <pre><code>slaves_responding|3|al_states|8|link_up|1
 |input_wc|3|output_wc|3|input_wc_state|1|output_wc_state|1
 |input_wc_error|8187|output_wc_error|8233
 |waiting_sdos_len|0|ec_ready|1
-</code></pre><p>&#x5176;&#x4E2D;&#x7684;&#xFF1A;</p>
-<pre><code>slaves_responding:  EtherCAT &#x5F9E;&#x7AD9;&#x7684;&#x9023;&#x7DDA;&#x6578;
-al_states:          &#x6240;&#x6709; EtherCAT &#x5F9E;&#x7AD9;&#x7684;&#x72C0;&#x614B;&#x3002;8 &#x4EE3;&#x8868;&#x6240;&#x6709;&#x5F9E;&#x7AD9;&#x90FD;&#x5728;&#x64CD;&#x4F5C;&#x6A21;&#x5F0F;&#x3002;
-input_wc:           Input Data Working Count&#x3002;&#x6709;&#x8655;&#x7406; Input Data &#x7684;&#x5F9E;&#x7AD9;&#x6578;&#x3002;
-output_wc:          Output Data Working Count&#x3002;&#x6709;&#x8655;&#x7406; Output Data &#x7684;&#x5F9E;&#x7AD9;&#x6578;&#x3002;
-input_wc_state:     Input Data Working Count &#x6B63;&#x5E38;&#x8207;&#x5426;&#xFF0C;1 &#x8868;&#x793A;&#x6B63;&#x5E38;&#x3002;
-output_wc_state:    Output Data Working Count &#x6B63;&#x5E38;&#x8207;&#x5426;&#xFF0C;1 &#x8868;&#x793A;&#x6B63;&#x5E38;&#x3002;
-input_wc_error:     &#x8A08;&#x6578; input_wc_state = 0 &#x7684;&#x5468;&#x671F;&#x6578;&#x3002;
-                    &#x901A;&#x5E38;&#x5728;&#x958B;&#x6A5F;&#x6642;&#x56E0;&#x70BA;&#x6642;&#x9593;&#x9084;&#x4E0D;&#x80FD;&#x540C;&#x6B65;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x958B;&#x6A5F;&#x521D;&#x671F;&#x6703;&#x589E;&#x52A0;&#x3002;
-output_wc_error:    &#x8A08;&#x6578; output_wc_state = 0 &#x7684;&#x5468;&#x671F;&#x6578;&#x3002;
-                    &#x901A;&#x5E38;&#x5728;&#x958B;&#x6A5F;&#x6642;&#x56E0;&#x70BA;&#x6642;&#x9593;&#x9084;&#x4E0D;&#x80FD;&#x540C;&#x6B65;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x958B;&#x6A5F;&#x521D;&#x671F;&#x6703;&#x589E;&#x52A0;&#x3002;
-waiting_sdos_len:   &#x7B49;&#x5F85;&#x8655;&#x7406;&#x7684; SDO &#x547D;&#x4EE4;&#x6578;&#x3002;
-ec_ready:           1 &#x8868;&#x793A; EtherCAT &#x901A;&#x8A0A;&#x6B63;&#x5E38;&#x3002;
-</code></pre><h4 id="ec-wdt-proc-data--n----"><code>.ec-wdt-proc-data ( n -- )</code></h4>
-<p>&#x986F;&#x793A; EtherCAT Slave Position <code>n</code> &#x7684; ESC Watchdog Time Process Data &#x7684;&#x66AB;&#x5B58;&#x5668;&#x8A2D;&#x5B9A;&#x503C;&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+</code></pre>
+<p>其中的：</p>
+<pre><code>slaves_responding:  EtherCAT 從站的連線數
+al_states:          所有 EtherCAT 從站的狀態。8 代表所有從站都在操作模式。
+input_wc:           Input Data Working Count。有處理 Input Data 的從站數。
+output_wc:          Output Data Working Count。有處理 Output Data 的從站數。
+input_wc_state:     Input Data Working Count 正常與否，1 表示正常。
+output_wc_state:    Output Data Working Count 正常與否，1 表示正常。
+input_wc_error:     計數 input_wc_state = 0 的周期數。
+                    通常在開機時因為時間還不能同步，所以在開機初期會增加。
+output_wc_error:    計數 output_wc_state = 0 的周期數。
+                    通常在開機時因為時間還不能同步，所以在開機初期會增加。
+waiting_sdos_len:   等待處理的 SDO 命令數。
+ec_ready:           1 表示 EtherCAT 通訊正常。
+</code></pre>
+<h4 id="ec-wdt-proc-data--n----"><a class="header" href="#ec-wdt-proc-data--n----"><code>.ec-wdt-proc-data ( n -- )</code></a></h4>
+<p>顯示 EtherCAT Slave Position <code>n</code> 的 ESC Watchdog Time Process Data 的暫存器設定值。</p>
+<p>命令範例:</p>
 <pre><code>1 .ec-wdt-proc-data
-</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;:</p>
+</code></pre>
+<p>回傳訊息:</p>
 <pre><code>ec_wdt_proc_data.1|1000|ec_wdt_proc_data_busy.1|0|ec_wdt_proc_data_error.1|0
-</code></pre><p>&#x5176;&#x4E2D;&#x7684;&#xFF1A;</p>
-<pre><code>ec_wdt_proc_data:       ESC Watchdog Time Process Data &#x7684;&#x66AB;&#x5B58;&#x5668;&#x8A2D;&#x5B9A;&#x503C;
-ec_wdt_proc_data_busy:  &#x8981;&#x6C42;&#x8A2D;&#x5B9A;&#x6216;&#x662F;&#x8B80;&#x53D6;&#x7684;&#x6307;&#x4EE4;&#x662F;&#x5426;&#x9084;&#x5728;&#x57F7;&#x884C;&#x4E2D;?
-ec_wdt_proc_data_error: &#x8981;&#x6C42;&#x8A2D;&#x5B9A;&#x6216;&#x662F;&#x8B80;&#x53D6;&#x7684;&#x6307;&#x4EE4;&#x662F;&#x5426;&#x57F7;&#x884C;&#x5931;&#x6557;?
-</code></pre><h4 id="sdo--n----"><code>.sdo ( n -- )</code></h4>
-<p>&#x986F;&#x793A; EtherCAT Slave Position <code>n</code> &#x7684; SDO &#x6307;&#x4EE4;&#x57F7;&#x884C;&#x7D50;&#x679C;&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+</code></pre>
+<p>其中的：</p>
+<pre><code>ec_wdt_proc_data:       ESC Watchdog Time Process Data 的暫存器設定值
+ec_wdt_proc_data_busy:  要求設定或是讀取的指令是否還在執行中?
+ec_wdt_proc_data_error: 要求設定或是讀取的指令是否執行失敗?
+</code></pre>
+<h4 id="sdo--n----"><a class="header" href="#sdo--n----"><code>.sdo ( n -- )</code></a></h4>
+<p>顯示 EtherCAT Slave Position <code>n</code> 的 SDO 指令執行結果。</p>
+<p>命令範例:</p>
 <pre><code>2 .sdo
-</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#xFF1A;</p>
+</code></pre>
+<p>回傳訊息：</p>
 <pre><code>sdo_index.2|0x6041
 |sdo_subindex.2|0x00
 |sdo_error.2|false
 |sdo_busy.2|false
 |sdo_data.2|24
 |sdo_data_hex.2|0x0018
-</code></pre><p>&#x5176;&#x4E2D;&#x7684;&#xFF1A;</p>
-<pre><code>&#x4EE5; sdo_index.2 &#x70BA;&#x4F8B;, .2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave&#x3002;
-sdo_index   : EtherCAT object index&#x3002;
-sdo_subindex: EtherCAT object subindex&#x3002;
-sdo_error   : &#x6B64; sdo request &#x662F;&#x5426;&#x6709;&#x554F;&#x984C;,
-              &#x53EF;&#x80FD;&#x539F;&#x56E0;&#x6709; index &#x932F;&#x8AA4;, &#x8CC7;&#x6599;&#x578B;&#x614B;&#x932F;&#x8AA4; ... &#x7B49;&#x7B49;&#x3002;
-sdo_busy    : &#x6B64; SDO request &#x662F;&#x5426;&#x9084;&#x5728;&#x8655;&#x7406;&#x4E2D;&#x3002;
-sdo_data    : Object &#x7684;&#x503C;&#x3002;
-sdo_data_hex: &#x4EE5; 16 &#x9032;&#x4F4D;&#x8868;&#x793A; Object &#x7684;&#x503C;&#x3002;
-</code></pre><h4 id="slave--n----"><code>.slave ( n -- )</code></h4>
-<p>&#x986F;&#x793A; EtherCAT Slave Position <code>n</code> &#x7684;&#x8CC7;&#x8A0A;&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+</code></pre>
+<p>其中的：</p>
+<pre><code>以 sdo_index.2 為例, .2 表示第 2 個 slave。
+sdo_index   : EtherCAT object index。
+sdo_subindex: EtherCAT object subindex。
+sdo_error   : 此 sdo request 是否有問題,
+              可能原因有 index 錯誤, 資料型態錯誤 ... 等等。
+sdo_busy    : 此 SDO request 是否還在處理中。
+sdo_data    : Object 的值。
+sdo_data_hex: 以 16 進位表示 Object 的值。
+</code></pre>
+<h4 id="slave--n----"><a class="header" href="#slave--n----"><code>.slave ( n -- )</code></a></h4>
+<p>顯示 EtherCAT Slave Position <code>n</code> 的資訊。</p>
+<p>命令範例:</p>
 <pre><code>2 .slave
-</code></pre><p>&#x4EE5;&#x7B2C; 2 &#x500B; slave &#x70BA;&#x58EB;&#x6797;&#x96FB;&#x6A5F; SDP &#x9A45;&#x52D5;&#x5668;&#x70BA;&#x4F8B;&#xFF0C;</p>
-<p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#xFF1A;</p>
+</code></pre>
+<p>以第 2 個 slave 為士林電機 SDP 驅動器為例，</p>
+<p>回傳訊息：</p>
 <pre><code>vendor.2|0x000005BC
 |product.2|0x00000001
 |description.2|SDP-E CoE Drive
@@ -762,20 +271,21 @@ sdo_data_hex: &#x4EE5; 16 &#x9032;&#x4F4D;&#x8868;&#x793A; Object &#x7684;&#x503
 |digital_inputs.1.2|0x00000000
 |pds_state.1.2|Switch On Disabled
 |pds_goal.1.2|Switch On Disabled
-</code></pre><p> &#x5176;&#x4E2D;&#x7684;</p>
-<pre><code>vendor.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x7684; vendor id
-product.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x7684; product code
-description.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x7684; description
-device_type.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x7684; device type, &#x5176;&#x503C;&#x70BA; 0x00020192
-profile_deceleration.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; profile deceleration [pulse/s^2], 
-profile_acceleration.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; profile acceleration [pulse/s^2],
-profile_velocity.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; profile velocity [pulse/s],
-operation_mode.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; operation mode, &#x76EE;&#x524D;&#x6709;&#x652F;&#x63F4;&#x7684;&#x6A21;&#x5F0F;&#x5982;&#x4E0B;&#xFF1A;
+</code></pre>
+<p>其中的</p>
+<pre><code>vendor.2 表示第 2 個 slave 的 vendor id
+product.2 表示第 2 個 slave 的 product code
+description.2 表示第 2 個 slave 的 description
+device_type.2 表示第 2 個 slave 的 device type, 其值為 0x00020192
+profile_deceleration.1.2 表示第 2 個 slave 上第 1 個 drive 的 profile deceleration [pulse/s^2], 
+profile_acceleration.1.2 表示第 2 個 slave 上第 1 個 drive 的 profile acceleration [pulse/s^2],
+profile_velocity.1.2 表示第 2 個 slave 上第 1 個 drive 的 profile velocity [pulse/s],
+operation_mode.1.2 表示第 2 個 slave 上第 1 個 drive 的 operation mode, 目前有支援的模式如下：
     1: profile position mode
     3: profile velocity mode
     6: homing mode
     8: cycle sync. position mode
-homing_method.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; homing method, &#x5E38;&#x7528;&#x7684;&#x6A21;&#x5F0F;&#x6709;&#xFF1A;
+homing_method.1.2 表示第 2 個 slave 上第 1 個 drive 的 homing method, 常用的模式有：
     1 : homing on negative limit and index pulse
     2 : homing on positive limit and index pulse
     3, 4 : homing on positive home switch and index pulse
@@ -783,17 +293,17 @@ homing_method.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &
     33: homing on negative index pulse
     34: homing on positive index pulse
     35: homing on the current position
-    &#x5176;&#x4ED6;: &#x53C3;&#x8003;&#x9A45;&#x52D5;&#x5668; 0x6098::0x00 &#x7684;&#x8AAA;&#x660E;
-homing_speed_1.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; speed for search switch [pulse/s]        
-homing_speed_2.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; speed for search zero [pulse/s]
-homing_acceleration &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; homing acceleration [pulse/s^2]    
-supported_drive_mode.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; supported drive mode, &#x5B9A;&#x7FA9;&#x5982;&#x4E0B;&#xFF1A;
+    其他: 參考驅動器 0x6098::0x00 的說明
+homing_speed_1.1.2 表示第 2 個 slave 上第 1 個 drive 的 speed for search switch [pulse/s]        
+homing_speed_2.1.2 表示第 2 個 slave 上第 1 個 drive 的 speed for search zero [pulse/s]
+homing_acceleration 表示第 2 個 slave 上第 1 個 drive 的 homing acceleration [pulse/s^2]    
+supported_drive_mode.1.2 表示第 2 個 slave 上第 1 個 drive 的 supported drive mode, 定義如下：
     Bit 0 : profile posiiton mode
     Bit 2 : profile velocity mode
     Bit 5 : homing  mode
     Bit 7 : cycle sync. position mode
-    &#x5176;&#x4ED6;: &#x53C3;&#x8003;&#x9A45;&#x52D5;&#x5668; 0x6502::0x00 &#x7684;&#x8AAA;&#x660E;    
-control_word.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; control word, &#x5B9A;&#x7FA9;&#x5982;&#x4E0B;&#xFF1A;
+    其他: 參考驅動器 0x6502::0x00 的說明    
+control_word.1.2 表示第 2 個 slave 上第 1 個 drive 的 control word, 定義如下：
     Bit 0 : switch on
     Bit 1 : enable voltage
     Bit 2 : quick stop
@@ -801,10 +311,10 @@ control_word.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#
     Bit 4~6 : operation mode specification
     Bit 7 : fault Reset
     Bit 8 : halt
-    &#x5176;&#x4ED6;: &#x53C3;&#x8003;&#x9A45;&#x52D5;&#x5668; 0x6040::0x00 &#x7684;&#x8AAA;&#x660E;       
-target_position.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; target position [pulse]
-target_velocity.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; target velocity [pulse/s]
-status_word.1.2  &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; status word, &#x5B9A;&#x7FA9;&#x5982;&#x4E0B;&#xFF1A;
+    其他: 參考驅動器 0x6040::0x00 的說明       
+target_position.1.2 表示第 2 個 slave 上第 1 個 drive 的 target position [pulse]
+target_velocity.1.2 表示第 2 個 slave 上第 1 個 drive 的 target velocity [pulse/s]
+status_word.1.2  表示第 2 個 slave 上第 1 個 drive 的 status word, 定義如下：
     Bit 0 : ready to switch on
     Bit 1 : switch on
     Bit 2 : operation enabled (servo on)
@@ -814,160 +324,171 @@ status_word.1.2  &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#
     Bit 6 : switch on disabled
     Bit 7 : warning
     Bit 10 : target reached
-    &#x5176;&#x4ED6;: &#x53C3;&#x8003;&#x9A45;&#x52D5;&#x5668; 0x6041::0x00 &#x7684;&#x8AAA;&#x660E;      
-real_position.1.2  &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; real position [pulse]
-digital_inputs.1.2 &#x8868;&#x793A;&#x7B2C; 2 &#x500B; slave &#x4E0A;&#x7B2C; 1 &#x500B; drive &#x7684; digital inputs, &#x5B9A;&#x7FA9;&#x5982;&#x4E0B;&#xFF1A;
+    其他: 參考驅動器 0x6041::0x00 的說明      
+real_position.1.2  表示第 2 個 slave 上第 1 個 drive 的 real position [pulse]
+digital_inputs.1.2 表示第 2 個 slave 上第 1 個 drive 的 digital inputs, 定義如下：
     Bit 0 : negative limit
     Bit 1 : positive limit
     Bit 2 : home switch
-    &#x5176;&#x4ED6;: &#x53C3;&#x8003;&#x9A45;&#x52D5;&#x5668; 0x60FD::0x00 &#x7684;&#x8AAA;&#x660E; 
+    其他: 參考驅動器 0x60FD::0x00 的說明 
 
-Note: &#x55AE;&#x4F4D;&#x6703;&#x56E0;&#x9A45;&#x52D5;&#x5668;&#x800C;&#x6709;&#x4E0D;&#x540C;
-</code></pre><p>&#x6578;&#x4F4D;&#x8F38;&#x51FA;&#x56DE;&#x50B3;&#x8CC7;&#x6599;&#x7BC4;&#x4F8B;&#xFF0C;&#x4EE5;&#x53F0;&#x9054;&#x96FB; EC7062 &#x70BA;&#x4F8B;&#xFF1A;</p>
+Note: 單位會因驅動器而有不同
+</code></pre>
+<p>數位輸出回傳資料範例，以台達電 EC7062 為例：</p>
 <pre><code>vendor.3|Delta|product.3|EC7062|dout.1.3|0|dout.2.3|0|dout.3.3|0|
 dout.4.3|0|dout.5.3|0|dout.6.3|0|dout.7.3|0|dout.8.3|0|dout.9.3|0|
 dout.10.3|0|dout.11.3|0|dout.12.3|0|dout.13.3|0|dout.14.3|0|
 dout.15.3|0|dout.16.3|0
 
-&#x5176;&#x4E2D;&#x7684; dout.11.3 &#x4EE3;&#x8868;&#x662F;&#x7B2C; 3 &#x500B; Slave &#x7684;&#x7B2C; 11 &#x500B;&#x6578;&#x4F4D;&#x8F38;&#x51FA;&#x3002;
-</code></pre><p>&#x6578;&#x4F4D;&#x8F38;&#x5165;&#x56DE;&#x50B3;&#x8CC7;&#x6599;&#x7BC4;&#x4F8B;&#xFF0C;&#x4EE5;&#x53F0;&#x9054;&#x96FB; EC6022 &#x70BA;&#x4F8B;&#xFF1A;</p>
+其中的 dout.11.3 代表是第 3 個 Slave 的第 11 個數位輸出。
+</code></pre>
+<p>數位輸入回傳資料範例，以台達電 EC6022 為例：</p>
 <pre><code>vendor.7|Delta|product.7|EC6022|din.1.7|0|din.2.7|0|din.3.7|0|
 din.4.7|0|din.5.7|0|din.6.7|0|din.7.7|0|din.8.7|0|din.9.7|0|
 din.10.7|0|din.11.7|0|din.12.7|0|din.13.7|0|din.14.7|0|din.15.7|0|
 din.16.7|0
 
-&#x5176;&#x4E2D;&#x7684; din.15.7 &#x4EE3;&#x8868;&#x662F;&#x7B2C; 7 &#x500B; Slave &#x7684;&#x7B2C; 15 &#x500B;&#x6578;&#x4F4D;&#x8F38;&#x5165;&#x3002;
-</code></pre><p>&#x985E;&#x6BD4;&#x8F38;&#x51FA;&#x56DE;&#x50B3;&#x8CC7;&#x6599;&#x7BC4;&#x4F8B;&#xFF0C;&#x4EE5;&#x53F0;&#x9054;&#x96FB; EC9144 &#x70BA;&#x4F8B;&#xFF1A;</p>
+其中的 din.15.7 代表是第 7 個 Slave 的第 15 個數位輸入。
+</code></pre>
+<p>類比輸出回傳資料範例，以台達電 EC9144 為例：</p>
 <pre><code>vendor.5|Delta|product.5|EC9144|aout.1.5|0|aout.2.5|0|
 aout.3.5|0|aout.4.5|0
-</code></pre><p>&#x985E;&#x6BD4;&#x8F38;&#x5165;&#x56DE;&#x50B3;&#x8CC7;&#x6599;&#x7BC4;&#x4F8B;&#xFF0C;&#x4EE5;&#x53F0;&#x9054;&#x96FB; EC8124 &#x70BA;&#x4F8B;&#xFF1A;</p>
+</code></pre>
+<p>類比輸入回傳資料範例，以台達電 EC8124 為例：</p>
 <pre><code>vendor.4|Delta|product.4|EC8124|ain.1.4|0|ain.2.4|0|
 ain.3.4|0|ain.4.4|0
-</code></pre><h4 id="slave-diff--n----"><code>.slave-diff ( n -- )</code></h4>
-<p>&#x986F;&#x793A; EtherCAT Slave Position <code>n</code> &#x7684;&#x8CC7;&#x8A0A;&#x3002; &#x53EA;&#x56DE;&#x50B3;&#x8207;&#x4E0A;&#x6B21;&#x8981;&#x6C42;&#x4E0D;&#x540C;&#x7684;&#x8CC7;&#x8A0A;&#x3002;</p>
-<p>&#x4F7F;&#x7528;&#x8005;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>.slave</code> &#x53D6;&#x5F97;&#x6240;&#x6709;&#x53C3;&#x6578;&#x3002;&#x4F7F;&#x7528; <code>.slave-diff</code> &#x53D6;&#x5F97;&#x81EA;&#x4E0A;&#x6B21;&#x57F7;&#x884C; <code>.slave</code>
-&#x6216;&#x662F; <code>.slave-diff</code> &#x5F8C;&#x88AB;&#x6539;&#x8B8A;&#x7684;&#x72C0;&#x614B;&#x3002; &#x5982;&#x679C;&#x4E0A;&#x6B21;&#x57F7;&#x884C; <code>.slave</code> &#x6216; <code>.slave-diff</code> &#x5F8C;&#x72C0;&#x614B;&#x90FD;&#x6C92;&#x6709;&#x6539;&#x8B8A;&#xFF0C;
-&#x56DE;&#x50B3;&#x8CC7;&#x6599;&#x70BA;&#x7A7A;&#x5B57;&#x4E32;&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;: </p>
+</code></pre>
+<h4 id="slave-diff--n----"><a class="header" href="#slave-diff--n----"><code>.slave-diff ( n -- )</code></a></h4>
+<p>顯示 EtherCAT Slave Position <code>n</code> 的資訊。 只回傳與上次要求不同的資訊。</p>
+<p>使用者可以使用 <code>.slave</code> 取得所有參數。使用 <code>.slave-diff</code> 取得自上次執行 <code>.slave</code>
+或是 <code>.slave-diff</code> 後被改變的狀態。 如果上次執行 <code>.slave</code> 或 <code>.slave-diff</code> 後狀態都沒有改變，
+回傳資料為空字串。</p>
+<p>命令範例: </p>
 <pre><code>2 .slave-diff
-</code></pre><h4 id="ec-emcy--n----"><code>?ec-emcy ( n -- )</code></h4>
-<p>&#x7576;&#x9A45;&#x52D5;&#x5668;&#x767C;&#x751F;&#x7570;&#x8B66;&#x6642;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6B64;&#x547D;&#x4EE4;&#x8B93;&#x9A45;&#x52D5;&#x5668;&#x5C07;&#x7570;&#x8B66;&#x8A0A;&#x606F;&#xFF08;emergency message&#xFF09;&#x50B3;&#x9001;&#x56DE;&#x4F86;&#x3002;</p>
-<h4 id="ec-wdt-proc-data--n----"><code>@ec-wdt-proc-data ( n -- )</code></h4>
-<p>&#x5F9E; EtherCAT &#x5F9E;&#x7AD9; <code>n</code> &#x8B80;&#x56DE; ESC Watchdog Time Process data &#x66AB;&#x5B58;&#x5668;&#x7684;&#x503C;&#x3002;&#x6B64;&#x547D;&#x4EE4;&#x662F;&#x8981;&#x6C42; EtherCAT &#x5F9E;&#x7AD9;&#x5C07;&#x66AB;&#x5B58;&#x5668;&#x503C;&#x50B3;&#x9001;&#x56DE;&#x4F86;&#xFF0C;&#x4E0D;&#x6703;&#x99AC;&#x4E0A;&#x53D6;&#x5F97;&#x7D50;&#x679C;&#x3002;
-&#x53EF;&#x4EE5;&#x900F;&#x904E; <code>ec-wdt-proc-data-busy?</code> &#x7684;&#x7D50;&#x679C;&#x5F97;&#x77E5;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x56DE;&#x50B3;&#x3002;</p>
-<h4 id="ec-an--alias----n-"><code>ec-a&gt;n ( alias -- n )</code></h4>
-<p>&#x5229;&#x7528; EtherCAT slaves alias <code>alias</code> &#x627E;&#x5230;&#x5C0D;&#x61C9;&#x7684; Slave position <code>n</code></p>
+</code></pre>
+<h4 id="ec-emcy--n-----1"><a class="header" href="#ec-emcy--n-----1"><code>?ec-emcy ( n -- )</code></a></h4>
+<p>當驅動器發生異警時，可以使用此命令讓驅動器將異警訊息（emergency message）傳送回來。</p>
+<h4 id="ec-wdt-proc-data--n-----1"><a class="header" href="#ec-wdt-proc-data--n-----1"><code>@ec-wdt-proc-data ( n -- ) </code></a></h4>
+<p>從 EtherCAT 從站 <code>n</code> 讀回 ESC Watchdog Time Process data 暫存器的值。此命令是要求 EtherCAT 從站將暫存器值傳送回來，不會馬上取得結果。
+可以透過 <code>ec-wdt-proc-data-busy?</code> 的結果得知是否已經回傳。</p>
+<h4 id="ec-an--alias----n-"><a class="header" href="#ec-an--alias----n-"><code>ec-a&gt;n ( alias -- n )</code></a></h4>
+<p>利用 EtherCAT slaves alias <code>alias</code> 找到對應的 Slave position <code>n</code></p>
 <p>Note:</p>
 <ol>
-<li><code>alias</code> &#x4E0D;&#x53EF;&#x4EE5;&#x70BA;&#x96F6;</li>
-<li>&#x5047;&#x5982; <code>alias</code> &#x4E0D;&#x5B58;&#x5728;&#xFF0C;&#x5247;&#x6703;&#x56DE;&#x50B3;&#x932F;&#x8AA4;&#x8A0A;&#x606F;</li>
+<li><code>alias</code> 不可以為零</li>
+<li>假如 <code>alias</code> 不存在，則會回傳錯誤訊息</li>
 </ol>
-<h4 id="ec-ain--ch-n----t-"><code>ec-ain? ( ch n -- t )</code></h4>
-<p>EtherCAT slave position <code>n</code> Channel <code>channel</code> &#x662F;&#x5426;&#x70BA;&#x985E;&#x6BD4;&#x8F38;&#x5165;&#xFF1F;</p>
-<h4 id="ec-alias--alias-n----"><code>ec-alias! ( alias n -- )</code></h4>
-<p>&#x8A2D;&#x5B9A; EtherCAT slave position <code>n</code> &#x7684; alias &#x70BA; <code>alias</code>&#x3002;</p>
+<h4 id="ec-ain--ch-n----t-"><a class="header" href="#ec-ain--ch-n----t-"><code>ec-ain? ( ch n -- t )</code></a></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>channel</code> 是否為類比輸入？</p>
+<h4 id="ec-alias--alias-n----"><a class="header" href="#ec-alias--alias-n----"><code>ec-alias! ( alias n -- )</code></a></h4>
+<p>設定 EtherCAT slave position <code>n</code> 的 alias 為 <code>alias</code>。</p>
 <p>Note:</p>
 <ol>
-<li><code>alias</code> &#x9664;&#x4E86; 0 &#x4EE5;&#x5916;&#xFF0C;&#x4E0D;&#x53EF;&#x91CD;&#x8907;&#x3002;</li>
-<li>&#x6B64;&#x8A2D;&#x5B9A;&#x547D;&#x4EE4;&#x662F;&#x4FEE;&#x6539; SII EEPROM &#x5C0D;&#x61C9;&#x7684;&#x66AB;&#x5B58;&#x5668;&#x3002;&#x5982;&#x679C;&#x662F;&#x7531;&#x786C;&#x9AD4;&#x65CB;&#x9215;&#x63A7;&#x5236;&#x7684;&#xFF0C;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x7531;&#x6B64;&#x547D;&#x4EE4;&#x8A2D;&#x5B9A;&#x3002;</li>
-<li>&#x4E0D;&#x53EF;&#x4EE5;&#x6709;&#x91CD;&#x8907;&#x7684; alias&#x3002;</li>
-<li>&#x6B64;&#x547D;&#x4EE4;&#x6703;&#x9020;&#x6210; Real Time Cycle Overrun&#x3002;&#x8981;&#x5728;&#x6240;&#x6709;&#x9A45;&#x52D5;&#x5668; Servo OFF &#x60C5;&#x6CC1;&#x57F7;&#x884C;&#x3002;</li>
+<li><code>alias</code> 除了 0 以外，不可重複。</li>
+<li>此設定命令是修改 SII EEPROM 對應的暫存器。如果是由硬體旋鈕控制的，就不需要由此命令設定。</li>
+<li>不可以有重複的 alias。</li>
+<li>此命令會造成 Real Time Cycle Overrun。要在所有驅動器 Servo OFF 情況執行。</li>
 </ol>
-<h4 id="ec-alias--alias----t-"><code>ec-alias? ( alias -- t )</code></h4>
-<p>EtherCAT slave alias <code>alias</code> &#x662F;&#x5426;&#x5B58;&#x5728;&#xFF1F; </p>
-<h4 id="ec-aout--ch-n----t-"><code>ec-aout? ( ch n -- t )</code></h4>
-<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> &#x662F;&#x5426;&#x70BA;&#x985E;&#x6BD4;&#x8F38;&#x51FA;&#xFF1F;</p>
-<h4 id="ec-din--ch-n----t-"><code>ec-din? ( ch n -- t )</code></h4>
-<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> &#x662F;&#x5426;&#x70BA;&#x6578;&#x4F4D;&#x8F38;&#x5165;&#xFF1F;</p>
-<h4 id="ec-dout--ch-n----t-"><code>ec-dout? ( ch n -- t )</code></h4>
-<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> &#x662F;&#x5426;&#x70BA;&#x6578;&#x4F4D;&#x8F38;&#x51FA;&#xFF1F;</p>
-<h4 id="ec-drive--ch-n----t-"><code>ec-drive? ( ch n -- t )</code></h4>
-<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> &#x662F;&#x5426;&#x70BA;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#xFF1F;</p>
-<h4 id="ec-emcy-busy--n----t-"><code>ec-emcy-busy? ( n -- t )</code></h4>
-<p>EtherCAT slave position <code>n</code> &#x7684; <code>?ec-emcy</code> &#x662F;&#x5426;&#x7B49;&#x5F85;&#x57F7;&#x884C;&#x4E2D;&#xFF1F;</p>
-<h4 id="ec-encoder--ch-n----t-"><code>ec-encoder? ( ch n -- t )</code></h4>
-<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> &#x662F;&#x5426;&#x70BA;&#x7DE8;&#x78BC;&#x5668;&#x8F38;&#x5165;&#x6A21;&#x7D44;&#xFF1F;</p>
-<h4 id="ec-gateway--ch-n----t-"><code>ec-gateway? ( ch n -- t )</code></h4>
-<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> &#x662F;&#x5426;&#x70BA;&#x9598;&#x9053;&#x5668; (Gateway) &#x6A21;&#x7D44;&#xFF1F;</p>
-<h4 id="ec-load--n----"><code>ec-load ( n -- )</code></h4>
-<p>&#x5C07; EtherCAT slave position <code>n</code> &#x7684;&#x8A2D;&#x5B9A;&#x503C;&#x56DE;&#x5FA9;&#x5230;&#x539F;&#x5EE0;&#x9810;&#x8A2D;&#x503C;&#x3002;&#x76F8;&#x7576;&#x8A2D;&#x5B9A; Object 0x1011:1 &#x70BA; 0x64616F6C (ASCII: l:0x6C, o:0x6F, a:61, d:64)&#x3002;</p>
-<p>&#x5982;&#x679C; EtherCAT slave &#x6709;&#x63D0;&#x4F9B;&#x56DE;&#x5FA9;&#x5230;&#x539F;&#x5EE0;&#x9810;&#x8A2D;&#x503C;&#x529F;&#x80FD;&#xFF0C;&#x5927;&#x90E8;&#x4EFD;&#x6703;&#x4F7F;&#x7528;&#x6B64;&#x65B9;&#x5F0F;&#x3002;</p>
-<h4 id="ec-ready-----t-"><code>ec-ready? ( -- t )</code></h4>
-<p>EtherCAT &#x901A;&#x8A0A;&#x662F;&#x5426;&#x5099;&#x59A5;&#x6216;&#x662F;&#x6B63;&#x5E38;&#xFF1F;</p>
-<h4 id="ec-save--n----"><code>ec-save ( n -- )</code></h4>
-<p>&#x5C07; EtherCAT slave position <code>n</code> &#x76EE;&#x524D;&#x7684;&#x8A2D;&#x5B9A;&#x503C;&#x5B58;&#x5230; EEPROM&#x3002;&#x76F8;&#x7576;&#x8A2D;&#x5B9A; Object 0x1010:1 &#x70BA; 0x65766173 (ASCII: s:0x73, a:0x61, v:76, e:65)&#x3002;</p>
-<p>&#x5982;&#x679C; EtherCAT slave &#x6709;&#x63D0;&#x4F9B;&#x8A2D;&#x5B9A;&#x53C3;&#x6578;&#x5230; EEPROM &#x7684;&#x529F;&#x80FD;&#xFF0C;&#x5927;&#x90E8;&#x4EFD;&#x6703;&#x4F7F;&#x7528;&#x6B64;&#x65B9;&#x5F0F;&#x3002;</p>
-<h4 id="ec-uart---ch-n----t-"><code>ec-uart?  ( ch n -- t )</code></h4>
-<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> &#x662F;&#x5426;&#x70BA; UART &#x6A21;&#x7D44;&#xFF1F;</p>
-<h4 id="ec-wdt-proc-data---n----interval-"><code>ec-wdt-proc-data@  ( n -- interval )</code></h4>
-<p>&#x5C07; EtherCAT &#x5F9E;&#x7AD9; <code>n</code> &#x7684; Watchdog time <code>interval</code> &#x653E;&#x5230;&#x6574;&#x6578;&#x5806;&#x758A;&#x4E0A;&#x3002;</p>
-<h4 id="ec-wdt-proc-data---interval-n----"><code>ec-wdt-proc-data!  ( interval n -- )</code></h4>
-<p>&#x8A2D;&#x5B9A; EtherCAT &#x5F9E;&#x7AD9; <code>n</code> &#x7684; Watchdog time &#x8A2D;&#x5B9A;&#x70BA; <code>interval</code>&#x3002;&#x5176; <code>interval</code> &#x7684;&#x6642;&#x9593;&#x5FC5;&#x9808;&#x53C3;&#x8003;&#x5F9E;&#x7AD9;&#x7684; Watchdog &#x8A2D;&#x5B9A;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x8981;&#x5C07; Watchdog &#x95DC;&#x9589;&#x5C31;&#x5C07; <code>interval</code> &#x8A2D;&#x5B9A;&#x70BA; 0 &#x3002;</p>
-<h4 id="ec-wdt-proc-data-busy---n----t-"><code>ec-wdt-proc-data-busy?  ( n -- t )</code></h4>
-<p>&#x662F;&#x5426;&#x6B63;&#x5728;&#x57F7;&#x884C; <code>@ec-wdt-proc-data</code> &#x4E2D;&#xFF1F;</p>
-<h4 id="ec-wdt-proc-data-error--n----t-"><code>ec-wdt-proc-data-error? ( n -- t )</code></h4>
-<p>&#x57F7;&#x884C; <code>@ec-wdt-proc-data</code> &#x7684;&#x7D50;&#x679C;&#x662F;&#x5426;&#x6709;&#x932F;&#x8AA4;&#xFF1F;</p>
-<h4 id="list-slaves-----"><code>list-slaves ( -- )</code></h4>
-<p>&#x986F;&#x793A;&#x6240;&#x4EE5; EtherCAT &#x5F9E;&#x7AD9;&#x7684; vendor id &#x8207; product code&#x3002;</p>
-<p>&#x6E2C;&#x8A66;&#x7BC4;&#x4F8B;&#xFF1A; &#x7B2C; 1 &#x500B;&#x5F9E;&#x7AD9;&#x70BA;&#x53F0;&#x9054;&#x96FB; A2-E&#x9A45;&#x52D5;&#x5668; , &#x7B2C; 2 &#x500B;&#x5F9E;&#x7AD9;&#x70BA;&#x58EB;&#x6797;&#x96FB;&#x6A5F;&#x9A45;&#x52D5;&#x5668;&#x3002;</p>
-<p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#xFF1A;</p>
+<h4 id="ec-alias--alias----t-"><a class="header" href="#ec-alias--alias----t-"><code>ec-alias? ( alias -- t )</code></a></h4>
+<p>EtherCAT slave alias <code>alias</code> 是否存在？ </p>
+<h4 id="ec-aout--ch-n----t-"><a class="header" href="#ec-aout--ch-n----t-"><code>ec-aout? ( ch n -- t )</code></a></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> 是否為類比輸出？</p>
+<h4 id="ec-din--ch-n----t-"><a class="header" href="#ec-din--ch-n----t-"><code>ec-din? ( ch n -- t )</code></a></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> 是否為數位輸入？</p>
+<h4 id="ec-dout--ch-n----t-"><a class="header" href="#ec-dout--ch-n----t-"><code>ec-dout? ( ch n -- t )</code></a></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> 是否為數位輸出？</p>
+<h4 id="ec-drive--ch-n----t-"><a class="header" href="#ec-drive--ch-n----t-"><code>ec-drive? ( ch n -- t )</code></a></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> 是否為馬達驅動器？</p>
+<h4 id="ec-emcy-busy--n----t-"><a class="header" href="#ec-emcy-busy--n----t-"><code>ec-emcy-busy? ( n -- t )</code></a></h4>
+<p>EtherCAT slave position <code>n</code> 的 <code>?ec-emcy</code> 是否等待執行中？</p>
+<h4 id="ec-encoder--ch-n----t-"><a class="header" href="#ec-encoder--ch-n----t-"><code>ec-encoder? ( ch n -- t )</code></a></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> 是否為編碼器輸入模組？</p>
+<h4 id="ec-gateway--ch-n----t-"><a class="header" href="#ec-gateway--ch-n----t-"><code>ec-gateway? ( ch n -- t )</code></a></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> 是否為閘道器 (Gateway) 模組？</p>
+<h4 id="ec-load--n----"><a class="header" href="#ec-load--n----"><code>ec-load ( n -- )</code></a></h4>
+<p>將 EtherCAT slave position <code>n</code> 的設定值回復到原廠預設值。相當設定 Object 0x1011:1 為 0x64616F6C (ASCII: l:0x6C, o:0x6F, a:61, d:64)。</p>
+<p>如果 EtherCAT slave 有提供回復到原廠預設值功能，大部份會使用此方式。</p>
+<h4 id="ec-ready-----t-"><a class="header" href="#ec-ready-----t-"><code>ec-ready? ( -- t )</code></a></h4>
+<p>EtherCAT 通訊是否備妥或是正常？</p>
+<h4 id="ec-save--n----"><a class="header" href="#ec-save--n----"><code>ec-save ( n -- )</code></a></h4>
+<p>將 EtherCAT slave position <code>n</code> 目前的設定值存到 EEPROM。相當設定 Object 0x1010:1 為 0x65766173 (ASCII: s:0x73, a:0x61, v:76, e:65)。</p>
+<p>如果 EtherCAT slave 有提供設定參數到 EEPROM 的功能，大部份會使用此方式。</p>
+<h4 id="ec-uart---ch-n----t-"><a class="header" href="#ec-uart---ch-n----t-"><code>ec-uart?  ( ch n -- t ) </code></a></h4>
+<p>EtherCAT slave position <code>n</code> Channel <code>ch</code> 是否為 UART 模組？</p>
+<h4 id="ec-wdt-proc-data---n----interval-"><a class="header" href="#ec-wdt-proc-data---n----interval-"><code>ec-wdt-proc-data@  ( n -- interval )</code></a></h4>
+<p>將 EtherCAT 從站 <code>n</code> 的 Watchdog time <code>interval</code> 放到整數堆疊上。</p>
+<h4 id="ec-wdt-proc-data---interval-n----"><a class="header" href="#ec-wdt-proc-data---interval-n----"><code>ec-wdt-proc-data!  ( interval n -- )</code></a></h4>
+<p>設定 EtherCAT 從站 <code>n</code> 的 Watchdog time 設定為 <code>interval</code>。其 <code>interval</code> 的時間必須參考從站的 Watchdog 設定。</p>
+<p>如果要將 Watchdog 關閉就將 <code>interval</code> 設定為 0 。</p>
+<h4 id="ec-wdt-proc-data-busy---n----t-"><a class="header" href="#ec-wdt-proc-data-busy---n----t-"><code>ec-wdt-proc-data-busy?  ( n -- t )</code></a></h4>
+<p>是否正在執行 <code>@ec-wdt-proc-data</code> 中？</p>
+<h4 id="ec-wdt-proc-data-error--n----t-"><a class="header" href="#ec-wdt-proc-data-error--n----t-"><code>ec-wdt-proc-data-error? ( n -- t )</code></a></h4>
+<p>執行 <code>@ec-wdt-proc-data</code> 的結果是否有錯誤？</p>
+<h4 id="list-slaves-----"><a class="header" href="#list-slaves-----"><code>list-slaves ( -- )</code></a></h4>
+<p>顯示所以 EtherCAT 從站的 vendor id 與 product code。</p>
+<p>測試範例： 第 1 個從站為台達電 A2-E驅動器 , 第 2 個從站為士林電機驅動器。</p>
+<p>回傳訊息：</p>
 <pre><code>slaves|477,271601776,1468,1
 
-&#x53F0;&#x9054;&#x96FB; A2-E:  vendor_id = 477 (0x1DD)
+台達電 A2-E:  vendor_id = 477 (0x1DD)
              product_code =  271601776 (0x10305070)
-&#x58EB;&#x6797;&#x96FB;&#x6A5F; SDP: vendor_id = 1468 (0x5BC)
+士林電機 SDP: vendor_id = 1468 (0x5BC)
              product_code =  1 (0x1)
-</code></pre><h4 id="sdo-busy--n----t-"><code>sdo-busy? ( n -- t )</code></h4>
-<p>EtherCAT slave  position <code>n</code> &#x7684; SDO &#x547D;&#x4EE4;&#x662F;&#x5426;&#x7B49;&#x5F85;&#x57F7;&#x884C;&#xFF1F;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B; 1: </p>
+</code></pre>
+<h4 id="sdo-busy--n----t-"><a class="header" href="#sdo-busy--n----t-"><code>sdo-busy? ( n -- t )</code></a></h4>
+<p>EtherCAT slave  position <code>n</code> 的 SDO 命令是否等待執行？</p>
+<p>命令範例 1: </p>
 <pre><code>2 sdo-busy?
-</code></pre><p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B; 2: &#x8B80;&#x53D6; Slave 2 0x6064:0x00 &#x4F4D;&#x5740;&#x7684;&#x503C;&#xFF0C;&#x7B49;&#x5F85;&#x8A72;&#x547D;&#x4EE4;&#x5B8C;&#x6210;&#x5F8C;&#x8F38;&#x51FA;&#x8A0A;&#x606F;&#x3002;</p>
+</code></pre>
+<p>命令範例 2: 讀取 Slave 2 0x6064:0x00 位址的值，等待該命令完成後輸出訊息。</p>
 <pre><code>: test-sdo 0 $6064 2 sdo-upload-i32 
            begin 2 sdo-busy? while pause repeat
            2 .sdo ;
  deploy test-sdo ;deploy
-
+ 
  Note: 
- 1. pause: &#x8868;&#x793A;&#x7576;&#x4E0B;&#x7684;&#x547D;&#x4EE4;&#x66AB;&#x505C;, &#x7B49;&#x5F85;&#x4E0B;&#x4E00;&#x500B;real time cycle &#x57F7;&#x884C;&#x6642;&#xFF0C;&#x518D;&#x5F9E;&#x547D;&#x4EE4;&#x66AB;&#x505C;&#x7684;&#x5730;&#x65B9;&#x958B;&#x59CB;&#x57F7;&#x884C;&#x3002;
- 2. deploy test-sdo ;deploy : &#x5C07; test-sdo &#x6307;&#x4EE4;&#x653E;&#x5230;&#x80CC;&#x666F;&#x57F7;&#x884C;&#x3002;
-        &#x56E0;&#x70BA; test-sdo &#x6240;&#x5B9A;&#x7FA9;&#x7684;&#x547D;&#x4EE4;&#x4E2D;&#x6709;&#x542B;&#x6709;&#x7B49;&#x5F85;&#x7684;&#x6307;&#x4EE4;, &#x5982;&#x5728;&#x7576;&#x524D;&#x7684; Task &#x57F7;&#x884C;&#xFF0C;
-        &#x5C31;&#x7121;&#x6CD5;&#x518D;&#x8655;&#x7406;&#x5F8C;&#x7E8C;&#x7531; client &#x7AEF;&#x9001;&#x9032;&#x4F86;&#x7684;&#x6307;&#x4EE4;&#x3002;
-</code></pre><h4 id="sdo-data--n----data-"><code>sdo-data@ ( n -- data )</code></h4>
-<p>&#x53D6;&#x5F97; EtherCAT slave  position <code>n</code> &#x7684; SDO &#x547D;&#x4EE4;&#x7684;&#x8CC7;&#x6599; <code>data</code>&#x3002;</p>
-<h4 id="sdo-error--n----t-"><code>sdo-error? ( n -- t )</code></h4>
-<p>EtherCAT slave  position <code>n</code> &#x7684; SDO &#x547D;&#x4EE4;&#x7684;&#x57F7;&#x884C;&#x7D50;&#x679C;&#x662F;&#x5426;&#x6709;&#x554F;&#x984C;&#xFF1F;</p>
-<h4 id="sdo-download-i16--data-subindex-index-n----"><code>sdo-download-i16 ( data subindex index n -- )</code></h4>
-<p>&#x5C07;&#x8A2D;&#x5B9A;&#x503C; <code>data</code> &#x4EE5; 16 bits &#x6709;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x5BEB;&#x5230; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
-<h4 id="sdo-download-i32--data-subindex-index-n----"><code>sdo-download-i32 ( data subindex index n -- )</code></h4>
-<p>&#x5C07;&#x8A2D;&#x5B9A;&#x503C; <code>data</code> &#x4EE5; 32 bits &#x6709;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x5BEB;&#x5230; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>100 0 $60FF 2 sdo-download-i32 \ &#x5C07; `100` &#x5BEB;&#x5230; slave position `2` Object `0x60ff`:`0`
-</code></pre><h4 id="sdo-download-i8--data-subindex-index-n----"><code>sdo-download-i8 ( data subindex index n -- )</code></h4>
-<p>&#x5C07;&#x8A2D;&#x5B9A;&#x503C; <code>data</code> &#x4EE5; 8 bits &#x6709;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x5BEB;&#x5230; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
-<h4 id="sdo-download-u16--data-subindex-index-n----"><code>sdo-download-u16 ( data subindex index n -- )</code></h4>
-<p>&#x5C07;&#x8A2D;&#x5B9A;&#x503C; <code>data</code> &#x4EE5; 16 bits &#x7121;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x5BEB;&#x5230; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
-<h4 id="sdo-download-u32--data-subindex-index-n----"><code>sdo-download-u32 ( data subindex index n -- )</code></h4>
-<p>&#x5C07;&#x8A2D;&#x5B9A;&#x503C; <code>data</code> &#x4EE5; 32 bits &#x7121;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x5BEB;&#x5230; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
-<h4 id="sdo-download-u8--data-subindex-index-n----"><code>sdo-download-u8 ( data subindex index n -- )</code></h4>
-<p>&#x5C07;&#x8A2D;&#x5B9A;&#x503C; <code>data</code> &#x4EE5; 8 bits &#x7121;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x5BEB;&#x5230; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
-<h4 id="sdo-upload-i16--subindex-index-n----"><code>sdo-upload-i16 ( subindex index n -- )</code></h4>
-<p>&#x4EE5; 16 bits &#x6709;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x8B80;&#x53D6; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
-<h4 id="sdo-upload-i32--subindex-index-n----"><code>sdo-upload-i32 ( subindex index n -- )</code></h4>
-<p>&#x4EE5; 32 bits &#x6709;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x8B80;&#x53D6; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
-<pre><code>0 $6064 2 sdo-upload-i32 \ &#x8B80;&#x53D6; slave position `2` Object `0x6064`:`0`
-</code></pre><h4 id="sdo-upload-i8---subindex-index-n----"><code>sdo-upload-i8  ( subindex index n -- )</code></h4>
-<p>&#x4EE5; 8 bits &#x6709;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x8B80;&#x53D6; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
-<h4 id="sdo-upload-u16--subindex-index-n----"><code>sdo-upload-u16 ( subindex index n -- )</code></h4>
-<p>&#x4EE5; 16 bits &#x7121;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x8B80;&#x53D6; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
-<h4 id="sdo-upload-u32--subindex-index-n----"><code>sdo-upload-u32 ( subindex index n -- )</code></h4>
-<p>&#x4EE5; 32 bits &#x7121;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x8B80;&#x53D6; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
-<h4 id="sdo-upload-u8---subindex-index-n----"><code>sdo-upload-u8  ( subindex index n -- )</code></h4>
-<p>&#x4EE5; 8 bits &#x7121;&#x865F;&#x6574;&#x6578;&#x7684;&#x578B;&#x5F0F;&#x900F;&#x904E; SDO &#x8B80;&#x53D6; EtherCAT slave <code>n</code> &#x7684; Object Index <code>index</code>: subindex <code>subindex</code>&#x3002;</p>
-<h4 id="until-no-requests-----"><code>until-no-requests ( -- )</code></h4>
-<p>&#x7B49;&#x5F85;&#x6240;&#x6709;&#x7684; SDO Requests &#x5B8C;&#x6210;&#x3002;</p>
-<p>&#x76F8;&#x7576;&#x65BC;</p>
+ 1. pause: 表示當下的命令暫停, 等待下一個real time cycle 執行時，再從命令暫停的地方開始執行。
+ 2. deploy test-sdo ;deploy : 將 test-sdo 指令放到背景執行。
+        因為 test-sdo 所定義的命令中有含有等待的指令, 如在當前的 Task 執行，
+        就無法再處理後續由 client 端送進來的指令。
+</code></pre>
+<h4 id="sdo-data--n----data-"><a class="header" href="#sdo-data--n----data-"><code>sdo-data@ ( n -- data )</code></a></h4>
+<p>取得 EtherCAT slave  position <code>n</code> 的 SDO 命令的資料 <code>data</code>。</p>
+<h4 id="sdo-error--n----t-"><a class="header" href="#sdo-error--n----t-"><code>sdo-error? ( n -- t )</code></a></h4>
+<p>EtherCAT slave  position <code>n</code> 的 SDO 命令的執行結果是否有問題？</p>
+<h4 id="sdo-download-i16--data-subindex-index-n----"><a class="header" href="#sdo-download-i16--data-subindex-index-n----"><code>sdo-download-i16 ( data subindex index n -- )</code></a></h4>
+<p>將設定值 <code>data</code> 以 16 bits 有號整數的型式透過 SDO 寫到 EtherCAT slave <code>n</code> 的 Object Index <code>index</code>: subindex <code>subindex</code>。</p>
+<h4 id="sdo-download-i32--data-subindex-index-n----"><a class="header" href="#sdo-download-i32--data-subindex-index-n----"><code>sdo-download-i32 ( data subindex index n -- )</code></a></h4>
+<p>將設定值 <code>data</code> 以 32 bits 有號整數的型式透過 SDO 寫到 EtherCAT slave <code>n</code> 的 Object Index <code>index</code>: subindex <code>subindex</code>。</p>
+<p>命令範例：</p>
+<pre><code>100 0 $60FF 2 sdo-download-i32 \ 將 `100` 寫到 slave position `2` Object `0x60ff`:`0`
+</code></pre>
+<h4 id="sdo-download-i8--data-subindex-index-n----"><a class="header" href="#sdo-download-i8--data-subindex-index-n----"><code>sdo-download-i8 ( data subindex index n -- )</code></a></h4>
+<p>將設定值 <code>data</code> 以 8 bits 有號整數的型式透過 SDO 寫到 EtherCAT slave <code>n</code> 的 Object Index <code>index</code>: subindex <code>subindex</code>。</p>
+<h4 id="sdo-download-u16--data-subindex-index-n----"><a class="header" href="#sdo-download-u16--data-subindex-index-n----"><code>sdo-download-u16 ( data subindex index n -- )</code></a></h4>
+<p>將設定值 <code>data</code> 以 16 bits 無號整數的型式透過 SDO 寫到 EtherCAT slave <code>n</code> 的 Object Index <code>index</code>: subindex <code>subindex</code>。</p>
+<h4 id="sdo-download-u32--data-subindex-index-n----"><a class="header" href="#sdo-download-u32--data-subindex-index-n----"><code>sdo-download-u32 ( data subindex index n -- )</code></a></h4>
+<p>將設定值 <code>data</code> 以 32 bits 無號整數的型式透過 SDO 寫到 EtherCAT slave <code>n</code> 的 Object Index <code>index</code>: subindex <code>subindex</code>。</p>
+<h4 id="sdo-download-u8--data-subindex-index-n----"><a class="header" href="#sdo-download-u8--data-subindex-index-n----"><code>sdo-download-u8 ( data subindex index n -- )</code></a></h4>
+<p>將設定值 <code>data</code> 以 8 bits 無號整數的型式透過 SDO 寫到 EtherCAT slave <code>n</code> 的 Object Index <code>index</code>: subindex <code>subindex</code>。</p>
+<h4 id="sdo-upload-i16--subindex-index-n----"><a class="header" href="#sdo-upload-i16--subindex-index-n----"><code>sdo-upload-i16 ( subindex index n -- )</code></a></h4>
+<p>以 16 bits 有號整數的型式透過 SDO 讀取 EtherCAT slave <code>n</code> 的 Object Index <code>index</code>: subindex <code>subindex</code>。</p>
+<h4 id="sdo-upload-i32--subindex-index-n----"><a class="header" href="#sdo-upload-i32--subindex-index-n----"><code>sdo-upload-i32 ( subindex index n -- )</code></a></h4>
+<p>以 32 bits 有號整數的型式透過 SDO 讀取 EtherCAT slave <code>n</code> 的 Object Index <code>index</code>: subindex <code>subindex</code>。</p>
+<p>命令範例:</p>
+<pre><code>0 $6064 2 sdo-upload-i32 \ 讀取 slave position `2` Object `0x6064`:`0`
+</code></pre>
+<h4 id="sdo-upload-i8---subindex-index-n----"><a class="header" href="#sdo-upload-i8---subindex-index-n----"><code>sdo-upload-i8  ( subindex index n -- )</code></a></h4>
+<p>以 8 bits 有號整數的型式透過 SDO 讀取 EtherCAT slave <code>n</code> 的 Object Index <code>index</code>: subindex <code>subindex</code>。</p>
+<h4 id="sdo-upload-u16--subindex-index-n----"><a class="header" href="#sdo-upload-u16--subindex-index-n----"><code>sdo-upload-u16 ( subindex index n -- )</code></a></h4>
+<p>以 16 bits 無號整數的型式透過 SDO 讀取 EtherCAT slave <code>n</code> 的 Object Index <code>index</code>: subindex <code>subindex</code>。</p>
+<h4 id="sdo-upload-u32--subindex-index-n----"><a class="header" href="#sdo-upload-u32--subindex-index-n----"><code>sdo-upload-u32 ( subindex index n -- )</code></a></h4>
+<p>以 32 bits 無號整數的型式透過 SDO 讀取 EtherCAT slave <code>n</code> 的 Object Index <code>index</code>: subindex <code>subindex</code>。</p>
+<h4 id="sdo-upload-u8---subindex-index-n----"><a class="header" href="#sdo-upload-u8---subindex-index-n----"><code>sdo-upload-u8  ( subindex index n -- )</code></a></h4>
+<p>以 8 bits 無號整數的型式透過 SDO 讀取 EtherCAT slave <code>n</code> 的 Object Index <code>index</code>: subindex <code>subindex</code>。</p>
+<h4 id="until-no-requests-----"><a class="header" href="#until-no-requests-----"><code>until-no-requests ( -- )</code></a></h4>
+<p>等待所有的 SDO Requests 完成。</p>
+<p>相當於</p>
 <pre><code>: until-no-requests ( -- )
     .&quot; log|until-no-requests&quot; cr
     begin
@@ -975,280 +496,120 @@ ain.3.4|0|ain.4.4|0
     while
         pause
     repeat ;
-</code></pre><h4 id="waiting-requests-----t-"><code>waiting-requests? ( -- t )</code></h4>
-<p>&#x662F;&#x5426;&#x6240;&#x6709;&#x7684; SDO &#x547D;&#x4EE4;&#x90FD;&#x5DF2;&#x7D93;&#x57F7;&#x884C;&#x5B8C;&#x7562; &#xFF1F;</p>
-<h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
-<table>
-<thead>
-<tr>
-<th>&#x6307;&#x4EE4;</th>
-<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>.ec-dc</code></td>
-<td>( -- )</td>
-</tr>
-<tr>
-<td><code>.ec-emcy</code></td>
-<td>( n -- )</td>
-</tr>
-<tr>
-<td><code>.ec-links</code></td>
-<td>( -- )</td>
-</tr>
-<tr>
-<td><code>.ec-wdt-proc-data</code></td>
-<td>( n -- )</td>
-</tr>
-<tr>
-<td><code>.sdo</code></td>
-<td>( n --  )</td>
-</tr>
-<tr>
-<td><code>.slave</code></td>
-<td>( n -- )</td>
-</tr>
-<tr>
-<td><code>.slave-diff</code></td>
-<td>( n -- )</td>
-</tr>
-<tr>
-<td><code>?ec-emcy</code></td>
-<td>( n -- )</td>
-</tr>
-<tr>
-<td><code>@ec-wdt-proc-data</code></td>
-<td>( n -- )</td>
-</tr>
-<tr>
-<td><code>ec-a&gt;n</code></td>
-<td>( alias -- n )</td>
-</tr>
-<tr>
-<td><code>ec-ain?</code></td>
-<td>( ch n -- t )</td>
-</tr>
-<tr>
-<td><code>ec-alias!</code></td>
-<td>( alias n -- )</td>
-</tr>
-<tr>
-<td><code>ec-alias?</code></td>
-<td>( alias -- t )</td>
-</tr>
-<tr>
-<td><code>ec-aout?</code></td>
-<td>( ch n -- t )</td>
-</tr>
-<tr>
-<td><code>ec-din?</code></td>
-<td>( ch n -- t )</td>
-</tr>
-<tr>
-<td><code>ec-dout?</code></td>
-<td>( ch n -- t )</td>
-</tr>
-<tr>
-<td><code>ec-drive?</code></td>
-<td>( ch n -- t )</td>
-</tr>
-<tr>
-<td><code>ec-emcy-busy?</code></td>
-<td>( n -- t )</td>
-</tr>
-<tr>
-<td><code>ec-encoder?</code></td>
-<td>( ch n -- t )</td>
-</tr>
-<tr>
-<td><code>ec-gateway?</code></td>
-<td>( ch n -- t )</td>
-</tr>
-<tr>
-<td><code>ec-load</code></td>
-<td>( n -- )</td>
-</tr>
-<tr>
-<td><code>ec-ready?</code></td>
-<td>( -- t )</td>
-</tr>
-<tr>
-<td><code>ec-save</code></td>
-<td>( n -- )</td>
-</tr>
-<tr>
-<td><code>ec-uart?</code></td>
-<td>( ch n -- t )</td>
-</tr>
-<tr>
-<td><code>ec-wdt-proc-data@</code></td>
-<td>( n -- data )</td>
-</tr>
-<tr>
-<td><code>ec-wdt-proc-data!</code></td>
-<td>( cmd n -- )</td>
-</tr>
-<tr>
-<td><code>ec-wdt-proc-data-busy?</code></td>
-<td>( n -- t )</td>
-</tr>
-<tr>
-<td><code>ec-wdt-proc-data-error?</code></td>
-<td>( n -- t )</td>
-</tr>
-<tr>
-<td><code>list-slaves</code></td>
-<td>( -- )</td>
-</tr>
-<tr>
-<td><code>sdo-busy?</code></td>
-<td>( n -- t )</td>
-</tr>
-<tr>
-<td><code>sdo-data@</code></td>
-<td>( n -- data )</td>
-</tr>
-<tr>
-<td><code>sdo-error?</code></td>
-<td>( n -- t )</td>
-</tr>
-<tr>
-<td><code>sdo-download-i16</code></td>
-<td>( data subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-download-i32</code></td>
-<td>( data subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-download-i8</code></td>
-<td>( data subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-download-u16</code></td>
-<td>( data subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-download-u32</code></td>
-<td>( data subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-download-u8</code></td>
-<td>( data subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-upload-i16</code></td>
-<td>( subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-upload-i32</code></td>
-<td>( subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-upload-i8</code></td>
-<td>( subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-upload-u16</code></td>
-<td>( subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-upload-u32</code></td>
-<td>( subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>sdo-upload-u8</code></td>
-<td>( subindex index n -- )</td>
-</tr>
-<tr>
-<td><code>until-no-requests</code></td>
-<td>( -- )</td>
-</tr>
-<tr>
-<td><code>waiting-requests?</code></td>
-<td>( -- t )</td>
-</tr>
-</tbody>
-</table>
+</code></pre>
+<h4 id="waiting-requests-----t-"><a class="header" href="#waiting-requests-----t-"><code>waiting-requests? ( -- t )</code></a></h4>
+<p>是否所有的 SDO 命令都已經執行完畢 ？</p>
+<h4 id="本節指令集"><a class="header" href="#本節指令集">本節指令集</a></h4>
+<table><thead><tr><th>指令</th><th>堆疊效果</th></tr></thead><tbody>
+<tr><td><code>.ec-dc</code></td><td>( -- )</td></tr>
+<tr><td><code>.ec-emcy</code></td><td>( n -- )</td></tr>
+<tr><td><code>.ec-links</code></td><td>( -- )</td></tr>
+<tr><td><code>.ec-wdt-proc-data</code></td><td>( n -- )</td></tr>
+<tr><td><code>.sdo</code></td><td>( n --  )</td></tr>
+<tr><td><code>.slave</code></td><td>( n -- )</td></tr>
+<tr><td><code>.slave-diff</code></td><td>( n -- )</td></tr>
+<tr><td><code>?ec-emcy</code></td><td>( n -- )</td></tr>
+<tr><td><code>@ec-wdt-proc-data</code></td><td>( n -- )</td></tr>
+<tr><td><code>ec-a&gt;n</code></td><td>( alias -- n )</td></tr>
+<tr><td><code>ec-ain?</code></td><td>( ch n -- t )</td></tr>
+<tr><td><code>ec-alias!</code></td><td>( alias n -- )</td></tr>
+<tr><td><code>ec-alias?</code></td><td>( alias -- t )</td></tr>
+<tr><td><code>ec-aout?</code></td><td>( ch n -- t )</td></tr>
+<tr><td><code>ec-din?</code></td><td>( ch n -- t )</td></tr>
+<tr><td><code>ec-dout?</code></td><td>( ch n -- t )</td></tr>
+<tr><td><code>ec-drive?</code></td><td>( ch n -- t )</td></tr>
+<tr><td><code>ec-emcy-busy?</code></td><td>( n -- t )</td></tr>
+<tr><td><code>ec-encoder?</code></td><td>( ch n -- t )</td></tr>
+<tr><td><code>ec-gateway?</code></td><td>( ch n -- t )</td></tr>
+<tr><td><code>ec-load</code></td><td>( n -- )</td></tr>
+<tr><td><code>ec-ready?</code></td><td>( -- t )</td></tr>
+<tr><td><code>ec-save</code></td><td>( n -- )</td></tr>
+<tr><td><code>ec-uart?</code></td><td>( ch n -- t )</td></tr>
+<tr><td><code>ec-wdt-proc-data@</code></td><td>( n -- data )</td></tr>
+<tr><td><code>ec-wdt-proc-data!</code></td><td>( cmd n -- )</td></tr>
+<tr><td><code>ec-wdt-proc-data-busy?</code></td><td>( n -- t )</td></tr>
+<tr><td><code>ec-wdt-proc-data-error?</code></td><td>( n -- t )</td></tr>
+<tr><td><code>list-slaves</code></td><td>( -- )</td></tr>
+<tr><td><code>sdo-busy?</code></td><td>( n -- t )</td></tr>
+<tr><td><code>sdo-data@</code></td><td>( n -- data )</td></tr>
+<tr><td><code>sdo-error?</code></td><td>( n -- t )</td></tr>
+<tr><td><code>sdo-download-i16</code></td><td>( data subindex index n -- )</td></tr>
+<tr><td><code>sdo-download-i32</code></td><td>( data subindex index n -- )</td></tr>
+<tr><td><code>sdo-download-i8</code></td><td>( data subindex index n -- )</td></tr>
+<tr><td><code>sdo-download-u16</code></td><td>( data subindex index n -- )</td></tr>
+<tr><td><code>sdo-download-u32</code></td><td>( data subindex index n -- )</td></tr>
+<tr><td><code>sdo-download-u8</code></td><td>( data subindex index n -- )</td></tr>
+<tr><td><code>sdo-upload-i16</code></td><td>( subindex index n -- )</td></tr>
+<tr><td><code>sdo-upload-i32</code></td><td>( subindex index n -- )</td></tr>
+<tr><td><code>sdo-upload-i8</code></td><td>( subindex index n -- )</td></tr>
+<tr><td><code>sdo-upload-u16</code></td><td>( subindex index n -- )</td></tr>
+<tr><td><code>sdo-upload-u32</code></td><td>( subindex index n -- )</td></tr>
+<tr><td><code>sdo-upload-u8</code></td><td>( subindex index n -- )</td></tr>
+<tr><td><code>until-no-requests</code></td><td>( -- )</td></tr>
+<tr><td><code>waiting-requests?</code></td><td>( -- t )</td></tr>
+</tbody></table>
 
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
-</div>
+                    </main>
 
-                        </div>
-                    </div>
-                
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="host-primitives.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="ethercat-drive-primitives.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
             </div>
 
-            
-                
-                <a href="host-primitives.html" class="navigation navigation-prev " aria-label="Previous page: Botnana 基本指令集">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="ethercat-drive-primitives.html" class="navigation navigation-next " aria-label="Next page: EtherCAT Drive 指令集">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="host-primitives.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-    <script>
-        var gitbook = gitbook || [];
-        gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"EtherCAT 指令集","level":"4.3.2","depth":2,"next":{"title":"EtherCAT Drive 指令集","level":"4.3.3","depth":2,"path":"ethercat-drive-primitives.md","ref":"./ethercat-drive-primitives.md","articles":[]},"previous":{"title":"Botnana 基本指令集","level":"4.3.1","depth":2,"path":"host-primitives.md","ref":"./host-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"ethercat-primitives.md","mtime":"2019-07-29T02:57:10.879Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-03T09:03:35.732Z"},"basePath":".","book":{"language":""}});
-        });
-    </script>
-</div>
+                    <a rel="next" href="ethercat-drive-primitives.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
 
-        
-    <script src="gitbook/gitbook.js"></script>
-    <script src="gitbook/theme.js"></script>
-    
-        
-        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-search/search.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
 
     </body>
 </html>
-

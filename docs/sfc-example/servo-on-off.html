@@ -1,670 +1,163 @@
-
 <!DOCTYPE HTML>
-<html lang="" >
+<html lang="zh-TW" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
+        <title>Servo On/OFF - Botnana Book</title>
+
+
+        <!-- Custom HTML head -->
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Servo On/OFF · GitBook</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
-        
-        
-        
-    
-    <link rel="stylesheet" href="../gitbook/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
 
-    
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
-        
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
-    
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
-        
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="motion-state.html" />
-    
-    
-    <link rel="prev" href="../sfc.html" />
-    
+        <!-- Custom theme stylesheets -->
 
     </head>
     <body>
-        
-<div class="book">
-    <div class="book-summary">
-        
-            
-<div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
-</div>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
 
-            
-                <nav role="navigation">
-                
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
 
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
 
-<ul class="summary">
-    
-    
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
 
-    
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
 
-    
-        
-        <li class="header">1. 前言</li>
-        
-        
-    
-        <li class="chapter " data-level="1.1" data-path="../">
-            
-                <a href="../">
-            
-                    
-                    簡介
-            
-                </a>
-            
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
 
-            
-        </li>
-    
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../index.html"><strong aria-hidden="true">1.</strong> 簡介</a></li><li class="chapter-item expanded "><a href="../hardware.html"><strong aria-hidden="true">2.</strong> 硬體規格</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../botnana-a2.html"><strong aria-hidden="true">2.1.</strong> Botnana BN-A2A</a></li><li class="chapter-item expanded "><a href="../botnana-bn-j4a.html"><strong aria-hidden="true">2.2.</strong> Botnana BN-J4A</a></li></ol></li><li class="chapter-item expanded "><a href="../software.html"><strong aria-hidden="true">3.</strong> 軟體規格</a></li><li class="chapter-item expanded "><a href="../roadmap.html"><strong aria-hidden="true">4.</strong> Roadmap</a></li><li class="chapter-item expanded "><a href="../tutorial.html"><strong aria-hidden="true">5.</strong> 入門教學</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../botnana-a2-tutorial.html"><strong aria-hidden="true">5.1.</strong> Botnana A2 入門</a></li><li class="chapter-item expanded "><a href="../botnana-control-tutorial.html"><strong aria-hidden="true">5.2.</strong> Botnana Control 入門</a></li></ol></li><li class="chapter-item expanded "><a href="../configuration-file.html"><strong aria-hidden="true">6.</strong> 設定檔</a></li><li class="chapter-item expanded "><a href="../programming.html"><strong aria-hidden="true">7.</strong> 程式開發界面</a></li><li class="chapter-item expanded "><a href="../json-api.html"><strong aria-hidden="true">8.</strong> JSON API</a></li><li class="chapter-item expanded "><a href="../real-time-script-api.html"><strong aria-hidden="true">9.</strong> Real-time Script API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../host-primitives.html"><strong aria-hidden="true">9.1.</strong> Botnana 基本指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-primitives.html"><strong aria-hidden="true">9.2.</strong> EtherCAT 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-drive-primitives.html"><strong aria-hidden="true">9.3.</strong> EtherCAT Drive 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-io-primitives.html"><strong aria-hidden="true">9.4.</strong> EtherCAT IO 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-uart-primitives.html"><strong aria-hidden="true">9.5.</strong> EtherCAT UART 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-encoder-primitives.html"><strong aria-hidden="true">9.6.</strong> EtherCAT Encoder 指令集</a></li><li class="chapter-item expanded "><a href="../ethercat-gateway-primitives.html"><strong aria-hidden="true">9.7.</strong> EtherCAT Gateway 指令集</a></li><li class="chapter-item expanded "><a href="../axis-group.html"><strong aria-hidden="true">9.8.</strong> 軸組 Axis Group 指令集</a></li><li class="chapter-item expanded "><a href="../sfc.html"><strong aria-hidden="true">9.9.</strong> 狀態流程圖 Sequential Function Chart (SFC)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../sfc-example/servo-on-off.html" class="active"><strong aria-hidden="true">9.9.1.</strong> Servo On/OFF</a></li><li class="chapter-item expanded "><a href="../sfc-example/motion-state.html"><strong aria-hidden="true">9.9.2.</strong> Motion State</a></li><li class="chapter-item expanded "><a href="../sfc-example/axes-homing.html"><strong aria-hidden="true">9.9.3.</strong> Homing State</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="../known-working-hardware.html"><strong aria-hidden="true">10.</strong> 支援的硬體清單</a></li><li class="chapter-item expanded "><a href="../update-software.html"><strong aria-hidden="true">11.</strong> 軟體更新</a></li><li class="chapter-item expanded "><a href="../faq.html"><strong aria-hidden="true">12.</strong> 常見問題</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../faq/network.html"><strong aria-hidden="true">12.1.</strong> 網路設定</a></li><li class="chapter-item expanded "><a href="../faq/gadget.html"><strong aria-hidden="true">12.2.</strong> USB連線IP設定</a></li><li class="chapter-item expanded "><a href="../faq/windows7_rndis.html"><strong aria-hidden="true">12.3.</strong> Windows 7 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="../faq/windows10_rndis.html"><strong aria-hidden="true">12.4.</strong> Windows 10 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="../faq/win10_permission.html"><strong aria-hidden="true">12.5.</strong> Windows 10 檔案權限修改</a></li><li class="chapter-item expanded "><a href="../faq/mount.html"><strong aria-hidden="true">12.6.</strong> 磁碟掛載 Mount</a></li><li class="chapter-item expanded "><a href="../faq/manual_install_deb/manual_install_deb.html"><strong aria-hidden="true">12.7.</strong> 手動安裝 Botnana Control 更新檔</a></li><li class="spacer"></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
 
-    
-        
-        <li class="header">2. 規格</li>
-        
-        
-    
-        <li class="chapter " data-level="2.1" data-path="../hardware.html">
-            
-                <a href="../hardware.html">
-            
-                    
-                    硬體規格
-            
-                </a>
-            
+        <div id="page-wrapper" class="page-wrapper">
 
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="2.1.1" data-path="../botnana-a2.html">
-            
-                <a href="../botnana-a2.html">
-            
-                    
-                    Botnana BN-A2A
-            
-                </a>
-            
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-            
-        </li>
-    
-        <li class="chapter " data-level="2.1.2" data-path="../botnana-bn-j4a.html">
-            
-                <a href="../botnana-bn-j4a.html">
-            
-                    
-                    Botnana BN-J4A
-            
-                </a>
-            
+                    <h1 class="menu-title">Botnana Book</h1>
 
-            
-        </li>
-    
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
 
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="2.2" data-path="../software.html">
-            
-                <a href="../software.html">
-            
-                    
-                    軟體規格
-            
-                </a>
-            
+                    </div>
+                </div>
 
-            
-        </li>
-    
-        <li class="chapter " data-level="2.3" data-path="../roadmap.html">
-            
-                <a href="../roadmap.html">
-            
-                    
-                    Roadmap
-            
-                </a>
-            
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
 
-            
-        </li>
-    
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
 
-    
-        
-        <li class="header">3. 入門</li>
-        
-        
-    
-        <li class="chapter " data-level="3.1" data-path="../tutorial.html">
-            
-                <a href="../tutorial.html">
-            
-                    
-                    入門教學
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="3.1.1" data-path="../botnana-a2-tutorial.html">
-            
-                <a href="../botnana-a2-tutorial.html">
-            
-                    
-                    Botnana A2 入門
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.1.2" data-path="../botnana-control-tutorial.html">
-            
-                <a href="../botnana-control-tutorial.html">
-            
-                    
-                    Botnana Control 入門
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="3.2" data-path="../configuration-file.html">
-            
-                <a href="../configuration-file.html">
-            
-                    
-                    設定檔
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
-        
-        <li class="header">4. 程式開發</li>
-        
-        
-    
-        <li class="chapter " data-level="4.1" data-path="../programming.html">
-            
-                <a href="../programming.html">
-            
-                    
-                    程式開發界面
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.2" data-path="../json-api.html">
-            
-                <a href="../json-api.html">
-            
-                    
-                    JSON API
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3" data-path="../real-time-script-api.html">
-            
-                <a href="../real-time-script-api.html">
-            
-                    
-                    Real-time Script API
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.3.1" data-path="../host-primitives.html">
-            
-                <a href="../host-primitives.html">
-            
-                    
-                    Botnana 基本指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.2" data-path="../ethercat-primitives.html">
-            
-                <a href="../ethercat-primitives.html">
-            
-                    
-                    EtherCAT 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.3" data-path="../ethercat-drive-primitives.html">
-            
-                <a href="../ethercat-drive-primitives.html">
-            
-                    
-                    EtherCAT Drive 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.4" data-path="../ethercat-io-primitives.html">
-            
-                <a href="../ethercat-io-primitives.html">
-            
-                    
-                    EtherCAT IO 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.5" data-path="../ethercat-uart-primitives.html">
-            
-                <a href="../ethercat-uart-primitives.html">
-            
-                    
-                    EtherCAT UART 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.6" data-path="../ethercat-encoder-primitives.html">
-            
-                <a href="../ethercat-encoder-primitives.html">
-            
-                    
-                    EtherCAT Encoder 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.7" data-path="../ethercat-gateway-primitives.html">
-            
-                <a href="../ethercat-gateway-primitives.html">
-            
-                    
-                    EtherCAT Gateway 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.8" data-path="../axis-group.html">
-            
-                <a href="../axis-group.html">
-            
-                    
-                    軸組 Axis Group 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9" data-path="../sfc.html">
-            
-                <a href="../sfc.html">
-            
-                    
-                    狀態流程圖 Sequential Function Chart (SFC)
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter active" data-level="4.3.9.1" data-path="servo-on-off.html">
-            
-                <a href="servo-on-off.html">
-            
-                    
-                    Servo On/OFF
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9.2" data-path="motion-state.html">
-            
-                <a href="motion-state.html">
-            
-                    
-                    Motion State
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9.3" data-path="axes-homing.html">
-            
-                <a href="axes-homing.html">
-            
-                    
-                    Homing State
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-        
-        <li class="header">5. 附錄</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="../known-working-hardware.html">
-            
-                <a href="../known-working-hardware.html">
-            
-                    
-                    支援的硬體清單
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.2" data-path="../update-software.html">
-            
-                <a href="../update-software.html">
-            
-                    
-                    軟體更新
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3" data-path="../faq.html">
-            
-                <a href="../faq.html">
-            
-                    
-                    常見問題
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="5.3.1" data-path="../faq/network.html">
-            
-                <a href="../faq/network.html">
-            
-                    
-                    網路設定
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.2" data-path="../faq/gadget.html">
-            
-                <a href="../faq/gadget.html">
-            
-                    
-                    USB連線IP設定
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.3" data-path="../faq/windows7_rndis.html">
-            
-                <a href="../faq/windows7_rndis.html">
-            
-                    
-                    Windows 7 RNDIS 驅動程式安裝
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.4" data-path="../faq/windows10_rndis.html">
-            
-                <a href="../faq/windows10_rndis.html">
-            
-                    
-                    Windows 10 RNDIS 驅動程式安裝
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.5" data-path="../faq/win10_permission.html">
-            
-                <a href="../faq/win10_permission.html">
-            
-                    
-                    Windows 10 檔案權限修改
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.6" data-path="../faq/mount.html">
-            
-                <a href="../faq/mount.html">
-            
-                    
-                    磁碟掛載 Mount
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.7" data-path="../faq/manual_install_deb/manual_install_deb.html">
-            
-                <a href="../faq/manual_install_deb/manual_install_deb.html">
-            
-                    
-                    手動安裝 Botnana Control 更新檔
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
-        </a>
-    </li>
-</ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
-<div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Servo On/OFF</a>
-    </h1>
-</div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
-<div id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <h2 id="servo-onoff-sfc-&#x7BC4;&#x4F8B;">Servo On/OFF SFC &#x7BC4;&#x4F8B;</h2>
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="servo-onoff-sfc-範例"><a class="header" href="#servo-onoff-sfc-範例">Servo On/OFF SFC 範例</a></h2>
 <pre><code>
           +-------------------+
           |       Init        |
           +--------+----------+
                    |
-             Devices exist ?        &#x6AA2;&#x67E5;&#x662F;&#x5426;&#x6709;&#x5C0D;&#x61C9;&#x7684;&#x88DD;&#x7F6E;&#x3002;
+             Devices exist ?        檢查是否有對應的裝置。
                    |
           +--------v----------+
 +-------&gt; |       Idle        | 
 |         +--------+----------+
 |                  |
-|          servo-on accepted ?      &#x6AA2;&#x67E5; servo-on request&#x3002; 
+|          servo-on accepted ?      檢查 servo-on request。 
 |                  |
 |         +--------v-------------+   
-|         |    Wait 1000 ms      |  &#x53EF;&#x4EE5;&#x5728;&#x6B64; setp &#x624D;&#x8F38;&#x9001;&#x52D5;&#x529B;&#x96FB;&#x6E90;&#xFF0C; 1000 ms &#x662F;&#x8B93;&#x52D5;&#x529B;&#x96FB;&#x6E90;&#x7A69;&#x5B9A;&#x7684;&#x6642;&#x9593;&#x3002;
+|         |    Wait 1000 ms      |  可以在此 setp 才輸送動力電源， 1000 ms 是讓動力電源穩定的時間。
 |         +--------+-------------+  
 |                  |                      
 |                True
@@ -674,25 +167,25 @@
 |         |    Change to CSP Mode      |
 |         +--------+-------------------+
 |                  |
-|           No Drive Fault ?      &#x9A45;&#x52D5;&#x5668;&#x7570;&#x8B66;&#x6709;&#x53EF;&#x80FD;&#x7121;&#x6CD5;&#x6E05;&#x9664;&#xFF0C;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x6709; 2000 ms &#x7684; timeout &#x6642;&#x9593;&#x3002;
+|           No Drive Fault ?      驅動器異警有可能無法清除，所以需要有 2000 ms 的 timeout 時間。
 |                  or
 |           Elapsed 2000 ms ?          
 |                  |
 |        +---------v-----------+
-|        |   All drives on     |  &#x6BCF;&#x500B;&#x9A45;&#x52D5;&#x5668;&#x5FC5;&#x9808;&#x5206;&#x6642;&#x5207;&#x63DB;&#x5230; drive on &#x72C0;&#x614B;&#xFF0C;&#x907F;&#x514D;&#x52D5;&#x529B;&#x96FB;&#x6E90;&#x4E0D;&#x7A69;&#x5B9A;&#x3002; 
+|        |   All drives on     |  每個驅動器必須分時切換到 drive on 狀態，避免動力電源不穩定。 
 |        +---------+-----------+
 |                  |
-|            All-drives-on?       &#x7B49;&#x5F85;&#x6240;&#x6709;&#x9A45;&#x52D5;&#x5668;&#x662F;&#x5426;&#x90FD;&#x5DF2;&#x7D93;&#x5207;&#x63DB;&#x5230; drive on &#x72C0;&#x614B;&#xFF0C;
-|                 or              &#x9700;&#x8981;&#x6709; 2000 ms &#x7684; timeout &#x6642;&#x9593;&#x907F;&#x514D;&#x6709;&#x9A45;&#x52D5;&#x5668;&#x7121;&#x6CD5;&#x5230;&#x9054; 
-|           Elapsed 2000 ms?      drive on &#x72C0;&#x614B;&#x3002;
+|            All-drives-on?       等待所有驅動器是否都已經切換到 drive on 狀態，
+|                 or              需要有 2000 ms 的 timeout 時間避免有驅動器無法到達 
+|           Elapsed 2000 ms?      drive on 狀態。
 |                  |
 |        +---------v-----------+
-|        |                     |  &#x6AA2;&#x67E5;&#x9A45;&#x52D5;&#x5668;&#x72C0;&#x614B;
-|        |  Servo Loop Process |  &#x6AA2;&#x67E5; following error
-|        |                     |  &#x6709;&#x7570;&#x5E38;&#x767C;&#x51FA; servo-off &#x8981;&#x6C42;&#x3002;
+|        |                     |  檢查驅動器狀態
+|        |  Servo Loop Process |  檢查 following error
+|        |                     |  有異常發出 servo-off 要求。
 |        +---------+-----------+
 |                  |                               
-|          servo-off accepted ?   &#x6AA2;&#x67E5; servo-off &#x8981;&#x6C42;&#x3002;
+|          servo-off accepted ?   檢查 servo-off 要求。
 |                  |              
 |        +---------v-----------+
 |        |   All Drives Off    | 
@@ -701,31 +194,34 @@
 |            Elapsed 1000 ms ?
 |                  |
 |        +---------v---------------+
-|        |   servo-post-operation  | &#x53EF;&#x4EE5;&#x5728;&#x6B64;&#x5207;&#x65B7;&#x52D5;&#x529B;&#x96FB;&#x6E90; 
+|        |   servo-post-operation  | 可以在此切斷動力電源 
 |        +---------+---------------+
 |                  |
 |                 True
 |                  |
 +------------------+
-</code></pre><h2 id="sfc-&#x5BE6;&#x4F5C;&#xFF1A;">SFC &#x5BE6;&#x4F5C;&#xFF1A;</h2>
+                  
+
+</code></pre>
+<h2 id="sfc-實作"><a class="header" href="#sfc-實作">SFC 實作：</a></h2>
 <pre><code>
 \ Axes Description
-\ &#x6B64;&#x7BC4;&#x4F8B;&#x70BA; 3 &#x8EF8;&#x7684; Servo On/OFF SFC &#x7BC4;&#x4F8B;
-\ &#x5206;&#x5225;&#x70BA;&#x7B2C; 1, 2 , 3 &#x904B;&#x52D5;&#x8EF8; 
-\ &#x4E0D;&#x4F7F;&#x7528; index 0 &#x7684;&#x904B;&#x52D5;&#x8EF8;
+\ 此範例為 3 軸的 Servo On/OFF SFC 範例
+\ 分別為第 1, 2 , 3 運動軸 
+\ 不使用 index 0 的運動軸
 3 constant axes-len
 create axes 0 , 1 , 2 , 3 ,
 
-\ &#x4F7F;&#x7528; axes-enabled &#x53EF;&#x4EE5;&#x66AB;&#x6642;&#x5C07;&#x6307;&#x5B9A;&#x8EF8;&#x6392;&#x9664;&#x5728;&#x6B64; SFC &#x7684;&#x904B;&#x4F5C;&#x908F;&#x8F2F;&#x4E4B;&#x5916;
+\ 使用 axes-enabled 可以暫時將指定軸排除在此 SFC 的運作邏輯之外
 create axes-enabled false , true , true , true ,
 
-\ &#x5404;&#x8EF8; Servo lag &#x7684;&#x6AA2;&#x67E5;&#x7BC4;&#x570D;&#xFF0C; &#x7576;&#x904B;&#x52D5;&#x8EF8;&#x975C;&#x6B62;&#x6642;&#x63A1;&#x7528; min-ferr-limit
+\ 各軸 Servo lag 的檢查範圍， 當運動軸靜止時採用 min-ferr-limit
 create min-ferr-limit falign 0e f, 0.05e mm f, 0.05e mm f, 0.05e mm f,
 create max-ferr-limit falign 0e f, 1.00e mm f, 1.00e mm f, 1.00e mm f,
 
 
 \ Debug flag
-\ &#x986F;&#x793A;&#x9664;&#x932F;&#x8A0A;&#x606F;
+\ 顯示除錯訊息
 variable servo-debug
 : +servo-debug
     true servo-debug !
@@ -734,62 +230,62 @@ variable servo-debug
     false servo-debug !
     ;
 
-\ &#x53D6;&#x5F97;&#x53D7;&#x63A7;&#x904B;&#x52D5;&#x8EF8;&#x6E05;&#x55AE;&#x4E2D;&#x7684;&#x8EF8;&#x7DE8;&#x865F;
+\ 取得受控運動軸清單中的軸編號
 : axis@ ( index -- axis-no )
     cells axes + @
     ; 
 
-\ &#x53D6;&#x5F97;&#x53D7;&#x63A7;&#x904B;&#x52D5;&#x8EF8;&#x6E05;&#x55AE;&#x4E2D;&#x7684;&#x81F4;&#x80FD;&#x72C0;&#x614B; (enabled/disabled)
+\ 取得受控運動軸清單中的致能狀態 (enabled/disabled)
 : axis-enabled? ( index -- flag )
     cells axes-enabled + @
     ;
 
-\ &#x5C07;&#x904B;&#x52D5;&#x8EF8;&#x6E05;&#x55AE;&#x4E2D;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#x81F4;&#x80FD;    
+\ 將運動軸清單中的運動軸致能    
 : +axis  ( index -- )
     cells axes-enabled + true swap ! 
     ;
 
-\ &#x5C07;&#x904B;&#x52D5;&#x8EF8;&#x6E05;&#x55AE;&#x4E2D;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#x7981;&#x80FD;     
+\ 將運動軸清單中的運動軸禁能     
 : -axis  ( index -- )
     cells axes-enabled + false swap ! 
     ;    
 
-\ &#x8A2D;&#x5B9A; min-ferr-limit
+\ 設定 min-ferr-limit
 : min-ferr-limit! ( index -- )( F: limit -- )
     floats min-ferr-limit faligned + f!
     ;
 
-\ &#x8A2D;&#x5B9A; max-ferr-limit
+\ 設定 max-ferr-limit
 : max-ferr-limit! ( index -- )( F: limit -- )
     floats max-ferr-limit faligned + f!
     ;
 
 
 \ Is servo on
-\ &#x4F7F;&#x7528;&#x6B64;&#x53C3;&#x6578;&#x4F86;&#x7D00;&#x9304;&#x76EE;&#x524D;&#x662F;&#x5426;&#x8655;&#x5728; servo-on &#x7684;&#x72C0;&#x614B;
+\ 使用此參數來紀錄目前是否處在 servo-on 的狀態
 variable is-servo-on
 
 \ Is servo idle
-\ &#x7528;&#x4F86;&#x7D00;&#x9304;&#x662F;&#x5426;&#x8655;&#x65BC; Servo Idle Step&#xFF0C;&#x5728;&#x6B64; step &#x624D;&#x6703;&#x63A5;&#x53D7; servo on request
+\ 用來紀錄是否處於 Servo Idle Step，在此 step 才會接受 servo on request
 variable is-servo-idle
 
 \ Servo On Accepted
-\ &#x7528;&#x4F86;&#x7D00;&#x9304; servo on request &#x662F;&#x5426;&#x88AB;&#x63A5;&#x53D7;
+\ 用來紀錄 servo on request 是否被接受
 variable servo-on-accepted
 
 \ Servo Off Accepted
-\ &#x7528;&#x4F86;&#x7D00;&#x9304; servo off request &#x662F;&#x5426;&#x88AB;&#x63A5;&#x53D7;
+\ 用來紀錄 servo off request 是否被接受
 variable servo-off-accepted
 
 
 \ Is servo on ?
-\ &#x662F;&#x5426;&#x5728; Servo On &#x7684;&#x72C0;&#x614B;
+\ 是否在 Servo On 的狀態
 : servo-on?  ( -- flag )
     is-servo-on @
     ;
 
-\ &#x53D6;&#x5F97;&#x76EE;&#x524D;&#x9069;&#x7528;&#x7684; following error limit
-\ Servo Off &#x6216;&#x662F;&#x904B;&#x52D5;&#x8EF8;&#x975C;&#x6B62;&#x7684;&#x6642;&#x5019;&#x63A1;&#x7528; min-ferr-limit
+\ 取得目前適用的 following error limit
+\ Servo Off 或是運動軸靜止的時候採用 min-ferr-limit
 : ferr-limit@ ( index -- )( F: -- limit )
     dup axis@ axis-rest? servo-on? not or if
         min-ferr-limit  
@@ -799,9 +295,9 @@ variable servo-off-accepted
     faligned swap floats + f@
     ;
 
-\ &#x843D;&#x5F8C;&#x8AA4;&#x5DEE;&#x6AA2;&#x67E5;
-\ servo-lag-err &#x662F;&#x7528;&#x4F86;&#x7D00;&#x9304; servo-lag-check &#x6AA2;&#x67E5;&#x4E4B;&#x5F8C;&#x662F;&#x5426;&#x6709;&#x7570;&#x5E38;&#x7684;&#x65D7;&#x6A19;
-\ &#x6240;&#x4EE5;&#x8981;&#x4F7F;&#x7528; servo-lag-err &#x524D;&#x8981;&#x5148;&#x57F7;&#x884C; servo-lag-check
+\ 落後誤差檢查
+\ servo-lag-err 是用來紀錄 servo-lag-check 檢查之後是否有異常的旗標
+\ 所以要使用 servo-lag-err 前要先執行 servo-lag-check
 variable servo-lag-err
 : servo-lag-check ( -- )
     false servo-lag-err !
@@ -824,8 +320,8 @@ variable servo-lag-err
     ;
 
 
-\ &#x767C;&#x51FA; Servo On Request
-\ &#x5982;&#x679C;&#x76EE;&#x524D;&#x72C0;&#x614B;&#x53EF;&#x4EE5;&#x5141;&#x8A31; Servo On&#xFF0C;&#x6703;&#x5C07; servo-on-accepted &#x8B8A;&#x6578;&#x8A2D;&#x5B9A;&#x70BA;&#x771F;&#x3002;
+\ 發出 Servo On Request
+\ 如果目前狀態可以允許 Servo On，會將 servo-on-accepted 變數設定為真。
 : +servo-on ( -- )
     .&quot; log|Servo On Request!&quot; cr
     true servo-on-accepted !
@@ -833,13 +329,13 @@ variable servo-lag-err
     servo-lag-check servo-lag-err @ if false servo-on-accepted ! then  
     ;
 
-\ &#x767C;&#x51FA; Servo Off Request
-\ &#x5982;&#x679C;&#x76EE;&#x524D;&#x72C0;&#x614B;&#x53EF;&#x4EE5;&#x5141;&#x8A31; Servo Off&#xFF0C;&#x6703;&#x5C07; servo-off-accepted &#x8B8A;&#x6578;&#x8A2D;&#x5B9A;&#x70BA;&#x771F;&#x3002;
+\ 發出 Servo Off Request
+\ 如果目前狀態可以允許 Servo Off，會將 servo-off-accepted 變數設定為真。
 : -servo-on ( -- )
     .&quot; log|Servo Off Request!&quot; cr
     true servo-off-accepted !
     servo-on? not if false servo-off-accepted ! .&quot; log|Not Servo On&quot; cr then
-
+    
     1
     begin
         dup axes-len &lt;=   
@@ -853,19 +349,19 @@ variable servo-lag-err
         1+    
     repeat
     drop
-
+    
     ;
-
-\ &#x767C;&#x51FA; Servo Emergency Off Request
-\ &#x4E0D;&#x7BA1;&#x76EE;&#x524D;&#x72C0;&#x614B;&#x6703;&#x5C07; servo-off-accepted &#x8B8A;&#x6578;&#x8A2D;&#x5B9A;&#x70BA;&#x771F;&#x3002;
+    
+\ 發出 Servo Emergency Off Request
+\ 不管目前狀態會將 servo-off-accepted 變數設定為真。
 : ems-servo-off ( -- )
     .&quot; log|Emergency Servo Off Request!&quot; cr
     true servo-off-accepted !
     ;    
-
+    
 
 \ Servo Init Step
-\ &#x6AA2;&#x67E5;&#x5C0D;&#x61C9;&#x7684;&#x786C;&#x9AD4;&#x88DD;&#x7F6E;&#x662F;&#x5426;&#x5B58;&#x5728;&#xFF0C;&#x53EA;&#x5728;&#x4E00;&#x958B;&#x59CB;&#x7684;&#x6642;&#x5019;&#x505A;&#x4E00;&#x6B21;&#xFF0C;&#x5982;&#x679C;&#x6AA2;&#x67E5;&#x6C92;&#x6709;&#x901A;&#x904E;&#xFF0C;SFC &#x6703;&#x505C;&#x7559;&#x5728;&#x9019;&#x500B; step&#x3002;
+\ 檢查對應的硬體裝置是否存在，只在一開始的時候做一次，如果檢查沒有通過，SFC 會停留在這個 step。
 variable servo-init-once
 variable servo-devices-ok
 : servo-init ( -- )
@@ -882,23 +378,23 @@ variable servo-devices-ok
             1+    
         repeat
         drop
-
+    
         true servo-init-once !    
-
+        
         servo-debug @ if .&quot; log|Servo Init Step&quot; cr then
-
+  
     then
     ;
 
 \ Servo Idle Step
-\ &#x5728;&#x6B64;&#x72C0;&#x614B;&#x7B49;&#x5F85; servo-on-accetped &#x70BA;&#x771F;
+\ 在此狀態等待 servo-on-accetped 為真
 : servo-idle ( -- )
     true is-servo-idle !
     ;
 
 \ Servo Waiting Power Stable Step  
-\ &#x53EF;&#x4EE5;&#x5728;&#x6B64;&#x9001;&#x51FA;&#x52D5;&#x529B;&#x96FB;&#x6E90;&#x7684;&#x63A7;&#x5236;&#x8A0A;&#x865F;
-\ &#x5728;&#x6B64;&#x72C0;&#x614B;&#x7B49;&#x5F85; 1000 ms &#x52D5;&#x529B;&#x96FB;&#x6E90;&#x7A69;&#x5B9A;
+\ 可以在此送出動力電源的控制訊號
+\ 在此狀態等待 1000 ms 動力電源穩定
 variable servo-pre-operation-once
 variable servo-disable-operation-once
 : servo-waiting-power-stable ( -- )
@@ -909,8 +405,8 @@ variable servo-disable-operation-once
     ;
 
 \ Servo pre operation 
-\ &#x6E05;&#x9664;&#x9A45;&#x52D5;&#x5668;&#x7570;&#x8B66;&#x8207;&#x5207;&#x63DB;&#x5230; CSP &#x6A21;&#x5F0F;.
-\ &#x555F;&#x52D5;&#x8EF8;&#x7D44;(axis group)&#x904B;&#x52D5;&#x63A7;&#x5236;
+\ 清除驅動器異警與切換到 CSP 模式.
+\ 啟動軸組(axis group)運動控制
 variable servo-current-axis
 variable servo-old-axis
 : servo-pre-operation ( -- )
@@ -927,17 +423,17 @@ variable servo-old-axis
             1+    
         repeat
         drop
-
+               
         true servo-pre-operation-once !
         1 servo-current-axis !
         0 servo-old-axis !
-
+    
         servo-debug @ if .&quot; log|Servo pre. operation&quot; cr then
     then
     ;
 
 \ Servo Enable Operation
-\ &#x5206;&#x6642;&#x5C07;&#x6240;&#x6709;&#x9A45;&#x52D5;&#x5668;&#x5207;&#x63DB;&#x5230; drive on &#x72C0;&#x614B; 
+\ 分時將所有驅動器切換到 drive on 狀態 
 variable servo-on-time
 : servo-enable-operation ( -- )
     servo-current-axis @ servo-old-axis @ &lt;&gt; if
@@ -949,7 +445,7 @@ variable servo-on-time
         mtime servo-on-time !
         servo-debug @ if .&quot; log|Servo enable operation&quot; cr then
     then
-
+    
     mtime servo-on-time @ - 100 &gt; if
         servo-current-axis @ dup axes-len &lt; if
             1+ servo-current-axis !
@@ -960,13 +456,13 @@ variable servo-on-time
     ;
 
 \ Servo Loop
-\ &#x6AA2;&#x67E5;&#x4EE5;&#x4E0B;&#x689D;&#x4EF6;&#xFF1A;
+\ 檢查以下條件：
 \ 1. drive-on?
 \ 2. drive-fault?
 \ 3. following error 
-\ &#x5982;&#x679C;&#x6709;&#x554F;&#x984C;&#x5C31;&#x767C;&#x51FA; ems-servo-off
+\ 如果有問題就發出 ems-servo-off
 : servo-loop ( -- )
-
+    
     true is-servo-on !
     1
     begin
@@ -977,26 +473,26 @@ variable servo-on-time
                 .&quot; error|Not expected drive off&quot; cr
                 ems-servo-off
             then
-
+            
             dup axis@ axis-drive@ drive-fault? if
                 .&quot; error|drive fault&quot; cr
                 ems-servo-off
             then
         then    
-
+        
         1+    
     repeat
     drop
-
+    
     servo-lag-check servo-lag-err @ if ems-servo-off then
-
+    
     ;
 
 \ Servo Disable Operation
-\ &#x63A5;&#x6536;&#x5230; servo-off-accepted &#x70BA;&#x771F;&#x6642;&#xFF0C;&#x5C31;&#x57F7;&#x884C; drive-off
-\ &#x95DC;&#x9589;&#x8EF8;&#x7D44;&#x904B;&#x52D5;&#x63A7;&#x5236;
+\ 接收到 servo-off-accepted 為真時，就執行 drive-off
+\ 關閉軸組運動控制
 : servo-disable-operation ( -- )
-
+    
     false is-servo-on !
     false servo-off-accepted !
     servo-disable-operation-once @ not if
@@ -1012,36 +508,36 @@ variable servo-on-time
             1+    
         repeat
         drop
-
+        
         servo-debug @ if .&quot; log|Servo disable operation&quot; cr then
     then
     ;
 
 
 \ Servo Post Operation 
-\ Drive Off &#x5F8C;&#x53EF;&#x4EE5;&#x5728;&#x6B64;&#x5C07;&#x52D5;&#x529B;&#x96FB;&#x6E90;&#x95DC;&#x9589;
+\ Drive Off 後可以在此將動力電源關閉
 : servo-post-operation ( -- )
     ;
 
 
-\ &#x5C0D;&#x61C9;&#x7684;&#x88DD;&#x7F6E;&#x6AA2;&#x67E5;&#x662F;&#x5426;&#x901A;&#x904E; &#xFF1F;
+\ 對應的裝置檢查是否通過 ？
 : servo-devices-ok? ( -- flag )
     servo-devices-ok @ 
     ;
 
-\ Servo On Request &#x662F;&#x5426;&#x88AB;&#x63A5;&#x53D7;&#xFF1F;
+\ Servo On Request 是否被接受？
 : servo-on-accepted? ( -- flag )
     servo-on-accepted @
     ;
 
 \ Servo power stable 
-\ &#x8A08;&#x6578;&#x7B49;&#x5F85; power stable &#x7684;&#x6642;&#x9593;&#x662F;&#x5426;&#x5230;&#x9054;&#xFF1F; 
+\ 計數等待 power stable 的時間是否到達？ 
 : servo-power-stable? ( -- flag )
-    [&apos;] servo-waiting-power-stable elapsed 1000 &gt;
+    ['] servo-waiting-power-stable elapsed 1000 &gt;
     ;
 
-\ &#x6240;&#x6709;&#x7684;&#x9A45;&#x52D5;&#x5668;&#x7570;&#x8B66;&#x662F;&#x5426;&#x90FD;&#x5DF2;&#x7D93;&#x6E05;&#x9664;
-\ &#x6216;&#x662F;&#x7D93;&#x904E; 2000 ms &#x4E5F;&#x7121;&#x6CD5;&#x6E05;&#x9664;&#x7570;&#x8B66; ?
+\ 所有的驅動器異警是否都已經清除
+\ 或是經過 2000 ms 也無法清除異警 ?
 variable all-drive-no-fault
 : servo-wait-no-fault? ( -- flag )
     true all-drive-no-fault ! 
@@ -1056,14 +552,14 @@ variable all-drive-no-fault
         1+    
     repeat
     drop
-
+    
     all-drive-no-fault @
-    [&apos;] servo-pre-operation elapsed 2000 &gt;
+    ['] servo-pre-operation elapsed 2000 &gt;
     or
     ;
 
-\ &#x6240;&#x6709;&#x7684;&#x9A45;&#x52D5;&#x5668;&#x662F;&#x5426;&#x90FD;&#x5DF2;&#x7D93; drive on
-\ &#x6216;&#x662F;&#x7D93;&#x904E; 2000 ms &#x4E5F;&#x7121;&#x6CD5; drive on ?
+\ 所有的驅動器是否都已經 drive on
+\ 或是經過 2000 ms 也無法 drive on ?
 variable all-drive-on
 : servo-operation-enabled?  ( -- flag )
     true all-drive-on !
@@ -1078,27 +574,27 @@ variable all-drive-on
         1+   
     repeat
     drop
-
+    
     all-drive-on @
-    [&apos;] servo-enable-operation elapsed 2000 &gt;
+    ['] servo-enable-operation elapsed 2000 &gt;
     or
     ;
 
-\ Servo Off Request &#x662F;&#x5426;&#x88AB;&#x63A5;&#x53D7;&#xFF1F;
+\ Servo Off Request 是否被接受？
 : servo-off-accepted?  ( -- flag )
     servo-off-accepted @
     ;
 
 
 \ Is servo operation disabled ? 
-\ &#x8A08;&#x6578;&#x7B49;&#x5F85; servo disable operation &#x7684;&#x6642;&#x9593;&#x662F;&#x5426;&#x5230;&#x9054;&#xFF1F; 
+\ 計數等待 servo disable operation 的時間是否到達？ 
 : servo-operation-disabled? ( -- flag )
-    [&apos;] servo-disable-operation elapsed 1000 &gt;
+    ['] servo-disable-operation elapsed 1000 &gt;
     ;
 
 
 \ servo-default-true 
-\ &#x9810;&#x8A2D;&#x8981;&#x81EA;&#x52D5;&#x5207;&#x63DB;&#x5230; Servo Idle
+\ 預設要自動切換到 Servo Idle
 : servo-default-true? ( -- flag )
     true
     ;
@@ -1121,101 +617,88 @@ transition servo-off-accepted?
 transition servo-operation-disabled? 
 transition servo-default-true?
 
-&apos; servo-init                 &apos; servo-devices-ok?  --&gt;
-&apos; servo-devices-ok?          &apos; servo-idle        --&gt;
-&apos; servo-idle                 &apos; servo-on-accepted? --&gt;
-&apos; servo-on-accepted?         &apos; servo-waiting-power-stable --&gt;  
-&apos; servo-waiting-power-stable &apos; servo-power-stable?  --&gt;
-&apos; servo-power-stable?        &apos; servo-pre-operation --&gt;
-&apos; servo-pre-operation        &apos; servo-wait-no-fault? --&gt;
-&apos; servo-wait-no-fault?       &apos; servo-enable-operation --&gt;
-&apos; servo-enable-operation     &apos; servo-operation-enabled? --&gt;
-&apos; servo-operation-enabled?   &apos; servo-loop --&gt;
-&apos; servo-loop                 &apos; servo-off-accepted? --&gt;
-&apos; servo-off-accepted?        &apos; servo-disable-operation --&gt;
-&apos; servo-disable-operation    &apos; servo-operation-disabled? --&gt;
-&apos; servo-operation-disabled?  &apos; servo-post-operation --&gt;
-&apos; servo-post-operation       &apos; servo-default-true? --&gt;
-&apos; servo-default-true?        &apos; servo-idle          --&gt;
+' servo-init                 ' servo-devices-ok?  --&gt;
+' servo-devices-ok?          ' servo-idle        --&gt;
+' servo-idle                 ' servo-on-accepted? --&gt;
+' servo-on-accepted?         ' servo-waiting-power-stable --&gt;  
+' servo-waiting-power-stable ' servo-power-stable?  --&gt;
+' servo-power-stable?        ' servo-pre-operation --&gt;
+' servo-pre-operation        ' servo-wait-no-fault? --&gt;
+' servo-wait-no-fault?       ' servo-enable-operation --&gt;
+' servo-enable-operation     ' servo-operation-enabled? --&gt;
+' servo-operation-enabled?   ' servo-loop --&gt;
+' servo-loop                 ' servo-off-accepted? --&gt;
+' servo-off-accepted?        ' servo-disable-operation --&gt;
+' servo-disable-operation    ' servo-operation-disabled? --&gt;
+' servo-operation-disabled?  ' servo-post-operation --&gt;
+' servo-post-operation       ' servo-default-true? --&gt;
+' servo-default-true?        ' servo-idle          --&gt;
 
-&apos; servo-init +step
+' servo-init +step
+
 </code></pre>
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
-</div>
 
-                        </div>
-                    </div>
-                
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../sfc.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../sfc-example/motion-state.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
             </div>
 
-            
-                
-                <a href="../sfc.html" class="navigation navigation-prev " aria-label="Previous page: 狀態流程圖 Sequential Function Chart (SFC)">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="motion-state.html" class="navigation navigation-next " aria-label="Next page: Motion State">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../sfc.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-    <script>
-        var gitbook = gitbook || [];
-        gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Servo On/OFF","level":"4.3.9.1","depth":3,"next":{"title":"Motion State","level":"4.3.9.2","depth":3,"path":"sfc-example/motion-state.md","ref":"./sfc-example/motion-state.md","articles":[]},"previous":{"title":"狀態流程圖 Sequential Function Chart (SFC)","level":"4.3.9","depth":2,"path":"sfc.md","ref":"./sfc.md","articles":[{"title":"Servo On/OFF","level":"4.3.9.1","depth":3,"path":"sfc-example/servo-on-off.md","ref":"./sfc-example/servo-on-off.md","articles":[]},{"title":"Motion State","level":"4.3.9.2","depth":3,"path":"sfc-example/motion-state.md","ref":"./sfc-example/motion-state.md","articles":[]},{"title":"Homing State","level":"4.3.9.3","depth":3,"path":"sfc-example/axes-homing.md","ref":"./sfc-example/axes-homing.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"sfc-example/servo-on-off.md","mtime":"2019-06-04T03:18:52.116Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-03T09:03:35.732Z"},"basePath":"..","book":{"language":""}});
-        });
-    </script>
-</div>
+                    <a rel="next" href="../sfc-example/motion-state.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
 
-        
-    <script src="../gitbook/gitbook.js"></script>
-    <script src="../gitbook/theme.js"></script>
-    
-        
-        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
 
     </body>
 </html>
-

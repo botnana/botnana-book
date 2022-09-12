@@ -1,663 +1,156 @@
-
 <!DOCTYPE HTML>
-<html lang="" >
+<html lang="zh-TW" class="sidebar-visible no-js light">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
+        <title>軸組 Axis Group 指令集 - Botnana Book</title>
+
+
+        <!-- Custom HTML head -->
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>軸組 Axis Group 指令集 · GitBook</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 3.2.3">
-        
-        
-        
-    
-    <link rel="stylesheet" href="gitbook/style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
 
-    
-            
-                
-                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
-                
-            
-                
-                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
-                
-            
-                
-                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
-                
-            
-        
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
-    
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
-        
-    
-    
-    <meta name="HandheldFriendly" content="true"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
-
-    
-    <link rel="next" href="sfc.html" />
-    
-    
-    <link rel="prev" href="ethercat-gateway-primitives.html" />
-    
+        <!-- Custom theme stylesheets -->
 
     </head>
     <body>
-        
-<div class="book">
-    <div class="book-summary">
-        
-            
-<div id="book-search-input" role="search">
-    <input type="text" placeholder="Type to search" />
-</div>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
 
-            
-                <nav role="navigation">
-                
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
 
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
 
-<ul class="summary">
-    
-    
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
 
-    
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
 
-    
-        
-        <li class="header">1. 前言</li>
-        
-        
-    
-        <li class="chapter " data-level="1.1" data-path="./">
-            
-                <a href="./">
-            
-                    
-                    簡介
-            
-                </a>
-            
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
 
-            
-        </li>
-    
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> 簡介</a></li><li class="chapter-item expanded "><a href="hardware.html"><strong aria-hidden="true">2.</strong> 硬體規格</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="botnana-a2.html"><strong aria-hidden="true">2.1.</strong> Botnana BN-A2A</a></li><li class="chapter-item expanded "><a href="botnana-bn-j4a.html"><strong aria-hidden="true">2.2.</strong> Botnana BN-J4A</a></li></ol></li><li class="chapter-item expanded "><a href="software.html"><strong aria-hidden="true">3.</strong> 軟體規格</a></li><li class="chapter-item expanded "><a href="roadmap.html"><strong aria-hidden="true">4.</strong> Roadmap</a></li><li class="chapter-item expanded "><a href="tutorial.html"><strong aria-hidden="true">5.</strong> 入門教學</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="botnana-a2-tutorial.html"><strong aria-hidden="true">5.1.</strong> Botnana A2 入門</a></li><li class="chapter-item expanded "><a href="botnana-control-tutorial.html"><strong aria-hidden="true">5.2.</strong> Botnana Control 入門</a></li></ol></li><li class="chapter-item expanded "><a href="configuration-file.html"><strong aria-hidden="true">6.</strong> 設定檔</a></li><li class="chapter-item expanded "><a href="programming.html"><strong aria-hidden="true">7.</strong> 程式開發界面</a></li><li class="chapter-item expanded "><a href="json-api.html"><strong aria-hidden="true">8.</strong> JSON API</a></li><li class="chapter-item expanded "><a href="real-time-script-api.html"><strong aria-hidden="true">9.</strong> Real-time Script API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="host-primitives.html"><strong aria-hidden="true">9.1.</strong> Botnana 基本指令集</a></li><li class="chapter-item expanded "><a href="ethercat-primitives.html"><strong aria-hidden="true">9.2.</strong> EtherCAT 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-drive-primitives.html"><strong aria-hidden="true">9.3.</strong> EtherCAT Drive 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-io-primitives.html"><strong aria-hidden="true">9.4.</strong> EtherCAT IO 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-uart-primitives.html"><strong aria-hidden="true">9.5.</strong> EtherCAT UART 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-encoder-primitives.html"><strong aria-hidden="true">9.6.</strong> EtherCAT Encoder 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-gateway-primitives.html"><strong aria-hidden="true">9.7.</strong> EtherCAT Gateway 指令集</a></li><li class="chapter-item expanded "><a href="axis-group.html" class="active"><strong aria-hidden="true">9.8.</strong> 軸組 Axis Group 指令集</a></li><li class="chapter-item expanded "><a href="sfc.html"><strong aria-hidden="true">9.9.</strong> 狀態流程圖 Sequential Function Chart (SFC)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="sfc-example/servo-on-off.html"><strong aria-hidden="true">9.9.1.</strong> Servo On/OFF</a></li><li class="chapter-item expanded "><a href="sfc-example/motion-state.html"><strong aria-hidden="true">9.9.2.</strong> Motion State</a></li><li class="chapter-item expanded "><a href="sfc-example/axes-homing.html"><strong aria-hidden="true">9.9.3.</strong> Homing State</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="known-working-hardware.html"><strong aria-hidden="true">10.</strong> 支援的硬體清單</a></li><li class="chapter-item expanded "><a href="update-software.html"><strong aria-hidden="true">11.</strong> 軟體更新</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">12.</strong> 常見問題</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="faq/network.html"><strong aria-hidden="true">12.1.</strong> 網路設定</a></li><li class="chapter-item expanded "><a href="faq/gadget.html"><strong aria-hidden="true">12.2.</strong> USB連線IP設定</a></li><li class="chapter-item expanded "><a href="faq/windows7_rndis.html"><strong aria-hidden="true">12.3.</strong> Windows 7 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="faq/windows10_rndis.html"><strong aria-hidden="true">12.4.</strong> Windows 10 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="faq/win10_permission.html"><strong aria-hidden="true">12.5.</strong> Windows 10 檔案權限修改</a></li><li class="chapter-item expanded "><a href="faq/mount.html"><strong aria-hidden="true">12.6.</strong> 磁碟掛載 Mount</a></li><li class="chapter-item expanded "><a href="faq/manual_install_deb/manual_install_deb.html"><strong aria-hidden="true">12.7.</strong> 手動安裝 Botnana Control 更新檔</a></li><li class="spacer"></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
 
-    
-        
-        <li class="header">2. 規格</li>
-        
-        
-    
-        <li class="chapter " data-level="2.1" data-path="hardware.html">
-            
-                <a href="hardware.html">
-            
-                    
-                    硬體規格
-            
-                </a>
-            
+        <div id="page-wrapper" class="page-wrapper">
 
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="2.1.1" data-path="botnana-a2.html">
-            
-                <a href="botnana-a2.html">
-            
-                    
-                    Botnana BN-A2A
-            
-                </a>
-            
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
 
-            
-        </li>
-    
-        <li class="chapter " data-level="2.1.2" data-path="botnana-bn-j4a.html">
-            
-                <a href="botnana-bn-j4a.html">
-            
-                    
-                    Botnana BN-J4A
-            
-                </a>
-            
+                    <h1 class="menu-title">Botnana Book</h1>
 
-            
-        </li>
-    
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
 
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="2.2" data-path="software.html">
-            
-                <a href="software.html">
-            
-                    
-                    軟體規格
-            
-                </a>
-            
+                    </div>
+                </div>
 
-            
-        </li>
-    
-        <li class="chapter " data-level="2.3" data-path="roadmap.html">
-            
-                <a href="roadmap.html">
-            
-                    
-                    Roadmap
-            
-                </a>
-            
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
 
-            
-        </li>
-    
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
 
-    
-        
-        <li class="header">3. 入門</li>
-        
-        
-    
-        <li class="chapter " data-level="3.1" data-path="tutorial.html">
-            
-                <a href="tutorial.html">
-            
-                    
-                    入門教學
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="3.1.1" data-path="botnana-a2-tutorial.html">
-            
-                <a href="botnana-a2-tutorial.html">
-            
-                    
-                    Botnana A2 入門
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="3.1.2" data-path="botnana-control-tutorial.html">
-            
-                <a href="botnana-control-tutorial.html">
-            
-                    
-                    Botnana Control 入門
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="3.2" data-path="configuration-file.html">
-            
-                <a href="configuration-file.html">
-            
-                    
-                    設定檔
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-    
-        
-        <li class="header">4. 程式開發</li>
-        
-        
-    
-        <li class="chapter " data-level="4.1" data-path="programming.html">
-            
-                <a href="programming.html">
-            
-                    
-                    程式開發界面
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.2" data-path="json-api.html">
-            
-                <a href="json-api.html">
-            
-                    
-                    JSON API
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3" data-path="real-time-script-api.html">
-            
-                <a href="real-time-script-api.html">
-            
-                    
-                    Real-time Script API
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.3.1" data-path="host-primitives.html">
-            
-                <a href="host-primitives.html">
-            
-                    
-                    Botnana 基本指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.2" data-path="ethercat-primitives.html">
-            
-                <a href="ethercat-primitives.html">
-            
-                    
-                    EtherCAT 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.3" data-path="ethercat-drive-primitives.html">
-            
-                <a href="ethercat-drive-primitives.html">
-            
-                    
-                    EtherCAT Drive 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.4" data-path="ethercat-io-primitives.html">
-            
-                <a href="ethercat-io-primitives.html">
-            
-                    
-                    EtherCAT IO 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.5" data-path="ethercat-uart-primitives.html">
-            
-                <a href="ethercat-uart-primitives.html">
-            
-                    
-                    EtherCAT UART 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.6" data-path="ethercat-encoder-primitives.html">
-            
-                <a href="ethercat-encoder-primitives.html">
-            
-                    
-                    EtherCAT Encoder 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.7" data-path="ethercat-gateway-primitives.html">
-            
-                <a href="ethercat-gateway-primitives.html">
-            
-                    
-                    EtherCAT Gateway 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="4.3.8" data-path="axis-group.html">
-            
-                <a href="axis-group.html">
-            
-                    
-                    軸組 Axis Group 指令集
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9" data-path="sfc.html">
-            
-                <a href="sfc.html">
-            
-                    
-                    狀態流程圖 Sequential Function Chart (SFC)
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="4.3.9.1" data-path="sfc-example/servo-on-off.html">
-            
-                <a href="sfc-example/servo-on-off.html">
-            
-                    
-                    Servo On/OFF
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9.2" data-path="sfc-example/motion-state.html">
-            
-                <a href="sfc-example/motion-state.html">
-            
-                    
-                    Motion State
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="4.3.9.3" data-path="sfc-example/axes-homing.html">
-            
-                <a href="sfc-example/axes-homing.html">
-            
-                    
-                    Homing State
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-        
-        <li class="header">5. 附錄</li>
-        
-        
-    
-        <li class="chapter " data-level="5.1" data-path="known-working-hardware.html">
-            
-                <a href="known-working-hardware.html">
-            
-                    
-                    支援的硬體清單
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.2" data-path="update-software.html">
-            
-                <a href="update-software.html">
-            
-                    
-                    軟體更新
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3" data-path="faq.html">
-            
-                <a href="faq.html">
-            
-                    
-                    常見問題
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="5.3.1" data-path="faq/network.html">
-            
-                <a href="faq/network.html">
-            
-                    
-                    網路設定
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.2" data-path="faq/gadget.html">
-            
-                <a href="faq/gadget.html">
-            
-                    
-                    USB連線IP設定
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.3" data-path="faq/windows7_rndis.html">
-            
-                <a href="faq/windows7_rndis.html">
-            
-                    
-                    Windows 7 RNDIS 驅動程式安裝
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.4" data-path="faq/windows10_rndis.html">
-            
-                <a href="faq/windows10_rndis.html">
-            
-                    
-                    Windows 10 RNDIS 驅動程式安裝
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.5" data-path="faq/win10_permission.html">
-            
-                <a href="faq/win10_permission.html">
-            
-                    
-                    Windows 10 檔案權限修改
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.6" data-path="faq/mount.html">
-            
-                <a href="faq/mount.html">
-            
-                    
-                    磁碟掛載 Mount
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="5.3.7" data-path="faq/manual_install_deb/manual_install_deb.html">
-            
-                <a href="faq/manual_install_deb/manual_install_deb.html">
-            
-                    
-                    手動安裝 Botnana Control 更新檔
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-    
-
-    <li class="divider"></li>
-
-    <li>
-        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
-            Published with GitBook
-        </a>
-    </li>
-</ul>
-
-
-                </nav>
-            
-        
-    </div>
-
-    <div class="book-body">
-        
-            <div class="body-inner">
-                
-                    
-
-<div class="book-header" role="navigation">
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >軸組 Axis Group 指令集</a>
-    </h1>
-</div>
-
-
-
-
-                    <div class="page-wrapper" tabindex="-1" role="main">
-                        <div class="page-inner">
-                            
-<div id="book-search-results">
-    <div class="search-noresults">
-    
-                                <section class="normal markdown-section">
-                                
-                                <h3 id="job-operation">Job Operation</h3>
-<p>&#x91DD;&#x5C0D;&#x8EF8;&#x7D44;&#x904B;&#x52D5;&#x4F7F;&#x7528;&#x3002;Job &#x6307;&#x7684;&#x662F;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x5408;&#x4F5C;&#x5B8C;&#x6210;&#x7684;&#x5DE5;&#x4F5C;&#x3002;</p>
-<p><strong>&#x5EA7;&#x6A19;&#x7CFB;&#x89E3;&#x91CB;</strong></p>
+                <div id="content" class="content">
+                    <main>
+                        <h3 id="job-operation"><a class="header" href="#job-operation">Job Operation</a></h3>
+<p>針對軸組運動使用。Job 指的是所有軸組合作完成的工作。</p>
+<p><strong>座標系解釋</strong></p>
 <ul>
-<li>ACS &#xFF1A;Axes Coordinate System (&#x904B;&#x52D5;&#x8EF8;&#x5EA7;&#x6A19;&#x7CFB;)</li>
-<li>MCS &#xFF1A;Machine Coordinate System (&#x6A5F;&#x68B0;&#x5EA7;&#x6A19;&#x7CFB;&#x6216;&#x662F;&#x5927;&#x5730;&#x5EA7;&#x6A19;&#x7CFB;)</li>
-<li>PCS &#xFF1A;Product Coordinate System/Program Coordinate System (&#x5DE5;&#x4EF6;&#x5EA7;&#x6A19;&#x7CFB;)</li>
+<li>ACS ：Axes Coordinate System (運動軸座標系)</li>
+<li>MCS ：Machine Coordinate System (機械座標系或是大地座標系)</li>
+<li>PCS ：Product Coordinate System/Program Coordinate System (工件座標系)</li>
 </ul>
-<p><strong>&#x8EF8;&#x7D44;&#x6982;&#x5FF5;&#x8AAA;&#x660E;</strong></p>
+<p><strong>軸組概念說明</strong></p>
 <pre><code>
         +--------------+
         |  Coordinator |
@@ -684,40 +177,42 @@
 | Drive |   | Drive |   | Drive |   | Drive |
 |       |   |       |   |       |   |       |
 +-------+   +-------+   +-------+   +-------+
-</code></pre><p><strong>Coordinator (&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD;)</strong>:</p>
-<p>&#x591A;&#x8EF8;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x3002;EtherCAT &#x901A;&#x8A0A;&#x5177;&#x6709;&#x6642;&#x9593;&#x540C;&#x6B65;&#x7684;&#x7279;&#x6027;&#xFF0C;&#x6240;&#x4EE5;&#x9069;&#x5408;&#x7528;&#x4F86;&#x5BE6;&#x73FE;&#x591A;&#x8EF8;&#x540C;&#x52D5;&#x7684;&#x529F;&#x80FD;&#x3002;</p>
-<p>&#x6B64;&#x591A;&#x8EF8;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x6240;&#x9078;&#x7528;&#x7684; EtherCAT &#x99AC;&#x9054;&#x9A45;&#x52D5;&#x88DD;&#x7F6E;&#x5FC5;&#x9808;&#x652F;&#x63F4;&#x5468;&#x671F;&#x6642;&#x9593;&#x540C;&#x6B65;&#x4F4D;&#x7F6E;&#x6A21;&#x5F0F; &#xFF08;Cyclic Synchronous Position Mode&#xFF09;&#xFF0C;&#x4E00;&#x822C;&#x800C;&#x8A00; EtherCAT &#x99AC;&#x9054;&#x9A45;&#x52D5;&#x88DD;&#x7F6E;&#x90FD;&#x6709;&#x652F;&#x63F4;&#x3002;</p>
-<p><strong>Group &#xFF08;&#x8EF8;&#x7D44;&#xFF09;</strong>:</p>
-<p>&#x8EF8;&#x7D44;&#x904B;&#x52D5;&#x529F;&#x80FD;&#x5982;&#x4E0B;&#xFF1A;</p>
+
+</code></pre>
+<p><strong>Coordinator (同動控制功能)</strong>:</p>
+<p>多軸同動控制。EtherCAT 通訊具有時間同步的特性，所以適合用來實現多軸同動的功能。</p>
+<p>此多軸同動控制所選用的 EtherCAT 馬達驅動裝置必須支援周期時間同步位置模式 （Cyclic Synchronous Position Mode），一般而言 EtherCAT 馬達驅動裝置都有支援。</p>
+<p><strong>Group （軸組）</strong>:</p>
+<p>軸組運動功能如下：</p>
 <ol>
-<li>S &#x578B;&#x52A0;&#x6E1B;&#x901F;&#x66F2;&#x7DDA;&#x3002;</li>
-<li>&#x76F4;&#x7DDA;&#x8207;&#x5713;&#x5F27;&#x8DEF;&#x5F91;&#x898F;&#x5283;&#x3002;</li>
-<li>&#x8DEF;&#x5F91;&#x904B;&#x52D5;&#x901F;&#x5EA6;&#x9650;&#x5236;&#x3002;</li>
-<li>&#x8DEF;&#x5F91;&#x9810;&#x8996;&#x3002;</li>
-<li>&#x53EF;&#x4EE5;&#x591A;&#x500B;&#x8EF8;&#x7D44;&#x540C;&#x6642;&#x904B;&#x884C;&#xFF08;&#x53D7;&#x9650;&#x65BC;&#x904B;&#x52D5;&#x8EF8;&#x662F;&#x5426;&#x88AB;&#x5176;&#x4ED6;&#x904B;&#x52D5;&#x529F;&#x80FD;&#x63A7;&#x5236;&#xFF09;&#x3002;</li>
+<li>S 型加減速曲線。</li>
+<li>直線與圓弧路徑規劃。</li>
+<li>路徑運動速度限制。</li>
+<li>路徑預視。</li>
+<li>可以多個軸組同時運行（受限於運動軸是否被其他運動功能控制）。</li>
 </ol>
-<p>&#x76EE;&#x524D;&#x6709;&#x63D0;&#x4F9B;&#x4EE5;&#x4E0B;&#x5E7E;&#x7A2E;&#x985E;&#x578B;&#xFF1A;</p>
+<p>目前有提供以下幾種類型：</p>
 <ol>
-<li>&#x55AE;&#x8EF8; &#xFF08;1D&#xFF09;&#x3002;</li>
-<li>2&#x8EF8;&#x6B63;&#x4EA4; (2D)&#x3002;</li>
-<li>3 &#x8EF8;&#x6B63;&#x4EA4; (3D)&#x3002;</li>
-<li>&#x55AE;&#x8EF8;&#x5F26;&#x6CE2;&#x904B;&#x52D5; &#xFF08;Sine wave&#xFF09;&#x3002;</li>
+<li>單軸 （1D）。</li>
+<li>2軸正交 (2D)。</li>
+<li>3 軸正交 (3D)。</li>
+<li>單軸弦波運動 （Sine wave）。</li>
 </ol>
-<p><strong>Axis&#xFF08;&#x904B;&#x52D5;&#x8EF8;&#xFF09;</strong>:</p>
-<p>&#x53D7;&#x63A7;&#x65BC;&#x8EF8;&#x7D44;&#xFF0C;&#x904B;&#x884C;&#x9EDE;&#x5C0D;&#x9EDE;&#x7684;&#x904B;&#x52D5;&#x6216;&#x662F;&#x9032;&#x884C;&#x8FFD;&#x96A8;&#x904B;&#x52D5;&#x3002;&#x5982;&#x679C;&#x6C92;&#x6709;&#x5C0D;&#x61C9;&#x7684;&#x9A45;&#x52D5;&#x88DD;&#x7F6E;&#x5373;&#x70BA;&#x865B;&#x64EC;&#x8EF8;&#x3002;&#x7576;&#x904B;&#x52D5;&#x8EF8;&#x70BA;&#x865B;&#x64EC;&#x8EF8;&#x6642;&#xFF0C;&#x5176;&#x5BE6;&#x969B;&#x4F4D;&#x7F6E;&#x662F;&#x7531;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x63A8;&#x7B97;&#x6240;&#x5F97;&#x3002;</p>
-<p>&#x57F7;&#x884C;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#x6642;&#x7684;&#x6CE8;&#x610F;&#x4E8B;&#x9805;&#xFF1A;</p>
+<p><strong>Axis（運動軸）</strong>:</p>
+<p>受控於軸組，運行點對點的運動或是進行追隨運動。如果沒有對應的驅動裝置即為虛擬軸。當運動軸為虛擬軸時，其實際位置是由命令位置推算所得。</p>
+<p>執行點對點運動時的注意事項：</p>
 <ol>
-<li>S &#x578B;&#x52A0;&#x6E1B;&#x901F;&#x66F2;&#x7DDA;&#x3002;</li>
-<li>&#x904B;&#x52D5;&#x901F;&#x5EA6;&#x53EA;&#x80FD;&#x5728;&#x975C;&#x6B62;&#x6539;&#x8B8A;&#x3002;&#x52A0;&#x901F;&#x66F2;&#x7DDA;&#x6703;&#x4F9D;&#x64DA;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x6700;&#x5927;&#x52A0;&#x901F;&#x5EA6;&#x8207;&#x6700;&#x5927;&#x901F;&#x5EA6;&#x9032;&#x884C;&#x898F;&#x5283;&#x3002;</li>
-<li>&#x904B;&#x52D5;&#x4E2D;&#x53EF;&#x4EE5;&#x96A8;&#x6642;&#x6539;&#x8B8A;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;&#x3002;</li>
+<li>S 型加減速曲線。</li>
+<li>運動速度只能在靜止改變。加速曲線會依據運動軸的最大加速度與最大速度進行規劃。</li>
+<li>運動中可以隨時改變目標位置。</li>
 </ol>
-<p><strong>Drive&#xFF08;&#x9A45;&#x52D5;&#x88DD;&#x7F6E;&#xFF09;</strong>&#xFF1A;</p>
-<p>&#x5BE6;&#x969B;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x88DD;&#x7F6E;&#x3002;&#x53EF;&#x4EE5;&#x662F;&#x4E0D;&#x540C;&#x5EE0;&#x724C;/&#x578B;&#x614B;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x3002;</p>
-<p><strong>&#x904B;&#x52D5;&#x55AE;&#x4F4D;</strong></p>
-<p>Botnana Control &#x7684;&#x9577;&#x5EA6;&#x55AE;&#x4F4D;&#x9ED8;&#x8A8D;&#x70BA;&#x516C;&#x5C3A; [m]&#xFF0C;&#x6642;&#x9593;&#x55AE;&#x4F4D;&#x70BA;&#x79D2; [s]&#x3002;
-&#x6240;&#x4EE5;&#x901F;&#x5EA6;&#x55AE;&#x4F4D;&#x70BA; <code>m/s</code>, &#x52A0;&#x901F;&#x5EA6;&#x55AE;&#x4F4D;<code>m/s^2</code>&#xFF0C;&#x52A0;&#x52A0;&#x901F;&#x5EA6;&#x55AE;&#x4F4D;<code>m/s^3</code>&#x3002;</p>
-<p>&#x5047;&#x8A2D;&#x6709;&#x4E00;&#x500B; 1D &#x7684;&#x76F4;&#x7DDA;&#x904B;&#x52D5;&#x7CFB;&#x7D71;&#xFF0C;&#x99AC;&#x9054;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x89E3;&#x6790;&#x5EA6;&#x8A2D;&#x5B9A;&#x70BA; 1000000 pulse = 1 m&#x3002;</p>
-<p>&#x4EE5;&#x9577;&#x5EA6;&#x55AE;&#x4F4D;&#x70BA;&#x516C;&#x5C3A;&#x7684;&#x8A2D;&#x5B9A;&#x7BC4;&#x4F8B;&#xFF1A;</p>
+<p><strong>Drive（驅動裝置）</strong>：</p>
+<p>實際的馬達驅動裝置。可以是不同廠牌/型態的馬達驅動器。</p>
+<p><strong>運動單位</strong></p>
+<p>Botnana Control 的長度單位默認為公尺 [m]，時間單位為秒 [s]。
+所以速度單位為 <code>m/s</code>, 加速度單位<code>m/s^2</code>，加加速度單位<code>m/s^3</code>。</p>
+<p>假設有一個 1D 的直線運動系統，馬達編碼器的解析度設定為 1000000 pulse = 1 m。</p>
+<p>以長度單位為公尺的設定範例：</p>
 <ul>
 <li>Group vmax = 0.01 [m/s]</li>
 <li>Group amax = 5.0  [m/s^2]</li>
@@ -729,7 +224,7 @@
 <li>Axis amax = 5.0  [m/s^2]</li>
 <li>Axis ignorable distance = 0.0000005 [m]</li>
 </ul>
-<p>&#x4EE5;&#x9577;&#x5EA6;&#x55AE;&#x4F4D;&#x70BA;&#x8108;&#x885D;&#x6578; (Pulse) &#x7684;&#x8A2D;&#x5B9A;&#x7BC4;&#x4F8B;&#xFF1A;</p>
+<p>以長度單位為脈衝數 (Pulse) 的設定範例：</p>
 <ul>
 <li>Group vmax = 10000.0 [pulse/s]</li>
 <li>Group amax = 5000000.0  [pulse/s^2]</li>
@@ -741,9 +236,9 @@
 <li>Axis amax = 5000000.0  [pulse/s^2]</li>
 <li>Axis ignorable distance = 0.5 [pulse]</li>
 </ul>
-<p>&#x5047;&#x8A2D;&#x6709;&#x4E00;&#x500B; 1D &#x7684;&#x65CB;&#x8F49;&#x904B;&#x52D5;&#x7CFB;&#x7D71;&#xFF0C;&#x99AC;&#x9054;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x89E3;&#x6790;&#x5EA6;&#x8A2D;&#x5B9A;&#x70BA; 3600000 pulse = 1 rev&#xFF0C;&#x4EE5;&#x65CB;&#x8F49;&#x534A;&#x5F91; 100 mm &#x7684;&#x5207;&#x7DDA;&#x901F;&#x5EA6;&#x4F86;&#x6BD4;&#x64EC;&#x7DDA;&#x6027;&#x901F;&#x5EA6;&#x3002;
-Botnana Control &#x662F;&#x4EE5;&#x5F91;&#x5EA6; (radian) &#x8A08;&#x7B97;&#xFF0C;&#x6240;&#x4EE5;&#x8F49;&#x63DB;&#x6642;&#x9700;&#x8981;&#x7559;&#x610F;&#x3002;</p>
-<p>&#x4EE5;&#x9577;&#x5EA6;&#x55AE;&#x4F4D;&#x70BA;&#x5F91;&#x5EA6;&#x7684;&#x8A2D;&#x5B9A;&#x7BC4;&#x4F8B;&#xFF1A;</p>
+<p>假設有一個 1D 的旋轉運動系統，馬達編碼器的解析度設定為 3600000 pulse = 1 rev，以旋轉半徑 100 mm 的切線速度來比擬線性速度。
+Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。</p>
+<p>以長度單位為徑度的設定範例：</p>
 <ul>
 <li>Group vmax = 0.1 [rad/s]</li>
 <li>Group amax = 50.0  [rad/s^2]</li>
@@ -755,145 +250,89 @@ Botnana Control &#x662F;&#x4EE5;&#x5F91;&#x5EA6; (radian) &#x8A08;&#x7B97;&#xFF0
 <li>Axis amax = 50.0  [rad/s^2]</li>
 <li>Axis ignorable distance = 0.0000005 [rad]</li>
 </ul>
-<p><strong>&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;</strong>&#xFF1A;</p>
-<p>&#x7576;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD;&#xFF08;+coordinator&#xFF09;&#x958B;&#x555F;&#x5F8C;&#xFF0C;Botnana Control &#x6703;&#x4F9D;&#x64DA;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x8A2D;&#x5B9A;&#xFF0C;&#x5C07;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x547D;&#x4EE4;&#x8F49;&#x63DB;&#x5230;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x3002;
-&#x6240;&#x4EE5;&#x7576;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD; &#xFF08;+coordinator&#xFF09;&#x958B;&#x555F;&#x5F8C;&#xFF0C;&#x5982;&#x679C;&#x8A72;&#x63A7;&#x5236;&#x5668;&#x88AB;&#x904B;&#x52D5;&#x8EF8;&#x6240;&#x63A7;&#x5236;&#xFF0C;&#x5C31;&#x7121;&#x6CD5;&#x76F4;&#x63A5;&#x8A2D;&#x5B9A;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x8EF8;&#x7D44;&#x555F;&#x52D5;&#x4E2D;&#xFF0C;&#x4E14;&#x4F9D;&#x64DA;&#x8DEF;&#x5F91;&#x898F;&#x5283;&#x958B;&#x59CB;&#x904B;&#x52D5;&#xFF0C;&#x6216;&#x662F;&#x904B;&#x52D5;&#x4E2D;&#x66AB;&#x505C;&#xFF0C;Botnana Control &#x6703;&#x4F9D;&#x64DA;&#x8EF8;&#x7D44;&#x7684;&#x8A2D;&#x5B9A;&#x5C07;&#x904B;&#x52D5;&#x547D;&#x4EE4;&#x5206;&#x914D;&#x7D66;&#x5C0D;&#x61C9;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#xFF0C;
-&#x6B64;&#x6642;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x547D;&#x4EE4;&#x5C31;&#x6703;&#x53D7;&#x5230;&#x8EF8;&#x7D44;&#x63A7;&#x5236;&#x3002;&#x5982;&#x679C;&#x8EF8;&#x7D44;&#x9593;&#x6709;&#x5171;&#x7528;&#x904B;&#x52D5;&#x8EF8;&#xFF0C;&#x5207;&#x63DB;&#x6642;&#x5C31;&#x5FC5;&#x9808;&#x8981;&#x7559;&#x610F;&#x662F;&#x5426;&#x6703;&#x9020;&#x6210;&#x904B;&#x52D5;&#x8EF8;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x4E0D;&#x9023;&#x7E8C;&#x3002;</p>
-<p><strong>&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;&#x904E;&#x5927;&#x8655;&#x7F6E;&#x65B9;&#x5F0F;</strong></p>
-<p>&#x7576;&#x5BE6;&#x9AD4;&#x8EF8;&#x904B;&#x52D5;&#x6642;&#xFF0C;&#x5982;&#x679C;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x8207;&#x5BE6;&#x969B;&#x4F4D;&#x7F6E;&#x76F8;&#x5DEE;&#x904E;&#x5927;&#xFF0C;&#x901A;&#x5E38;&#x8868;&#x793A;&#x6709;&#x8EF8;&#x63A7;&#x7684;&#x554F;&#x984C;&#x767C;&#x751F;&#xFF0C;&#x7576;&#x505C;&#x6B62;&#x904B;&#x52D5;&#x4E14;&#x6392;&#x9664;&#x6545;&#x969C;&#x5F8C;&#xFF0C;&#x6D88;&#x9664;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;&#x904E;&#x5927;&#x7684;&#x65B9;&#x6CD5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p><strong>命令位置</strong>：</p>
+<p>當同動控制功能（+coordinator）開啟後，Botnana Control 會依據運動軸的設定，將運動軸的命令轉換到馬達驅動器的命令位置。
+所以當同動控制功能 （+coordinator）開啟後，如果該控制器被運動軸所控制，就無法直接設定馬達驅動器的命令位置。</p>
+<p>如果軸組啟動中，且依據路徑規劃開始運動，或是運動中暫停，Botnana Control 會依據軸組的設定將運動命令分配給對應的運動軸，
+此時運動軸的命令就會受到軸組控制。如果軸組間有共用運動軸，切換時就必須要留意是否會造成運動軸命令位置不連續。</p>
+<p><strong>落後誤差過大處置方式</strong></p>
+<p>當實體軸運動時，如果命令位置與實際位置相差過大，通常表示有軸控的問題發生，當停止運動且排除故障後，消除落後誤差過大的方法如下：</p>
 <ul>
-<li>&#x7576;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD;&#x6C92;&#x6709;&#x958B;&#x555F;&#x6216;&#x662F;&#x8A72;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x4E0D;&#x53D7;&#x904B;&#x52D5;&#x8EF8;&#x63A7;&#x5236;&#x6642;&#xFF0C;&#x76F4;&#x63A5;&#x4EE5;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x5BE6;&#x969B;&#x4F4D;&#x7F6E;&#x8A2D;&#x5B9A;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</li>
+<li>當同動控制功能沒有開啟或是該馬達驅動器不受運動軸控制時，直接以馬達驅動器的實際位置設定命令位置。例如：</li>
 </ul>
 <pre><code>    1 1 real-p@ 1 1 target-p!
-</code></pre><ul>
-<li>&#x7576;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD;&#x958B;&#x555F;&#xFF0C;&#x4E14;&#x904B;&#x52D5;&#x8EF8;&#x4E0D;&#x53D7;&#x8EF8;&#x7D44;&#x63A7;&#x5236;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</li>
+</code></pre>
+<ul>
+<li>當同動控制功能開啟，且運動軸不受軸組控制，例如：</li>
 </ul>
-<pre><code>    1 0axis-ferr    \ &#x6E05;&#x9664;&#x7B2C; 1 &#x500B;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;
-</code></pre><ul>
-<li>&#x7576;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD;&#x958B;&#x555F;&#xFF0C;&#x4E14;&#x904B;&#x52D5;&#x8EF8;&#x53D7;&#x8EF8;&#x7D44;&#x63A7;&#x5236;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</li>
+<pre><code>    1 0axis-ferr    \ 清除第 1 個運動軸的落後誤差
+</code></pre>
+<ul>
+<li>當同動控制功能開啟，且運動軸受軸組控制，例如：</li>
 </ul>
-<pre><code>    1 group! 0path     \ &#x5047;&#x8A2D;&#x662F;&#x7B2C; 1 &#x500B;&#x8EF8;&#x7D44;&#xFF0C;&#x5207;&#x63DB;&#x8EF8;&#x7D44;&#x70BA; 1&#xFF0C;&#x6E05;&#x9664;&#x8DEF;&#x5F91;
-    1 0axis-ferr       \ &#x5047;&#x8A2D;&#x7B2C; 1 &#x500B;&#x904B;&#x52D5;&#x8EF8;&#x53D7;&#x63A7;&#x65BC;&#x7B2C; 1 &#x500B;&#x8EF8;&#x7D44;&#xFF0C;&#x6E05;&#x9664;&#x7B2C; 1 &#x500B;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;
-    2 0axis-ferr       \ &#x5047;&#x8A2D;&#x7B2C; 2 &#x500B;&#x904B;&#x52D5;&#x8EF8;&#x53D7;&#x63A7;&#x65BC;&#x7B2C; 1 &#x500B;&#x8EF8;&#x7D44;&#xFF0C;&#x6E05;&#x9664;&#x7B2C; 2 &#x500B;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;
-</code></pre><hr>
-<h3 id="coordinator">Coordinator</h3>
-<h4 id="coordinator-----"><code>.coordinator ( -- )</code></h4>
-<p>&#x8F38;&#x51FA;&#x8EF8;&#x7D44;&#x72C0;&#x614B;&#x3002;</p>
-<p>&#x8F38;&#x51FA;&#x8A0A;&#x606F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code>    1 group! 0path     \ 假設是第 1 個軸組，切換軸組為 1，清除路徑
+    1 0axis-ferr       \ 假設第 1 個運動軸受控於第 1 個軸組，清除第 1 個運動軸的落後誤差
+    2 0axis-ferr       \ 假設第 2 個運動軸受控於第 1 個軸組，清除第 2 個運動軸的落後誤差
+</code></pre>
+<hr />
+<h3 id="coordinator"><a class="header" href="#coordinator">Coordinator</a></h3>
+<h4 id="coordinator-----"><a class="header" href="#coordinator-----"><code>.coordinator ( -- )</code></a></h4>
+<p>輸出軸組狀態。</p>
+<p>輸出訊息如下：</p>
 <pre><code>    coordinator_enabled|0
 
-    coordinator_enabled: 1 &#x8868;&#x793A;&#x540C;&#x52D5;&#x529F;&#x80FD;&#x958B;&#x555F;&#xFF0C;0 &#x8868;&#x793A;&#x540C;&#x52D5;&#x529F;&#x80FD;&#x95DC;&#x9589;&#x3002;
-</code></pre><h4 id="coordinator-----"><code>+coordinator ( -- )</code></h4>
-<p>&#x555F;&#x52D5;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD;&#x3002;</p>
-<p>&#x7531; Botnana Control &#x9032;&#x884C;&#x8EF8;&#x904B;&#x52D5;&#x63A7;&#x5236;&#xFF0C;Botnana Control&#x6703;&#x4F9D;&#x8EF8;&#x7D44;&#x8DEF;&#x5F91;&#x6216;&#x662F;&#x904B;&#x52D5;&#x8EF8;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;&#x9032;&#x884C;&#x52A0;&#x6E1B;&#x901F;&#x898F;&#x5283;&#x8207;&#x4F4D;&#x7F6E;&#x88DC;&#x9593;&#x3002;</p>
-<p>&#x5728;&#x6B64;&#x6A21;&#x5F0F;&#x4E4B;&#x4E0B;&#xFF0C;&#x9A45;&#x52D5;&#x5668;&#x5FC5;&#x9808;&#x8981;&#x5207;&#x63DB;&#x5230; CSP Mode&#x3002;</p>
-<h4 id="coordinator-----"><code>-coordinator ( -- )</code></h4>
-<p>&#x95DC;&#x9589;&#x540C;&#x52D5;&#x63A7;&#x5236;&#x529F;&#x80FD;&#x3002;</p>
-<h4 id="groups-----len-"><code>#groups ( -- len )</code></h4>
-<p>&#x53D6;&#x5F97;&#x8EF8;&#x7D44;&#x6578;&#x91CF; <code>len</code>&#x3002;</p>
-<h4 id="axes-----len-"><code>#axes ( -- len )</code></h4>
-<p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8;&#x6578;&#x91CF; <code>len</code> &#x3002;</p>
-<h4 id="coordinator-----t-"><code>coordinator? ( -- t )</code></h4>
-<p>&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x958B;&#x555F;&#xFF1F;</p>
-<h4 id="empty-----t-"><code>empty? ( -- t )</code></h4>
-<p>&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x7684;&#x8DEF;&#x5F91;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x6E05;&#x7A7A;&#xFF1F;</p>
-<h4 id="ems-job-----"><code>ems-job ( -- )</code></h4>
-<p>&#x57F7;&#x884C;&#x540C;&#x52D5;&#x529F;&#x80FD;&#x7DCA;&#x6025;&#x505C;&#x6B62;&#x3002;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x8207;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#x90FD;&#x6703;&#x7ACB;&#x5373;&#x505C;&#x6B62;&#x3002;&#x8EF8;&#x7D44;&#x7684;&#x8DEF;&#x5F91;&#x8CC7;&#x8A0A;&#x90FD;&#x6703;&#x88AB;&#x6E05;&#x9664;&#x3002;</p>
-<h4 id="end-----t-"><code>end? ( -- t )</code></h4>
-<p>&#x6240;&#x4EE5;&#x8EF8;&#x7D44;&#x8207;&#x904B;&#x52D5;&#x8EF8;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#x662F;&#x5426;&#x5230;&#x9054;&#x8DEF;&#x5F91;&#x7D42;&#x9EDE;&#xFF1F;</p>
-<h4 id="reset-job-----"><code>reset-job ( -- )</code></h4>
-<p>&#x6E05;&#x9664;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x7684;&#x8DEF;&#x7D93;&#x8CC7;&#x8A0A;&#x3002;</p>
-<h4 id="start-job-----"><code>start-job ( -- )</code></h4>
-<p>&#x547D;&#x4EE4;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x958B;&#x59CB;&#x904B;&#x52D5;&#x3002;</p>
-<h4 id="stop-----t-"><code>stop? ( -- t )</code></h4>
-<p>&#x6240;&#x4EE5;&#x8EF8;&#x7D44;&#x8207;&#x904B;&#x52D5;&#x8EF8;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x505C;&#x6B62;&#xFF1F;</p>
-<h4 id="stop-job-----"><code>stop-job ( -- )</code></h4>
-<p>&#x547D;&#x4EE4;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x8207;&#x904B;&#x52D5;&#x8EF8;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#x6E1B;&#x901F;&#x505C;&#x6B62;&#x3002;</p>
-<h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
-<table>
-<thead>
-<tr>
-<th>&#x6307;&#x4EE4;</th>
-<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
-<th>&#x8AAA;&#x660E;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>.coordinator</code></td>
-<td>( --  )</td>
-<td>&#x8F38;&#x51FA;&#x8EF8;&#x7D44;&#x72C0;&#x614B;</td>
-</tr>
-<tr>
-<td><code>+coordinator</code></td>
-<td>( -- )</td>
-<td>&#x555F;&#x52D5;&#x8EF8;&#x7D44;&#x529F;&#x80FD;</td>
-</tr>
-<tr>
-<td><code>-coordinator</code></td>
-<td>( -- )</td>
-<td>&#x95DC;&#x9589;&#x8EF8;&#x7D44;&#x529F;&#x80FD;</td>
-</tr>
-<tr>
-<td><code>#groups</code></td>
-<td>( -- len )</td>
-<td>&#x53D6;&#x5F97;&#x8EF8;&#x7D44;&#x6578;&#x91CF;</td>
-</tr>
-<tr>
-<td><code>#axes</code></td>
-<td>( -- len )</td>
-<td>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8;&#x6578;&#x91CF;</td>
-</tr>
-<tr>
-<td><code>coordinator?</code></td>
-<td>( -- t )</td>
-<td>&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x958B;&#x555F;&#xFF1F;</td>
-</tr>
-<tr>
-<td><code>empty?</code></td>
-<td>( -- t )</td>
-<td>&#x662F;&#x5426;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x8DEF;&#x5F91;&#x5DF2;&#x7D93;&#x6E05;&#x7A7A; &#xFF1F;</td>
-</tr>
-<tr>
-<td><code>ems-job</code></td>
-<td>( -- )</td>
-<td>&#x547D;&#x4EE4;&#x6240;&#x4EE5;&#x8EF8;&#x7D44;&#x7DCA;&#x6025;&#x505C;&#x6B62;</td>
-</tr>
-<tr>
-<td><code>end?</code></td>
-<td>( -- t )</td>
-<td>&#x662F;&#x5426;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x5DF2;&#x7D93;&#x5230;&#x9054;&#x8DEF;&#x5F91;&#x7D42;&#x9EDE; &#xFF1F;</td>
-</tr>
-<tr>
-<td><code>reset-job</code></td>
-<td>( -- )</td>
-<td>&#x6E05;&#x9664;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x8DEF;&#x5F91;</td>
-</tr>
-<tr>
-<td><code>start-job</code></td>
-<td>( -- )</td>
-<td>&#x547D;&#x4EE4;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x958B;&#x59CB;&#x904B;&#x52D5;</td>
-</tr>
-<tr>
-<td><code>stop?</code></td>
-<td>( -- t )</td>
-<td>&#x662F;&#x5426;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x5DF2;&#x7D93;&#x505C;&#x6B62;&#x904B;&#x52D5; &#xFF1F;</td>
-</tr>
-<tr>
-<td><code>stop-job</code></td>
-<td>( -- )</td>
-<td>&#x547D;&#x4EE4;&#x6240;&#x6709;&#x8EF8;&#x7D44;&#x505C;&#x6B62;&#x904B;&#x52D5;</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="axis-group">Axis Group</h3>
-<h4 id="group--g----"><code>.group ( g -- )</code></h4>
-<p>&#x8F38;&#x51FA; group <code>g</code> &#x8CC7;&#x8A0A;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
-<pre><code>1 .group  \ &#x8F38;&#x51FA;&#x7B2C; 1 &#x500B;&#x8EF8;&#x7D44;&#x7684;&#x8CC7;&#x8A0A;
-</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F; :</p>
+    coordinator_enabled: 1 表示同動功能開啟，0 表示同動功能關閉。
+</code></pre>
+<h4 id="coordinator------1"><a class="header" href="#coordinator------1"><code>+coordinator ( -- )</code></a></h4>
+<p>啟動同動控制功能。</p>
+<p>由 Botnana Control 進行軸運動控制，Botnana Control會依軸組路徑或是運動軸目標位置進行加減速規劃與位置補間。</p>
+<p>在此模式之下，驅動器必須要切換到 CSP Mode。</p>
+<h4 id="-coordinator-----"><a class="header" href="#-coordinator-----"><code>-coordinator ( -- )</code></a></h4>
+<p>關閉同動控制功能。</p>
+<h4 id="groups-----len-"><a class="header" href="#groups-----len-"><code>#groups ( -- len )</code></a></h4>
+<p>取得軸組數量 <code>len</code>。</p>
+<h4 id="axes-----len-"><a class="header" href="#axes-----len-"><code>#axes ( -- len )</code></a></h4>
+<p>取得運動軸數量 <code>len</code> 。</p>
+<h4 id="coordinator-----t-"><a class="header" href="#coordinator-----t-"><code>coordinator? ( -- t )</code></a></h4>
+<p>軸組是否開啟？</p>
+<h4 id="empty-----t-"><a class="header" href="#empty-----t-"><code>empty? ( -- t )</code></a></h4>
+<p>所有軸組的路徑是否已經清空？</p>
+<h4 id="ems-job-----"><a class="header" href="#ems-job-----"><code>ems-job ( -- )</code></a></h4>
+<p>執行同動功能緊急停止。所有軸組與運動軸的點對點運動都會立即停止。軸組的路徑資訊都會被清除。</p>
+<h4 id="end-----t-"><a class="header" href="#end-----t-"><code>end? ( -- t )</code></a></h4>
+<p>所以軸組與運動軸點對點運動是否到達路徑終點？</p>
+<h4 id="reset-job-----"><a class="header" href="#reset-job-----"><code>reset-job ( -- )</code></a></h4>
+<p>清除所有軸組的路經資訊。</p>
+<h4 id="start-job-----"><a class="header" href="#start-job-----"><code>start-job ( -- )</code></a></h4>
+<p>命令所有軸組開始運動。</p>
+<h4 id="stop-----t-"><a class="header" href="#stop-----t-"><code>stop? ( -- t )</code></a></h4>
+<p>所以軸組與運動軸點對點運動是否已經停止？</p>
+<h4 id="stop-job-----"><a class="header" href="#stop-job-----"><code>stop-job ( -- )</code></a></h4>
+<p>命令所有軸組與運動軸點對點運動減速停止。</p>
+<h4 id="本節指令集"><a class="header" href="#本節指令集">本節指令集</a></h4>
+<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
+<tr><td><code>.coordinator</code></td><td>( --  )</td><td>輸出軸組狀態</td></tr>
+<tr><td><code>+coordinator</code></td><td>( -- )</td><td>啟動軸組功能</td></tr>
+<tr><td><code>-coordinator</code></td><td>( -- )</td><td>關閉軸組功能</td></tr>
+<tr><td><code>#groups</code></td><td>( -- len )</td><td>取得軸組數量</td></tr>
+<tr><td><code>#axes</code></td><td>( -- len )</td><td>取得運動軸數量</td></tr>
+<tr><td><code>coordinator?</code></td><td>( -- t )</td><td>軸組是否開啟？</td></tr>
+<tr><td><code>empty?</code></td><td>( -- t )</td><td>是否所有軸組路徑已經清空 ？</td></tr>
+<tr><td><code>ems-job</code></td><td>( -- )</td><td>命令所以軸組緊急停止</td></tr>
+<tr><td><code>end?</code></td><td>( -- t )</td><td>是否所有軸組已經到達路徑終點 ？</td></tr>
+<tr><td><code>reset-job</code></td><td>( -- )</td><td>清除所有軸組路徑</td></tr>
+<tr><td><code>start-job</code></td><td>( -- )</td><td>命令所有軸組開始運動</td></tr>
+<tr><td><code>stop?</code></td><td>( -- t )</td><td>是否所有軸組已經停止運動 ？</td></tr>
+<tr><td><code>stop-job</code></td><td>( -- )</td><td>命令所有軸組停止運動</td></tr>
+</tbody></table>
+<hr />
+<h3 id="axis-group"><a class="header" href="#axis-group">Axis Group</a></h3>
+<h4 id="group--g----"><a class="header" href="#group--g----"><code>.group ( g -- )</code></a></h4>
+<p>輸出 group <code>g</code> 資訊</p>
+<p>命令範例:</p>
+<pre><code>1 .group  \ 輸出第 1 個軸組的資訊
+</code></pre>
+<p>回傳訊息 :</p>
 <pre><code>group_enabled.1|0
 |group_stopping.1|1
 |move_count.1|0
@@ -911,11 +350,13 @@ Botnana Control &#x662F;&#x4EE5;&#x5F91;&#x5EA6; (radian) &#x8A08;&#x7B97;&#xFF0
 |ACS.1|0.0000000,0.0000000,0.0000000
 |MCS.1|0.0000000,0.0000000,0.0000000
 |PCS.1|0.0000000,0.0000000,0.0000000
-</code></pre><h4 id="grpcfg--g----"><code>.grpcfg ( g -- )</code></h4>
-<p>&#x8F38;&#x51FA; group <code>g</code> &#x7684;&#x8A2D;&#x5B9A;&#x53C3;&#x6578;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>1 .grpcfg  \ &#x8F38;&#x51FA;&#x7B2C; 1 &#x500B;&#x8EF8;&#x7D44;&#x7684;&#x8A2D;&#x5B9A;&#x53C3;&#x6578;
-</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;:</p>
+</code></pre>
+<h4 id="grpcfg--g----"><a class="header" href="#grpcfg--g----"><code>.grpcfg ( g -- )</code></a></h4>
+<p>輸出 group <code>g</code> 的設定參數</p>
+<p>命令範例：</p>
+<pre><code>1 .grpcfg  \ 輸出第 1 個軸組的設定參數
+</code></pre>
+<p>回傳訊息:</p>
 <pre><code>group_name.1|Anonymous
 |group_type.1|3D
 |group_mapping.1|1,2,3
@@ -923,723 +364,470 @@ Botnana Control &#x662F;&#x4EE5;&#x5F91;&#x5EA6; (radian) &#x8A08;&#x7B97;&#xFF0
 |group_amax.1|5.00000
 |group_jmax.1|80.00000
 |group_ignorable_distance.1|0.0000005
-</code></pre><h4 id="group"><code>+group</code></h4>
-<p>&#x555F;&#x52D5;&#x76EE;&#x524D;&#x9078;&#x7528;&#x7684;&#x8EF8;&#x7D44;&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
-<pre><code>1 group!   \ &#x5207;&#x63DB;&#x5230;&#x7B2C; 1 &#x500B;&#x8EF8;&#x7D44;
-+group     \ &#x555F;&#x52D5;&#x76EE;&#x524D;&#x9078;&#x7528;&#x7684;&#x8EF8;&#x7D44;
-</code></pre><h4 id="group"><code>-group</code></h4>
-<p>&#x95DC;&#x9589;&#x76EE;&#x524D;&#x9078;&#x7528;&#x7684;&#x8EF8;&#x7D44;&#x3002;</p>
-<h4 id="0path"><code>0path</code></h4>
-<p>&#x6E05;&#x9664;&#x76EE;&#x524D;&#x8EF8;&#x7D44;&#x7684;&#x8DEF;&#x7D93;&#x8CC7;&#x8A0A;&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
-<pre><code>1 group!  \ &#x5207;&#x63DB;&#x5230;&#x7B2C; 1 &#x500B;&#x8EF8;&#x7D44;
-0ptah     \ &#x6E05;&#x9664;&#x76EE;&#x524D;&#x8EF8;&#x7D44;&#x7684;&#x8DEF;&#x7D93;&#x8CC7;&#x8A0A;
-</code></pre><h4 id="acs-p--n------f----pos-"><code>acs-p@ ( n -- ) ( F: -- pos )</code></h4>
-<p>&#x53D6;&#x5F97;&#x76EE;&#x524D;&#x8EF8;&#x7D44;&#xFF0C;ACS &#x5EA7;&#x6A19;&#x7CFB;&#x7B2C; <code>n</code> &#x8EF8;&#x7684;&#x5EA7;&#x6A19;&#x4F4D;&#x7F6E;&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
-<pre><code>1 acs-p@ f. \ &#x53D6;&#x5F97;&#x7B2C; 1 &#x8EF8;&#x5F97;&#x5EA7;&#x6A19;&#x4F4D;&#x7F6E;&#xFF0C;&#x7136;&#x5F8C;&#x8F38;&#x51FA;&#x4F4D;&#x7F6E;&#x8CC7;&#x8A0A;
-</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;:</p>
+</code></pre>
+<h4 id="group"><a class="header" href="#group"><code>+group</code></a></h4>
+<p>啟動目前選用的軸組。</p>
+<p>命令範例:</p>
+<pre><code>1 group!   \ 切換到第 1 個軸組
++group     \ 啟動目前選用的軸組
+</code></pre>
+<h4 id="-group"><a class="header" href="#-group"><code>-group</code></a></h4>
+<p>關閉目前選用的軸組。</p>
+<h4 id="0path"><a class="header" href="#0path"><code>0path</code></a></h4>
+<p>清除目前軸組的路經資訊。</p>
+<p>命令範例:</p>
+<pre><code>1 group!  \ 切換到第 1 個軸組
+0ptah     \ 清除目前軸組的路經資訊
+</code></pre>
+<h4 id="acs-p--n------f----pos-"><a class="header" href="#acs-p--n------f----pos-"><code>acs-p@ ( n -- ) ( F: -- pos )</code></a></h4>
+<p>取得目前軸組，ACS 座標系第 <code>n</code> 軸的座標位置。</p>
+<p>命令範例:</p>
+<pre><code>1 acs-p@ f. \ 取得第 1 軸得座標位置，然後輸出位置資訊
+</code></pre>
+<p>回傳訊息:</p>
 <pre><code>0.0000000
-</code></pre><h4 id="feedrate--f-v----"><code>feedrate! ( F: v -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x5F8C;&#x7E8C;&#x5B89;&#x63D2;&#x8DEF;&#x5F91;&#x7684;&#x6700;&#x5927;&#x904B;&#x52D5;&#x901F;&#x5EA6; <code>v</code>&#x3002;<code>v</code> &#x5FC5;&#x9808;&#x5927;&#x65BC; 0&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
-<pre><code>100.0e mm/min feedrate!  \ &#x8A2D;&#x5B9A;&#x7576;&#x4E0B; group feedrate &#x70BA; 100.0 mm/min
-</code></pre><h4 id="feedrate--f----v-"><code>feedrate@ ( F: -- v )</code></h4>
-<p>&#x53D6;&#x5F97;&#x5F8C;&#x7E8C;&#x5B89;&#x63D2;&#x8DEF;&#x5F91;&#x7684;&#x6700;&#x5927;&#x904B;&#x52D5;&#x901F;&#x5EA6; <code>v</code>&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
-<pre><code>feedrate@ f. \ &#x53D6;&#x5F97; group feedrate&#xFF0C;&#x4E26;&#x8F38;&#x51FA;&#x8A0A;&#x606F;
-</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;:</p>
+</code></pre>
+<h4 id="feedrate--f-v----"><a class="header" href="#feedrate--f-v----"><code>feedrate! ( F: v -- )</code></a></h4>
+<p>設定後續安插路徑的最大運動速度 <code>v</code>。<code>v</code> 必須大於 0。</p>
+<p>命令範例:</p>
+<pre><code>100.0e mm/min feedrate!  \ 設定當下 group feedrate 為 100.0 mm/min
+</code></pre>
+<h4 id="feedrate--f----v-"><a class="header" href="#feedrate--f----v-"><code>feedrate@ ( F: -- v )</code></a></h4>
+<p>取得後續安插路徑的最大運動速度 <code>v</code>。</p>
+<p>命令範例:</p>
+<pre><code>feedrate@ f. \ 取得 group feedrate，並輸出訊息
+</code></pre>
+<p>回傳訊息:</p>
 <pre><code>0.1000000
-</code></pre><h4 id="gamax--g------f-a----"><code>gamax! ( g -- ) ( F: a -- )</code></h4>
-<p>&#x8A2D;&#x5B9A; group <code>g</code> &#x7684;&#x6700;&#x5927;&#x52A0;&#x901F;&#x5EA6;&#x70BA; <code>a</code>&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>2.0e 1 gamax! \ &#x8A2D;&#x5B9A; Group 1 &#x7684;&#x6700;&#x5927;&#x52A0;&#x901F;&#x5EA6;&#x70BA; 2.0
-</code></pre><h4 id="gend-----flag-"><code>gend? ( -- flag )</code></h4>
-<p>&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x5230;&#x9054;&#x8DEF;&#x5F91;&#x7D42;&#x9EDE;&#xFF1F;</p>
-<h4 id="gignore-dist--g------f-dist---"><code>gignore-dist! ( g -- ) ( F: dist --)</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x6307;&#x5B9A;&#x8EF8;&#x7D44; <code>g</code> &#x53EF;&#x5FFD;&#x7565;&#x7684;&#x9577;&#x5EA6;&#x8A08;&#x7B97;&#x8AA4;&#x5DEE; <code>dist</code>&#x3002;</p>
-<p>&#x901A;&#x5E38;&#x5728; pulse &#x7684;&#x7CFB;&#x7D71;&#x4E0B;&#xFF0C;&#x8A2D;&#x5B9A;&#x70BA; 0.5 &#x6216;&#x662F; 0.1 [pulse]&#x3002;&#x5176;&#x5B83;&#x8A2D;&#x5B9A;&#x70BA; 0.5e-6 &#x6216;&#x662F; 0.1e-6 [m] or [rad]</p>
-<h4 id="gjmax--g------f-j----"><code>gjmax! ( g -- ) ( F: j -- )</code></h4>
-<p>&#x8A2D;&#x5B9A; group <code>g</code> &#x7684;&#x6700;&#x5927;&#x52A0;&#x52A0;&#x901F;&#x5EA6;&#x70BA; <code>j</code>&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>40.0e 1 gjmax! \ &#x8A2D;&#x5B9A; Group 1 &#x7684;&#x6700;&#x5927;&#x52A0;&#x52A0;&#x901F;&#x5EA6;&#x70BA; 40.0
-</code></pre><h4 id="gmap--j1-j2-j3--g----"><code>gmap! ( j1 j2 j3 ... g -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x8EF8;&#x7D44; <code>g</code> &#x6240;&#x63A7;&#x5236;&#x7684;&#x904B;&#x52D5;&#x8EF8; <code>j1 j2 j3 ...</code>&#x3002;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x8EF8;&#x7D44;&#x578B;&#x614B;&#x8207;&#x904B;&#x52D5;&#x8EF8;&#x6578;&#x91CF;&#x3002;</p>
-<p>&#x6CE8;&#x610F;&#x4E8B;&#x9805;&#xFF1A;</p>
+</code></pre>
+<h4 id="gamax--g------f-a----"><a class="header" href="#gamax--g------f-a----"><code>gamax! ( g -- ) ( F: a -- )</code></a></h4>
+<p>設定 group <code>g</code> 的最大加速度為 <code>a</code>。</p>
+<p>命令範例：</p>
+<pre><code>2.0e 1 gamax! \ 設定 Group 1 的最大加速度為 2.0
+</code></pre>
+<h4 id="gend-----flag-"><a class="header" href="#gend-----flag-"><code>gend? ( -- flag )</code></a></h4>
+<p>所選定的軸組是否到達路徑終點？</p>
+<h4 id="gignore-dist--g------f-dist---"><a class="header" href="#gignore-dist--g------f-dist---"><code>gignore-dist! ( g -- ) ( F: dist --)</code></a></h4>
+<p>設定指定軸組 <code>g</code> 可忽略的長度計算誤差 <code>dist</code>。</p>
+<p>通常在 pulse 的系統下，設定為 0.5 或是 0.1 [pulse]。其它設定為 0.5e-6 或是 0.1e-6 [m] or [rad]</p>
+<h4 id="gjmax--g------f-j----"><a class="header" href="#gjmax--g------f-j----"><code>gjmax! ( g -- ) ( F: j -- )</code></a></h4>
+<p>設定 group <code>g</code> 的最大加加速度為 <code>j</code>。</p>
+<p>命令範例：</p>
+<pre><code>40.0e 1 gjmax! \ 設定 Group 1 的最大加加速度為 40.0
+</code></pre>
+<h4 id="gmap--j1-j2-j3--g----"><a class="header" href="#gmap--j1-j2-j3--g----"><code>gmap! ( j1 j2 j3 ... g -- )</code></a></h4>
+<p>設定軸組 <code>g</code> 所控制的運動軸 <code>j1 j2 j3 ...</code>。需要注意軸組型態與運動軸數量。</p>
+<p>注意事項：</p>
 <ol>
-<li>&#x8EF8;&#x7D44; <code>g</code> &#x4E0D;&#x53EF;&#x4EE5;&#x8655;&#x5728;&#x555F;&#x52D5;&#x72C0;&#x614B;&#x3002;</li>
-<li>&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x4E0D;&#x53EF;&#x53D7;&#x63A7;&#x65BC;&#x5176;&#x4ED6;&#x555F;&#x52D5;&#x4E2D;&#x7684;&#x8EF8;&#x7D44;&#x6216;&#x662F;&#x5728;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x3002;</li>
-<li>&#x8EF8;&#x7D44;&#x578B;&#x614B;&#x8207;&#x904B;&#x52D5;&#x8EF8;&#x6578;&#x91CF;&#x8981;&#x5339;&#x914D;&#x6B63;&#x78BA;&#x3002;</li>
+<li>軸組 <code>g</code> 不可以處在啟動狀態。</li>
+<li>運動軸 <code>j</code> 不可受控於其他啟動中的軸組或是在點對點運動模式。</li>
+<li>軸組型態與運動軸數量要匹配正確。</li>
 </ol>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>              \ &#x5047;&#x8A2D;&#x8EF8;&#x7D44; 1 &#x662F; 3D &#x8EF8;&#x7D44;
-2 3 4 1 gmap! \ &#x8A2D;&#x5B9A; Group 1 &#x5C0D;&#x61C9;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#x7DE8;&#x865F;&#x5206;&#x5225;&#x662F; 2, 3, 4
-2 1 gmap!     \ &#x8A2D;&#x5B9A; Group 1 &#x5C0D;&#x61C9;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#x7DE8;&#x865F;&#x5206;&#x5225;&#x662F; 2&#xFF0C;&#x5247;&#x662F;&#x6703;&#x56DE;&#x5831;&#x932F;&#x8AA4; &#xFF08;Stack underflow&#xFF09;
-</code></pre><h4 id="gmap--g----j1-j2-j3--"><code>gmap@ ( g -- j1 j2 j3 ... )</code></h4>
-<p>&#x53D6;&#x5F97;&#x8EF8;&#x7D44;&#x6240;&#x63A7;&#x5236;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x8EF8;&#x7D44;&#x578B;&#x614B;&#x8207;&#x904B;&#x52D5;&#x8EF8;&#x6578;&#x91CF;&#x3002;</p>
-<h4 id="group--g----"><code>group! ( g -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x76EE;&#x524D;&#x9078;&#x7528;&#x7684;&#x8EF8;&#x7D44; <code>g</code>, <code>g</code>  &#x7DE8;&#x865F;&#x5F9E; 1 &#x958B;&#x59CB;&#x3002;</p>
-<h4 id="group-----g-"><code>group@ ( -- g )</code></h4>
-<p>&#x53D6;&#x5F97;&#x76EE;&#x524D;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44; <code>g</code>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
-<pre><code>group@                  \ &#x53D6;&#x51FA;&#x76EE;&#x524D;&#x8EF8;&#x7D44;&#x7DE8;&#x865F;
-1 group! 0.1e feedrate! \ &#x9078;&#x7528;&#x8EF8;&#x7D44; 1&#xFF0C;&#x8A2D;&#x5B9A; feedrate
-group!                  \ &#x5207;&#x63DB;&#x56DE;&#x539F;&#x4F86;&#x7684;&#x8EF8;&#x7D44;
-</code></pre><h4 id="group-----t-"><code>group? ( -- t )</code></h4>
-<p>&#x76EE;&#x524D;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x555F;&#x52D5; ?</p>
-<h4 id="grp1d--g----flag-"><code>grp1d? ( g -- flag )</code></h4>
-<p>&#x6307;&#x5B9A;&#x8EF8;&#x7D44; <code>g</code> &#x662F;&#x5426;&#x70BA; 1D &#x8EF8;&#x7D44; ?</p>
-<h4 id="grp2d--g----flag-"><code>grp2d? ( g -- flag )</code></h4>
-<p>&#x6307;&#x5B9A;&#x8EF8;&#x7D44; <code>g</code> &#x662F;&#x5426;&#x70BA; 2D &#x8EF8;&#x7D44; ?</p>
-<h4 id="grp3d--g----flag-"><code>grp3d? ( g -- flag )</code></h4>
-<p>&#x6307;&#x5B9A;&#x8EF8;&#x7D44; <code>g</code> &#x662F;&#x5426;&#x70BA; 3D &#x8EF8;&#x7D44; ?</p>
-<h4 id="grp-sine--g----flag-"><code>grp-sine? ( g -- flag )</code></h4>
-<p>&#x6307;&#x5B9A;&#x8EF8;&#x7D44; <code>g</code> &#x662F;&#x5426;&#x70BA; Sine Wave &#x8EF8;&#x7D44; ?</p>
-<h4 id="gstart-----"><code>gstart ( -- )</code></h4>
-<p>&#x547D;&#x4EE4;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x958B;&#x59CB;&#x904B;&#x52D5;&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
-<pre><code>1 group! gstart  \ &#x5207;&#x63DB;&#x5230;&#x8EF8;&#x7D44; 1, &#x547D;&#x4EE4;&#x8EF8;&#x7D44; 1 &#x958B;&#x59CB;&#x904B;&#x52D5;&#x3002;
-</code></pre><h4 id="gstop-----"><code>gstop ( -- )</code></h4>
-<p>&#x547D;&#x4EE4;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x505C;&#x6B62;&#x904B;&#x52D5;&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
-<pre><code>1 group! gstop  \ &#x5207;&#x63DB;&#x5230;&#x8EF8;&#x7D44; 1, &#x547D;&#x4EE4;&#x8EF8;&#x7D44; 1 &#x505C;&#x6B62;&#x904B;&#x52D5;&#x3002;
-</code></pre><h4 id="gstop-----flag-"><code>gstop? ( -- flag )</code></h4>
-<p>&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x505C;&#x6B62;&#x904B;&#x52D5; &#xFF1F;</p>
-<h4 id="gvmax--g------f-v----"><code>gvmax! ( g -- ) ( F: v -- )</code></h4>
-<p>&#x8A2D;&#x5B9A; group <code>g</code> &#x7684;&#x6700;&#x5927;&#x901F;&#x5EA6;&#x70BA; <code>v</code>&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>1000.0e mm/min 2 gvmax! \ &#x8A2D;&#x5B9A; Group 1 &#x7684;&#x6700;&#x9AD8;&#x901F;&#x5EA6;&#x70BA; 1000.0 mm/min
-</code></pre><h4 id="map-len--g----len-"><code>map-len@ ( g -- len )</code></h4>
-<p>&#x53D6;&#x5F97;&#x8EF8;&#x7D44; <code>g</code> &#x7684;&#x904B;&#x52D5;&#x8EF8;&#x6578;&#x91CF; <code>len</code>&#x3002;</p>
-<h4 id="map-sine--j1-g----"><code>map-sine ( j1 g -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x8EF8;&#x7D44; <code>g</code> &#x7684;&#x5C0D;&#x61C9;&#x904B;&#x52D5;&#x8EF8;&#x70BA; <code>j1</code>&#x3002;</p>
-<p>&#x6CE8;&#x610F;&#x4E8B;&#x9805;&#xFF1A;</p>
+<p>命令範例：</p>
+<pre><code>              \ 假設軸組 1 是 3D 軸組
+2 3 4 1 gmap! \ 設定 Group 1 對應的運動軸編號分別是 2, 3, 4
+2 1 gmap!     \ 設定 Group 1 對應的運動軸編號分別是 2，則是會回報錯誤 （Stack underflow）
+</code></pre>
+<h4 id="gmap--g----j1-j2-j3--"><a class="header" href="#gmap--g----j1-j2-j3--"><code>gmap@ ( g -- j1 j2 j3 ... )</code></a></h4>
+<p>取得軸組所控制的運動軸，需要注意軸組型態與運動軸數量。</p>
+<h4 id="group--g-----1"><a class="header" href="#group--g-----1"><code>group! ( g -- )</code></a></h4>
+<p>設定目前選用的軸組 <code>g</code>, <code>g</code>  編號從 1 開始。</p>
+<h4 id="group-----g-"><a class="header" href="#group-----g-"><code>group@ ( -- g )</code></a></h4>
+<p>取得目前所選定的軸組 <code>g</code>命令範例:</p>
+<pre><code>group@                  \ 取出目前軸組編號
+1 group! 0.1e feedrate! \ 選用軸組 1，設定 feedrate
+group!                  \ 切換回原來的軸組
+</code></pre>
+<h4 id="group-----t-"><a class="header" href="#group-----t-"><code>group? ( -- t )</code></a></h4>
+<p>目前所選定的軸組是否啟動 ?</p>
+<h4 id="grp1d--g----flag-"><a class="header" href="#grp1d--g----flag-"><code>grp1d? ( g -- flag )</code></a></h4>
+<p>指定軸組 <code>g</code> 是否為 1D 軸組 ?</p>
+<h4 id="grp2d--g----flag-"><a class="header" href="#grp2d--g----flag-"><code>grp2d? ( g -- flag )</code></a></h4>
+<p>指定軸組 <code>g</code> 是否為 2D 軸組 ?</p>
+<h4 id="grp3d--g----flag-"><a class="header" href="#grp3d--g----flag-"><code>grp3d? ( g -- flag )</code></a></h4>
+<p>指定軸組 <code>g</code> 是否為 3D 軸組 ?</p>
+<h4 id="grp-sine--g----flag-"><a class="header" href="#grp-sine--g----flag-"><code>grp-sine? ( g -- flag )</code></a></h4>
+<p>指定軸組 <code>g</code> 是否為 Sine Wave 軸組 ?</p>
+<h4 id="gstart-----"><a class="header" href="#gstart-----"><code>gstart ( -- )</code></a></h4>
+<p>命令所選定的軸組開始運動。</p>
+<p>命令範例:</p>
+<pre><code>1 group! gstart  \ 切換到軸組 1, 命令軸組 1 開始運動。
+</code></pre>
+<h4 id="gstop-----"><a class="header" href="#gstop-----"><code>gstop ( -- )</code></a></h4>
+<p>命令所選定的軸組停止運動。</p>
+<p>命令範例:</p>
+<pre><code>1 group! gstop  \ 切換到軸組 1, 命令軸組 1 停止運動。
+</code></pre>
+<h4 id="gstop-----flag-"><a class="header" href="#gstop-----flag-"><code>gstop? ( -- flag )</code></a></h4>
+<p>所選定的軸組是否已經停止運動 ？</p>
+<h4 id="gvmax--g------f-v----"><a class="header" href="#gvmax--g------f-v----"><code>gvmax! ( g -- ) ( F: v -- )</code></a></h4>
+<p>設定 group <code>g</code> 的最大速度為 <code>v</code>。</p>
+<p>命令範例：</p>
+<pre><code>1000.0e mm/min 2 gvmax! \ 設定 Group 1 的最高速度為 1000.0 mm/min
+</code></pre>
+<h4 id="map-len--g----len-"><a class="header" href="#map-len--g----len-"><code>map-len@ ( g -- len )</code></a></h4>
+<p>取得軸組 <code>g</code> 的運動軸數量 <code>len</code>。</p>
+<h4 id="map-sine--j1-g----"><a class="header" href="#map-sine--j1-g----"><code>map-sine ( j1 g -- )</code></a></h4>
+<p>設定軸組 <code>g</code> 的對應運動軸為 <code>j1</code>。</p>
+<p>注意事項：</p>
 <ol>
-<li>&#x8EF8;&#x7D44; <code>g</code> &#x5FC5;&#x9808;&#x70BA; Sine Wave &#x8EF8;&#x7D44;&#x3002;</li>
-<li>&#x8EF8;&#x7D44; <code>g</code> &#x4E0D;&#x53EF;&#x4EE5;&#x8655;&#x5728;&#x555F;&#x52D5;&#x72C0;&#x614B;&#x3002;</li>
-<li>&#x904B;&#x52D5;&#x8EF8; <code>j1</code> &#x4E0D;&#x53EF;&#x53D7;&#x63A7;&#x65BC;&#x5176;&#x4ED6;&#x555F;&#x52D5;&#x4E2D;&#x7684;&#x8EF8;&#x7D44;&#x6216;&#x662F;&#x5728;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x3002;</li>
+<li>軸組 <code>g</code> 必須為 Sine Wave 軸組。</li>
+<li>軸組 <code>g</code> 不可以處在啟動狀態。</li>
+<li>運動軸 <code>j1</code> 不可受控於其他啟動中的軸組或是在點對點運動模式。</li>
 </ol>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A; </p>
-<pre><code>3 1 map-sine  \ &#x8A2D;&#x5B9A; Group 1 &#x7684;&#x904B;&#x52D5;&#x8EF8;&#x70BA; Axis 3
-</code></pre><h4 id="map1d--j1-g----"><code>map1d ( j1 g -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x8EF8;&#x7D44; <code>g</code> &#x7684;&#x5C0D;&#x61C9;&#x904B;&#x52D5;&#x8EF8;&#x70BA; <code>j1</code>&#x3002;</p>
-<p>&#x6CE8;&#x610F;&#x4E8B;&#x9805;&#xFF1A;</p>
+<p>命令範例： </p>
+<pre><code>3 1 map-sine  \ 設定 Group 1 的運動軸為 Axis 3
+</code></pre>
+<h4 id="map1d--j1-g----"><a class="header" href="#map1d--j1-g----"><code>map1d ( j1 g -- )</code></a></h4>
+<p>設定軸組 <code>g</code> 的對應運動軸為 <code>j1</code>。</p>
+<p>注意事項：</p>
 <ol>
-<li>&#x8EF8;&#x7D44; <code>g</code> &#x5FC5;&#x9808;&#x70BA; 1D &#x8EF8;&#x7D44;&#x3002;</li>
-<li>&#x8EF8;&#x7D44; <code>g</code> &#x4E0D;&#x53EF;&#x4EE5;&#x8655;&#x5728;&#x555F;&#x52D5;&#x72C0;&#x614B;&#x3002;</li>
-<li>&#x904B;&#x52D5;&#x8EF8; <code>j1</code> &#x4E0D;&#x53EF;&#x53D7;&#x63A7;&#x65BC;&#x5176;&#x4ED6;&#x555F;&#x52D5;&#x4E2D;&#x7684;&#x8EF8;&#x7D44;&#x6216;&#x662F;&#x5728;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x3002;</li>
+<li>軸組 <code>g</code> 必須為 1D 軸組。</li>
+<li>軸組 <code>g</code> 不可以處在啟動狀態。</li>
+<li>運動軸 <code>j1</code> 不可受控於其他啟動中的軸組或是在點對點運動模式。</li>
 </ol>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>3 1 map1d  \ &#x8A2D;&#x5B9A; Group 1 &#x7684;&#x904B;&#x52D5;&#x8EF8;&#x70BA; Axis 3
-</code></pre><h4 id="map2d--j1-j2-g----"><code>map2d ( j1 j2 g -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x8EF8;&#x7D44; <code>g</code> &#x7684;&#x5C0D;&#x61C9;&#x904B;&#x52D5;&#x8EF8;&#x70BA; <code>j1, j2</code>&#x3002;</p>
-<p>&#x6CE8;&#x610F;&#x4E8B;&#x9805;&#xFF1A;</p>
+<p>命令範例：</p>
+<pre><code>3 1 map1d  \ 設定 Group 1 的運動軸為 Axis 3
+</code></pre>
+<h4 id="map2d--j1-j2-g----"><a class="header" href="#map2d--j1-j2-g----"><code>map2d ( j1 j2 g -- )</code></a></h4>
+<p>設定軸組 <code>g</code> 的對應運動軸為 <code>j1, j2</code>。</p>
+<p>注意事項：</p>
 <ol>
-<li>&#x8EF8;&#x7D44; <code>g</code> &#x5FC5;&#x9808;&#x70BA; 2D &#x8EF8;&#x7D44;&#x3002;</li>
-<li>&#x8EF8;&#x7D44; <code>g</code> &#x4E0D;&#x53EF;&#x4EE5;&#x8655;&#x5728;&#x555F;&#x52D5;&#x72C0;&#x614B;&#x3002;</li>
-<li>&#x904B;&#x52D5;&#x8EF8; <code>j1 j2</code> &#x4E0D;&#x53EF;&#x53D7;&#x63A7;&#x65BC;&#x5176;&#x4ED6;&#x555F;&#x52D5;&#x4E2D;&#x7684;&#x8EF8;&#x7D44;&#x6216;&#x662F;&#x5728;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x3002;</li>
+<li>軸組 <code>g</code> 必須為 2D 軸組。</li>
+<li>軸組 <code>g</code> 不可以處在啟動狀態。</li>
+<li>運動軸 <code>j1 j2</code> 不可受控於其他啟動中的軸組或是在點對點運動模式。</li>
 </ol>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>3 5 2 map2d \ &#x8A2D;&#x5B9A; Group 2 &#x7684;&#x904B;&#x52D5;&#x8EF8;&#x70BA; Axis 3, 5
-</code></pre><h4 id="map3d--j1-j2-j3-g----"><code>map3d ( j1 j2 j3 g -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x8EF8;&#x7D44; <code>g</code> &#x7684;&#x5C0D;&#x61C9;&#x904B;&#x52D5;&#x8EF8;&#x70BA; <code>j1, j2, j3</code>&#x3002;</p>
-<p>&#x6CE8;&#x610F;&#x4E8B;&#x9805;&#xFF1A;</p>
+<p>命令範例：</p>
+<pre><code>3 5 2 map2d \ 設定 Group 2 的運動軸為 Axis 3, 5
+</code></pre>
+<h4 id="map3d--j1-j2-j3-g----"><a class="header" href="#map3d--j1-j2-j3-g----"><code>map3d ( j1 j2 j3 g -- )</code></a></h4>
+<p>設定軸組 <code>g</code> 的對應運動軸為 <code>j1, j2, j3</code>。</p>
+<p>注意事項：</p>
 <ol>
-<li>&#x8EF8;&#x7D44; <code>g</code> &#x5FC5;&#x9808;&#x70BA; 3D &#x8EF8;&#x7D44;&#x3002;</li>
-<li>&#x8EF8;&#x7D44; <code>g</code> &#x4E0D;&#x53EF;&#x4EE5;&#x8655;&#x5728;&#x555F;&#x52D5;&#x72C0;&#x614B;&#x3002;</li>
-<li>&#x904B;&#x52D5;&#x8EF8; <code>j1 j2 j3</code> &#x4E0D;&#x53EF;&#x53D7;&#x63A7;&#x65BC;&#x5176;&#x4ED6;&#x555F;&#x52D5;&#x4E2D;&#x7684;&#x8EF8;&#x7D44;&#x6216;&#x662F;&#x5728;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#x6A21;&#x5F0F;&#x3002;</li>
+<li>軸組 <code>g</code> 必須為 3D 軸組。</li>
+<li>軸組 <code>g</code> 不可以處在啟動狀態。</li>
+<li>運動軸 <code>j1 j2 j3</code> 不可受控於其他啟動中的軸組或是在點對點運動模式。</li>
 </ol>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>3 5 6 2 map3d &#x8A2D;&#x5B9A; Group 2 &#x7684;&#x904B;&#x52D5;&#x8EF8;&#x70BA; Axis 3, 5, 6
-</code></pre><h4 id="mcs-----"><code>mcs ( -- )</code></h4>
-<p>&#x5BA3;&#x544A;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#x4EE5;&#x76EE;&#x524D; MCS &#x5EA7;&#x6A19;&#x4F4D;&#x7F6E;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;&#xFF08;&#x5C07; PCS &#x8207; MCS &#x5EA7;&#x6A19;&#x7CFB;&#x91CD;&#x758A;&#xFF09;&#x3002;</p>
-<h4 id="mcs-p---n------f----pos-"><code>mcs-p@  ( n -- ) ( F: -- pos )</code></h4>
-<p>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44; MCS &#x5EA7;&#x6A19;&#x7CFB;&#x4E2D;&#x6307;&#x5B9A;&#x8EF8; <code>n</code> &#x7684;&#x5EA7;&#x6A19;&#x4F4D;&#x7F6E; <code>pos</code>&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>1 mcs-p@  \ &#x53D6;&#x5F97;&#x7B2C; 1 &#x8EF8;&#x7684; MCS &#x5EA7;&#x6A19;&#x7CFB;&#x4F4D;&#x7F6E;&#x3002;
-</code></pre><h4 id="move-source------n-"><code>move-source#  ( -- n )</code></h4>
-<p>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#x76EE;&#x524D;&#x662F;&#x8655;&#x5728;&#x54EA;&#x500B;&#x8DEF;&#x5F91;&#x4E8B;&#x4EF6; <code>n</code>&#x3002;</p>
-<h4 id="next-a---f----a-"><code>next-a@  ( F: -- a )</code></h4>
-<p>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#x8DEF;&#x5F91;&#x5207;&#x7DDA;&#x65B9;&#x5411;&#x52A0;&#x901F;&#x5EA6; <code>a</code>&#x3002;</p>
-<h4 id="next-path-id-----id-"><code>next-path-id@ ( -- id )</code></h4>
-<p>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#xFF0C;&#x76EE;&#x524D;&#x8DEF;&#x5F91;&#x7684;&#x7DE8;&#x865F; <code>id</code>&#x3002;</p>
-<h4 id="next-path-mode-----mode-"><code>next-path-mode@ ( -- mode )</code></h4>
-<p>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#xFF0C;&#x76EE;&#x524D;&#x8DEF;&#x5F91;&#x7684;&#x6A21;&#x5F0F; <code>mode</code>&#x3002;</p>
-<h4 id="next-path-p--------f----pos-"><code>next-path-p@  ( -- ) ( F: -- pos )</code></h4>
-<p>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#xFF0C;&#x5F9E;&#x904B;&#x52D5;&#x8D77;&#x59CB;&#x9EDE;&#x7B97;&#x8D77;&#xFF0C;&#x6CBF;&#x8DEF;&#x8DEF;&#x5F91;&#x65B9;&#x5411;&#x7684;&#x4F4D;&#x7F6E; <code>pos</code>&#x3002;</p>
-<h4 id="next-v--f----v-"><code>next-v@ ( F: -- v )</code></h4>
-<p>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#x8DEF;&#x5F91;&#x5207;&#x7DDA;&#x65B9;&#x5411;&#x901F;&#x5EA6; <code>v</code>&#x3002;</p>
-<h4 id="path-events-capacity-----n-"><code>path-events-capacity@ ( -- n )</code></h4>
-<p>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#x53EF;&#x5BB9;&#x7D0D;&#x7684;&#x8DEF;&#x5F91;&#x6578;&#x91CF; <code>n</code>&#x3002;</p>
-<h4 id="path-events-len-----n-"><code>path-events-len@ ( -- n )</code></h4>
-<p>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#x76EE;&#x524D;&#x7684;&#x8DEF;&#x5F91;&#x6578;&#x91CF; <code>n</code>&#x3002;</p>
-<h4 id="path-id--id----"><code>path-id! ( id -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x5F8C;&#x7E8C;&#x5B89;&#x63D2;&#x8DEF;&#x5F91;&#x7684;&#x7DE8;&#x865F; <code>id</code>&#x3002;</p>
-<p>&#x61C9;&#x7528;&#x7BC4;&#x4F8B;&#xFF1A;</p>
+<p>命令範例：</p>
+<pre><code>3 5 6 2 map3d 設定 Group 2 的運動軸為 Axis 3, 5, 6
+</code></pre>
+<h4 id="mcs-----"><a class="header" href="#mcs-----"><code>mcs ( -- )</code></a></h4>
+<p>宣告所選定軸組以目前 MCS 座標位置為路徑起始點（將 PCS 與 MCS 座標系重疊）。</p>
+<h4 id="mcs-p---n------f----pos-"><a class="header" href="#mcs-p---n------f----pos-"><code>mcs-p@  ( n -- ) ( F: -- pos )</code></a></h4>
+<p>取得所選定軸組 MCS 座標系中指定軸 <code>n</code> 的座標位置 <code>pos</code>。</p>
+<p>命令範例：</p>
+<pre><code>1 mcs-p@  \ 取得第 1 軸的 MCS 座標系位置。
+</code></pre>
+<h4 id="move-source------n-"><a class="header" href="#move-source------n-"><code>move-source#  ( -- n )</code></a></h4>
+<p>取得所選定軸組目前是處在哪個路徑事件 <code>n</code>。</p>
+<h4 id="next-a---f----a-"><a class="header" href="#next-a---f----a-"><code>next-a@  ( F: -- a )</code></a></h4>
+<p>取得所選定軸組路徑切線方向加速度 <code>a</code>。</p>
+<h4 id="next-path-id-----id-"><a class="header" href="#next-path-id-----id-"><code>next-path-id@ ( -- id )</code></a></h4>
+<p>取得所選定軸組，目前路徑的編號 <code>id</code>。</p>
+<h4 id="next-path-mode-----mode-"><a class="header" href="#next-path-mode-----mode-"><code>next-path-mode@ ( -- mode )</code></a></h4>
+<p>取得所選定軸組，目前路徑的模式 <code>mode</code>。</p>
+<h4 id="next-path-p--------f----pos-"><a class="header" href="#next-path-p--------f----pos-"><code>next-path-p@  ( -- ) ( F: -- pos )</code></a></h4>
+<p>取得所選定軸組，從運動起始點算起，沿路路徑方向的位置 <code>pos</code>。</p>
+<h4 id="next-v--f----v-"><a class="header" href="#next-v--f----v-"><code>next-v@ ( F: -- v )</code></a></h4>
+<p>取得所選定軸組路徑切線方向速度 <code>v</code>。</p>
+<h4 id="path-events-capacity-----n-"><a class="header" href="#path-events-capacity-----n-"><code>path-events-capacity@ ( -- n )</code></a></h4>
+<p>取得所選定軸組可容納的路徑數量 <code>n</code>。</p>
+<h4 id="path-events-len-----n-"><a class="header" href="#path-events-len-----n-"><code>path-events-len@ ( -- n )</code></a></h4>
+<p>取得所選定軸組目前的路徑數量 <code>n</code>。</p>
+<h4 id="path-id--id----"><a class="header" href="#path-id--id----"><code>path-id! ( id -- )</code></a></h4>
+<p>設定後續安插路徑的編號 <code>id</code>。</p>
+<p>應用範例：</p>
 <ol>
-<li>&#x5132;&#x5B58;&#x5C0D;&#x61C9; NC &#x7A0B;&#x5F0F;&#x7684;&#x884C;&#x865F;&#xFF0C;&#x7576;&#x57F7;&#x884C;&#x8EF8;&#x7D44;&#x904B;&#x52D5;&#x6642;&#x53EF;&#x4EE5;&#x5F97;&#x77E5;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x662F;&#x7531;&#x54EA;&#x4E00;&#x884C; NC &#x7A0B;&#x5F0F;&#x89E3;&#x8B6F;&#x800C;&#x4F86;&#x3002;</li>
+<li>儲存對應 NC 程式的行號，當執行軸組運動時可以得知目前位置是由哪一行 NC 程式解譯而來。</li>
 </ol>
-<h4 id="path-id-----id-"><code>path-id@ ( -- id )</code></h4>
-<p>&#x53D6;&#x5F97;&#x5F8C;&#x7E8C;&#x5B89;&#x63D2;&#x8DEF;&#x5F91;&#x7684;&#x7DE8;&#x865F; <code>id</code>&#x3002;</p>
-<h4 id="path-mode--mode----"><code>path-mode! ( mode -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x5F8C;&#x7E8C;&#x5B89;&#x63D2;&#x8DEF;&#x5F91;&#x7684;&#x6A21;&#x5F0F; <code>mode</code>&#x3002;</p>
-<h4 id="path-mode-----mode-"><code>path-mode@ ( -- mode )</code></h4>
-<p>&#x53D6;&#x5F97;&#x5F8C;&#x7E8C;&#x5B89;&#x63D2;&#x8DEF;&#x5F91;&#x7684;&#x6A21;&#x5F0F; <code>mode</code>&#x3002;</p>
-<p>&#x61C9;&#x7528;&#x7BC4;&#x4F8B;&#xFF1A;</p>
+<h4 id="path-id-----id-"><a class="header" href="#path-id-----id-"><code>path-id@ ( -- id )</code></a></h4>
+<p>取得後續安插路徑的編號 <code>id</code>。</p>
+<h4 id="path-mode--mode----"><a class="header" href="#path-mode--mode----"><code>path-mode! ( mode -- )</code></a></h4>
+<p>設定後續安插路徑的模式 <code>mode</code>。</p>
+<h4 id="path-mode-----mode-"><a class="header" href="#path-mode-----mode-"><code>path-mode@ ( -- mode )</code></a></h4>
+<p>取得後續安插路徑的模式 <code>mode</code>。</p>
+<p>應用範例：</p>
 <ol>
-<li>&#x7528;&#x4F86;&#x5340;&#x5206;&#x8A72;&#x8DEF;&#x5F91;&#x662F;&#x52A0;&#x5DE5;&#x6216;&#x662F;&#x975E;&#x52A0;&#x5DE5;&#x8DEF;&#x5F91;&#x3002;&#x53EF;&#x4EE5;&#x589E;&#x52A0; SFC &#x4F9D;&#x64DA;&#x7576;&#x4E0B;&#x7684;&#x6A21;&#x5F0F;&#x63A7;&#x5236;&#x5C0D;&#x61C9;&#x7684; IO &#x9EDE;&#x3002;</li>
+<li>用來區分該路徑是加工或是非加工路徑。可以增加 SFC 依據當下的模式控制對應的 IO 點。</li>
 </ol>
-<h4 id="pcs-p---n------f----pos-"><code>pcs-p@  ( n -- ) ( F: -- pos )</code></h4>
-<p>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44; PCS &#x5EA7;&#x6A19;&#x7CFB;&#x7684;&#x6307;&#x5B9A;&#x8EF8; <code>n</code> &#x7684;&#x5EA7;&#x6A19;&#x4F4D;&#x7F6E; <code>pos</code>&#x3002;</p>
-<h4 id="vcmd--f-v----"><code>vcmd! ( F: v -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x8DEF;&#x5F91;&#x4E0A;&#x904B;&#x884C;&#x7684;&#x901F;&#x5EA6; <code>v</code>&#x3002;</p>
+<h4 id="pcs-p---n------f----pos-"><a class="header" href="#pcs-p---n------f----pos-"><code>pcs-p@  ( n -- ) ( F: -- pos )</code></a></h4>
+<p>取得所選定軸組 PCS 座標系的指定軸 <code>n</code> 的座標位置 <code>pos</code>。</p>
+<h4 id="vcmd--f-v----"><a class="header" href="#vcmd--f-v----"><code>vcmd! ( F: v -- )</code></a></h4>
+<p>設定路徑上運行的速度 <code>v</code>。</p>
 <ul>
-<li>&#x7576; <code>v</code> &gt; 0 &#x6642;&#xFF0C;&#x6703;&#x6CBF;&#x8457;&#x8DEF;&#x5F91;&#x524D;&#x9032;&#xFF0C;&#x76F4;&#x5230;&#x8DEF;&#x5F91;&#x7D42;&#x9EDE;&#x3002;</li>
-<li>&#x7576; <code>v</code> = 0 &#x6642;&#xFF0C;&#x901F;&#x5EA6;&#x6703;&#x6E1B;&#x901F;&#x5230; 0&#x3002;</li>
-<li>&#x7576; <code>v</code> &lt; 0 &#x6642;&#xFF0C;&#x6703;&#x6CBF;&#x8457;&#x8DEF;&#x5F91;&#x5F8C;&#x9000;&#xFF0C;&#x76F4;&#x5230;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;&#x3002;</li>
+<li>當 <code>v</code> &gt; 0 時，會沿著路徑前進，直到路徑終點。</li>
+<li>當 <code>v</code> = 0 時，速度會減速到 0。</li>
+<li>當 <code>v</code> &lt; 0 時，會沿著路徑後退，直到路徑起始點。</li>
 </ul>
-<p>&#x904B;&#x52D5;&#x901F;&#x5EA6;&#x9650;&#x5236;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>運動速度限制如下：</p>
 <ol>
-<li>vcmd! &#x6240;&#x6307;&#x5B9A;&#x7684;&#x901F;&#x5EA6;&#x3002;</li>
-<li>&#x8A72;&#x8EF8;&#x7D44;&#x6240;&#x9650;&#x5236;&#x7684;&#x6700;&#x5927;&#x904B;&#x52D5;&#x901F;&#x5EA6; (gvmax!)&#x3002;</li>
-<li>&#x7576;&#x4E0B;&#x8DEF;&#x5F91;&#x7684;&#x9032;&#x7D66;&#x901F;&#x5EA6; &#xFF08;feedrate!&#xFF09;&#x3002;</li>
-<li>&#x9810;&#x8996;&#x8DEF;&#x5F91;&#x7E3D;&#x9577;&#x8207;&#x7576;&#x4E0B;&#x4F4D;&#x7F6E;&#x3002;</li>
+<li>vcmd! 所指定的速度。</li>
+<li>該軸組所限制的最大運動速度 (gvmax!)。</li>
+<li>當下路徑的進給速度 （feedrate!）。</li>
+<li>預視路徑總長與當下位置。</li>
 </ol>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
-<pre><code>100.0e mm/min vcmd! \ &#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x901F;&#x5EA6;&#x70BA; 100.0 mm/min
-</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
-<table>
-<thead>
-<tr>
-<th>&#x6307;&#x4EE4;</th>
-<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
-<th>&#x8AAA;&#x660E;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.group</td>
-<td>( g -- )</td>
-<td>&#x986F;&#x793A;&#x8EF8;&#x7D44;&#x72C0;&#x614B;</td>
-</tr>
-<tr>
-<td>.grpcfg</td>
-<td>( g -- )</td>
-<td>&#x986F;&#x793A;&#x8EF8;&#x7D44;&#x8A2D;&#x5B9A;&#x53C3;&#x6578;</td>
-</tr>
-<tr>
-<td>+group</td>
-<td>( -- )</td>
-<td>&#x555F;&#x52D5;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;</td>
-</tr>
-<tr>
-<td>-group</td>
-<td>( -- )</td>
-<td>&#x95DC;&#x9589;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;</td>
-</tr>
-<tr>
-<td>0path</td>
-<td>( -- )</td>
-<td>&#x6E05;&#x9664;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x8DEF;&#x5F91;&#x8CC7;&#x8A0A;</td>
-</tr>
-<tr>
-<td>acs-p@</td>
-<td>( n -- ) ( F: -- pos )</td>
-<td>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44; ACS &#x5EA7;&#x6A19;&#x7CFB;&#x7684;&#x6307;&#x5B9A;&#x8EF8;&#x7684;&#x5EA7;&#x6A19;&#x4F4D;&#x7F6E;</td>
-</tr>
-<tr>
-<td>feedrate!</td>
-<td>( F: v -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x5F8C;&#x7E8C;&#x5B89;&#x63D2;&#x8DEF;&#x5F91;&#x7684;&#x6700;&#x5927;&#x904B;&#x52D5;&#x901F;&#x5EA6;</td>
-</tr>
-<tr>
-<td>feedrate@</td>
-<td>( F: -- v )</td>
-<td>&#x53D6;&#x5F97;&#x5F8C;&#x7E8C;&#x5B89;&#x63D2;&#x8DEF;&#x5F91;&#x7684;&#x6700;&#x5927;&#x904B;&#x52D5;&#x901F;&#x5EA6;</td>
-</tr>
-<tr>
-<td>gamax!</td>
-<td>( g -- ) ( F: a --)</td>
-<td>&#x8A2D;&#x5B9A;&#x6307;&#x5B9A;&#x8EF8;&#x7D44;&#x7684;&#x6700;&#x5927;&#x52A0;&#x901F;&#x5EA6;</td>
-</tr>
-<tr>
-<td>gend?</td>
-<td>( -- flag )</td>
-<td>&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x5230;&#x9054;&#x8DEF;&#x5F91;&#x7D42;&#x9EDE; ?</td>
-</tr>
-<tr>
-<td>gignore-dist!</td>
-<td>( g -- ) ( F: dist --)</td>
-<td>&#x8A2D;&#x5B9A;&#x6307;&#x5B9A;&#x8EF8;&#x7D44;&#x53EF;&#x5FFD;&#x7565;&#x7684;&#x9577;&#x5EA6;&#x8A08;&#x7B97;&#x8AA4;&#x5DEE;</td>
-</tr>
-<tr>
-<td>gjmax!</td>
-<td>( g -- ) ( F: j --)</td>
-<td>&#x8A2D;&#x5B9A;&#x6307;&#x5B9A;&#x8EF8;&#x7D44;&#x7684;&#x6700;&#x5927;&#x52A0;&#x52A0;&#x901F;&#x5EA6;</td>
-</tr>
-<tr>
-<td>gmap!</td>
-<td>( j1 j2 j3 ... g -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x8EF8;&#x7D44;&#x6240;&#x63A7;&#x5236;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x8EF8;&#x7D44;&#x578B;&#x614B;&#x8207;&#x904B;&#x52D5;&#x8EF8;&#x6578;&#x91CF;</td>
-</tr>
-<tr>
-<td>gmap@</td>
-<td>( g -- j1 j2 j3 ... )</td>
-<td>&#x53D6;&#x5F97;&#x8EF8;&#x7D44;&#x6240;&#x63A7;&#x5236;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x8EF8;&#x7D44;&#x578B;&#x614B;&#x8207;&#x904B;&#x52D5;&#x8EF8;&#x6578;&#x91CF;</td>
-</tr>
-<tr>
-<td>group!</td>
-<td>( g -- )</td>
-<td>&#x9078;&#x5B9A;&#x8EF8;&#x7D44;</td>
-</tr>
-<tr>
-<td>group@</td>
-<td>( -- g )</td>
-<td>&#x53D6;&#x5F97;&#x76EE;&#x524D;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;</td>
-</tr>
-<tr>
-<td>group?</td>
-<td>( -- t )</td>
-<td>&#x76EE;&#x524D;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x555F;&#x52D5; ?</td>
-</tr>
-<tr>
-<td>grp1d?</td>
-<td>( g -- flag )</td>
-<td>&#x6307;&#x5B9A;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x70BA; 1D &#x8EF8;&#x7D44;</td>
-</tr>
-<tr>
-<td>grp2d?</td>
-<td>( g -- flag )</td>
-<td>&#x6307;&#x5B9A;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x70BA; 2D &#x8EF8;&#x7D44;</td>
-</tr>
-<tr>
-<td>grp3d?</td>
-<td>( g -- flag )</td>
-<td>&#x6307;&#x5B9A;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x70BA; 3D &#x8EF8;&#x7D44;</td>
-</tr>
-<tr>
-<td>grp-sine?</td>
-<td>( g -- flag )</td>
-<td>&#x6307;&#x5B9A;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x70BA; Sine Wave &#x8EF8;&#x7D44;</td>
-</tr>
-<tr>
-<td>gstart</td>
-<td>( -- )</td>
-<td>&#x547D;&#x4EE4;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x958B;&#x59CB;&#x904B;&#x52D5;</td>
-</tr>
-<tr>
-<td>gstop</td>
-<td>( -- )</td>
-<td>&#x547D;&#x4EE4;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x505C;&#x6B62;&#x904B;&#x52D5;</td>
-</tr>
-<tr>
-<td>gstop?</td>
-<td>( -- flag )</td>
-<td>&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x662F;&#x5426;&#x5DF2;&#x7D93;&#x505C;&#x6B62;&#x904B;&#x52D5; ?</td>
-</tr>
-<tr>
-<td>gvmax!</td>
-<td>( g -- ) ( F: v --)</td>
-<td>&#x8A2D;&#x5B9A;&#x6307;&#x5B9A;&#x8EF8;&#x7D44;&#x7684;&#x6700;&#x5927;&#x904B;&#x52D5;&#x901F;&#x5EA6;</td>
-</tr>
-<tr>
-<td>map-len@</td>
-<td>( g -- len )</td>
-<td>&#x53D6;&#x5F97;&#x6307;&#x5B9A;&#x8EF8;&#x7D44;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#x6578;&#x91CF;</td>
-</tr>
-<tr>
-<td>map-sine</td>
-<td>( j1 g -- )</td>
-<td>&#x8A2D;&#x5B9A; Sine Wave &#x8EF8;&#x7D44;&#x6240;&#x63A7;&#x5236;&#x7684;&#x904B;&#x52D5;&#x8EF8;</td>
-</tr>
-<tr>
-<td>map1d</td>
-<td>( j2 g -- )</td>
-<td>&#x8A2D;&#x5B9A; 1D &#x8EF8;&#x7D44;&#x6240;&#x63A7;&#x5236;&#x7684;&#x904B;&#x52D5;&#x8EF8;</td>
-</tr>
-<tr>
-<td>map2d</td>
-<td>( j1 j2 g -- )</td>
-<td>&#x8A2D;&#x5B9A; 2D &#x8EF8;&#x7D44;&#x6240;&#x63A7;&#x5236;&#x7684;&#x904B;&#x52D5;&#x8EF8;</td>
-</tr>
-<tr>
-<td>map3d</td>
-<td>( j1 j2 j3 g -- )</td>
-<td>&#x8A2D;&#x5B9A; 3D &#x8EF8;&#x7D44;&#x6240;&#x63A7;&#x5236;&#x7684;&#x904B;&#x52D5;&#x8EF8;</td>
-</tr>
-<tr>
-<td>mcs</td>
-<td>( -- )</td>
-<td>&#x5BA3;&#x544A;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#x4EE5;&#x76EE;&#x524D; MCS &#x5EA7;&#x6A19;&#x4F4D;&#x7F6E;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;</td>
-</tr>
-<tr>
-<td>mcs-p@</td>
-<td>( n -- ) ( F: -- pos )</td>
-<td>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44; MCS &#x5EA7;&#x6A19;&#x7CFB;&#x7684;&#x6307;&#x5B9A;&#x8EF8;&#x7684;&#x5EA7;&#x6A19;&#x4F4D;&#x7F6E;</td>
-</tr>
-<tr>
-<td>move-source#</td>
-<td>( -- n )</td>
-<td>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#x76EE;&#x524D;&#x662F;&#x8655;&#x5728;&#x54EA;&#x500B;&#x8DEF;&#x5F91;&#x4E8B;&#x4EF6;</td>
-</tr>
-<tr>
-<td>next-a@</td>
-<td>( F: -- a )</td>
-<td>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#x8DEF;&#x5F91;&#x5207;&#x7DDA;&#x65B9;&#x5411;&#x52A0;&#x901F;&#x5EA6;</td>
-</tr>
-<tr>
-<td>next-path-id@</td>
-<td>( -- id )</td>
-<td>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#xFF0C;&#x76EE;&#x524D;&#x8DEF;&#x5F91;&#x7684;&#x7DE8;&#x865F;</td>
-</tr>
-<tr>
-<td>next-path-mode@</td>
-<td>( -- mode )</td>
-<td>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#xFF0C;&#x76EE;&#x524D;&#x8DEF;&#x5F91;&#x7684;&#x6A21;&#x5F0F;</td>
-</tr>
-<tr>
-<td>next-path-p@</td>
-<td>( -- ) ( F: -- pos )</td>
-<td>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#xFF0C;&#x5F9E;&#x904B;&#x52D5;&#x8D77;&#x59CB;&#x9EDE;&#x7B97;&#x8D77;&#xFF0C;&#x6CBF;&#x8DEF;&#x8DEF;&#x5F91;&#x65B9;&#x5411;&#x7684;&#x4F4D;&#x7F6E;</td>
-</tr>
-<tr>
-<td>next-v@</td>
-<td>( F: -- v )</td>
-<td>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#x8DEF;&#x5F91;&#x5207;&#x7DDA;&#x65B9;&#x5411;&#x901F;&#x5EA6;</td>
-</tr>
-<tr>
-<td>path-events-capacity@</td>
-<td>( -- n )</td>
-<td>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#x53EF;&#x5BB9;&#x7D0D;&#x7684;&#x8DEF;&#x5F91;&#x6578;&#x91CF;</td>
-</tr>
-<tr>
-<td>path-events-len@</td>
-<td>( -- n )</td>
-<td>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44;&#x76EE;&#x524D;&#x7684;&#x8DEF;&#x5F91;&#x6578;&#x91CF;</td>
-</tr>
-<tr>
-<td>path-id!</td>
-<td>( id -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x5F8C;&#x7E8C;&#x5B89;&#x63D2;&#x8DEF;&#x5F91;&#x7684;&#x7DE8;&#x865F;</td>
-</tr>
-<tr>
-<td>path-id@</td>
-<td>( -- id )</td>
-<td>&#x53D6;&#x5F97;&#x5F8C;&#x7E8C;&#x5B89;&#x63D2;&#x8DEF;&#x5F91;&#x7684;&#x7DE8;&#x865F;</td>
-</tr>
-<tr>
-<td>path-mode!</td>
-<td>( mode -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x5F8C;&#x7E8C;&#x5B89;&#x63D2;&#x8DEF;&#x5F91;&#x7684;&#x6A21;&#x5F0F;</td>
-</tr>
-<tr>
-<td>path-mode@</td>
-<td>( -- mode )</td>
-<td>&#x53D6;&#x5F97;&#x5F8C;&#x7E8C;&#x5B89;&#x63D2;&#x8DEF;&#x5F91;&#x7684;&#x6A21;&#x5F0F;</td>
-</tr>
-<tr>
-<td>pcs-p@</td>
-<td>( n -- ) ( F: -- pos )</td>
-<td>&#x53D6;&#x5F97;&#x6240;&#x9078;&#x5B9A;&#x8EF8;&#x7D44; PCS &#x5EA7;&#x6A19;&#x7CFB;&#x7684;&#x6307;&#x5B9A;&#x8EF8;&#x7684;&#x5EA7;&#x6A19;&#x4F4D;&#x7F6E;</td>
-</tr>
-<tr>
-<td>vcmd!</td>
-<td>( F: v -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x6240;&#x9078;&#x5B9A;&#x7684;&#x8EF8;&#x7D44;&#x7684;&#x901F;&#x5EA6;&#x547D;&#x4EE4;</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="1d-&#x8DEF;&#x5F91;&#x898F;&#x5283;">1D &#x8DEF;&#x5F91;&#x898F;&#x5283;</h3>
-<p>&#x6CE8;&#x610F;&#x4E8B;&#x9805;&#xFF1A;</p>
+<p>命令範例:</p>
+<pre><code>100.0e mm/min vcmd! \ 設定運動速度為 100.0 mm/min
+</code></pre>
+<h4 id="本節指令集-1"><a class="header" href="#本節指令集-1">本節指令集</a></h4>
+<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
+<tr><td>.group</td><td>( g -- )</td><td>顯示軸組狀態</td></tr>
+<tr><td>.grpcfg</td><td>( g -- )</td><td>顯示軸組設定參數</td></tr>
+<tr><td>+group</td><td>( -- )</td><td>啟動所選定的軸組</td></tr>
+<tr><td>-group</td><td>( -- )</td><td>關閉所選定的軸組</td></tr>
+<tr><td>0path</td><td>( -- )</td><td>清除所選定的軸組路徑資訊</td></tr>
+<tr><td>acs-p@</td><td>( n -- ) ( F: -- pos )</td><td>取得所選定軸組 ACS 座標系的指定軸的座標位置</td></tr>
+<tr><td>feedrate!</td><td>( F: v -- )</td><td>設定後續安插路徑的最大運動速度</td></tr>
+<tr><td>feedrate@</td><td>( F: -- v )</td><td>取得後續安插路徑的最大運動速度</td></tr>
+<tr><td>gamax!</td><td>( g -- ) ( F: a --)</td><td>設定指定軸組的最大加速度</td></tr>
+<tr><td>gend?</td><td>( -- flag )</td><td>所選定的軸組是否到達路徑終點 ?</td></tr>
+<tr><td>gignore-dist!</td><td>( g -- ) ( F: dist --)</td><td>設定指定軸組可忽略的長度計算誤差</td></tr>
+<tr><td>gjmax!</td><td>( g -- ) ( F: j --)</td><td>設定指定軸組的最大加加速度</td></tr>
+<tr><td>gmap!</td><td>( j1 j2 j3 ... g -- )</td><td>設定軸組所控制的運動軸，需要注意軸組型態與運動軸數量</td></tr>
+<tr><td>gmap@</td><td>( g -- j1 j2 j3 ... )</td><td>取得軸組所控制的運動軸，需要注意軸組型態與運動軸數量</td></tr>
+<tr><td>group!</td><td>( g -- )</td><td>選定軸組</td></tr>
+<tr><td>group@</td><td>( -- g )</td><td>取得目前所選定的軸組</td></tr>
+<tr><td>group?</td><td>( -- t )</td><td>目前所選定的軸組是否啟動 ?</td></tr>
+<tr><td>grp1d?</td><td>( g -- flag )</td><td>指定軸組是否為 1D 軸組</td></tr>
+<tr><td>grp2d?</td><td>( g -- flag )</td><td>指定軸組是否為 2D 軸組</td></tr>
+<tr><td>grp3d?</td><td>( g -- flag )</td><td>指定軸組是否為 3D 軸組</td></tr>
+<tr><td>grp-sine?</td><td>( g -- flag )</td><td>指定軸組是否為 Sine Wave 軸組</td></tr>
+<tr><td>gstart</td><td>( -- )</td><td>命令所選定的軸組開始運動</td></tr>
+<tr><td>gstop</td><td>( -- )</td><td>命令所選定的軸組停止運動</td></tr>
+<tr><td>gstop?</td><td>( -- flag )</td><td>所選定的軸組是否已經停止運動 ?</td></tr>
+<tr><td>gvmax!</td><td>( g -- ) ( F: v --)</td><td>設定指定軸組的最大運動速度</td></tr>
+<tr><td>map-len@</td><td>( g -- len )</td><td>取得指定軸組的運動軸數量</td></tr>
+<tr><td>map-sine</td><td>( j1 g -- )</td><td>設定 Sine Wave 軸組所控制的運動軸</td></tr>
+<tr><td>map1d</td><td>( j2 g -- )</td><td>設定 1D 軸組所控制的運動軸</td></tr>
+<tr><td>map2d</td><td>( j1 j2 g -- )</td><td>設定 2D 軸組所控制的運動軸</td></tr>
+<tr><td>map3d</td><td>( j1 j2 j3 g -- )</td><td>設定 3D 軸組所控制的運動軸</td></tr>
+<tr><td>mcs</td><td>( -- )</td><td>宣告所選定軸組以目前 MCS 座標位置為路徑起始點</td></tr>
+<tr><td>mcs-p@</td><td>( n -- ) ( F: -- pos )</td><td>取得所選定軸組 MCS 座標系的指定軸的座標位置</td></tr>
+<tr><td>move-source#</td><td>( -- n )</td><td>取得所選定軸組目前是處在哪個路徑事件</td></tr>
+<tr><td>next-a@</td><td>( F: -- a )</td><td>取得所選定軸組路徑切線方向加速度</td></tr>
+<tr><td>next-path-id@</td><td>( -- id )</td><td>取得所選定軸組，目前路徑的編號</td></tr>
+<tr><td>next-path-mode@</td><td>( -- mode )</td><td>取得所選定軸組，目前路徑的模式</td></tr>
+<tr><td>next-path-p@</td><td>( -- ) ( F: -- pos )</td><td>取得所選定軸組，從運動起始點算起，沿路路徑方向的位置</td></tr>
+<tr><td>next-v@</td><td>( F: -- v )</td><td>取得所選定軸組路徑切線方向速度</td></tr>
+<tr><td>path-events-capacity@</td><td>( -- n )</td><td>取得所選定軸組可容納的路徑數量</td></tr>
+<tr><td>path-events-len@</td><td>( -- n )</td><td>取得所選定軸組目前的路徑數量</td></tr>
+<tr><td>path-id!</td><td>( id -- )</td><td>設定後續安插路徑的編號</td></tr>
+<tr><td>path-id@</td><td>( -- id )</td><td>取得後續安插路徑的編號</td></tr>
+<tr><td>path-mode!</td><td>( mode -- )</td><td>設定後續安插路徑的模式</td></tr>
+<tr><td>path-mode@</td><td>( -- mode )</td><td>取得後續安插路徑的模式</td></tr>
+<tr><td>pcs-p@</td><td>( n -- ) ( F: -- pos )</td><td>取得所選定軸組 PCS 座標系的指定軸的座標位置</td></tr>
+<tr><td>vcmd!</td><td>( F: v -- )</td><td>設定所選定的軸組的速度命令</td></tr>
+</tbody></table>
+<hr />
+<h3 id="1d-路徑規劃"><a class="header" href="#1d-路徑規劃">1D 路徑規劃</a></h3>
+<p>注意事項：</p>
 <ol>
-<li>&#x76EE;&#x524D;&#x9078;&#x7528;&#x7684;&#x8EF8;&#x7D44;&#x5FC5;&#x9808;&#x70BA; 1D &#x578B;&#x614B;&#x3002;</li>
-<li>&#x8DEF;&#x5F91;&#x7684;&#x8D77;&#x59CB;&#x9EDE;&#x70BA;&#x524D;&#x4E00;&#x500B;&#x8DEF;&#x5F91;&#x7684;&#x76EE;&#x6A19;&#x9EDE;&#x3002;</li>
-<li>&#x5FC5;&#x9808;&#x8981;&#x5BA3;&#x544A;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;&#xFF08; move1d, mcs, psc1d&#xFF09;</li>
+<li>目前選用的軸組必須為 1D 型態。</li>
+<li>路徑的起始點為前一個路徑的目標點。</li>
+<li>必須要宣告路徑起始點（ move1d, mcs, psc1d）</li>
 </ol>
-<h4 id="line1d--f-x----"><code>line1d ( F: x -- )</code></h4>
-<p>&#x589E;&#x52A0;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; (<code>x</code>) &#x7684;&#x76F4;&#x7DDA;&#x8DEF;&#x5F91;&#x3002;</p>
-<h4 id="move1d--f-x----"><code>move1d ( F: x -- )</code></h4>
-<p>&#x5BA3;&#x544A;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x70BA; PCS &#x5EA7;&#x6A19; (<code>x</code>)&#xFF0C;&#x4E26;&#x4E14;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;&#x3002;&#x985E;&#x4F3C;&#x5DE5;&#x4EF6;&#x7A0B;&#x5F0F; GM &#x78BC;&#x7684; G92&#x3002;</p>
-<h4 id="pcs1d--f-x0----"><code>pcs1d ( F: x0 -- )</code></h4>
-<p>&#x5BA3;&#x544A; PCS &#x5EA7;&#x6A19;&#x96F6;&#x9EDE;(<code>x0</code>)&#xFF0C;&#x4E26;&#x4EE5;&#x7576;&#x4E0B;&#x4F4D;&#x7F6E;&#x505A;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;&#x3002;&#x985E;&#x4F3C;&#x5DE5;&#x4EF6;&#x7A0B;&#x5F0F; GM &#x78BC;&#x7684; G54&#x3002;</p>
-<h4 id="&#x7BC4;&#x4F8B;-test-1d">&#x7BC4;&#x4F8B; test-1d</h4>
-<p>&#x5047;&#x8A2D; Group 1 &#x70BA; 1D group, &#x4EE5; 100.0 mm.min &#x901F;&#x5EA6;&#x904B;&#x52D5;&#x901A;&#x904E;&#x76F8;&#x5C0D;&#x8D77;&#x9EDE;&#x70BA; -0.5, 1.0&#xFF0C;&#x7D42;&#x9EDE;&#x70BA; 0.0 &#x7684;&#x5EA7;&#x6A19;&#x4F4D;&#x7F6E;&#x3002;</p>
-<pre><code>: test-1d                      \ &#x5B9A;&#x7FA9; test-1d &#x6307;&#x4EE4;
-    +coordinator               \ &#x555F;&#x52D5;&#x8EF8;&#x904B;&#x52D5;&#x63A7;&#x5236;&#x6A21;&#x5F0F;
-    start-job                  \ &#x555F;&#x52D5;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
-    1 group! +group            \ &#x5207;&#x63DB;&#x9078;&#x7528;&#x8EF8;&#x7D44;&#xFF0C;&#x555F;&#x52D5; Group 1
-    0path                      \ &#x6E05;&#x9664; Group 1 &#x8DEF;&#x5F91;
-    0.0e move1d                \ &#x5BA3;&#x544A;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x70BA;&#x8D77;&#x59CB;&#x904B;&#x52D5;&#x4F4D;&#x7F6E;&#xFF0C;&#x5EA7;&#x6A19;&#x70BA; 0.0
-    -0.5e line1d               \ &#x63D2;&#x5165;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; -0.5 &#x7684; 1D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;
-    1.0e line1d                \ &#x63D2;&#x5165;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; 1.0 &#x7684; 1D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;
-    0.0e line1d                \ &#x63D2;&#x5165;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; 0.0 &#x7684; 1D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;
-    100.0e mm/min vcmd!        \ &#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x901F;&#x5EA6;&#x70BA; 100.0 mm/min
-    begin                      \ &#x7B49;&#x5F85;&#x5230;&#x9054;&#x7D42;&#x9EDE;&#x4F4D;&#x7F6E;
-        1 group! gend? not     \ &#x6AA2;&#x67E5;&#x662F;&#x5426;&#x5230;&#x7D42;&#x9EDE;, &#x6B64;&#x8655; 1 group! &#x907F;&#x514D;&#x5728;&#x7B49;&#x5F85;&#x904E;&#x7A0B;&#x4E2D;&#x88AB;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x4FEE;&#x6539;&#x4E86;
+<h4 id="line1d--f-x----"><a class="header" href="#line1d--f-x----"><code>line1d ( F: x -- )</code></a></h4>
+<p>增加目標點為 (<code>x</code>) 的直線路徑。</p>
+<h4 id="move1d--f-x----"><a class="header" href="#move1d--f-x----"><code>move1d ( F: x -- )</code></a></h4>
+<p>宣告目前位置為 PCS 座標 (<code>x</code>)，並且為路徑起始點。類似工件程式 GM 碼的 G92。</p>
+<h4 id="pcs1d--f-x0----"><a class="header" href="#pcs1d--f-x0----"><code>pcs1d ( F: x0 -- )</code></a></h4>
+<p>宣告 PCS 座標零點(<code>x0</code>)，並以當下位置做為路徑起始點。類似工件程式 GM 碼的 G54。</p>
+<h4 id="範例-test-1d"><a class="header" href="#範例-test-1d">範例 test-1d</a></h4>
+<p>假設 Group 1 為 1D group, 以 100.0 mm.min 速度運動通過相對起點為 -0.5, 1.0，終點為 0.0 的座標位置。</p>
+<pre><code>: test-1d                      \ 定義 test-1d 指令
+    +coordinator               \ 啟動軸運動控制模式
+    start-job                  \ 啟動加減速機制
+    1 group! +group            \ 切換選用軸組，啟動 Group 1
+    0path                      \ 清除 Group 1 路徑
+    0.0e move1d                \ 宣告目前位置為起始運動位置，座標為 0.0
+    -0.5e line1d               \ 插入目標點為 -0.5 的 1D 直線路徑
+    1.0e line1d                \ 插入目標點為 1.0 的 1D 直線路徑
+    0.0e line1d                \ 插入目標點為 0.0 的 1D 直線路徑
+    100.0e mm/min vcmd!        \ 設定運動速度為 100.0 mm/min
+    begin                      \ 等待到達終點位置
+        1 group! gend? not     \ 檢查是否到終點, 此處 1 group! 避免在等待過程中被其他指令修改了
     while
-        pause                  \ &#x82E5;&#x662F;&#x672A;&#x5230;&#x7D42;&#x9EDE;&#x5C31;&#x7B49;&#x5F85;&#x4E0B;&#x4E00;&#x500B;&#x5468;&#x671F;&#x518D;&#x9032;&#x884C;&#x6AA2;&#x67E5;
+        pause                  \ 若是未到終點就等待下一個周期再進行檢查
     repeat 
-    1 group! -group            \ &#x95DC;&#x9589; Group 1
+    1 group! -group            \ 關閉 Group 1
 ;
 
-deploy test-1d ;deploy         \ &#x5728;&#x80CC;&#x666F;&#x57F7;&#x884C; test-1d
-</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
-<table>
-<thead>
-<tr>
-<th>&#x6307;&#x4EE4;</th>
-<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
-<th>&#x8AAA;&#x660E;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>line1d</td>
-<td>( F: x -- )</td>
-<td>&#x63D2;&#x5165; 1D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;</td>
-</tr>
-<tr>
-<td>move1d</td>
-<td>( F: x -- )</td>
-<td>&#x5BA3;&#x544A;&#x76EE;&#x524D; PCS &#x5EA7;&#x6A19;&#x70BA; (x)&#xFF0C;&#x4E26;&#x505A;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;</td>
-</tr>
-<tr>
-<td>pcs1d</td>
-<td>( F: x0 -- )</td>
-<td>&#x5BA3;&#x544A; PCS &#x5EA7;&#x6A19;&#x96F6;&#x9EDE;&#xFF0C;&#x4E26;&#x4EE5;&#x7576;&#x4E0B;&#x4F4D;&#x7F6E;&#x505A;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="2d-&#x8DEF;&#x5F91;&#x898F;&#x5283;">2D &#x8DEF;&#x5F91;&#x898F;&#x5283;</h3>
-<p>&#x6CE8;&#x610F;&#x4E8B;&#x9805;&#xFF1A;</p>
+deploy test-1d ;deploy         \ 在背景執行 test-1d
+</code></pre>
+<h4 id="本節指令集-2"><a class="header" href="#本節指令集-2">本節指令集</a></h4>
+<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
+<tr><td>line1d</td><td>( F: x -- )</td><td>插入 1D 直線路徑</td></tr>
+<tr><td>move1d</td><td>( F: x -- )</td><td>宣告目前 PCS 座標為 (x)，並做為路徑起始點</td></tr>
+<tr><td>pcs1d</td><td>( F: x0 -- )</td><td>宣告 PCS 座標零點，並以當下位置做為路徑起始點</td></tr>
+</tbody></table>
+<hr />
+<h3 id="2d-路徑規劃"><a class="header" href="#2d-路徑規劃">2D 路徑規劃</a></h3>
+<p>注意事項：</p>
 <ol>
-<li>&#x76EE;&#x524D;&#x9078;&#x7528;&#x7684;&#x8EF8;&#x7D44;&#x5FC5;&#x9808;&#x70BA; 2D &#x578B;&#x614B;&#x3002;</li>
-<li>&#x8DEF;&#x5F91;&#x7684;&#x8D77;&#x59CB;&#x9EDE;&#x70BA;&#x524D;&#x4E00;&#x500B;&#x8DEF;&#x5F91;&#x7684;&#x76EE;&#x6A19;&#x9EDE;&#x3002;</li>
-<li>&#x5FC5;&#x9808;&#x8981;&#x5BA3;&#x544A;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;&#xFF08; move2d, mcs, psc2d&#xFF09;</li>
+<li>目前選用的軸組必須為 2D 型態。</li>
+<li>路徑的起始點為前一個路徑的目標點。</li>
+<li>必須要宣告路徑起始點（ move2d, mcs, psc2d）</li>
 </ol>
-<h4 id="arc2d--n-----f-cx-cy-x-y----"><code>arc2d ( n -- )( F: cx cy x y -- )</code></h4>
-<p>&#x589E;&#x52A0; 2D &#x5713;&#x5F27;&#x8DEF;&#x5F91;&#xFF0C;&#x5176;&#x5713;&#x5FC3;&#x70BA; (<code>cx</code>,<code>cy</code>)&#xFF0C;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;&#x662F; (<code>x</code>, <code>y</code>)&#x3002; <code>n</code> &#x8868;&#x793A;&#x5F9E;&#x8D77;&#x59CB;&#x9EDE;&#x904B;&#x52D5;&#x7B2C; <code>n</code> &#x5708;&#x5230;&#x9054;&#x76EE;&#x6A19;&#x9EDE;&#x3002;</p>
+<h4 id="arc2d--n-----f-cx-cy-x-y----"><a class="header" href="#arc2d--n-----f-cx-cy-x-y----"><code>arc2d ( n -- )( F: cx cy x y -- )</code></a></h4>
+<p>增加 2D 圓弧路徑，其圓心為 (<code>cx</code>,<code>cy</code>)，目標位置是 (<code>x</code>, <code>y</code>)。 <code>n</code> 表示從起始點運動第 <code>n</code> 圈到達目標點。</p>
 <ul>
-<li><code>n</code> &gt; 0 &#x8868;&#x793A;&#x9006;&#x6642;&#x91DD;&#x904B;&#x52D5;&#xFF0C;</li>
-<li><code>n</code> &lt; 0 &#x8868;&#x793A;&#x9806;&#x6642;&#x91DD;&#x904B;&#x52D5;&#xFF0C;</li>
-<li><code>n</code> &#x4E0D;&#x53EF;&#x4EE5;&#x70BA; 0&#x3002;</li>
+<li><code>n</code> &gt; 0 表示逆時針運動，</li>
+<li><code>n</code> &lt; 0 表示順時針運動，</li>
+<li><code>n</code> 不可以為 0。</li>
 </ul>
-<h4 id="line2d--f-x-y----"><code>line2d ( F: x y -- )</code></h4>
-<p>&#x589E;&#x52A0;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; (<code>x</code>,<code>y</code>) &#x7684;&#x76F4;&#x7DDA;&#x8DEF;&#x5F91;&#x3002;</p>
-<h4 id="move2d--f-x-y----"><code>move2d ( F: x y -- )</code></h4>
-<p>&#x5BA3;&#x544A;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x70BA; PCS &#x5EA7;&#x6A19; (<code>x</code>, <code>y</code>)&#xFF0C;&#x4E26;&#x4E14;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;&#x3002;&#x985E;&#x4F3C;&#x5DE5;&#x4EF6;&#x7A0B;&#x5F0F; GM &#x78BC;&#x7684; G92&#x3002;</p>
-<h4 id="pcs2d--f-x0-y0----"><code>pcs2d ( F: x0 y0 -- )</code></h4>
-<p>&#x5BA3;&#x544A; PCS &#x5EA7;&#x6A19;&#x96F6;&#x9EDE;(<code>x0</code>, <code>y0</code>)&#xFF0C;&#x4E26;&#x4EE5;&#x7576;&#x4E0B;&#x4F4D;&#x7F6E;&#x505A;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;&#x3002;&#x985E;&#x4F3C;&#x5DE5;&#x4EF6;&#x7A0B;&#x5F0F; GM &#x78BC;&#x7684; G54&#x3002;</p>
-<h4 id="&#x7BC4;&#x4F8B;-test-2d">&#x7BC4;&#x4F8B; test-2d</h4>
-<p>&#x5047;&#x8A2D; Group 1 &#x70BA;  2D group</p>
-<pre><code>: test-2d                          \ &#x5B9A;&#x7FA9; test-2d &#x6307;&#x4EE4;
-    +coordinator                   \ &#x555F;&#x52D5;&#x8EF8;&#x904B;&#x52D5;&#x63A7;&#x5236;&#x6A21;&#x5F0F;
-    start-job                      \ &#x555F;&#x52D5;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
-    1 group! +group                \ &#x555F;&#x52D5; Group 1
-    0path                          \ &#x6E05;&#x9664;&#x8DEF;&#x5F91;
-    0.0e  0.0e  move2d             \ &#x5BA3;&#x544A;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x70BA;&#x8D77;&#x59CB;&#x904B;&#x52D5;&#x4F4D;&#x7F6E;&#xFF0C;&#x5EA7;&#x6A19;&#x70BA; (0.0, 0.0)
-    0.1e  0.0e  line2d             \ &#x63D2;&#x5165;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; (0.1, 0.0) &#x7684; 2D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;
-    0.1e  0.1e  line2d             \ &#x63D2;&#x5165;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; (0.1, 0.1) &#x7684; 2D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;
-    0.0e  0.1e  line2d             \ &#x63D2;&#x5165;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; (0.0, 0.1) &#x7684; 2D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;
-    0.0e  0.05e 0.0e 0.0e 1 arc2d  \ &#x4EE5;&#x5713;&#x5FC3;&#x4F4D;&#x7F6E; &#xFF08;0.0, 0.05&#xFF09;&#x9006;&#x6642;&#x91DD;&#x8D70;&#x5230;&#x76EE;&#x6A19;&#x9EDE; &#xFF08;0.0, 0.0&#xFF09;
-    100.0e mm/min vcmd!            \ &#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x901F;&#x5EA6;&#x70BA; 100.0 mm/min
-    begin                          \ &#x7B49;&#x5F85;&#x5230;&#x9054;&#x7D42;&#x9EDE;&#x4F4D;&#x7F6E;
-        1 group! gend? not         \ &#x6AA2;&#x67E5;&#x662F;&#x5426;&#x5230;&#x7D42;&#x9EDE;, &#x6B64;&#x8655; 1 group! &#x907F;&#x514D;&#x5728;&#x7B49;&#x5F85;&#x904E;&#x7A0B;&#x4E2D;&#x88AB;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x4FEE;&#x6539;&#x4E86;
+<h4 id="line2d--f-x-y----"><a class="header" href="#line2d--f-x-y----"><code>line2d ( F: x y -- )</code></a></h4>
+<p>增加目標點為 (<code>x</code>,<code>y</code>) 的直線路徑。</p>
+<h4 id="move2d--f-x-y----"><a class="header" href="#move2d--f-x-y----"><code>move2d ( F: x y -- )</code></a></h4>
+<p>宣告目前位置為 PCS 座標 (<code>x</code>, <code>y</code>)，並且為路徑起始點。類似工件程式 GM 碼的 G92。</p>
+<h4 id="pcs2d--f-x0-y0----"><a class="header" href="#pcs2d--f-x0-y0----"><code>pcs2d ( F: x0 y0 -- )</code></a></h4>
+<p>宣告 PCS 座標零點(<code>x0</code>, <code>y0</code>)，並以當下位置做為路徑起始點。類似工件程式 GM 碼的 G54。</p>
+<h4 id="範例-test-2d"><a class="header" href="#範例-test-2d">範例 test-2d</a></h4>
+<p>假設 Group 1 為  2D group</p>
+<pre><code>: test-2d                          \ 定義 test-2d 指令
+    +coordinator                   \ 啟動軸運動控制模式
+    start-job                      \ 啟動加減速機制
+    1 group! +group                \ 啟動 Group 1
+    0path                          \ 清除路徑
+    0.0e  0.0e  move2d             \ 宣告目前位置為起始運動位置，座標為 (0.0, 0.0)
+    0.1e  0.0e  line2d             \ 插入目標點為 (0.1, 0.0) 的 2D 直線路徑
+    0.1e  0.1e  line2d             \ 插入目標點為 (0.1, 0.1) 的 2D 直線路徑
+    0.0e  0.1e  line2d             \ 插入目標點為 (0.0, 0.1) 的 2D 直線路徑
+    0.0e  0.05e 0.0e 0.0e 1 arc2d  \ 以圓心位置 （0.0, 0.05）逆時針走到目標點 （0.0, 0.0）
+    100.0e mm/min vcmd!            \ 設定運動速度為 100.0 mm/min
+    begin                          \ 等待到達終點位置
+        1 group! gend? not         \ 檢查是否到終點, 此處 1 group! 避免在等待過程中被其他指令修改了
     while
-        pause                      \ &#x82E5;&#x662F;&#x672A;&#x5230;&#x7D42;&#x9EDE;&#x5C31;&#x7B49;&#x5F85;&#x4E0B;&#x4E00;&#x500B;&#x5468;&#x671F;&#x518D;&#x9032;&#x884C;&#x6AA2;&#x67E5;
+        pause                      \ 若是未到終點就等待下一個周期再進行檢查
     repeat
-    1 group! -group                \ &#x95DC;&#x9589; Group 1
+    1 group! -group                \ 關閉 Group 1
 ;
 
-deploy test-2d ;deploy         \ &#x5728;&#x80CC;&#x666F;&#x57F7;&#x884C; test-2d
-</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
-<table>
-<thead>
-<tr>
-<th>&#x6307;&#x4EE4;</th>
-<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
-<th>&#x8AAA;&#x660E;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>arc2d</td>
-<td>( n -- )( F: cx cy x y -- )</td>
-<td>&#x63D2;&#x5165; 2D &#x5713;&#x5F27;&#x8DEF;&#x5F91;</td>
-</tr>
-<tr>
-<td>line2d</td>
-<td>( F: x y -- )</td>
-<td>&#x63D2;&#x5165; 2D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;</td>
-</tr>
-<tr>
-<td>move2d</td>
-<td>( F: x y -- )</td>
-<td>&#x5BA3;&#x544A;&#x76EE;&#x524D; PCS &#x5EA7;&#x6A19;&#x70BA; (x, y)&#xFF0C;&#x4E26;&#x505A;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;</td>
-</tr>
-<tr>
-<td>pcs2d</td>
-<td>( F: x0 y0 -- )</td>
-<td>&#x5BA3;&#x544A; PCS &#x5EA7;&#x6A19;&#x96F6;&#x9EDE;&#xFF0C;&#x4E26;&#x4EE5;&#x7576;&#x4E0B;&#x4F4D;&#x7F6E;&#x505A;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="3d-&#x8DEF;&#x5F91;&#x898F;&#x5283;">3D &#x8DEF;&#x5F91;&#x898F;&#x5283;</h3>
-<p>&#x6CE8;&#x610F;&#x4E8B;&#x9805;&#xFF1A;</p>
+deploy test-2d ;deploy         \ 在背景執行 test-2d
+</code></pre>
+<h4 id="本節指令集-3"><a class="header" href="#本節指令集-3">本節指令集</a></h4>
+<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
+<tr><td>arc2d</td><td>( n -- )( F: cx cy x y -- )</td><td>插入 2D 圓弧路徑</td></tr>
+<tr><td>line2d</td><td>( F: x y -- )</td><td>插入 2D 直線路徑</td></tr>
+<tr><td>move2d</td><td>( F: x y -- )</td><td>宣告目前 PCS 座標為 (x, y)，並做為路徑起始點</td></tr>
+<tr><td>pcs2d</td><td>( F: x0 y0 -- )</td><td>宣告 PCS 座標零點，並以當下位置做為路徑起始點</td></tr>
+</tbody></table>
+<hr />
+<h3 id="3d-路徑規劃"><a class="header" href="#3d-路徑規劃">3D 路徑規劃</a></h3>
+<p>注意事項：</p>
 <ol>
-<li>&#x76EE;&#x524D;&#x9078;&#x7528;&#x7684;&#x8EF8;&#x7D44;&#x5FC5;&#x9808;&#x70BA; 3D &#x578B;&#x614B;&#x3002;</li>
-<li>&#x8DEF;&#x5F91;&#x7684;&#x8D77;&#x59CB;&#x9EDE;&#x70BA;&#x524D;&#x4E00;&#x500B;&#x8DEF;&#x5F91;&#x7684;&#x76EE;&#x6A19;&#x9EDE;&#x3002;</li>
-<li>&#x5FC5;&#x9808;&#x8981;&#x5BA3;&#x544A;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;&#xFF08; move3d, mcs, psc3d&#xFF09;&#x3002;</li>
+<li>目前選用的軸組必須為 3D 型態。</li>
+<li>路徑的起始點為前一個路徑的目標點。</li>
+<li>必須要宣告路徑起始點（ move3d, mcs, psc3d）。</li>
 </ol>
-<h4 id="helix3d--n-----f-cx-cy-x-y-z----"><code>helix3d ( n -- )( F: cx cy x y z -- )</code></h4>
-<p>&#x589E;&#x52A0; 3D &#x87BA;&#x65CB;&#x8DEF;&#x5F91;&#xFF0C;&#x5176;&#x5713;&#x5FC3;&#x70BA; (<code>cx</code>,<code>cy</code>)&#xFF0C;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;&#x662F; (<code>x</code>, <code>y</code>, <code>z</code>)&#x3002; <code>n</code> &#x8868;&#x793A;&#x5F9E;&#x8D77;&#x555F;&#x9EDE;&#x904B;&#x52D5;&#x7B2C; <code>n</code> &#x5708;&#x5230;&#x9054;&#x76EE;&#x6A19;&#x9EDE;&#x3002;</p>
+<h4 id="helix3d--n-----f-cx-cy-x-y-z----"><a class="header" href="#helix3d--n-----f-cx-cy-x-y-z----"><code>helix3d ( n -- )( F: cx cy x y z -- )</code></a></h4>
+<p>增加 3D 螺旋路徑，其圓心為 (<code>cx</code>,<code>cy</code>)，目標位置是 (<code>x</code>, <code>y</code>, <code>z</code>)。 <code>n</code> 表示從起啟點運動第 <code>n</code> 圈到達目標點。</p>
 <ul>
-<li><code>n</code> &gt; 0 &#x8868;&#x793A;&#x9006;&#x6642;&#x91DD;&#x904B;&#x52D5;&#xFF0C;</li>
-<li><code>n</code> &lt; 0 &#x8868;&#x793A;&#x9806;&#x6642;&#x91DD;&#x904B;&#x52D5;&#xFF0C;</li>
-<li><code>n</code> &#x4E0D;&#x53EF;&#x4EE5;&#x70BA; 0&#x3002;</li>
+<li><code>n</code> &gt; 0 表示逆時針運動，</li>
+<li><code>n</code> &lt; 0 表示順時針運動，</li>
+<li><code>n</code> 不可以為 0。</li>
 </ul>
-<p>&#x5982;&#x679C; <code>z</code> &#x8207;&#x8D77;&#x59CB;&#x9EDE;&#x76F8;&#x540C;&#xFF0C;&#x6B64;&#x87BA;&#x65CB;&#x8DEF;&#x5F91;&#x5373;&#x70BA; XY &#x5E73;&#x9762;&#x4E0A;&#x7684;&#x5713;&#x5F27;&#x8DEF;&#x5F91;&#x3002;</p>
-<h4 id="line3d--f-x-y-z---"><code>line3d ( F: x y z-- )</code></h4>
-<p>&#x589E;&#x52A0;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; (<code>x</code>,<code>y</code>, <code>z</code>) &#x7684;&#x76F4;&#x7DDA;&#x8DEF;&#x5F91;&#x3002;</p>
-<h4 id="move3d--f-x-y-z----"><code>move3d ( F: x y z -- )</code></h4>
-<p>&#x5BA3;&#x544A;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x70BA; PCS &#x5EA7;&#x6A19; (<code>x</code>, <code>y</code>, <code>z</code>)&#xFF0C;&#x4E26;&#x4E14;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;&#x3002;&#x985E;&#x4F3C;&#x5DE5;&#x4EF6;&#x7A0B;&#x5F0F; GM &#x78BC;&#x7684; G92&#x3002;</p>
-<h4 id="pcs3d--f-x0-y0-z0----"><code>pcs3d ( F: x0 y0 z0 -- )</code></h4>
-<p>&#x5BA3;&#x544A; PCS &#x5EA7;&#x6A19;&#x96F6;&#x9EDE;(<code>x0</code>, <code>y0</code>, <code>z0</code>)&#xFF0C;&#x4E26;&#x4EE5;&#x7576;&#x4E0B;&#x4F4D;&#x7F6E;&#x505A;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;&#x3002;&#x985E;&#x4F3C;&#x5DE5;&#x4EF6;&#x7A0B;&#x5F0F; GM &#x78BC;&#x7684; G54&#x3002;</p>
-<h4 id="&#x7BC4;&#x4F8B;-test-3d">&#x7BC4;&#x4F8B; test-3d</h4>
-<p>&#x5047;&#x8A2D; Group 1 &#x70BA; 3D group</p>
-<pre><code>: test-3d                          \ &#x5B9A;&#x7FA9; test-3d &#x6307;&#x4EE4;
-    +coordinator                   \ &#x555F;&#x52D5;&#x8EF8;&#x904B;&#x52D5;&#x63A7;&#x5236;&#x6A21;&#x5F0F;
-    start-job                      \ &#x555F;&#x52D5;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
-    1 group! +group                \ &#x555F;&#x52D5; Group 1
-    0path                          \ &#x6E05;&#x9664; Group 1 &#x8DEF;&#x5F91;
-    0.0e  0.0e  0.0e   move3d      \ &#x5BA3;&#x544A;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x70BA;&#x8D77;&#x59CB;&#x904B;&#x52D5;&#x4F4D;&#x7F6E;&#xFF0C;&#x5EA7;&#x6A19;&#x70BA; (0.0, 0.0, 0.0)
-    0.0e  0.1e  0.0e  line3d       \ &#x63D2;&#x5165;&#x76EE;&#x6A19;&#x9EDE;&#x70BA; (0.0, 0.1, 0.0) &#x7684; 3D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;
+<p>如果 <code>z</code> 與起始點相同，此螺旋路徑即為 XY 平面上的圓弧路徑。</p>
+<h4 id="line3d--f-x-y-z---"><a class="header" href="#line3d--f-x-y-z---"><code>line3d ( F: x y z-- )</code></a></h4>
+<p>增加目標點為 (<code>x</code>,<code>y</code>, <code>z</code>) 的直線路徑。</p>
+<h4 id="move3d--f-x-y-z----"><a class="header" href="#move3d--f-x-y-z----"><code>move3d ( F: x y z -- )</code></a></h4>
+<p>宣告目前位置為 PCS 座標 (<code>x</code>, <code>y</code>, <code>z</code>)，並且為路徑起始點。類似工件程式 GM 碼的 G92。</p>
+<h4 id="pcs3d--f-x0-y0-z0----"><a class="header" href="#pcs3d--f-x0-y0-z0----"><code>pcs3d ( F: x0 y0 z0 -- )</code></a></h4>
+<p>宣告 PCS 座標零點(<code>x0</code>, <code>y0</code>, <code>z0</code>)，並以當下位置做為路徑起始點。類似工件程式 GM 碼的 G54。</p>
+<h4 id="範例-test-3d"><a class="header" href="#範例-test-3d">範例 test-3d</a></h4>
+<p>假設 Group 1 為 3D group</p>
+<pre><code>: test-3d                          \ 定義 test-3d 指令
+    +coordinator                   \ 啟動軸運動控制模式
+    start-job                      \ 啟動加減速機制
+    1 group! +group                \ 啟動 Group 1
+    0path                          \ 清除 Group 1 路徑
+    0.0e  0.0e  0.0e   move3d      \ 宣告目前位置為起始運動位置，座標為 (0.0, 0.0, 0.0)
+    0.0e  0.1e  0.0e  line3d       \ 插入目標點為 (0.0, 0.1, 0.0) 的 3D 直線路徑
     -0.1e  0.1e -0.2e 0.1e 0.1e  1 helix3d
-                                   \ &#x4EE5;&#x5713;&#x5FC3;&#x4F4D;&#x7F6E; &#xFF08;-0.1, 0.1&#xFF09;&#x9006;&#x6642;&#x91DD;&#x8D70;&#x5230;&#x76EE;&#x6A19;&#x9EDE; &#xFF08;-0.2, 0.1, 0.1 &#xFF09;&#x7684;&#x87BA;&#x65CB;&#x8DEF;&#x5F91;
-    100.0e mm/min vcmd!            \ &#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x901F;&#x5EA6;&#x70BA; 100.0 mm/min
-    begin                          \ &#x7B49;&#x5F85;&#x5230;&#x9054;&#x7D42;&#x9EDE;&#x4F4D;&#x7F6E;
-        1 group! gend? not         \ &#x6AA2;&#x67E5;&#x662F;&#x5426;&#x5230;&#x7D42;&#x9EDE;, &#x6B64;&#x8655; 1 group! &#x907F;&#x514D;&#x5728;&#x7B49;&#x5F85;&#x904E;&#x7A0B;&#x4E2D;&#x88AB;&#x5176;&#x4ED6;&#x6307;&#x4EE4;&#x4FEE;&#x6539;
+                                   \ 以圓心位置 （-0.1, 0.1）逆時針走到目標點 （-0.2, 0.1, 0.1 ）的螺旋路徑
+    100.0e mm/min vcmd!            \ 設定運動速度為 100.0 mm/min
+    begin                          \ 等待到達終點位置
+        1 group! gend? not         \ 檢查是否到終點, 此處 1 group! 避免在等待過程中被其他指令修改
     while
-        pause                      \ &#x82E5;&#x662F;&#x672A;&#x5230;&#x7D42;&#x9EDE;&#x5C31;&#x7B49;&#x5F85;&#x4E0B;&#x4E00;&#x500B;&#x5468;&#x671F;&#x518D;&#x9032;&#x884C;&#x6AA2;&#x67E5;
+        pause                      \ 若是未到終點就等待下一個周期再進行檢查
     repeat
-    1 group! -group                \ &#x95DC;&#x9589; Group 1
+    1 group! -group                \ 關閉 Group 1
 ;
 
-deploy test-3d ;deploy         \ &#x5728;&#x80CC;&#x666F;&#x57F7;&#x884C; test-3d
-</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
-<table>
-<thead>
-<tr>
-<th>&#x6307;&#x4EE4;</th>
-<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
-<th>&#x8AAA;&#x660E;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>helix3d</td>
-<td>( n -- )( F: cx cy x y z -- )</td>
-<td>&#x63D2;&#x5165; 3D &#x87BA;&#x65CB;&#x8DEF;&#x5F91;</td>
-</tr>
-<tr>
-<td>line3d</td>
-<td>( F: x y z -- )</td>
-<td>&#x63D2;&#x5165; 3D &#x76F4;&#x7DDA;&#x8DEF;&#x5F91;</td>
-</tr>
-<tr>
-<td>move3d</td>
-<td>( F: x y z -- )</td>
-<td>&#x5BA3;&#x544A;&#x76EE;&#x524D; PCS &#x5EA7;&#x6A19;&#x70BA; (x, y, z)&#xFF0C;&#x4E26;&#x505A;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;</td>
-</tr>
-<tr>
-<td>pcs3d</td>
-<td>( F: x0 y0 z0 -- )</td>
-<td>&#x5BA3;&#x544A; PCS &#x5EA7;&#x6A19;&#x96F6;&#x9EDE;&#xFF0C;&#x4E26;&#x4EE5;&#x7576;&#x4E0B;&#x4F4D;&#x7F6E;&#x505A;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="sine-wave-planner">Sine Wave Planner</h3>
-<p>&#x6CE8;&#x610F;&#x4E8B;&#x9805;&#xFF1A;</p>
+deploy test-3d ;deploy         \ 在背景執行 test-3d
+</code></pre>
+<h4 id="本節指令集-4"><a class="header" href="#本節指令集-4">本節指令集</a></h4>
+<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
+<tr><td>helix3d</td><td>( n -- )( F: cx cy x y z -- )</td><td>插入 3D 螺旋路徑</td></tr>
+<tr><td>line3d</td><td>( F: x y z -- )</td><td>插入 3D 直線路徑</td></tr>
+<tr><td>move3d</td><td>( F: x y z -- )</td><td>宣告目前 PCS 座標為 (x, y, z)，並做為路徑起始點</td></tr>
+<tr><td>pcs3d</td><td>( F: x0 y0 z0 -- )</td><td>宣告 PCS 座標零點，並以當下位置做為路徑起始點</td></tr>
+</tbody></table>
+<hr />
+<h3 id="sine-wave-planner"><a class="header" href="#sine-wave-planner">Sine Wave Planner</a></h3>
+<p>注意事項：</p>
 <ol>
-<li>&#x76EE;&#x524D;&#x9078;&#x7528;&#x7684;&#x8EF8;&#x7D44;&#x5FC5;&#x9808;&#x70BA; Sine Wave &#x578B;&#x614B;&#x3002;</li>
-<li>&#x5FC5;&#x9808;&#x8981;&#x5BA3;&#x544A;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;&#xFF08; move3d, mcs, psc3d&#xFF09;&#xFF0C;&#x6B64;&#x8D77;&#x59CB;&#x9EDE;&#x5C31;&#x662F;&#x76F8;&#x4F4D; 0 &#x7684;&#x4F4D;&#x7F6E;&#x3002;</li>
+<li>目前選用的軸組必須為 Sine Wave 型態。</li>
+<li>必須要宣告路徑起始點（ move3d, mcs, psc3d），此起始點就是相位 0 的位置。</li>
 </ol>
-<h4 id="move-sine--f-x----"><code>move-sine ( F: x -- )</code></h4>
-<p>&#x5BA3;&#x544A;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x70BA; PCS &#x5EA7;&#x6A19; (<code>x</code>)&#xFF0C;&#x4E26;&#x4E14;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;&#x3002;</p>
-<h4 id="sine-amp-f-amp----"><code>sine-amp! (F: amp -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x5F26;&#x6CE2;&#x632F;&#x5E45;&#x3002;&#x53EF;&#x4EE5;&#x904B;&#x52D5;&#x4E2D;&#x4FEE;&#x6539;&#xFF0C;&#x7D93;&#x904E;&#x8D77;&#x59CB;&#x9EDE;&#x5F8C;&#x624D;&#x958B;&#x59CB;&#x6539;&#x8B8A;&#x632F;&#x5E45;&#x3002;</p>
-<h4 id="sine-f--f-f----"><code>sine-f! ( F: f -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x5F26;&#x6CE2;&#x983B;&#x7387;&#x3002;&#x53EF;&#x4EE5;&#x904B;&#x52D5;&#x4E2D;&#x4FEE;&#x6539;&#xFF0C;&#x5728;&#x76F8;&#x4F4D; 270 deg &#x7684;&#x5730;&#x65B9;&#x6539;&#x8B8A;&#x983B;&#x7387;&#x3002;</p>
-<h4 id="pcs-sine--f-x0----"><code>pcs-sine ( F: x0 -- )</code></h4>
-<p>&#x5BA3;&#x544A; PCS &#x5EA7;&#x6A19;&#x96F6;&#x9EDE;(<code>x0</code>&#xFF09; &#xFF0C;&#x4E26;&#x4EE5;&#x7576;&#x4E0B;&#x4F4D;&#x7F6E;&#x505A;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;&#x3002;</p>
-<h4 id="&#x7BC4;&#x4F8B;-test-sine">&#x7BC4;&#x4F8B; test-sine</h4>
-<p>&#x5047;&#x8A2D; Group 1 &#x70BA; SINE Wave Group</p>
-<pre><code>+coordinator          \ &#x555F;&#x52D5;&#x8EF8;&#x904B;&#x52D5;&#x63A7;&#x5236;&#x6A21;&#x5F0F;
-start-job             \ &#x555F;&#x52D5;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
-1 group! +group       \ &#x555F;&#x52D5; Group 1
-0path                 \ &#x6E05;&#x9664; Group 1 &#x8DEF;&#x5F91;
-0.0e   move-sine      \ &#x5BA3;&#x544A;&#x76EE;&#x524D;&#x4F4D;&#x7F6E;&#x70BA;&#x8D77;&#x59CB;&#x904B;&#x52D5;&#x4F4D;&#x7F6E;&#xFF0C;&#x5EA7;&#x6A19;&#x70BA; (0.0)
-1.0e   sine-f!        \ &#x8A2D;&#x5B9A;sine wave &#x983B;&#x7387;&#x70BA; 1.0 Hz
-0.01e  sine-amp!      \ &#x8A2D;&#x5B9A;sine wave &#x632F;&#x5E45;&#x70BA; 0.01
+<h4 id="move-sine--f-x----"><a class="header" href="#move-sine--f-x----"><code>move-sine ( F: x -- )</code></a></h4>
+<p>宣告目前位置為 PCS 座標 (<code>x</code>)，並且為路徑起始點。</p>
+<h4 id="sine-amp-f-amp----"><a class="header" href="#sine-amp-f-amp----"><code>sine-amp! (F: amp -- )</code></a></h4>
+<p>設定弦波振幅。可以運動中修改，經過起始點後才開始改變振幅。</p>
+<h4 id="sine-f--f-f----"><a class="header" href="#sine-f--f-f----"><code>sine-f! ( F: f -- )</code></a></h4>
+<p>設定弦波頻率。可以運動中修改，在相位 270 deg 的地方改變頻率。</p>
+<h4 id="pcs-sine--f-x0----"><a class="header" href="#pcs-sine--f-x0----"><code>pcs-sine ( F: x0 -- )</code></a></h4>
+<p>宣告 PCS 座標零點(<code>x0</code>） ，並以當下位置做為路徑起始點。</p>
+<h4 id="範例-test-sine"><a class="header" href="#範例-test-sine">範例 test-sine</a></h4>
+<p>假設 Group 1 為 SINE Wave Group</p>
+<pre><code>+coordinator          \ 啟動軸運動控制模式
+start-job             \ 啟動加減速機制
+1 group! +group       \ 啟動 Group 1
+0path                 \ 清除 Group 1 路徑
+0.0e   move-sine      \ 宣告目前位置為起始運動位置，座標為 (0.0)
+1.0e   sine-f!        \ 設定sine wave 頻率為 1.0 Hz
+0.01e  sine-amp!      \ 設定sine wave 振幅為 0.01
 ...
-stop-job              \ &#x505C;&#x6B62;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
-</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
-<table>
-<thead>
-<tr>
-<th>&#x6307;&#x4EE4;</th>
-<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
-<th>&#x8AAA;&#x660E;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>move-sine</td>
-<td>( F: x -- )</td>
-<td>&#x5BA3;&#x544A;&#x76EE;&#x524D; PCS &#x5EA7;&#x6A19;&#x70BA; (x)&#xFF0C;&#x4E26;&#x505A;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;</td>
-</tr>
-<tr>
-<td>sine-amp!</td>
-<td>( F: amp -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x5F26;&#x6CE2;&#x904B;&#x52D5;&#x7684;&#x632F;&#x5E45;</td>
-</tr>
-<tr>
-<td>sine-f!</td>
-<td>( F: f -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x5F26;&#x6CE2;&#x904B;&#x52D5;&#x7684;&#x983B;&#x7387;</td>
-</tr>
-<tr>
-<td>pcs-sine</td>
-<td>( F: x0 -- )</td>
-<td>&#x5BA3;&#x544A; PCS &#x5EA7;&#x6A19;&#x96F6;&#x9EDE;&#xFF0C;&#x4E26;&#x4EE5;&#x7576;&#x4E0B;&#x4F4D;&#x7F6E;&#x505A;&#x70BA;&#x8DEF;&#x5F91;&#x8D77;&#x59CB;&#x9EDE;</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="axis">Axis</h3>
-<p>&#x540D;&#x8A5E;&#x8AAA;&#x660E;&#xFF1A;</p>
+stop-job              \ 停止加減速機制
+</code></pre>
+<h4 id="本節指令集-5"><a class="header" href="#本節指令集-5">本節指令集</a></h4>
+<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
+<tr><td>move-sine</td><td>( F: x -- )</td><td>宣告目前 PCS 座標為 (x)，並做為路徑起始點</td></tr>
+<tr><td>sine-amp!</td><td>( F: amp -- )</td><td>設定弦波運動的振幅</td></tr>
+<tr><td>sine-f!</td><td>( F: f -- )</td><td>設定弦波運動的頻率</td></tr>
+<tr><td>pcs-sine</td><td>( F: x0 -- )</td><td>宣告 PCS 座標零點，並以當下位置做為路徑起始點</td></tr>
+</tbody></table>
+<hr />
+<h3 id="axis"><a class="header" href="#axis">Axis</a></h3>
+<p>名詞說明：</p>
 <ul>
-<li>command_position: &#x904B;&#x52D5;&#x8EF8;&#x7684;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;&#x3002;</li>
-<li>demand_position: &#x904B;&#x52D5;&#x904E;&#x7A0B;&#x4E2D;&#x7684;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x3002;&#x5982;&#x679C;&#x53D7;&#x5230;&#x8EF8;&#x7D44;&#x63A7;&#x5236;&#x6642;&#xFF0C; demand_position &#x6703;&#x8207; command_position &#x76F8;&#x7B49;&#x3002;&#x5982;&#x679C;&#x662F;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x9EDE;&#x5C0D;&#x9EDE;&#x904B;&#x52D5;&#xFF0C;&#x5728;&#x904E;&#x7A0B;&#x4E2D; demand_position &#x6703;&#x671D;&#x8457;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;&#x904B;&#x52D5;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x5230;&#x9054;&#x76EE;&#x6A19;&#x9EDE;&#x6642; demand_position &#x6703;&#x8207; command_position &#x76F8;&#x7B49;&#x3002;</li>
-<li>feedback_position: &#x7531;&#x99AC;&#x9054;&#x7DE8;&#x78BC;&#x5668;&#x6216;&#x662F;&#x96D9;&#x4F4D;&#x7F6E;&#x56DE;&#x6388;&#x6240;&#x5F97;&#x5230;&#x7684;&#x5BE6;&#x969B;&#x4F4D;&#x7F6E;&#x3002;</li>
-<li>position_correction: &#x4F4D;&#x7F6E;&#x4FEE;&#x6B63;&#x91CF;&#x3002;&#x53EF;&#x4EE5;&#x662F; Pitch Corrector &#x6240;&#x7B97;&#x51FA;&#x4F86;&#x7684;&#x88DC;&#x6B63;&#x91CF;&#xFF0C;&#x6216;&#x662F;&#x5176;&#x4ED6;&#x7B56;&#x7565;&#x6240;&#x63A8;&#x7B97;&#x51FA;&#x4F86;&#x7684;&#x88DC;&#x6B63;&#x503C;&#x3002;</li>
-<li><p>corrected_position: &#x4FEE;&#x6B63;&#x5F8C;&#x7684;&#x5BE6;&#x969B;&#x4F4D;&#x7F6E;&#x3002;</p>
-<p> corrected_position = feedback_position - position_correction + home_offset</p>
+<li>
+<p>command_position: 運動軸的目標位置。</p>
 </li>
-<li><p>following_error: &#x843D;&#x5F8C;&#x8AA4;&#x5DEE;&#x3002;</p>
-<p>  following_error = demand_position - corrected_position</p>
+<li>
+<p>demand_position: 運動過程中的命令位置。如果受到軸組控制時， demand_position 會與 command_position 相等。如果是運動軸的點對點運動，在過程中 demand_position 會朝著目標位置運動，只有在到達目標點時 demand_position 會與 command_position 相等。</p>
+</li>
+<li>
+<p>feedback_position: 由馬達編碼器或是雙位置回授所得到的實際位置。</p>
+</li>
+<li>
+<p>position_correction: 位置修正量。可以是 Pitch Corrector 所算出來的補正量，或是其他策略所推算出來的補正值。</p>
+</li>
+<li>
+<p>corrected_position: 修正後的實際位置。</p>
+<p>corrected_position = feedback_position - position_correction + home_offset</p>
+</li>
+<li>
+<p>following_error: 落後誤差。</p>
+<p>following_error = demand_position - corrected_position</p>
 </li>
 </ul>
-<hr>
-<h4 id="axis--j----"><code>.axis ( j -- )</code></h4>
-<p>&#x986F;&#x793A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x72C0;&#x614B;&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+<hr />
+<h4 id="axis--j----"><a class="header" href="#axis--j----"><code>.axis ( j -- )</code></a></h4>
+<p>顯示運動軸 <code>j</code> 狀態。</p>
+<p>命令範例:</p>
 <pre><code>1 .axis
-</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F; :</p>
+</code></pre>
+<p>回傳訊息 :</p>
 <pre><code>axis_command_position.1|0.0000000
 |axis_demand_position.1|0.0000000
 |axis_corrected_position.1|0.0000000
@@ -1650,11 +838,13 @@ stop-job              \ &#x505C;&#x6B62;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
 |following_error.1|0.0000000
 |axis_interpolator_enabled.1|0
 |axis_homed.1|0
-</code></pre><h4 id="axiscfg--j----"><code>.axiscfg ( j -- )</code></h4>
-<p>&#x986F;&#x793A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x8A2D;&#x5B9A;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
+</code></pre>
+<h4 id="axiscfg--j----"><a class="header" href="#axiscfg--j----"><code>.axiscfg ( j -- )</code></a></h4>
+<p>顯示運動軸 <code>j</code> 設定</p>
+<p>命令範例：</p>
 <pre><code>1 .axiscfg
-</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F;&#xFF1A;</p>
+</code></pre>
+<p>回傳訊息：</p>
 <pre><code>axis_name.1|A2
 |axis_home_offset.1|0.0000000
 |encoder_length_unit.1|Meter
@@ -1673,430 +863,232 @@ stop-job              \ &#x505C;&#x6B62;&#x52A0;&#x6E1B;&#x901F;&#x6A5F;&#x5236;
 |axis_amax.1|5.00000
 |axis_vmax.1|0.10000
 |axis_ignorable_distance.1|0.0000005
-</code></pre><h4 id="homed--j----"><code>+homed ( j -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x5DF2;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x3002;</p>
-<h4 id="homed--j----"><code>-homed ( j -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x672A;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x3002;</p>
-<h4 id="0axis-ferr--j----"><code>0axis-ferr ( j -- )</code></h4>
-<p>&#x6E05;&#x9664;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x843D;&#x5F8C;&#x8AA4;&#x5DEE;&#x3002;&#x4F7F;&#x7528;&#x904B;&#x52D5;&#x8EF8;&#x5BE6;&#x969B;&#x4F4D;&#x7F6E;&#x4FEE;&#x6B63;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x865B;&#x64EC;&#x8EF8;&#x5247;&#x4E0D;&#x53D7;&#x5F71;&#x97FF;&#x3002;</p>
-<h4 id="axis-amax--j------f-amax----"><code>axis-amax! ( j -- ) ( F: amax -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x7684;&#x6700;&#x5927;&#x52A0;&#x901F;&#x5EA6; <code>amax</code>&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>2.0e 1 axis-amax!  \ &#x8A2D;&#x5B9A; Axis 1 amax &#x70BA; 2.0
-</code></pre><h4 id="axis-amax--j------f----amax-"><code>axis-amax@ ( j -- ) ( F: -- amax )</code></h4>
-<p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x7684;&#x6700;&#x5927;&#x52A0;&#x901F;&#x5EA6; <code>amax</code>&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>1 axis-amax@  \ &#x53D6;&#x5F97; Axis 1 amax
-</code></pre><h4 id="axis-clerr---j------f-clerr----"><code>axis-clerr  ( j -- ) ( F: clerr -- )</code></h4>
-<p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x96D9;&#x4F4D;&#x7F6E;&#x56DE;&#x6388;&#x8AA4;&#x5DEE; <code>clerr</code>&#x3002;</p>
-<p>&#x901A;&#x5E38;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x5B89;&#x88DD;&#x5728;&#x9760;&#x8FD1;&#x8ECC;&#x9053;&#x6216;&#x662F;&#x5DE5;&#x4F5C;&#x53F0;&#x7684;&#x4F4D;&#x7F6E;&#xFF0C;&#x5982;&#x679C;&#x548C;&#x99AC;&#x9054;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x4F4D;&#x7F6E;&#x76F8;&#x5DEE;&#x904E;&#x5927;&#x4EE3;&#x8868;&#x6A5F;&#x68B0;&#x50B3;&#x52D5;&#x7CFB;&#x7684;&#x904B;&#x4F5C;&#x51FA;&#x73FE;&#x554F;&#x984C;&#xFF0C;&#x6B64;&#x6642;&#x53EF;&#x4EE5;&#x512A;&#x5148;&#x6AA2;&#x67E5;&#x76AE;&#x5E36;&#x8F2A;&#x6216;&#x662F;&#x806F;&#x8EF8;&#x5668;&#x3002;</p>
-<h4 id="axis-cmd-p--j-----f-pos----"><code>axis-cmd-p! ( j -- )( F: pos -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x7684;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E; <code>pos</code>&#x3002;</p>
-<h4 id="axis-cmd-p--j-----f----pos-"><code>axis-cmd-p@ ( j -- )( F: -- pos )</code></h4>
-<p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x7684;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E; <code>pos</code>&#x3002;</p>
-<h4 id="axis-demand-p--j-----f----pos-"><code>axis-demand-p@ ( j -- )( F: -- pos )</code></h4>
-<p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x7684;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E; <code>pos</code>&#x3002;</p>
-<h4 id="axis-drive--j-----channel-slave-"><code>axis-drive@ ( j --  channel slave )</code></h4>
-<p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x914D;&#x7F6E;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; EtherCAT &#x7AD9;&#x865F; <code>slave</code> &#x8207;&#x9A45;&#x52D5;&#x8EF8;&#x7DE8;&#x865F; <code>channel</code>&#x3002;</p>
-<p><code>slave</code> &#x6307;&#x7684;&#x662F; slave position&#xFF0C;&#x6700;&#x9760;&#x8FD1;&#x4E3B;&#x7AD9;&#x7684;&#x5F9E;&#x7AD9;&#x7DE8;&#x865F;&#x70BA; 1&#xFF0C;&#x4F9D;&#x5E8F;&#x905E;&#x589E;&#x3002;</p>
-<p>&#x5982;&#x679C;&#x662F;&#x4EE5; slave alias &#x6307;&#x5B9A;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x65B9;&#x5F0F;&#xFF0C;&#x5247;&#x662F;&#x4E3B;&#x7AD9;&#x5728;&#x521D;&#x59CB;&#x5316;&#x6216;&#x662F;&#x8A2D;&#x5B9A;&#x6642;&#x5C31;&#x4F9D;&#x6307;&#x5B9A; slave alias &#x53D6;&#x5F97; slave position&#x3002;</p>
-<p>&#x7576;&#x662F;&#x865B;&#x64EC;&#x8EF8;&#x6642;&#xFF0C;<code>axis-drive@</code> &#x56DE;&#x50B3;&#x7684; <code>channel = 0</code>, <code>slave = 0</code>&#x3002;</p>
-<h4 id="axis-ext-enc--j-----channel-slave-"><code>axis-ext-enc@ ( j --  channel slave )</code></h4>
-<p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x914D;&#x7F6E;&#x7684;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x7684; EtherCAT &#x7AD9;&#x865F; <code>slave</code> &#x8207;&#x8F38;&#x5165;&#x7DE8;&#x865F; <code>channel</code>&#x3002;</p>
-<p>&#x7576;&#x6C92;&#x6709;&#x914D;&#x7F6E;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x6642;&#x6703;&#x4F7F;&#x5F97; <code>axis-ext-enc@</code> &#x56DE;&#x50B3; <code>channel = 0</code>, <code>slave = 0</code>&#x3002;</p>
-<h4 id="axis-ferr--j------f-ferr----"><code>axis-ferr@ ( j -- ) ( F: ferr -- )</code></h4>
-<p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x53D6;&#x5F97;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE; <code>ferr</code>&#x3002;</p>
-<h4 id="axis-ignore-dist--j-------f-dist----"><code>axis-ignore-dist! ( j --  ) ( F: dist -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x6307;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x53EF;&#x5FFD;&#x7565;&#x7684;&#x9577;&#x5EA6;&#x8A08;&#x7B97;&#x8AA4;&#x5DEE; <code>dist</code>&#x3002;</p>
-<p>&#x901A;&#x5E38;&#x5728; pulse &#x7684;&#x7CFB;&#x7D71;&#x4E0B;&#xFF0C;&#x8A2D;&#x5B9A;&#x70BA; 0.5 &#x6216;&#x662F; 0.1 [pulse]&#x3002;&#x5176;&#x5B83;&#x8A2D;&#x5B9A;&#x70BA; 0.5e-6 &#x6216;&#x662F; 0.1e-6 [m] or [rad]</p>
-<h4 id="axis-len-----len-"><code>axis-len ( -- len )</code></h4>
-<p>&#x53D6;&#x5F97; Botnana Control &#x6240;&#x898F;&#x5283;&#x7684;&#x904B;&#x52D5;&#x8EF8;&#x7E3D;&#x6578; <code>len</code>&#x3002;</p>
-<h4 id="axis-real-p--j----f----pos-"><code>axis-real-p@ ( j -- )(F: -- pos )</code></h4>
-<p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code>&#x7684;&#x5BE6;&#x969B;&#x4F4D;&#x7F6E; <code>pos</code> &#x3002;</p>
-<h4 id="axis-rest---j----flag-"><code>axis-rest?  ( j -- flag )</code></h4>
-<p>&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x547D;&#x4EE4;&#x662F;&#x5426;&#x975C;&#x6B62;&#xFF1F;</p>
-<p>&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x6B64;&#x72C0;&#x614B;&#x4F5C;&#x70BA;&#x4E0D;&#x540C;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;&#x6216;&#x662F;&#x96D9;&#x4F4D;&#x7F6E;&#x56DE;&#x6388;&#x8AA4;&#x5DEE;&#x7684;&#x76E3;&#x63A7;&#x689D;&#x4EF6;&#x5207;&#x63DB;&#x3002;</p>
-<h4 id="axis-ts--j------f-ts----"><code>axis-ts! ( j -- ) ( F: ts -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x7528;&#x4F86;&#x5224;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x547D;&#x4EE4;&#x662F;&#x5426;&#x975C;&#x6B62;&#x7684;&#x5B89;&#x5B9A;&#x6642;&#x9593; <code>ts</code> sec&#x3002;</p>
-<h4 id="axis-vmax--j------f-vmax----"><code>axis-vmax! ( j -- ) ( F: vmax -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x7684;&#x6700;&#x5927;&#x901F;&#x5EA6; <code>vmax</code>&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>0.5e 1 axis-vmax!  \ &#x8A2D;&#x5B9A; Axis 1 vmax &#x70BA; 0.5
-</code></pre><h4 id="axis-vmax--j------f----vmax-"><code>axis-vmax@ ( j -- ) ( F: -- vmax )</code></h4>
-<p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x7684;&#x6700;&#x5927;&#x901F;&#x5EA6; <code>vmax</code>&#x3002;</p>
-<h4 id="axispulse--j----pulse---f-pos----"><code>axis&gt;pulse ( j -- pulse ) ( F: pos -- )</code></h4>
-<p>&#x8F49;&#x63DB;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x7684;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E; <code>pos</code> &#x70BA;&#x7DE8;&#x78BC;&#x5668;&#x8108;&#x6CE2;&#x4F4D;&#x7F6E; <code>pulse</code>&#x3002;</p>
-<h4 id="cl-cutoff--j------f-freq----"><code>cl-cutoff! ( j -- ) ( F: freq -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x96D9;&#x4F4D;&#x7F6E;&#x56DE;&#x6388;&#x8AA4;&#x5DEE;&#x6FFE;&#x6CE2;&#x5668;&#x7684;&#x622A;&#x6B62;&#x983B;&#x7387; <code>freq</code>&#x3002;</p>
-<p>&#x6B64;&#x622A;&#x6B62;&#x983B;&#x7387;&#x5F71;&#x97FF;&#x96D9;&#x4F4D;&#x7F6E;&#x56DE;&#x6388;&#x8AA4;&#x5DEE;&#x7684;&#x8A08;&#x7B97;&#xFF0C;&#x5982;&#x679C;&#x8ABF;&#x9AD8;&#xFF0C;&#x904B;&#x52D5;&#x97FF;&#x61C9;&#x6703;&#x6BD4;&#x8F03;&#x8CBC;&#x8FD1;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x56DE;&#x6388;&#x4F4D;&#x7F6E;&#xFF0C;&#x4F46;&#x662F;&#x7CFB;&#x7D71;&#x6703;&#x6BD4;&#x8F03;&#x4E0D;&#x7A69;&#x5B9A;&#x3002;</p>
-<h4 id="drv-alias---drive-alias-j----"><code>drv-alias!  ( drive-alias j -- )</code></h4>
-<p>&#x4F7F;&#x7528; EtherCAT Station Alias <code>drive-alias</code> &#x6307;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x3002;</p>
-<p>&#x7576; <code>drive-alias</code> = 0 &#x8868;&#x793A;&#x4F7F;&#x7528; slave position &#x6307;&#x5B9A;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x3002; &#x7576; <code>drive-alias</code> &#x4E0D;&#x5B58;&#x5728;&#x6642;&#xFF0C;&#x6B64;&#x904B;&#x52D5;&#x8EF8;&#x5C31;&#x6703;&#x4EE5;&#x865B;&#x64EC;&#x8EF8;&#x8655;&#x7406;&#x3002;</p>
-<h4 id="drv-channel---drive-channel-j----"><code>drv-channel!  ( drive-channel j -- )</code></h4>
-<p>&#x4F7F;&#x7528; <code>drive-channel</code> &#x6307;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x63A7;&#x5236;&#x8EF8;&#x3002;</p>
-<p>&#x56E0;&#x61C9;&#x55AE;&#x4E00; EtherCAT &#x5F9E;&#x7AD9;&#x591A;&#x8EF8;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x6A21;&#x7D44;&#x578B;&#x614B;&#xFF0C;&#x6240;&#x4EE5;&#x5FC5;&#x9808;&#x8981;&#x4F7F;&#x7528;&#x6B64;&#x4E00;&#x53C3;&#x6578;&#x3002;&#x4E00;&#x822C;&#x9A45;&#x52D5;&#x5668;&#x5247;&#x662F;&#x56FA;&#x5B9A;&#x8A2D;&#x5B9A;&#x70BA; 1&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>1 3 drv-channel! \ &#x8A2D;&#x5B9A; Axis 3 &#x5C0D;&#x61C9;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x63A7;&#x5236;&#x8EF8;&#x70BA; 1
-</code></pre><h4 id="drv-slave---drive-slave-j----"><code>drv-slave!  ( drive-slave j -- )</code></h4>
-<p>&#x4F7F;&#x7528; EtherCAT Slave Position <code>drive-slave</code> &#x6307;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7AD9;&#x865F;&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>2 1 drv-slave!  \ &#x8A2D;&#x5B9A; Axis 1 &#x5C0D;&#x61C9;&#x7684;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7AD9;&#x865F;&#x70BA; 2
-</code></pre><h4 id="enc-dir--dir-j----"><code>enc-dir! ( dir j -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x99AC;&#x9054;&#x904B;&#x52D5;/&#x7DE8;&#x78BC;&#x5668;&#x65B9;&#x5411; <code>dir</code>&#x3002;</p>
-<p>&#x7576;&#x6A5F;&#x5668;&#x7684;&#x8EF8;&#x5411;&#x8207;&#x99AC;&#x9054;&#x7684;&#x904B;&#x8F49;&#x65B9;&#x5411;&#x5B9A;&#x7FA9;&#x76F8;&#x53CD;&#x6642;&#x53EF;&#x4EE5;&#x85C9;&#x7531;&#x6B64;&#x53C3;&#x6578;&#x4F86;&#x8F49;&#x63DB;&#x3002;</p>
-<p>dir &#x53EF;&#x4EE5;&#x8A2D;&#x5B9A;&#x7684;&#x503C;&#x70BA;&#xFF1A;</p>
+</code></pre>
+<h4 id="homed--j----"><a class="header" href="#homed--j----"><code>+homed ( j -- )</code></a></h4>
+<p>設定運動軸 <code>j</code> 已回歸機械原點。</p>
+<h4 id="-homed--j----"><a class="header" href="#-homed--j----"><code>-homed ( j -- )</code></a></h4>
+<p>設定運動軸 <code>j</code> 未回歸機械原點。</p>
+<h4 id="0axis-ferr--j----"><a class="header" href="#0axis-ferr--j----"><code>0axis-ferr ( j -- )</code></a></h4>
+<p>清除運動軸 <code>j</code> 落後誤差。使用運動軸實際位置修正命令位置，如果是虛擬軸則不受影響。</p>
+<h4 id="axis-amax--j------f-amax----"><a class="header" href="#axis-amax--j------f-amax----"><code>axis-amax! ( j -- ) ( F: amax -- )</code></a></h4>
+<p>設定運動軸 <code>j</code> 的最大加速度 <code>amax</code>。</p>
+<p>命令範例：</p>
+<pre><code>2.0e 1 axis-amax!  \ 設定 Axis 1 amax 為 2.0
+</code></pre>
+<h4 id="axis-amax--j------f----amax-"><a class="header" href="#axis-amax--j------f----amax-"><code>axis-amax@ ( j -- ) ( F: -- amax )</code></a></h4>
+<p>取得運動軸 <code>j</code> 的最大加速度 <code>amax</code>。</p>
+<p>命令範例：</p>
+<pre><code>1 axis-amax@  \ 取得 Axis 1 amax
+</code></pre>
+<h4 id="axis-clerr---j------f-clerr----"><a class="header" href="#axis-clerr---j------f-clerr----"><code>axis-clerr  ( j -- ) ( F: clerr -- )</code></a></h4>
+<p>取得運動軸 <code>j</code> 雙位置回授誤差 <code>clerr</code>。</p>
+<p>通常外部編碼器安裝在靠近軌道或是工作台的位置，如果和馬達編碼器的位置相差過大代表機械傳動系的運作出現問題，此時可以優先檢查皮帶輪或是聯軸器。</p>
+<h4 id="axis-cmd-p--j-----f-pos----"><a class="header" href="#axis-cmd-p--j-----f-pos----"><code>axis-cmd-p! ( j -- )( F: pos -- )</code></a></h4>
+<p>設定運動軸 <code>j</code> 的目標位置 <code>pos</code>。</p>
+<h4 id="axis-cmd-p--j-----f----pos-"><a class="header" href="#axis-cmd-p--j-----f----pos-"><code>axis-cmd-p@ ( j -- )( F: -- pos )</code></a></h4>
+<p>取得運動軸 <code>j</code> 的目標位置 <code>pos</code>。</p>
+<h4 id="axis-demand-p--j-----f----pos-"><a class="header" href="#axis-demand-p--j-----f----pos-"><code>axis-demand-p@ ( j -- )( F: -- pos )</code></a></h4>
+<p>取得運動軸 <code>j</code> 的命令位置 <code>pos</code>。</p>
+<h4 id="axis-drive--j-----channel-slave-"><a class="header" href="#axis-drive--j-----channel-slave-"><code>axis-drive@ ( j --  channel slave )</code></a></h4>
+<p>取得運動軸 <code>j</code> 配置的馬達驅動器的 EtherCAT 站號 <code>slave</code> 與驅動軸編號 <code>channel</code>。</p>
+<p><code>slave</code> 指的是 slave position，最靠近主站的從站編號為 1，依序遞增。</p>
+<p>如果是以 slave alias 指定馬達驅動器的方式，則是主站在初始化或是設定時就依指定 slave alias 取得 slave position。</p>
+<p>當是虛擬軸時，<code>axis-drive@</code> 回傳的 <code>channel = 0</code>, <code>slave = 0</code>。</p>
+<h4 id="axis-ext-enc--j-----channel-slave-"><a class="header" href="#axis-ext-enc--j-----channel-slave-"><code>axis-ext-enc@ ( j --  channel slave )</code></a></h4>
+<p>取得運動軸 <code>j</code> 配置的外部編碼器的 EtherCAT 站號 <code>slave</code> 與輸入編號 <code>channel</code>。</p>
+<p>當沒有配置外部編碼器時會使得 <code>axis-ext-enc@</code> 回傳 <code>channel = 0</code>, <code>slave = 0</code>。</p>
+<h4 id="axis-ferr--j------f-ferr----"><a class="header" href="#axis-ferr--j------f-ferr----"><code>axis-ferr@ ( j -- ) ( F: ferr -- )</code></a></h4>
+<p>取得運動軸 <code>j</code> 取得落後誤差 <code>ferr</code>。</p>
+<h4 id="axis-ignore-dist--j-------f-dist----"><a class="header" href="#axis-ignore-dist--j-------f-dist----"><code>axis-ignore-dist! ( j --  ) ( F: dist -- )</code></a></h4>
+<p>設定指定運動軸 <code>j</code> 可忽略的長度計算誤差 <code>dist</code>。</p>
+<p>通常在 pulse 的系統下，設定為 0.5 或是 0.1 [pulse]。其它設定為 0.5e-6 或是 0.1e-6 [m] or [rad]</p>
+<h4 id="axis-len-----len-"><a class="header" href="#axis-len-----len-"><code>axis-len ( -- len )</code></a></h4>
+<p>取得 Botnana Control 所規劃的運動軸總數 <code>len</code>。</p>
+<h4 id="axis-real-p--j----f----pos-"><a class="header" href="#axis-real-p--j----f----pos-"><code>axis-real-p@ ( j -- )(F: -- pos )</code></a></h4>
+<p>取得運動軸 <code>j</code>的實際位置 <code>pos</code> 。</p>
+<h4 id="axis-rest---j----flag-"><a class="header" href="#axis-rest---j----flag-"><code>axis-rest?  ( j -- flag )</code></a></h4>
+<p>運動軸 <code>j</code> 命令是否靜止？</p>
+<p>可以利用此狀態作為不同落後誤差或是雙位置回授誤差的監控條件切換。</p>
+<h4 id="axis-ts--j------f-ts----"><a class="header" href="#axis-ts--j------f-ts----"><code>axis-ts! ( j -- ) ( F: ts -- )</code></a></h4>
+<p>設定用來判定運動軸 <code>j</code> 命令是否靜止的安定時間 <code>ts</code> sec。</p>
+<h4 id="axis-vmax--j------f-vmax----"><a class="header" href="#axis-vmax--j------f-vmax----"><code>axis-vmax! ( j -- ) ( F: vmax -- )</code></a></h4>
+<p>設定運動軸 <code>j</code> 的最大速度 <code>vmax</code>。</p>
+<p>命令範例：</p>
+<pre><code>0.5e 1 axis-vmax!  \ 設定 Axis 1 vmax 為 0.5
+</code></pre>
+<h4 id="axis-vmax--j------f----vmax-"><a class="header" href="#axis-vmax--j------f----vmax-"><code>axis-vmax@ ( j -- ) ( F: -- vmax )</code></a></h4>
+<p>取得運動軸 <code>j</code> 的最大速度 <code>vmax</code>。</p>
+<h4 id="axispulse--j----pulse---f-pos----"><a class="header" href="#axispulse--j----pulse---f-pos----"><code>axis&gt;pulse ( j -- pulse ) ( F: pos -- )</code></a></h4>
+<p>轉換運動軸 <code>j</code> 的命令位置 <code>pos</code> 為編碼器脈波位置 <code>pulse</code>。</p>
+<h4 id="cl-cutoff--j------f-freq----"><a class="header" href="#cl-cutoff--j------f-freq----"><code>cl-cutoff! ( j -- ) ( F: freq -- )</code></a></h4>
+<p>設定運動軸 <code>j</code> 雙位置回授誤差濾波器的截止頻率 <code>freq</code>。</p>
+<p>此截止頻率影響雙位置回授誤差的計算，如果調高，運動響應會比較貼近外部編碼器的回授位置，但是系統會比較不穩定。</p>
+<h4 id="drv-alias---drive-alias-j----"><a class="header" href="#drv-alias---drive-alias-j----"><code>drv-alias!  ( drive-alias j -- )</code></a></h4>
+<p>使用 EtherCAT Station Alias <code>drive-alias</code> 指定運動軸 <code>j</code> 馬達驅動器。</p>
+<p>當 <code>drive-alias</code> = 0 表示使用 slave position 指定馬達驅動器。 當 <code>drive-alias</code> 不存在時，此運動軸就會以虛擬軸處理。</p>
+<h4 id="drv-channel---drive-channel-j----"><a class="header" href="#drv-channel---drive-channel-j----"><code>drv-channel!  ( drive-channel j -- )</code></a></h4>
+<p>使用 <code>drive-channel</code> 指定運動軸 <code>j</code> 馬達驅動器的控制軸。</p>
+<p>因應單一 EtherCAT 從站多軸驅動器的模組型態，所以必須要使用此一參數。一般驅動器則是固定設定為 1。</p>
+<p>命令範例：</p>
+<pre><code>1 3 drv-channel! \ 設定 Axis 3 對應的馬達驅動器的控制軸為 1
+</code></pre>
+<h4 id="drv-slave---drive-slave-j----"><a class="header" href="#drv-slave---drive-slave-j----"><code>drv-slave!  ( drive-slave j -- )</code></a></h4>
+<p>使用 EtherCAT Slave Position <code>drive-slave</code> 指定運動軸 <code>j</code> 馬達驅動器站號。</p>
+<p>命令範例：</p>
+<pre><code>2 1 drv-slave!  \ 設定 Axis 1 對應的馬達驅動器站號為 2
+</code></pre>
+<h4 id="enc-dir--dir-j----"><a class="header" href="#enc-dir--dir-j----"><code>enc-dir! ( dir j -- ) </code></a></h4>
+<p>設定運動軸 <code>j</code> 馬達運動/編碼器方向 <code>dir</code>。</p>
+<p>當機器的軸向與馬達的運轉方向定義相反時可以藉由此參數來轉換。</p>
+<p>dir 可以設定的值為：</p>
 <ul>
-<li>1: &#x540C;&#x65B9;&#x5411;</li>
-<li>-1: &#x53CD;&#x65B9;&#x5411;</li>
+<li>1: 同方向</li>
+<li>-1: 反方向</li>
 </ul>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>1 3 enc-dir!  \ &#x8A2D;&#x5B9A; Axis 3 &#x7DE8;&#x78BC;&#x5668;&#x65B9;&#x5411;
-</code></pre><h4 id="enc-ppu--j-----f-ppu----"><code>enc-ppu! ( j --) ( F: ppu -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x8DDD;&#x96E2;&#x55AE;&#x4F4D;&#x5C0D;&#x61C9;&#x99AC;&#x9054;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x8108;&#x6CE2;&#x6578; <code>ppu</code></p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#x53EF;&#x4EE5;&#x53C3;&#x8003; <code>enc-u!</code></p>
-<h4 id="enc-u--u-j----"><code>enc-u! ( u j -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x99AC;&#x9054;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x8108;&#x6CE2;&#x6578;&#x5C0D;&#x61C9;&#x7684;&#x8DDD;&#x96E2;&#x55AE;&#x4F4D; <code>u</code>&#x3002;</p>
-<p>&#x53EF;&#x4EE5;&#x8A2D;&#x5B9A;&#x7684;&#x55AE;&#x4F4D;&#x6709;&#xFF1A;</p>
+<p>命令範例：</p>
+<pre><code>1 3 enc-dir!  \ 設定 Axis 3 編碼器方向
+</code></pre>
+<h4 id="enc-ppu--j-----f-ppu----"><a class="header" href="#enc-ppu--j-----f-ppu----"><code>enc-ppu! ( j --) ( F: ppu -- )</code></a></h4>
+<p>設定運動軸 <code>j</code> 距離單位對應馬達編碼器的脈波數 <code>ppu</code></p>
+<p>命令範例可以參考 <code>enc-u!</code></p>
+<h4 id="enc-u--u-j----"><a class="header" href="#enc-u--u-j----"><code>enc-u! ( u j -- )</code></a></h4>
+<p>設定運動軸 <code>j</code> 馬達編碼器的脈波數對應的距離單位 <code>u</code>。</p>
+<p>可以設定的單位有：</p>
 <ul>
 <li>u = 0 as Meter,</li>
 <li>u = 1 as Revolution</li>
 <li>u = 2 as Pulse</li>
 </ul>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>1000000.0e 3 enc-ppu! \ &#x8A2D;&#x5B9A; Axis 3 &#x7684;&#x7DE8;&#x78BC;&#x5668;&#x55AE;&#x4F4D;&#x8DDD;&#x96E2;&#x7684;&#x8108;&#x6CE2;&#x6578;&#x70BA; 1000000.0
-0 3 enc-u!            \ &#x8A2D;&#x5B9A; Axis 3 &#x7684;&#x7DE8;&#x78BC;&#x5668;&#x55AE;&#x4F4D;&#x8DDD;&#x96E2;&#x70BA; 1 m
-                      \ &#x8868;&#x793A; 1 m &#x6709; 1000000 &#x500B; pulse (&#x7DE8;&#x78BC;&#x5668;&#x8108;&#x6CE2;&#x6578;), 1 pulse &#x70BA; 1 um
-</code></pre><h4 id="ext-enc-alias--enc-alias-j----"><code>ext-enc-alias! ( enc-alias j -- )</code></h4>
-<p>&#x4F7F;&#x7528; EtherCAT Station Alias &#x6307;&#x5B9A;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x3002;&#x53C3;&#x8003; <code>drive-alias!</code>&#x3002;</p>
-<h4 id="ext-enc-channel--enc-channel-j----"><code>ext-enc-channel! ( enc-channel j -- )</code></h4>
-<p>&#x6307;&#x5B9A;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x91CF;&#x6E2C;&#x7BA1;&#x9053;&#x3002;&#x53C3;&#x8003; <code>drive-channel!</code>&#x3002;</p>
-<h4 id="ext-enc-dir--dir-j----"><code>ext-enc-dir! ( dir j -- )</code></h4>
-<p>&#x6307;&#x5B9A;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x65B9;&#x5411;&#x3002;&#x53C3;&#x8003; <code>enc-dir!</code>&#x3002;</p>
-<h4 id="ext-enc-ofs---j-----f-ofs----"><code>ext-enc-ofs!  ( j -- )( F: ofs -- )</code></h4>
-<p>&#x6307;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x4F4D;&#x7F6E;&#x504F;&#x79FB;&#x91CF; <code>ofs</code>&#x3002;</p>
-<p>&#x5982;&#x679C;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x662F;&#x7D55;&#x5C0D;&#x5F0F;&#x578B;&#x614B;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6B64;&#x547D;&#x4EE4;&#x8ABF;&#x6574;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x7531;&#x8108;&#x6CE2;&#x6578;&#x63DB;&#x7B97;&#x5230;&#x7269;&#x7406;&#x4F4D;&#x7F6E;&#x7684;&#x5340;&#x9593;&#x3002;</p>
-<p>&#x4EE5;&#x6D77;&#x5FB7;&#x6F22;&#x9577;&#x5EA6; 80 mm &#x7D55;&#x5C0D;&#x5F0F;&#x5149;&#x5B78;&#x5C3A;&#x70BA;&#x4F8B;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x7684;&#x5340;&#x9593;&#x7BC4;&#x570D;&#x662F; 20 ~ 100 mm&#x3002;
-&#x5982;&#x679C;&#x5B89;&#x88DD;&#x65B9;&#x5411;&#x8207;&#x904B;&#x52D5;&#x65B9;&#x5411;&#x76F8;&#x53CD;&#x5C31;&#x6703;&#x8B8A;&#x6210; -100 mm ~ -20 mm&#x3002;
-&#x70BA;&#x4E86;&#x5C07;&#x63DB;&#x7B97;&#x51FA;&#x4F86;&#x7684;&#x8ABF;&#x6574;&#x70BA; 20 ~ 100 mm&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x6B64;&#x547D;&#x4EE4;&#x4F86;&#x9032;&#x884C;&#x8ABF;&#x6574;&#x3002;</p>
-<h5 id="ext-enc-ppu---j-----f-ppu----"><code>ext-enc-ppu!  ( j -- )( F: ppu -- )</code></h5>
-<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x55AE;&#x4F4D;&#x8DDD;&#x96E2;&#x5C0D;&#x61C9;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x8108;&#x6CE2;&#x6578;&#x3002;&#x53C3;&#x8003; <code>enc-ppu!</code>&#x3002;&#x55AE;&#x4F4D;&#x8DDD;&#x96E2;&#x5247;&#x662F;&#x4F9D; <code>enc-u!</code>&#x8A2D;&#x5B9A;&#x3002;</p>
-<h4 id="ext-enc-slave---enc-slave-j----"><code>ext-enc-slave!  ( enc-slave j -- )</code></h4>
-<p>&#x4F7F;&#x7528; EtherCAT Slave Position &#x6307;&#x5B9A;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x3002;&#x53C3;&#x8003; <code>drive-slave!</code>&#x3002;</p>
-<h4 id="hmofs--j------f-ofs----"><code>hmofs! ( j -- ) ( F: ofs -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x6A5F;&#x68B0;&#x96F6;&#x9EDE;&#x7684;&#x5EA7;&#x6A19;&#x504F;&#x79FB;&#x91CF;&#x3002;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;&#xFF1A;</p>
-<pre><code>0.5e 3 hmofs! \ &#x8A2D;&#x5B9A; Axis 3 home offset
-</code></pre><h4 id="homed---j----flag-"><code>homed?  ( j -- flag )</code></h4>
-<p>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x662F;&#x5426;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x7684;&#x72C0;&#x614B;?</p>
-<h4 id="max-pos-dev--j------f-max-dev----"><code>max-pos-dev! ( j -- ) ( F: max-dev -- )</code></h4>
-<p>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x96D9;&#x4F4D;&#x7F6E;&#x56DE;&#x6388;&#x7684;&#x6700;&#x5927;&#x547D;&#x4EE4;&#x4FEE;&#x6B63;&#x91CF; <code>max-dev</code>&#x3002;&#x907F;&#x514D;&#x7576;&#x50B3;&#x52D5;&#x7CFB;&#x51FA;&#x73FE;&#x554F;&#x984C;&#x6216;&#x662F;&#x53C3;&#x6578;&#x914D;&#x7F6E;&#x932F;&#x8AA4;&#x6642;&#xFF0C;&#x4FEE;&#x6B63;&#x91CF;&#x7121;&#x6CD5;&#x6536;&#x6582;&#x5230;&#x56FA;&#x5B9A;&#x503C;&#x7684;&#x72C0;&#x6CC1;&#x767C;&#x751F;&#x3002;</p>
-<h4 id="virtual-axis---j----flag-"><code>virtual-axis?  ( j -- flag )</code></h4>
-<p>&#x904B;&#x52D5;&#x8EF8; <code>j</code> &#x662F;&#x5426;&#x70BA;&#x865B;&#x64EC;&#x8EF8;&#xFF1F;</p>
-<h4 id="&#x904B;&#x52D5;&#x8EF8;&#x8FFD;&#x96A8;&#x7BC4;&#x4F8B;">&#x904B;&#x52D5;&#x8EF8;&#x8FFD;&#x96A8;&#x7BC4;&#x4F8B;</h4>
-<p>&#x4EE5; Axis 2 &#x8FFD;&#x96A8; Axis 1 &#x7684;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;&#x904B;&#x52D5;</p>
+<p>命令範例：</p>
+<pre><code>1000000.0e 3 enc-ppu! \ 設定 Axis 3 的編碼器單位距離的脈波數為 1000000.0
+0 3 enc-u!            \ 設定 Axis 3 的編碼器單位距離為 1 m
+                      \ 表示 1 m 有 1000000 個 pulse (編碼器脈波數), 1 pulse 為 1 um
+</code></pre>
+<h4 id="ext-enc-alias--enc-alias-j----"><a class="header" href="#ext-enc-alias--enc-alias-j----"><code>ext-enc-alias! ( enc-alias j -- )</code></a></h4>
+<p>使用 EtherCAT Station Alias 指定外部編碼器。參考 <code>drive-alias!</code>。</p>
+<h4 id="ext-enc-channel--enc-channel-j----"><a class="header" href="#ext-enc-channel--enc-channel-j----"><code>ext-enc-channel! ( enc-channel j -- )</code></a></h4>
+<p>指定外部編碼器的量測管道。參考 <code>drive-channel!</code>。</p>
+<h4 id="ext-enc-dir--dir-j----"><a class="header" href="#ext-enc-dir--dir-j----"><code>ext-enc-dir! ( dir j -- )</code></a></h4>
+<p>指定外部編碼器的方向。參考 <code>enc-dir!</code>。</p>
+<h4 id="ext-enc-ofs---j-----f-ofs----"><a class="header" href="#ext-enc-ofs---j-----f-ofs----"><code>ext-enc-ofs!  ( j -- )( F: ofs -- )</code></a></h4>
+<p>指定運動軸 <code>j</code> 外部編碼器的位置偏移量 <code>ofs</code>。</p>
+<p>如果外部編碼器是絕對式型態，可以使用此命令調整外部編碼器由脈波數換算到物理位置的區間。</p>
+<p>以海德漢長度 80 mm 絕對式光學尺為例，可以使用的區間範圍是 20 ~ 100 mm。
+如果安裝方向與運動方向相反就會變成 -100 mm ~ -20 mm。
+為了將換算出來的調整為 20 ~ 100 mm，就可以使用此命令來進行調整。</p>
+<h5 id="ext-enc-ppu---j-----f-ppu----"><a class="header" href="#ext-enc-ppu---j-----f-ppu----"><code>ext-enc-ppu!  ( j -- )( F: ppu -- )</code></a></h5>
+<p>設定運動單位距離對應外部編碼器的脈波數。參考 <code>enc-ppu!</code>。單位距離則是依 <code>enc-u!</code>設定。</p>
+<h4 id="ext-enc-slave---enc-slave-j----"><a class="header" href="#ext-enc-slave---enc-slave-j----"><code>ext-enc-slave!  ( enc-slave j -- )</code></a></h4>
+<p>使用 EtherCAT Slave Position 指定外部編碼器。參考 <code>drive-slave!</code>。</p>
+<h4 id="hmofs--j------f-ofs----"><a class="header" href="#hmofs--j------f-ofs----"><code>hmofs! ( j -- ) ( F: ofs -- )</code></a></h4>
+<p>設定運動軸 <code>j</code> 機械零點的座標偏移量。</p>
+<p>命令範例：</p>
+<pre><code>0.5e 3 hmofs! \ 設定 Axis 3 home offset
+</code></pre>
+<h4 id="homed---j----flag-"><a class="header" href="#homed---j----flag-"><code>homed?  ( j -- flag )</code></a></h4>
+<p>取得運動軸 <code>j</code> 是否回歸機械原點的狀態?</p>
+<h4 id="max-pos-dev--j------f-max-dev----"><a class="header" href="#max-pos-dev--j------f-max-dev----"><code>max-pos-dev! ( j -- ) ( F: max-dev -- )</code></a></h4>
+<p>設定運動軸 <code>j</code> 雙位置回授的最大命令修正量 <code>max-dev</code>。避免當傳動系出現問題或是參數配置錯誤時，修正量無法收斂到固定值的狀況發生。</p>
+<h4 id="virtual-axis---j----flag-"><a class="header" href="#virtual-axis---j----flag-"><code>virtual-axis?  ( j -- flag )</code></a></h4>
+<p>運動軸 <code>j</code> 是否為虛擬軸？</p>
+<h4 id="運動軸追隨範例"><a class="header" href="#運動軸追隨範例">運動軸追隨範例</a></h4>
+<p>以 Axis 2 追隨 Axis 1 的命令位置運動</p>
 <pre><code>...
 begin
-    ... \&#x67D0;&#x500B;&#x689D;&#x4EF6;&#x6210;&#x7ACB;&#x57F7;&#x884C;
+    ... \某個條件成立執行
 while
     ........
     2 axis-demand-p@ 1 axis-cmd-p!
     pause
 repeat
 ...
-</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
-<table>
-<thead>
-<tr>
-<th>&#x6307;&#x4EE4;</th>
-<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
-<th>&#x8AAA;&#x660E;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.axis</td>
-<td>( j -- )</td>
-<td>&#x986F;&#x793A;&#x904B;&#x52D5;&#x8EF8;&#x72C0;&#x614B;</td>
-</tr>
-<tr>
-<td>.axiscfg</td>
-<td>( j -- )</td>
-<td>&#x986F;&#x793A;&#x904B;&#x52D5;&#x8EF8;&#x8A2D;&#x5B9A;</td>
-</tr>
-<tr>
-<td>+homed</td>
-<td>( j -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8;&#x5DF2;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;</td>
-</tr>
-<tr>
-<td>-homed</td>
-<td>( j -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8;&#x672A;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;</td>
-</tr>
-<tr>
-<td>0axis-ferr</td>
-<td>( j -- )</td>
-<td>&#x6E05;&#x9664;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;</td>
-</tr>
-<tr>
-<td>axis-aff!</td>
-<td>( j -- ) ( F: aff -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x52A0;&#x901F;&#x5EA6;&#x524D;&#x994B;&#x589E;&#x76CA; &#xFF08;&#x529F;&#x80FD;&#x672A;&#x5BE6;&#x73FE;&#xFF09;</td>
-</tr>
-<tr>
-<td>axis-afactor!</td>
-<td>( j -- ) ( F: afactor -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x52A0;&#x901F;&#x5EA6;&#x524D;&#x994B;&#x547D;&#x4EE4;&#x8F49;&#x63DB;&#x5E38;&#x6578; &#xFF08;&#x529F;&#x80FD;&#x672A;&#x5BE6;&#x73FE;&#xFF09;</td>
-</tr>
-<tr>
-<td>axis-amax!</td>
-<td>( j -- ) ( F: amax -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8;&#x6700;&#x5927;&#x52A0;&#x901F;&#x5EA6;</td>
-</tr>
-<tr>
-<td>axis-amax@</td>
-<td>( j -- ) ( F: -- amax )</td>
-<td>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8;&#x6700;&#x5927;&#x52A0;&#x901F;&#x5EA6;</td>
-</tr>
-<tr>
-<td>axis-clerr</td>
-<td>( j --  ) ( F: clerr -- )</td>
-<td>&#x53D6;&#x5F97;&#x96D9;&#x4F4D;&#x7F6E;&#x56DE;&#x6388;&#x8AA4;&#x5DEE;</td>
-</tr>
-<tr>
-<td>axis-cmd-p!</td>
-<td>( j -- ) ( F: pos -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;</td>
-</tr>
-<tr>
-<td>axis-cmd-p@</td>
-<td>( j -- ) ( F: -- pos )</td>
-<td>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;</td>
-</tr>
-<tr>
-<td>axis-demand-p@</td>
-<td>( j -- ) (F: -- pos )</td>
-<td>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8;&#x73FE;&#x5728;&#x7684;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;</td>
-</tr>
-<tr>
-<td>axis-drive@</td>
-<td>( j --  channel slave )</td>
-<td>&#x53D6;&#x5F97;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684; EtherCAT &#x7AD9;&#x865F;</td>
-</tr>
-<tr>
-<td>axis-ext-enc@</td>
-<td>( j --  channel slave )</td>
-<td>&#x53D6;&#x5F97;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x7684; EtherCAT &#x7AD9;&#x865F;</td>
-</tr>
-<tr>
-<td>axis-ferr@</td>
-<td>( j --  ) ( F: ferr -- )</td>
-<td>&#x53D6;&#x5F97;&#x843D;&#x5F8C;&#x8AA4;&#x5DEE;</td>
-</tr>
-<tr>
-<td>axis-ignore-dist!</td>
-<td>( j --  ) ( F: dist -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x7684;&#x9577;&#x5EA6;&#x8A08;&#x7B97;&#x8AA4;&#x5DEE;</td>
-</tr>
-<tr>
-<td>axis-len</td>
-<td>( -- len )</td>
-<td>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8;&#x7E3D;&#x6578;</td>
-</tr>
-<tr>
-<td>axis-real-p@</td>
-<td>( j -- ) (F: -- pos )</td>
-<td>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8;&#x5BE6;&#x969B;&#x4F4D;&#x7F6E;</td>
-</tr>
-<tr>
-<td>axis-rest?</td>
-<td>( j -- flag )</td>
-<td>&#x904B;&#x52D5;&#x8EF8;&#x547D;&#x4EE4;&#x662F;&#x5426;&#x975C;&#x6B62;&#xFF1F;</td>
-</tr>
-<tr>
-<td>axis-ts!</td>
-<td>( j -- ) ( F: ts -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x7528;&#x4F86;&#x5224;&#x5B9A;&#x904B;&#x52D5;&#x8EF8;&#x547D;&#x4EE4;&#x662F;&#x5426;&#x975C;&#x6B62;&#x7684;&#x5B89;&#x5B9A;&#x6642;&#x9593;</td>
-</tr>
-<tr>
-<td>axis-vff!</td>
-<td>( j -- ) ( F: vff -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x901F;&#x5EA6;&#x524D;&#x994B;&#x589E;&#x76CA; &#xFF08;&#x529F;&#x80FD;&#x672A;&#x5BE6;&#x73FE;&#xFF09;</td>
-</tr>
-<tr>
-<td>axis-vfactor!</td>
-<td>( j -- ) ( F: vfactor -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x901F;&#x5EA6;&#x524D;&#x994B;&#x547D;&#x4EE4;&#x8F49;&#x63DB;&#x5E38;&#x6578; &#xFF08;&#x529F;&#x80FD;&#x672A;&#x5BE6;&#x73FE;&#xFF09;</td>
-</tr>
-<tr>
-<td>axis-vmax!</td>
-<td>( j -- ) ( F: vmax -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x6700;&#x5927;&#x901F;&#x5EA6;</td>
-</tr>
-<tr>
-<td>axis-vmax@</td>
-<td>( j -- ) ( F: -- vmax )</td>
-<td>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x6700;&#x5927;&#x901F;&#x5EA6;</td>
-</tr>
-<tr>
-<td>axis&gt;pulse</td>
-<td>( j -- pulse ) ( F: pos -- )</td>
-<td>&#x8F49;&#x63DB;&#x904B;&#x52D5;&#x8EF8;&#x7684;&#x4F4D;&#x7F6E;&#x70BA;&#x7DE8;&#x78BC;&#x5668;&#x8108;&#x6CE2;&#x4F4D;&#x7F6E;</td>
-</tr>
-<tr>
-<td>cl-cutoff!</td>
-<td>( j -- ) ( F: freq -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x96D9;&#x4F4D;&#x7F6E;&#x56DE;&#x6388;&#x8AA4;&#x5DEE;&#x6FFE;&#x6CE2;&#x5668;&#x7684;&#x622A;&#x6B62;&#x983B;&#x7387;</td>
-</tr>
-<tr>
-<td>drv-alias!</td>
-<td>( drive-alias j -- )</td>
-<td>&#x4F7F;&#x7528; EtherCAT Station Alias &#x6307;&#x5B9A;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;</td>
-</tr>
-<tr>
-<td>drv-channel!</td>
-<td>( drive-channel j -- )</td>
-<td>&#x6307;&#x5B9A;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;&#x7684;&#x63A7;&#x5236;&#x8EF8;</td>
-</tr>
-<tr>
-<td>drv-slave!</td>
-<td>( drive-slave j -- )</td>
-<td>&#x4F7F;&#x7528; EtherCAT Slave Position &#x6307;&#x5B9A;&#x99AC;&#x9054;&#x9A45;&#x52D5;&#x5668;</td>
-</tr>
-<tr>
-<td>enc-dir!</td>
-<td>( dir j -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x99AC;&#x9054;&#x904B;&#x52D5;/&#x7DE8;&#x78BC;&#x5668;&#x65B9;&#x5411;</td>
-</tr>
-<tr>
-<td>enc-ppu!</td>
-<td>( j -- )( F: ppu -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8DDD;&#x96E2;&#x55AE;&#x4F4D;&#x5C0D;&#x61C9;&#x99AC;&#x9054;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x8108;&#x6CE2;&#x6578;</td>
-</tr>
-<tr>
-<td>enc-u!</td>
-<td>( u j -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x99AC;&#x9054;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x8108;&#x6CE2;&#x6578;&#x5C0D;&#x61C9;&#x7684;&#x8DDD;&#x96E2;&#x55AE;&#x4F4D;</td>
-</tr>
-<tr>
-<td>ext-enc-alias!</td>
-<td>( enc-alias j -- )</td>
-<td>&#x4F7F;&#x7528; EtherCAT Station Alias &#x6307;&#x5B9A;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;</td>
-</tr>
-<tr>
-<td>ext-enc-channel!</td>
-<td>( enc-channel j -- )</td>
-<td>&#x6307;&#x5B9A;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x91CF;&#x6E2C;&#x7BA1;&#x9053;</td>
-</tr>
-<tr>
-<td>ext-enc-dir!</td>
-<td>( dir j -- )</td>
-<td>&#x6307;&#x5B9A;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x65B9;&#x5411;</td>
-</tr>
-<tr>
-<td>ext-enc-ofs!</td>
-<td>( j -- )( F: ofs -- )</td>
-<td>&#x6307;&#x5B9A;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x4F4D;&#x7F6E;&#x504F;&#x79FB;&#x91CF;</td>
-</tr>
-<tr>
-<td>ext-enc-ppu!</td>
-<td>( j -- )( F: ppu -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x904B;&#x52D5;&#x8DDD;&#x96E2;&#x55AE;&#x4F4D;&#x5C0D;&#x61C9;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;&#x7684;&#x8108;&#x6CE2;&#x6578;</td>
-</tr>
-<tr>
-<td>ext-enc-slave!</td>
-<td>( enc-slave j -- )</td>
-<td>&#x4F7F;&#x7528; EtherCAT Slave Position &#x6307;&#x5B9A;&#x5916;&#x90E8;&#x7DE8;&#x78BC;&#x5668;</td>
-</tr>
-<tr>
-<td>hmofs!</td>
-<td>( j -- ) ( F: ofs -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x6A5F;&#x68B0;&#x96F6;&#x9EDE;&#x7684;&#x5EA7;&#x6A19;&#x504F;&#x79FB;&#x91CF;</td>
-</tr>
-<tr>
-<td>homed?</td>
-<td>( j -- flag )</td>
-<td>&#x53D6;&#x5F97;&#x904B;&#x52D5;&#x8EF8;&#x662F;&#x5426;&#x56DE;&#x6B78;&#x6A5F;&#x68B0;&#x539F;&#x9EDE;&#x7684;&#x72C0;&#x614B;</td>
-</tr>
-<tr>
-<td>max-pos-dev!</td>
-<td>( j -- ) ( F: max-dev -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x96D9;&#x4F4D;&#x7F6E;&#x56DE;&#x6388;&#x7684;&#x6700;&#x5927;&#x547D;&#x4EE4;&#x4FEE;&#x6B63;&#x91CF;</td>
-</tr>
-<tr>
-<td>virtual-axis?</td>
-<td>( j --  flag )</td>
-<td>&#x904B;&#x52D5;&#x8EF8;&#x662F;&#x5426;&#x70BA;&#x865B;&#x64EC;&#x8EF8;&#xFF1F;</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="&#x55AE;&#x8EF8;&#x904B;&#x52D5;">&#x55AE;&#x8EF8;&#x904B;&#x52D5;</h3>
-<p>&#x547D;&#x4EE4;&#x91DD;&#x5C0D;&#x55AE;&#x4E00;&#x904B;&#x52D5;&#x8EF8;&#xFF0C;&#x53EF;&#x4EE5;&#x540C;&#x6642;&#x8B93;&#x591A;&#x500B;&#x904B;&#x52D5;&#x8EF8;&#x540C;&#x6642;&#x904B;&#x884C;&#x3002;&#x5982;&#x679C;&#x8A72;&#x904B;&#x52D5;&#x8EF8;&#x53D7;&#x5230;&#x8EF8;&#x7D44;&#x63A7;&#x5236;&#x5247;&#x4E0D;&#x53EF;&#x57F7;&#x884C;&#x55AE;&#x8EF8;&#x904B;&#x52D5;&#x3002;</p>
-<h4 id="interpolator--j----"><code>+interpolator ( j -- )</code></h4>
-<p>&#x555F;&#x52D5; Axis <code>j</code> &#x55AE;&#x8EF8;&#x904B;&#x52D5;&#x3002;</p>
-<h4 id="interpolator--j----"><code>-interpolator ( j -- )</code></h4>
-<p>&#x95DC;&#x9589; Axis <code>j</code> &#x55AE;&#x8EF8;&#x904B;&#x52D5;&#x3002;&#x5982;&#x679C;&#x55AE;&#x8EF8;&#x904B;&#x52D5;&#x4E2D;&#xFF0C;&#x6703;&#x4EE5;&#x7576;&#x4E0B;&#x7684;&#x901F;&#x5EA6;&#x958B;&#x59CB;&#x6E1B;&#x901F;&#x5230; 0&#x3002;</p>
-<h4 id="interpolator-v--j----&#xFF08;-f-v----&#xFF09;"><code>interpolator-v! ( j -- )&#xFF08; F: v -- &#xFF09;</code></h4>
-<p>&#x8A2D;&#x5B9A; Axis  <code>j</code> &#x55AE;&#x8EF8;&#x904B;&#x52D5;&#x7684;&#x6700;&#x5927;&#x901F;&#x5EA6;&#x3002;</p>
-<h4 id="&#x55AE;&#x8EF8;&#x904B;&#x52D5;&#x7BC4;&#x4F8B;">&#x55AE;&#x8EF8;&#x904B;&#x52D5;&#x7BC4;&#x4F8B;</h4>
-<p>&#x4EE5; Axis 1 &#x70BA;&#x4F8B;&#xFF1A;</p>
-<pre><code>+coordinator                       \ &#x555F;&#x52D5;&#x8EF8;&#x7D44;&#x529F;&#x80FD;
-1  +interpolator                   \ &#x555F;&#x52D5; Axis 1 &#x55AE;&#x8EF8;&#x904B;&#x52D5;
-100.0e  mm/min  1  interpolator-v! \ &#x8A2D;&#x5B9A; Axis 1 &#x55AE;&#x8EF8;&#x904B;&#x52D5;&#x901F;&#x5EA6;&#x70BA; 100.0 mm/min
-0.3e  1  axis-cmd-p!               \ &#x8A2D;&#x5B9A; Axis 1 &#x7684;&#x76EE;&#x6A19;&#x4F4D;&#x7F6E;&#x70BA;&#x5EA7;&#x6A19;&#x4F4D;&#x7F6E; 0.3 m 
-1 axis-demand-p@                   \ &#x53D6;&#x5F97; Axis 1 &#x76EE;&#x524D;&#x7684;&#x547D;&#x4EE4;&#x4F4D;&#x7F6E;
-1 axis-real-p@                     \ &#x53D6;&#x5F97; Axis 1 &#x76EE;&#x524D;&#x7684;&#x5BE6;&#x969B;&#x4F4D;&#x7F6E;
-</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
-<table>
-<thead>
-<tr>
-<th>&#x6307;&#x4EE4;</th>
-<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
-<th>&#x8AAA;&#x660E;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>+interpolator</td>
-<td>( j -- )</td>
-<td>&#x555F;&#x52D5;&#x55AE;&#x8EF8;&#x904B;&#x52D5;</td>
-</tr>
-<tr>
-<td>-interpolator</td>
-<td>( j -- )</td>
-<td>&#x95DC;&#x9589;&#x55AE;&#x8EF8;&#x904B;&#x52D5;</td>
-</tr>
-<tr>
-<td>interpolator?</td>
-<td>( j -- flag )</td>
-<td>&#x55AE;&#x8EF8;&#x904B;&#x52D5;&#x662F;&#x5426;&#x958B;&#x555F;&#xFF1F;</td>
-</tr>
-<tr>
-<td>interpolator-reached?</td>
-<td>( j -- flag )</td>
-<td>&#x55AE;&#x8EF8;&#x904B;&#x52D5;&#x662F;&#x5426;&#x5230;&#x9054;&#x76EE;&#x6A19;&#x9EDE;&#xFF1F;</td>
-</tr>
-<tr>
-<td>interpolator-v!</td>
-<td>( j -- ) (F: v -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x55AE;&#x8EF8;&#x904B;&#x52D5;&#x901F;&#x5EA6;</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h3 id="pitch-corrector">Pitch Corrector</h3>
-<h4 id="pcorr--channel-slave----"><code>+pcorr ( channel slave -- )</code></h4>
-<p>&#x958B;&#x555F;&#x6307;&#x5B9A;&#x9A45;&#x52D5;&#x5668;&#x7684; Pitch Corrector</p>
-<h4 id="pcorr--channel-slave----"><code>-pcorr ( channel slave -- )</code></h4>
-<p>&#x95DC;&#x9589;&#x6307;&#x5B9A;&#x9A45;&#x52D5;&#x5668;&#x7684; Pitch Corrector</p>
-<h4 id="pcorr--channel-slave----"><code>&gt;pcorr ( channel slave -- )</code></h4>
-<p>&#x8B80;&#x53D6;&#x6307;&#x5B9A;&#x9A45;&#x52D5;&#x5668;&#x7684; Pitch Corrector&#xFF0C;&#x6B64;&#x547D;&#x4EE4;&#x6703;&#x9020;&#x6210; real time cycle overrun, &#x8981;&#x5728;&#x5B89;&#x5168;&#x7684;&#x60C5;&#x6CC1;&#x4E0B;&#x4F7F;&#x7528;&#xFF0C;&#x4F8B;&#x5982; Servo off &#x7684;&#x60C5;&#x6CC1;&#x4E0B;&#x3002;</p>
-<h4 id="pcorr--channel-slave----"><code>.pcorr ( channel slave -- )</code></h4>
-<p>&#x8F38;&#x51FA;&#x76EE;&#x524D; Pitch Corrector &#x7684;&#x67E5;&#x8868;&#x7D50;&#x679C;</p>
-<p>&#x547D;&#x4EE4;&#x7BC4;&#x4F8B;:</p>
+</code></pre>
+<h4 id="本節指令集-6"><a class="header" href="#本節指令集-6">本節指令集</a></h4>
+<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
+<tr><td>.axis</td><td>( j -- )</td><td>顯示運動軸狀態</td></tr>
+<tr><td>.axiscfg</td><td>( j -- )</td><td>顯示運動軸設定</td></tr>
+<tr><td>+homed</td><td>( j -- )</td><td>設定運動軸已回歸機械原點</td></tr>
+<tr><td>-homed</td><td>( j -- )</td><td>設定運動軸未回歸機械原點</td></tr>
+<tr><td>0axis-ferr</td><td>( j -- )</td><td>清除落後誤差</td></tr>
+<tr><td>axis-aff!</td><td>( j -- ) ( F: aff -- )</td><td>設定加速度前饋增益 （功能未實現）</td></tr>
+<tr><td>axis-afactor!</td><td>( j -- ) ( F: afactor -- )</td><td>設定加速度前饋命令轉換常數 （功能未實現）</td></tr>
+<tr><td>axis-amax!</td><td>( j -- ) ( F: amax -- )</td><td>設定運動軸最大加速度</td></tr>
+<tr><td>axis-amax@</td><td>( j -- ) ( F: -- amax )</td><td>取得運動軸最大加速度</td></tr>
+<tr><td>axis-clerr</td><td>( j --  ) ( F: clerr -- )</td><td>取得雙位置回授誤差</td></tr>
+<tr><td>axis-cmd-p!</td><td>( j -- ) ( F: pos -- )</td><td>設定運動軸的目標位置</td></tr>
+<tr><td>axis-cmd-p@</td><td>( j -- ) ( F: -- pos )</td><td>取得運動軸的目標位置</td></tr>
+<tr><td>axis-demand-p@</td><td>( j -- ) (F: -- pos )</td><td>取得運動軸現在的命令位置</td></tr>
+<tr><td>axis-drive@</td><td>( j --  channel slave )</td><td>取得馬達驅動器的 EtherCAT 站號</td></tr>
+<tr><td>axis-ext-enc@</td><td>( j --  channel slave )</td><td>取得外部編碼器的 EtherCAT 站號</td></tr>
+<tr><td>axis-ferr@</td><td>( j --  ) ( F: ferr -- )</td><td>取得落後誤差</td></tr>
+<tr><td>axis-ignore-dist!</td><td>( j --  ) ( F: dist -- )</td><td>設定可以忽略的長度計算誤差</td></tr>
+<tr><td>axis-len</td><td>( -- len )</td><td>取得運動軸總數</td></tr>
+<tr><td>axis-real-p@</td><td>( j -- ) (F: -- pos )</td><td>取得運動軸實際位置</td></tr>
+<tr><td>axis-rest?</td><td>( j -- flag )</td><td>運動軸命令是否靜止？</td></tr>
+<tr><td>axis-ts!</td><td>( j -- ) ( F: ts -- )</td><td>設定用來判定運動軸命令是否靜止的安定時間</td></tr>
+<tr><td>axis-vff!</td><td>( j -- ) ( F: vff -- )</td><td>設定速度前饋增益 （功能未實現）</td></tr>
+<tr><td>axis-vfactor!</td><td>( j -- ) ( F: vfactor -- )</td><td>設定速度前饋命令轉換常數 （功能未實現）</td></tr>
+<tr><td>axis-vmax!</td><td>( j -- ) ( F: vmax -- )</td><td>設定運動軸的最大速度</td></tr>
+<tr><td>axis-vmax@</td><td>( j -- ) ( F: -- vmax )</td><td>取得運動軸的最大速度</td></tr>
+<tr><td>axis&gt;pulse</td><td>( j -- pulse ) ( F: pos -- )</td><td>轉換運動軸的位置為編碼器脈波位置</td></tr>
+<tr><td>cl-cutoff!</td><td>( j -- ) ( F: freq -- )</td><td>設定雙位置回授誤差濾波器的截止頻率</td></tr>
+<tr><td>drv-alias!</td><td>( drive-alias j -- )</td><td>使用 EtherCAT Station Alias 指定馬達驅動器</td></tr>
+<tr><td>drv-channel!</td><td>( drive-channel j -- )</td><td>指定馬達驅動器的控制軸</td></tr>
+<tr><td>drv-slave!</td><td>( drive-slave j -- )</td><td>使用 EtherCAT Slave Position 指定馬達驅動器</td></tr>
+<tr><td>enc-dir!</td><td>( dir j -- )</td><td>設定馬達運動/編碼器方向</td></tr>
+<tr><td>enc-ppu!</td><td>( j -- )( F: ppu -- )</td><td>設定運動距離單位對應馬達編碼器的脈波數</td></tr>
+<tr><td>enc-u!</td><td>( u j -- )</td><td>設定馬達編碼器的脈波數對應的距離單位</td></tr>
+<tr><td>ext-enc-alias!</td><td>( enc-alias j -- )</td><td>使用 EtherCAT Station Alias 指定外部編碼器</td></tr>
+<tr><td>ext-enc-channel!</td><td>( enc-channel j -- )</td><td>指定外部編碼器的量測管道</td></tr>
+<tr><td>ext-enc-dir!</td><td>( dir j -- )</td><td>指定外部編碼器的方向</td></tr>
+<tr><td>ext-enc-ofs!</td><td>( j -- )( F: ofs -- )</td><td>指定外部編碼器的位置偏移量</td></tr>
+<tr><td>ext-enc-ppu!</td><td>( j -- )( F: ppu -- )</td><td>設定運動距離單位對應外部編碼器的脈波數</td></tr>
+<tr><td>ext-enc-slave!</td><td>( enc-slave j -- )</td><td>使用 EtherCAT Slave Position 指定外部編碼器</td></tr>
+<tr><td>hmofs!</td><td>( j -- ) ( F: ofs -- )</td><td>設定機械零點的座標偏移量</td></tr>
+<tr><td>homed?</td><td>( j -- flag )</td><td>取得運動軸是否回歸機械原點的狀態</td></tr>
+<tr><td>max-pos-dev!</td><td>( j -- ) ( F: max-dev -- )</td><td>設定雙位置回授的最大命令修正量</td></tr>
+<tr><td>virtual-axis?</td><td>( j --  flag )</td><td>運動軸是否為虛擬軸？</td></tr>
+</tbody></table>
+<hr />
+<h3 id="單軸運動"><a class="header" href="#單軸運動">單軸運動</a></h3>
+<p>命令針對單一運動軸，可以同時讓多個運動軸同時運行。如果該運動軸受到軸組控制則不可執行單軸運動。</p>
+<h4 id="interpolator--j----"><a class="header" href="#interpolator--j----"><code>+interpolator ( j -- )</code></a></h4>
+<p>啟動 Axis <code>j</code> 單軸運動。</p>
+<h4 id="-interpolator--j----"><a class="header" href="#-interpolator--j----"><code>-interpolator ( j -- )</code></a></h4>
+<p>關閉 Axis <code>j</code> 單軸運動。如果單軸運動中，會以當下的速度開始減速到 0。</p>
+<h4 id="interpolator-v--j-----f-v----"><a class="header" href="#interpolator-v--j-----f-v----"><code>interpolator-v! ( j -- )（ F: v -- ）</code></a></h4>
+<p>設定 Axis  <code>j</code> 單軸運動的最大速度。</p>
+<h4 id="單軸運動範例"><a class="header" href="#單軸運動範例">單軸運動範例</a></h4>
+<p>以 Axis 1 為例：</p>
+<pre><code>+coordinator                       \ 啟動軸組功能
+1  +interpolator                   \ 啟動 Axis 1 單軸運動
+100.0e  mm/min  1  interpolator-v! \ 設定 Axis 1 單軸運動速度為 100.0 mm/min
+0.3e  1  axis-cmd-p!               \ 設定 Axis 1 的目標位置為座標位置 0.3 m 
+1 axis-demand-p@                   \ 取得 Axis 1 目前的命令位置
+1 axis-real-p@                     \ 取得 Axis 1 目前的實際位置
+</code></pre>
+<h4 id="本節指令集-7"><a class="header" href="#本節指令集-7">本節指令集</a></h4>
+<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
+<tr><td>+interpolator</td><td>( j -- )</td><td>啟動單軸運動</td></tr>
+<tr><td>-interpolator</td><td>( j -- )</td><td>關閉單軸運動</td></tr>
+<tr><td>interpolator?</td><td>( j -- flag )</td><td>單軸運動是否開啟？</td></tr>
+<tr><td>interpolator-reached?</td><td>( j -- flag )</td><td>單軸運動是否到達目標點？</td></tr>
+<tr><td>interpolator-v!</td><td>( j -- ) (F: v -- )</td><td>設定單軸運動速度</td></tr>
+</tbody></table>
+<hr />
+<h3 id="pitch-corrector"><a class="header" href="#pitch-corrector">Pitch Corrector</a></h3>
+<h4 id="pcorr--channel-slave----"><a class="header" href="#pcorr--channel-slave----"><code>+pcorr ( channel slave -- )</code></a></h4>
+<p>開啟指定驅動器的 Pitch Corrector</p>
+<h4 id="-pcorr--channel-slave----"><a class="header" href="#-pcorr--channel-slave----"><code>-pcorr ( channel slave -- )</code></a></h4>
+<p>關閉指定驅動器的 Pitch Corrector</p>
+<h4 id="pcorr--channel-slave-----1"><a class="header" href="#pcorr--channel-slave-----1"><code>&gt;pcorr ( channel slave -- )</code></a></h4>
+<p>讀取指定驅動器的 Pitch Corrector，此命令會造成 real time cycle overrun, 要在安全的情況下使用，例如 Servo off 的情況下。</p>
+<h4 id="pcorr--channel-slave-----2"><a class="header" href="#pcorr--channel-slave-----2"><code>.pcorr ( channel slave -- )</code></a></h4>
+<p>輸出目前 Pitch Corrector 的查表結果</p>
+<p>命令範例:</p>
 <pre><code>1 1 .pcorr
-</code></pre><p>&#x56DE;&#x50B3;&#x8A0A;&#x606F; :</p>
+</code></pre>
+<p>回傳訊息 :</p>
 <pre><code>pcorr_name.1.1|P0001-01.sdx
 |pcorr_len.1.1|10
 |pcorr_position.1.1|0.0000000
@@ -2107,140 +1099,81 @@ repeat
 |pcorr_direction.1.1|1
 |pcorr_factor.1.1|0.0020000
 |pcorr_enabled.1.1|0
-</code></pre><h4 id="&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;">&#x672C;&#x7BC0;&#x6307;&#x4EE4;&#x96C6;</h4>
-<table>
-<thead>
-<tr>
-<th>&#x6307;&#x4EE4;</th>
-<th>&#x5806;&#x758A;&#x6548;&#x679C;</th>
-<th>&#x8AAA;&#x660E;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.pcorr</td>
-<td>( channel n -- )</td>
-<td>&#x8F38;&#x51FA;&#x76EE;&#x524D; Pitch Corrector &#x7684;&#x67E5;&#x8868;&#x7D50;&#x679C;</td>
-</tr>
-<tr>
-<td>.pcorr-entry</td>
-<td>( index channel n -- )</td>
-<td>&#x8F38;&#x51FA;&#x6307;&#x5B9A;&#x88DC;&#x6B63;&#x8868;&#x6B04;&#x4F4D;&#x5167;&#x5BB9;</td>
-</tr>
-<tr>
-<td>+pcorr</td>
-<td>( channel n -- )</td>
-<td>&#x555F;&#x52D5;&#x88DC;&#x6B63;&#x529F;&#x80FD;</td>
-</tr>
-<tr>
-<td>-pcorr</td>
-<td>( channel n -- )</td>
-<td>&#x95DC;&#x9589;&#x88DC;&#x6B63;&#x529F;&#x80FD;</td>
-</tr>
-<tr>
-<td>&gt;pcorr</td>
-<td>( channel n -- )</td>
-<td>&#x8B80;&#x53D6;&#x6A94;&#x6848;&#x5167;&#x5BB9;&#x5230;&#x63A7;&#x5236;&#x5668;&#x5167;</td>
-</tr>
-<tr>
-<td>pcorr&gt;</td>
-<td>( channel n -- )</td>
-<td>&#x8F38;&#x51FA;&#x88DC;&#x6B63;&#x8868;&#x5230;&#x6A94;&#x6848;</td>
-</tr>
-<tr>
-<td>pcorr-entry!</td>
-<td>( index channel n -- ) ( F: position forward backward -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x88DC;&#x6B63;&#x8868;&#x6B04;&#x4F4D;</td>
-</tr>
-<tr>
-<td>pcorr-factor!</td>
-<td>( channel n -- ) ( F: factor -- )</td>
-<td>&#x8A2D;&#x5B9A;&#x88DC;&#x6B63;&#x8868;&#x6B04;&#x4F4D;&#x7684;&#x8F49;&#x63DB;&#x4FC2;&#x6578;</td>
-</tr>
-<tr>
-<td>pcorr-resize</td>
-<td>( len channel n -- )</td>
-<td>&#x8ABF;&#x6574;&#x88DC;&#x6B63;&#x8868;&#x7684;&#x6B04;&#x4F4D;&#x5927;&#x5C0F;</td>
-</tr>
-</tbody>
-</table>
+</code></pre>
+<h4 id="本節指令集-8"><a class="header" href="#本節指令集-8">本節指令集</a></h4>
+<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
+<tr><td>.pcorr</td><td>( channel n -- )</td><td>輸出目前 Pitch Corrector 的查表結果</td></tr>
+<tr><td>.pcorr-entry</td><td>( index channel n -- )</td><td>輸出指定補正表欄位內容</td></tr>
+<tr><td>+pcorr</td><td>( channel n -- )</td><td>啟動補正功能</td></tr>
+<tr><td>-pcorr</td><td>( channel n -- )</td><td>關閉補正功能</td></tr>
+<tr><td>&gt;pcorr</td><td>( channel n -- )</td><td>讀取檔案內容到控制器內</td></tr>
+<tr><td>pcorr&gt;</td><td>( channel n -- )</td><td>輸出補正表到檔案</td></tr>
+<tr><td>pcorr-entry!</td><td>( index channel n -- ) ( F: position forward backward -- )</td><td>設定補正表欄位</td></tr>
+<tr><td>pcorr-factor!</td><td>( channel n -- ) ( F: factor -- )</td><td>設定補正表欄位的轉換係數</td></tr>
+<tr><td>pcorr-resize</td><td>( len channel n -- )</td><td>調整補正表的欄位大小</td></tr>
+</tbody></table>
 
-                                
-                                </section>
-                            
-    </div>
-    <div class="search-results">
-        <div class="has-results">
-            
-            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
-            <ul class="search-results-list"></ul>
-            
-        </div>
-        <div class="no-results">
-            
-            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
-            
-        </div>
-    </div>
-</div>
+                    </main>
 
-                        </div>
-                    </div>
-                
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="ethercat-gateway-primitives.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="sfc.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
             </div>
 
-            
-                
-                <a href="ethercat-gateway-primitives.html" class="navigation navigation-prev " aria-label="Previous page: EtherCAT Gateway 指令集">
-                    <i class="fa fa-angle-left"></i>
-                </a>
-                
-                
-                <a href="sfc.html" class="navigation navigation-next " aria-label="Next page: 狀態流程圖 Sequential Function Chart (SFC)">
-                    <i class="fa fa-angle-right"></i>
-                </a>
-                
-            
-        
-    </div>
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="ethercat-gateway-primitives.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-    <script>
-        var gitbook = gitbook || [];
-        gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"軸組 Axis Group 指令集","level":"4.3.8","depth":2,"next":{"title":"狀態流程圖 Sequential Function Chart (SFC)","level":"4.3.9","depth":2,"path":"sfc.md","ref":"./sfc.md","articles":[{"title":"Servo On/OFF","level":"4.3.9.1","depth":3,"path":"sfc-example/servo-on-off.md","ref":"./sfc-example/servo-on-off.md","articles":[]},{"title":"Motion State","level":"4.3.9.2","depth":3,"path":"sfc-example/motion-state.md","ref":"./sfc-example/motion-state.md","articles":[]},{"title":"Homing State","level":"4.3.9.3","depth":3,"path":"sfc-example/axes-homing.md","ref":"./sfc-example/axes-homing.md","articles":[]}]},"previous":{"title":"EtherCAT Gateway 指令集","level":"4.3.7","depth":2,"path":"ethercat-gateway-primitives.md","ref":"./ethercat-gateway-primitives.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"axis-group.md","mtime":"2019-09-08T06:44:23.105Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-03T09:03:35.732Z"},"basePath":".","book":{"language":""}});
-        });
-    </script>
-</div>
+                    <a rel="next" href="sfc.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
 
-        
-    <script src="gitbook/gitbook.js"></script>
-    <script src="gitbook/theme.js"></script>
-    
-        
-        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-search/search.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
-        
-    
-        
-        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
-        
-    
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:3000/__livereload");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+
 
     </body>
 </html>
-
