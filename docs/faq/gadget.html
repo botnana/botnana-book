@@ -1,0 +1,760 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>USB連線IP設定 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="windows7_rndis.html" />
+    
+    
+    <link rel="prev" href="network.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">1. 前言</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    簡介
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">2. 規格</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../hardware.html">
+            
+                <a href="../hardware.html">
+            
+                    
+                    硬體規格
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="../botnana-a2.html">
+            
+                <a href="../botnana-a2.html">
+            
+                    
+                    Botnana BN-A2A
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="../botnana-bn-j4a.html">
+            
+                <a href="../botnana-bn-j4a.html">
+            
+                    
+                    Botnana BN-J4A
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../software.html">
+            
+                <a href="../software.html">
+            
+                    
+                    軟體規格
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../roadmap.html">
+            
+                <a href="../roadmap.html">
+            
+                    
+                    Roadmap
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">3. 入門</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../tutorial.html">
+            
+                <a href="../tutorial.html">
+            
+                    
+                    入門教學
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../botnana-a2-tutorial.html">
+            
+                <a href="../botnana-a2-tutorial.html">
+            
+                    
+                    Botnana A2 入門
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../botnana-control-tutorial.html">
+            
+                <a href="../botnana-control-tutorial.html">
+            
+                    
+                    Botnana Control 入門
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../configuration-file.html">
+            
+                <a href="../configuration-file.html">
+            
+                    
+                    設定檔
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">4. 程式開發</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../programming.html">
+            
+                <a href="../programming.html">
+            
+                    
+                    程式開發界面
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../json-api.html">
+            
+                <a href="../json-api.html">
+            
+                    
+                    JSON API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../real-time-script-api.html">
+            
+                <a href="../real-time-script-api.html">
+            
+                    
+                    Real-time Script API
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.3.1" data-path="../host-primitives.html">
+            
+                <a href="../host-primitives.html">
+            
+                    
+                    Botnana 基本指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.2" data-path="../ethercat-primitives.html">
+            
+                <a href="../ethercat-primitives.html">
+            
+                    
+                    EtherCAT 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.3" data-path="../ethercat-drive-primitives.html">
+            
+                <a href="../ethercat-drive-primitives.html">
+            
+                    
+                    EtherCAT Drive 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.4" data-path="../ethercat-io-primitives.html">
+            
+                <a href="../ethercat-io-primitives.html">
+            
+                    
+                    EtherCAT IO 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.5" data-path="../ethercat-uart-primitives.html">
+            
+                <a href="../ethercat-uart-primitives.html">
+            
+                    
+                    EtherCAT UART 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.6" data-path="../ethercat-encoder-primitives.html">
+            
+                <a href="../ethercat-encoder-primitives.html">
+            
+                    
+                    EtherCAT Encoder 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.7" data-path="../ethercat-gateway-primitives.html">
+            
+                <a href="../ethercat-gateway-primitives.html">
+            
+                    
+                    EtherCAT Gateway 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.8" data-path="../axis-group.html">
+            
+                <a href="../axis-group.html">
+            
+                    
+                    軸組 Axis Group 指令集
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.9" data-path="../sfc.html">
+            
+                <a href="../sfc.html">
+            
+                    
+                    狀態流程圖 Sequential Function Chart (SFC)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.3.9.1" data-path="../sfc-example/servo-on-off.html">
+            
+                <a href="../sfc-example/servo-on-off.html">
+            
+                    
+                    Servo On/OFF
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.9.2" data-path="../sfc-example/motion-state.html">
+            
+                <a href="../sfc-example/motion-state.html">
+            
+                    
+                    Motion State
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3.9.3" data-path="../sfc-example/axes-homing.html">
+            
+                <a href="../sfc-example/axes-homing.html">
+            
+                    
+                    Homing State
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="header">5. 附錄</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="../known-working-hardware.html">
+            
+                <a href="../known-working-hardware.html">
+            
+                    
+                    支援的硬體清單
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../update-software.html">
+            
+                <a href="../update-software.html">
+            
+                    
+                    軟體更新
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="../faq.html">
+            
+                <a href="../faq.html">
+            
+                    
+                    常見問題
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.3.1" data-path="network.html">
+            
+                <a href="network.html">
+            
+                    
+                    網路設定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.3.2" data-path="gadget.html">
+            
+                <a href="gadget.html">
+            
+                    
+                    USB連線IP設定
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.3" data-path="windows7_rndis.html">
+            
+                <a href="windows7_rndis.html">
+            
+                    
+                    Windows 7 RNDIS 驅動程式安裝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.4" data-path="windows10_rndis.html">
+            
+                <a href="windows10_rndis.html">
+            
+                    
+                    Windows 10 RNDIS 驅動程式安裝
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.5" data-path="win10_permission.html">
+            
+                <a href="win10_permission.html">
+            
+                    
+                    Windows 10 檔案權限修改
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.6" data-path="mount.html">
+            
+                <a href="mount.html">
+            
+                    
+                    磁碟掛載 Mount
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.7" data-path="manual_install_deb/manual_install_deb.html">
+            
+                <a href="manual_install_deb/manual_install_deb.html">
+            
+                    
+                    手動安裝 Botnana Control 更新檔
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >USB連線IP設定</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="usb&#x9023;&#x7DDA;ip&#x8A2D;&#x5B9A;">USB&#x9023;&#x7DDA;IP&#x8A2D;&#x5B9A;</h2>
+<h3 id="&#x540C;&#x4E00;&#x96FB;&#x8166;&#x9023;&#x63A5;&#x55AE;&#x4E00;&#x584A;-botnana">&#x540C;&#x4E00;&#x96FB;&#x8166;&#x9023;&#x63A5;&#x55AE;&#x4E00;&#x584A; Botnana</h3>
+<ul>
+<li><p>&#x7DE8;&#x8F2F; Botnana &#x7CFB;&#x7D71;&#x7684; /etc/network/interfaces &#x6A94;&#x6848;&#xFF0C;&#x6539;&#x6210;&#x60A8;&#x6240;&#x5E0C;&#x671B;&#x7684; IP&#xFF0C;&#x4F8B;&#x5982;&#xFE30;</p>
+<p>  iface usb0 inet static  </p>
+<pre><code>  address 192.168.6.2  
+
+  netmask 255.255.255.0  
+
+  network 192.168.6.0  
+
+  gateway 192.168.6.1  
+</code></pre></li>
+</ul>
+<pre><code>&#x8868;&#x793A; Botnana &#x672C;&#x8EAB;&#x7684; IP &#x662F; **192.168.6.2**&#xFF0C;&#x5206;&#x914D;&#x7D66;&#x96FB;&#x8166;&#x7684; IP &#x662F; **192.168.6.1**
+</code></pre><ul>
+<li><p>&#x7DE8;&#x8F2F; Botnana &#x7684;&#x7D44;&#x614B;&#x6A94; /etc/botnana-control/motion.toml&#xFF0C;&#x505A;&#x5982;&#x4E0B;&#x7684;&#x4FEE;&#x6539;&#xFE30;  </p>
+<p>  [server]  </p>
+<p>  address = &quot;0.0.0.0:3012&quot;  </p>
+<p>  &#x6539;&#x6210;  </p>
+<p>  [server]  </p>
+<p>  address = &quot;192.168.6.2:3012&quot;  </p>
+<p>  &#x8868;&#x793A; Botnana &#x672C;&#x8EAB;&#x7684;&#x4F3A;&#x670D;&#x5668;&#x7684;&#x4F4D;&#x5740;&#x70BA; <strong>192.168.6.2</strong> </p>
+</li>
+</ul>
+<h3 id="&#x540C;&#x4E00;&#x96FB;&#x8166;&#x9023;&#x63A5;&#x591A;&#x584A;-botnana">&#x540C;&#x4E00;&#x96FB;&#x8166;&#x9023;&#x63A5;&#x591A;&#x584A; Botnana</h3>
+<p>&#x4FEE;&#x6539;&#x65B9;&#x5F0F;&#x5982; <strong>&#x540C;&#x4E00;&#x96FB;&#x8166;&#x9023;&#x63A5;&#x55AE;&#x4E00;&#x584A; Botnana</strong> &#xFF0C;&#x6700;&#x5927;&#x7684;&#x5DEE;&#x7570;&#x662F;&#xFE30;<strong>&#x6BCF;&#x584A;Botnana&#x8981;&#x8A2D;&#x70BA;&#x4E0D;&#x540C;&#x7684;&#x5340;&#x6BB5;</strong>&#x3002;</p>
+<p>&#x4F8B;&#x5982;&#xFE30;
+&#x7B2C;&#x4E00;&#x584A;&#x8A2D;&#x70BA; address 192.168.<strong>6</strong>.2&#xFF0C;&#x7B2C;&#x4E8C;&#x584A;&#x8A2D;&#x70BA; address 192.168.<strong>7</strong>.2&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="network.html" class="navigation navigation-prev " aria-label="Previous page: 網路設定">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="windows7_rndis.html" class="navigation navigation-next " aria-label="Next page: Windows 7 RNDIS 驅動程式安裝">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"USB連線IP設定","level":"5.3.2","depth":2,"next":{"title":"Windows 7 RNDIS 驅動程式安裝","level":"5.3.3","depth":2,"path":"faq/windows7_rndis.md","ref":"./faq/windows7_rndis.md","articles":[]},"previous":{"title":"網路設定","level":"5.3.1","depth":2,"path":"faq/network.md","ref":"./faq/network.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"faq/gadget.md","mtime":"2018-11-05T08:20:38.071Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-01-03T09:03:35.732Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
