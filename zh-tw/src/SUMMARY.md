@@ -5,14 +5,12 @@
 
 ### 2. 規格
 * [硬體規格](./hardware.md)
-  * [Botnana BN-A2A](./botnana-a2.md)
-  * [Botnana BN-J4A](./botnana-bn-j4a.md)
+  * [Botnana BN-B3A](./botnana-b3a.md)
 * [軟體規格](./software.md)
-* [Roadmap](./roadmap.md)
 
 ### 3. 入門
 * [入門教學](./tutorial.md)
-  * [Botnana A2 入門](./botnana-a2-tutorial.md)
+  * [Botnana B3A 入門](./botnana-b3a-tutorial.md)
   * [Botnana Control 入門](./botnana-control-tutorial.md)
 * [設定檔](./configuration-file.md)
 

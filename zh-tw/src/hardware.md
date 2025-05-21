@@ -2,6 +2,4 @@
 
 Botnana Control 支援以下幾種硬體：
 
-* [Botnana A2](./botnana-a2.md)
-
-* [Botnana Box](./botnana-box.md)
+* [Botnana BN-B3A](./botnana-ba2.md)
