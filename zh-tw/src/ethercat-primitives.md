@@ -44,7 +44,7 @@
     error code:                     等同於 Object 0x603F:00
     error register:                 等同於 Object 0x1001: 00
     error_data.1 ~ error_data.5:    為驅動器廠家定義的異警訊息。
-                                    此範例為台達電A2-E 驅動器所回傳的訊息,
+                                    此範例為台達電 A2-E 驅動器所回傳的訊息,
                                     error_data.2.1 = 19 表示異警碼 0x13 (緊急停止)
 
 #### `.ec-links ( -- )`
@@ -369,7 +369,7 @@ EtherCAT slave position `n` Channel `ch` 是否為 UART 模組？
 
 顯示所以 EtherCAT 從站的 vendor id 與 product code。
 
-測試範例： 第 1 個從站為台達電 A2-E驅動器 , 第 2 個從站為士林電機驅動器。
+測試範例： 第 1 個從站為台達電 A2-E 驅動器 , 第 2 個從站為士林電機驅動器。
 
 回傳訊息：
 

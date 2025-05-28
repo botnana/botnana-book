@@ -1,6 +1,6 @@
-## WINDOWS 10 透過 Type-C USB 與 Botnana B3A 連線時需先安裝 RNDIS 驅動程式
+## WINDOWS 10 透過 Type-C USB 與 Botnana BN-B3A 連線時需先安裝 RNDIS 驅動程式
 
-#### 0. 將 Botnana B3A Type-C USB 埠與電腦連接。
+#### 0. 將 Botnana BN-B3A Type-C USB 埠與電腦連接。
 
 註解︰若已嘗試過安裝 RNDIS 驅動程式，請從步驟 1 開始；否則，請直接從步驟 3 開始。
 
@@ -18,7 +18,7 @@
 改成如下
 ![](./win10_4_mark_usbser_inf_com_port.png)
 
-#### 4. 選裝置管理員中的  Botnana-A2，並更新驅動程式
+#### 4. 選裝置管理員中的 BN-B3A，並更新驅動程式
 ![](./win10_5_upgrade_drive.png)
 
 

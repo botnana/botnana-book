@@ -1,4 +1,4 @@
-# Botnana B3A 入門
+# Botnana BN-B3A 入門
 
 
 --------------------

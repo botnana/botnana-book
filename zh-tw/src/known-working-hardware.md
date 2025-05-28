@@ -74,7 +74,6 @@
 
 ### OMRON
 
-* R88D_1SN04H_ECT Servo Drive (only BN-J2A, BN-J4A)
 * GX-MD1611 REMOTE TERMINAL (8 Ch. Digital Input， 8 Ch. Digital Output)
 * NX-ECC203, ID5342, OD5121 (IO 模組，測試中)
 

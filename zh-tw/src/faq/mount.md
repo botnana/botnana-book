@@ -77,5 +77,5 @@ debian@arm:~$ sudo unmount /dev/mmcblk1p1
 
 **注意事項：**
 
-BN-A2A/BN-B2A 預設會以 MicroSD Card 開機，如果只是資料的訪問或是操作，建議在開機後再插入 MicroSD Card。
+BN-B3A 預設會以 MicroSD Card 開機，如果只是資料的訪問或是操作，建議在開機後再插入 MicroSD Card。
  

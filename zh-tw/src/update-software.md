@@ -8,14 +8,11 @@
 
 | 搭載平台  | 更新檔名稱  |
 |----|----------|
-| BN-A2A | botnana-control_*_armhf.deb
-| BN-B2A | botnana-control_*_armhf.deb
-| BN-J2A | botnana-control_*_x86.deb
-| BN-J4A | botnana-control_*_x86.deb
+| BN-B3A | botnana-control_*_armhf.deb
 
 ## 更新步驟
 
-以更新 BN-B2A 的主控軟體從版號 1.10.14 更新到 1.10.15 為例。
+以更新 BN-B3A 的主控軟體從版號 1.10.14 更新到 1.10.15 為例。
 
 更新檔的檔名為  botnana-control_1.10.15-117_armhf.deb
 
@@ -33,7 +30,7 @@
 6. 等待 "Upload successful, please reboot Botnana" 的提示訊息出現，該提示訊息出現後，就可以點選 [REBOOT]。 
 <br>
 ![](./botnana-control-reboot.png)
-7. 等待重新開機到安裝完成的過程中，提示訊息會顯示 "Rebooting"。安裝完成後，版號就會變成 1.10.15。搭載的平台是 BN-A2A/BN-B2A 大約是 3 分鐘左右，BN-J2A/BN-J4A 大約是 1 分鐘左右。
+7. 等待重新開機到安裝完成的過程中，提示訊息會顯示 "Rebooting"。安裝完成後，版號就會變成 1.10.15。搭載的平台是 BN-B3A 大約是 3 分鐘左右。
 <br>
 ![](./botnana-control-updated.png)
 8. **更新完成**。因為瀏覽器上的部份資料是在一開始連線時取得，所以建議重新載入畫面。

@@ -10,7 +10,7 @@
 
 ### 3. 入門
 * [入門教學](./tutorial.md)
-  * [Botnana B3A 入門](./botnana-b3a-tutorial.md)
+  * [Botnana BN-B3A 入門](./botnana-b3a-tutorial.md)
   * [Botnana Control 入門](./botnana-control-tutorial.md)
 * [設定檔](./configuration-file.md)
 

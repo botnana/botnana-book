@@ -4,12 +4,9 @@ Botnana Control 的 JSON API 採用 [JSON-RPC 2.0](http://www.jsonrpc.org/specif
 
 程式可以使用 JSON 格式和 Botnana Control 溝通。此一方法適用於各種支援 JSON 格式且具有 Websocket 函式庫的語言，例如：
 
-* Java
 * C#
 * C++
 * Python
-* Ruby
-* Go
 
 ## 回傳資料格式
 
