@@ -7,10 +7,8 @@ EtherCAT 驅動器通常都會符合 CiA 402 規範，此規範定義了驅動�
 * 位置控制模式 PP (Profile Position Mode）
 * 速度控制模式 PV (Profile Velocity Mode）
 * 原點復歸模式 HM (Homing mode)
-* 扭力控制模式 TQ (Profile  Torque Mode)
 * 週期同步位置模式 CSP (Cyclic Sync Position Mode)
 * 週期同步速度模式 CSV (Cyclic Sync Velocity Mode)
-* 週期同步扭力模式 CST (Cyclic Sync Torque Mode)
 
 就應用面來看週期同步模式適合用來做多軸同動或是特殊的軌跡規劃。
 
@@ -38,21 +36,6 @@ Position       |  PP    |      | Trajectory  |        |  Control  |      Effect
                | |      |      +-------------+   v    +-----------+
 Target   ----->|-+----> |----->| Velocity    |-->o--->|  Velocity |----> Control
 Velocity       |  PV    |      | Trajectory  |        |  Control  |      Effect
-               |        |      | Generation  |        |           |
-               +--------+      +-------------+        +-----------+
-              Mode Seletor
-
-```
-
-**扭力模式方塊圖：**
-
-```
-               +--------+
-               | +----> |----------------------- +
-               | |CST   |                        |
-               | |      |      +-------------+   v    +-----------+
-Target   ----->|-+----> |----->| Torque      |-->o--->|  Torque   |----> Control
-Torque         |  TQ    |      | Trajectory  |        |  Control  |      Effect
                |        |      | Generation  |        |           |
                +--------+      +-------------+        +-----------+
               Mode Seletor
@@ -434,11 +417,9 @@ Operation Mode Specification:
 |---------|--------|--------|--------|--------|
 | PP  | change on set-point | absolute/relative | change set immediately | new set-point |
 | PV  | -- | -- | -- |
-| TQ  | -- | -- | -- |
 | HM  | -- | -- | start homing |
 | CSP | -- | -- | --             |
 | CSV | -- | -- | --             |
-| CST | -- | -- | --             |
 
 
 | Commnad | bit 7 | bit 3 | bit 2 | bit 1 | bit 0 | Transitions |
@@ -482,11 +463,9 @@ Operation Mode Specification:
 |---------|--------|--------|--------|
 | PP  | following error | set-point acknowledge | target reached |
 | PV  | --              | speed                 | target reached |
-| TQ  | --              | --                    | target reached |
 | HM  | homing error    | homing attained       | target reached |
 | CSP | following error |                       | --             |
 | CSV | --              |                       | --             |
-| CST | --              |                       | --             |
 
 FSA State:
 
@@ -781,21 +760,17 @@ FSA State:
 
     1: PP
     3: PV
-    4: TQ
     6: HM
     8: CSP
     9: CSV
-    10: CST
 
 也有已經定義好的模式代號命令：
 
     : pp ( -- mode ) 1 ;
     : pv ( -- mode ) 3 ;
-    : tq ( -- mode ) 4 ;
     : hm ( -- mode ) 6 ;
     : csp ( -- mode ) 8 ;
     : csv ( -- mode ) 9 ;
-    : cst ( -- mode ) 10 ;
 
 命令範例:
 
@@ -803,16 +778,12 @@ FSA State:
     pp 1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 PP 模式
     3  1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 PV 模式
     pv 1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 PV 模式
-    4  1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 TQ 模式
-    tq 1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 TQ 模式
     6  1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 HM 模式
     hm 1 1 op-mode!  \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 HM 模式
     8   1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CSP 模式
     csp 1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CSP 模式
     9   1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CSV 模式
     csv 1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CSV 模式
-    10  1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CST 模式
-    cst 1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換為 CST 模式
 
 #### `pds-goal! ( goal ch n -- )`
 
@@ -861,12 +832,6 @@ FSA State:
 
 對應的 Object 為 0x6064。通常單位是脈波數。
 
-#### `real-tq@ ( ch n -- tq )`
-
-取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的真實扭力輸出 `tq`。(由 PDO 取得資料)。
-
-需要設定主站參數檔，而且該管道的馬達驅動器可以將 real torque (object 0x6077) 映射到 PDO Mapping 上。通常單位是 0.1 %。
-
 #### `real-v@ ( ch n -- vel )`
 
 取得 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的真實速度 `vel`。(由 PDO 取得資料)。
@@ -900,14 +865,6 @@ FSA State:
 對應的 Object 為 0x60FF。單位有可能是 pulse/s 或是 0.1 rpm。
 
 此命令只適合在 PV 模式下使用，如果是 CSV 模式要設定目標速度則是要使用 `drive-wpdo1!` 或是 `drive-wpdo2!`。
-
-#### `tq-slope! ( slope ch n -- )`
-
-使用 SDO 指令設定 EtherCAT 從站編號 `n` 第 `ch` 管道馬達驅動器的扭力輸出變化率 `slope`。
-
-對應的 Object 為 0x6087。通常單位是 0.1%/s。
-
-在 TQ 模式下，使用此設定值進行扭力輸出規劃，通常會搭配 `drive-vmax!`一起使用，避免馬達扭力輸出未到達目標時，其運動速度過快。
 
 #### `until-drive-on ( ch n -- )`
 
@@ -1007,7 +964,6 @@ FSA State:
 | -pp-imt               | ( ch n -- )           |
 | -pp-rel               | ( ch n -- )           |
 | csp                   | ( -- 8 )              |
-| cst                   | ( -- 10 )             |
 | csv                   | ( -- 9 )              |
 | drive-cw!             | ( cw ch n -- )        |
 | demand-p@             | ( ch n -- pos )       |
@@ -1051,15 +1007,12 @@ FSA State:
 | profile-v!            | ( vel ch n -- )       |
 | pv                    | ( -- 3 )              |
 | real-p@               | ( ch n -- pos )       |
-| real-tq@              | ( ch n -- tq )        |
 | real-v@               | ( ch n -- vel )       |
 | reset-fault           | ( ch n -- )           |
 | target-p!             | ( pos ch n -- )       |
 | target-p@             | ( ch n -- pos )       |
 | target-reached?       | ( channel n -- flag ) |
 | target-v!             | ( vel ch n -- )       |
-| tq                    | ( -- 4 )              |
-| tq-slope!             | ( slope ch n -- )     |
 | until-drive-on        | ( ch n -- )           |
 | until-no-fault        | ( ch n -- )           |
 | until-target-reached  | ( ch n -- )           |
