@@ -1,6 +1,7 @@
-## WINDOWS 10 透過 MicroUSB 與 Botnana A2 連線時需先安裝 RNDIS 驅動程式
+## WINDOWS 10 透過 Type-C USB 與 Botnana B3A 連線時需先安裝 RNDIS 驅動程式
 
-#### 0. 將 Botnana-A2 microUSB埠 與 電腦 連接。
+#### 0. 將 Botnana B3A Type-C USB 埠與電腦連接。
+
 註解︰若已嘗試過安裝 RNDIS 驅動程式，請從步驟 1 開始；否則，請直接從步驟 3 開始。
 
 

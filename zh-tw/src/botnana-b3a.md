@@ -2,19 +2,23 @@
 
 霸那 BN-B3A 規格如下：
 
-| Item    | Specification    |
-|--------|---------|
-| CPU    | 4 core ARM Cortex-A55 1.8GHz |
-| Memory | LPDDR4/LPDDR4X, 2GB |
-| Storage | eMMC Module: 8GB |
+## 硬體規格
+
+| 項目  | 規格 |
+|-------|--------------|
+| Board | LubanCat-1N |
+| Power Input | Type-C_5V@3A DC |
+| CPU   | RK3566 ( 4 core ARM Cortex-A55, 1.8GHz, Mali-G52) |
+| RAM   | LPDDR4/4X, 2GB |
+| Storage | eMMC, 8GB |
 |         | TF Card: Supports TF card boot/expansion, maximum 512GB 
-| Ethernet | 2 x Gigabit Ethernet, supports 10/100/1000Mbps |
-|          | EtherCAT |
-| USB | 1 x USB3.0 HOST |
-|     | 1 x USB2.0 HOST |
-|     | 1 x USB2.0 OTG for power and communication |
-| Display | 1 x Standard HDMI interface, supports up to 4K@60Hz |
-| Power | Type-C 5V 3A |
+| Ethernet | eth0, 1000M x1 |
+| EtherCAT | eth1, Realtek RTL8111/8168/8411 |
+| USB2.0 | Type-A x1 (HOST) |
+| USB2.0 | Type-C x1 (OTG)，Power input |
+| USB3.0 | Type-A x1 (HOST) |
+| Buttons | PWR(Power)、MR(MaskRom)、REC(Recovery) |
+| Display | HDMI 2.0 |
 | Dimensions | |
 
 

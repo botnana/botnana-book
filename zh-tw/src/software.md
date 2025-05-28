@@ -2,6 +2,15 @@
 
 霸那控制器出廠時預裝了 Linux 以及實時作業系統，以及動程科技自行開發的 *Botnana Control*，針對 EtherCAT 開發的多軸控制軟體。
 
+| 項目  | 規格 |
+|-------|--------------|
+| Operating system | Linux distribution Debian Buster 4.19.232-rt104 |
+| Real-time System | Preempt RT + Xenomai 3.2.3 Mercury Core |
+| EtherCAT Master | BotnanaCAT 2.0.1 based on IgH EtherCAT master branch stable 1.5 commit c8a512ac0 |
+| Botnana Control | v1.13.28 |
+| Period | 2ms |
+| Supported slaves | 10 |
+
 ## 軸控軟體
 
 所有等級的 Botnana Control 都支援以下規格：
@@ -19,9 +28,3 @@
 * 可進行二與三軸同動及直線圓弧補間。補間支援具 *CSP* 模式的馬達驅動器。
 * 多軸組功能。
 * 即時腳本 （rtForth）。
-
-### 開發中與未來加值的功能
-
-* 四至六軸補間。
-* 工件程式解譯器。
-* CNC 人機界面。
