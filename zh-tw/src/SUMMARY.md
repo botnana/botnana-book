@@ -26,10 +26,6 @@
   * [EtherCAT Encoder 指令集](./ethercat-encoder-primitives.md)
   * [EtherCAT Gateway 指令集](./ethercat-gateway-primitives.md)
   * [軸組 Axis Group 指令集](./axis-group.md)
-  * [狀態流程圖 Sequential Function Chart (SFC)](./sfc.md)
-    * [Servo On/OFF](./sfc-example/servo-on-off.md)
-    * [Motion State](./sfc-example/motion-state.md)
-    * [Homing State](./sfc-example/axes-homing.md)
 
 ### 5. 附錄
 * [支援的硬體清單](./known-working-hardware.md)
