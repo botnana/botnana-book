@@ -9,13 +9,13 @@
 | EtherCAT Master | BotnanaCAT 2.0.1 based on IgH EtherCAT master branch stable 1.5 commit c8a512ac0 |
 | Botnana Control | v1.13.28 |
 | Period | 2ms |
-| Supported slaves | 10 |
+| Supported slaves | 1-16 |
 
 ## 軸控軟體
 
 所有等級的 Botnana Control 都支援以下規格：
 
-* 可控制至 16 台 EtherCAT 從站。
+* 可控制至 1-16 台 EtherCAT 從站。
 * 支援 Panasonic、Delta、Sanyo Denki 和 Yaskawa 的 EtherCAT 馬達驅動器。基本上有符合 CiA 402 規範的馬達驅動器都有支援。
 * 支援 Beckhoff，Delta 的類比及數位輸出入模組。因應客戶需求陸續整合其他廠牌的 EtherCAT 模組。
 
