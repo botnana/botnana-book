@@ -5,19 +5,6 @@
 註解︰若已嘗試過安裝 RNDIS 驅動程式，請從步驟 1 開始；否則，請直接從步驟 3 開始。
 
 
-#### 1. 裝置管理員 出現如下裝置
-![](./win10_1_com_port.png)
-
-#### 2. 解除安裝裝置
-![](./win10_2_remove_com_device.png)
-
-
-#### 3. 修改 C:\Windows\INF\usbser.inf （[關於 usbser.inf 權限問題](./win10_permission.md)）
-將底下這個 
-![](./win10_3_modify_usbser_inf.png)
-改成如下
-![](./win10_4_mark_usbser_inf_com_port.png)
-
 #### 4. 選裝置管理員中的 BN-B3A，並更新驅動程式
 ![](./win10_5_upgrade_drive.png)
 
@@ -48,5 +35,3 @@
 
 #### 13. username / password: debian / temppwd
 ![](./win10_14_login.png)
-
-
