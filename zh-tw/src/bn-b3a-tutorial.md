@@ -4,7 +4,7 @@
 --------------------
 ### 登入
 
-使用 micro USB 連結到電腦的 USB port，再以 ssh 登入，
+使用 Type-C 傳輸線連結 BN-B3A 的 Type-C (OTG) 接口到電腦的 USB port，再以 ssh 登入，
 
     ssh debian@192.168.7.2
 
