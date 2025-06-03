@@ -9,13 +9,12 @@
 * [軟體規格](./software.md)
 
 ### 3. 入門
-* [入門教學](./tutorial.md)
-  * [Botnana BN-B3A 入門](./bn-b3a-tutorial.md)
-  * [Botnana Control 入門](./botnana-control-tutorial.md)
+* [系統架構](./system-archetecture.md)
+* [?Botnana Control 入門](./botnana-control-tutorial.md)
 * [設定檔](./configuration-file.md)
 
 ### 4. 程式開發
-* [程式開發界面](programming.md)
+* [?程式開發界面](programming.md)
 * [JSON API](./json-api.md)
 * [Real-time Script API](./real-time-script-api.md)
   * [Botnana 基本指令集](./host-primitives.md)
@@ -29,12 +28,13 @@
 
 ### 5. 附錄
 * [支援的硬體清單](./known-working-hardware.md)
-* [軟體更新](./update-software.md)
-* [常見問題](./faq.md)
-  * [網路設定](./faq/network.md)
-  * [USB連線IP設定](./faq/gadget.md)
-  * [Windows 10 RNDIS 驅動程式安裝](./faq/windows10_rndis.md)
-  * [手動安裝 Botnana Control 更新檔](./faq/manual_install_deb/manual_install_deb.md)
+* [?軟體更新](./update-software.md)
+* [?常見問題](./faq.md)
+  * [登入 Linux 系統](./login-linux.md)
+  * [?網路設定](./faq/network.md)
+  * [?USB連線IP設定](./faq/gadget.md)
+  * [?Windows 10 RNDIS 驅動程式安裝](./faq/windows10_rndis.md)
+  * [?手動安裝 Botnana Control 更新檔](./faq/manual_install_deb/manual_install_deb.md)
 
 -------------------------
 

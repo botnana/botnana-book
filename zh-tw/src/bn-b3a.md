@@ -8,6 +8,8 @@
 
 | 型號        | 可控 EtherCAT 從站數量 |
 |-------------|----------------------|
+| BN-B3A-02S  | 2 個                 |
+| BN-B3A-04S  | 4 個                 |
 | BN-B3A-10S  | 10 個                |
 | BN-B3A-16S  | 16 個                |
 
@@ -21,8 +23,8 @@
 | RAM   | LPDDR4/4X, 2GB |
 | Storage | eMMC, 8GB |
 |         | TF Card: Supports TF card boot/expansion, maximum 512GB 
-| Ethernet | eth0, 1000M x1 |
-| EtherCAT | eth1, Realtek RTL8111/8168/8411 (用於連接 EtherCAT 從站) |
+| Ethernet | WAN, eth0, 1000M x1 |
+| EtherCAT | LAN, eth1, Realtek RTL8111/8168/8411 (用於連接 EtherCAT 從站) |
 | USB2.0 | Type-A x1 (HOST) |
 | USB2.0 | Type-C x1 (OTG)，Power input |
 | USB3.0 | Type-A x1 (HOST) |
@@ -30,5 +32,6 @@
 | Display | HDMI 2.0 |
 | Dimensions | |
 
+EtherCAT 接口為下方標示為 LAN 的接口。
 
 ![](./figures/b3a.png)
