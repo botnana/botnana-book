@@ -10,11 +10,11 @@
 
 ### 3. 入門
 * [系統架構](./system-archetecture.md)
-* [?Botnana Control 入門](./botnana-control-tutorial.md)
+* [Botnana Control 入門](./botnana-control-tutorial.md)
 * [設定檔](./configuration-file.md)
 
 ### 4. 程式開發
-* [?程式開發界面](programming.md)
+* [程式開發界面](programming.md)
 * [JSON API](./json-api.md)
 * [Real-time Script API](./real-time-script-api.md)
   * [Botnana 基本指令集](./host-primitives.md)
