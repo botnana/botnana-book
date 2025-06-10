@@ -6,14 +6,13 @@
 
 
 #### 4. 選裝置管理員中的 BN-B3A，並更新驅動程式
-![](./win10_5_upgrade_drive.png)
-
+![](../figures/b3a-unknown-device.png)
 
 #### 5. 選 瀏覽電腦上的驅動程式軟體
-![](./win10_6_browse_drive.png)
+![](../figures/b3a-browse-device-drivers.png)
 
 #### 6. 選 讓我從電腦上的可用驅動程式清單中挑選
-![](./win10_7_choose_drive.png)
+![](../figures/b3a-select-from-computer.png)
 
 #### 7. 硬體類型選 網路介面卡
 ![](./win10_8_select_network_interface.png)
