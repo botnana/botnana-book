@@ -20,13 +20,21 @@
 
     ![](../figures/win10-ip-address.png)
 
-1. 連線測試 (假設用 ssh 連線軟體)
+1. 連線測試，使用命令提示字元或是 Power shell，
 
-    ![](./win10_13_connect_by_ssh.png)
+    ![](../figures/win10-cmd.png)
 
-1. username / password: debian / temppwd
-    ![](./win10_14_login.png)
+1. 執行 ssh debian@192.168.7.2，debian 為登入帳號。當詢問是否繼續時，回答 yes。
 
+    ![](../figures/win10-ssh.png)
+
+1. 詢問密碼時，回答 temppwd。
+
+    ![](../figures/win10-ssh-password.png)
+
+1. 以下為登入內建的 Linux 系統的畫面。
+
+    ![](../figures/win10-linux.png)
 
 ### 同一電腦連接單一塊 Botnana
 
