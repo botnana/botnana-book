@@ -40,9 +40,9 @@
 
 1. 檢查是否出現這個裝置︰裝置管理員/網路介面卡/USB RNDIS介面卡/Remote NDIS Device
 
-1. 連線測試 (假設用 ssh 連線軟體)
+    ![](../figures/win10-recognized.png)
 
-    ![](./win10_13_connect_by_ssh.png)
+    或是
 
-1. username / password: debian / temppwd
-    ![](./win10_14_login.png)
+    ![](./win10_12_got_usb_rndis_interface.png)
+
