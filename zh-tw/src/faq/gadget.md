@@ -36,6 +36,12 @@
 
     ![](../figures/win10-linux.png)
 
+1. 也可以使用瀏覽器連上 http://192.168.7.2:3000 來進行確認。目前 BN-B3A 尚未支援
+HTTPS，因此以下網頁會出現紅色不安全警告，可以忽略此警告。
+
+    ![](../figures/win10-browser.png)
+
+
 ### 同一電腦連接單一塊 Botnana
 
 TODO
