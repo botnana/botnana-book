@@ -10,7 +10,7 @@
 
 ### 3. 入門
 * [系統架構](./system-archetecture.md)
-* [?Botnana Control 入門](./botnana-control-tutorial.md)
+* [Botnana Control 入門](./botnana-control-tutorial.md)
 * [設定檔](./configuration-file.md)
 
 ### 4. 程式開發

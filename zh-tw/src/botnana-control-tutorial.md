@@ -9,4 +9,4 @@ BN-B3A 使用 Type-C (OTG) 接口到上位電腦的 USB 接口。而通訊的協
 
 安裝好驅動程式後，使用瀏覽器連上 http://192.168.7.2:3000 。可見到以下畫面。
 
-![Botnana Controlsheet](./botnana-control-controlsheet.png)
+![Botnana Controlsheet](../figures/b3a-controlsheet.png)
