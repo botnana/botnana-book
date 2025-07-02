@@ -4,3 +4,11 @@ language = "zh-TW"
 multilingual = false
 src = "src"
 title = "Botnana Book"
+
+[preprocessor.toc]
+command = "mdbook-toc"
+renderer = ["html"]
+
+[output.html]
+
+[output.pdf]
