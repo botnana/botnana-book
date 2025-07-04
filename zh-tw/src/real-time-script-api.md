@@ -6,7 +6,6 @@ Botnana Control 在其 real-time event loop 中使用了 Forth VM 以滿足更�
 
 [https://botnana.github.io/botnana-book/real-time-script-api.html](https://botnana.github.io/botnana-book/real-time-script-api.html)
 
----
 ## 指令集
 
 除了標準的 Forth 指令，Botnana Control 增加了以下 Forth 指令集。

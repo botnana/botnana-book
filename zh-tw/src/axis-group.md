@@ -155,7 +155,6 @@ Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。
     2 0axis-ferr       \ 假設第 2 個運動軸受控於第 1 個軸組，清除第 2 個運動軸的落後誤差
 ```
 
----
 ### Coordinator
 
 #### `.coordinator ( -- )`
@@ -652,7 +651,6 @@ Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。
 | pcs-p@                | ( n -- ) ( F: -- pos )    | 取得所選定軸組 PCS 座標系的指定軸的座標位置
 | vcmd!                 | ( F: v -- )               | 設定所選定的軸組的速度命令
 
----
 ### 1D 路徑規劃
 
 注意事項：
@@ -705,7 +703,6 @@ Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。
 | move1d | ( F: x -- ) | 宣告目前 PCS 座標為 (x)，並做為路徑起始點
 | pcs1d | ( F: x0 -- ) | 宣告 PCS 座標零點，並以當下位置做為路徑起始點
 
----
 ### 2D 路徑規劃
 
 注意事項：
@@ -768,7 +765,6 @@ Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。
 | move2d    | ( F: x y -- )                 | 宣告目前 PCS 座標為 (x, y)，並做為路徑起始點
 | pcs2d     | ( F: x0 y0 -- )               | 宣告 PCS 座標零點，並以當下位置做為路徑起始點
 
----
 ### 3D 路徑規劃
 
 注意事項：
@@ -832,7 +828,6 @@ Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。
 | move3d    | ( F: x y z -- )                 | 宣告目前 PCS 座標為 (x, y, z)，並做為路徑起始點
 | pcs3d     | ( F: x0 y0 z0 -- )              | 宣告 PCS 座標零點，並以當下位置做為路徑起始點
 
----
 ### Sine Wave Planner
 
 注意事項：
@@ -879,7 +874,6 @@ Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。
 | sine-f!     | ( F: f -- )     | 設定弦波運動的頻率
 | pcs-sine    | ( F: x0 -- )    | 宣告 PCS 座標零點，並以當下位置做為路徑起始點
 
----
 ### Axis
 
 名詞說明：
@@ -896,7 +890,6 @@ Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。
 
     following_error = demand_position - corrected_position
 
----
 #### `.axis ( j -- )`
 
 顯示運動軸 `j` 狀態。
@@ -1232,7 +1225,6 @@ dir 可以設定的值為：
 | max-pos-dev!      | ( j -- ) ( F: max-dev -- )    | 設定雙位置回授的最大命令修正量
 | virtual-axis?     | ( j --  flag )                | 運動軸是否為虛擬軸？
 
----
 ### 單軸運動
 
 命令針對單一運動軸，可以同時讓多個運動軸同時運行。如果該運動軸受到軸組控制則不可執行單軸運動。

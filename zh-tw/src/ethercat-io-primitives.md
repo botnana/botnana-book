@@ -5,7 +5,6 @@ EtherCAT IO 包含以下部份：
 1. EtherCAT DIN/DOUT/AIN/AOUT 模組。單一種或是綜合的訊號模組。
 2. EtherCAT PWM 模組。目前只有支援 BECKHOFF EL2502 模組。因為該模組可以使用同步命令（PDO）控制 PWM Period 與 Duty Cycle。如果是非同步命令 （SDO）的控制方式，使用 SDO upload/download 命令即可。
 
----
 #### `+ec-ain ( ch n -- )`
 
 開啟 EtherCAT 從站編號 `n`，第 `ch` 管道的類比輸入。
