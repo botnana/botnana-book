@@ -1,0 +1,12 @@
+---
+title: 'Botnana Book (繁體中文版)'
+author:
+  - 'ccwu'
+date: 'October 2023'
+lang: zh-TW
+mainfont: 'Noto Sans CJK TC'
+sansfont: 'Noto Sans CJK TC'
+monofont: 'Noto Sans Mono CJK TC'
+documentclass: scrbook
+papersize: a4
+---

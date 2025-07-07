@@ -13,15 +13,15 @@ SRC_DIR="${BOOK_DIR}/src"
 # The desired output PDF file path.
 OUTPUT_PDF="${BOOK_DIR}/botnana-book-zh-tw.pdf"
 
-# The font to use for the PDF. Make sure it's installed on your system.
-MAIN_FONT="Noto Sans CJK TC"
-
 # --- Chapter & Page Break Configuration ---
 # The header level in your Markdown files that should be treated as a "Chapter".
 # For example, set to 1 for '#', 2 for '##', 3 for '###'.
 # Based on your `ethercat-io-primitives.md` file, your top headers appear
 # to be level 3, so we'll start with that.
 BASE_HEADER_LEVEL=3
+
+# --- Metadata ---
+METADATA_FILE="${BOOK_DIR}/metadata.yaml"
 
 # --- Script ---
 echo "Searching for Markdown files in ${SRC_DIR}/SUMMARY.md..."
@@ -43,12 +43,11 @@ echo "Found files. Starting PDF conversion..."
 
 # Run pandoc.
 # - We execute from within the src directory to resolve relative image paths correctly.
+# - The metadata file is passed first to apply title, author, and other settings.
 # - We pass "${FILES[@]}" to handle filenames with spaces or special characters safely.
-(cd "$SRC_DIR" && pandoc "${FILES[@]}" \
+(cd "$SRC_DIR" && pandoc "${METADATA_FILE}" "${FILES[@]}" \
   -o "$OUTPUT_PDF" \
   --pdf-engine=xelatex \
-  -V lang=zh-TW \
-  -V mainfont="$MAIN_FONT" \
   --toc \
   --number-sections \
   --shift-heading-level-by=$HEADER_SHIFT \
