@@ -3,7 +3,8 @@ authors = ["Sirius Wu"]
 language = "zh-TW"
 multilingual = false
 src = "src"
-title = "Botnana Book"
+title = "Botnana Control"
+description = "The Official User Manual"
 
 [preprocessor.toc]
 command = "mdbook-toc"
