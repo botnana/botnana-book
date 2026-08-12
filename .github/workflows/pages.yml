@@ -1,0 +1,86 @@
+name: Deploy book to Pages
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build Traditional Chinese site
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      MDBOOK_VERSION: "0.5.2"
+      MDBOOK_SHA256: "084e4342ba564db270108763e404a7d1f309d932651a22484e93c0dc1a071f6d"
+      MDBOOK_OUTPUT__PDF__OPTIONAL: "true"
+    steps:
+      - name: Check out the publication source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install pinned mdBook
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          tool_dir="$RUNNER_TEMP/botnana-pages-tools"
+          mdbook_archive="$RUNNER_TEMP/mdbook.tar.gz"
+          mkdir -p "$tool_dir"
+
+          curl --proto '=https' --tlsv1.2 --fail --location --silent --show-error \
+            "https://github.com/rust-lang/mdBook/releases/download/v${MDBOOK_VERSION}/mdbook-v${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz" \
+            --output "$mdbook_archive"
+          echo "$MDBOOK_SHA256  $mdbook_archive" | sha256sum --check --strict
+          tar -xzf "$mdbook_archive" -C "$tool_dir" mdbook
+
+          echo "$tool_dir" >> "$GITHUB_PATH"
+
+      - name: Verify mdBook version
+        run: '[[ $(mdbook --version) == "mdbook v${MDBOOK_VERSION}" ]]'
+
+      - name: Configure Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+
+      - name: Test the Pages workflow contract
+        run: bash tests/test-pages-workflow.bash
+
+      - name: Build the current Traditional Chinese book
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          pages_build_root="$RUNNER_TEMP/botnana-pages"
+          pages_site="$pages_build_root/html"
+          mdbook build zh-tw --dest-dir "$pages_build_root"
+
+          test -f "$pages_site/index.html"
+          grep -Fq 'Botnana BN-B3A' "$pages_site/bn-b3a.html"
+          grep -Fq 'Version 1.14.3' "$pages_site/cover.html"
+
+      - name: Upload the Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: ${{ runner.temp }}/botnana-pages/html
+
+  deploy:
+    name: Deploy site
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0

@@ -17,7 +17,7 @@ cargo install mdbook-pdf
 ./build-book.bash
 ```
 
-成功後會更新繁體中文網站 `docs/`，並產生：
+成功後會在本機更新繁體中文 HTML 輸出 `docs/`，並產生：
 
 ```text
 botnana-book_en-us.pdf
@@ -26,6 +26,16 @@ botnana-book_zh-tw.pdf
 
 所有語言和格式都成功建置後才會取代既有輸出；建置失敗不會刪除目前發布的
 網站或 PDF。
+
+## 發布 GitHub Pages
+
+推送到 `master` 時，[Pages workflow](./.github/workflows/pages.yml) 會直接從
+`zh-tw/src/` 建置目前的繁體中文內容，並部署到
+[Botnana Book](https://botnana.github.io/botnana-book/)。Repository 的 Pages
+**Source** 必須設為 **GitHub Actions**。
+
+Pages 不再使用 repository 內預先產生的 `docs/` 內容，因此更新書籍後不需要提交
+`docs/`。也可以從 GitHub Actions 手動執行 **Deploy book to Pages**。
 
 ## 發布 GitHub Release
 
