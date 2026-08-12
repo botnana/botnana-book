@@ -6,6 +6,7 @@ src = "src"
 title = "Botnana Control"
 
 [output.html]
+additional-js = ["language-switch.js"]
 
 [output.html.print]
 enable = true

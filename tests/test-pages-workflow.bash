@@ -35,11 +35,18 @@ assert_contains 'MDBOOK_VERSION: "0.5.2"'
 assert_contains 'MDBOOK_SHA256: "084e4342ba564db270108763e404a7d1f309d932651a22484e93c0dc1a071f6d"'
 assert_contains 'MDBOOK_OUTPUT__PDF__OPTIONAL: "true"'
 assert_contains '--retry 5 --retry-all-errors --retry-delay 2'
-assert_contains 'mdbook build zh-tw --dest-dir "$pages_build_root"'
-assert_contains 'test -f "$pages_site/index.html"'
-assert_contains "grep -Fq 'Botnana BN-B3A' \"\$pages_site/bn-b3a.html\""
-assert_contains "grep -Fq 'Version 1.14.3' \"\$pages_site/cover.html\""
-assert_contains 'path: ${{ runner.temp }}/botnana-pages/html'
+assert_contains 'node tests/test-language-switch.js'
+assert_contains 'mdbook build zh-tw --dest-dir "$pages_build_root/zh-tw"'
+assert_contains 'mdbook build en-us --dest-dir "$pages_build_root/en-us"'
+assert_contains 'cp -a "$chinese_site/." "$pages_artifact/"'
+assert_contains 'cp -a "$english_site/." "$pages_artifact/en-us/"'
+assert_contains 'test -f "$pages_artifact/index.html"'
+assert_contains 'test -f "$pages_artifact/en-us/index.html"'
+assert_contains "grep -Fq 'lang=\"zh-TW\"' \"\$pages_artifact/index.html\""
+assert_contains "grep -Fq 'lang=\"en\"' \"\$pages_artifact/en-us/index.html\""
+assert_contains "grep -Fq 'Botnana BN-B3A' \"\$pages_artifact/bn-b3a.html\""
+assert_contains "grep -Fq 'Botnana BN-B3A' \"\$pages_artifact/en-us/bn-b3a.html\""
+assert_contains 'path: ${{ runner.temp }}/botnana-pages-artifact'
 assert_contains 'name: github-pages'
 assert_contains 'url: ${{ steps.deployment.outputs.page_url }}'
 

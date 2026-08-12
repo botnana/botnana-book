@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   build:
-    name: Build Traditional Chinese site
+    name: Build bilingual site
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
@@ -53,25 +53,40 @@ jobs:
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 
       - name: Test the Pages workflow contract
-        run: bash tests/test-pages-workflow.bash
+        run: |
+          bash tests/test-pages-workflow.bash
+          node tests/test-language-switch.js
 
-      - name: Build the current Traditional Chinese book
+      - name: Build the current books
         shell: bash
         run: |
           set -euo pipefail
 
-          pages_build_root="$RUNNER_TEMP/botnana-pages"
-          pages_site="$pages_build_root/html"
-          mdbook build zh-tw --dest-dir "$pages_build_root"
+          pages_build_root="$RUNNER_TEMP/botnana-pages-build"
+          pages_artifact="$RUNNER_TEMP/botnana-pages-artifact"
+          chinese_site="$pages_build_root/zh-tw/html"
+          english_site="$pages_build_root/en-us/html"
 
-          test -f "$pages_site/index.html"
-          grep -Fq 'Botnana BN-B3A' "$pages_site/bn-b3a.html"
-          grep -Fq 'Version 1.14.3' "$pages_site/cover.html"
+          mdbook build zh-tw --dest-dir "$pages_build_root/zh-tw"
+          mdbook build en-us --dest-dir "$pages_build_root/en-us"
+
+          mkdir -p "$pages_artifact/en-us"
+          cp -a "$chinese_site/." "$pages_artifact/"
+          cp -a "$english_site/." "$pages_artifact/en-us/"
+
+          test -f "$pages_artifact/index.html"
+          test -f "$pages_artifact/en-us/index.html"
+          grep -Fq 'lang="zh-TW"' "$pages_artifact/index.html"
+          grep -Fq 'lang="en"' "$pages_artifact/en-us/index.html"
+          grep -Fq 'Botnana BN-B3A' "$pages_artifact/bn-b3a.html"
+          grep -Fq 'Botnana BN-B3A' "$pages_artifact/en-us/bn-b3a.html"
+          grep -Eq 'language-switch-[[:xdigit:]]+\.js' "$pages_artifact/index.html"
+          grep -Eq 'language-switch-[[:xdigit:]]+\.js' "$pages_artifact/en-us/index.html"
 
       - name: Upload the Pages artifact
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
-          path: ${{ runner.temp }}/botnana-pages/html
+          path: ${{ runner.temp }}/botnana-pages-artifact
 
   deploy:
     name: Deploy site

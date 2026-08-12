@@ -29,10 +29,14 @@ botnana-book_zh-tw.pdf
 
 ## 發布 GitHub Pages
 
-推送到 `master` 時，[Pages workflow](./.github/workflows/pages.yml) 會直接從
-`zh-tw/src/` 建置目前的繁體中文內容，並部署到
-[Botnana Book](https://botnana.github.io/botnana-book/)。Repository 的 Pages
-**Source** 必須設為 **GitHub Actions**。
+推送到 `master` 時，[Pages workflow](./.github/workflows/pages.yml) 會直接建置並
+部署兩種語言：
+
+- [繁體中文](https://botnana.github.io/botnana-book/) 位於網站根目錄，以保留既有連結。
+- [English](https://botnana.github.io/botnana-book/en-us/) 位於 `/en-us/`。
+
+兩種語言的工具列都有語言切換連結。Repository 的 Pages **Source** 必須設為
+**GitHub Actions**。
 
 Pages 不再使用 repository 內預先產生的 `docs/` 內容，因此更新書籍後不需要提交
 `docs/`。也可以從 GitHub Actions 手動執行 **Deploy book to Pages**。

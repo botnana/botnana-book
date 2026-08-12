@@ -11,6 +11,7 @@ optional = true
 renderer = ["html"]
 
 [output.html]
+additional-js = ["language-switch.js"]
 
 [output.html.print]
 enable = true
