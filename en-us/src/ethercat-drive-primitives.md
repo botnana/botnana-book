@@ -7,8 +7,10 @@ Currently, Botnana Control supports the following drives:
 * Position control mode PP (Profile Position Mode)
 * Velocity control mode PV (Profile Velocity Mode)
 * HM is the basic regression model. (Homing mode)
+* Torque control mode TQ (Profile Torque Mode)
 * Cyclic synchronous positioning model CSP (Cyclic Sync Position Mode)
 * Cyclic synchronous velocity mode CSV (Cyclic Sync Velocity Mode)
+* Cyclic synchronous torque mode CST (Cyclic Sync Torque Mode)
 
 In terms of application, the cyclic synchronous pattern is suitable for multi-axis coordinated motion or special trajectory planning.
 
@@ -39,6 +41,21 @@ Velocity       |  PV    |      | Trajectory  |        |  Control  |      Effect
                |        |      | Generation  |        |           |
                +--------+      +-------------+        +-----------+
               Mode Seletor
+
+```
+
+**The torque mode block diagram:**
+
+```
+               +--------+
+               | +----> |----------------------- +
+               | |CST   |                        |
+               | |      |      +-------------+   v    +-----------+
+Target   ----->|-+----> |----->| Torque      |-->o--->|  Torque   |----> Control
+Torque         |  TQ    |      | Trajectory  |        |  Control  |      Effect
+               |        |      | Generation  |        |           |
+               +--------+      +-------------+        +-----------+
+              Mode Selector
 
 ```
 
@@ -417,9 +434,11 @@ Operation Mode Specification:
 |---------|--------|--------|--------|--------|
 | PP  | change on set-point | absolute/relative | change set immediately | new set-point |
 | PV  | -- | -- | -- |
+| TQ  | -- | -- | -- |
 | HM  | -- | -- | start homing |
 | CSP | -- | -- | --             |
 | CSV | -- | -- | --             |
+| CST | -- | -- | --             |
 
 
 | Commnad | bit 7 | bit 3 | bit 2 | bit 1 | bit 0 | Transitions |
@@ -463,9 +482,11 @@ Operation Mode Specification:
 |---------|--------|--------|--------|
 | PP  | following error | set-point acknowledge | target reached |
 | PV  | --              | speed                 | target reached |
+| TQ  | --              | --                    | target reached |
 | HM  | homing error    | homing attained       | target reached |
 | CSP | following error |                       | --             |
 | CSV | --              |                       | --             |
+| CST | --              |                       | --             |
 
 FSA State:
 
@@ -559,6 +580,12 @@ Set the control word for EtherCAT slave `n` channel `ch` motor drive to `cw` (vi
 Get the demand position `pos` of EtherCAT slave `n`'s channel `ch` motor drive on the motion axis.
 
 Set the master configuration file, and the motor drive in this channel can map the demand position (object 0x6062) to the PDO Mapping.
+
+#### `demand-tq@ ( ch n -- tq )`
+
+Get the demand torque `tq` of the motor drive on channel `ch` of EtherCAT slave `n`.
+
+The master configuration must map demand torque (object 0x6074) into the drive's PDO mapping.
 
 #### `demand-v@ ( ch n -- vel )`
 
@@ -760,17 +787,21 @@ Currently supported modes are as follows:
 
     1: PP
     3: PV
+    4: TQ
     6: HM
     8: CSP
     9: CSV
+    10: CST
 
 There is also a well-defined pattern code command:
 
     : pp ( -- mode ) 1 ;
     : pv ( -- mode ) 3 ;
+    : tq ( -- mode ) 4 ;
     : hm ( -- mode ) 6 ;
     : csp ( -- mode ) 8 ;
     : csv ( -- mode ) 9 ;
+    : cst ( -- mode ) 10 ;
 
 example command:
 
@@ -778,12 +809,16 @@ example command:
     pp 1 1 op-mode!  \ Change the EtherCAT slave number 1 to PP mode
     3  1 1 op-mode!  \ Switch the EtherCAT slave number 1 to PV mode
     pv 1 1 op-mode!  \ Switch the EtherCAT slave number 1 to PV mode
+    4  1 1 op-mode!  \ Switch EtherCAT slave 1, channel 1 to TQ mode
+    tq 1 1 op-mode!  \ Switch EtherCAT slave 1, channel 1 to TQ mode
     6  1 1 op-mode!  \ Switch the EtherCAT slave number 1 to HM mode
     hm 1 1 op-mode!  \ Switch the EtherCAT slave number 1 to HM mode
     8 1 1 op-mode! Switch EtherCAT slave #1 Channel 1 motor drive to CSP mode
     csp 1 1 op-mode! \ Switches the EtherCAT slave number 1, channel 1 motor drive to CSP mode
     9   1 1 op-mode! \ Switch the EtherCAT slave number 1 to CSV mode
     csv 1 1 op-mode! \ Switch the EtherCAT slave number 1 to CSV mode
+    10  1 1 op-mode! \ Switch EtherCAT slave 1, channel 1 to CST mode
+    cst 1 1 op-mode! \ Switch EtherCAT slave 1, channel 1 to CST mode
 
 #### `pds-goal! ( goal ch n -- )`
 
@@ -832,6 +867,12 @@ Obtain the real position `pos` of the motor drive on channel `ch` of EtherCAT sl
 
 The corresponding object is 0x6064. Usually the unit is the number of pulses.
 
+#### `real-tq@ ( ch n -- tq )`
+
+Get the actual torque `tq` of the motor drive on channel `ch` of EtherCAT slave `n` through PDO data.
+
+The master configuration must map torque actual value (object 0x6077) into the drive's PDO mapping. The unit is typically 0.1% of rated torque.
+
 #### `real-v@ ( ch n -- vel )`
 
 Obtain the real speed `vel` of EtherCAT slave `n`'s motor drive `ch` on a channel (obtained via PDO).
@@ -858,6 +899,14 @@ Obtain the Status Word Bit 10 (target reached) for EtherCAT slave `n`'s motor dr
 
 This status comes from the same source as `drive-sw@`.
 
+#### `target-tq! ( tq ch n -- )`
+
+Use an SDO request to set target torque `tq` for the motor drive on channel `ch` of EtherCAT slave `n`.
+
+The corresponding object is 0x6071. The unit is typically 0.1% of rated torque.
+
+This command is intended for TQ mode. To provide a cyclic target torque in CST mode, map object 0x6071 as a user PDO and write it with `drive-wpdo1!` or `drive-wpdo2!`.
+
 #### `target-v! ( vel ch n -- )`
 
 Use an SDO command to set target velocity `v` for the motor drive on channel `ch` of EtherCAT slave `n`.
@@ -865,6 +914,26 @@ Use an SDO command to set target velocity `v` for the motor drive on channel `ch
 The corresponding Object is 0x60FF. The unit could be pulse/s or 0.1 rpm.
 
 This command is intended for PV mode. To set target velocity in CSV mode, use `drive-wpdo1!` or `drive-wpdo2!`.
+
+#### `tq-ofs! ( ofs ch n -- )`
+
+Set torque offset `ofs` for the motor drive on channel `ch` of EtherCAT slave `n` through PDO data.
+
+The master configuration must map torque offset (object 0x60B2) into the drive's PDO mapping. This command is typically used in CSP, CSV, or CST mode to adjust the torque target in the drive's torque-control loop. The unit is typically 0.1% of rated torque.
+
+#### `tq-ofs@ ( ch n -- ofs )`
+
+Get torque offset `ofs` for the motor drive on channel `ch` of EtherCAT slave `n` through PDO data.
+
+The master configuration must map torque offset (object 0x60B2) into the drive's PDO mapping.
+
+#### `tq-slope! ( slope ch n -- )`
+
+Use an SDO request to set the torque slope `slope` for the motor drive on channel `ch` of EtherCAT slave `n`.
+
+The corresponding object is 0x6087. The unit is typically 0.1% of rated torque per second.
+
+In TQ mode, the drive uses this value to plan changes in torque output. It is commonly used with `drive-vmax!` to limit motor speed while the commanded torque has not yet been reached.
 
 #### `until-drive-on ( ch n -- )`
 
@@ -964,9 +1033,11 @@ A motor drive using the EtherCAT slave number 1.
 | -pp-imt               | ( ch n -- )           |
 | -pp-rel               | ( ch n -- )           |
 | csp                   | ( -- 8 )              |
+| cst                   | ( -- 10 )             |
 | csv                   | ( -- 9 )              |
 | drive-cw!             | ( cw ch n -- )        |
 | demand-p@             | ( ch n -- pos )       |
+| demand-tq@            | ( ch n -- tq )        |
 | demand-v@             | ( ch n -- vel )       |
 | drive-dins@           | ( ch n -- dins )      |
 | drive-douts!          | ( douts ch n -- )     |
@@ -1007,12 +1078,18 @@ A motor drive using the EtherCAT slave number 1.
 | profile-v!            | ( vel ch n -- )       |
 | pv                    | ( -- 3 )              |
 | real-p@               | ( ch n -- pos )       |
+| real-tq@              | ( ch n -- tq )        |
 | real-v@               | ( ch n -- vel )       |
 | reset-fault           | ( ch n -- )           |
 | target-p!             | ( pos ch n -- )       |
 | target-p@             | ( ch n -- pos )       |
 | target-reached?       | ( channel n -- flag ) |
+| target-tq!            | ( tq ch n -- )        |
 | target-v!             | ( vel ch n -- )       |
+| tq                    | ( -- 4 )              |
+| tq-ofs!               | ( ofs ch n -- )       |
+| tq-ofs@               | ( ch n -- ofs )       |
+| tq-slope!             | ( slope ch n -- )     |
 | until-drive-on        | ( ch n -- )           |
 | until-no-fault        | ( ch n -- )           |
 | until-target-reached  | ( ch n -- )           |
