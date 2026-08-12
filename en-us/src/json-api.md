@@ -16,6 +16,62 @@ Botnana Control returns data in the form of
 
 Note that the return format is not a JSON format.
 
+## WebSocket Recommendations for Custom HMIs (Version 1.14.3)
+
+Botnana Control 1.14.3 provides two rtForth user sessions for WebSocket
+clients. An accepted `script.evaluate` request does not have a general success
+or completion response. A custom HMI must not treat a successful WebSocket send
+or the absence of an error as proof that the script ran.
+
+Use the following client-side limits to reduce request backlog and make motion
+commands easier to verify:
+
+* Keep one persistent WebSocket per HMI application whenever possible. Close it
+  cleanly, reconnect with a bounded delay, and avoid unused browser tabs or
+  reconnect loops that occupy the two rtForth sessions.
+* Route every bootstrap, heartbeat, read, and command through one outbound
+  budget. Permit a burst of no more than five requests and a sustained rate of
+  no more than 100 requests per second. This is a traffic recommendation, not
+  a guaranteed rate for long-running rtForth scripts.
+* Give operator and motion commands priority over polling, but do not let them
+  bypass the request budget. Replace or discard superseded polling instead of
+  sending a catch-up burst after a delay or reconnect.
+* Poll only live values needed by the visible screen. Do not request stable
+  configuration every 50 ms.
+* Keep each read-only polling script within 512 UTF-8 bytes and 32 rtForth
+  operations. Keep motion commands and configuration changes separate from
+  polling batches.
+* Process every server message, especially messages beginning with `error|`.
+  `error|Scripts buffer is fulled.`, a timeout, or a disconnect means the HMI
+  must reconcile controller state instead of assuming that the command ran.
+* Allow only one state-changing script to await verification on a connection.
+  Do not automatically retry a motion command after a missing response because
+  the original command may already have run.
+
+The selected axis group is shared by the rtForth user tasks. Put `group!` and
+all commands that depend on that selection in the same `script.evaluate`
+request. When the application needs confirmation, add an output-producing
+readback to the same script. For example:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "script.evaluate",
+  "params": {
+    "script": "1 group! 100.0e mm/min vcmd! 1 .group"
+  }
+}
+```
+
+The response contains the `vcmd.1` field for group 1. This confirms the stored
+command value; it does not by itself confirm physical velocity. The `vcmd!`
+word intentionally has no effect on a Sine group, whose reported `vcmd` is its
+configured sine velocity amplitude.
+
+These limits are conservative recommendations for version 1.14.3. They reduce
+exposure to request pressure but cannot repair a stalled connection or provide
+exactly-once command execution.
+
 ## Version API
 
 Programs can access a version of Botnana Control using the Version API.
