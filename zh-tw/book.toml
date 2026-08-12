@@ -1,15 +1,16 @@
 [book]
 authors = ["Sirius Wu"]
 language = "zh-TW"
-multilingual = false
 src = "src"
 title = "Botnana Control"
 description = "The Official User Manual"
 
 [preprocessor.toc]
 command = "mdbook-toc"
+optional = true
 renderer = ["html"]
 
 [output.html]
 
 [output.pdf]
+optional = true

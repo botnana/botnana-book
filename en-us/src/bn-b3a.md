@@ -2,14 +2,13 @@
 
 The Botnana BN-B3A specifications are listed below.
 
-**Ordering note:** BN-B3A models support different numbers of EtherCAT slaves. Specify the required model when ordering, such as BN-B3A-10S or BN-B3A-16S.
+**Ordering note:** Specify the BN-B3A-10S model when ordering.
 
-## Product Models
+## Product Model
 
-| Model        | Maximum EtherCAT slaves |
-|-------------|----------------------|
-| BN-B3A-10S  | 10                   |
-| BN-B3A-16S  | 16                   |
+| Model        | Controllable axes | Maximum EtherCAT slaves |
+|-------------|------------------:|-------------------------:|
+| BN-B3A-10S  | 10                | 16                       |
 
 ## Hardware specifications
 
