@@ -28,6 +28,7 @@
 
 ### 5. Appendix
 * [Supported Hardware](./known-working-hardware.md)
+* [Release Notes](./release-notes.md)
 * [Software Updates](./update-software.md)
 * [Frequently Asked Questions](./faq.md)
   * [Log In to Linux](./faq/login-linux.md)
