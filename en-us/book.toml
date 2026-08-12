@@ -1,0 +1,8 @@
+[book]
+authors = ["Sirius Wu"]
+description = "The Official User Manual"
+language = "en"
+src = "src"
+title = "Botnana Control"
+
+[output.html]
