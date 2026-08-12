@@ -29,6 +29,7 @@ assert_contains 'MDBOOK_VERSION: "0.5.2"'
 assert_contains 'MDBOOK_SHA256: "084e4342ba564db270108763e404a7d1f309d932651a22484e93c0dc1a071f6d"'
 assert_contains 'MDBOOK_PDF_VERSION: "0.1.13"'
 assert_contains 'MDBOOK_PDF_SHA256: "78926f96540add76d8dd035d683b01bee01844229544c129e04a7bc4c30a5cbb"'
+assert_contains '--retry 5 --retry-all-errors --retry-delay 2'
 assert_contains 'contents: read'
 assert_contains 'contents: write'
 assert_contains "expected_cover_version=\"### Version \$release_version\""

@@ -34,6 +34,7 @@ assert_contains 'actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128'
 assert_contains 'MDBOOK_VERSION: "0.5.2"'
 assert_contains 'MDBOOK_SHA256: "084e4342ba564db270108763e404a7d1f309d932651a22484e93c0dc1a071f6d"'
 assert_contains 'MDBOOK_OUTPUT__PDF__OPTIONAL: "true"'
+assert_contains '--retry 5 --retry-all-errors --retry-delay 2'
 assert_contains 'mdbook build zh-tw --dest-dir "$pages_build_root"'
 assert_contains 'test -f "$pages_site/index.html"'
 assert_contains "grep -Fq 'Botnana BN-B3A' \"\$pages_site/bn-b3a.html\""
