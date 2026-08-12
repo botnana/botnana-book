@@ -1,6 +1,6 @@
 ## Network Configuration
 
-Use `connmanctl` command for settings. Here are some common settings needs; for detailed explanations, refer to [connmanctl - Connman CLI](http://manpages.ubuntu.com/manpages/artful/man1/connmanctl.1.html).
+Use `connmanctl` command for settings. Here are some common settings needs; for detailed explanations, refer to [connmanctl - ConnMan CLI](https://manpages.debian.org/bookworm/connman/connmanctl.1.en.html).
 
 ### Wi-Fi Settings
 

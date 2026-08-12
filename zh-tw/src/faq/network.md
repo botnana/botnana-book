@@ -1,6 +1,6 @@
 ## 網路設定
 
-使用 `connmanctl` 指令進行設定。以下是幾個常用的設定需求，若是需要詳細說明可參考 [connmanctl - Connman CLI](http://manpages.ubuntu.com/manpages/artful/man1/connmanctl.1.html)
+使用 `connmanctl` 指令進行設定。以下是幾個常用的設定需求，若是需要詳細說明可參考 [connmanctl - ConnMan CLI](https://manpages.debian.org/bookworm/connman/connmanctl.1.en.html)
    
 ### WIFI 設定
     
@@ -172,7 +172,6 @@ connmanctl config <service> --ipv4 dhcp
 案例設定：
 sudo connmanctl config  ethernet_00ecacce3a79_cable --ipv4 dhcp
 ```
-
 
 
 

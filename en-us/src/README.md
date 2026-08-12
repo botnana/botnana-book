@@ -16,7 +16,7 @@ Botnana Control is suitable for the following applications:
 ## Documentation links
 
 - Botnana Book: [https://botnana.github.io/botnana-book/](https://botnana.github.io/botnana-book/)
-- Botnana Book PDF: [https://drive.google.com/file/d/17MOBkEqNVOuN4Zg8fdbMBsCs7Ws-be-H/view?usp=sharing](https://drive.google.com/file/d/17MOBkEqNVOuN4Zg8fdbMBsCs7Ws-be-H/view?usp=sharing)
+- Botnana Book PDF: [Download the English PDF](https://github.com/botnana/botnana-book/releases/latest/download/botnana-book_en-us.pdf)
 - rtForth: [https://mapacode.github.io/rtforth/](https://mapacode.github.io/rtforth/)
 - rtForth PDF file link: [https://drive.google.com/file/d/1DtmB3rDQxERpZAV0gcrQtP_0uRcDQTwc/view?usp=sharing](https://drive.google.com/file/d/1DtmB3rDQxERpZAV0gcrQtP_0uRcDQTwc/view?usp=sharing)
 - API library: [https://github.com/botnana/botnana-apis](https://github.com/botnana/botnana-apis)
