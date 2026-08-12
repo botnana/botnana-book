@@ -12,5 +12,7 @@ renderer = ["html"]
 
 [output.html]
 
+[output.html.print]
+enable = true
+
 [output.pdf]
-optional = true

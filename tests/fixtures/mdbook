@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if [[ $# -ne 4 || "$1" != "build" || "$3" != "--dest-dir" ]]; then
+    echo "unexpected fake mdbook arguments: $*" >&2
+    exit 64
+fi
+
+book_dir=$2
+destination=$4
+language=${book_dir##*/}
+
+echo "$language" >> "${FAKE_MDBOOK_LOG:?}"
+
+if [[ ${FAKE_MDBOOK_FAIL:-} == "$language" ]]; then
+    echo "simulated $language build failure" >&2
+    exit 17
+fi
+
+mkdir -p "$destination/html" "$destination/pdf"
+echo "html-$language" > "$destination/html/index.html"
+echo "pdf-$language" > "$destination/pdf/output.pdf"

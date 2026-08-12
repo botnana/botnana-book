@@ -2,6 +2,8 @@ _book
 .project
 **/*.md.html
 node_modules/*
+.build-book.*
+botnana-book_en-us.pdf
 botnana-book_zh-tw.pdf
 docs/*.md
 /zh-tw/book

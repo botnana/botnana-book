@@ -6,3 +6,8 @@ src = "src"
 title = "Botnana Control"
 
 [output.html]
+
+[output.html.print]
+enable = true
+
+[output.pdf]
