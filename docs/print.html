@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-ee7bc4d0.js";
+            window.path_to_searchindex_js = "searchindex-0a567c63.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -419,7 +419,7 @@ Topology</strong> 顯示 <strong>Controller unavailable</strong> 時，請使用
 </thead>
 <tbody>
 <tr><td>控制器已就緒且可使用 <strong>Rescan EtherCAT</strong></td><td>執行一般重新掃描。</td></tr>
-<tr><td>顯示 <strong>Controller unavailable</strong> 且可使用 <strong>Start controller</strong></td><td>檢查已儲存設定，再啟動控制器。</td></tr>
+<tr><td>生命週期為 <strong>failed</strong>、<strong>Details</strong> 內的標題為 <strong>Controller unavailable</strong>，且可使用 <strong>Start controller</strong></td><td>檢查已儲存設定，再啟動控制器。命令列也可能顯示 Last working settings 啟動嘗試失敗。</td></tr>
 <tr><td>因設定有未儲存變更而無法使用 <strong>Start controller</strong></td><td>儲存預定的變更或將其捨棄，然後重新檢查已儲存設定。</td></tr>
 <tr><td>啟動程序正在重試拓撲驗證，且可使用 <strong>Stop waiting</strong></td><td>繼續等待，或停止已無助益的拓撲等待。</td></tr>
 <tr><td>啟動進行中，但沒有 <strong>Stop waiting</strong></td><td>等待成功或失敗；不要送出另一項要求。</td></tr>
@@ -445,8 +445,9 @@ Topology</strong> 顯示 <strong>Controller unavailable</strong> 時，請使用
 <li>控制器顯示 <strong>Ready</strong> 後，確認所有預期的 EtherCAT 從站都已出現，並在恢復
 操作前確認機台狀態。</li>
 </ol>
-<p>如果重新掃描最後顯示 <strong>Controller unavailable</strong>，請執行
-<a href="#復原無法使用的控制器">復原無法使用的控制器</a>。</p>
+<p>如果命令列顯示 <strong>Controller start with last working settings failed</strong>，表示控制器目前
+無法使用。選擇 <strong>Details</strong> 會開啟標題為 <strong>Controller unavailable</strong> 的抽屜；接著請
+執行<a href="#復原無法使用的控制器">復原無法使用的控制器</a>。</p>
 <h2 id="停止拓撲等待"><a class="header" href="#停止拓撲等待">停止拓撲等待</a></h2>
 <p>只有在啟動程序重試 EtherCAT 拓撲驗證時，才會提供 <strong>Stop waiting</strong>。這是協同式
 停止，不是回復、強制停止或緊急停止。先前的控制器已經拆除；停止等待後，控制器
@@ -469,7 +470,8 @@ Topology</strong> 顯示 <strong>Controller unavailable</strong> 時，請使用
 <h2 id="復原無法使用的控制器"><a class="header" href="#復原無法使用的控制器">復原無法使用的控制器</a></h2>
 <p><strong>Start controller</strong> 一律使用已儲存設定。</p>
 <ol>
-<li>在 <strong>Controller &amp; Topology</strong> 讀取失敗原因及嘗試階段。</li>
+<li>在 <strong>Controller &amp; Topology</strong> 選擇 <strong>Details</strong>，確認抽屜標題為
+<strong>Controller unavailable</strong>，並讀取失敗原因及嘗試階段。</li>
 <li>檢查已儲存設定的版本，以及它是否和 <strong>Last working settings</strong> 不同。</li>
 <li>如果需要修正，開啟 <strong>Edit in</strong> 欄位所指示的設定畫面，選擇 <strong>Edit profile</strong>
 並進行修改。</li>

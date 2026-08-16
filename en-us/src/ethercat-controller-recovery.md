@@ -26,7 +26,7 @@ Use the action that matches the current display:
 | HMI state | Action |
 |---|---|
 | Controller is ready and **Rescan EtherCAT** is available | Perform a normal rescan. |
-| **Controller unavailable** and **Start controller** is available | Review the saved profile, then start the controller. |
+| Lifecycle is **failed**, **Details** is titled **Controller unavailable**, and **Start controller** is available | Review the saved profile, then start the controller. The command bar may also report that the last-working-settings attempt failed. |
 | **Start controller** is unavailable because the profile has unsaved changes | Save the intended changes or discard them, then review the saved profile again. |
 | Startup is retrying topology verification and **Stop waiting** is available | Continue waiting, or stop the unproductive topology wait. |
 | Startup is in progress without **Stop waiting** | Wait for success or failure; do not submit another request. |
@@ -51,7 +51,9 @@ It does not apply unsaved profile edits.
 7. When the controller reports **Ready**, confirm that all expected EtherCAT
    slaves appear and verify the machine state before resuming operation.
 
-If the rescan ends with **Controller unavailable**, use
+If the command bar reports **Controller start with last working settings
+failed**, the controller is unavailable. Select **Details** to open the
+**Controller unavailable** drawer, then use
 [Recover an Unavailable Controller](#recover-an-unavailable-controller).
 
 ## Stop a Topology Wait
@@ -84,7 +86,8 @@ stopped.
 
 **Start controller** always uses the saved profile.
 
-1. On **Controller & Topology**, read the failure reason and attempt stage.
+1. On **Controller & Topology**, select **Details** and confirm the drawer is
+   titled **Controller unavailable**. Read the failure reason and attempt stage.
 2. Review the saved profile version and whether it differs from **Last working
    settings**.
 3. If correction is required, open the configuration screen named in the

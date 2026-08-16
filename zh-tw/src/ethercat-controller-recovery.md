@@ -24,7 +24,7 @@ HMI 會分開管理下列狀態：
 | HMI 狀態 | 操作 |
 |---|---|
 | 控制器已就緒且可使用 **Rescan EtherCAT** | 執行一般重新掃描。 |
-| 顯示 **Controller unavailable** 且可使用 **Start controller** | 檢查已儲存設定，再啟動控制器。 |
+| 生命週期為 **failed**、**Details** 內的標題為 **Controller unavailable**，且可使用 **Start controller** | 檢查已儲存設定，再啟動控制器。命令列也可能顯示 Last working settings 啟動嘗試失敗。 |
 | 因設定有未儲存變更而無法使用 **Start controller** | 儲存預定的變更或將其捨棄，然後重新檢查已儲存設定。 |
 | 啟動程序正在重試拓撲驗證，且可使用 **Stop waiting** | 繼續等待，或停止已無助益的拓撲等待。 |
 | 啟動進行中，但沒有 **Stop waiting** | 等待成功或失敗；不要送出另一項要求。 |
@@ -49,8 +49,9 @@ HMI 會分開管理下列狀態：
 7. 控制器顯示 **Ready** 後，確認所有預期的 EtherCAT 從站都已出現，並在恢復
    操作前確認機台狀態。
 
-如果重新掃描最後顯示 **Controller unavailable**，請執行
-[復原無法使用的控制器](#復原無法使用的控制器)。
+如果命令列顯示 **Controller start with last working settings failed**，表示控制器目前
+無法使用。選擇 **Details** 會開啟標題為 **Controller unavailable** 的抽屜；接著請
+執行[復原無法使用的控制器](#復原無法使用的控制器)。
 
 ## 停止拓撲等待
 
@@ -77,7 +78,8 @@ HMI 會分開管理下列狀態：
 
 **Start controller** 一律使用已儲存設定。
 
-1. 在 **Controller & Topology** 讀取失敗原因及嘗試階段。
+1. 在 **Controller & Topology** 選擇 **Details**，確認抽屜標題為
+   **Controller unavailable**，並讀取失敗原因及嘗試階段。
 2. 檢查已儲存設定的版本，以及它是否和 **Last working settings** 不同。
 3. 如果需要修正，開啟 **Edit in** 欄位所指示的設定畫面，選擇 **Edit profile**
    並進行修改。
