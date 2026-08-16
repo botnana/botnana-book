@@ -30,8 +30,17 @@ Use the action that matches the current display:
 | **Start controller** is unavailable because the profile has unsaved changes | Save the intended changes or discard them, then review the saved profile again. |
 | An operator-requested controller start is retrying topology verification and the command bar offers **Stop waiting** | Continue waiting, or stop the unproductive topology wait. You do not need to open **Details** to find this action. The initial boot attempt is not stoppable. |
 | Startup is in progress without **Stop waiting** | Wait for success or failure; do not submit another request. This may be the non-stoppable initial boot attempt, or the current stage may not yet allow stopping. |
-| Recovery status is unavailable | Wait for the HMI to reconnect and display fresh authoritative status. |
+| Recovery status is unavailable | Wait for the HMI connection and a fresh status report from `bnc-motion`; do not submit another request. |
 | The HMI requires a `bnc-motion` restart | Follow [When cleanup fails](#when-cleanup-fails). |
+
+**Recovery status is unavailable** means that the HMI has not yet received the
+current recovery-capability report from the connected `bnc-motion` process. It
+is common briefly while the page opens or reloads, the WebSocket reconnects, or
+`bnc-motion` restarts. It does not by itself mean that the saved profile was
+lost or that the controller failed. Until the report arrives, the HMI keeps
+recovery actions unavailable instead of acting on cached or assumed state. If
+this state remains after connectivity is restored, reload the page and confirm
+that `bnc-motion` is running.
 
 ## Rescan a Ready Controller
 
