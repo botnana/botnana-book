@@ -7,7 +7,7 @@
 | Operating system | Linux distribution Debian Buster 4.19.232-rt104 |
 | Real-time System | Preempt RT + Xenomai 3.2.3 Mercury Core |
 | EtherCAT Master | BotnanaCAT 2.0.1 based on IgH EtherCAT master branch stable 1.5 commit c8a512ac0 |
-| Botnana Control | v1.14.3 |
+| Botnana Control | v1.14.4 |
 | Period | 2ms |
 | Supported slaves | 1-16 |
 

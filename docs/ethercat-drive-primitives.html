@@ -1,49 +1,63 @@
 <!DOCTYPE HTML>
-<html lang="zh-TW" class="sidebar-visible no-js light">
+<html lang="zh-TW" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>EtherCAT Drive 指令集 - Botnana Book</title>
+        <title>EtherCAT Drive 指令集 - Botnana Control</title>
 
 
         <!-- Custom HTML head -->
 
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="">
+        <meta name="description" content="The Official User Manual">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-38ee73df.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-830fa069.js"></script>
     </head>
     <body>
-        <!-- Provide site root to javascript -->
-        <script type="text/javascript">
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
-
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -56,91 +70,109 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme;
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
 
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> 簡介</a></li><li class="chapter-item expanded "><a href="hardware.html"><strong aria-hidden="true">2.</strong> 硬體規格</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="botnana-a2.html"><strong aria-hidden="true">2.1.</strong> Botnana BN-A2A</a></li><li class="chapter-item expanded "><a href="botnana-bn-j4a.html"><strong aria-hidden="true">2.2.</strong> Botnana BN-J4A</a></li></ol></li><li class="chapter-item expanded "><a href="software.html"><strong aria-hidden="true">3.</strong> 軟體規格</a></li><li class="chapter-item expanded "><a href="roadmap.html"><strong aria-hidden="true">4.</strong> Roadmap</a></li><li class="chapter-item expanded "><a href="tutorial.html"><strong aria-hidden="true">5.</strong> 入門教學</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="botnana-a2-tutorial.html"><strong aria-hidden="true">5.1.</strong> Botnana A2 入門</a></li><li class="chapter-item expanded "><a href="botnana-control-tutorial.html"><strong aria-hidden="true">5.2.</strong> Botnana Control 入門</a></li></ol></li><li class="chapter-item expanded "><a href="configuration-file.html"><strong aria-hidden="true">6.</strong> 設定檔</a></li><li class="chapter-item expanded "><a href="programming.html"><strong aria-hidden="true">7.</strong> 程式開發界面</a></li><li class="chapter-item expanded "><a href="json-api.html"><strong aria-hidden="true">8.</strong> JSON API</a></li><li class="chapter-item expanded "><a href="real-time-script-api.html"><strong aria-hidden="true">9.</strong> Real-time Script API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="host-primitives.html"><strong aria-hidden="true">9.1.</strong> Botnana 基本指令集</a></li><li class="chapter-item expanded "><a href="ethercat-primitives.html"><strong aria-hidden="true">9.2.</strong> EtherCAT 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-drive-primitives.html" class="active"><strong aria-hidden="true">9.3.</strong> EtherCAT Drive 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-io-primitives.html"><strong aria-hidden="true">9.4.</strong> EtherCAT IO 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-uart-primitives.html"><strong aria-hidden="true">9.5.</strong> EtherCAT UART 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-encoder-primitives.html"><strong aria-hidden="true">9.6.</strong> EtherCAT Encoder 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-gateway-primitives.html"><strong aria-hidden="true">9.7.</strong> EtherCAT Gateway 指令集</a></li><li class="chapter-item expanded "><a href="axis-group.html"><strong aria-hidden="true">9.8.</strong> 軸組 Axis Group 指令集</a></li><li class="chapter-item expanded "><a href="sfc.html"><strong aria-hidden="true">9.9.</strong> 狀態流程圖 Sequential Function Chart (SFC)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="sfc-example/servo-on-off.html"><strong aria-hidden="true">9.9.1.</strong> Servo On/OFF</a></li><li class="chapter-item expanded "><a href="sfc-example/motion-state.html"><strong aria-hidden="true">9.9.2.</strong> Motion State</a></li><li class="chapter-item expanded "><a href="sfc-example/axes-homing.html"><strong aria-hidden="true">9.9.3.</strong> Homing State</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="known-working-hardware.html"><strong aria-hidden="true">10.</strong> 支援的硬體清單</a></li><li class="chapter-item expanded "><a href="update-software.html"><strong aria-hidden="true">11.</strong> 軟體更新</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">12.</strong> 常見問題</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="faq/network.html"><strong aria-hidden="true">12.1.</strong> 網路設定</a></li><li class="chapter-item expanded "><a href="faq/gadget.html"><strong aria-hidden="true">12.2.</strong> USB連線IP設定</a></li><li class="chapter-item expanded "><a href="faq/windows7_rndis.html"><strong aria-hidden="true">12.3.</strong> Windows 7 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="faq/windows10_rndis.html"><strong aria-hidden="true">12.4.</strong> Windows 10 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="faq/win10_permission.html"><strong aria-hidden="true">12.5.</strong> Windows 10 檔案權限修改</a></li><li class="chapter-item expanded "><a href="faq/mount.html"><strong aria-hidden="true">12.6.</strong> 磁碟掛載 Mount</a></li><li class="chapter-item expanded "><a href="faq/manual_install_deb/manual_install_deb.html"><strong aria-hidden="true">12.7.</strong> 手動安裝 Botnana Control 更新檔</a></li><li class="spacer"></li></ol></li></ol>
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
-                        </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
                         </button>
                     </div>
 
-                    <h1 class="menu-title">Botnana Book</h1>
+                    <h1 class="menu-title">Botnana Control</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
                     </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
                         </ul>
                     </div>
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <h3 id="ethercat-drive-指令集"><a class="header" href="#ethercat-drive-指令集">EtherCAT Drive 指令集</a></h3>
 <p>EtherCAT 驅動器通常都會符合 CiA 402 規範，此規範定義了驅動器的操作模式與介面。實際上驅動器並不會實現所有 CiA 402 規範提到的所有功能，在選用驅動器時還是要留意。</p>
@@ -149,7 +181,7 @@
 <li>位置控制模式 PP (Profile Position Mode）</li>
 <li>速度控制模式 PV (Profile Velocity Mode）</li>
 <li>原點復歸模式 HM (Homing mode)</li>
-<li>扭力控制模式 TQ (Profile  Torque Mode)</li>
+<li>扭力控制模式 TQ (Profile Torque Mode)</li>
 <li>週期同步位置模式 CSP (Cyclic Sync Position Mode)</li>
 <li>週期同步速度模式 CSV (Cyclic Sync Velocity Mode)</li>
 <li>週期同步扭力模式 CST (Cyclic Sync Torque Mode)</li>
@@ -188,7 +220,7 @@ Target   -----&gt;|-+----&gt; |-----&gt;| Torque      |--&gt;o---&gt;|  Torque  
 Torque         |  TQ    |      | Trajectory  |        |  Control  |      Effect
                |        |      | Generation  |        |           |
                +--------+      +-------------+        +-----------+
-              Mode Seletor
+              Mode Selector
 
 </code></pre>
 <p><strong>原點復歸模式</strong>：以下是幾種常見的復歸方法，每一種驅動器必須依該廠家的所支援的方法為準。</p>
@@ -494,7 +526,12 @@ Control Word   |       |   Status Word
                                               Error Occurs 
 </code></pre>
 <p>FSA Transition</p>
-<table><thead><tr><th>No</th><th>FSA Transition</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>No</th><th>FSA Transition</th></tr>
+</thead>
+<tbody>
 <tr><td>0</td><td>Auto skip</td></tr>
 <tr><td>1</td><td>Auto skip</td></tr>
 <tr><td>2</td><td>[Shutdown]</td></tr>
@@ -512,7 +549,9 @@ Control Word   |       |   Status Word
 <tr><td>14</td><td>Auto skip</td></tr>
 <tr><td>15</td><td>[Fault reset]</td></tr>
 <tr><td>16</td><td>[Enable operation]</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><strong>Control Word (0x6040:0x0)</strong>：</p>
 <pre><code>+-----------------------------------------------------------+
 +-----------------------------------------------------------+
@@ -537,16 +576,28 @@ Bit 15                                                  Bit 0
 <li>Bit 15: Reserved</li>
 </ul>
 <p>Operation Mode Specification:</p>
-<table><thead><tr><th>OP mode</th><th>Bit 9</th><th>Bit 6</th><th>Bit 5</th><th>Bit 4</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>OP mode</th><th>Bit 9</th><th>Bit 6</th><th>Bit 5</th><th>Bit 4</th></tr>
+</thead>
+<tbody>
 <tr><td>PP</td><td>change on set-point</td><td>absolute/relative</td><td>change set immediately</td><td>new set-point</td></tr>
-<tr><td>PV</td><td>--</td><td>--</td><td>--</td><td></td></tr>
-<tr><td>TQ</td><td>--</td><td>--</td><td>--</td><td></td></tr>
-<tr><td>HM</td><td>--</td><td>--</td><td>start homing</td><td></td></tr>
-<tr><td>CSP</td><td>--</td><td>--</td><td>--</td><td></td></tr>
-<tr><td>CSV</td><td>--</td><td>--</td><td>--</td><td></td></tr>
-<tr><td>CST</td><td>--</td><td>--</td><td>--</td><td></td></tr>
-</tbody></table>
-<table><thead><tr><th>Commnad</th><th>bit 7</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th><th>Transitions</th></tr></thead><tbody>
+<tr><td>PV</td><td>–</td><td>–</td><td>–</td><td></td></tr>
+<tr><td>TQ</td><td>–</td><td>–</td><td>–</td><td></td></tr>
+<tr><td>HM</td><td>–</td><td>–</td><td>start homing</td><td></td></tr>
+<tr><td>CSP</td><td>–</td><td>–</td><td>–</td><td></td></tr>
+<tr><td>CSV</td><td>–</td><td>–</td><td>–</td><td></td></tr>
+<tr><td>CST</td><td>–</td><td>–</td><td>–</td><td></td></tr>
+</tbody>
+</table>
+</div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Commnad</th><th>bit 7</th><th>bit 3</th><th>bit 2</th><th>bit 1</th><th>bit 0</th><th>Transitions</th></tr>
+</thead>
+<tbody>
 <tr><td>Shutdown</td><td>0</td><td>-</td><td>1</td><td>1</td><td>0</td><td>2,6,8</td></tr>
 <tr><td>Switch on</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>3</td></tr>
 <tr><td>Switch on + Enable operation</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>3+4</td></tr>
@@ -555,7 +606,9 @@ Bit 15                                                  Bit 0
 <tr><td>Quick stop</td><td>0</td><td>-</td><td>0</td><td>1</td><td>-</td><td>7,10,11</td></tr>
 <tr><td>Disable operation</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>5</td></tr>
 <tr><td>Fault Reset</td><td>0 -&gt; 1</td><td>-</td><td>-</td><td>-</td><td>-</td><td>15</td></tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><strong>Status Word (0x6041:0x0)</strong>：</p>
 <pre><code>+-----------------------------------------------------------+
 +-----------------------------------------------------------+
@@ -580,17 +633,29 @@ Bit 15                                                  Bit 0
 <li>Bit 15: Reserved</li>
 </ul>
 <p>Operation Mode Specification:</p>
-<table><thead><tr><th>OP mode</th><th>Bit 13</th><th>Bit 12</th><th>Bit 10</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>OP mode</th><th>Bit 13</th><th>Bit 12</th><th>Bit 10</th></tr>
+</thead>
+<tbody>
 <tr><td>PP</td><td>following error</td><td>set-point acknowledge</td><td>target reached</td></tr>
-<tr><td>PV</td><td>--</td><td>speed</td><td>target reached</td></tr>
-<tr><td>TQ</td><td>--</td><td>--</td><td>target reached</td></tr>
+<tr><td>PV</td><td>–</td><td>speed</td><td>target reached</td></tr>
+<tr><td>TQ</td><td>–</td><td>–</td><td>target reached</td></tr>
 <tr><td>HM</td><td>homing error</td><td>homing attained</td><td>target reached</td></tr>
-<tr><td>CSP</td><td>following error</td><td></td><td>--</td></tr>
-<tr><td>CSV</td><td>--</td><td></td><td>--</td></tr>
-<tr><td>CST</td><td>--</td><td></td><td>--</td></tr>
-</tbody></table>
+<tr><td>CSP</td><td>following error</td><td></td><td>–</td></tr>
+<tr><td>CSV</td><td>–</td><td></td><td>–</td></tr>
+<tr><td>CST</td><td>–</td><td></td><td>–</td></tr>
+</tbody>
+</table>
+</div>
 <p>FSA State:</p>
-<table><thead><tr><th>FSA State</th><th>Bit 6</th><th>Bit 5</th><th>Bit 3</th><th>Bit 2</th><th>Bit 1</th><th>Bit 0</th></tr></thead><tbody>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>FSA State</th><th>Bit 6</th><th>Bit 5</th><th>Bit 3</th><th>Bit 2</th><th>Bit 1</th><th>Bit 0</th></tr>
+</thead>
+<tbody>
 <tr><td>Not Ready to Switch on</td><td>0</td><td>-</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><td>Switch on Disabled</td><td>1</td><td>-</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
 <tr><td>Ready To Switch On</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
@@ -599,8 +664,10 @@ Bit 15                                                  Bit 0
 <tr><td>Quick Stop Active</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
 <tr><td>Faut Reaction Active</td><td>0</td><td>-</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
 <tr><td>Fault</td><td>0</td><td>-</td><td>1</td><td>0</td><td>0</td><td>0</td></tr>
-</tbody></table>
-<hr />
+</tbody>
+</table>
+</div>
+<hr>
 <h4 id="drive-halt--ch-n----"><a class="header" href="#drive-halt--ch-n----"><code>+drive-halt ( ch n -- )</code></a></h4>
 <p>命令 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道的馬達驅動器功能暫停。</p>
 <p>此時馬達會依據 0x605D (Halt option code) 設定，暫時性的減速與停止。</p>
@@ -640,6 +707,9 @@ Bit 15                                                  Bit 0
 <h4 id="demand-p--ch-n----pos-"><a class="header" href="#demand-p--ch-n----pos-"><code>demand-p@ ( ch n -- pos )</code></a></h4>
 <p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 demand position <code>pos</code>。</p>
 <p>需要設定主站參數檔，而且該管道的馬達驅動器可以將 demand position (object 0x6062) 映射到 PDO Mapping 上。</p>
+<h4 id="demand-tq--ch-n----tq-"><a class="header" href="#demand-tq--ch-n----tq-"><code>demand-tq@ ( ch n -- tq )</code></a></h4>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 demand torque <code>tq</code>。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將 demand torque (object 0x6074) 映射到 PDO Mapping 上。</p>
 <h4 id="demand-v--ch-n----vel-"><a class="header" href="#demand-v--ch-n----vel-"><code>demand-v@ ( ch n -- vel )</code></a></h4>
 <p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 demand velocity <code>vel</code>。</p>
 <p>需要設定主站參數檔，而且該管道的馬達驅動器可以將 demand velocity (object 0x606B) 映射到 PDO Mapping 上。</p>
@@ -814,8 +884,8 @@ cst 1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換
 <p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的真實位置 <code>pos</code>。(由 PDO 取得資料)。</p>
 <p>對應的 Object 為 0x6064。通常單位是脈波數。</p>
 <h4 id="real-tq--ch-n----tq-"><a class="header" href="#real-tq--ch-n----tq-"><code>real-tq@ ( ch n -- tq )</code></a></h4>
-<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的真實扭力輸出 <code>tq</code>。(由 PDO 取得資料)。</p>
-<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將 real torque (object 0x6077) 映射到 PDO Mapping 上。通常單位是 0.1 %。</p>
+<p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的實際扭力 <code>tq</code>（由 PDO 取得資料）。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將 torque actual value (object 0x6077) 映射到 PDO Mapping 上。通常單位是額定扭力的 0.1%。</p>
 <h4 id="real-v--ch-n----vel-"><a class="header" href="#real-v--ch-n----vel-"><code>real-v@ ( ch n -- vel )</code></a></h4>
 <p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的真實速度 <code>vel</code>。(由 PDO 取得資料)。</p>
 <p>需要設定主站參數檔，而且該管道的馬達驅動器可以將 real velocity (object 0x606C) 映射到 PDO Mapping 上。單位有可能是 pulse/s 或是 0.1 rpm。</p>
@@ -829,14 +899,24 @@ cst 1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換
 <h4 id="target-reached--ch-n----flag-"><a class="header" href="#target-reached--ch-n----flag-"><code>target-reached? ( ch n -- flag )</code></a></h4>
 <p>取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 Status Word Bit 10 (target reached) 是否為 1 。</p>
 <p>其狀態來源與 <code>drive-sw@</code> 相同。</p>
+<h4 id="target-tq--tq-ch-n----"><a class="header" href="#target-tq--tq-ch-n----"><code>target-tq! ( tq ch n -- )</code></a></h4>
+<p>使用 SDO 指令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的目標扭力 <code>tq</code>。</p>
+<p>對應的 Object 為 0x6071。通常單位是額定扭力的 0.1%。</p>
+<p>此命令適合在 TQ 模式下使用。若要在 CST 模式下週期性設定目標扭力，需將 Object 0x6071 設定為使用者 PDO，再使用 <code>drive-wpdo1!</code> 或 <code>drive-wpdo2!</code> 寫入。</p>
 <h4 id="target-v--vel-ch-n----"><a class="header" href="#target-v--vel-ch-n----"><code>target-v! ( vel ch n -- )</code></a></h4>
 <p>使用 SDO 指令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的目標速度 <code>v</code>。</p>
 <p>對應的 Object 為 0x60FF。單位有可能是 pulse/s 或是 0.1 rpm。</p>
 <p>此命令只適合在 PV 模式下使用，如果是 CSV 模式要設定目標速度則是要使用 <code>drive-wpdo1!</code> 或是 <code>drive-wpdo2!</code>。</p>
+<h4 id="tq-ofs--ofs-ch-n----"><a class="header" href="#tq-ofs--ofs-ch-n----"><code>tq-ofs! ( ofs ch n -- )</code></a></h4>
+<p>透過 PDO 設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 Torque Offset <code>ofs</code>。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將 Torque Offset (object 0x60B2) 映射到 PDO Mapping 上。此命令通常用於 CSP、CSV 或 CST 模式，可在馬達驅動器的扭力控制迴路中額外調整扭力目標值。通常單位是額定扭力的 0.1%。</p>
+<h4 id="tq-ofs--ch-n----ofs-"><a class="header" href="#tq-ofs--ch-n----ofs-"><code>tq-ofs@ ( ch n -- ofs )</code></a></h4>
+<p>透過 PDO 取得 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 Torque Offset <code>ofs</code>。</p>
+<p>需要設定主站參數檔，而且該管道的馬達驅動器可以將 Torque Offset (object 0x60B2) 映射到 PDO Mapping 上。</p>
 <h4 id="tq-slope--slope-ch-n----"><a class="header" href="#tq-slope--slope-ch-n----"><code>tq-slope! ( slope ch n -- )</code></a></h4>
 <p>使用 SDO 指令設定 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的扭力輸出變化率 <code>slope</code>。</p>
-<p>對應的 Object 為 0x6087。通常單位是 0.1%/s。</p>
-<p>在 TQ 模式下，使用此設定值進行扭力輸出規劃，通常會搭配 <code>drive-vmax!</code>一起使用，避免馬達扭力輸出未到達目標時，其運動速度過快。</p>
+<p>對應的 Object 為 0x6087。通常單位是額定扭力的 0.1%/s。</p>
+<p>在 TQ 模式下，驅動器使用此設定值規劃扭力輸出的變化。通常會搭配 <code>drive-vmax!</code> 使用，避免馬達扭力輸出尚未到達目標時運動速度過快。</p>
 <h4 id="until-drive-on--ch-n----"><a class="header" href="#until-drive-on--ch-n----"><code>until-drive-on ( ch n -- )</code></a></h4>
 <p>等待 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 FSA State 到達 Operation Enabled。</p>
 <p>因此命令內含有 <code>pause</code>，所以只適合用於 Background Task。</p>
@@ -852,7 +932,7 @@ cst 1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換
 <h4 id="until-no-fault--ch-n----"><a class="header" href="#until-no-fault--ch-n----"><code>until-no-fault ( ch n -- )</code></a></h4>
 <p>等待 EtherCAT 從站編號 <code>n</code> 第 <code>ch</code> 管道馬達驅動器的 Status Word Bit 3 (Fault) 為 0。</p>
 <p>因此命令內含有 <code>pause</code>，所以只適合用於 Background Task。</p>
-<p>相當於 </p>
+<p>相當於</p>
 <pre><code>: until-no-fault ( channel slave -- )     
     pause pause pause pause pause pause \ 確保收到驅動器最新的 status word
     begin
@@ -900,88 +980,99 @@ cst 1 1 op-mode! \ 將 EtherCAT 從站編號 1 第 1 管道馬達驅動器切換
 deploy pp-test ;deploy       \ 在 Background Task 執行 pp-test
 </code></pre>
 <h4 id="本節指令集"><a class="header" href="#本節指令集">本節指令集</a></h4>
-<table><thead><tr><th>指令</th><th>堆疊效果</th></tr></thead><tbody>
-<tr><td>+drive-halt</td><td>( ch n -- )</td></tr>
-<tr><td>+drive-homed</td><td>( ch n -- )</td></tr>
-<tr><td>+pp-cosp</td><td>( ch n -- )</td></tr>
-<tr><td>+pp-imt</td><td>( ch n -- )</td></tr>
-<tr><td>+pp-rel</td><td>( ch n -- )</td></tr>
-<tr><td>-drive-halt</td><td>( ch n -- )</td></tr>
-<tr><td>-drive-homed</td><td>( ch n -- )</td></tr>
-<tr><td>-pp-cosp</td><td>( ch n -- )</td></tr>
-<tr><td>-pp-imt</td><td>( ch n -- )</td></tr>
-<tr><td>-pp-rel</td><td>( ch n -- )</td></tr>
-<tr><td>csp</td><td>( -- 8 )</td></tr>
-<tr><td>cst</td><td>( -- 10 )</td></tr>
-<tr><td>csv</td><td>( -- 9 )</td></tr>
-<tr><td>drive-cw!</td><td>( cw ch n -- )</td></tr>
-<tr><td>demand-p@</td><td>( ch n -- pos )</td></tr>
-<tr><td>demand-v@</td><td>( ch n -- vel )</td></tr>
-<tr><td>drive-dins@</td><td>( ch n -- dins )</td></tr>
-<tr><td>drive-douts!</td><td>( douts ch n -- )</td></tr>
-<tr><td>drive-douts-mask!</td><td>( mask ch n -- )</td></tr>
-<tr><td>drive-fault?</td><td>( ch n -- flag )</td></tr>
-<tr><td>drive-homed?</td><td>( ch n -- flag )</td></tr>
-<tr><td>drive-nl?</td><td>( ch n -- nl )</td></tr>
-<tr><td>drive-nsl!</td><td>( nsl ch n -- )</td></tr>
-<tr><td>drive-nsl@</td><td>( ch n -- nsl )</td></tr>
-<tr><td>drive-off</td><td>( ch n -- )</td></tr>
-<tr><td>drive-on</td><td>( ch n -- )</td></tr>
-<tr><td>drive-on?</td><td>( ch n -- flag )</td></tr>
-<tr><td>drive-org?</td><td>( ch n -- org )</td></tr>
-<tr><td>drive-pl?</td><td>( ch n -- pl )</td></tr>
-<tr><td>drive-psl!</td><td>( psl ch n -- )</td></tr>
-<tr><td>drive-psl@</td><td>( ch n -- psl )</td></tr>
-<tr><td>drive-polarity!</td><td>( polarity ch n -- )</td></tr>
-<tr><td>drive-rpdo1@</td><td>( ch n -- r1 )</td></tr>
-<tr><td>drive-rpdo2@</td><td>( ch n -- r2 )</td></tr>
-<tr><td>drive-stop</td><td>( ch n -- )</td></tr>
-<tr><td>drive-sw@</td><td>( ch n -- sw )</td></tr>
-<tr><td>drive-vmax!</td><td>( vmax ch n -- )</td></tr>
-<tr><td>drive-wpdo1!</td><td>( w1 ch n -- )</td></tr>
-<tr><td>drive-wpdo1@</td><td>( ch n -- w1 )</td></tr>
-<tr><td>drive-wpdo2!</td><td>( w2 ch n -- )</td></tr>
-<tr><td>drive-wpdo2@</td><td>( ch n -- w2 )</td></tr>
-<tr><td>go</td><td>( ch n -- )</td></tr>
-<tr><td>hm</td><td>( -- 6 )</td></tr>
-<tr><td>homing-a!</td><td>( acc ch n -- )</td></tr>
-<tr><td>homing-method!</td><td>( method ch n -- )</td></tr>
-<tr><td>homing-v1!</td><td>( v1 ch n -- )</td></tr>
-<tr><td>homing-v2!</td><td>( v2 ch n -- )</td></tr>
-<tr><td>op-mode!</td><td>( mode ch n -- )</td></tr>
-<tr><td>pds-goal!</td><td>( goal ch n -- )</td></tr>
-<tr><td>pp</td><td>( -- 1 )</td></tr>
-<tr><td>profile-a1!</td><td>( a1 ch n -- )</td></tr>
-<tr><td>profile-a2!</td><td>( a2 ch n -- )</td></tr>
-<tr><td>profile-v!</td><td>( vel ch n -- )</td></tr>
-<tr><td>pv</td><td>( -- 3 )</td></tr>
-<tr><td>real-p@</td><td>( ch n -- pos )</td></tr>
-<tr><td>real-tq@</td><td>( ch n -- tq )</td></tr>
-<tr><td>real-v@</td><td>( ch n -- vel )</td></tr>
-<tr><td>reset-fault</td><td>( ch n -- )</td></tr>
-<tr><td>target-p!</td><td>( pos ch n -- )</td></tr>
-<tr><td>target-p@</td><td>( ch n -- pos )</td></tr>
-<tr><td>target-reached?</td><td>( channel n -- flag )</td></tr>
-<tr><td>target-v!</td><td>( vel ch n -- )</td></tr>
-<tr><td>tq</td><td>( -- 4 )</td></tr>
-<tr><td>tq-slope!</td><td>( slope ch n -- )</td></tr>
-<tr><td>until-drive-on</td><td>( ch n -- )</td></tr>
-<tr><td>until-no-fault</td><td>( ch n -- )</td></tr>
-<tr><td>until-target-reached</td><td>( ch n -- )</td></tr>
-<tr><td>v-ofs!</td><td>( ofs ch n -- )</td></tr>
-<tr><td>v-ofs@</td><td>( ch n -- ofs )</td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指令</th><th>堆疊效果</th></tr>
+</thead>
+<tbody>
+<tr><td>+drive-halt</td><td>( ch n – )</td></tr>
+<tr><td>+drive-homed</td><td>( ch n – )</td></tr>
+<tr><td>+pp-cosp</td><td>( ch n – )</td></tr>
+<tr><td>+pp-imt</td><td>( ch n – )</td></tr>
+<tr><td>+pp-rel</td><td>( ch n – )</td></tr>
+<tr><td>-drive-halt</td><td>( ch n – )</td></tr>
+<tr><td>-drive-homed</td><td>( ch n – )</td></tr>
+<tr><td>-pp-cosp</td><td>( ch n – )</td></tr>
+<tr><td>-pp-imt</td><td>( ch n – )</td></tr>
+<tr><td>-pp-rel</td><td>( ch n – )</td></tr>
+<tr><td>csp</td><td>( – 8 )</td></tr>
+<tr><td>cst</td><td>( – 10 )</td></tr>
+<tr><td>csv</td><td>( – 9 )</td></tr>
+<tr><td>drive-cw!</td><td>( cw ch n – )</td></tr>
+<tr><td>demand-p@</td><td>( ch n – pos )</td></tr>
+<tr><td>demand-tq@</td><td>( ch n – tq )</td></tr>
+<tr><td>demand-v@</td><td>( ch n – vel )</td></tr>
+<tr><td>drive-dins@</td><td>( ch n – dins )</td></tr>
+<tr><td>drive-douts!</td><td>( douts ch n – )</td></tr>
+<tr><td>drive-douts-mask!</td><td>( mask ch n – )</td></tr>
+<tr><td>drive-fault?</td><td>( ch n – flag )</td></tr>
+<tr><td>drive-homed?</td><td>( ch n – flag )</td></tr>
+<tr><td>drive-nl?</td><td>( ch n – nl )</td></tr>
+<tr><td>drive-nsl!</td><td>( nsl ch n – )</td></tr>
+<tr><td>drive-nsl@</td><td>( ch n – nsl )</td></tr>
+<tr><td>drive-off</td><td>( ch n – )</td></tr>
+<tr><td>drive-on</td><td>( ch n – )</td></tr>
+<tr><td>drive-on?</td><td>( ch n – flag )</td></tr>
+<tr><td>drive-org?</td><td>( ch n – org )</td></tr>
+<tr><td>drive-pl?</td><td>( ch n – pl )</td></tr>
+<tr><td>drive-psl!</td><td>( psl ch n – )</td></tr>
+<tr><td>drive-psl@</td><td>( ch n – psl )</td></tr>
+<tr><td>drive-polarity!</td><td>( polarity ch n – )</td></tr>
+<tr><td>drive-rpdo1@</td><td>( ch n – r1 )</td></tr>
+<tr><td>drive-rpdo2@</td><td>( ch n – r2 )</td></tr>
+<tr><td>drive-stop</td><td>( ch n – )</td></tr>
+<tr><td>drive-sw@</td><td>( ch n – sw )</td></tr>
+<tr><td>drive-vmax!</td><td>( vmax ch n – )</td></tr>
+<tr><td>drive-wpdo1!</td><td>( w1 ch n – )</td></tr>
+<tr><td>drive-wpdo1@</td><td>( ch n – w1 )</td></tr>
+<tr><td>drive-wpdo2!</td><td>( w2 ch n – )</td></tr>
+<tr><td>drive-wpdo2@</td><td>( ch n – w2 )</td></tr>
+<tr><td>go</td><td>( ch n – )</td></tr>
+<tr><td>hm</td><td>( – 6 )</td></tr>
+<tr><td>homing-a!</td><td>( acc ch n – )</td></tr>
+<tr><td>homing-method!</td><td>( method ch n – )</td></tr>
+<tr><td>homing-v1!</td><td>( v1 ch n – )</td></tr>
+<tr><td>homing-v2!</td><td>( v2 ch n – )</td></tr>
+<tr><td>op-mode!</td><td>( mode ch n – )</td></tr>
+<tr><td>pds-goal!</td><td>( goal ch n – )</td></tr>
+<tr><td>pp</td><td>( – 1 )</td></tr>
+<tr><td>profile-a1!</td><td>( a1 ch n – )</td></tr>
+<tr><td>profile-a2!</td><td>( a2 ch n – )</td></tr>
+<tr><td>profile-v!</td><td>( vel ch n – )</td></tr>
+<tr><td>pv</td><td>( – 3 )</td></tr>
+<tr><td>real-p@</td><td>( ch n – pos )</td></tr>
+<tr><td>real-tq@</td><td>( ch n – tq )</td></tr>
+<tr><td>real-v@</td><td>( ch n – vel )</td></tr>
+<tr><td>reset-fault</td><td>( ch n – )</td></tr>
+<tr><td>target-p!</td><td>( pos ch n – )</td></tr>
+<tr><td>target-p@</td><td>( ch n – pos )</td></tr>
+<tr><td>target-reached?</td><td>( channel n – flag )</td></tr>
+<tr><td>target-tq!</td><td>( tq ch n – )</td></tr>
+<tr><td>target-v!</td><td>( vel ch n – )</td></tr>
+<tr><td>tq</td><td>( – 4 )</td></tr>
+<tr><td>tq-ofs!</td><td>( ofs ch n – )</td></tr>
+<tr><td>tq-ofs@</td><td>( ch n – ofs )</td></tr>
+<tr><td>tq-slope!</td><td>( slope ch n – )</td></tr>
+<tr><td>until-drive-on</td><td>( ch n – )</td></tr>
+<tr><td>until-no-fault</td><td>( ch n – )</td></tr>
+<tr><td>until-target-reached</td><td>( ch n – )</td></tr>
+<tr><td>v-ofs!</td><td>( ofs ch n – )</td></tr>
+<tr><td>v-ofs@</td><td>( ch n – ofs )</td></tr>
+</tbody>
+</table>
+</div>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="ethercat-primitives.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next" href="ethercat-io-primitives.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                            <a rel="next prefetch" href="ethercat-io-primitives.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
                         <div style="clear: both"></div>
@@ -991,48 +1082,42 @@ deploy pp-test ;deploy       \ 在 Background Task 執行 pp-test
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="ethercat-primitives.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next" href="ethercat-io-primitives.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                    <a rel="next prefetch" href="ethercat-io-primitives.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3000/__livereload");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
-        <script type="text/javascript">
+        <script>
             window.playground_copyable = true;
         </script>
 
 
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
+        <script src="language-switch-a01cdc14.js"></script>
 
 
+
+    </div>
     </body>
 </html>

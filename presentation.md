@@ -70,7 +70,7 @@ Botnana 控制平台架構分為兩大部分：
 | Operating system  | Linux Debian Buster (4.19.232-rt104)                         |
 | Real-time System  | Preempt RT + Xenomai 3.2.3                                   |
 | EtherCAT Master   | BotnanaCAT 2.0.1 (based on IgH EtherCAT master)              |
-| Botnana Control   | v1.14.3                                                      |
+| Botnana Control   | v1.14.4                                                      |
 | **執行週期**      | **2ms**                                                      |
 | **支援從站數量**  | **1-16**                                                     |
 | **支援驅動模式**  | PP, PV, HM, CSP, CSV                                         |

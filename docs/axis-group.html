@@ -1,49 +1,63 @@
 <!DOCTYPE HTML>
-<html lang="zh-TW" class="sidebar-visible no-js light">
+<html lang="zh-TW" class="light sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>軸組 Axis Group 指令集 - Botnana Book</title>
+        <title>軸組 Axis Group 指令集 - Botnana Control</title>
 
 
         <!-- Custom HTML head -->
 
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="">
+        <meta name="description" content="The Official User Manual">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="favicon-8114d1fc.png">
+        <link rel="stylesheet" href="css/variables-8adf115d.css">
+        <link rel="stylesheet" href="css/general-e96d0476.css">
+        <link rel="stylesheet" href="css/chrome-d279d366.css">
+        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
 
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "searchindex-38ee73df.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc-830fa069.js"></script>
     </head>
     <body>
-        <!-- Provide site root to javascript -->
-        <script type="text/javascript">
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
-        </script>
-
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script type="text/javascript">
+        <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -56,91 +70,109 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script type="text/javascript">
-            var theme;
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
+            const html = document.documentElement;
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            html.classList.add("js");
         </script>
 
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
         <!-- Hide / unhide sidebar before it is displayed -->
-        <script type="text/javascript">
-            var html = document.querySelector('html');
-            var sidebar = 'hidden';
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
         </script>
 
-        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> 簡介</a></li><li class="chapter-item expanded "><a href="hardware.html"><strong aria-hidden="true">2.</strong> 硬體規格</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="botnana-a2.html"><strong aria-hidden="true">2.1.</strong> Botnana BN-A2A</a></li><li class="chapter-item expanded "><a href="botnana-bn-j4a.html"><strong aria-hidden="true">2.2.</strong> Botnana BN-J4A</a></li></ol></li><li class="chapter-item expanded "><a href="software.html"><strong aria-hidden="true">3.</strong> 軟體規格</a></li><li class="chapter-item expanded "><a href="roadmap.html"><strong aria-hidden="true">4.</strong> Roadmap</a></li><li class="chapter-item expanded "><a href="tutorial.html"><strong aria-hidden="true">5.</strong> 入門教學</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="botnana-a2-tutorial.html"><strong aria-hidden="true">5.1.</strong> Botnana A2 入門</a></li><li class="chapter-item expanded "><a href="botnana-control-tutorial.html"><strong aria-hidden="true">5.2.</strong> Botnana Control 入門</a></li></ol></li><li class="chapter-item expanded "><a href="configuration-file.html"><strong aria-hidden="true">6.</strong> 設定檔</a></li><li class="chapter-item expanded "><a href="programming.html"><strong aria-hidden="true">7.</strong> 程式開發界面</a></li><li class="chapter-item expanded "><a href="json-api.html"><strong aria-hidden="true">8.</strong> JSON API</a></li><li class="chapter-item expanded "><a href="real-time-script-api.html"><strong aria-hidden="true">9.</strong> Real-time Script API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="host-primitives.html"><strong aria-hidden="true">9.1.</strong> Botnana 基本指令集</a></li><li class="chapter-item expanded "><a href="ethercat-primitives.html"><strong aria-hidden="true">9.2.</strong> EtherCAT 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-drive-primitives.html"><strong aria-hidden="true">9.3.</strong> EtherCAT Drive 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-io-primitives.html"><strong aria-hidden="true">9.4.</strong> EtherCAT IO 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-uart-primitives.html"><strong aria-hidden="true">9.5.</strong> EtherCAT UART 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-encoder-primitives.html"><strong aria-hidden="true">9.6.</strong> EtherCAT Encoder 指令集</a></li><li class="chapter-item expanded "><a href="ethercat-gateway-primitives.html"><strong aria-hidden="true">9.7.</strong> EtherCAT Gateway 指令集</a></li><li class="chapter-item expanded "><a href="axis-group.html" class="active"><strong aria-hidden="true">9.8.</strong> 軸組 Axis Group 指令集</a></li><li class="chapter-item expanded "><a href="sfc.html"><strong aria-hidden="true">9.9.</strong> 狀態流程圖 Sequential Function Chart (SFC)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="sfc-example/servo-on-off.html"><strong aria-hidden="true">9.9.1.</strong> Servo On/OFF</a></li><li class="chapter-item expanded "><a href="sfc-example/motion-state.html"><strong aria-hidden="true">9.9.2.</strong> Motion State</a></li><li class="chapter-item expanded "><a href="sfc-example/axes-homing.html"><strong aria-hidden="true">9.9.3.</strong> Homing State</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="known-working-hardware.html"><strong aria-hidden="true">10.</strong> 支援的硬體清單</a></li><li class="chapter-item expanded "><a href="update-software.html"><strong aria-hidden="true">11.</strong> 軟體更新</a></li><li class="chapter-item expanded "><a href="faq.html"><strong aria-hidden="true">12.</strong> 常見問題</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="faq/network.html"><strong aria-hidden="true">12.1.</strong> 網路設定</a></li><li class="chapter-item expanded "><a href="faq/gadget.html"><strong aria-hidden="true">12.2.</strong> USB連線IP設定</a></li><li class="chapter-item expanded "><a href="faq/windows7_rndis.html"><strong aria-hidden="true">12.3.</strong> Windows 7 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="faq/windows10_rndis.html"><strong aria-hidden="true">12.4.</strong> Windows 10 RNDIS 驅動程式安裝</a></li><li class="chapter-item expanded "><a href="faq/win10_permission.html"><strong aria-hidden="true">12.5.</strong> Windows 10 檔案權限修改</a></li><li class="chapter-item expanded "><a href="faq/mount.html"><strong aria-hidden="true">12.6.</strong> 磁碟掛載 Mount</a></li><li class="chapter-item expanded "><a href="faq/manual_install_deb/manual_install_deb.html"><strong aria-hidden="true">12.7.</strong> 手動安裝 Botnana Control 更新檔</a></li><li class="spacer"></li></ol></li></ol>
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
-        <div id="page-wrapper" class="page-wrapper">
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
-                        </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
                         </ul>
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
                         </button>
                     </div>
 
-                    <h1 class="menu-title">Botnana Book</h1>
+                    <h1 class="menu-title">Botnana Control</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="search-wrapper" class="hidden">
-                    <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
                     </form>
-                    <div id="searchresults-outer" class="searchresults-outer hidden">
-                        <div id="searchresults-header" class="searchresults-header"></div>
-                        <ul id="searchresults">
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
                         </ul>
                     </div>
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
-                <script type="text/javascript">
-                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="content" class="content">
+                <div id="mdbook-content" class="content">
                     <main>
                         <h3 id="job-operation"><a class="header" href="#job-operation">Job Operation</a></h3>
 <p>針對軸組運動使用。Job 指的是所有軸組合作完成的工作。</p>
@@ -274,7 +306,6 @@ Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。</p
     1 0axis-ferr       \ 假設第 1 個運動軸受控於第 1 個軸組，清除第 1 個運動軸的落後誤差
     2 0axis-ferr       \ 假設第 2 個運動軸受控於第 1 個軸組，清除第 2 個運動軸的落後誤差
 </code></pre>
-<hr />
 <h3 id="coordinator"><a class="header" href="#coordinator">Coordinator</a></h3>
 <h4 id="coordinator-----"><a class="header" href="#coordinator-----"><code>.coordinator ( -- )</code></a></h4>
 <p>輸出軸組狀態。</p>
@@ -310,22 +341,29 @@ Botnana Control 是以徑度 (radian) 計算，所以轉換時需要留意。</p
 <h4 id="stop-job-----"><a class="header" href="#stop-job-----"><code>stop-job ( -- )</code></a></h4>
 <p>命令所有軸組與運動軸點對點運動減速停止。</p>
 <h4 id="本節指令集"><a class="header" href="#本節指令集">本節指令集</a></h4>
-<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
-<tr><td><code>.coordinator</code></td><td>( --  )</td><td>輸出軸組狀態</td></tr>
-<tr><td><code>+coordinator</code></td><td>( -- )</td><td>啟動軸組功能</td></tr>
-<tr><td><code>-coordinator</code></td><td>( -- )</td><td>關閉軸組功能</td></tr>
-<tr><td><code>#groups</code></td><td>( -- len )</td><td>取得軸組數量</td></tr>
-<tr><td><code>#axes</code></td><td>( -- len )</td><td>取得運動軸數量</td></tr>
-<tr><td><code>coordinator?</code></td><td>( -- t )</td><td>軸組是否開啟？</td></tr>
-<tr><td><code>empty?</code></td><td>( -- t )</td><td>是否所有軸組路徑已經清空 ？</td></tr>
-<tr><td><code>ems-job</code></td><td>( -- )</td><td>命令所以軸組緊急停止</td></tr>
-<tr><td><code>end?</code></td><td>( -- t )</td><td>是否所有軸組已經到達路徑終點 ？</td></tr>
-<tr><td><code>reset-job</code></td><td>( -- )</td><td>清除所有軸組路徑</td></tr>
-<tr><td><code>start-job</code></td><td>( -- )</td><td>命令所有軸組開始運動</td></tr>
-<tr><td><code>stop?</code></td><td>( -- t )</td><td>是否所有軸組已經停止運動 ？</td></tr>
-<tr><td><code>stop-job</code></td><td>( -- )</td><td>命令所有軸組停止運動</td></tr>
-</tbody></table>
-<hr />
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td><code>.coordinator</code></td><td>( –  )</td><td>輸出軸組狀態</td></tr>
+<tr><td><code>+coordinator</code></td><td>( – )</td><td>啟動軸組功能</td></tr>
+<tr><td><code>-coordinator</code></td><td>( – )</td><td>關閉軸組功能</td></tr>
+<tr><td><code>#groups</code></td><td>( – len )</td><td>取得軸組數量</td></tr>
+<tr><td><code>#axes</code></td><td>( – len )</td><td>取得運動軸數量</td></tr>
+<tr><td><code>coordinator?</code></td><td>( – t )</td><td>軸組是否開啟？</td></tr>
+<tr><td><code>empty?</code></td><td>( – t )</td><td>是否所有軸組路徑已經清空 ？</td></tr>
+<tr><td><code>ems-job</code></td><td>( – )</td><td>命令所以軸組緊急停止</td></tr>
+<tr><td><code>end?</code></td><td>( – t )</td><td>是否所有軸組已經到達路徑終點 ？</td></tr>
+<tr><td><code>reset-job</code></td><td>( – )</td><td>清除所有軸組路徑</td></tr>
+<tr><td><code>start-job</code></td><td>( – )</td><td>命令所有軸組開始運動</td></tr>
+<tr><td><code>stop?</code></td><td>( – t )</td><td>是否所有軸組已經停止運動 ？</td></tr>
+<tr><td><code>stop-job</code></td><td>( – )</td><td>命令所有軸組停止運動</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
 <h3 id="axis-group"><a class="header" href="#axis-group">Axis Group</a></h3>
 <h4 id="group--g----"><a class="header" href="#group--g----"><code>.group ( g -- )</code></a></h4>
 <p>輸出 group <code>g</code> 資訊</p>
@@ -475,7 +513,7 @@ group!                  \ 切換回原來的軸組
 <li>軸組 <code>g</code> 不可以處在啟動狀態。</li>
 <li>運動軸 <code>j1</code> 不可受控於其他啟動中的軸組或是在點對點運動模式。</li>
 </ol>
-<p>命令範例： </p>
+<p>命令範例：</p>
 <pre><code>3 1 map-sine  \ 設定 Group 1 的運動軸為 Axis 3
 </code></pre>
 <h4 id="map1d--j1-g----"><a class="header" href="#map1d--j1-g----"><code>map1d ( j1 g -- )</code></a></h4>
@@ -548,7 +586,7 @@ group!                  \ 切換回原來的軸組
 <p>取得後續安插路徑的模式 <code>mode</code>。</p>
 <p>應用範例：</p>
 <ol>
-<li>用來區分該路徑是加工或是非加工路徑。可以增加 SFC 依據當下的模式控制對應的 IO 點。</li>
+<li>用來區分該路徑是加工或是非加工路徑。</li>
 </ol>
 <h4 id="pcs-p---n------f----pos-"><a class="header" href="#pcs-p---n------f----pos-"><code>pcs-p@  ( n -- ) ( F: -- pos )</code></a></h4>
 <p>取得所選定軸組 PCS 座標系的指定軸 <code>n</code> 的座標位置 <code>pos</code>。</p>
@@ -570,55 +608,61 @@ group!                  \ 切換回原來的軸組
 <pre><code>100.0e mm/min vcmd! \ 設定運動速度為 100.0 mm/min
 </code></pre>
 <h4 id="本節指令集-1"><a class="header" href="#本節指令集-1">本節指令集</a></h4>
-<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
-<tr><td>.group</td><td>( g -- )</td><td>顯示軸組狀態</td></tr>
-<tr><td>.grpcfg</td><td>( g -- )</td><td>顯示軸組設定參數</td></tr>
-<tr><td>+group</td><td>( -- )</td><td>啟動所選定的軸組</td></tr>
-<tr><td>-group</td><td>( -- )</td><td>關閉所選定的軸組</td></tr>
-<tr><td>0path</td><td>( -- )</td><td>清除所選定的軸組路徑資訊</td></tr>
-<tr><td>acs-p@</td><td>( n -- ) ( F: -- pos )</td><td>取得所選定軸組 ACS 座標系的指定軸的座標位置</td></tr>
-<tr><td>feedrate!</td><td>( F: v -- )</td><td>設定後續安插路徑的最大運動速度</td></tr>
-<tr><td>feedrate@</td><td>( F: -- v )</td><td>取得後續安插路徑的最大運動速度</td></tr>
-<tr><td>gamax!</td><td>( g -- ) ( F: a --)</td><td>設定指定軸組的最大加速度</td></tr>
-<tr><td>gend?</td><td>( -- flag )</td><td>所選定的軸組是否到達路徑終點 ?</td></tr>
-<tr><td>gignore-dist!</td><td>( g -- ) ( F: dist --)</td><td>設定指定軸組可忽略的長度計算誤差</td></tr>
-<tr><td>gjmax!</td><td>( g -- ) ( F: j --)</td><td>設定指定軸組的最大加加速度</td></tr>
-<tr><td>gmap!</td><td>( j1 j2 j3 ... g -- )</td><td>設定軸組所控制的運動軸，需要注意軸組型態與運動軸數量</td></tr>
-<tr><td>gmap@</td><td>( g -- j1 j2 j3 ... )</td><td>取得軸組所控制的運動軸，需要注意軸組型態與運動軸數量</td></tr>
-<tr><td>group!</td><td>( g -- )</td><td>選定軸組</td></tr>
-<tr><td>group@</td><td>( -- g )</td><td>取得目前所選定的軸組</td></tr>
-<tr><td>group?</td><td>( -- t )</td><td>目前所選定的軸組是否啟動 ?</td></tr>
-<tr><td>grp1d?</td><td>( g -- flag )</td><td>指定軸組是否為 1D 軸組</td></tr>
-<tr><td>grp2d?</td><td>( g -- flag )</td><td>指定軸組是否為 2D 軸組</td></tr>
-<tr><td>grp3d?</td><td>( g -- flag )</td><td>指定軸組是否為 3D 軸組</td></tr>
-<tr><td>grp-sine?</td><td>( g -- flag )</td><td>指定軸組是否為 Sine Wave 軸組</td></tr>
-<tr><td>gstart</td><td>( -- )</td><td>命令所選定的軸組開始運動</td></tr>
-<tr><td>gstop</td><td>( -- )</td><td>命令所選定的軸組停止運動</td></tr>
-<tr><td>gstop?</td><td>( -- flag )</td><td>所選定的軸組是否已經停止運動 ?</td></tr>
-<tr><td>gvmax!</td><td>( g -- ) ( F: v --)</td><td>設定指定軸組的最大運動速度</td></tr>
-<tr><td>map-len@</td><td>( g -- len )</td><td>取得指定軸組的運動軸數量</td></tr>
-<tr><td>map-sine</td><td>( j1 g -- )</td><td>設定 Sine Wave 軸組所控制的運動軸</td></tr>
-<tr><td>map1d</td><td>( j2 g -- )</td><td>設定 1D 軸組所控制的運動軸</td></tr>
-<tr><td>map2d</td><td>( j1 j2 g -- )</td><td>設定 2D 軸組所控制的運動軸</td></tr>
-<tr><td>map3d</td><td>( j1 j2 j3 g -- )</td><td>設定 3D 軸組所控制的運動軸</td></tr>
-<tr><td>mcs</td><td>( -- )</td><td>宣告所選定軸組以目前 MCS 座標位置為路徑起始點</td></tr>
-<tr><td>mcs-p@</td><td>( n -- ) ( F: -- pos )</td><td>取得所選定軸組 MCS 座標系的指定軸的座標位置</td></tr>
-<tr><td>move-source#</td><td>( -- n )</td><td>取得所選定軸組目前是處在哪個路徑事件</td></tr>
-<tr><td>next-a@</td><td>( F: -- a )</td><td>取得所選定軸組路徑切線方向加速度</td></tr>
-<tr><td>next-path-id@</td><td>( -- id )</td><td>取得所選定軸組，目前路徑的編號</td></tr>
-<tr><td>next-path-mode@</td><td>( -- mode )</td><td>取得所選定軸組，目前路徑的模式</td></tr>
-<tr><td>next-path-p@</td><td>( -- ) ( F: -- pos )</td><td>取得所選定軸組，從運動起始點算起，沿路路徑方向的位置</td></tr>
-<tr><td>next-v@</td><td>( F: -- v )</td><td>取得所選定軸組路徑切線方向速度</td></tr>
-<tr><td>path-events-capacity@</td><td>( -- n )</td><td>取得所選定軸組可容納的路徑數量</td></tr>
-<tr><td>path-events-len@</td><td>( -- n )</td><td>取得所選定軸組目前的路徑數量</td></tr>
-<tr><td>path-id!</td><td>( id -- )</td><td>設定後續安插路徑的編號</td></tr>
-<tr><td>path-id@</td><td>( -- id )</td><td>取得後續安插路徑的編號</td></tr>
-<tr><td>path-mode!</td><td>( mode -- )</td><td>設定後續安插路徑的模式</td></tr>
-<tr><td>path-mode@</td><td>( -- mode )</td><td>取得後續安插路徑的模式</td></tr>
-<tr><td>pcs-p@</td><td>( n -- ) ( F: -- pos )</td><td>取得所選定軸組 PCS 座標系的指定軸的座標位置</td></tr>
-<tr><td>vcmd!</td><td>( F: v -- )</td><td>設定所選定的軸組的速度命令</td></tr>
-</tbody></table>
-<hr />
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td>.group</td><td>( g – )</td><td>顯示軸組狀態</td></tr>
+<tr><td>.grpcfg</td><td>( g – )</td><td>顯示軸組設定參數</td></tr>
+<tr><td>+group</td><td>( – )</td><td>啟動所選定的軸組</td></tr>
+<tr><td>-group</td><td>( – )</td><td>關閉所選定的軸組</td></tr>
+<tr><td>0path</td><td>( – )</td><td>清除所選定的軸組路徑資訊</td></tr>
+<tr><td>acs-p@</td><td>( n – ) ( F: – pos )</td><td>取得所選定軸組 ACS 座標系的指定軸的座標位置</td></tr>
+<tr><td>feedrate!</td><td>( F: v – )</td><td>設定後續安插路徑的最大運動速度</td></tr>
+<tr><td>feedrate@</td><td>( F: – v )</td><td>取得後續安插路徑的最大運動速度</td></tr>
+<tr><td>gamax!</td><td>( g – ) ( F: a –)</td><td>設定指定軸組的最大加速度</td></tr>
+<tr><td>gend?</td><td>( – flag )</td><td>所選定的軸組是否到達路徑終點 ?</td></tr>
+<tr><td>gignore-dist!</td><td>( g – ) ( F: dist –)</td><td>設定指定軸組可忽略的長度計算誤差</td></tr>
+<tr><td>gjmax!</td><td>( g – ) ( F: j –)</td><td>設定指定軸組的最大加加速度</td></tr>
+<tr><td>gmap!</td><td>( j1 j2 j3 … g – )</td><td>設定軸組所控制的運動軸，需要注意軸組型態與運動軸數量</td></tr>
+<tr><td>gmap@</td><td>( g – j1 j2 j3 … )</td><td>取得軸組所控制的運動軸，需要注意軸組型態與運動軸數量</td></tr>
+<tr><td>group!</td><td>( g – )</td><td>選定軸組</td></tr>
+<tr><td>group@</td><td>( – g )</td><td>取得目前所選定的軸組</td></tr>
+<tr><td>group?</td><td>( – t )</td><td>目前所選定的軸組是否啟動 ?</td></tr>
+<tr><td>grp1d?</td><td>( g – flag )</td><td>指定軸組是否為 1D 軸組</td></tr>
+<tr><td>grp2d?</td><td>( g – flag )</td><td>指定軸組是否為 2D 軸組</td></tr>
+<tr><td>grp3d?</td><td>( g – flag )</td><td>指定軸組是否為 3D 軸組</td></tr>
+<tr><td>grp-sine?</td><td>( g – flag )</td><td>指定軸組是否為 Sine Wave 軸組</td></tr>
+<tr><td>gstart</td><td>( – )</td><td>命令所選定的軸組開始運動</td></tr>
+<tr><td>gstop</td><td>( – )</td><td>命令所選定的軸組停止運動</td></tr>
+<tr><td>gstop?</td><td>( – flag )</td><td>所選定的軸組是否已經停止運動 ?</td></tr>
+<tr><td>gvmax!</td><td>( g – ) ( F: v –)</td><td>設定指定軸組的最大運動速度</td></tr>
+<tr><td>map-len@</td><td>( g – len )</td><td>取得指定軸組的運動軸數量</td></tr>
+<tr><td>map-sine</td><td>( j1 g – )</td><td>設定 Sine Wave 軸組所控制的運動軸</td></tr>
+<tr><td>map1d</td><td>( j2 g – )</td><td>設定 1D 軸組所控制的運動軸</td></tr>
+<tr><td>map2d</td><td>( j1 j2 g – )</td><td>設定 2D 軸組所控制的運動軸</td></tr>
+<tr><td>map3d</td><td>( j1 j2 j3 g – )</td><td>設定 3D 軸組所控制的運動軸</td></tr>
+<tr><td>mcs</td><td>( – )</td><td>宣告所選定軸組以目前 MCS 座標位置為路徑起始點</td></tr>
+<tr><td>mcs-p@</td><td>( n – ) ( F: – pos )</td><td>取得所選定軸組 MCS 座標系的指定軸的座標位置</td></tr>
+<tr><td>move-source#</td><td>( – n )</td><td>取得所選定軸組目前是處在哪個路徑事件</td></tr>
+<tr><td>next-a@</td><td>( F: – a )</td><td>取得所選定軸組路徑切線方向加速度</td></tr>
+<tr><td>next-path-id@</td><td>( – id )</td><td>取得所選定軸組，目前路徑的編號</td></tr>
+<tr><td>next-path-mode@</td><td>( – mode )</td><td>取得所選定軸組，目前路徑的模式</td></tr>
+<tr><td>next-path-p@</td><td>( – ) ( F: – pos )</td><td>取得所選定軸組，從運動起始點算起，沿路路徑方向的位置</td></tr>
+<tr><td>next-v@</td><td>( F: – v )</td><td>取得所選定軸組路徑切線方向速度</td></tr>
+<tr><td>path-events-capacity@</td><td>( – n )</td><td>取得所選定軸組可容納的路徑數量</td></tr>
+<tr><td>path-events-len@</td><td>( – n )</td><td>取得所選定軸組目前的路徑數量</td></tr>
+<tr><td>path-id!</td><td>( id – )</td><td>設定後續安插路徑的編號</td></tr>
+<tr><td>path-id@</td><td>( – id )</td><td>取得後續安插路徑的編號</td></tr>
+<tr><td>path-mode!</td><td>( mode – )</td><td>設定後續安插路徑的模式</td></tr>
+<tr><td>path-mode@</td><td>( – mode )</td><td>取得後續安插路徑的模式</td></tr>
+<tr><td>pcs-p@</td><td>( n – ) ( F: – pos )</td><td>取得所選定軸組 PCS 座標系的指定軸的座標位置</td></tr>
+<tr><td>vcmd!</td><td>( F: v – )</td><td>設定所選定的軸組的速度命令</td></tr>
+</tbody>
+</table>
+</div>
 <h3 id="1d-路徑規劃"><a class="header" href="#1d-路徑規劃">1D 路徑規劃</a></h3>
 <p>注意事項：</p>
 <ol>
@@ -655,12 +699,18 @@ group!                  \ 切換回原來的軸組
 deploy test-1d ;deploy         \ 在背景執行 test-1d
 </code></pre>
 <h4 id="本節指令集-2"><a class="header" href="#本節指令集-2">本節指令集</a></h4>
-<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
-<tr><td>line1d</td><td>( F: x -- )</td><td>插入 1D 直線路徑</td></tr>
-<tr><td>move1d</td><td>( F: x -- )</td><td>宣告目前 PCS 座標為 (x)，並做為路徑起始點</td></tr>
-<tr><td>pcs1d</td><td>( F: x0 -- )</td><td>宣告 PCS 座標零點，並以當下位置做為路徑起始點</td></tr>
-</tbody></table>
-<hr />
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td>line1d</td><td>( F: x – )</td><td>插入 1D 直線路徑</td></tr>
+<tr><td>move1d</td><td>( F: x – )</td><td>宣告目前 PCS 座標為 (x)，並做為路徑起始點</td></tr>
+<tr><td>pcs1d</td><td>( F: x0 – )</td><td>宣告 PCS 座標零點，並以當下位置做為路徑起始點</td></tr>
+</tbody>
+</table>
+</div>
 <h3 id="2d-路徑規劃"><a class="header" href="#2d-路徑規劃">2D 路徑規劃</a></h3>
 <p>注意事項：</p>
 <ol>
@@ -705,13 +755,19 @@ deploy test-1d ;deploy         \ 在背景執行 test-1d
 deploy test-2d ;deploy         \ 在背景執行 test-2d
 </code></pre>
 <h4 id="本節指令集-3"><a class="header" href="#本節指令集-3">本節指令集</a></h4>
-<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
-<tr><td>arc2d</td><td>( n -- )( F: cx cy x y -- )</td><td>插入 2D 圓弧路徑</td></tr>
-<tr><td>line2d</td><td>( F: x y -- )</td><td>插入 2D 直線路徑</td></tr>
-<tr><td>move2d</td><td>( F: x y -- )</td><td>宣告目前 PCS 座標為 (x, y)，並做為路徑起始點</td></tr>
-<tr><td>pcs2d</td><td>( F: x0 y0 -- )</td><td>宣告 PCS 座標零點，並以當下位置做為路徑起始點</td></tr>
-</tbody></table>
-<hr />
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td>arc2d</td><td>( n – )( F: cx cy x y – )</td><td>插入 2D 圓弧路徑</td></tr>
+<tr><td>line2d</td><td>( F: x y – )</td><td>插入 2D 直線路徑</td></tr>
+<tr><td>move2d</td><td>( F: x y – )</td><td>宣告目前 PCS 座標為 (x, y)，並做為路徑起始點</td></tr>
+<tr><td>pcs2d</td><td>( F: x0 y0 – )</td><td>宣告 PCS 座標零點，並以當下位置做為路徑起始點</td></tr>
+</tbody>
+</table>
+</div>
 <h3 id="3d-路徑規劃"><a class="header" href="#3d-路徑規劃">3D 路徑規劃</a></h3>
 <p>注意事項：</p>
 <ol>
@@ -756,13 +812,19 @@ deploy test-2d ;deploy         \ 在背景執行 test-2d
 deploy test-3d ;deploy         \ 在背景執行 test-3d
 </code></pre>
 <h4 id="本節指令集-4"><a class="header" href="#本節指令集-4">本節指令集</a></h4>
-<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
-<tr><td>helix3d</td><td>( n -- )( F: cx cy x y z -- )</td><td>插入 3D 螺旋路徑</td></tr>
-<tr><td>line3d</td><td>( F: x y z -- )</td><td>插入 3D 直線路徑</td></tr>
-<tr><td>move3d</td><td>( F: x y z -- )</td><td>宣告目前 PCS 座標為 (x, y, z)，並做為路徑起始點</td></tr>
-<tr><td>pcs3d</td><td>( F: x0 y0 z0 -- )</td><td>宣告 PCS 座標零點，並以當下位置做為路徑起始點</td></tr>
-</tbody></table>
-<hr />
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td>helix3d</td><td>( n – )( F: cx cy x y z – )</td><td>插入 3D 螺旋路徑</td></tr>
+<tr><td>line3d</td><td>( F: x y z – )</td><td>插入 3D 直線路徑</td></tr>
+<tr><td>move3d</td><td>( F: x y z – )</td><td>宣告目前 PCS 座標為 (x, y, z)，並做為路徑起始點</td></tr>
+<tr><td>pcs3d</td><td>( F: x0 y0 z0 – )</td><td>宣告 PCS 座標零點，並以當下位置做為路徑起始點</td></tr>
+</tbody>
+</table>
+</div>
 <h3 id="sine-wave-planner"><a class="header" href="#sine-wave-planner">Sine Wave Planner</a></h3>
 <p>注意事項：</p>
 <ol>
@@ -790,13 +852,19 @@ start-job             \ 啟動加減速機制
 stop-job              \ 停止加減速機制
 </code></pre>
 <h4 id="本節指令集-5"><a class="header" href="#本節指令集-5">本節指令集</a></h4>
-<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
-<tr><td>move-sine</td><td>( F: x -- )</td><td>宣告目前 PCS 座標為 (x)，並做為路徑起始點</td></tr>
-<tr><td>sine-amp!</td><td>( F: amp -- )</td><td>設定弦波運動的振幅</td></tr>
-<tr><td>sine-f!</td><td>( F: f -- )</td><td>設定弦波運動的頻率</td></tr>
-<tr><td>pcs-sine</td><td>( F: x0 -- )</td><td>宣告 PCS 座標零點，並以當下位置做為路徑起始點</td></tr>
-</tbody></table>
-<hr />
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td>move-sine</td><td>( F: x – )</td><td>宣告目前 PCS 座標為 (x)，並做為路徑起始點</td></tr>
+<tr><td>sine-amp!</td><td>( F: amp – )</td><td>設定弦波運動的振幅</td></tr>
+<tr><td>sine-f!</td><td>( F: f – )</td><td>設定弦波運動的頻率</td></tr>
+<tr><td>pcs-sine</td><td>( F: x0 – )</td><td>宣告 PCS 座標零點，並以當下位置做為路徑起始點</td></tr>
+</tbody>
+</table>
+</div>
 <h3 id="axis"><a class="header" href="#axis">Axis</a></h3>
 <p>名詞說明：</p>
 <ul>
@@ -821,7 +889,6 @@ stop-job              \ 停止加減速機制
 <p>following_error = demand_position - corrected_position</p>
 </li>
 </ul>
-<hr />
 <h4 id="axis--j----"><a class="header" href="#axis--j----"><code>.axis ( j -- )</code></a></h4>
 <p>顯示運動軸 <code>j</code> 狀態。</p>
 <p>命令範例:</p>
@@ -1004,52 +1071,58 @@ repeat
 ...
 </code></pre>
 <h4 id="本節指令集-6"><a class="header" href="#本節指令集-6">本節指令集</a></h4>
-<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
-<tr><td>.axis</td><td>( j -- )</td><td>顯示運動軸狀態</td></tr>
-<tr><td>.axiscfg</td><td>( j -- )</td><td>顯示運動軸設定</td></tr>
-<tr><td>+homed</td><td>( j -- )</td><td>設定運動軸已回歸機械原點</td></tr>
-<tr><td>-homed</td><td>( j -- )</td><td>設定運動軸未回歸機械原點</td></tr>
-<tr><td>0axis-ferr</td><td>( j -- )</td><td>清除落後誤差</td></tr>
-<tr><td>axis-aff!</td><td>( j -- ) ( F: aff -- )</td><td>設定加速度前饋增益 （功能未實現）</td></tr>
-<tr><td>axis-afactor!</td><td>( j -- ) ( F: afactor -- )</td><td>設定加速度前饋命令轉換常數 （功能未實現）</td></tr>
-<tr><td>axis-amax!</td><td>( j -- ) ( F: amax -- )</td><td>設定運動軸最大加速度</td></tr>
-<tr><td>axis-amax@</td><td>( j -- ) ( F: -- amax )</td><td>取得運動軸最大加速度</td></tr>
-<tr><td>axis-clerr</td><td>( j --  ) ( F: clerr -- )</td><td>取得雙位置回授誤差</td></tr>
-<tr><td>axis-cmd-p!</td><td>( j -- ) ( F: pos -- )</td><td>設定運動軸的目標位置</td></tr>
-<tr><td>axis-cmd-p@</td><td>( j -- ) ( F: -- pos )</td><td>取得運動軸的目標位置</td></tr>
-<tr><td>axis-demand-p@</td><td>( j -- ) (F: -- pos )</td><td>取得運動軸現在的命令位置</td></tr>
-<tr><td>axis-drive@</td><td>( j --  channel slave )</td><td>取得馬達驅動器的 EtherCAT 站號</td></tr>
-<tr><td>axis-ext-enc@</td><td>( j --  channel slave )</td><td>取得外部編碼器的 EtherCAT 站號</td></tr>
-<tr><td>axis-ferr@</td><td>( j --  ) ( F: ferr -- )</td><td>取得落後誤差</td></tr>
-<tr><td>axis-ignore-dist!</td><td>( j --  ) ( F: dist -- )</td><td>設定可以忽略的長度計算誤差</td></tr>
-<tr><td>axis-len</td><td>( -- len )</td><td>取得運動軸總數</td></tr>
-<tr><td>axis-real-p@</td><td>( j -- ) (F: -- pos )</td><td>取得運動軸實際位置</td></tr>
-<tr><td>axis-rest?</td><td>( j -- flag )</td><td>運動軸命令是否靜止？</td></tr>
-<tr><td>axis-ts!</td><td>( j -- ) ( F: ts -- )</td><td>設定用來判定運動軸命令是否靜止的安定時間</td></tr>
-<tr><td>axis-vff!</td><td>( j -- ) ( F: vff -- )</td><td>設定速度前饋增益 （功能未實現）</td></tr>
-<tr><td>axis-vfactor!</td><td>( j -- ) ( F: vfactor -- )</td><td>設定速度前饋命令轉換常數 （功能未實現）</td></tr>
-<tr><td>axis-vmax!</td><td>( j -- ) ( F: vmax -- )</td><td>設定運動軸的最大速度</td></tr>
-<tr><td>axis-vmax@</td><td>( j -- ) ( F: -- vmax )</td><td>取得運動軸的最大速度</td></tr>
-<tr><td>axis&gt;pulse</td><td>( j -- pulse ) ( F: pos -- )</td><td>轉換運動軸的位置為編碼器脈波位置</td></tr>
-<tr><td>cl-cutoff!</td><td>( j -- ) ( F: freq -- )</td><td>設定雙位置回授誤差濾波器的截止頻率</td></tr>
-<tr><td>drv-alias!</td><td>( drive-alias j -- )</td><td>使用 EtherCAT Station Alias 指定馬達驅動器</td></tr>
-<tr><td>drv-channel!</td><td>( drive-channel j -- )</td><td>指定馬達驅動器的控制軸</td></tr>
-<tr><td>drv-slave!</td><td>( drive-slave j -- )</td><td>使用 EtherCAT Slave Position 指定馬達驅動器</td></tr>
-<tr><td>enc-dir!</td><td>( dir j -- )</td><td>設定馬達運動/編碼器方向</td></tr>
-<tr><td>enc-ppu!</td><td>( j -- )( F: ppu -- )</td><td>設定運動距離單位對應馬達編碼器的脈波數</td></tr>
-<tr><td>enc-u!</td><td>( u j -- )</td><td>設定馬達編碼器的脈波數對應的距離單位</td></tr>
-<tr><td>ext-enc-alias!</td><td>( enc-alias j -- )</td><td>使用 EtherCAT Station Alias 指定外部編碼器</td></tr>
-<tr><td>ext-enc-channel!</td><td>( enc-channel j -- )</td><td>指定外部編碼器的量測管道</td></tr>
-<tr><td>ext-enc-dir!</td><td>( dir j -- )</td><td>指定外部編碼器的方向</td></tr>
-<tr><td>ext-enc-ofs!</td><td>( j -- )( F: ofs -- )</td><td>指定外部編碼器的位置偏移量</td></tr>
-<tr><td>ext-enc-ppu!</td><td>( j -- )( F: ppu -- )</td><td>設定運動距離單位對應外部編碼器的脈波數</td></tr>
-<tr><td>ext-enc-slave!</td><td>( enc-slave j -- )</td><td>使用 EtherCAT Slave Position 指定外部編碼器</td></tr>
-<tr><td>hmofs!</td><td>( j -- ) ( F: ofs -- )</td><td>設定機械零點的座標偏移量</td></tr>
-<tr><td>homed?</td><td>( j -- flag )</td><td>取得運動軸是否回歸機械原點的狀態</td></tr>
-<tr><td>max-pos-dev!</td><td>( j -- ) ( F: max-dev -- )</td><td>設定雙位置回授的最大命令修正量</td></tr>
-<tr><td>virtual-axis?</td><td>( j --  flag )</td><td>運動軸是否為虛擬軸？</td></tr>
-</tbody></table>
-<hr />
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td>.axis</td><td>( j – )</td><td>顯示運動軸狀態</td></tr>
+<tr><td>.axiscfg</td><td>( j – )</td><td>顯示運動軸設定</td></tr>
+<tr><td>+homed</td><td>( j – )</td><td>設定運動軸已回歸機械原點</td></tr>
+<tr><td>-homed</td><td>( j – )</td><td>設定運動軸未回歸機械原點</td></tr>
+<tr><td>0axis-ferr</td><td>( j – )</td><td>清除落後誤差</td></tr>
+<tr><td>axis-aff!</td><td>( j – ) ( F: aff – )</td><td>設定加速度前饋增益 （功能未實現）</td></tr>
+<tr><td>axis-afactor!</td><td>( j – ) ( F: afactor – )</td><td>設定加速度前饋命令轉換常數 （功能未實現）</td></tr>
+<tr><td>axis-amax!</td><td>( j – ) ( F: amax – )</td><td>設定運動軸最大加速度</td></tr>
+<tr><td>axis-amax@</td><td>( j – ) ( F: – amax )</td><td>取得運動軸最大加速度</td></tr>
+<tr><td>axis-clerr</td><td>( j –  ) ( F: clerr – )</td><td>取得雙位置回授誤差</td></tr>
+<tr><td>axis-cmd-p!</td><td>( j – ) ( F: pos – )</td><td>設定運動軸的目標位置</td></tr>
+<tr><td>axis-cmd-p@</td><td>( j – ) ( F: – pos )</td><td>取得運動軸的目標位置</td></tr>
+<tr><td>axis-demand-p@</td><td>( j – ) (F: – pos )</td><td>取得運動軸現在的命令位置</td></tr>
+<tr><td>axis-drive@</td><td>( j –  channel slave )</td><td>取得馬達驅動器的 EtherCAT 站號</td></tr>
+<tr><td>axis-ext-enc@</td><td>( j –  channel slave )</td><td>取得外部編碼器的 EtherCAT 站號</td></tr>
+<tr><td>axis-ferr@</td><td>( j –  ) ( F: ferr – )</td><td>取得落後誤差</td></tr>
+<tr><td>axis-ignore-dist!</td><td>( j –  ) ( F: dist – )</td><td>設定可以忽略的長度計算誤差</td></tr>
+<tr><td>axis-len</td><td>( – len )</td><td>取得運動軸總數</td></tr>
+<tr><td>axis-real-p@</td><td>( j – ) (F: – pos )</td><td>取得運動軸實際位置</td></tr>
+<tr><td>axis-rest?</td><td>( j – flag )</td><td>運動軸命令是否靜止？</td></tr>
+<tr><td>axis-ts!</td><td>( j – ) ( F: ts – )</td><td>設定用來判定運動軸命令是否靜止的安定時間</td></tr>
+<tr><td>axis-vff!</td><td>( j – ) ( F: vff – )</td><td>設定速度前饋增益 （功能未實現）</td></tr>
+<tr><td>axis-vfactor!</td><td>( j – ) ( F: vfactor – )</td><td>設定速度前饋命令轉換常數 （功能未實現）</td></tr>
+<tr><td>axis-vmax!</td><td>( j – ) ( F: vmax – )</td><td>設定運動軸的最大速度</td></tr>
+<tr><td>axis-vmax@</td><td>( j – ) ( F: – vmax )</td><td>取得運動軸的最大速度</td></tr>
+<tr><td>axis&gt;pulse</td><td>( j – pulse ) ( F: pos – )</td><td>轉換運動軸的位置為編碼器脈波位置</td></tr>
+<tr><td>cl-cutoff!</td><td>( j – ) ( F: freq – )</td><td>設定雙位置回授誤差濾波器的截止頻率</td></tr>
+<tr><td>drv-alias!</td><td>( drive-alias j – )</td><td>使用 EtherCAT Station Alias 指定馬達驅動器</td></tr>
+<tr><td>drv-channel!</td><td>( drive-channel j – )</td><td>指定馬達驅動器的控制軸</td></tr>
+<tr><td>drv-slave!</td><td>( drive-slave j – )</td><td>使用 EtherCAT Slave Position 指定馬達驅動器</td></tr>
+<tr><td>enc-dir!</td><td>( dir j – )</td><td>設定馬達運動/編碼器方向</td></tr>
+<tr><td>enc-ppu!</td><td>( j – )( F: ppu – )</td><td>設定運動距離單位對應馬達編碼器的脈波數</td></tr>
+<tr><td>enc-u!</td><td>( u j – )</td><td>設定馬達編碼器的脈波數對應的距離單位</td></tr>
+<tr><td>ext-enc-alias!</td><td>( enc-alias j – )</td><td>使用 EtherCAT Station Alias 指定外部編碼器</td></tr>
+<tr><td>ext-enc-channel!</td><td>( enc-channel j – )</td><td>指定外部編碼器的量測管道</td></tr>
+<tr><td>ext-enc-dir!</td><td>( dir j – )</td><td>指定外部編碼器的方向</td></tr>
+<tr><td>ext-enc-ofs!</td><td>( j – )( F: ofs – )</td><td>指定外部編碼器的位置偏移量</td></tr>
+<tr><td>ext-enc-ppu!</td><td>( j – )( F: ppu – )</td><td>設定運動距離單位對應外部編碼器的脈波數</td></tr>
+<tr><td>ext-enc-slave!</td><td>( enc-slave j – )</td><td>使用 EtherCAT Slave Position 指定外部編碼器</td></tr>
+<tr><td>hmofs!</td><td>( j – ) ( F: ofs – )</td><td>設定機械零點的座標偏移量</td></tr>
+<tr><td>homed?</td><td>( j – flag )</td><td>取得運動軸是否回歸機械原點的狀態</td></tr>
+<tr><td>max-pos-dev!</td><td>( j – ) ( F: max-dev – )</td><td>設定雙位置回授的最大命令修正量</td></tr>
+<tr><td>virtual-axis?</td><td>( j –  flag )</td><td>運動軸是否為虛擬軸？</td></tr>
+</tbody>
+</table>
+</div>
 <h3 id="單軸運動"><a class="header" href="#單軸運動">單軸運動</a></h3>
 <p>命令針對單一運動軸，可以同時讓多個運動軸同時運行。如果該運動軸受到軸組控制則不可執行單軸運動。</p>
 <h4 id="interpolator--j----"><a class="header" href="#interpolator--j----"><code>+interpolator ( j -- )</code></a></h4>
@@ -1068,14 +1141,21 @@ repeat
 1 axis-real-p@                     \ 取得 Axis 1 目前的實際位置
 </code></pre>
 <h4 id="本節指令集-7"><a class="header" href="#本節指令集-7">本節指令集</a></h4>
-<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
-<tr><td>+interpolator</td><td>( j -- )</td><td>啟動單軸運動</td></tr>
-<tr><td>-interpolator</td><td>( j -- )</td><td>關閉單軸運動</td></tr>
-<tr><td>interpolator?</td><td>( j -- flag )</td><td>單軸運動是否開啟？</td></tr>
-<tr><td>interpolator-reached?</td><td>( j -- flag )</td><td>單軸運動是否到達目標點？</td></tr>
-<tr><td>interpolator-v!</td><td>( j -- ) (F: v -- )</td><td>設定單軸運動速度</td></tr>
-</tbody></table>
-<hr />
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td>+interpolator</td><td>( j – )</td><td>啟動單軸運動</td></tr>
+<tr><td>-interpolator</td><td>( j – )</td><td>關閉單軸運動</td></tr>
+<tr><td>interpolator?</td><td>( j – flag )</td><td>單軸運動是否開啟？</td></tr>
+<tr><td>interpolator-reached?</td><td>( j – flag )</td><td>單軸運動是否到達目標點？</td></tr>
+<tr><td>interpolator-v!</td><td>( j – ) (F: v – )</td><td>設定單軸運動速度</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
 <h3 id="pitch-corrector"><a class="header" href="#pitch-corrector">Pitch Corrector</a></h3>
 <h4 id="pcorr--channel-slave----"><a class="header" href="#pcorr--channel-slave----"><code>+pcorr ( channel slave -- )</code></a></h4>
 <p>開啟指定驅動器的 Pitch Corrector</p>
@@ -1101,28 +1181,35 @@ repeat
 |pcorr_enabled.1.1|0
 </code></pre>
 <h4 id="本節指令集-8"><a class="header" href="#本節指令集-8">本節指令集</a></h4>
-<table><thead><tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr></thead><tbody>
-<tr><td>.pcorr</td><td>( channel n -- )</td><td>輸出目前 Pitch Corrector 的查表結果</td></tr>
-<tr><td>.pcorr-entry</td><td>( index channel n -- )</td><td>輸出指定補正表欄位內容</td></tr>
-<tr><td>+pcorr</td><td>( channel n -- )</td><td>啟動補正功能</td></tr>
-<tr><td>-pcorr</td><td>( channel n -- )</td><td>關閉補正功能</td></tr>
-<tr><td>&gt;pcorr</td><td>( channel n -- )</td><td>讀取檔案內容到控制器內</td></tr>
-<tr><td>pcorr&gt;</td><td>( channel n -- )</td><td>輸出補正表到檔案</td></tr>
-<tr><td>pcorr-entry!</td><td>( index channel n -- ) ( F: position forward backward -- )</td><td>設定補正表欄位</td></tr>
-<tr><td>pcorr-factor!</td><td>( channel n -- ) ( F: factor -- )</td><td>設定補正表欄位的轉換係數</td></tr>
-<tr><td>pcorr-resize</td><td>( len channel n -- )</td><td>調整補正表的欄位大小</td></tr>
-</tbody></table>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>指令</th><th>堆疊效果</th><th>說明</th></tr>
+</thead>
+<tbody>
+<tr><td>.pcorr</td><td>( channel n – )</td><td>輸出目前 Pitch Corrector 的查表結果</td></tr>
+<tr><td>.pcorr-entry</td><td>( index channel n – )</td><td>輸出指定補正表欄位內容</td></tr>
+<tr><td>+pcorr</td><td>( channel n – )</td><td>啟動補正功能</td></tr>
+<tr><td>-pcorr</td><td>( channel n – )</td><td>關閉補正功能</td></tr>
+<tr><td>&gt;pcorr</td><td>( channel n – )</td><td>讀取檔案內容到控制器內</td></tr>
+<tr><td>pcorr&gt;</td><td>( channel n – )</td><td>輸出補正表到檔案</td></tr>
+<tr><td>pcorr-entry!</td><td>( index channel n – ) ( F: position forward backward – )</td><td>設定補正表欄位</td></tr>
+<tr><td>pcorr-factor!</td><td>( channel n – ) ( F: factor – )</td><td>設定補正表欄位的轉換係數</td></tr>
+<tr><td>pcorr-resize</td><td>( len channel n – )</td><td>調整補正表的欄位大小</td></tr>
+</tbody>
+</table>
+</div>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                             <a rel="prev" href="ethercat-gateway-primitives.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                                <i class="fa fa-angle-left"></i>
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next" href="sfc.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                            <a rel="next prefetch" href="known-working-hardware.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
                         <div style="clear: both"></div>
@@ -1132,48 +1219,42 @@ repeat
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                     <a rel="prev" href="ethercat-gateway-primitives.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
-                        <i class="fa fa-angle-left"></i>
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next" href="sfc.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                    <a rel="next prefetch" href="known-working-hardware.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
 
         </div>
 
-        <!-- Livereload script (if served using the cli tool) -->
-        <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:3000/__livereload");
-            socket.onmessage = function (event) {
-                if (event.data === "reload") {
-                    socket.close();
-                    location.reload();
-                }
-            };
-
-            window.onbeforeunload = function() {
-                socket.close();
-            }
-        </script>
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
-        <script type="text/javascript">
+        <script>
             window.playground_copyable = true;
         </script>
 
 
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="elasticlunr-ef4e11c1.min.js"></script>
+        <script src="mark-09e88c2c.min.js"></script>
+        <script src="searcher-09f2665d.js"></script>
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard-1626706a.min.js"></script>
+        <script src="highlight-abc7f01d.js"></script>
+        <script src="book-609e4cb8.js"></script>
 
         <!-- Custom JS scripts -->
+        <script src="language-switch-a01cdc14.js"></script>
 
 
+
+    </div>
     </body>
 </html>

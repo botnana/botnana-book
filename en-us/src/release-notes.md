@@ -1,13 +1,129 @@
 # Release Notes
 
-## Changes Since Version 1.14.1
+## Version 1.14.4
 
-- The WebSocket watchdog period has increased from 4 to 10 seconds, improving tolerance for temporary communication delays.
+Version 1.14.4 adds controller recovery and EtherCAT topology-maintenance
+workflows, strengthens configuration and software-update handling, and bounds
+HMI WebSocket traffic.
 
-## Recommendation for Custom HMI Applications
+### EtherCAT Controller Lifecycle and Recovery
 
-Version 1.14.3 does not enforce a bounded WebSocket request rate, and an
-accepted `script.evaluate` request has no general success acknowledgement.
-Custom HMI applications should follow the connection, request-rate, polling,
-error-handling, and same-request command verification guidance in the
-[JSON API](./json-api.md#websocket-recommendations-for-custom-hmis-version-1143).
+- A ready controller can rescan EtherCAT hardware without restarting the
+  `bnc-motion` service. Live WebSocket sessions are rebound to the replacement
+  runtime generation.
+- Controller startup verifies the connected EtherCAT topology against the
+  expected profile and reports its stage and retry countdown.
+- An operator can stop a startup that is still waiting for the expected
+  topology. This ends the current attempt; it does not restore the previous
+  controller generation.
+- If the controller is unavailable, the HMI can review the saved machine
+  profile, correct it if necessary, and start a replacement controller from
+  that exact saved version.
+- Recovery source, stage, outcome, and availability are restored after an HMI
+  reconnect.
+- Botnana Control prevents another in-process start after uncertain controller
+  cleanup. In that case, an authorized administrator must restart the
+  `bnc-motion` service before trying again.
+
+### EtherCAT Topology Maintenance
+
+- The new topology-maintenance workflow supports deliberate slave additions,
+  removals, replacements, and reordering.
+- The HMI keeps configured slaves, detected slaves, a proposed topology, the
+  saved profile, and the running controller separate.
+- Scanning is read-only and never adopts connected hardware automatically. An
+  operator must explicitly use the complete detected topology, review its
+  consequences, save it while inactive, and apply the exact saved version.
+- Device-specific settings and mappings affected by removed, replaced, moved,
+  or ambiguously identified slaves must be reviewed before saving.
+- Maintenance state is owned by the controller and can be restored after a
+  browser reload or from another HMI session.
+
+### Machine-Profile Editing and HMI
+
+- The HMI now provides separate **Controller & Topology**, **Slave
+  Configuration**, **Motion**, and **Axis Group** work areas through a common
+  primary navigation bar.
+- Profile edits remain available while the controller is unavailable,
+  restarting, or starting, except while topology maintenance owns the profile.
+- Draft and saved profile revisions prevent stale edits, saves, discards, and
+  controller starts from another browser session.
+- Profile changes are validated and applied atomically. A failed save retains
+  the unsaved draft for correction or retry.
+- Server IP-address changes are validated, saved atomically, acknowledged by
+  the HMI, and take effect after reboot.
+- Spreadsheet layouts, profile status, action availability, and recovery
+  controls have been revised for clearer operation on constrained displays.
+
+### Software Updates and HMI Runtime
+
+- The legacy Node.js HMI server has been replaced by a bounded Rust HTTP server.
+- Debian packages are inspected before staging. The About page shows the exact
+  package identity, version, architecture, classification, and SHA-256 for
+  review.
+- A reviewed Botnana Control package is staged for one installation attempt at
+  the next boot. A pending package can be cancelled before installation starts.
+- The About page reports the authoritative installation result after reboot.
+- A failed, timed-out, interrupted, or incompletely recorded installation can
+  block motion until a reviewed recovery package is installed successfully.
+- The exact retained prior successful package can be reviewed and staged for a
+  deliberate rollback when it is available.
+- Botnana Control distinguishes its managed package from packages owned by an
+  external updater.
+
+### Bounded WebSocket Traffic
+
+- The bundled HMI uses one outbound request budget for bootstrap, heartbeat,
+  visible-value polling, and deliberate actions. It stores at most five request
+  permissions and refills at 100 requests per second.
+- Hidden work areas no longer continue high-frequency live polling. Superseded
+  polling is replaced instead of accumulating into a catch-up burst.
+- Deliberate operator and motion actions receive priority but remain inside the
+  same request budget.
+- The motion server independently applies per-connection admission. Recognized
+  latest-value polls may be coalesced; mutations and unknown work are never
+  silently discarded or repeated.
+- When a request is not admitted, the server reports at most one overload
+  indication during the one-second overload period:
+
+  ```text
+  error|WebSocket request limit exceeded. Non-admitted requests during the next 1 second have no effect; retry later.
+  ```
+
+- Excess request rate alone does not close the connection. One overloaded
+  connection does not consume another connection's admission budget.
+- WebSocket output no longer blocks the event loop, and closing a connection
+  releases its socket, output worker, and assigned rtForth user task.
+
+### Compatibility Notes
+
+- The bundled HMI and motion server must be upgraded together. Configuration
+  mutations require configuration protocol v2 and the draft revision reviewed
+  by the client. A stale revision is rejected without replacing newer profile
+  state.
+- Existing JSON-RPC-over-WebSocket and pipe-delimited rtForth response formats
+  remain in use, but clients that exceed the 1.14.4 admission boundary can now
+  receive the explicit overload result shown above.
+- Botnana Control still provides two rtForth user sessions for WebSocket
+  clients.
+- An accepted `script.evaluate` request still has no general success or
+  completion acknowledgement. A successful WebSocket send or the absence of an
+  error is not proof that a state-changing script ran.
+- A custom HMI should keep group selection, a group-dependent command, and its
+  readback in the same `script.evaluate` request. After overload, timeout, or
+  disconnection, it must reconcile controller state before deciding whether a
+  retry is safe.
+
+See [JSON API](./json-api.md) for the custom-HMI traffic and command-verification
+recommendations. See [Software Updates](./update-software.md) for the package
+update procedure.
+
+## Version 1.14.3
+
+### Changes Since Version 1.14.1
+
+- The WebSocket watchdog period increased from 4 to 10 seconds, improving
+  tolerance for temporary communication delays.
+- Conservative custom-HMI connection, polling, and command-verification
+  recommendations were added for a server that did not yet enforce bounded
+  per-connection admission.
