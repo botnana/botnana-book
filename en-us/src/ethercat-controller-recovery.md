@@ -29,7 +29,7 @@ Use the action that matches the current display:
 | Lifecycle is **failed**, **Details** is titled **Controller unavailable**, and **Start controller** is available | Review the saved profile, then start the controller. The command bar may also report that the last-working-settings attempt failed. |
 | **Start controller** is unavailable because the profile has unsaved changes | Save the intended changes or discard them, then review the saved profile again. |
 | An operator-requested controller start is retrying topology verification and the command bar offers **Stop waiting** | Continue waiting, or stop the unproductive topology wait. You do not need to open **Details** to find this action. The initial boot attempt is not stoppable. |
-| Startup is in progress without **Stop waiting** | Wait for success or failure; do not submit another request. |
+| Startup is in progress without **Stop waiting** | Wait for success or failure; do not submit another request. This may be the non-stoppable initial boot attempt, or the current stage may not yet allow stopping. |
 | Recovery status is unavailable | Wait for the HMI to reconnect and display fresh authoritative status. |
 | The HMI requires a `bnc-motion` restart | Follow [When cleanup fails](#when-cleanup-fails). |
 
