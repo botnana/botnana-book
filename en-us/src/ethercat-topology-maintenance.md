@@ -47,8 +47,9 @@ Before entering maintenance:
 1. Record the approved physical change, current slave order, aliases, vendor
    IDs, product codes, and rollback plan. Photograph labels and cabling when
    useful.
-2. Confirm that the previous hardware and cabling can be restored if startup
-   fails.
+2. Confirm that the rollback plan from step 1 is practical: if the changed
+   topology does not reach **Ready**, the previous slaves, physical order, and
+   cabling can be restored.
 3. On **Controller & Topology**, compare **Configured slaves** and **Detected
    slaves**.
 4. Finish existing profile edits. Save intended changes or discard unwanted
