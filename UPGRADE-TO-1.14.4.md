@@ -18,7 +18,9 @@ published outputs only after the source documentation is complete.
 The 1.14.4 book update has been published to the `master` branch, but the
 control repository still has release-closeout work:
 
-- `motion/Cargo.toml` uses product version `1.14.4` and package revision `3`.
+- `motion/Cargo.toml` currently uses product version `1.14.4` and package
+  revision `3`; additional 1.14.4 package revisions are expected before final
+  release closeout.
 - `debian/changelog` finalizes both `1.14.4-2` and `1.14.4-3` for `unstable`;
   revision 3 adds the current-IP display correction.
 - The bilingual book identifies version 1.14.4 with publication date
@@ -30,8 +32,10 @@ control repository still has release-closeout work:
   configuration-file, and architecture updates in this plan remain open.
 - The current-IP display correction is committed as `3190c96c3` and included
   in official package revision `1.14.4-3`, prepared by `f9fa385ed`.
-- The software-update chapter still uses `1.14.4-2` in transition and rollback
-  examples and must be refreshed where it identifies the current package.
+- Software-update screenshots are workflow examples. They may retain earlier
+  package revisions and do not need replacement for every packaging-only
+  revision; captions and surrounding text must remain clear that they are
+  examples.
 
 Do not tag the book release until the remaining software release contract,
 acceptance, and documentation scope decisions are complete.
@@ -57,8 +61,10 @@ repository maintainers.
 - [ ] Confirm that all commits currently on
       `bounded-hmi-websocket-throughput` belong in 1.14.4.
 - [x] Confirm the final Botnana Control version string (`1.14.4`).
-- [x] Confirm the final Debian package version and filename pattern
-      (`botnana-control_1.14.4-3_arm64.deb`).
+- [x] Confirm the Debian filename pattern
+      (`botnana-control_<Debian-version>_arm64.deb`).
+- [ ] Confirm the final 1.14.4 Debian package revision after the remaining
+      packaging iterations.
 - [x] Confirm the book publication date (August 17, 2026).
 - [x] Finalize the control repository Debian changelog for `1.14.4-2` and
       `1.14.4-3`.
@@ -171,7 +177,8 @@ Reference:
 Assets:
 
 - [x] Capture new 1.14.4 About-page screenshots and managed-update workflow
-      screenshots.
+      screenshots. Keep them as stable workflow examples instead of retaking
+      them for every Debian package revision.
 - [x] Retain the old **UPLOAD MANUALLY** screens only in the explicitly labelled
       one-time upgrade procedure for version 1.14.3 and earlier.
 - [x] Use the final `1.14.4-2` package filename in transition and rollback
