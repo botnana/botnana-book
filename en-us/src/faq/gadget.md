@@ -43,11 +43,25 @@ A new BN-B3A uses IP address `192.168.7.2`. Set the host computer to `192.168.7.
     ![](../figures/win10-browser.png)
 
 
-### Update IP
+### Update the Controller IP Address
 
-If you need to modify the IP, such as to connect to two BN-B3A, or because it conflicts with other devices and you need to modify it, press the [ABOUT] button in the upper right corner, then in the input area to the left of [Set IP], enter the first three digits of the desired IP address. For example, to set the IP to 192.168.6.2, enter 192.168.6, as shown in the figure, then press [Set IP]. Note that after pressing [Set IP], a reboot is required. Additionally, you need to set the IP on the host computer to correspond, such as 192.168.6.1, to establish a connection.
+1. Put the machine in a safe stopped condition and select **ABOUT**.
+2. Wait for **Current IP address** to display the saved controller address. Record both the old address and the intended new address before continuing.
 
-![](../figures/b3n-change-ip.png)
+   ![Current IP address reported by the controller](./ip-address-current.png)
+
+3. Under **Network prefix**, enter the first three numbers of the new network. The controller address always ends in `.2`. For example, enter `192.168.6` to save `192.168.6.2`.
+4. Verify the preview names the exact intended address.
+
+   ![Preview of the IP address that will be saved](./ip-address-preview.png)
+
+5. Select **Set IP**. Wait for **IP address saved. It will change after reboot.**
+
+   ![Acknowledgement that the IP address was saved](./ip-address-saved.png)
+
+6. If **Set IP** is unavailable, wait for configuration protocol version 2 to be selected and the saved profile to load. Save or discard any unsaved machine-profile changes before trying again.
+7. Select **REBOOT**. The saved address does not become active until the reboot.
+8. Reconfigure the host computer for the new network, such as `192.168.6.1`, and reconnect to the controller at the new address, such as `http://192.168.6.2:3000`.
 
 ### Connect multiple BN-B3A controllers on the same computer.
 

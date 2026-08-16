@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-a6f04f07.js";
+            window.path_to_searchindex_js = "searchindex-0fcd1875.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -4113,9 +4113,36 @@ HTTPS，因此以下網頁會出現紅色不安全警告，可以忽略此警告
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/win10-browser.png" alt=""><span class="img-wrapper"><img src="figures/win10-browser.png" alt=""></span></label></p>
 </li>
 </ol>
-<h3 id="修改-ip"><a class="header" href="#修改-ip">修改 IP</a></h3>
-<p>如果要修改 IP，比如，想要同時連接兩台 BN-B3A，或是因為和其他裝置衝突而必須修改，請按右上角的 [ABOUT]，然後在 [Set IP] 的左方輸入區輸入想要設定的 IP 的前三碼。比如，要設 IP 為 192.168.6.2，請輸入 192.168.6，如下圖，然後按 [Set IP]，注意在按了 [Set IP] 後，需要 Reboot。同時，還需要將上位電腦的 IP 設定為對應的 IP ，如 192.168.6.1 後，才能連線。</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/b3n-change-ip.png" alt=""><span class="img-wrapper"><img src="figures/b3n-change-ip.png" alt=""></span></label></p>
+<h3 id="修改控制器-ip-位址"><a class="header" href="#修改控制器-ip-位址">修改控制器 IP 位址</a></h3>
+<ol>
+<li>
+<p>讓機台進入安全停止狀態，然後選擇 <strong>ABOUT</strong>。</p>
+</li>
+<li>
+<p>等待 <strong>Current IP address</strong> 顯示已儲存的控制器位址。繼續之前，請同時記錄舊位址及預定的新位址。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="faq/ip-address-current.png" alt="控制器回報的目前 IP 位址"><span class="img-wrapper"><img src="faq/ip-address-current.png" alt="控制器回報的目前 IP 位址"></span></label></p>
+</li>
+<li>
+<p>在 <strong>Network prefix</strong> 輸入新網路的前三個數字。控制器位址固定以 <code>.2</code> 結尾。例如，輸入 <code>192.168.6</code> 會儲存 <code>192.168.6.2</code>。</p>
+</li>
+<li>
+<p>確認預覽顯示的位址完全符合預期。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="faq/ip-address-preview.png" alt="預覽即將儲存的 IP 位址"><span class="img-wrapper"><img src="faq/ip-address-preview.png" alt="預覽即將儲存的 IP 位址"></span></label></p>
+</li>
+<li>
+<p>選擇 <strong>Set IP</strong>，並等待畫面顯示 <strong>IP address saved. It will change after reboot.</strong></p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="faq/ip-address-saved.png" alt="IP 位址已儲存的確認訊息"><span class="img-wrapper"><img src="faq/ip-address-saved.png" alt="IP 位址已儲存的確認訊息"></span></label></p>
+</li>
+<li>
+<p>如果無法使用 <strong>Set IP</strong>，請等待系統選定設定通訊協定第 2 版並載入已儲存設定。再次嘗試前，必須儲存或捨棄尚未儲存的機台設定變更。</p>
+</li>
+<li>
+<p>選擇 <strong>REBOOT</strong>。重新開機前，已儲存的新位址不會生效。</p>
+</li>
+<li>
+<p>將上位電腦改設至新網路，例如 <code>192.168.6.1</code>，再使用新位址重新連線控制器，例如 <code>http://192.168.6.2:3000</code>。</p>
+</li>
+</ol>
 <h3 id="同一電腦連接多塊-bn-b3a"><a class="header" href="#同一電腦連接多塊-bn-b3a">同一電腦連接多塊 BN-B3A</a></h3>
 <p>修改方式如 <strong>修改 IP</strong> ，但每塊 BN-B3A 要設為不同的 IP 區段。</p>
 <p>例如︰
