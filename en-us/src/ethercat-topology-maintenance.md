@@ -52,8 +52,10 @@ Before entering maintenance:
    cabling can be restored.
 3. On **Controller & Topology**, compare **Configured slaves** and **Detected
    slaves**.
-4. Finish existing profile edits. Save intended changes or discard unwanted
-   changes so the profile is clean.
+4. Topology maintenance uses the saved profile as its comparison and recovery
+   baseline. Save existing edits that must be retained, or discard unwanted
+   edits, until the HMI no longer reports **Unsaved changes**. This prevents
+   ordinary configuration edits from being mixed with the topology change.
 5. Stop scripts, recipes, HMI jobs, and other work using the controller.
 6. Put the machine in the site-approved safe condition.
 7. Continue only when **Enter topology maintenance** is available and no nearby
