@@ -1,7 +1,9 @@
 # EtherCAT Controller Recovery
 
 Use this procedure when Botnana Control must rediscover connected EtherCAT
-hardware or **Controller & Topology** reports **Controller unavailable**.
+hardware or **Controller & Topology** reports **Controller unavailable**. For an
+approved addition, removal, replacement, or reorder, use
+[EtherCAT Topology Maintenance](ethercat-topology-maintenance.md) instead.
 
 > **Safety:** Put the machine in the site-approved safe stopped condition before
 > rescanning, starting, or restarting the controller. These HMI operations are

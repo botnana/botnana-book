@@ -1,7 +1,8 @@
 # EtherCAT 控制器復原
 
 當 Botnana Control 必須重新偵測已連接的 EtherCAT 硬體，或 **Controller &
-Topology** 顯示 **Controller unavailable** 時，請使用本程序。
+Topology** 顯示 **Controller unavailable** 時，請使用本程序。如果是核准的新增、
+移除、更換或重新排序，請改用 [EtherCAT 拓撲維護](ethercat-topology-maintenance.md)。
 
 > **安全注意事項：**重新掃描、啟動或重新啟動控制器之前，請依現場核准的程序讓
 > 機台進入安全停止狀態。這些 HMI 操作是維護控制，不是安全功能。控制器無法使用

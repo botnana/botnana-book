@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>EtherCAT 控制器復原 - Botnana Control</title>
+        <title>EtherCAT 拓撲維護 - Botnana Control</title>
 
 
         <!-- Custom HTML head -->
@@ -174,179 +174,165 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="ethercat-控制器復原"><a class="header" href="#ethercat-控制器復原">EtherCAT 控制器復原</a></h1>
-<p>當 Botnana Control 必須重新偵測已連接的 EtherCAT 硬體，或 <strong>Controller &amp;
-Topology</strong> 顯示 <strong>Controller unavailable</strong> 時，請使用本程序。如果是核准的新增、
-移除、更換或重新排序，請改用 <a href="ethercat-topology-maintenance.html">EtherCAT 拓撲維護</a>。</p>
+                        <h1 id="ethercat-拓撲維護"><a class="header" href="#ethercat-拓撲維護">EtherCAT 拓撲維護</a></h1>
+<p>當獲授權的試車技術人員要刻意新增、移除、更換或重新排序 EtherCAT 從站時，請使用
+拓撲維護。如果硬體配置不應改變，請使用一般 <strong>Rescan EtherCAT</strong>。如果故障不是由
+核准的配置變更造成，請使用 <a href="ethercat-controller-recovery.html">EtherCAT 控制器復原</a>。</p>
+<p>掃描已連接硬體不會儲存或採用硬體。只有明確使用完整掃描建立提案、檢查影響、
+儲存、套用該確切已儲存版本，而且控制器到達 <strong>Ready</strong> 後，變更的配置才會生效。</p>
 <blockquote>
-<p>**安全注意事項：**重新掃描、啟動或重新啟動控制器之前，請依現場核准的程序讓
-機台進入安全停止狀態。這些 HMI 操作是維護控制，不是安全功能。控制器無法使用
-或正在啟動時，動作控制、指令稿及即時 EtherCAT 控制都無法使用。</p>
+<p>**安全注意事項：**請遵守現場的上鎖、動作停用、電氣隔離及驗證程序。HMI 確認
+只記錄您對機台已安全的聲明，不是安全連鎖。控制器無法使用、正在啟動或回報故障
+時，請讓機台保持在核准的安全狀態。</p>
 </blockquote>
-<h2 id="瞭解控制器狀態"><a class="header" href="#瞭解控制器狀態">瞭解控制器狀態</a></h2>
-<p>HMI 會分開管理下列狀態：</p>
-<ul>
-<li>**草稿設定（draft profile）**是 HMI 目前顯示、尚在編輯的內容。</li>
-<li>**已儲存設定（saved profile）**是持久保存的設定，也是 <strong>Start controller</strong>
-使用的設定。</li>
-<li><strong>Last working settings</strong> 是上一次正常運作控制器所保留的設定，一般重新掃描會
-使用這份設定。</li>
-<li>**運作中的控制器（running controller）**是目前啟用的 EtherCAT 控制器。儲存
-設定不會啟動控制器；啟動控制器也不會自動儲存啟動時偵測到的硬體。</li>
-</ul>
-<p>請依目前畫面選擇操作：</p>
+<h2 id="瞭解拓撲狀態"><a class="header" href="#瞭解拓撲狀態">瞭解拓撲狀態</a></h2>
+<p><strong>Controller &amp; Topology</strong> 會分開管理實體觀察結果、提議的編輯、已儲存設定及運作中
+的控制器：</p>
 <div class="table-wrapper">
 <table>
 <thead>
-<tr><th>HMI 狀態</th><th>操作</th></tr>
+<tr><th>HMI 狀態</th><th>意義</th></tr>
 </thead>
 <tbody>
-<tr><td>控制器已就緒且可使用 <strong>Rescan EtherCAT</strong></td><td>執行一般重新掃描。</td></tr>
-<tr><td>生命週期為 <strong>failed</strong>、<strong>Details</strong> 內的標題為 <strong>Controller unavailable</strong>，且可使用 <strong>Start controller</strong></td><td>檢查已儲存設定，再啟動控制器。命令列也可能顯示 Last working settings 啟動嘗試失敗。</td></tr>
-<tr><td>因設定有未儲存變更而無法使用 <strong>Start controller</strong></td><td>儲存預定的變更或將其捨棄，然後重新檢查已儲存設定。</td></tr>
-<tr><td>操作員要求的控制器啟動正在重試拓撲驗證，且命令列提供 <strong>Stop waiting</strong></td><td>繼續等待，或停止已無助益的拓撲等待。不必開啟 <strong>Details</strong> 即可找到此操作。初始開機嘗試無法停止。</td></tr>
-<tr><td>啟動進行中，但沒有 <strong>Stop waiting</strong></td><td>等待成功或失敗；不要送出另一項要求。這可能是無法停止的初始開機嘗試，或目前階段尚不允許停止。</td></tr>
-<tr><td><strong>Start controller</strong> 已停用，且 HMI 顯示 <strong>Start controller is unavailable until authoritative recovery status is available.</strong></td><td>等待 HMI 重新連線並顯示最新的權威狀態。</td></tr>
-<tr><td>HMI 要求重新啟動 <strong>Botnana Control 運動控制服務（<code>bnc-motion</code>）</strong></td><td>這是在 BN-B3A 上執行的控制器服務，不是 EtherCAT 從站。請由獲授權的管理員依照<a href="#清理失敗時">清理失敗時</a>處理。</td></tr>
+<tr><td><strong>Configured slaves</strong></td><td>維護期間用作已儲存比較基準的唯讀拓撲。</td></tr>
+<tr><td><strong>Detected slaves</strong></td><td>最新一次成功維護掃描所得的唯讀硬體。一般啟動或重新掃描期間，則會跟隨每次最新完成的實體啟動掃描。</td></tr>
+<tr><td><strong>Proposed topology</strong></td><td>明確選擇 <strong>Use complete detected topology</strong> 後產生的完整偵測拓撲。此處只能編輯 <strong>Expected Alias</strong>。</td></tr>
+<tr><td><strong>Shared draft</strong> 及 <strong>Draft version</strong></td><td>正在檢查的設定，尚未儲存供啟動使用。</td></tr>
+<tr><td><strong>Saved profile</strong> 及 <strong>Saved version</strong></td><td>持久儲存在控制器上的設定。</td></tr>
+<tr><td><strong>Running controller</strong></td><td>目前控制機台的設定；只有儲存不會改變它。</td></tr>
+<tr><td><strong>Pre-maintenance controller settings</strong></td><td>未套用提案而離開時，用來啟動控制器的確切保留設定。</td></tr>
 </tbody>
 </table>
 </div>
-<h2 id="重新掃描已就緒的控制器"><a class="header" href="#重新掃描已就緒的控制器">重新掃描已就緒的控制器</a></h2>
-<p>一般重新掃描會使用 <strong>Last working settings</strong> 重建運作中的控制器，不會套用尚未
-儲存的設定變更。</p>
+<p>各頁籤的數量可用來交叉檢查。Configured 與 Detected 數量不同本身不會造成任何
+變更。維護期間，<strong>Detected slaves</strong> 只顯示該次成功維護掃描，不會和啟動掃描的
+觀察結果混合。</p>
+<p>請在 <strong>Slave Configuration</strong> 檢查驅動器、I/O、通道及其他從站類型設定。切換
+<strong>Controller &amp; Topology</strong> 頁籤不會取代該編輯器。</p>
+<h2 id="準備變更"><a class="header" href="#準備變更">準備變更</a></h2>
+<p>進入維護前：</p>
 <ol>
-<li>確認機台已進入現場核准的安全狀態。</li>
-<li>開啟 <strong>Controller &amp; Topology</strong>。</li>
-<li>選擇 <strong>Rescan EtherCAT</strong>。</li>
-<li>觀察畫面顯示的啟動階段及拓撲重試倒數。拓撲重試期間，<strong>Detected slaves</strong>
-會在每次完成完整實體掃描後更新，因此可以立即看見新增、移除、更換或重新排序
-的從站。</li>
-<li>將 <strong>Detected slaves</strong> 和預定的實體串列逐一比較。顯示變更後的掃描結果不代表
-已儲存或採用該拓撲。</li>
-<li>如果出現 <strong>Stop waiting</strong>，而且繼續重試已無助益，請依照
-<a href="#停止拓撲等待">停止拓撲等待</a>處理；否則繼續等待。</li>
-<li>控制器顯示 <strong>Ready</strong> 後，確認所有預期的 EtherCAT 從站都已出現，並在恢復
-操作前確認機台狀態。</li>
+<li>記錄核准的實體變更、目前從站順序、別名、vendor ID、product code 及回復計畫。
+必要時拍攝標籤及配線。</li>
+<li>確認新控制器無法啟動時，可以恢復原硬體及配線。</li>
+<li>在 <strong>Controller &amp; Topology</strong> 比較 <strong>Configured slaves</strong> 和 <strong>Detected slaves</strong>。</li>
+<li>完成現有設定編輯。儲存預定變更或捨棄不需要的變更，讓設定保持乾淨。</li>
+<li>停止正在使用控制器的指令稿、配方、HMI 工作及其他作業。</li>
+<li>讓機台進入現場核准的安全狀態。</li>
+<li>只有在可使用 <strong>Enter topology maintenance</strong>，且附近沒有顯示未解決原因時才繼續。</li>
 </ol>
-<p>如果命令列顯示 <strong>Controller start with last working settings failed</strong>，表示控制器目前
-無法使用。選擇 <strong>Details</strong> 會開啟標題為 <strong>Controller unavailable</strong> 的抽屜；接著請
-執行<a href="#復原無法使用的控制器">復原無法使用的控制器</a>。</p>
-<h2 id="停止拓撲等待"><a class="header" href="#停止拓撲等待">停止拓撲等待</a></h2>
-<p>只有在操作員要求的控制器啟動正在重試 EtherCAT 拓撲驗證，且控制器回報該嘗試
-可以停止時，<strong>Controller &amp; Topology</strong> 命令列才會提供 <strong>Stop waiting</strong>。初始開機
-嘗試無法停止。這是協同式
-停止，不是回復、強制停止或緊急停止。先前的控制器已經拆除；停止等待後，控制器
-仍然無法使用。</p>
+<p>控制器可以是 <strong>Ready</strong>；如果刻意改變的實體配置已經和乾淨的已儲存設定不同，
+控制器也可能是 <strong>Failed</strong>。</p>
+<h2 id="進入拓撲維護"><a class="header" href="#進入拓撲維護">進入拓撲維護</a></h2>
 <ol>
-<li>讓機台保持在現場核准的安全狀態。</li>
-<li>檢查畫面顯示的控制器世代（generation）及設定來源：一般重新掃描應顯示
-<strong>Last working settings</strong>；復原程序則應顯示 <strong>Saved profile</strong>。</li>
-<li>選擇 <strong>Stop waiting</strong>。</li>
-<li>在確認畫面再次核對相同的世代及設定來源。只有在確定要讓控制器維持無法使用
-時才確認。</li>
-<li>畫面顯示 <strong>Stopping controller start…</strong> 時，等待正在進行的 EtherCAT 掃描
-返回。此要求不會強制終止掃描，也不保證最長完成時間。</li>
-<li>等到 HMI 報告啟動已停止並顯示 <strong>Controller unavailable</strong> 後才能繼續。</li>
-<li>修正已連接硬體或已儲存設定，再次啟動控制器，並確認從站及機台狀態。</li>
+<li>選擇 <strong>Enter topology maintenance</strong>。</li>
+<li>閱讀確認內容；只有在機台已安全時才確認。</li>
+<li>等待 Botnana Control 釋放控制器世代及 EtherCAT master。不要重複送出要求。</li>
+<li>確認可以使用 <strong>Scan connected slaves</strong>。</li>
+<li>確認 <strong>Configured slaves</strong> 和 <strong>Detected slaves</strong> 仍彼此分開，而且尚未產生提案。</li>
 </ol>
-<p>停止等待不會儲存或捨棄變更、不會更改已儲存設定或 Last working settings，也不會
-採用偵測到的硬體。如果 <strong>Stop waiting</strong> 消失或要求遭拒，請以重新整理後的狀態為
-準；不要自行認定啟動已停止。</p>
-<h2 id="復原無法使用的控制器"><a class="header" href="#復原無法使用的控制器">復原無法使用的控制器</a></h2>
-<p><strong>Start controller</strong> 一律使用已儲存設定。</p>
+<p>此時控制器無法使用是正常狀態。進入維護不會改變草稿版本或已儲存版本。一般設定
+編輯器仍可看見，但會在維護期間停用。</p>
+<p>如果進入要求遭拒，請讀取畫面原因，不要繞過限制。原因可能是控制器工作尚未完成、
+正在轉換狀態、有未儲存設定、已有另一項維護作業，或執行期資源無法安全釋放。</p>
+<h2 id="變更掃描及比較硬體"><a class="header" href="#變更掃描及比較硬體">變更、掃描及比較硬體</a></h2>
 <ol>
-<li>在 <strong>Controller &amp; Topology</strong> 選擇 <strong>Details</strong>，確認抽屜標題為
-<strong>Controller unavailable</strong>，並讀取失敗原因及嘗試階段。</li>
-<li>檢查已儲存設定的版本，以及它是否和 <strong>Last working settings</strong> 不同。</li>
-<li>如果需要修正，開啟 <strong>Edit in</strong> 欄位所指示的設定畫面，選擇 <strong>Edit profile</strong>
-並進行修改。</li>
-<li>檢查所有未儲存變更，然後選擇一項操作：
+<li>讓機台保持安全，並依現場及硬體說明隔離裝置電源。</li>
+<li>只執行已核准的新增、移除、更換或重新排序。</li>
+<li>檢查裝置電源、EtherCAT-IN/EtherCAT-OUT 方向、纜線接合及實體順序。只有在程序
+允許時才能恢復電源。</li>
+<li>選擇 <strong>Scan connected slaves</strong> 並等待完成。重新整理或關閉瀏覽器不會取消掃描。</li>
+<li>選擇 <strong>Detected slaves</strong>，確認來源指出目前的維護掃描。</li>
+<li>將每個位置、vendor ID、product code 及預期裝置和核准變更及實體標籤比較。</li>
+</ol>
+<p>不能只選擇一部分。每個偵測到的資料列都必須屬於預定配置。若出現任何非預期資料
+列，請修正硬體後再次掃描。新掃描會取代比較結果並使先前的檢查確認失效，但絕不會
+暗中儲存硬體。</p>
+<p>如果偵測拓撲和已儲存拓撲相同，可以離開並恢復維護前控制器設定。如果只需要改變
+預期別名，仍可建立提案。</p>
+<h2 id="建立並檢查完整提案"><a class="header" href="#建立並檢查完整提案">建立並檢查完整提案</a></h2>
+<ol>
+<li>再次確認每個偵測資料列都是預定項目。</li>
+<li>選擇 <strong>Use complete detected topology</strong>。不能只採用部分拓撲。</li>
+<li>確認 <strong>Proposed topology</strong> 的位置、vendor ID 及 product code 和 <strong>Detected
+slaves</strong> 相同。</li>
+<li>必要時編輯 <strong>Expected Alias</strong>，只能輸入 0 至 65535 的整數。這會改變設定中的
+預期值，並可能重新定位參照；不會寫入實體從站 EEPROM。</li>
+<li>選擇 <strong>Review consequences</strong>。</li>
+<li>檢查每一項清除、預設、移動、保留及別名影響。</li>
+<li>只有在每個結果都符合核准的設定及映射計畫時才確認。</li>
+</ol>
+<p>常見影響如下：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>變更</th><th>必須檢查的內容</th></tr>
+</thead>
+<tbody>
+<tr><td>新增從站</td><td>只會建立最小項目；Botnana Control 不會猜測裝置設定或映射。</td></tr>
+<tr><td>移除從站</td><td>檢查所有參照該從站的驅動器、軸、群組、I/O 或通道關係。</td></tr>
+<tr><td>唯一裝置移動</td><td>依身分綁定的參照可能跟著移動，但仍須檢查和位置有關的假設。</td></tr>
+<tr><td>不同型號更換</td><td>裝置專用設定會清除，不會複製到不同硬體。</td></tr>
+<tr><td>無法區分的相同裝置</td><td>Botnana Control 不會猜測移動關係；無法配對的設定會保守地清除。</td></tr>
+</tbody>
+</table>
+</div>
+<p>不要只為了讓儲存按鈕可用而接受清除或預設值。如果影響不是預定結果，請取消、
+修正硬體或計畫後重新掃描，或離開並捨棄草稿。</p>
+<p>移除最後一個從站可以產生零資料列的有效提案。空的已儲存從站清單會被視為尚未
+試車的拓撲；不代表系統會強制禁止日後連接任何從站。</p>
+<h2 id="儲存並套用新拓撲"><a class="header" href="#儲存並套用新拓撲">儲存並套用新拓撲</a></h2>
+<ol>
+<li>確認畫面所示草稿版本的所有必要影響都已接受。</li>
+<li>選擇 <strong>Save reviewed topology (inactive)</strong>。</li>
+<li>等待已儲存版本增加。確認控制器仍無法使用，而且 HMI 顯示已儲存拓撲尚未啟用。</li>
+<li>再次檢查已儲存版本及拓撲。</li>
+<li>選擇 <strong>Apply saved topology</strong>，確認訊息指出預定的已儲存變更。</li>
+<li>等待啟動。不要再送出套用或離開要求。</li>
+<li>只有在控制器顯示 <strong>Ready</strong> 後才能繼續。</li>
+<li>恢復動作許可前，確認從站順序、身分、必要裝置設定及機台狀態。</li>
+</ol>
+<p>儲存不等於啟用。如果在儲存後停止，已儲存設定會和未啟用控制器不同，不可將機台
+視為已就緒。</p>
+<h2 id="不採用掃描結果而離開"><a class="header" href="#不採用掃描結果而離開">不採用掃描結果而離開</a></h2>
+<p>當偵測到的硬體不應在此時啟用時，請使用離開操作：</p>
 <ul>
-<li><strong>Save changes</strong>：讓草稿成為下次啟動使用的已儲存設定。</li>
-<li><strong>Discard changes</strong>：恢復已儲存設定；此操作不會恢復 Last working settings，
-也不會啟動控制器。</li>
+<li>沒有未儲存拓撲草稿時，選擇 <strong>Exit and restore pre-maintenance controller</strong>。</li>
+<li>檢查尚未完成時，選擇 <strong>Exit and discard draft</strong>；此時不能保留草稿。</li>
+<li>草稿已完整檢查時，請明確選擇 <strong>Exit and preserve draft</strong> 或 <strong>Exit and discard
+draft</strong>。</li>
 </ul>
-</li>
-<li>返回 <strong>Controller &amp; Topology</strong>，確認畫面顯示預定使用的已儲存設定版本。</li>
-<li>選擇 <strong>Start controller</strong>。</li>
-<li>等待驗證、清理、替代控制器啟動及可能發生的拓撲重試。如果出現 <strong>Stop
-waiting</strong>，而且重試已無助益，請依照前述停止程序處理。</li>
-<li>控制器顯示 <strong>Ready</strong> 後，確認預期的 EtherCAT 從站及機台狀態，再恢復操作。</li>
-</ol>
-<p>如果 <strong>Save changes</strong> 失敗，變更仍處於未儲存狀態。請修正畫面回報的問題，然後
-選擇 <strong>Retry save</strong>。HMI 確認儲存成功之前，不可將這些變更視為已持久保存。</p>
-<p>另一個瀏覽器工作階段可能在您檢查設定時修改設定。此時 Botnana Control 會拒絕
-過期的編輯、儲存、捨棄或啟動要求。再次操作前，請檢查重新整理後的設定及修訂版
-號。</p>
-<h2 id="復原期間重新連線"><a class="header" href="#復原期間重新連線">復原期間重新連線</a></h2>
-<p>瀏覽器中斷連線不會取消重新掃描、停止要求或控制器啟動。重新連線後，請先檢查
-恢復顯示的控制器世代、設定來源、階段、停止狀態及結果，再進行其他操作。</p>
-<p>如果 HMI 持續停在 <strong>Stopping controller start…</strong>，請記錄可供支援人員使用的
-資訊並升級處理，不要自行認定要求已完成。</p>
-<h2 id="清理失敗時"><a class="header" href="#清理失敗時">清理失敗時</a></h2>
-<p><code>bnc-motion</code> 是在 BN-B3A 上執行的 <strong>Botnana Control 運動控制服務</strong>。它承載
-EtherCAT 控制器執行期；不是 EtherCAT 從站、驅動器或馬達。重新啟動它會中斷
-控制器連線，屬於獲授權管理員的處理動作，不是一般操作員控制項。</p>
-<p>清理程序會停止故障控制器剩餘的工作，並在建立替代控制器之前釋放其執行期連線。
-如果清理失敗，在相同 <code>bnc-motion</code> 程序中再次啟動並不安全。HMI 會停用
-<strong>Start controller</strong>，並指示管理員重新啟動此服務。</p>
-<ol>
-<li>
-<p>不要再送出啟動或重新掃描要求。</p>
-</li>
-<li>
-<p>記錄控制器世代、失敗原因、嘗試階段及結果。</p>
-</li>
-<li>
-<p>儲存重新啟動後仍須保留的設定變更，或捨棄不需要的變更。如果無法儲存，請先
-記錄必要的未儲存數值，因為重新啟動服務可能使其遺失。</p>
-</li>
-<li>
-<p>確認機台仍處於現場核准的安全狀態。</p>
-</li>
-<li>
-<p>請獲授權的管理員執行：</p>
-<pre><code class="language-bash">sudo systemctl restart bnc-motion
-</code></pre>
-</li>
-<li>
-<p>等待 HMI 重新連線並顯示最新狀態。</p>
-</li>
-<li>
-<p>再次檢查已儲存設定。如果控制器已就緒，請確認從站及機台狀態；如果控制器無法
-使用且 <strong>Start controller</strong> 已啟用，請重新執行復原程序。</p>
-</li>
-<li>
-<p>如果清理或服務啟動再次失敗，請停止並聯絡支援人員，不要反覆重新啟動服務。</p>
-</li>
-</ol>
-<p>重新啟動 <code>bnc-motion</code> 不會刪除已儲存設定。未儲存變更不是復原來源，不應預期它們
-會在重新啟動後保留。</p>
-<p>成功清理後發生的啟動失敗並不相同：此時可能再次出現 <strong>Start controller</strong>，因為
-系統仍能安全釋放失敗的替代控制器。只有在 HMI 啟用此操作時才能重試。如果 HMI
-要求重新啟動服務，請改用清理失敗程序。</p>
-<h2 id="提供支援人員的資訊"><a class="header" href="#提供支援人員的資訊">提供支援人員的資訊</a></h2>
-<p>請記錄：</p>
+<p>離開會啟動保留的維護前控制器設定，不會採用偵測掃描。必要時先恢復相容的實體
+硬體，再等待 <strong>Ready</strong> 並確認機台。</p>
+<p>如果提案已經儲存，離開不會回復已儲存設定；已儲存拓撲會繼續保留但尚未啟用。</p>
+<h2 id="重新連線及故障處理"><a class="header" href="#重新連線及故障處理">重新連線及故障處理</a></h2>
+<p>拓撲維護屬於控制器，不屬於單一瀏覽器。重新整理或重新連線後，請等待 <strong>Restoring
+topology maintenance state</strong> 被目前階段取代。繼續前先確認階段、狀態修訂版、草稿及
+已儲存版本、偵測快照、提案和檢查結果。如果另一個工作階段已先執行操作，請檢查
+重新整理後的狀態，不要重複舊要求。</p>
 <ul>
-<li>失敗時間；</li>
-<li>控制器世代；</li>
-<li>失敗原因、嘗試階段及結果；</li>
-<li>是否曾要求 <strong>Stop waiting</strong>，以及 HMI 是否顯示已停止的結果；</li>
-<li>已儲存設定版本，以及當時是否有未儲存變更；</li>
-<li>預期及實際觀察到的 EtherCAT 從站；以及</li>
-<li>經過一次獲授權的 <code>bnc-motion</code> 服務重新啟動後，問題是否再次發生。</li>
+<li>**掃描失敗：**舊快照若標示為非目前狀態，不可使用。檢查電源、連線、纜線及偵測
+狀態；修正原因後才能重試。</li>
+<li>**儲存失敗：**草稿仍未儲存。修正回報的問題，並只在仍顯示相同草稿時重試。</li>
+<li>**套用或離開失敗：**讓機台保持安全，只使用 HMI 提供的重試或保留維護前設定
+離開操作。</li>
+<li>**顯示 Service recovery is required：**不要再啟動程序內操作。記錄階段、版本、
+世代及錯誤，請獲授權管理員依照 <a href="ethercat-controller-recovery.html#清理失敗時">EtherCAT 控制器復原</a>
+中的 <code>bnc-motion</code> 程序處理。</li>
 </ul>
-<p>請將這些資訊保存在現場事件記錄中。不要將 EtherCAT 寫入指令當成疑難排解捷徑。</p>
+<p>向支援人員回報時，請記錄安裝的 Botnana Control 版本、核准變更、變更前後的實體
+身分及順序、維護階段、草稿及已儲存版本、偵測快照、已接受的影響、最終控制器
+狀態，以及任何中斷連線、重試或重新啟動服務的時間。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="botnana-control-tutorial.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="ethercat-controller-recovery.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="ethercat-topology-maintenance.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="configuration-file.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -356,11 +342,11 @@ EtherCAT 控制器執行期；不是 EtherCAT 從站、驅動器或馬達。重�
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="botnana-control-tutorial.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="ethercat-controller-recovery.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="ethercat-topology-maintenance.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="configuration-file.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

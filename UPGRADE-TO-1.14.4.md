@@ -229,30 +229,30 @@ Add them to both `SUMMARY.md` files near the controller-recovery chapter.
 
 Document the concepts:
 
-- [ ] Configured topology.
-- [ ] Detected topology.
-- [ ] Proposed topology.
-- [ ] Shared draft and draft revision.
-- [ ] Saved profile and saved revision.
-- [ ] Running controller.
-- [ ] Retained pre-maintenance controller settings.
+- [x] Configured topology.
+- [x] Detected topology.
+- [x] Proposed topology.
+- [x] Shared draft and draft revision.
+- [x] Saved profile and saved revision.
+- [x] Running controller.
+- [x] Retained pre-maintenance controller settings.
 
 Document the safe workflow:
 
-- [ ] Prepare the machine and rollback plan.
-- [ ] Enter topology maintenance.
-- [ ] Change the physical hardware under the site's safety procedure.
-- [ ] Scan connected slaves.
-- [ ] Compare every detected slave with the intended physical change.
-- [ ] Use the complete detected topology; explain that partial adoption is not
+- [x] Prepare the machine and rollback plan.
+- [x] Enter topology maintenance.
+- [x] Change the physical hardware under the site's safety procedure.
+- [x] Scan connected slaves.
+- [x] Compare every detected slave with the intended physical change.
+- [x] Use the complete detected topology; explain that partial adoption is not
       available.
-- [ ] Review additions, removals, moves, replacements, aliases, cleared
+- [x] Review additions, removals, moves, replacements, aliases, cleared
       settings, and ambiguous duplicate identities.
-- [ ] Save the reviewed topology while it remains inactive.
-- [ ] Apply the exact saved profile and wait for **Ready**.
-- [ ] Exit while preserving or discarding the draft when the detected hardware
+- [x] Save the reviewed topology while it remains inactive.
+- [x] Apply the exact saved profile and wait for **Ready**.
+- [x] Exit while preserving or discarding the draft when the detected hardware
       should not be adopted.
-- [ ] Recover after browser disconnection, scan failure, save failure, apply
+- [x] Recover after browser disconnection, scan failure, save failure, apply
       failure, or required service recovery.
 
 Reference:
