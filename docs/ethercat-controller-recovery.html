@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-04b966fe.js";
+            window.path_to_searchindex_js = "searchindex-ee7bc4d0.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-9459ad5c.js"></script>
@@ -217,7 +217,11 @@ Topology</strong> 顯示 <strong>Controller unavailable</strong> 時，請使用
 <li>確認機台已進入現場核准的安全狀態。</li>
 <li>開啟 <strong>Controller &amp; Topology</strong>。</li>
 <li>選擇 <strong>Rescan EtherCAT</strong>。</li>
-<li>觀察畫面顯示的啟動階段及拓撲重試倒數。</li>
+<li>觀察畫面顯示的啟動階段及拓撲重試倒數。拓撲重試期間，<strong>Detected slaves</strong>
+會在每次完成完整實體掃描後更新，因此可以立即看見新增、移除、更換或重新排序
+的從站。</li>
+<li>將 <strong>Detected slaves</strong> 和預定的實體串列逐一比較。顯示變更後的掃描結果不代表
+已儲存或採用該拓撲。</li>
 <li>如果出現 <strong>Stop waiting</strong>，而且繼續重試已無助益，請依照
 <a href="#停止拓撲等待">停止拓撲等待</a>處理；否則繼續等待。</li>
 <li>控制器顯示 <strong>Ready</strong> 後，確認所有預期的 EtherCAT 從站都已出現，並在恢復

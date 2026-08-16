@@ -41,10 +41,14 @@ It does not apply unsaved profile edits.
 1. Confirm the machine is in the site-approved safe condition.
 2. Open **Controller & Topology**.
 3. Select **Rescan EtherCAT**.
-4. Watch the displayed startup stage and topology retry countdown.
-5. If **Stop waiting** appears and further retry is not useful, follow
+4. Watch the displayed startup stage and topology retry countdown. During
+   topology retry, **Detected slaves** updates from each complete physical scan,
+   so added, removed, replaced, or reordered slaves become visible immediately.
+5. Compare **Detected slaves** with the intended physical chain. Displaying a
+   changed scan does not save or adopt that topology.
+6. If **Stop waiting** appears and further retry is not useful, follow
    [Stop a Topology Wait](#stop-a-topology-wait). Otherwise, continue waiting.
-6. When the controller reports **Ready**, confirm that all expected EtherCAT
+7. When the controller reports **Ready**, confirm that all expected EtherCAT
    slaves appear and verify the machine state before resuming operation.
 
 If the rescan ends with **Controller unavailable**, use
