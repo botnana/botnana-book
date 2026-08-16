@@ -28,7 +28,7 @@ Use the action that matches the current display:
 | Controller is ready and **Rescan EtherCAT** is available | Perform a normal rescan. |
 | Lifecycle is **failed**, **Details** is titled **Controller unavailable**, and **Start controller** is available | Review the saved profile, then start the controller. The command bar may also report that the last-working-settings attempt failed. |
 | **Start controller** is unavailable because the profile has unsaved changes | Save the intended changes or discard them, then review the saved profile again. |
-| Startup is retrying topology verification and the command bar offers **Stop waiting** | Continue waiting, or stop the unproductive topology wait. You do not need to open **Details** to find this action. |
+| An operator-requested controller start is retrying topology verification and the command bar offers **Stop waiting** | Continue waiting, or stop the unproductive topology wait. You do not need to open **Details** to find this action. The initial boot attempt is not stoppable. |
 | Startup is in progress without **Stop waiting** | Wait for success or failure; do not submit another request. |
 | Recovery status is unavailable | Wait for the HMI to reconnect and display fresh authoritative status. |
 | The HMI requires a `bnc-motion` restart | Follow [When cleanup fails](#when-cleanup-fails). |
@@ -58,8 +58,10 @@ failed**, the controller is unavailable. Select **Details** to open the
 
 ## Stop a Topology Wait
 
-The **Controller & Topology** command bar offers **Stop waiting** only while
-startup is retrying EtherCAT topology verification. It is a cooperative stop, not a rollback or emergency stop. The
+The **Controller & Topology** command bar offers **Stop waiting** only while an
+operator-requested controller start is retrying EtherCAT topology verification
+and the controller reports that attempt as stoppable. The initial boot attempt
+is not stoppable. It is a cooperative stop, not a rollback or emergency stop. The
 previous controller has already been dismantled, and the controller remains
 unavailable after the wait stops.
 
