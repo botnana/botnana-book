@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-38ee73df.js";
+            window.path_to_searchindex_js = "searchindex-328881bb.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -63,9 +63,9 @@
                 }
             });
         </script>
-    <div style="display: none"><a href="#cover">cover</a><a href="#index">index</a><a href="#hardware">hardware</a><a href="#bn-b3a">bn-b3a</a><a href="#software">software</a><a href="#system-archetecture">system-archetecture</a><a href="#botnana-control-tutorial">botnana-control-tutorial</a><a href="#configuration-file">configuration-file</a><a href="#programming">programming</a><a href="#json-api">json-api</a><a href="#real-time-script-api">real-time-script-api</a><a href="#host-primitives">host-primitives</a><a href="#ethercat-primitives">ethercat-primitives</a><a href="#ethercat-drive-primitives">ethercat-drive-primitives</a><a href="#ethercat-io-primitives">ethercat-io-primitives</a><a href="#ethercat-uart-primitives">ethercat-uart-primitives</a><a href="#ethercat-encoder-primitives">ethercat-encoder-primitives</a><a href="#ethercat-gateway-primitives">ethercat-gateway-primitives</a><a href="#axis-group">axis-group</a><a href="#known-working-hardware">known-working-hardware</a><a href="#release-notes">release-notes</a><a href="#update-software">update-software</a><a href="#faq">faq</a><a href="#faq-login-linux">faq-login-linux</a><a href="#faq-gadget">faq-gadget</a><a href="#faq-windows10_rndis">faq-windows10_rndis</a></div>
+    <div style="display: none"><a href="#cover">cover</a><a href="#index">index</a><a href="#hardware">hardware</a><a href="#bn-b3a">bn-b3a</a><a href="#software">software</a><a href="#system-archetecture">system-archetecture</a><a href="#botnana-control-tutorial">botnana-control-tutorial</a><a href="#configuration-file">configuration-file</a><a href="#programming">programming</a><a href="#json-api">json-api</a><a href="#real-time-script-api">real-time-script-api</a><a href="#host-primitives">host-primitives</a><a href="#ethercat-primitives">ethercat-primitives</a><a href="#ethercat-drive-primitives">ethercat-drive-primitives</a><a href="#ethercat-io-primitives">ethercat-io-primitives</a><a href="#ethercat-uart-primitives">ethercat-uart-primitives</a><a href="#ethercat-encoder-primitives">ethercat-encoder-primitives</a><a href="#ethercat-gateway-primitives">ethercat-gateway-primitives</a><a href="#axis-group">axis-group</a><a href="#known-working-hardware">known-working-hardware</a><a href="#release-notes">release-notes</a><a href="#update-software">update-software</a><a href="#faq">faq</a><a href="#faq-login-linux">faq-login-linux</a><a href="#faq-gadget">faq-gadget</a></div>
         <!-- Start loading toc.js asap -->
-        <script src="toc-830fa069.js"></script>
+        <script src="toc-b4ca1971.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -385,11 +385,9 @@
 <h1 id="botnana-control-入門-1"><a href="#botnana-control-入門-1" class="header">Botnana Control 入門</a></h1>
 <h2 id="botnana-control-入門"><a class="header" href="#botnana-control-入門">Botnana Control 入門</a></h2>
 <p>Botnana BN-B3A 預設於開機時自動啟動動程科技的 Botnana Control P2P 軸控軟體。</p>
-<p>BN-B3A 使用 Type-C (OTG) 接口到上位電腦的 USB 接口。而通訊的協定是 RNDIS。
-因此，使用前需在上位電腦安裝 RNDIS 驅動程式。如果上位電腦是 Windows 10，請參考
-<a href="#windows-10-rndis-驅動程式安裝">Windows 10 RNDIS 驅動程式安裝</a> 。Windows 11 的安
-裝方式類似。如果上位電腦是 Linux，則驅動程式應已安裝。</p>
-<p>安裝好驅動程式後，使用瀏覽器連上 http://192.168.7.2:3000 。可見到以下畫面。</p>
+<p>將上位電腦連接至 BN-B3A 控制網路，然後使用瀏覽器連上
+<a href="http://192.168.7.2:3000">http://192.168.7.2:3000</a>。如果控制器使用其他已設定的
+位址，請改用該位址。連線後可見到以下畫面。</p>
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="../figures/b3a-controlsheet.png" alt="Botnana Controlsheet"><span class="img-wrapper"><img src="../figures/b3a-controlsheet.png" alt="Botnana Controlsheet"></span></label></p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="設定檔-1"><a href="#設定檔-1" class="header">設定檔</a></h1>
@@ -4033,7 +4031,6 @@ repeat
 <li><a href="#登入-linux-系統">登入 Linux 系統</a></li>
 <li><a href="faq/network.html">網路設定</a></li>
 <li><a href="#usb-連線-ip-設定-1">USB連線IP設定</a></li>
-<li><a href="#windows-10-rndis-驅動程式安裝">Windows 10 RNDIS 驅動程式安裝</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="登入-linux-系統"><a class="header" href="#登入-linux-系統">登入 Linux 系統</a></h1>
@@ -4103,54 +4100,6 @@ HTTPS，因此以下網頁會出現紅色不安全警告，可以忽略此警告
 <h3 id="如果忘記了修改了的-ip-該怎麼辦"><a class="header" href="#如果忘記了修改了的-ip-該怎麼辦">如果忘記了修改了的 IP ，該怎麼辦？</a></h3>
 <p>BN-B3A 有 HDMI 及 USB，接上螢幕及鍵盤，開機後可使用使用者名稱 debian 登入，密碼為 temppwd，登入後，執行 <code>ip a</code>。參考下圖，usb0 的 IP 就是設定的 IP，在圖中顯示的 IP 是 192.168.7.2 。</p>
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/b3a-ip-a.png" alt=""><span class="img-wrapper"><img src="figures/b3a-ip-a.png" alt=""></span></label></p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="windows-10-rndis-驅動程式安裝"><a href="#windows-10-rndis-驅動程式安裝" class="header">Windows 10 RNDIS 驅動程式安裝</a></h1>
-<h2 id="windows-10-透過-type-c-usb-與-botnana-bn-b3a-連線時需先安裝-rndis-驅動程式"><a class="header" href="#windows-10-透過-type-c-usb-與-botnana-bn-b3a-連線時需先安裝-rndis-驅動程式">WINDOWS 10 透過 Type-C USB 與 Botnana BN-B3A 連線時需先安裝 RNDIS 驅動程式</a></h2>
-<ol>
-<li>
-<p>將 Botnana BN-B3A Type-C USB 埠與電腦連接。</p>
-</li>
-<li>
-<p>如果看到的是以下未知裝置，請先解除安裝裝置，再重新安裝 RNDIS 驅動程式</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/win10-unknown-device.png" alt=""><span class="img-wrapper"><img src="figures/win10-unknown-device.png" alt=""></span></label></p>
-</li>
-<li>
-<p>如果看到的是以下的 Remote NDS 或是 RNDIS 裝置，代表已安裝，或可選擇更新驅動程式。</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/win10-recognized.png" alt=""><span class="img-wrapper"><img src="figures/win10-recognized.png" alt=""></span></label></p>
-<p>或是</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="faq/win10_12_got_usb_rndis_interface.png" alt=""><span class="img-wrapper"><img src="faq/win10_12_got_usb_rndis_interface.png" alt=""></span></label></p>
-</li>
-<li>
-<p>安裝驅動程式時，選瀏覽電腦上的驅動程式軟體</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/win10-browse-device-drivers.png" alt=""><span class="img-wrapper"><img src="figures/win10-browse-device-drivers.png" alt=""></span></label></p>
-</li>
-<li>
-<p>選讓我從電腦上的可用驅動程式清單中挑選</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/win10-select-from-computer.png" alt=""><span class="img-wrapper"><img src="figures/win10-select-from-computer.png" alt=""></span></label></p>
-</li>
-<li>
-<p>硬體類型選 網路介面卡</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="faq/win10_8_select_network_interface.png" alt=""><span class="img-wrapper"><img src="faq/win10_8_select_network_interface.png" alt=""></span></label></p>
-</li>
-<li>
-<p>製造商 / 型號︰Microsoft / USB RNDIS介面卡</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="faq/win10_9_select_rndis_drive.png" alt=""><span class="img-wrapper"><img src="faq/win10_9_select_rndis_drive.png" alt=""></span></label></p>
-</li>
-<li>
-<p>忽略警告訊息</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="faq/win10_10_ignore_warning.png" alt=""><span class="img-wrapper"><img src="faq/win10_10_ignore_warning.png" alt=""></span></label></p>
-</li>
-<li>
-<p>驅動程式更新成功</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="faq/win10_11_install_rndis_ok.png" alt=""><span class="img-wrapper"><img src="faq/win10_11_install_rndis_ok.png" alt=""></span></label></p>
-</li>
-<li>
-<p>檢查是否出現這個裝置︰裝置管理員/網路介面卡/USB RNDIS介面卡/Remote NDIS Device</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/win10-recognized.png" alt=""><span class="img-wrapper"><img src="figures/win10-recognized.png" alt=""></span></label></p>
-<p>或是</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="faq/win10_12_got_usb_rndis_interface.png" alt=""><span class="img-wrapper"><img src="faq/win10_12_got_usb_rndis_interface.png" alt=""></span></label></p>
-</li>
-</ol>
 
                     </main>
 

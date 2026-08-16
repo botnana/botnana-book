@@ -33,7 +33,6 @@
 * [常見問題](./faq.md)
   * [登入 Linux 系統](./faq/login-linux.md)
   * [USB 連線 IP 設定](./faq/gadget.md)
-  * [Windows 10 RNDIS 驅動程式安裝](./faq/windows10_rndis.md)
 
 -------------------------
 

@@ -33,7 +33,6 @@
 * [Frequently Asked Questions](./faq.md)
   * [Log In to Linux](./faq/login-linux.md)
   * [USB Connection IP Settings](./faq/gadget.md)
-  * [Install the Windows 10 RNDIS Driver](./faq/windows10_rndis.md)
 
 -------------------------
 

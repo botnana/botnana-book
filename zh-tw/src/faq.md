@@ -3,4 +3,3 @@
 * [登入 Linux 系統](./faq/login-linux.md)
 * [網路設定](./faq/network.md)
 * [USB連線IP設定](./faq/gadget.md)
-* [Windows 10 RNDIS 驅動程式安裝](./faq/windows10_rndis.md)
