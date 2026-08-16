@@ -19,11 +19,12 @@ The 1.14.4 book update has been published to the `master` branch, but the
 control repository still has release-closeout work:
 
 - `motion/Cargo.toml` currently uses product version `1.14.4` and package
-  revision `4`; additional 1.14.4 package revisions may be required before
+  revision `5`; additional 1.14.4 package revisions may be required before
   final release closeout.
-- `debian/changelog` finalizes revisions `1.14.4-2` through `1.14.4-4` for
-  `unstable`; revision 3 adds the current-IP display correction, and revision 4
-  refreshes Detected slaves from each complete physical scan during rescan.
+- `debian/changelog` finalizes revisions `1.14.4-2` through `1.14.4-5` for
+  `unstable`; revision 3 adds the current-IP display correction, revision 4
+  refreshes Detected slaves during rescan, and revision 5 exposes **Stop
+  waiting** directly in the controller command bar.
 - The bilingual book identifies version 1.14.4 with publication date
   August 17, 2026.
 - The release notes, software-update and rollback procedures, current HMI
@@ -59,7 +60,7 @@ acceptance, and documentation scope decisions are complete.
 Before changing the book, resolve these release questions with the control
 repository maintainers.
 
-- [x] Confirm that all commits through `bc35e91dd` on
+- [x] Confirm that all commits through `c28074c94` on
       `bounded-hmi-websocket-throughput` belong in 1.14.4.
 - [x] Confirm the final Botnana Control version string (`1.14.4`).
 - [x] Confirm the Debian filename pattern
@@ -67,7 +68,7 @@ repository maintainers.
 - [ ] Confirm the final 1.14.4 Debian package revision after the remaining
       packaging iterations.
 - [x] Confirm the book publication date (August 17, 2026).
-- [x] Finalize the control repository Debian changelog through `1.14.4-4`.
+- [x] Finalize the control repository Debian changelog through `1.14.4-5`.
 - [ ] Decide whether the third-party HMI WebSocket profile is a supported
       integration contract or an operating recommendation.
 - [ ] Confirm the exact WebSocket overload message and limits for the final
