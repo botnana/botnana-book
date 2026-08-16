@@ -199,19 +199,19 @@ Add them to:
 
 Document:
 
-- [ ] Difference between a normal rescan and recovery from an unavailable
+- [x] Difference between a normal rescan and recovery from an unavailable
       controller.
-- [ ] The **Controller & Topology** work area.
-- [ ] **Rescan EtherCAT** for a ready controller.
-- [ ] Startup stages and topology retry countdown.
-- [ ] **Stop waiting** and its cooperative, non-rollback behavior.
-- [ ] Reviewing the saved profile before **Start controller**.
-- [ ] Saving or discarding profile changes before startup.
-- [ ] Rejection of stale actions after another session changes the profile.
-- [ ] Reconnect behavior during a controller start.
-- [ ] Cleanup failure and the requirement for an authorized
+- [x] The **Controller & Topology** work area.
+- [x] **Rescan EtherCAT** for a ready controller.
+- [x] Startup stages and topology retry countdown.
+- [x] **Stop waiting** and its cooperative, non-rollback behavior.
+- [x] Reviewing the saved profile before **Start controller**.
+- [x] Saving or discarding profile changes before startup.
+- [x] Rejection of stale actions after another session changes the profile.
+- [x] Reconnect behavior during a controller start.
+- [x] Cleanup failure and the requirement for an authorized
       `sudo systemctl restart bnc-motion`.
-- [ ] Information an operator should collect for support.
+- [x] Information an operator should collect for support.
 
 Reference:
 

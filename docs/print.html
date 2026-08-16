@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-0fcd1875.js";
+            window.path_to_searchindex_js = "searchindex-04b966fe.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -63,9 +63,9 @@
                 }
             });
         </script>
-    <div style="display: none"><a href="#cover">cover</a><a href="#index">index</a><a href="#hardware">hardware</a><a href="#bn-b3a">bn-b3a</a><a href="#software">software</a><a href="#system-archetecture">system-archetecture</a><a href="#botnana-control-tutorial">botnana-control-tutorial</a><a href="#configuration-file">configuration-file</a><a href="#programming">programming</a><a href="#json-api">json-api</a><a href="#real-time-script-api">real-time-script-api</a><a href="#host-primitives">host-primitives</a><a href="#ethercat-primitives">ethercat-primitives</a><a href="#ethercat-drive-primitives">ethercat-drive-primitives</a><a href="#ethercat-io-primitives">ethercat-io-primitives</a><a href="#ethercat-uart-primitives">ethercat-uart-primitives</a><a href="#ethercat-encoder-primitives">ethercat-encoder-primitives</a><a href="#ethercat-gateway-primitives">ethercat-gateway-primitives</a><a href="#axis-group">axis-group</a><a href="#known-working-hardware">known-working-hardware</a><a href="#release-notes">release-notes</a><a href="#update-software">update-software</a><a href="#faq">faq</a><a href="#faq-login-linux">faq-login-linux</a><a href="#faq-gadget">faq-gadget</a></div>
+    <div style="display: none"><a href="#cover">cover</a><a href="#index">index</a><a href="#hardware">hardware</a><a href="#bn-b3a">bn-b3a</a><a href="#software">software</a><a href="#system-archetecture">system-archetecture</a><a href="#botnana-control-tutorial">botnana-control-tutorial</a><a href="#ethercat-controller-recovery">ethercat-controller-recovery</a><a href="#configuration-file">configuration-file</a><a href="#programming">programming</a><a href="#json-api">json-api</a><a href="#real-time-script-api">real-time-script-api</a><a href="#host-primitives">host-primitives</a><a href="#ethercat-primitives">ethercat-primitives</a><a href="#ethercat-drive-primitives">ethercat-drive-primitives</a><a href="#ethercat-io-primitives">ethercat-io-primitives</a><a href="#ethercat-uart-primitives">ethercat-uart-primitives</a><a href="#ethercat-encoder-primitives">ethercat-encoder-primitives</a><a href="#ethercat-gateway-primitives">ethercat-gateway-primitives</a><a href="#axis-group">axis-group</a><a href="#known-working-hardware">known-working-hardware</a><a href="#release-notes">release-notes</a><a href="#update-software">update-software</a><a href="#faq">faq</a><a href="#faq-login-linux">faq-login-linux</a><a href="#faq-gadget">faq-gadget</a></div>
         <!-- Start loading toc.js asap -->
-        <script src="toc-b4ca1971.js"></script>
+        <script src="toc-9459ad5c.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -389,6 +389,160 @@
 <a href="http://192.168.7.2:3000">http://192.168.7.2:3000</a>。如果控制器使用其他已設定的
 位址，請改用該位址。連線後可見到以下畫面。</p>
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/b3a-controlsheet.png" alt="Botnana Control 介面"><span class="img-wrapper"><img src="figures/b3a-controlsheet.png" alt="Botnana Control 介面"></span></label></p>
+<p>如果 <strong>Controller &amp; Topology</strong> 顯示 <strong>Controller unavailable</strong>，請依照
+<a href="#ethercat-控制器復原">EtherCAT 控制器復原</a>處理。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="ethercat-控制器復原"><a class="header" href="#ethercat-控制器復原">EtherCAT 控制器復原</a></h1>
+<p>當 Botnana Control 必須重新偵測已連接的 EtherCAT 硬體，或 <strong>Controller &amp;
+Topology</strong> 顯示 <strong>Controller unavailable</strong> 時，請使用本程序。</p>
+<blockquote>
+<p>**安全注意事項：**重新掃描、啟動或重新啟動控制器之前，請依現場核准的程序讓
+機台進入安全停止狀態。這些 HMI 操作是維護控制，不是安全功能。控制器無法使用
+或正在啟動時，動作控制、指令稿及即時 EtherCAT 控制都無法使用。</p>
+</blockquote>
+<h2 id="瞭解控制器狀態"><a class="header" href="#瞭解控制器狀態">瞭解控制器狀態</a></h2>
+<p>HMI 會分開管理下列狀態：</p>
+<ul>
+<li>**草稿設定（draft profile）**是 HMI 目前顯示、尚在編輯的內容。</li>
+<li>**已儲存設定（saved profile）**是持久保存的設定，也是 <strong>Start controller</strong>
+使用的設定。</li>
+<li><strong>Last working settings</strong> 是上一次正常運作控制器所保留的設定，一般重新掃描會
+使用這份設定。</li>
+<li>**運作中的控制器（running controller）**是目前啟用的 EtherCAT 控制器。儲存
+設定不會啟動控制器；啟動控制器也不會自動儲存啟動時偵測到的硬體。</li>
+</ul>
+<p>請依目前畫面選擇操作：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>HMI 狀態</th><th>操作</th></tr>
+</thead>
+<tbody>
+<tr><td>控制器已就緒且可使用 <strong>Rescan EtherCAT</strong></td><td>執行一般重新掃描。</td></tr>
+<tr><td>顯示 <strong>Controller unavailable</strong> 且可使用 <strong>Start controller</strong></td><td>檢查已儲存設定，再啟動控制器。</td></tr>
+<tr><td>因設定有未儲存變更而無法使用 <strong>Start controller</strong></td><td>儲存預定的變更或將其捨棄，然後重新檢查已儲存設定。</td></tr>
+<tr><td>啟動程序正在重試拓撲驗證，且可使用 <strong>Stop waiting</strong></td><td>繼續等待，或停止已無助益的拓撲等待。</td></tr>
+<tr><td>啟動進行中，但沒有 <strong>Stop waiting</strong></td><td>等待成功或失敗；不要送出另一項要求。</td></tr>
+<tr><td>尚無復原狀態</td><td>等待 HMI 重新連線並顯示最新的權威狀態。</td></tr>
+<tr><td>HMI 要求重新啟動 <code>bnc-motion</code></td><td>依照<a href="#清理失敗時">清理失敗時</a>處理。</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="重新掃描已就緒的控制器"><a class="header" href="#重新掃描已就緒的控制器">重新掃描已就緒的控制器</a></h2>
+<p>一般重新掃描會使用 <strong>Last working settings</strong> 重建運作中的控制器，不會套用尚未
+儲存的設定變更。</p>
+<ol>
+<li>確認機台已進入現場核准的安全狀態。</li>
+<li>開啟 <strong>Controller &amp; Topology</strong>。</li>
+<li>選擇 <strong>Rescan EtherCAT</strong>。</li>
+<li>觀察畫面顯示的啟動階段及拓撲重試倒數。</li>
+<li>如果出現 <strong>Stop waiting</strong>，而且繼續重試已無助益，請依照
+<a href="#停止拓撲等待">停止拓撲等待</a>處理；否則繼續等待。</li>
+<li>控制器顯示 <strong>Ready</strong> 後，確認所有預期的 EtherCAT 從站都已出現，並在恢復
+操作前確認機台狀態。</li>
+</ol>
+<p>如果重新掃描最後顯示 <strong>Controller unavailable</strong>，請執行
+<a href="#復原無法使用的控制器">復原無法使用的控制器</a>。</p>
+<h2 id="停止拓撲等待"><a class="header" href="#停止拓撲等待">停止拓撲等待</a></h2>
+<p>只有在啟動程序重試 EtherCAT 拓撲驗證時，才會提供 <strong>Stop waiting</strong>。這是協同式
+停止，不是回復、強制停止或緊急停止。先前的控制器已經拆除；停止等待後，控制器
+仍然無法使用。</p>
+<ol>
+<li>讓機台保持在現場核准的安全狀態。</li>
+<li>檢查畫面顯示的控制器世代（generation）及設定來源：一般重新掃描應顯示
+<strong>Last working settings</strong>；復原程序則應顯示 <strong>Saved profile</strong>。</li>
+<li>選擇 <strong>Stop waiting</strong>。</li>
+<li>在確認畫面再次核對相同的世代及設定來源。只有在確定要讓控制器維持無法使用
+時才確認。</li>
+<li>畫面顯示 <strong>Stopping controller start…</strong> 時，等待正在進行的 EtherCAT 掃描
+返回。此要求不會強制終止掃描，也不保證最長完成時間。</li>
+<li>等到 HMI 報告啟動已停止並顯示 <strong>Controller unavailable</strong> 後才能繼續。</li>
+<li>修正已連接硬體或已儲存設定，再次啟動控制器，並確認從站及機台狀態。</li>
+</ol>
+<p>停止等待不會儲存或捨棄變更、不會更改已儲存設定或 Last working settings，也不會
+採用偵測到的硬體。如果 <strong>Stop waiting</strong> 消失或要求遭拒，請以重新整理後的狀態為
+準；不要自行認定啟動已停止。</p>
+<h2 id="復原無法使用的控制器"><a class="header" href="#復原無法使用的控制器">復原無法使用的控制器</a></h2>
+<p><strong>Start controller</strong> 一律使用已儲存設定。</p>
+<ol>
+<li>在 <strong>Controller &amp; Topology</strong> 讀取失敗原因及嘗試階段。</li>
+<li>檢查已儲存設定的版本，以及它是否和 <strong>Last working settings</strong> 不同。</li>
+<li>如果需要修正，開啟 <strong>Edit in</strong> 欄位所指示的設定畫面，選擇 <strong>Edit profile</strong>
+並進行修改。</li>
+<li>檢查所有未儲存變更，然後選擇一項操作：
+<ul>
+<li><strong>Save changes</strong>：讓草稿成為下次啟動使用的已儲存設定。</li>
+<li><strong>Discard changes</strong>：恢復已儲存設定；此操作不會恢復 Last working settings，
+也不會啟動控制器。</li>
+</ul>
+</li>
+<li>返回 <strong>Controller &amp; Topology</strong>，確認畫面顯示預定使用的已儲存設定版本。</li>
+<li>選擇 <strong>Start controller</strong>。</li>
+<li>等待驗證、清理、替代控制器啟動及可能發生的拓撲重試。如果出現 <strong>Stop
+waiting</strong>，而且重試已無助益，請依照前述停止程序處理。</li>
+<li>控制器顯示 <strong>Ready</strong> 後，確認預期的 EtherCAT 從站及機台狀態，再恢復操作。</li>
+</ol>
+<p>如果 <strong>Save changes</strong> 失敗，變更仍處於未儲存狀態。請修正畫面回報的問題，然後
+選擇 <strong>Retry save</strong>。HMI 確認儲存成功之前，不可將這些變更視為已持久保存。</p>
+<p>另一個瀏覽器工作階段可能在您檢查設定時修改設定。此時 Botnana Control 會拒絕
+過期的編輯、儲存、捨棄或啟動要求。再次操作前，請檢查重新整理後的設定及修訂版
+號。</p>
+<h2 id="復原期間重新連線"><a class="header" href="#復原期間重新連線">復原期間重新連線</a></h2>
+<p>瀏覽器中斷連線不會取消重新掃描、停止要求或控制器啟動。重新連線後，請先檢查
+恢復顯示的控制器世代、設定來源、階段、停止狀態及結果，再進行其他操作。</p>
+<p>如果 HMI 持續停在 <strong>Stopping controller start…</strong>，請記錄可供支援人員使用的
+資訊並升級處理，不要自行認定要求已完成。</p>
+<h2 id="清理失敗時"><a class="header" href="#清理失敗時">清理失敗時</a></h2>
+<p>清理程序會停止故障控制器剩餘的工作，並在建立替代控制器之前釋放其執行期連線。
+如果清理失敗，在相同 <code>bnc-motion</code> 程序中再次啟動並不安全。HMI 會停用
+<strong>Start controller</strong>，並指示管理員重新啟動服務。</p>
+<ol>
+<li>
+<p>不要再送出啟動或重新掃描要求。</p>
+</li>
+<li>
+<p>記錄控制器世代、失敗原因、嘗試階段及結果。</p>
+</li>
+<li>
+<p>儲存重新啟動後仍須保留的設定變更，或捨棄不需要的變更。如果無法儲存，請先
+記錄必要的未儲存數值，因為重新啟動服務可能使其遺失。</p>
+</li>
+<li>
+<p>確認機台仍處於現場核准的安全狀態。</p>
+</li>
+<li>
+<p>請獲授權的管理員執行：</p>
+<pre><code class="language-bash">sudo systemctl restart bnc-motion
+</code></pre>
+</li>
+<li>
+<p>等待 HMI 重新連線並顯示最新狀態。</p>
+</li>
+<li>
+<p>再次檢查已儲存設定。如果控制器已就緒，請確認從站及機台狀態；如果控制器無法
+使用且 <strong>Start controller</strong> 已啟用，請重新執行復原程序。</p>
+</li>
+<li>
+<p>如果清理或服務啟動再次失敗，請停止並聯絡支援人員，不要反覆重新啟動服務。</p>
+</li>
+</ol>
+<p>重新啟動 <code>bnc-motion</code> 不會刪除已儲存設定。未儲存變更不是復原來源，不應預期它們
+會在重新啟動後保留。</p>
+<p>成功清理後發生的啟動失敗並不相同：此時可能再次出現 <strong>Start controller</strong>，因為
+系統仍能安全釋放失敗的替代控制器。只有在 HMI 啟用此操作時才能重試。如果 HMI
+要求重新啟動服務，請改用清理失敗程序。</p>
+<h2 id="提供支援人員的資訊"><a class="header" href="#提供支援人員的資訊">提供支援人員的資訊</a></h2>
+<p>請記錄：</p>
+<ul>
+<li>失敗時間；</li>
+<li>控制器世代；</li>
+<li>失敗原因、嘗試階段及結果；</li>
+<li>是否曾要求 <strong>Stop waiting</strong>，以及 HMI 是否顯示已停止的結果；</li>
+<li>已儲存設定版本，以及當時是否有未儲存變更；</li>
+<li>預期及實際觀察到的 EtherCAT 從站；以及</li>
+<li>經過一次獲授權的 <code>bnc-motion</code> 服務重新啟動後，問題是否再次發生。</li>
+</ul>
+<p>請將這些資訊保存在現場事件記錄中。不要將 EtherCAT 寫入指令當成疑難排解捷徑。</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="設定檔-1"><a href="#設定檔-1" class="header">設定檔</a></h1>
 <h2 id="設定檔"><a class="header" href="#設定檔">設定檔</a></h2>

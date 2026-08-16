@@ -7,3 +7,6 @@ Botnana BN-B3A 預設於開機時自動啟動動程科技的 Botnana Control P2P
 位址，請改用該位址。連線後可見到以下畫面。
 
 ![Botnana Control 介面](./figures/b3a-controlsheet.png)
+
+如果 **Controller & Topology** 顯示 **Controller unavailable**，請依照
+[EtherCAT 控制器復原](./ethercat-controller-recovery.md)處理。

@@ -11,6 +11,7 @@
 ### 3. Getting Started
 * [System Architecture](./system-archetecture.md)
 * [Getting Started with Botnana Control](./botnana-control-tutorial.md)
+* [EtherCAT Controller Recovery](./ethercat-controller-recovery.md)
 * [Configuration File](./configuration-file.md)
 
 ### 4. Software Development

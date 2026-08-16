@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>JSON API - Botnana Control</title>
+        <title>EtherCAT 控制器復原 - Botnana Control</title>
 
 
         <!-- Custom HTML head -->
@@ -174,466 +174,167 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="json-api"><a class="header" href="#json-api">JSON API</a></h1>
-<p>Botnana Control 的 JSON API 採用 <a href="http://www.jsonrpc.org/specification">JSON-RPC 2.0</a> 。</p>
-<p>程式可以使用 JSON 格式和 Botnana Control 溝通。此一方法適用於各種支援 JSON 格式且具有 Websocket 函式庫的語言，例如：</p>
+                        <h1 id="ethercat-控制器復原"><a class="header" href="#ethercat-控制器復原">EtherCAT 控制器復原</a></h1>
+<p>當 Botnana Control 必須重新偵測已連接的 EtherCAT 硬體，或 <strong>Controller &amp;
+Topology</strong> 顯示 <strong>Controller unavailable</strong> 時，請使用本程序。</p>
+<blockquote>
+<p>**安全注意事項：**重新掃描、啟動或重新啟動控制器之前，請依現場核准的程序讓
+機台進入安全停止狀態。這些 HMI 操作是維護控制，不是安全功能。控制器無法使用
+或正在啟動時，動作控制、指令稿及即時 EtherCAT 控制都無法使用。</p>
+</blockquote>
+<h2 id="瞭解控制器狀態"><a class="header" href="#瞭解控制器狀態">瞭解控制器狀態</a></h2>
+<p>HMI 會分開管理下列狀態：</p>
 <ul>
-<li>C#</li>
-<li>C++</li>
-<li>Python</li>
+<li>**草稿設定（draft profile）**是 HMI 目前顯示、尚在編輯的內容。</li>
+<li>**已儲存設定（saved profile）**是持久保存的設定，也是 <strong>Start controller</strong>
+使用的設定。</li>
+<li><strong>Last working settings</strong> 是上一次正常運作控制器所保留的設定，一般重新掃描會
+使用這份設定。</li>
+<li>**運作中的控制器（running controller）**是目前啟用的 EtherCAT 控制器。儲存
+設定不會啟動控制器；啟動控制器也不會自動儲存啟動時偵測到的硬體。</li>
 </ul>
-<h2 id="回傳資料格式"><a class="header" href="#回傳資料格式">回傳資料格式</a></h2>
-<p>Botnana Control 若回傳資料，格式一律為</p>
-<pre><code>tag1|value1|tag2|value2...
-</code></pre>
-<p>注意回傳格式不是 JSON 格式。</p>
-<h2 id="自行開發-hmi-的-websocket-建議1143-版"><a class="header" href="#自行開發-hmi-的-websocket-建議1143-版">自行開發 HMI 的 WebSocket 建議（1.14.3 版）</a></h2>
-<p>Botnana Control 1.14.3 提供兩個 rtForth 使用者工作供 WebSocket 用戶端使用。
-伺服器接受 <code>script.evaluate</code> 請求後，不會回傳通用的成功或執行完成訊息。
-因此，自行開發的 HMI 不可將 WebSocket 傳送成功或未收到錯誤，視為 script
-已經執行的證明。</p>
-<p>建議在用戶端採用以下限制，以減少請求累積，並讓運動命令較容易驗證：</p>
-<ul>
-<li>每個 HMI 應用程式盡可能只維持一條 WebSocket 長連線。連線不用時應正常
-關閉，重新連線時應加入有限的等待時間，並避免閒置的瀏覽器分頁或連續重連
-占用兩個 rtForth 使用者工作。</li>
-<li>將連線初始化、heartbeat、讀取及命令全部交由同一個送出額度管理。突發請求
-不超過 5 個，持續速率不超過每秒 100 個請求。這是流量建議，不代表系統保證
-每秒可執行 100 個長時間運行的 rtForth script。</li>
-<li>操作命令及運動命令的優先順序應高於輪詢，但仍須使用相同的請求額度。較新的
-輪詢可取代或取消尚未送出的舊輪詢；延遲或重新連線後不可補送累積的輪詢。</li>
-<li>只輪詢目前畫面需要的即時數值。穩定不變的設定資料不應每 50 ms 重複讀取。</li>
-<li>每個唯讀輪詢 script 應限制在 512 UTF-8 bytes 及 32 個 rtForth 操作以內。
-運動命令及設定變更不可和可捨棄的輪詢放在同一批次。</li>
-<li>必須處理伺服器傳回的每一則訊息，尤其是以 <code>error|</code> 開頭的錯誤。
-收到 <code>error|Scripts buffer is fulled.</code>、逾時或斷線時，HMI 必須重新讀取並
-核對控制器狀態，不可假設命令已經執行。</li>
-<li>每條連線同一時間最多只能有一個尚待驗證的狀態變更 script。未收到回應時，
-不可自動重送運動命令，因為原命令可能已經執行。</li>
-</ul>
-<p>rtForth 使用者工作共用目前所選定的軸組。<code>group!</code> 以及依賴該軸組選擇的命令，
-應放在同一個 <code>script.evaluate</code> 請求內。需要確認結果時，請在同一段 script
-加入會輸出結果的讀回命令。例如：</p>
-<pre><code class="language-json">{
-  "jsonrpc": "2.0",
-  "method": "script.evaluate",
-  "params": {
-    "script": "1 group! 100.0e mm/min vcmd! 1 .group"
-  }
-}
-</code></pre>
-<p>回傳資料會包含第 1 軸組的 <code>vcmd.1</code> 欄位。這可以確認已儲存的命令值，但不能
-單獨證明實際物理速度。<code>vcmd!</code> 對 Sine 軸組不產生作用；Sine 軸組所回報的
-<code>vcmd</code> 是其設定的正弦速度振幅。</p>
-<p>以上是 1.14.3 版的保守建議，可降低請求壓力造成問題的機會，但不能修復已停滯
-的連線，也不提供命令恰好執行一次的保證。</p>
-<h2 id="version-api"><a class="header" href="#version-api">Version API</a></h2>
-<p>程式可以使用 Version API 取得 Botnana Control 的版本。</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "version.get"
-}
-</code></pre>
-<p>會回傳以下字串：</p>
-<pre><code>version|1.0.0
-</code></pre>
-<h2 id="configuration-api"><a class="header" href="#configuration-api">Configuration API</a></h2>
-<p>程式可以使用 Configuration API 來處理參數設定檔。參數檔的設定，在重開機或重新讀取參數檔後生效。</p>
-<h3 id="修改設定參數"><a class="header" href="#修改設定參數">修改設定參數</a></h3>
-<p>修改設定參數並不會立刻將設定值儲存至參數設定檔，也不會影響到各裝置目前使用的參數。</p>
-<h4 id="ethercat-position-與-alias-說明"><a class="header" href="#ethercat-position-與-alias-說明">EtherCAT Position 與 Alias 說明：</a></h4>
-<p><strong>EtherCAT Position</strong>: 依據 EtherCAT 網路佈局，最靠近主站的 Position 為 1, 依序遞增。</p>
-<p><strong>EtherCAT Alias</strong>: 每一個 EtherCAT 從站都可以設定一個站號的別名。一般設定此別名的方法有兩種：</p>
+<p>請依目前畫面選擇操作：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>HMI 狀態</th><th>操作</th></tr>
+</thead>
+<tbody>
+<tr><td>控制器已就緒且可使用 <strong>Rescan EtherCAT</strong></td><td>執行一般重新掃描。</td></tr>
+<tr><td>顯示 <strong>Controller unavailable</strong> 且可使用 <strong>Start controller</strong></td><td>檢查已儲存設定，再啟動控制器。</td></tr>
+<tr><td>因設定有未儲存變更而無法使用 <strong>Start controller</strong></td><td>儲存預定的變更或將其捨棄，然後重新檢查已儲存設定。</td></tr>
+<tr><td>啟動程序正在重試拓撲驗證，且可使用 <strong>Stop waiting</strong></td><td>繼續等待，或停止已無助益的拓撲等待。</td></tr>
+<tr><td>啟動進行中，但沒有 <strong>Stop waiting</strong></td><td>等待成功或失敗；不要送出另一項要求。</td></tr>
+<tr><td>尚無復原狀態</td><td>等待 HMI 重新連線並顯示最新的權威狀態。</td></tr>
+<tr><td>HMI 要求重新啟動 <code>bnc-motion</code></td><td>依照<a href="#清理失敗時">清理失敗時</a>處理。</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="重新掃描已就緒的控制器"><a class="header" href="#重新掃描已就緒的控制器">重新掃描已就緒的控制器</a></h2>
+<p>一般重新掃描會使用 <strong>Last working settings</strong> 重建運作中的控制器，不會套用尚未
+儲存的設定變更。</p>
 <ol>
-<li>EtherCAT 從站內的 EEPROM，</li>
-<li>EtherCAT 從站的硬體旋鈕。</li>
+<li>確認機台已進入現場核准的安全狀態。</li>
+<li>開啟 <strong>Controller &amp; Topology</strong>。</li>
+<li>選擇 <strong>Rescan EtherCAT</strong>。</li>
+<li>觀察畫面顯示的啟動階段及拓撲重試倒數。</li>
+<li>如果出現 <strong>Stop waiting</strong>，而且繼續重試已無助益，請依照
+<a href="#停止拓撲等待">停止拓撲等待</a>處理；否則繼續等待。</li>
+<li>控制器顯示 <strong>Ready</strong> 後，確認所有預期的 EtherCAT 從站都已出現，並在恢復
+操作前確認機台狀態。</li>
 </ol>
-<p>在設定參數時,如果 alias 不為 0，就會以 alias 選擇從站。當 alias 為 0，就以 position 選擇從站。</p>
-<h4 id="設定-ethercat-slave-參數-configslaveset"><a class="header" href="#設定-ethercat-slave-參數-configslaveset">設定 EtherCAT Slave 參數 <code>config.slave.set</code></a></h4>
-<p>方法：</p>
-<pre><code>"method": "config.slave.set" 
-</code></pre>
-<p>必要參數：</p>
-<pre><code>"alias": Slave Alis。
-"position": Slave Position。
-"channel": Device Channel，從 1 開始計數。
-</code></pre>
-<p>可設定參數：可以單獨設定一個或是多個</p>
-<pre><code>"homing_method" : Homing method ,參考驅動器 0x6098:0x00 的描述。
-"homing_speed_1" : Speed during search for switch ,參考驅動器 0x6099:0x01 的描述。
-"homing_speed_2" : Speed during search for zero。參照選用驅動器 0x6099:0x02 的描述。
-"homing_acceleration": Homing acceleration。參照選用驅動器 0x609A:0x00 的描述。
-"profile_velocity": Profile velocity。參照選用驅動器 0x6081:0x00 的描述。
-"profile_acceleration": Profile acceleration。參照選用驅動器 0x6083:0x00 的描述。
-"profile_deceleration": Profile deceleration。參照選用驅動器 0x6084:0x00 的描述。
-"baud_rate": UART baud rate。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x11 的描述。
-"data_frame": UART data frame。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x15 的描述。
-"half_duplex": Uart Half Duplex Transmission。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x06 的描述。
-"uart_p2p":  UART point to point。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x07 的描述。
-"tx_optimization": UART Tx optimization。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x07 的描述。
-</code></pre>
-<p>範例 1：修改 slave 1 channel 1 驅動器的回歸原點方法。</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "config.slave.set",
-  "params": {
-    "alias": 0,
-    "position": 1,
-    "channel": 1,
-    "homing_method" : 33,
-  }
-}
-</code></pre>
-<p>範例 2：修改 slave 2 channel 3 驅動器的回歸原點的速度與加速度。</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "config.slave.set",
-  "params": {
-    "alias": 0,
-    "position": 2,
-    "channel": 3,
-    "homing_speed_1" : 10000,
-    "homing_speed_2" : 100,
-    "homing_acceleration": 5000,
-  }
-}    
-</code></pre>
-<h4 id="設定運動控制參數-configmotionset"><a class="header" href="#設定運動控制參數-configmotionset">設定運動控制參數 <code>config.motion.set</code></a></h4>
-<p>方法：</p>
-<pre><code>"method": "config.motion.set" 
-</code></pre>
-<p>必要參數：</p>
-<pre><code>None
-</code></pre>
-<p>可設定參數：可以單獨設定一個或是多個</p>
-<pre><code>"period_us": 執行周期 [us]
-"group_capacity": 軸組數
-"axis_capacity": 軸數
-</code></pre>
-<p>範例：</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "config.motion.set",
-  "params": {
-    "period_us": 2000,
-    "group_capacity": 5,
-    "axis_capacity": 5
-   }
-}
-</code></pre>
-<h4 id="設定軸組參數-configgroupset"><a class="header" href="#設定軸組參數-configgroupset">設定軸組參數 <code>config.group.set</code></a></h4>
-<p>方法：</p>
-<pre><code>"method": "config.group.set" 
-</code></pre>
-<p>必要參數：</p>
-<pre><code>"position": 指定軸組，從 1 開始計數。
-</code></pre>
-<p>可設定參數：可以單獨設定一個或是多個</p>
-<pre><code>"name": 軸組名稱
-"gtype": 軸組型態，可以設定 "1D","2D","3D","SINE"
-"mapping": 指定對應的運動軸，例如 [1, 2] 或是 [2, 1, 3]
-"vmax": 最大速度 [m/s],[rad/s],[pulse/s]
-"amax": 最大加速度 [m/s^2],[rad/s^2],[pulse/s^2]
-"jmax": 最大加加速度 [m/s^3],[rad/s^3],[pulse/s^3]    
-</code></pre>
-<p>範例： 設定 Group 1 的參數</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "config.group.set",
-  "params": {
-    "position": 1,
-    "name": "BotnanaGo",
-    "gtype": "2D",
-    "mapping": [1, 2],
-    "vmax": 0.5,
-    "amax": 5.0,
-    "jmax": 80.0, 
-  }
-}
-</code></pre>
-<h4 id="設定運動軸參數-configaxisset"><a class="header" href="#設定運動軸參數-configaxisset">設定運動軸參數 <code>config.axis.set</code></a></h4>
-<p>方法：</p>
-<pre><code>"method": "config.axis.set" 
-</code></pre>
-<p>必要參數：</p>
-<pre><code>"position": 指定運動軸，從 1 開始計數。
-</code></pre>
-<p>可設定參數：可以單獨設定一個或是多個</p>
-<pre><code>"name": 運動軸名稱,
-"home_offset": Home offset,
-"encoder_ppu": encoder pulses per unit [pulses]
-"encoder_length_unit": encoder length unit [m],[rev],[pulse]
-"encoder_direction": encode direction, 1 or -1
-"vmax": 最大速度 [m/s],[rad/s],[pulse/s]
-"amax": 最大加速度 [m/s^2],[rad/s^2],[pulse/s^2]
-"slave_position": 對應驅動器的 EtherCAT 從站位置。
-"drive_channel": 對應驅動器上的第幾個 Channel。一般設定為 1,如果是東方馬達AZ系列多軸驅動器，就有可能是 2~3 。
-</code></pre>
-<p>範例：</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "config.axis.set",
-  "params": {
-    "position": 1,
-    "name": "X",
-    "home_offset": 0.05,
-    "encoder_ppu": 2000000.0,
-    "encoder_length_unit":"Meter",
-    "encoder_direction": 1,
-  }
-}
-</code></pre>
-<h3 id="取得設定參數"><a class="header" href="#取得設定參數">取得設定參數</a></h3>
-<h4 id="取得-ethercat-slave-參數-configslaveget"><a class="header" href="#取得-ethercat-slave-參數-configslaveget">取得 EtherCAT slave 參數 <code>config.slave.get</code></a></h4>
-<p>方法：</p>
-<pre><code>"method": "config.slave.get" 
-</code></pre>
-<p>必要參數：</p>
-<pre><code>"alias": Slave Alias。
-"position": Slave Position。
-"channel": Device Channel，從 1 開始計數。
-</code></pre>
-<p>範例：</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "config.slave.get",
-  "params": {
-    "alias": 0,
-    "position": 1,
-    "channel": 1,
-  }
-}
-
-回傳封包
-
-config_slave_alias.1|0
-|config_homing_method.1.1|33
-|config_homing_speed_1.1.1|1000
-|config_homing_speed_2.1.1|250
-|config_homing_acceleration.1.1|500
-|config_profile_velocity.1.1|1000000
-|config_profile_acceleration.1.1|50000
-|config_profile_deceleration.1.1|50000
-|config_baud_rate.1.1|6
-|config_data_frame.1.1|3
-|config_half_duplex.1.1|1
-|config_uart_p2p.1.1|0
-|config_tx_optimization.1.1|1
-</code></pre>
-<h4 id="取得運動參數-configmotionget"><a class="header" href="#取得運動參數-configmotionget">取得運動參數 <code>config.motion.get</code></a></h4>
-<p>方法：</p>
-<pre><code>"method": "config.motion.get" 
-</code></pre>
-<p>必要參數：</p>
-<pre><code>None
-</code></pre>
-<p>範例： 取得 motion 設定</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "config.motion.get",
-}
-
-回傳封包:
-
-config_period_us|2000
-|config_group_capacity|7
-|config_axis_capacity|10
-</code></pre>
-<h4 id="取得軸組參數-configgroupget"><a class="header" href="#取得軸組參數-configgroupget">取得軸組參數 <code>config.group.get</code></a></h4>
-<p>方法：</p>
-<pre><code>"method": "config.motion.get" 
-</code></pre>
-<p>必要參數：</p>
-<pre><code>"position": 指定軸組，從 1 開始計數。
-</code></pre>
-<p>範例： 取得 Group 1 設定</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "config.group.get",
-  "params": {
-    "position": 1,
-  }
-}
-
-回傳封包
-
-config_group_name.1|BotnanaGo
-|config_group_type.1|2D
-|config_group_mapping.1|2,3
-|config_group_vmax.1|0.200
-|config_group_amax.1|5.000
-|config_group_jmax.1|40.000
-</code></pre>
-<h4 id="取得軸組參數-configaxisget"><a class="header" href="#取得軸組參數-configaxisget">取得軸組參數 <code>config.axis.get</code></a></h4>
-<p>方法：</p>
-<pre><code>"method": "config.axis.get" 
-</code></pre>
-<p>必要參數：</p>
-<pre><code>"position": 指定運動軸，從 1 開始計數。
-</code></pre>
-<p>範例： 取得 Axis 1</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "config.axis.get",
-  "params": {
-    "position": 1,
-  }
-}
-
-
-回傳封包
-
-config_axis_name.1|Anonymous
-|config_axis_home_offset.1|0.0000
-|config_encoder_ppu.1|1000000.00000
-|config_encoder_length_unit.1|Meter
-|config_encoder_direction.1|1
-|config_slave_position.1|2
-|config_drive_channel.1|2
-</code></pre>
-<h3 id="儲存設定參數"><a class="header" href="#儲存設定參數">儲存設定參數</a></h3>
-<p>儲存設定參數會立刻將設定值儲存至參數設定檔，但不會影響到各裝置目前使用的參數。</p>
-<p>關機再開後系統會使用新的設定。</p>
-<p>範例：要求儲存 configuration：</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "config.save"
-}
-</code></pre>
-<h3 id="取得-pitch-補正表內容"><a class="header" href="#取得-pitch-補正表內容">取得 Pitch 補正表內容</a></h3>
-<p>方法：</p>
-<pre><code>"method": "corrector.pitch.get" 
-</code></pre>
-<p>必要參數：</p>
-<pre><code>"name": 補正表檔案名稱。檔案名稱格式為 PXXXX-YY.sdx，XXXX 表示 EtherCAT Slave Position 的位置（16 進位表示），YY 表示該  EtherCAT Slave 上的第幾個驅動器（16 進位表示）。
-</code></pre>
-<p>範例：取得 EtherCAT Slave Position 1 Drive Channel 1 的補正表</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "corrector.pitch.get",
-  "params": {
-    "name": "P0001-01.sdx",
-  }
-}
-</code></pre>
-<h3 id="設定-pitch-補正表內容"><a class="header" href="#設定-pitch-補正表內容">設定 Pitch 補正表內容</a></h3>
-<p>方法：</p>
-<pre><code>"method": "corrector.pitch.set" 
-</code></pre>
-<p>必要參數：</p>
-<pre><code>"name": 補正表檔案名稱。檔案名稱格式為 PXXXX-YY.sdx，XXXX 表示 EtherCAT Slave Position 的位置（16 進位表示），YY 表示該  EtherCAT Slave 上的第幾個驅動器（16 進位表示）。
-"script": 補正表內容
-</code></pre>
-<p>範例：取得：</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "corrector.pitch.set",
-  "params": {
-    "name": "P0001-01.sdx",
-    "script": "內容範例如下"
-  }
-}        
-
-
-補正表內容範例：
-
-{
-    "description": "example",
-    "date": "date",
-    "name": "P0001-01.sdx",
-    "factor": 0.001,
-    "entries": [
-        {
-            "position": 0.0,
-            "forward": 0.0,
-            "backward": 0.0
-        },
-        {
-            "position": 10.0,
-            "forward": 10.0,
-            "backward": 10.0
-        },
-   ]
-}
-
-position 表示命令位置。 Botnana-Control 的軸運動命令是 axis command = drive_command + home offset,
-         查表時是使用 drive_command （避免受 home offset 調整影響）。
-forward  表示正向運動時的實際位置。
-backward 表示負向運動時的實際位置。
-factor   表示 position, forward, backward 轉換到 Botnana-Control 的單位係數，
-         一般 Botnana-Control 的單位可能會是 [m], [rad], [pulse]
-</code></pre>
-<h2 id="subscription-api"><a class="header" href="#subscription-api">Subscription API</a></h2>
-<h3 id="subscription"><a class="header" href="#subscription">Subscription</a></h3>
-<pre><code>{
-    "jsonrpc": "2.0",
-    "method": "ec_slave.subscribe",
-    "params": {
-        "alias": 0,
-        "position": 1,
-    }
-}
-</code></pre>
-<h3 id="unsubscription"><a class="header" href="#unsubscription">Unsubscription</a></h3>
-<pre><code>{
-    "jsonrpc": "2.0",
-    "method": "ec_slave.subscribe",
-    "params": {
-        "alias": 0,
-        "position": 1,
-    }
-}
-</code></pre>
-<h2 id="real-time-scripting-api"><a class="header" href="#real-time-scripting-api">Real-time Scripting API</a></h2>
-<p>Botnana Control 在其 real-time event loop 提供 Real-time script 來滿足更複雜的程式需求。為此提供兩個 JSON-RPC：</p>
+<p>如果重新掃描最後顯示 <strong>Controller unavailable</strong>，請執行
+<a href="#復原無法使用的控制器">復原無法使用的控制器</a>。</p>
+<h2 id="停止拓撲等待"><a class="header" href="#停止拓撲等待">停止拓撲等待</a></h2>
+<p>只有在啟動程序重試 EtherCAT 拓撲驗證時，才會提供 <strong>Stop waiting</strong>。這是協同式
+停止，不是回復、強制停止或緊急停止。先前的控制器已經拆除；停止等待後，控制器
+仍然無法使用。</p>
+<ol>
+<li>讓機台保持在現場核准的安全狀態。</li>
+<li>檢查畫面顯示的控制器世代（generation）及設定來源：一般重新掃描應顯示
+<strong>Last working settings</strong>；復原程序則應顯示 <strong>Saved profile</strong>。</li>
+<li>選擇 <strong>Stop waiting</strong>。</li>
+<li>在確認畫面再次核對相同的世代及設定來源。只有在確定要讓控制器維持無法使用
+時才確認。</li>
+<li>畫面顯示 <strong>Stopping controller start…</strong> 時，等待正在進行的 EtherCAT 掃描
+返回。此要求不會強制終止掃描，也不保證最長完成時間。</li>
+<li>等到 HMI 報告啟動已停止並顯示 <strong>Controller unavailable</strong> 後才能繼續。</li>
+<li>修正已連接硬體或已儲存設定，再次啟動控制器，並確認從站及機台狀態。</li>
+</ol>
+<p>停止等待不會儲存或捨棄變更、不會更改已儲存設定或 Last working settings，也不會
+採用偵測到的硬體。如果 <strong>Stop waiting</strong> 消失或要求遭拒，請以重新整理後的狀態為
+準；不要自行認定啟動已停止。</p>
+<h2 id="復原無法使用的控制器"><a class="header" href="#復原無法使用的控制器">復原無法使用的控制器</a></h2>
+<p><strong>Start controller</strong> 一律使用已儲存設定。</p>
+<ol>
+<li>在 <strong>Controller &amp; Topology</strong> 讀取失敗原因及嘗試階段。</li>
+<li>檢查已儲存設定的版本，以及它是否和 <strong>Last working settings</strong> 不同。</li>
+<li>如果需要修正，開啟 <strong>Edit in</strong> 欄位所指示的設定畫面，選擇 <strong>Edit profile</strong>
+並進行修改。</li>
+<li>檢查所有未儲存變更，然後選擇一項操作：
 <ul>
-<li>script.evaluate: 解譯 real-time script。注意不可以使用 <code>script.evaluate</code> 來編譯 real-time script。</li>
-<li>script.deploy: 編譯 real-time script。</li>
+<li><strong>Save changes</strong>：讓草稿成為下次啟動使用的已儲存設定。</li>
+<li><strong>Discard changes</strong>：恢復已儲存設定；此操作不會恢復 Last working settings，
+也不會啟動控制器。</li>
 </ul>
-<p>Real-time script 的指令集請見 <a href="./real-time-script-api.html">Real-time scripting API</a></p>
-<h4 id="解譯-real-time-script-scriptevaluate"><a class="header" href="#解譯-real-time-script-scriptevaluate">解譯 real-time script <code>script.evaluate</code></a></h4>
-<p>方法：</p>
-<pre><code>"method": "script.evaluate" 
+</li>
+<li>返回 <strong>Controller &amp; Topology</strong>，確認畫面顯示預定使用的已儲存設定版本。</li>
+<li>選擇 <strong>Start controller</strong>。</li>
+<li>等待驗證、清理、替代控制器啟動及可能發生的拓撲重試。如果出現 <strong>Stop
+waiting</strong>，而且重試已無助益，請依照前述停止程序處理。</li>
+<li>控制器顯示 <strong>Ready</strong> 後，確認預期的 EtherCAT 從站及機台狀態，再恢復操作。</li>
+</ol>
+<p>如果 <strong>Save changes</strong> 失敗，變更仍處於未儲存狀態。請修正畫面回報的問題，然後
+選擇 <strong>Retry save</strong>。HMI 確認儲存成功之前，不可將這些變更視為已持久保存。</p>
+<p>另一個瀏覽器工作階段可能在您檢查設定時修改設定。此時 Botnana Control 會拒絕
+過期的編輯、儲存、捨棄或啟動要求。再次操作前，請檢查重新整理後的設定及修訂版
+號。</p>
+<h2 id="復原期間重新連線"><a class="header" href="#復原期間重新連線">復原期間重新連線</a></h2>
+<p>瀏覽器中斷連線不會取消重新掃描、停止要求或控制器啟動。重新連線後，請先檢查
+恢復顯示的控制器世代、設定來源、階段、停止狀態及結果，再進行其他操作。</p>
+<p>如果 HMI 持續停在 <strong>Stopping controller start…</strong>，請記錄可供支援人員使用的
+資訊並升級處理，不要自行認定要求已完成。</p>
+<h2 id="清理失敗時"><a class="header" href="#清理失敗時">清理失敗時</a></h2>
+<p>清理程序會停止故障控制器剩餘的工作，並在建立替代控制器之前釋放其執行期連線。
+如果清理失敗，在相同 <code>bnc-motion</code> 程序中再次啟動並不安全。HMI 會停用
+<strong>Start controller</strong>，並指示管理員重新啟動服務。</p>
+<ol>
+<li>
+<p>不要再送出啟動或重新掃描要求。</p>
+</li>
+<li>
+<p>記錄控制器世代、失敗原因、嘗試階段及結果。</p>
+</li>
+<li>
+<p>儲存重新啟動後仍須保留的設定變更，或捨棄不需要的變更。如果無法儲存，請先
+記錄必要的未儲存數值，因為重新啟動服務可能使其遺失。</p>
+</li>
+<li>
+<p>確認機台仍處於現場核准的安全狀態。</p>
+</li>
+<li>
+<p>請獲授權的管理員執行：</p>
+<pre><code class="language-bash">sudo systemctl restart bnc-motion
 </code></pre>
-<p>必要參數：</p>
-<pre><code>"script":real-time script 。
-</code></pre>
-<p>範例：以下 RPC 呼叫設定 Drive channel 1 of Slave 1 回歸原點方法的 JSON 命令。</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "script.evaluate",
-  "params": {
-    "script": "33 1 1 homing-method!"
-  }
-}
-</code></pre>
-<h4 id="部署-real-time-script-scriptdeploy"><a class="header" href="#部署-real-time-script-scriptdeploy">部署 real-time script <code>script.deploy</code></a></h4>
-<p>此一命令將 script 轉交至背景執行的 Task 解譯或編譯，避免影響和使用者互動中的 Task。常用於大型 script 的解譯和執行。</p>
-<p>方法：</p>
-<pre><code>"method": "script.deploy" 
-</code></pre>
-<p>必要參數：</p>
-<pre><code>"script": real-time script 。
-</code></pre>
-<p>範例：以下 RPC 呼叫編譯了一名為 p1 的程式。當 p1 執行時會設定 Drive channel 1 of Slave 1 回歸原點方法。</p>
-<pre><code>{
-  "jsonrpc": "2.0",
-  "method": "script.deploy",
-  "params": {
-    "script": ": p1  33 1 1 homing-method! ;"
-  }
-}
-</code></pre>
+</li>
+<li>
+<p>等待 HMI 重新連線並顯示最新狀態。</p>
+</li>
+<li>
+<p>再次檢查已儲存設定。如果控制器已就緒，請確認從站及機台狀態；如果控制器無法
+使用且 <strong>Start controller</strong> 已啟用，請重新執行復原程序。</p>
+</li>
+<li>
+<p>如果清理或服務啟動再次失敗，請停止並聯絡支援人員，不要反覆重新啟動服務。</p>
+</li>
+</ol>
+<p>重新啟動 <code>bnc-motion</code> 不會刪除已儲存設定。未儲存變更不是復原來源，不應預期它們
+會在重新啟動後保留。</p>
+<p>成功清理後發生的啟動失敗並不相同：此時可能再次出現 <strong>Start controller</strong>，因為
+系統仍能安全釋放失敗的替代控制器。只有在 HMI 啟用此操作時才能重試。如果 HMI
+要求重新啟動服務，請改用清理失敗程序。</p>
+<h2 id="提供支援人員的資訊"><a class="header" href="#提供支援人員的資訊">提供支援人員的資訊</a></h2>
+<p>請記錄：</p>
+<ul>
+<li>失敗時間；</li>
+<li>控制器世代；</li>
+<li>失敗原因、嘗試階段及結果；</li>
+<li>是否曾要求 <strong>Stop waiting</strong>，以及 HMI 是否顯示已停止的結果；</li>
+<li>已儲存設定版本，以及當時是否有未儲存變更；</li>
+<li>預期及實際觀察到的 EtherCAT 從站；以及</li>
+<li>經過一次獲授權的 <code>bnc-motion</code> 服務重新啟動後，問題是否再次發生。</li>
+</ul>
+<p>請將這些資訊保存在現場事件記錄中。不要將 EtherCAT 寫入指令當成疑難排解捷徑。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="programming.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="botnana-control-tutorial.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="real-time-script-api.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="configuration-file.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -643,11 +344,11 @@ factor   表示 position, forward, backward 轉換到 Botnana-Control 的單位�
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="programming.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="botnana-control-tutorial.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="real-time-script-api.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="configuration-file.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>
