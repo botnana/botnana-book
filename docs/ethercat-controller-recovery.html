@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-7576d49d.js";
+            window.path_to_searchindex_js = "searchindex-8f27b4ec.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-9459ad5c.js"></script>
@@ -206,7 +206,7 @@ Topology</strong> 顯示 <strong>Controller unavailable</strong> 時，請使用
 <tr><td>操作員要求的控制器啟動正在重試拓撲驗證，且命令列提供 <strong>Stop waiting</strong></td><td>繼續等待，或停止已無助益的拓撲等待。不必開啟 <strong>Details</strong> 即可找到此操作。初始開機嘗試無法停止。</td></tr>
 <tr><td>啟動進行中，但沒有 <strong>Stop waiting</strong></td><td>等待成功或失敗；不要送出另一項要求。這可能是無法停止的初始開機嘗試，或目前階段尚不允許停止。</td></tr>
 <tr><td><strong>Start controller</strong> 已停用，且 HMI 顯示 <strong>Start controller is unavailable until authoritative recovery status is available.</strong></td><td>等待 HMI 重新連線並顯示最新的權威狀態。</td></tr>
-<tr><td>HMI 要求重新啟動 <code>bnc-motion</code></td><td>依照<a href="#清理失敗時">清理失敗時</a>處理。</td></tr>
+<tr><td>HMI 要求重新啟動 <strong>Botnana Control 運動控制服務（<code>bnc-motion</code>）</strong></td><td>這是在 BN-B3A 上執行的控制器服務，不是 EtherCAT 從站。請由獲授權的管理員依照<a href="#清理失敗時">清理失敗時</a>處理。</td></tr>
 </tbody>
 </table>
 </div>
@@ -283,9 +283,12 @@ waiting</strong>，而且重試已無助益，請依照前述停止程序處理�
 <p>如果 HMI 持續停在 <strong>Stopping controller start…</strong>，請記錄可供支援人員使用的
 資訊並升級處理，不要自行認定要求已完成。</p>
 <h2 id="清理失敗時"><a class="header" href="#清理失敗時">清理失敗時</a></h2>
+<p><code>bnc-motion</code> 是在 BN-B3A 上執行的 <strong>Botnana Control 運動控制服務</strong>。它承載
+EtherCAT 控制器執行期；不是 EtherCAT 從站、驅動器或馬達。重新啟動它會中斷
+控制器連線，屬於獲授權管理員的處理動作，不是一般操作員控制項。</p>
 <p>清理程序會停止故障控制器剩餘的工作，並在建立替代控制器之前釋放其執行期連線。
 如果清理失敗，在相同 <code>bnc-motion</code> 程序中再次啟動並不安全。HMI 會停用
-<strong>Start controller</strong>，並指示管理員重新啟動服務。</p>
+<strong>Start controller</strong>，並指示管理員重新啟動此服務。</p>
 <ol>
 <li>
 <p>不要再送出啟動或重新掃描要求。</p>

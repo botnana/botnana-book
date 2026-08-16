@@ -31,7 +31,7 @@ Use the action that matches the current display:
 | An operator-requested controller start is retrying topology verification and the command bar offers **Stop waiting** | Continue waiting, or stop the unproductive topology wait. You do not need to open **Details** to find this action. The initial boot attempt is not stoppable. |
 | Startup is in progress without **Stop waiting** | Wait for success or failure; do not submit another request. This may be the non-stoppable initial boot attempt, or the current stage may not yet allow stopping. |
 | **Start controller** is disabled and the HMI says **Start controller is unavailable until authoritative recovery status is available.** | Wait for the HMI to reconnect and display fresh authoritative status. |
-| The HMI requires a `bnc-motion` restart | Follow [When cleanup fails](#when-cleanup-fails). |
+| The HMI says to restart the **Botnana Control motion service (`bnc-motion`)** | This is the controller-runtime service on the BN-B3A, not an EtherCAT slave. Have an authorized administrator follow [When cleanup fails](#when-cleanup-fails). |
 
 ## Rescan a Ready Controller
 
@@ -126,10 +126,15 @@ support information and escalate. Do not assume the request completed.
 
 ## When Cleanup Fails
 
+`bnc-motion` is the **Botnana Control motion service** running on the BN-B3A. It
+hosts the EtherCAT controller runtime; it is not an EtherCAT slave, drive, or
+motor. Restarting it interrupts the controller connection and is an authorized
+administrator action, not a normal operator control.
+
 Cleanup stops remaining tasks from the failed controller and releases its
 runtime connections. If cleanup fails, another start is unsafe in the same
 `bnc-motion` process. The HMI disables **Start controller** and directs an
-administrator to restart the service.
+administrator to restart this service.
 
 1. Do not submit another start or rescan request.
 2. Record the generation, failure reason, attempt stage, and outcome.

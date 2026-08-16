@@ -29,7 +29,7 @@ HMI 會分開管理下列狀態：
 | 操作員要求的控制器啟動正在重試拓撲驗證，且命令列提供 **Stop waiting** | 繼續等待，或停止已無助益的拓撲等待。不必開啟 **Details** 即可找到此操作。初始開機嘗試無法停止。 |
 | 啟動進行中，但沒有 **Stop waiting** | 等待成功或失敗；不要送出另一項要求。這可能是無法停止的初始開機嘗試，或目前階段尚不允許停止。 |
 | **Start controller** 已停用，且 HMI 顯示 **Start controller is unavailable until authoritative recovery status is available.** | 等待 HMI 重新連線並顯示最新的權威狀態。 |
-| HMI 要求重新啟動 `bnc-motion` | 依照[清理失敗時](#清理失敗時)處理。 |
+| HMI 要求重新啟動 **Botnana Control 運動控制服務（`bnc-motion`）** | 這是在 BN-B3A 上執行的控制器服務，不是 EtherCAT 從站。請由獲授權的管理員依照[清理失敗時](#清理失敗時)處理。 |
 
 ## 重新掃描已就緒的控制器
 
@@ -112,9 +112,13 @@ HMI 會分開管理下列狀態：
 
 ## 清理失敗時
 
+`bnc-motion` 是在 BN-B3A 上執行的 **Botnana Control 運動控制服務**。它承載
+EtherCAT 控制器執行期；不是 EtherCAT 從站、驅動器或馬達。重新啟動它會中斷
+控制器連線，屬於獲授權管理員的處理動作，不是一般操作員控制項。
+
 清理程序會停止故障控制器剩餘的工作，並在建立替代控制器之前釋放其執行期連線。
 如果清理失敗，在相同 `bnc-motion` 程序中再次啟動並不安全。HMI 會停用
-**Start controller**，並指示管理員重新啟動服務。
+**Start controller**，並指示管理員重新啟動此服務。
 
 1. 不要再送出啟動或重新掃描要求。
 2. 記錄控制器世代、失敗原因、嘗試階段及結果。
