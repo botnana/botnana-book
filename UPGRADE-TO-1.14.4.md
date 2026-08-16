@@ -18,9 +18,9 @@ published outputs only after the source documentation is complete.
 The 1.14.4 book update has been published to the `master` branch, but the
 control repository still has release-closeout work:
 
-- `motion/Cargo.toml` uses product version `1.14.4` and package revision `2`.
-- `debian/changelog` uses `1.14.4-2`, includes the legacy-upgrade compatibility
-  corrections, and remains marked `UNRELEASED`.
+- `motion/Cargo.toml` uses product version `1.14.4` and package revision `3`.
+- `debian/changelog` finalizes both `1.14.4-2` and `1.14.4-3` for `unstable`;
+  revision 3 adds the current-IP display correction.
 - The bilingual book identifies version 1.14.4 with publication date
   August 17, 2026.
 - The release notes, software-update and rollback procedures, current HMI
@@ -28,9 +28,10 @@ control repository still has release-closeout work:
 - The proposed third-party HMI WebSocket profile is still marked `draft`.
 - The dedicated controller-recovery, topology-maintenance, public JSON API,
   configuration-file, and architecture updates in this plan remain open.
-- The current-IP display correction is committed in the control worktree as
-  `3190c96c3`; it was validated on a controller with temporary package
-  `1.14.5-4` and is not part of the official 1.14.4 package.
+- The current-IP display correction is committed as `3190c96c3` and included
+  in official package revision `1.14.4-3`, prepared by `f9fa385ed`.
+- The software-update chapter still uses `1.14.4-2` in transition and rollback
+  examples and must be refreshed where it identifies the current package.
 
 Do not tag the book release until the remaining software release contract,
 acceptance, and documentation scope decisions are complete.
@@ -57,10 +58,10 @@ repository maintainers.
       `bounded-hmi-websocket-throughput` belong in 1.14.4.
 - [x] Confirm the final Botnana Control version string (`1.14.4`).
 - [x] Confirm the final Debian package version and filename pattern
-      (`botnana-control_1.14.4-2_arm64.deb`).
+      (`botnana-control_1.14.4-3_arm64.deb`).
 - [x] Confirm the book publication date (August 17, 2026).
-- [ ] Approve and release the updated control repository Debian changelog
-      (currently `1.14.4-2 UNRELEASED`).
+- [x] Finalize the control repository Debian changelog for `1.14.4-2` and
+      `1.14.4-3`.
 - [ ] Decide whether the third-party HMI WebSocket profile is a supported
       integration contract or an operating recommendation.
 - [ ] Confirm the exact WebSocket overload message and limits for the final
