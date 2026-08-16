@@ -58,7 +58,7 @@ acceptance, and documentation scope decisions are complete.
 Before changing the book, resolve these release questions with the control
 repository maintainers.
 
-- [ ] Confirm that all commits currently on
+- [x] Confirm that all commits through `f9fa385ed` on
       `bounded-hmi-websocket-throughput` belong in 1.14.4.
 - [x] Confirm the final Botnana Control version string (`1.14.4`).
 - [x] Confirm the Debian filename pattern
@@ -72,8 +72,8 @@ repository maintainers.
       integration contract or an operating recommendation.
 - [ ] Confirm the exact WebSocket overload message and limits for the final
       build.
-- [ ] Decide whether the new DoIP server is officially supported and should be
-      included in the public manual.
+- [x] Exclude the new DoIP server from the public manual because it is not an
+      officially supported 1.14.4 feature.
 - [ ] Confirm which controller-recovery and topology-maintenance scenarios have
       completed supported-hardware acceptance.
 
@@ -411,13 +411,8 @@ Add the currently relevant sections and defaults:
 - [ ] Existing slave, device, axis, group, and timer settings that customers
       are expected to edit directly or through the HMI.
 
-If DoIP is approved as a public 1.14.4 feature, also document:
-
-- [ ] `[doip] enabled`, default `false`
-- [ ] `[doip] address`, default `0.0.0.0:13400`
-- [ ] `[doip] ecu_logical_address`, default `4096` (`0x1000`)
-- [ ] `[doip] discovery`, default `false`
-- [ ] Optional `[doip] vin`
+Do not document the `[doip]` settings in the public 1.14.4 manual. The DoIP
+server is not an officially supported 1.14.4 feature.
 
 Explain that profile edits made through the HMI are revision-aware and that a
 saved profile is not necessarily the currently active controller until the
