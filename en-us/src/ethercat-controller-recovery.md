@@ -30,7 +30,7 @@ Use the action that matches the current display:
 | **Start controller** is unavailable because the profile has unsaved changes | Save the intended changes or discard them, then review the saved profile again. |
 | An operator-requested controller start is retrying topology verification and the command bar offers **Stop waiting** | Continue waiting, or stop the unproductive topology wait. You do not need to open **Details** to find this action. The initial boot attempt is not stoppable. |
 | Startup is in progress without **Stop waiting** | Wait for success or failure; do not submit another request. This may be the non-stoppable initial boot attempt, or the current stage may not yet allow stopping. |
-| Recovery status is unavailable | Wait for the HMI to reconnect and display fresh authoritative status. |
+| **Start controller** is disabled and the HMI says **Start controller is unavailable until authoritative recovery status is available.** | Wait for the HMI to reconnect and display fresh authoritative status. |
 | The HMI requires a `bnc-motion` restart | Follow [When cleanup fails](#when-cleanup-fails). |
 
 ## Rescan a Ready Controller
