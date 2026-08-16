@@ -50,7 +50,7 @@ After this one-time legacy upgrade, **No managed installation result is recorded
 
 ## Update Version 1.14.4 or Later
 
-Version 1.14.4 and later use the **Debian package update** section on the **ABOUT** page.
+Version 1.14.4 and later use the **Debian package update** section on the **ABOUT** page. The following example updates product version 1.14.4 with Debian package `botnana-control_1.14.5-1_arm64.deb`.
 
 1. Put the machine in a safe stopped condition and open **ABOUT**.
 2. Select **Select Debian package** and choose the supplied `.deb` file.
@@ -61,10 +61,18 @@ Version 1.14.4 and later use the **Debian package update** section on the **ABOU
    - architecture (`arm64` for BN-B3A);
    - classification such as upgrade, reinstall, or downgrade; and
    - SHA-256 checksum.
+
+   ![Reviewing the independently inspected 1.14.5 package before staging](./update-managed-review-1.14.5.png)
+
 4. Select **Stage package** only when every value matches the intended release. Staging records the exact reviewed package for one installation attempt at the next boot.
 5. Confirm the page reports **Staged; reboot to apply**, then select **REBOOT**. Do not use power-off as a substitute for the installation reboot.
+
+   ![The 1.14.5 package staged for installation at the next boot](./update-managed-staged-1.14.5.png)
+
 6. Wait for the controller to restart, reconnect, and reopen **ABOUT**.
 7. Verify both the displayed product version and **Last result**.
+
+   ![Botnana Control 1.14.5 after a successful managed installation](./update-managed-success-1.14.5.png)
 
 | Last result | Meaning and action |
 |---|---|
@@ -79,7 +87,19 @@ A pending package can be cancelled before installation starts. Once the boot ins
 
 The page may offer **Review retained version**. This is an exact package archive retained from an earlier successful **managed** installation. It is not necessarily the software that was installed immediately before the current version if packages were changed by the legacy updater or from Linux.
 
-To roll back, review the retained package metadata and checksum, stage it, and reboot. If **No retained prior version** is shown, obtain the required known-good package from Mapacode; the controller cannot reconstruct a missing `.deb` from installed files.
+To use an available retained package, select **Review retained version**, verify its metadata and checksum, stage it, and reboot.
+
+If **No retained prior version** is shown, obtain the required known-good package from Mapacode; the controller cannot reconstruct a missing `.deb` from installed files. The following example selects `botnana-control_1.14.4-2_arm64.deb` while version 1.14.5 is running. Confirm that the classification is **downgrade** before staging it.
+
+![Reviewing 1.14.4-2 as a downgrade from 1.14.5](./update-rollback-review-1.14.4.png)
+
+After review, stage the exact package and reboot.
+
+![The reviewed 1.14.4-2 downgrade staged for the next boot](./update-rollback-staged-1.14.4.png)
+
+After restart, verify product version 1.14.4 and the successful `1.14.4-2` result. Because 1.14.5 was installed by the managed updater, its exact archive is now available as **Review retained version 1.14.5-1**.
+
+![Successful rollback to 1.14.4 with retained 1.14.5 available](./update-rollback-success-1.14.4.png)
 
 ## If the Displayed Version Is Unexpected
 

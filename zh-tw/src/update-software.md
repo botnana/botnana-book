@@ -50,6 +50,8 @@ Debian 套件版本是 `1.14.4-2`；Botnana Control 畫面顯示的產品版本�
 
 ## 更新 1.14.4 或更新版本
 
+1.14.4 與更新版本使用 **ABOUT** 頁面的 **Debian package update** 區域。以下範例使用 Debian 套件 `botnana-control_1.14.5-1_arm64.deb` 更新產品版本 1.14.4。
+
 1. 讓機台進入安全停止狀態，然後開啟 **ABOUT**。
 2. 選擇 **Select Debian package**，再選取供應的 `.deb` 檔案。
 3. 確認後續畫面顯示的所有資料：
@@ -59,10 +61,18 @@ Debian 套件版本是 `1.14.4-2`；Botnana Control 畫面顯示的產品版本�
    - 架構（BN-B3A 應為 `arm64`）；
    - upgrade、reinstall 或 downgrade 等分類；
    - SHA-256 檢查碼。
+
+   ![暫存前審查已獨立檢查的 1.14.5 套件](./update-managed-review-1.14.5.png)
+
 4. 所有資料都符合預定版本時，才選擇 **Stage package**。暫存成功後，控制器會在下次開機時對已審查的確切套件執行一次安裝。
 5. 確認畫面顯示 **Staged; reboot to apply**，然後選擇 **REBOOT**。不要以關機代替此次安裝所需的重新開機。
+
+   ![已暫存並預定於下次開機安裝的 1.14.5 套件](./update-managed-staged-1.14.5.png)
+
 6. 等待控制器重新啟動，重新連線並開啟 **ABOUT**。
 7. 同時確認畫面上的產品版本及 **Last result**。
+
+   ![完成管理式安裝後的 Botnana Control 1.14.5](./update-managed-success-1.14.5.png)
 
 | Last result | 意義與處理方式 |
 |---|---|
@@ -77,7 +87,19 @@ Debian 套件版本是 `1.14.4-2`；Botnana Control 畫面顯示的產品版本�
 
 頁面可能提供 **Review retained version**。這是先前由新套件管理程式成功安裝後所保留的完整套件，不一定是目前版本之前實際安裝的軟體；例如，曾透過舊版更新程式或 Linux 指令變更套件時，兩者可能不同。
 
-若要降版，請先審查保留套件的資訊與檢查碼，再暫存並重新開機。如果畫面顯示 **No retained prior version**，請向動程公司取得所需且確認正常的套件；控制器無法從已安裝的檔案重建遺失的 `.deb`。
+若有保留套件，請選擇 **Review retained version**，確認其資訊及檢查碼，再暫存並重新開機。
+
+如果畫面顯示 **No retained prior version**，請向動程公司取得所需且確認正常的套件；控制器無法從已安裝的檔案重建遺失的 `.deb`。以下範例在 1.14.5 運行時選取 `botnana-control_1.14.4-2_arm64.deb`。暫存前必須確認分類是 **downgrade**。
+
+![將 1.14.4-2 審查為從 1.14.5 降版的套件](./update-rollback-review-1.14.4.png)
+
+完成審查後，暫存該套件並重新開機。
+
+![已暫存並預定於下次開機降至 1.14.4-2](./update-rollback-staged-1.14.4.png)
+
+重新啟動後，確認產品版本為 1.14.4，且結果顯示成功安裝 `1.14.4-2`。因為 1.14.5 是由新套件管理程式安裝，其完整套件現在可透過 **Review retained version 1.14.5-1** 使用。
+
+![成功降至 1.14.4，並保留可供復原的 1.14.5](./update-rollback-success-1.14.4.png)
 
 ## 畫面版本不符合預期時
 

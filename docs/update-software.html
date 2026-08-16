@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-328881bb.js";
+            window.path_to_searchindex_js = "searchindex-a6f04f07.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-b4ca1971.js"></script>
@@ -224,10 +224,16 @@
 </ol>
 <p>完成這次舊版升級後，畫面可能顯示 <strong>No managed installation result is recorded</strong> 及 <strong>No retained prior version</strong>。這是正常現象：安裝是由舊版更新程式執行，當時 1.14.4 的套件管理程式尚未啟用。這些訊息不表示安裝失敗。</p>
 <h2 id="更新-1144-或更新版本"><a class="header" href="#更新-1144-或更新版本">更新 1.14.4 或更新版本</a></h2>
+<p>1.14.4 與更新版本使用 <strong>ABOUT</strong> 頁面的 <strong>Debian package update</strong> 區域。以下範例使用 Debian 套件 <code>botnana-control_1.14.5-1_arm64.deb</code> 更新產品版本 1.14.4。</p>
 <ol>
-<li>讓機台進入安全停止狀態，然後開啟 <strong>ABOUT</strong>。</li>
-<li>選擇 <strong>Select Debian package</strong>，再選取供應的 <code>.deb</code> 檔案。</li>
-<li>確認後續畫面顯示的所有資料：
+<li>
+<p>讓機台進入安全停止狀態，然後開啟 <strong>ABOUT</strong>。</p>
+</li>
+<li>
+<p>選擇 <strong>Select Debian package</strong>，再選取供應的 <code>.deb</code> 檔案。</p>
+</li>
+<li>
+<p>確認後續畫面顯示的所有資料：</p>
 <ul>
 <li>原始檔名；</li>
 <li>套件識別名稱（<code>botnana-control</code>）；</li>
@@ -236,11 +242,22 @@
 <li>upgrade、reinstall 或 downgrade 等分類；</li>
 <li>SHA-256 檢查碼。</li>
 </ul>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./update-managed-review-1.14.5.png" alt="暫存前審查已獨立檢查的 1.14.5 套件"><span class="img-wrapper"><img src="./update-managed-review-1.14.5.png" alt="暫存前審查已獨立檢查的 1.14.5 套件"></span></label></p>
 </li>
-<li>所有資料都符合預定版本時，才選擇 <strong>Stage package</strong>。暫存成功後，控制器會在下次開機時對已審查的確切套件執行一次安裝。</li>
-<li>確認畫面顯示 <strong>Staged; reboot to apply</strong>，然後選擇 <strong>REBOOT</strong>。不要以關機代替此次安裝所需的重新開機。</li>
-<li>等待控制器重新啟動，重新連線並開啟 <strong>ABOUT</strong>。</li>
-<li>同時確認畫面上的產品版本及 <strong>Last result</strong>。</li>
+<li>
+<p>所有資料都符合預定版本時，才選擇 <strong>Stage package</strong>。暫存成功後，控制器會在下次開機時對已審查的確切套件執行一次安裝。</p>
+</li>
+<li>
+<p>確認畫面顯示 <strong>Staged; reboot to apply</strong>，然後選擇 <strong>REBOOT</strong>。不要以關機代替此次安裝所需的重新開機。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./update-managed-staged-1.14.5.png" alt="已暫存並預定於下次開機安裝的 1.14.5 套件"><span class="img-wrapper"><img src="./update-managed-staged-1.14.5.png" alt="已暫存並預定於下次開機安裝的 1.14.5 套件"></span></label></p>
+</li>
+<li>
+<p>等待控制器重新啟動，重新連線並開啟 <strong>ABOUT</strong>。</p>
+</li>
+<li>
+<p>同時確認畫面上的產品版本及 <strong>Last result</strong>。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./update-managed-success-1.14.5.png" alt="完成管理式安裝後的 Botnana Control 1.14.5"><span class="img-wrapper"><img src="./update-managed-success-1.14.5.png" alt="完成管理式安裝後的 Botnana Control 1.14.5"></span></label></p>
+</li>
 </ol>
 <div class="table-wrapper">
 <table>
@@ -258,7 +275,13 @@
 <p>安裝開始前可以取消 pending 套件。開機安裝一旦開始，就只會嘗試一次，不能取消，也不會自動重試。</p>
 <h2 id="保留套件與降版"><a class="header" href="#保留套件與降版">保留套件與降版</a></h2>
 <p>頁面可能提供 <strong>Review retained version</strong>。這是先前由新套件管理程式成功安裝後所保留的完整套件，不一定是目前版本之前實際安裝的軟體；例如，曾透過舊版更新程式或 Linux 指令變更套件時，兩者可能不同。</p>
-<p>若要降版，請先審查保留套件的資訊與檢查碼，再暫存並重新開機。如果畫面顯示 <strong>No retained prior version</strong>，請向動程公司取得所需且確認正常的套件；控制器無法從已安裝的檔案重建遺失的 <code>.deb</code>。</p>
+<p>若有保留套件，請選擇 <strong>Review retained version</strong>，確認其資訊及檢查碼，再暫存並重新開機。</p>
+<p>如果畫面顯示 <strong>No retained prior version</strong>，請向動程公司取得所需且確認正常的套件；控制器無法從已安裝的檔案重建遺失的 <code>.deb</code>。以下範例在 1.14.5 運行時選取 <code>botnana-control_1.14.4-2_arm64.deb</code>。暫存前必須確認分類是 <strong>downgrade</strong>。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./update-rollback-review-1.14.4.png" alt="將 1.14.4-2 審查為從 1.14.5 降版的套件"><span class="img-wrapper"><img src="./update-rollback-review-1.14.4.png" alt="將 1.14.4-2 審查為從 1.14.5 降版的套件"></span></label></p>
+<p>完成審查後，暫存該套件並重新開機。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./update-rollback-staged-1.14.4.png" alt="已暫存並預定於下次開機降至 1.14.4-2"><span class="img-wrapper"><img src="./update-rollback-staged-1.14.4.png" alt="已暫存並預定於下次開機降至 1.14.4-2"></span></label></p>
+<p>重新啟動後，確認產品版本為 1.14.4，且結果顯示成功安裝 <code>1.14.4-2</code>。因為 1.14.5 是由新套件管理程式安裝，其完整套件現在可透過 <strong>Review retained version 1.14.5-1</strong> 使用。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./update-rollback-success-1.14.4.png" alt="成功降至 1.14.4，並保留可供復原的 1.14.5"><span class="img-wrapper"><img src="./update-rollback-success-1.14.4.png" alt="成功降至 1.14.4，並保留可供復原的 1.14.5"></span></label></p>
 <h2 id="畫面版本不符合預期時"><a class="header" href="#畫面版本不符合預期時">畫面版本不符合預期時</a></h2>
 <p>保持機台停止。重新載入 <strong>ABOUT</strong>，並比較產品版本與 <strong>Last result</strong>。若完成一次性舊版升級後沒有安裝結果，請確認產品版本是否已變更為預定版本。若更新結果顯示失敗或版本仍是舊版，請暫存已審查且確認正常的套件後再重新開機；不要在沒有 pending 復原套件時反覆重新開機。</p>
 
