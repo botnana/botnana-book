@@ -67,6 +67,14 @@ acceptance, and documentation scope decisions are complete.
 - Adapt control-repository documentation for book readers; do not copy internal
   design, development, or acceptance material unnecessarily.
 - Clearly distinguish operator procedures from developer API contracts.
+- Treat `~/Projects/botnana-apis` as the authority and upper bound for the
+  customer-facing API. For the released compatibility baseline, use tag
+  `customer-release-2025-02-21` and source-equivalent commit `1946d8d28759`.
+- Do not publish a Botnana Control server method, parameter, response, or HMI
+  lifecycle command as public API merely because the server implements it.
+  Promote it through `botnana-apis` and obtain API-owner approval first.
+- Server implementation and tests may clarify observable behavior for an API
+  already in `botnana-apis`, but may not expand the documented public surface.
 - Do not claim proposed or unverified behavior as a released guarantee.
 - Do not edit `docs/`, generated `book/` directories, HTML, or PDFs by hand.
 - Regenerate outputs with `./build-book.bash` after all source changes pass
@@ -310,7 +318,20 @@ Files:
 - `zh-tw/src/json-api.md`
 
 Preserve the 1.14.3 guidance as historical compatibility information, then add
-the final 1.14.4 behavior.
+the final 1.14.4 behavior without exceeding the public surface owned by
+`botnana-apis`.
+
+### Public API inventory gate
+
+- [ ] Generate the method and parameter inventory from the released
+      `botnana-apis` baseline rather than from Botnana Control routing code.
+- [ ] Classify each existing book example as public and current, public but
+      compatibility-limited, obsolete, or internal-only.
+- [ ] Keep bundled-HMI controller recovery and topology-maintenance wire methods
+      out of the public JSON API reference unless they are first promoted
+      through `botnana-apis`.
+- [ ] Use Botnana Control evidence only to verify current behavior for methods
+      already inside the public API boundary.
 
 ### Client traffic profile
 
@@ -375,41 +396,29 @@ Reference, after its release status is approved:
 
 - `docs/proposals/third-party-hmi-websocket-profile-1.14.4.md`
 
-## Step 9: Document configuration protocol v2
+## Step 9: Resolve configuration protocol v2 public API ownership
 
-Update the configuration API section in both `json-api.md` files.
-
-Document negotiation before a profile mutation:
-
-```json
-{
-  "jsonrpc": "2.0",
-  "method": "protocol.negotiate",
-  "params": {
-    "versions": [2]
-  }
-}
-```
-
-Successful response:
-
-```text
-configuration-protocol|selected|2
-```
+Botnana Control implements configuration protocol v2, but the released
+`botnana-apis` baseline does not expose `protocol.negotiate`, revision-bound
+configuration setters, or the bundled-HMI lifecycle methods. Do not document
+those server details as public API until the API repository owns them.
 
 Tasks:
 
-- [ ] Explain `configuration-protocol|upgrade-required|2`.
-- [ ] Explain draft and saved profile revisions.
-- [ ] Add `draft_revision` to configuration setter examples.
-- [ ] Add `draft_revision` to save, discard, and server-address save examples.
-- [ ] Explain stale-revision errors and refreshing authoritative profile state
-      before retrying.
-- [ ] Correct existing malformed or outdated JSON examples while editing the
-      chapter.
-- [ ] Decide which recovery and topology methods are supported public APIs.
-- [ ] Document supported public methods, or explicitly state that the operator
-      lifecycle methods are currently intended for the bundled HMI.
+- [ ] Decide with the API owner whether configuration mutation remains a
+      supported customer API for 1.14.4.
+- [ ] If it remains supported, first add and release the required negotiation,
+      revision parameters, response parsing, and stale-revision recovery in
+      `botnana-apis`; then document that released contract bilingually.
+- [ ] If it is not supported for 1.14.4, clearly classify the existing public
+      client setters and `config.save` as compatibility-limited instead of
+      publishing internal protocol-v2 details as a workaround.
+- [ ] Correct malformed or obsolete examples only within the API surface
+      confirmed by `botnana-apis`.
+- [ ] Keep recovery and topology wire methods internal to the bundled HMI unless
+      a later API release explicitly promotes them.
+- [ ] Record the reviewed API repository tag or commit used for every final JSON
+      API example.
 
 ## Step 10: Expand the configuration-file reference
 
