@@ -27,8 +27,8 @@ HMI 會分開管理下列狀態：
 | 控制器已就緒且可使用 **Rescan EtherCAT** | 執行一般重新掃描。 |
 | 生命週期為 **failed**、**Details** 內的標題為 **Controller unavailable**，且可使用 **Start controller** | 檢查已儲存設定，再啟動控制器。命令列也可能顯示 Last working settings 啟動嘗試失敗。 |
 | 因設定有未儲存變更而無法使用 **Start controller** | 儲存預定的變更或將其捨棄，然後重新檢查已儲存設定。 |
-| 操作員要求的控制器啟動正在重試拓撲驗證，且命令列提供 **Stop waiting** | 繼續等待，或停止已無助益的拓撲等待。不必開啟 **Details** 即可找到此操作。初始開機嘗試無法停止。 |
-| 啟動進行中，但沒有 **Stop waiting** | 等待成功或失敗；不要送出另一項要求。這可能是無法停止的初始開機嘗試，或目前階段尚不允許停止。 |
+| 控制器啟動（包括初始開機）正在重試拓撲驗證，且命令列提供 **Stop waiting** | 繼續等待，或停止已無助益的拓撲等待。不必開啟 **Details** 即可找到此操作。 |
+| 啟動進行中，但沒有 **Stop waiting** | 等待成功或失敗；不要送出另一項要求。初始啟動可能尚未到達可停止的拓撲重試閘門，或目前階段已不再允許停止。 |
 | **Start controller** 已停用，且 HMI 顯示 **Start controller is unavailable until authoritative recovery status is available.** | 等待 HMI 重新連線並顯示最新的權威狀態。 |
 | HMI 要求重新啟動 **Botnana Control 運動控制服務（`bnc-motion`）** | 這是在 BN-B3A 上執行的控制器服務，不是 EtherCAT 從站。請由獲授權的管理員依照[清理失敗時](#清理失敗時)處理。 |
 
@@ -56,22 +56,24 @@ HMI 會分開管理下列狀態：
 
 ## 停止拓撲等待
 
-只有在操作員要求的控制器啟動正在重試 EtherCAT 拓撲驗證，且控制器回報該嘗試
-可以停止時，**Controller & Topology** 命令列才會提供 **Stop waiting**。初始開機
-嘗試無法停止。這是協同式
+當初始開機或操作員要求的控制器啟動正在重試 EtherCAT 拓撲驗證，而且控制器回報
+該嘗試可以停止時，**Controller & Topology** 命令列會提供 **Stop waiting**。這是協同式
 停止，不是回復、強制停止或緊急停止。先前的控制器已經拆除；停止等待後，控制器
 仍然無法使用。
 
 1. 讓機台保持在現場核准的安全狀態。
-2. 檢查畫面顯示的控制器世代（generation）及設定來源：一般重新掃描應顯示
-   **Last working settings**；復原程序則應顯示 **Saved profile**。
+2. 檢查畫面顯示的控制器世代（generation）及設定來源：開機應顯示 **Initial
+   startup settings**；一般重新掃描應顯示 **Last working settings**；復原程序則應
+   顯示 **Saved profile**。
 3. 選擇 **Stop waiting**。
-4. 在確認畫面再次核對相同的世代及設定來源。只有在確定要讓控制器維持無法使用
-   時才確認。
+4. 在確認畫面再次核對相同的世代及設定來源。替代控制器嘗試會警告無法恢復先前
+   控制器；初始開機則沒有先前控制器。只有在確定要讓控制器維持無法使用時才確認。
 5. 畫面顯示 **Stopping controller start…** 時，等待正在進行的 EtherCAT 掃描
    返回。此要求不會強制終止掃描，也不保證最長完成時間。
 6. 等到 HMI 報告啟動已停止並顯示 **Controller unavailable** 後才能繼續。
-7. 修正已連接硬體或已儲存設定，再次啟動控制器，並確認從站及機台狀態。
+7. 修正已連接硬體或已儲存設定。如果實體差異是核准的配置變更，請進入
+   [EtherCAT 拓撲維護](ethercat-topology-maintenance.md)；否則再次啟動控制器。
+   確認從站及機台狀態。
 
 停止等待不會儲存或捨棄變更、不會更改已儲存設定或 Last working settings，也不會
 採用偵測到的硬體。如果 **Stop waiting** 消失或要求遭拒，請以重新整理後的狀態為

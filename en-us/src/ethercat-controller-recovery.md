@@ -30,8 +30,8 @@ Use the action that matches the current display:
 | Controller is ready and **Rescan EtherCAT** is available | Perform a normal rescan. |
 | Lifecycle is **failed**, **Details** is titled **Controller unavailable**, and **Start controller** is available | Review the saved profile, then start the controller. The command bar may also report that the last-working-settings attempt failed. |
 | **Start controller** is unavailable because the profile has unsaved changes | Save the intended changes or discard them, then review the saved profile again. |
-| An operator-requested controller start is retrying topology verification and the command bar offers **Stop waiting** | Continue waiting, or stop the unproductive topology wait. You do not need to open **Details** to find this action. The initial boot attempt is not stoppable. |
-| Startup is in progress without **Stop waiting** | Wait for success or failure; do not submit another request. This may be the non-stoppable initial boot attempt, or the current stage may not yet allow stopping. |
+| A controller start, including initial boot, is retrying topology verification and the command bar offers **Stop waiting** | Continue waiting, or stop the unproductive topology wait. You do not need to open **Details** to find this action. |
+| Startup is in progress without **Stop waiting** | Wait for success or failure; do not submit another request. Initial startup may not yet have reached the stoppable topology-retry gate, or the current stage may no longer allow stopping. |
 | **Start controller** is disabled and the HMI says **Start controller is unavailable until authoritative recovery status is available.** | Wait for the HMI to reconnect and display fresh authoritative status. |
 | The HMI says to restart the **Botnana Control motion service (`bnc-motion`)** | This is the controller-runtime service on the BN-B3A, not an EtherCAT slave. Have an authorized administrator follow [When cleanup fails](#when-cleanup-fails). |
 
@@ -60,26 +60,30 @@ failed**, the controller is unavailable. Select **Details** to open the
 
 ## Stop a Topology Wait
 
-The **Controller & Topology** command bar offers **Stop waiting** only while an
-operator-requested controller start is retrying EtherCAT topology verification
-and the controller reports that attempt as stoppable. The initial boot attempt
-is not stoppable. It is a cooperative stop, not a rollback or emergency stop. The
+The **Controller & Topology** command bar offers **Stop waiting** while initial
+boot or an operator-requested controller start is retrying EtherCAT topology
+verification and the controller reports that attempt as stoppable. It is a cooperative stop, not a rollback or emergency stop. The
 previous controller has already been dismantled, and the controller remains
 unavailable after the wait stops.
 
 1. Keep the machine in the site-approved safe condition.
-2. Review the displayed controller generation and settings source: **Last
-   working settings** for a normal rescan, or **Saved profile** for recovery.
+2. Review the displayed controller generation and settings source: **Initial
+   startup settings** for boot, **Last working settings** for a normal rescan,
+   or **Saved profile** for recovery.
 3. Select **Stop waiting**.
-4. In the confirmation, verify the same generation and settings source. Confirm
-   only if leaving the controller unavailable is still intended.
+4. In the confirmation, verify the same generation and settings source. A
+   replacement attempt warns that its previous controller cannot be restored;
+   initial boot has no previous controller. Confirm only if leaving the
+   controller unavailable is still intended.
 5. While **Stopping controller start…** is displayed, wait for any EtherCAT scan
    already in progress to return. The request does not force-stop that scan, and
    there is no guaranteed maximum completion time.
 6. Continue only after the HMI reports that startup stopped and displays
    **Controller unavailable**.
-7. Correct the connected hardware or saved profile, start the controller again,
-   and verify the slaves and machine state.
+7. Correct the connected hardware or saved profile. If the physical difference
+   is an approved layout change, enter
+   [EtherCAT Topology Maintenance](ethercat-topology-maintenance.md); otherwise,
+   start the controller again. Verify the slaves and machine state.
 
 Stopping does not save or discard edits, alter the saved profile or last working
 settings, or adopt detected hardware. If **Stop waiting** disappears or the
