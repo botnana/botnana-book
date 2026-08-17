@@ -19,9 +19,9 @@ The 1.14.4 book update has been published to the `master` branch, but the
 control repository still has release-closeout work:
 
 - `motion/Cargo.toml` currently uses product version `1.14.4` and package
-  revision `12`; additional 1.14.4 package revisions may be required before
+  revision `13`; additional 1.14.4 package revisions may be required before
   final release closeout.
-- `debian/changelog` finalizes revisions `1.14.4-2` through `1.14.4-12` for
+- `debian/changelog` finalizes revisions `1.14.4-2` through `1.14.4-13` for
   `unstable`; revision 3 adds the current-IP display correction, revision 4
   refreshes Detected slaves during rescan, revision 5 exposes **Stop waiting**
   directly in the controller command bar, revision 6 hides inapplicable
@@ -30,8 +30,9 @@ control repository still has release-closeout work:
   topology-maintenance exit progress, revision 9 allows stopping the
   initial-boot topology wait, revision 10 returns a stopped maintenance start
   to the ordinary unavailable-controller workflow, revision 11 retains the
-  pre-maintenance detected count as reference until an explicit scan, and
-  revision 12 removes redundant maintenance-entry acceptance feedback.
+  pre-maintenance detected count as reference until an explicit scan, revision
+  12 removes redundant maintenance-entry acceptance feedback, and revision 13
+  keeps those pre-maintenance slave rows visible as labelled reference evidence.
 - The bilingual book identifies version 1.14.4 with publication date
   August 17, 2026.
 - The release notes, software-update and rollback procedures, current HMI
@@ -67,7 +68,7 @@ acceptance, and documentation scope decisions are complete.
 Before changing the book, resolve these release questions with the control
 repository maintainers.
 
-- [x] Confirm that all commits through `159da31ec` on
+- [x] Confirm that all commits through `a97d08111` on
       `bounded-hmi-websocket-throughput` belong in 1.14.4.
 - [x] Confirm the final Botnana Control version string (`1.14.4`).
 - [x] Confirm the Debian filename pattern
@@ -75,7 +76,7 @@ repository maintainers.
 - [ ] Confirm the final 1.14.4 Debian package revision after the remaining
       packaging iterations.
 - [x] Confirm the book publication date (August 17, 2026).
-- [x] Finalize the control repository Debian changelog through `1.14.4-12`.
+- [x] Finalize the control repository Debian changelog through `1.14.4-13`.
 - [ ] Decide whether the third-party HMI WebSocket profile is a supported
       integration contract or an operating recommendation.
 - [ ] Confirm the exact WebSocket overload message and limits for the final

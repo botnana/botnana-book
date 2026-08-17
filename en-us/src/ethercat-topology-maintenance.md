@@ -72,9 +72,9 @@ physical layout already differs from the clean saved profile.
    master. Do not repeat the request.
 4. Confirm that **Scan connected slaves** becomes available.
 5. Before the first maintenance scan, confirm the **Detected slaves** source says
-   **Maintenance scan required** and reports how many slaves were observed before
-   maintenance. That count is reference only; the previous rows are deliberately
-   not shown as the current maintenance topology.
+   **Maintenance scan required**. The previously observed slaves remain visible,
+   with each row labelled **Before maintenance** and **Reference only**. A
+   successful maintenance scan replaces these rows with the current topology.
 6. Confirm that **Configured slaves** and **Detected slaves** remain separate
    and that no proposal exists yet.
 
