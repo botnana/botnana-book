@@ -15,14 +15,15 @@ published outputs only after the source documentation is complete.
 
 ## Current release status
 
-The 1.14.4 book update has been published to the `master` branch, but the
-control repository still has release-closeout work:
+The current 1.14.4 book sources and generated outputs have been published to
+the `master` branch for review, but the control repository and book still have
+release-closeout work:
 
 - `motion/Cargo.toml` currently uses product version `1.14.4` and package
-  revision `20`; additional 1.14.4 package revisions may be required before
+  revision `28`; additional 1.14.4 package revisions may be required before
   final release closeout.
-- `debian/changelog` finalizes revisions `1.14.4-2` through `1.14.4-21` for
-  `unstable`; revision 3 adds the current-IP display correction, revision 4
+- `debian/changelog` records the current `1.14.4-28` candidate for `unstable`;
+  revision 3 adds the current-IP display correction, revision 4
   refreshes Detected slaves during rescan, revision 5 exposes **Stop waiting**
   directly in the controller command bar, revision 6 hides inapplicable
   topology actions during non-interactive transitions, revision 7 reports
@@ -40,17 +41,38 @@ control repository still has release-closeout work:
   after approval and uses ordinary controller recovery after startup failure,
   revision 18 makes approval, durable save, and startup one server-owned
   operation that does not depend on follow-up browser requests, and revision 19
-  adds bounded structured topology traces for field diagnosis, and revision 20
-  restores the saved configured-slave projection after topology cancellation.
+  adds bounded structured topology traces for field diagnosis, revision 20
+  restores the saved configured-slave projection after topology cancellation,
+  revision 21 restores released customer configuration setters and repeated
+  parameterless `config.save`, revision 22 rejects changed reserved-runtime
+  identities and responder counts, revision 23 retains complete physical
+  topology evidence across failures and keeps unknown distinct from zero,
+  revision 25 adds bounded same-generation reserved-master acquisition and
+  ordinary PDO failure handling, revision 26 requires settled PREOP, successful
+  mailbox preparation, and stable OP/process-data readiness, revision 27 keeps
+  startup progress and its countdown visible until readiness, and revision 28
+  closes the reviewed deadline, mailbox, and reserved-state correctness gaps.
+  Revision 24 was a diagnostic package and is not a release changelog entry.
 - The bilingual book identifies version 1.14.4 with publication date
   August 17, 2026.
 - The release notes, software-update and rollback procedures, current HMI
   screenshot, and About-page IP-address procedure are published.
 - The proposed third-party HMI WebSocket profile is still marked `draft`.
-- The dedicated controller-recovery, topology-maintenance, public JSON API,
-  configuration-file, and architecture updates in this plan remain open.
+- The bilingual controller-recovery and topology-maintenance chapters are
+  published, and the public JSON API reference has been reconciled with the
+  released customer API baseline. Primary-navigation guidance, the candidate
+  custom-HMI traffic profile, the configuration-file reference, and the system
+  architecture update remain open.
 - The current-IP display correction is committed as `3190c96c3` and included
   in official package revision `1.14.4-3`, prepared by `f9fa385ed`.
+- Current candidate `1.14.4-28` is prepared by control commit `2e4caa8b4` as
+  `botnana-control_1.14.4-28_arm64.deb` with SHA-256
+  `3903f9358c752342fa35efeae20288d6ca218411ca8d55487ee2c845913dc24b`.
+- Supported-hardware evidence currently covers a controlled rescan and repeated
+  recovery on the EC5500/EC5621 chain with `1.14.4-26`, plus automatic initial
+  startup with `1.14.4-28`. The `1.14.4-28` installation did not issue a rescan.
+  Broader product acceptance, especially hardware using
+  `sdo_inhibit_before_op`, remains open.
 - Software-update screenshots are workflow examples. They may retain earlier
   package revisions and do not need replacement for every packaging-only
   revision; captions and surrounding text must remain clear that they are
@@ -87,21 +109,26 @@ repository maintainers.
 
 - [x] Confirm that all commits through `dcb3fba51` on
       `bounded-hmi-websocket-throughput` belong in 1.14.4.
+- [ ] Confirm final release inclusion of the subsequent current-candidate
+      commits through `2e4caa8b4`.
 - [x] Confirm the final Botnana Control version string (`1.14.4`).
 - [x] Confirm the Debian filename pattern
       (`botnana-control_<Debian-version>_arm64.deb`).
 - [ ] Confirm the final 1.14.4 Debian package revision after the remaining
       packaging iterations.
 - [x] Confirm the book publication date (August 17, 2026).
-- [x] Finalize the control repository Debian changelog through `1.14.4-21`.
+- [x] Record control repository Debian changelog entries through the current
+      `1.14.4-28` candidate.
 - [ ] Decide whether the third-party HMI WebSocket profile is a supported
       integration contract or an operating recommendation.
 - [ ] Confirm the exact WebSocket overload message and limits for the final
       build.
 - [x] Exclude the new DoIP server from the public manual because it is not an
       officially supported 1.14.4 feature.
-- [ ] Confirm which controller-recovery and topology-maintenance scenarios have
-      completed supported-hardware acceptance.
+- [x] Record initial-startup and rescan/recovery acceptance on the current
+      EC5500/EC5621 chain.
+- [ ] Complete broader supported-hardware acceptance, especially the deferred
+      startup-mailbox path used by `sdo_inhibit_before_op` products.
 
 The book content is published for review, but do not create the final `v1.14.4`
 tag until these decisions are complete. Any remaining candidate-only behavior
@@ -138,6 +165,11 @@ Add a 1.14.4 section describing changes since 1.14.3:
 
 - [x] In-process EtherCAT rescan.
 - [x] Boot-time topology verification and retry window.
+- [ ] Readiness publication only after required startup mailbox work succeeds
+      and EtherCAT remains stably operational with complete process-data working
+      counters.
+- [ ] Controller-start progress and countdown remaining visible while Rescan is
+      unavailable through configuration, activation, and readiness checks.
 - [x] Ability to stop an unproductive topology wait.
 - [x] Failed-controller recovery from the reviewed saved profile.
 - [x] EtherCAT topology maintenance for adding, removing, replacing, or
@@ -230,6 +262,11 @@ Document:
 - [x] The **Controller & Topology** work area.
 - [x] **Rescan EtherCAT** for a ready controller.
 - [x] Startup stages and topology retry countdown.
+- [ ] Continued operator-facing startup stage and countdown after topology
+      acceptance while the controller is configuring and checking readiness.
+- [ ] **Ready** only after required mailbox work and stable EtherCAT
+      operation/process-data readiness, without exposing internal lifecycle
+      tokens to operators.
 - [x] **Stop waiting** and its cooperative, non-rollback behavior.
 - [x] Reviewing the saved profile before **Start controller**.
 - [x] Saving or discarding profile changes before startup.
@@ -437,6 +474,10 @@ Add the currently relevant sections and defaults:
 - [ ] `[motion] axis_capacity`
 - [ ] `[motion] group_capacity`
 - [ ] `[motion] boot_retry_window_ms`, default `120000`
+- [ ] Explain that `boot_retry_window_ms` bounds topology acquisition and
+      candidate retry; after a candidate is accepted, configuration and
+      activation readiness preserve any later deadline and otherwise receive a
+      fresh minimum 30-second window.
 - [ ] Existing slave, device, axis, group, and timer settings that customers
       are expected to edit directly or through the HMI.
 
@@ -521,6 +562,8 @@ Tasks:
 - [ ] Verify all JSON examples against the final server.
 - [ ] Verify all error and status strings exactly where the book promises an
       exact value.
+- [ ] Verify equivalent bilingual wording for stable readiness, the separate
+      acquisition/readiness timing, and the visible controller-start countdown.
 - [x] Verify links and anchors in both languages with the book test suites.
 - [x] Verify published screenshots do not contain alpha versions, private data,
       or development-only controls.
