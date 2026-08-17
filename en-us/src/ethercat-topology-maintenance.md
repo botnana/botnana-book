@@ -71,7 +71,11 @@ physical layout already differs from the clean saved profile.
 3. Wait while Botnana Control releases the controller generation and EtherCAT
    master. Do not repeat the request.
 4. Confirm that **Scan connected slaves** becomes available.
-5. Confirm that **Configured slaves** and **Detected slaves** remain separate
+5. Before the first maintenance scan, confirm the **Detected slaves** source says
+   **Maintenance scan required** and reports how many slaves were observed before
+   maintenance. That count is reference only; the previous rows are deliberately
+   not shown as the current maintenance topology.
+6. Confirm that **Configured slaves** and **Detected slaves** remain separate
    and that no proposal exists yet.
 
 The controller being unavailable is expected. Entering maintenance does not

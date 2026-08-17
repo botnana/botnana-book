@@ -58,7 +58,10 @@
 2. 閱讀確認內容；只有在機台已安全時才確認。
 3. 等待 Botnana Control 釋放控制器世代及 EtherCAT master。不要重複送出要求。
 4. 確認可以使用 **Scan connected slaves**。
-5. 確認 **Configured slaves** 和 **Detected slaves** 仍彼此分開，而且尚未產生提案。
+5. 第一次維護掃描前，確認 **Detected slaves** 的來源顯示 **Maintenance scan
+   required**，並說明進入維護前觀察到的從站數量。該數量只供參考；先前的資料列
+   不會顯示為目前維護拓撲。
+6. 確認 **Configured slaves** 和 **Detected slaves** 仍彼此分開，而且尚未產生提案。
 
 此時控制器無法使用是正常狀態。進入維護不會改變草稿版本或已儲存版本。一般設定
 編輯器仍可看見，但會在維護期間停用。
