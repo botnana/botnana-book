@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-a7fcb501.js";
+            window.path_to_searchindex_js = "searchindex-27045081.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -228,6 +228,9 @@ Topology</strong> 顯示 <strong>Controller unavailable</strong> 時，請使用
 <li>控制器顯示 <strong>Ready</strong> 後，確認所有預期的 EtherCAT 從站都已出現，並在恢復
 操作前確認機台狀態。</li>
 </ol>
+<p>下列重試已觀察到三個實體從站，但已儲存拓撲仍只有一個從站。此時可以使用 <strong>Stop
+waiting</strong>，但 detected 資料列仍只是觀察結果，尚未被採用：</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./figures/ethercat-topology-retry.png" alt="拓撲重試顯示三個偵測到的從站及 Stop waiting 操作"><span class="img-wrapper"><img src="./figures/ethercat-topology-retry.png" alt="拓撲重試顯示三個偵測到的從站及 Stop waiting 操作"></span></label></p>
 <p>如果命令列顯示 <strong>Controller start with last working settings failed</strong>，表示控制器目前
 無法使用。選擇 <strong>Details</strong> 會開啟標題為 <strong>Controller unavailable</strong> 的抽屜；接著請
 執行<a href="#復原無法使用的控制器">復原無法使用的控制器</a>。</p>

@@ -50,6 +50,11 @@ HMI 會分開管理下列狀態：
 7. 控制器顯示 **Ready** 後，確認所有預期的 EtherCAT 從站都已出現，並在恢復
    操作前確認機台狀態。
 
+下列重試已觀察到三個實體從站，但已儲存拓撲仍只有一個從站。此時可以使用 **Stop
+waiting**，但 detected 資料列仍只是觀察結果，尚未被採用：
+
+![拓撲重試顯示三個偵測到的從站及 Stop waiting 操作](./figures/ethercat-topology-retry.png)
+
 如果命令列顯示 **Controller start with last working settings failed**，表示控制器目前
 無法使用。選擇 **Details** 會開啟標題為 **Controller unavailable** 的抽屜；接著請
 執行[復原無法使用的控制器](#復原無法使用的控制器)。

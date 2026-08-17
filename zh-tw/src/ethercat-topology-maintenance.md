@@ -51,7 +51,10 @@
 7. 只有在可使用 **Configure detected topology**，且附近沒有顯示未解決原因時才繼續。
 
 控制器可以是 **Ready**；如果刻意改變的實體配置已經和乾淨的已儲存設定不同，
-控制器也可能是 **Failed**。
+控制器也可能是 **Failed**。下列範例在新增兩個核准從站前，乾淨的已儲存基準包含
+一個從站：
+
+![核准實體變更前，控制器已就緒且已設定拓撲包含一個從站](./figures/ethercat-topology-before.png)
 
 ## 開始引導式設定
 
@@ -60,12 +63,17 @@
 3. 等待 Botnana Control 釋放控制器世代及 EtherCAT master、執行更新掃描，並自動
    建立完整提案。不要重複送出要求。
 4. 更新掃描尚未完成時，**Detected slaves** 會保留先前資料列，並標示 **Before
-   review** 及 **Reference only**。
+   configuration** 及 **Reference only**。
 5. 確認 **Proposed topology** 自動開啟並顯示確切更新掃描。沒有個別的檢查或重新
    掃描操作。
 
 此時控制器無法使用是正常狀態。開始檢查不會改變草稿版本或已儲存版本。一般設定
 編輯器仍可看見，但偵測拓撲檢查期間會停用。
+
+下列結果提案包含完整的三從站掃描。頁籤數量會持續分別顯示 configured、detected
+及 proposed 來源，而提案只開放編輯 **Expected Alias**：
+
+![完整三從站提案，只有 Cancel 與 Approve, save, and start 兩個決策](./figures/ethercat-topology-proposal.png)
 
 如果進入要求遭拒，請讀取畫面原因，不要繞過限制。原因可能是控制器工作尚未完成、
 正在轉換狀態、有未儲存設定、已有另一項獨佔拓撲作業，或執行期資源無法安全釋放。
@@ -106,6 +114,11 @@
    確切草稿，並從已儲存版本啟動控制器；不會顯示中間的提案或儲存確認訊息。
 4. 只有在控制器顯示 **Ready** 後才能繼續。
 5. 恢復動作許可前，確認從站順序、身分、必要裝置設定及機台狀態。
+
+核准及啟動成功後，configured 頁籤會顯示確切的已儲存三從站拓撲，而且控制器會
+顯示 **Ready**：
+
+![核准的三從站拓撲已儲存並啟動後，控制器顯示 Ready](./figures/ethercat-topology-ready.png)
 
 啟動已儲存或先前控制器時，只會顯示一般控制器生命週期進度。如果出現 **Stop
 waiting** 並加以確認，該次嘗試會取消、內部檢查工作階段會結束，而且 HMI 會返回

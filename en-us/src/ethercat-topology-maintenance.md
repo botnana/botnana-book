@@ -64,7 +64,11 @@ Before starting topology review:
    message reports an unresolved condition.
 
 The controller may be **Ready**, or it may be **Failed** because the deliberate
-physical layout already differs from the clean saved profile.
+physical layout already differs from the clean saved profile. In this example,
+the clean saved baseline contains one slave before two approved slaves are
+added:
+
+![Ready controller with a one-slave configured topology before the approved physical change](./figures/ethercat-topology-before.png)
 
 ## Start the Guided Configuration
 
@@ -81,6 +85,12 @@ physical layout already differs from the clean saved profile.
 The controller being unavailable is expected. Starting review does not change
 the draft or saved version. Normal profile editors remain visible but are
 disabled while the detected topology is being reviewed.
+
+The resulting proposal below contains the complete three-slave scan. The tab
+counts keep the configured, detected, and proposed sources visible, while the
+proposal exposes only **Expected Alias** for editing:
+
+![Complete three-slave proposal with only Cancel and Approve, save, and start decisions](./figures/ethercat-topology-proposal.png)
 
 If entry is rejected, read the displayed reason. Do not bypass it. Causes can
 include unfinished controller work, an active transition, unsaved profile
@@ -132,6 +142,11 @@ slave may be connected later.
 4. Continue only when the controller reports **Ready**.
 5. Verify slave order, identity, required device settings, and machine state
    before restoring motion permission.
+
+After successful approval and startup, the configured sheet shows the exact
+saved three-slave topology and the controller reports **Ready**:
+
+![Ready controller after the approved three-slave topology is saved and started](./figures/ethercat-topology-ready.png)
 
 While the saved or previous controller is starting, the normal controller lifecycle is
 the only progress display. If **Stop waiting** appears and you confirm it, the

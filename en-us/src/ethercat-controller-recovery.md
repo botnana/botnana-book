@@ -53,6 +53,12 @@ It does not apply unsaved profile edits.
 7. When the controller reports **Ready**, confirm that all expected EtherCAT
    slaves appear and verify the machine state before resuming operation.
 
+This retry has observed three physical slaves while the saved topology still
+contains one. **Stop waiting** is available, but the detected rows remain
+observation only and have not been adopted:
+
+![Topology retry showing three detected slaves and the Stop waiting action](./figures/ethercat-topology-retry.png)
+
 If the command bar reports **Controller start with last working settings
 failed**, the controller is unavailable. Select **Details** to open the
 **Controller unavailable** drawer, then use

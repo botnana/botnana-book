@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-a7fcb501.js";
+            window.path_to_searchindex_js = "searchindex-27045081.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -226,7 +226,9 @@
 <li>只有在可使用 <strong>Configure detected topology</strong>，且附近沒有顯示未解決原因時才繼續。</li>
 </ol>
 <p>控制器可以是 <strong>Ready</strong>；如果刻意改變的實體配置已經和乾淨的已儲存設定不同，
-控制器也可能是 <strong>Failed</strong>。</p>
+控制器也可能是 <strong>Failed</strong>。下列範例在新增兩個核准從站前，乾淨的已儲存基準包含
+一個從站：</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./figures/ethercat-topology-before.png" alt="核准實體變更前，控制器已就緒且已設定拓撲包含一個從站"><span class="img-wrapper"><img src="./figures/ethercat-topology-before.png" alt="核准實體變更前，控制器已就緒且已設定拓撲包含一個從站"></span></label></p>
 <h2 id="開始引導式設定"><a class="header" href="#開始引導式設定">開始引導式設定</a></h2>
 <ol>
 <li>選擇 <strong>Configure detected topology</strong>。</li>
@@ -234,12 +236,15 @@
 <li>等待 Botnana Control 釋放控制器世代及 EtherCAT master、執行更新掃描，並自動
 建立完整提案。不要重複送出要求。</li>
 <li>更新掃描尚未完成時，<strong>Detected slaves</strong> 會保留先前資料列，並標示 <strong>Before
-review</strong> 及 <strong>Reference only</strong>。</li>
+configuration</strong> 及 <strong>Reference only</strong>。</li>
 <li>確認 <strong>Proposed topology</strong> 自動開啟並顯示確切更新掃描。沒有個別的檢查或重新
 掃描操作。</li>
 </ol>
 <p>此時控制器無法使用是正常狀態。開始檢查不會改變草稿版本或已儲存版本。一般設定
 編輯器仍可看見，但偵測拓撲檢查期間會停用。</p>
+<p>下列結果提案包含完整的三從站掃描。頁籤數量會持續分別顯示 configured、detected
+及 proposed 來源，而提案只開放編輯 <strong>Expected Alias</strong>：</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./figures/ethercat-topology-proposal.png" alt="完整三從站提案，只有 Cancel 與 Approve, save, and start 兩個決策"><span class="img-wrapper"><img src="./figures/ethercat-topology-proposal.png" alt="完整三從站提案，只有 Cancel 與 Approve, save, and start 兩個決策"></span></label></p>
 <p>如果進入要求遭拒，請讀取畫面原因，不要繞過限制。原因可能是控制器工作尚未完成、
 正在轉換狀態、有未儲存設定、已有另一項獨佔拓撲作業，或執行期資源無法安全釋放。</p>
 <h2 id="檢查並編輯完整提案"><a class="header" href="#檢查並編輯完整提案">檢查並編輯完整提案</a></h2>
@@ -281,6 +286,9 @@ review</strong> 及 <strong>Reference only</strong>。</li>
 <li>只有在控制器顯示 <strong>Ready</strong> 後才能繼續。</li>
 <li>恢復動作許可前，確認從站順序、身分、必要裝置設定及機台狀態。</li>
 </ol>
+<p>核准及啟動成功後，configured 頁籤會顯示確切的已儲存三從站拓撲，而且控制器會
+顯示 <strong>Ready</strong>：</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./figures/ethercat-topology-ready.png" alt="核准的三從站拓撲已儲存並啟動後，控制器顯示 Ready"><span class="img-wrapper"><img src="./figures/ethercat-topology-ready.png" alt="核准的三從站拓撲已儲存並啟動後，控制器顯示 Ready"></span></label></p>
 <p>啟動已儲存或先前控制器時，只會顯示一般控制器生命週期進度。如果出現 <strong>Stop
 waiting</strong> 並加以確認，該次嘗試會取消、內部檢查工作階段會結束，而且 HMI 會返回
 一般的控制器無法使用狀態。系統不會自動重新開啟拓撲檢查，也不會顯示重試／恢復操作。請依
