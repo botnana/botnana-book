@@ -162,7 +162,9 @@ the current state.
 
 Select **Cancel** when the proposed hardware must not be activated. Confirm that
 the unapproved draft will be discarded and the previous controller restored.
-Cancellation does not change the saved profile or adopt the proposal. Restore compatible physical hardware first when necessary,
+**Configured slaves** immediately returns to the saved-profile rows; proposal rows
+must not remain there after cancellation. Cancellation does not change the saved
+profile or adopt the proposal. Restore compatible physical hardware first when necessary,
 then wait for **Ready** and verify the machine.
 
 ## Reconnection and Failures
