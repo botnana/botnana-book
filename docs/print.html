@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-783e2112.js";
+            window.path_to_searchindex_js = "searchindex-8c91449c.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -1159,27 +1159,6 @@ forward  表示正向運動時的實際位置。
 backward 表示負向運動時的實際位置。
 factor   表示 position, forward, backward 轉換到 Botnana-Control 的單位係數，
          一般 Botnana-Control 的單位可能會是 [m], [rad], [pulse]
-</code></pre>
-<h2 id="subscription-api"><a class="header" href="#subscription-api">Subscription API</a></h2>
-<h3 id="subscription"><a class="header" href="#subscription">Subscription</a></h3>
-<pre><code>{
-    "jsonrpc": "2.0",
-    "method": "ec_slave.subscribe",
-    "params": {
-        "alias": 0,
-        "position": 1,
-    }
-}
-</code></pre>
-<h3 id="unsubscription"><a class="header" href="#unsubscription">Unsubscription</a></h3>
-<pre><code>{
-    "jsonrpc": "2.0",
-    "method": "ec_slave.subscribe",
-    "params": {
-        "alias": 0,
-        "position": 1,
-    }
-}
 </code></pre>
 <h2 id="real-time-scripting-api"><a class="header" href="#real-time-scripting-api">Real-time Scripting API</a></h2>
 <p>Botnana Control 在其 real-time event loop 提供 Real-time script 來滿足更複雜的程式需求。為此提供兩個 JSON-RPC：</p>

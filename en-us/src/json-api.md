@@ -481,34 +481,6 @@ Example: Get:
              In general, the units of Botnana-Control may be: [m], [rad], [pulse]
 
 
-## Subscription API
-
-### Subscription
-
-```
-{
-    "jsonrpc": "2.0",
-    "method": "ec_slave.subscribe",
-    "params": {
-        "alias": 0,
-        "position": 1,
-    }
-}
-```
-
-### Unsubscription
-
-```
-{
-    "jsonrpc": "2.0",
-    "method": "ec_slave.subscribe",
-    "params": {
-        "alias": 0,
-        "position": 1,
-    }
-}
-```
-
 ## Real-time Scripting API
 
 Botnana Control provides real-time scripts in its real-time event loop to meet the needs of more complex programs.

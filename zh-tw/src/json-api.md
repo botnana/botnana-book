@@ -472,34 +472,6 @@ rtForth 使用者工作共用目前所選定的軸組。`group!` 以及依賴該
              一般 Botnana-Control 的單位可能會是 [m], [rad], [pulse]
 
 
-## Subscription API
-
-### Subscription
-
-```
-{
-    "jsonrpc": "2.0",
-    "method": "ec_slave.subscribe",
-    "params": {
-        "alias": 0,
-        "position": 1,
-    }
-}
-```
-
-### Unsubscription
-
-```
-{
-    "jsonrpc": "2.0",
-    "method": "ec_slave.subscribe",
-    "params": {
-        "alias": 0,
-        "position": 1,
-    }
-}
-```
-
 ## Real-time Scripting API
 
 Botnana Control 在其 real-time event loop 提供 Real-time script 來滿足更複雜的程式需求。為此提供兩個 JSON-RPC：
