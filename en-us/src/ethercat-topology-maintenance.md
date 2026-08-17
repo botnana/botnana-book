@@ -125,8 +125,10 @@ slave may be connected later.
 1. Select **Approve, save, and start**.
 2. Confirm the exact proposed topology, expected aliases, and displayed
    consequences.
-3. Botnana Control accepts those consequences, saves that exact draft, and starts
-   the controller from the saved revision.
+3. The proposal tab and both decision buttons close immediately. Botnana Control
+   accepts those consequences, saves that exact draft, and starts the controller
+   from the saved revision. Intermediate proposal and save acknowledgements are
+   not shown.
 4. Continue only when the controller reports **Ready**.
 5. Verify slave order, identity, required device settings, and machine state
    before restoring motion permission.
@@ -146,9 +148,6 @@ the unapproved draft will be discarded and the previous controller restored.
 Cancellation does not change the saved profile or adopt the proposal. Restore compatible physical hardware first when necessary,
 then wait for **Ready** and verify the machine.
 
-If the proposal was already saved, cancelling does not roll back the saved profile.
-The saved topology remains stored but inactive.
-
 ## Reconnection and Failures
 
 The internal topology-review session belongs to the controller, not to one browser. After a
@@ -159,12 +158,13 @@ session acted first, review the refreshed state rather than repeating an old
 request.
 
 - **Scan failure:** Do not use an older snapshot when it is marked non-current.
-  Check power, links, cabling, and discovery state; retry only after correcting
-  the cause.
-- **Save failure:** The draft remains unsaved. Correct the reported problem and
-  retry only when the same draft is still displayed.
-- **Start or restoration failure:** Keep the machine safe. Use only the retry or
-  previous-controller restoration action offered by the HMI.
+  Select **Cancel**, correct power, links, cabling, or discovery state, then begin
+  again with **Configure detected topology**.
+- **Approval failure before save:** The proposal remains unapproved. Correct the
+  problem, then approve again or cancel.
+- **Start failure after save:** Topology configuration ends and the proposal does
+  not reopen. The approved profile remains saved. Use the ordinary Controller
+  unavailable workflow and **Start controller** when recovery permits it.
 - **Service recovery is required:** Do not start another in-process operation.
   Record the phase, versions, generation, and error. Have an authorized
   administrator follow the `bnc-motion` procedure in
