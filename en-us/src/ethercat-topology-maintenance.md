@@ -155,6 +155,14 @@ slave may be connected later.
 Saving is not activation. If you stop after saving, the saved profile differs
 from the inactive controller and the machine must not be treated as ready.
 
+While apply or exit is starting a controller, the normal controller lifecycle is
+the only progress display. If **Stop waiting** appears and you confirm it, the
+attempt is cancelled, topology maintenance ends, and the HMI returns to the
+ordinary unavailable-controller state. It does not return to maintenance or
+show maintenance retry/restore actions automatically. Deliberately choose
+**Enter topology maintenance**, **Start controller**, or profile correction from
+the current state.
+
 ## Exit Without Adopting the Scan
 
 Use an exit action when the detected hardware must not be activated:

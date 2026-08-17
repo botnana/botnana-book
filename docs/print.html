@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-63893850.js";
+            window.path_to_searchindex_js = "searchindex-f9dca7c5.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -681,6 +681,10 @@ slaves</strong> 相同。</li>
 </ol>
 <p>儲存不等於啟用。如果在儲存後停止，已儲存設定會和未啟用控制器不同，不可將機台
 視為已就緒。</p>
+<p>套用或離開正在啟動控制器時，只會顯示一般控制器生命週期進度。如果出現 <strong>Stop
+waiting</strong> 並加以確認，該次嘗試會取消、拓撲維護會結束，而且 HMI 會返回一般的
+控制器無法使用狀態。系統不會自動返回維護，也不會顯示維護重試／恢復操作。請依
+目前狀態明確選擇 <strong>Enter topology maintenance</strong>、<strong>Start controller</strong> 或修正設定。</p>
 <h2 id="不採用掃描結果而離開"><a class="header" href="#不採用掃描結果而離開">不採用掃描結果而離開</a></h2>
 <p>當偵測到的硬體不應在此時啟用時，請使用離開操作：</p>
 <ul>
