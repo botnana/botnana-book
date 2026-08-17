@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-7a5e7410.js";
+            window.path_to_searchindex_js = "searchindex-33d0b423.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -182,6 +182,13 @@
 <li>C++</li>
 <li>Python</li>
 </ul>
+<h2 id="公開-api-範圍"><a class="header" href="#公開-api-範圍">公開 API 範圍</a></h2>
+<p>本章只涵蓋已發行 <code>botnana-apis</code> 用戶端函式庫所公開的客戶 API。Botnana
+Control 另有供內建瀏覽器 HMI 與內部服務協調使用的方法；伺服器具有某個方法，
+不代表它就是公開 API。方法必須先透過 <code>botnana-apis</code> 發行，本章才能將它記載為
+客戶整合合約。</p>
+<p>本章採用的相容性基準是 <code>botnana-apis</code> 標籤
+<code>customer-release-2025-02-21</code>，其對應來源版本為 commit <code>1946d8d28759</code>。</p>
 <h2 id="回傳資料格式"><a class="header" href="#回傳資料格式">回傳資料格式</a></h2>
 <p>Botnana Control 若回傳資料，格式一律為</p>
 <pre><code>tag1|value1|tag2|value2...
@@ -238,7 +245,14 @@
 <pre><code>version|1.0.0
 </code></pre>
 <h2 id="configuration-api"><a class="header" href="#configuration-api">Configuration API</a></h2>
-<p>程式可以使用 Configuration API 來處理參數設定檔。參數檔的設定，在重開機或重新讀取參數檔後生效。</p>
+<p>已發行的用戶端函式庫提供設定讀取、設定修改與 <code>config.save</code>。在 Botnana
+Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修改與儲存請求沒有
+攜帶目前設定檔修改所需的版本資訊。因此這些操作屬於<strong>相容性受限</strong>，不可用來
+修改 1.14.4 控制器。</p>
+<p>請使用內建 HMI 執行受支援的 1.14.4 設定變更。以下修改請求格式只用來辨識舊版
+已發行 API 範圍，不是 1.14.4 的操作程序。本章不會把內建 HMI 的內部設定協定
+公開為替代方法。</p>
+<p>參數檔的設定，在重開機或重新讀取參數檔後生效。</p>
 <h3 id="修改設定參數"><a class="header" href="#修改設定參數">修改設定參數</a></h3>
 <p>修改設定參數並不會立刻將設定值儲存至參數設定檔，也不會影響到各裝置目前使用的參數。</p>
 <h4 id="ethercat-position-與-alias-說明"><a class="header" href="#ethercat-position-與-alias-說明">EtherCAT Position 與 Alias 說明：</a></h4>

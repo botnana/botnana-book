@@ -8,6 +8,18 @@ Applications communicate with Botnana Control using JSON over WebSocket. This AP
 * C++
 * Python
 
+## Public API Scope
+
+This chapter is limited to the customer-facing methods exposed by the released
+`botnana-apis` client libraries. Botnana Control contains additional methods for
+the bundled browser HMI and internal service coordination; their presence in
+the server does not make them public API. A method must first be released by
+`botnana-apis` before this chapter can document it as a customer integration
+contract.
+
+The compatibility baseline for this chapter is the `botnana-apis` tag
+`customer-release-2025-02-21`, source-equivalent commit `1946d8d28759`.
+
 ## Response Format
 
 Botnana Control returns data in the form of
@@ -87,7 +99,21 @@ The following string will be returned:
 
 ## Configuration API
 
-The program can use the Configuration API to process the parameter configuration file. The parameter file setting is effective after restarting or re-reading the parameter file.
+The released client libraries expose configuration reads, configuration
+setters, and `config.save`. In Botnana Control 1.14.4, the released read methods
+remain part of the customer API, but the released setters and save request do
+not carry the revision-aware information now required for profile mutation.
+They are therefore **compatibility-limited** and must not be used to change a
+1.14.4 controller.
+
+Use the bundled HMI for supported 1.14.4 configuration changes. The mutation
+request shapes below describe the legacy released API surface; they are retained
+only for compatibility identification and are not an operational 1.14.4
+procedure. This chapter does not expose the bundled HMI's internal configuration
+protocol as a workaround.
+
+The parameter file setting is effective after restarting or re-reading the
+parameter file.
 
 ### Modify Configuration Parameters
 

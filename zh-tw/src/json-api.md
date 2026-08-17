@@ -8,6 +8,16 @@ Botnana Control 的 JSON API 採用 [JSON-RPC 2.0](http://www.jsonrpc.org/specif
 * C++
 * Python
 
+## 公開 API 範圍
+
+本章只涵蓋已發行 `botnana-apis` 用戶端函式庫所公開的客戶 API。Botnana
+Control 另有供內建瀏覽器 HMI 與內部服務協調使用的方法；伺服器具有某個方法，
+不代表它就是公開 API。方法必須先透過 `botnana-apis` 發行，本章才能將它記載為
+客戶整合合約。
+
+本章採用的相容性基準是 `botnana-apis` 標籤
+`customer-release-2025-02-21`，其對應來源版本為 commit `1946d8d28759`。
+
 ## 回傳資料格式
 
 Botnana Control 若回傳資料，格式一律為
@@ -78,7 +88,16 @@ rtForth 使用者工作共用目前所選定的軸組。`group!` 以及依賴該
 
 ## Configuration API
 
-程式可以使用 Configuration API 來處理參數設定檔。參數檔的設定，在重開機或重新讀取參數檔後生效。
+已發行的用戶端函式庫提供設定讀取、設定修改與 `config.save`。在 Botnana
+Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修改與儲存請求沒有
+攜帶目前設定檔修改所需的版本資訊。因此這些操作屬於**相容性受限**，不可用來
+修改 1.14.4 控制器。
+
+請使用內建 HMI 執行受支援的 1.14.4 設定變更。以下修改請求格式只用來辨識舊版
+已發行 API 範圍，不是 1.14.4 的操作程序。本章不會把內建 HMI 的內部設定協定
+公開為替代方法。
+
+參數檔的設定，在重開機或重新讀取參數檔後生效。
 
 ### 修改設定參數
 
