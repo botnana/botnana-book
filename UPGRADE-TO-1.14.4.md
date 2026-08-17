@@ -21,7 +21,7 @@ control repository still has release-closeout work:
 - `motion/Cargo.toml` currently uses product version `1.14.4` and package
   revision `20`; additional 1.14.4 package revisions may be required before
   final release closeout.
-- `debian/changelog` finalizes revisions `1.14.4-2` through `1.14.4-20` for
+- `debian/changelog` finalizes revisions `1.14.4-2` through `1.14.4-21` for
   `unstable`; revision 3 adds the current-IP display correction, revision 4
   refreshes Detected slaves during rescan, revision 5 exposes **Stop waiting**
   directly in the controller command bar, revision 6 hides inapplicable
@@ -93,7 +93,7 @@ repository maintainers.
 - [ ] Confirm the final 1.14.4 Debian package revision after the remaining
       packaging iterations.
 - [x] Confirm the book publication date (August 17, 2026).
-- [x] Finalize the control repository Debian changelog through `1.14.4-20`.
+- [x] Finalize the control repository Debian changelog through `1.14.4-21`.
 - [ ] Decide whether the third-party HMI WebSocket profile is a supported
       integration contract or an operating recommendation.
 - [ ] Confirm the exact WebSocket overload message and limits for the final
@@ -398,21 +398,23 @@ Reference, after its release status is approved:
 
 ## Step 9: Resolve configuration protocol v2 public API ownership
 
-Botnana Control implements configuration protocol v2, but the released
-`botnana-apis` baseline does not expose `protocol.negotiate`, revision-bound
-configuration setters, or the bundled-HMI lifecycle methods. Do not document
-those server details as public API until the API repository owns them.
+Botnana Control implements configuration protocol v2 for the bundled HMI, but
+the released `botnana-apis` baseline does not expose `protocol.negotiate`,
+revision-bound configuration setters, or bundled-HMI lifecycle methods. Release
+1.14.4-21 restores the unchanged released setters and parameterless
+`config.save` through a bounded legacy server path; the internal protocol-v2
+surface remains unpublished.
 
 Tasks:
 
-- [ ] Decide with the API owner whether configuration mutation remains a
-      supported customer API for 1.14.4.
-- [ ] If it remains supported, first add and release the required negotiation,
-      revision parameters, response parsing, and stale-revision recovery in
-      `botnana-apis`; then document that released contract bilingually.
-- [ ] If it is not supported for 1.14.4, clearly classify the existing public
-      client setters and `config.save` as compatibility-limited instead of
-      publishing internal protocol-v2 details as a workaround.
+- [x] Decide with the API owner that the released configuration mutations remain
+      supported customer APIs for 1.14.4.
+- [x] Preserve the released setter and `config.save` request shapes without
+      requiring a `botnana-apis` change.
+- [x] Retain revision-aware stale-edit checks for negotiated bundled-HMI and
+      internal profile workflows.
+- [x] Document that legacy customer configuration requests require a single
+      active configuration editor because they cannot report stale revisions.
 - [x] Correct malformed or obsolete examples only within the API surface
       confirmed by `botnana-apis`.
 - [x] Keep recovery and topology wire methods internal to the bundled HMI unless

@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-bc01bb0a.js";
+            window.path_to_searchindex_js = "searchindex-34a37e2b.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -842,13 +842,13 @@ Control 另有供內建瀏覽器 HMI 與內部服務協調使用的方法；伺�
 <pre><code>version|1.0.0
 </code></pre>
 <h2 id="configuration-api"><a class="header" href="#configuration-api">Configuration API</a></h2>
-<p>已發行的用戶端函式庫提供設定讀取、設定修改與 <code>config.save</code>。在 Botnana
-Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修改與儲存請求沒有
-攜帶目前設定檔修改所需的版本資訊。因此這些操作屬於<strong>相容性受限</strong>，不可用來
-修改 1.14.4 控制器。</p>
-<p>請使用內建 HMI 執行受支援的 1.14.4 設定變更。以下修改請求格式只用來辨識舊版
-已發行 API 範圍，不是 1.14.4 的操作程序。本章不會把內建 HMI 的內部設定協定
-公開為替代方法。</p>
+<p>已發行的用戶端函式庫提供設定讀取、設定修改與 <code>config.save</code>。Botnana Control
+1.14.4-21 與更新版本接受這些已發行的請求格式，不要求用戶端協商內建 HMI 使用
+的版本感知設定協定。</p>
+<p>同一時間只能使用一個設定編輯器。伺服器處理舊版 setter 請求時，會把修改套用至
+當時的設定草稿；不帶參數的 <code>config.save</code> 會儲存當時的草稿。舊版請求無法偵測
+另一個瀏覽器或用戶端是否在兩個請求之間修改草稿。請勿同時透過客戶 HMI 與內建
+HMI 編輯設定。內建 HMI 的版本感知操作仍會執行過期修改檢查。</p>
 <p>參數檔的設定，在重開機或重新讀取參數檔後生效。</p>
 <h3 id="修改設定參數"><a class="header" href="#修改設定參數">修改設定參數</a></h3>
 <p>修改設定參數並不會立刻將設定值儲存至參數設定檔，也不會影響到各裝置目前使用的參數。</p>
@@ -879,7 +879,7 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
 <code>pdo_demand_position</code>、<code>pdo_demand_velocity</code>、<code>pdo_demand_torque</code>、
 <code>pdo_real_velocity</code> 與 <code>pdo_real_torque</code>。</li>
 </ul>
-<p>舊版 wire 範例：設定位置 1 從站之 channel 1 的回歸原點方法。</p>
+<p>Wire 範例：設定位置 1 從站之 channel 1 的回歸原點方法。</p>
 <pre><code class="language-json">{
   "jsonrpc": "2.0",
   "method": "config.slave.set",
@@ -900,7 +900,7 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
 </code></pre>
 <p>已發行 setter 提供 <code>period_us</code>、<code>group_capacity</code> 與 <code>axis_capacity</code>，每個
 請求只送出一個數值。</p>
-<p>舊版 wire 範例：</p>
+<p>Wire 範例：</p>
 <pre><code class="language-json">{
   "jsonrpc": "2.0",
   "method": "config.motion.set",
@@ -919,7 +919,7 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
 <p>已發行 setter 提供 <code>name</code>、必須搭配 <code>mapping</code> 的 <code>gtype</code>、<code>vmax</code>、
 <code>amax</code> 與 <code>jmax</code>。除軸組型態與 mapping 必須成對送出外，每個用戶端 helper
 只送出一個數值。</p>
-<p>舊版 wire 範例：將軸組 1 設為對應軸 1 與軸 2 的 2D 軸組。</p>
+<p>Wire 範例：將軸組 1 設為對應軸 1 與軸 2 的 2D 軸組。</p>
 <pre><code class="language-json">{
   "jsonrpc": "2.0",
   "method": "config.group.set",
@@ -947,7 +947,7 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
 <li><code>ext_encoder_alias</code>、<code>ext_encoder_slave_position</code> 與
 <code>ext_encoder_channel</code>。</li>
 </ul>
-<p>舊版 wire 範例：</p>
+<p>Wire 範例：</p>
 <pre><code class="language-json">{
   "jsonrpc": "2.0",
   "method": "config.axis.set",
@@ -4142,9 +4142,11 @@ repeat
 </ul>
 <h3 id="相容性注意事項"><a class="header" href="#相容性注意事項">相容性注意事項</a></h3>
 <ul>
-<li>內建 HMI 與運動伺服器必須一起升級。設定變更需要設定通訊協定第 2 版，並
-必須帶入用戶端所檢查的草稿修訂版號。過期的修訂版號會被拒絕，不會覆蓋
-較新的設定檔狀態。</li>
+<li>內建 HMI 與運動伺服器必須一起升級。內建 HMI 的設定修改使用設定通訊協定
+第 2 版，並會拒絕過期的草稿修訂版號。</li>
+<li>1.14.4-21 與更新版本也接受已發行客戶函式庫送出的既有設定 setter，以及不帶
+參數的 <code>config.save</code>。這些舊版請求無法偵測同時發生的草稿修改，因此同一時間
+只能使用一個設定編輯器。</li>
 <li>系統仍使用既有的 JSON-RPC-over-WebSocket 方法及以管線符號分隔的 rtForth
 回應格式；但超出 1.14.4 准入界限的用戶端，現在可能收到上述明確過載結果。</li>
 <li>Botnana Control 仍提供兩個 rtForth 使用者工作供 WebSocket 用戶端使用。</li>

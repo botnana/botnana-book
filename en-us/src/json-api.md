@@ -100,17 +100,16 @@ The following string will be returned:
 ## Configuration API
 
 The released client libraries expose configuration reads, configuration
-setters, and `config.save`. In Botnana Control 1.14.4, the released read methods
-remain part of the customer API, but the released setters and save request do
-not carry the revision-aware information now required for profile mutation.
-They are therefore **compatibility-limited** and must not be used to change a
-1.14.4 controller.
+setters, and `config.save`. Botnana Control 1.14.4-21 and later accepts these
+released request shapes without requiring the client to negotiate the bundled
+HMI's revision-aware configuration protocol.
 
-Use the bundled HMI for supported 1.14.4 configuration changes. The mutation
-request shapes below describe the legacy released API surface; they are retained
-only for compatibility identification and are not an operational 1.14.4
-procedure. This chapter does not expose the bundled HMI's internal configuration
-protocol as a workaround.
+Use only one configuration editor at a time. A legacy setter applies to the
+current server draft when the request is processed, and parameterless
+`config.save` saves the current draft. It cannot detect that another browser or
+client changed the draft between requests. Do not edit configuration
+concurrently through a customer HMI and the bundled HMI. Revision-aware bundled
+HMI operations retain their stale-edit checks.
 
 The parameter file setting is effective after restarting or re-reading the
 parameter file.
@@ -152,8 +151,7 @@ Each released setter sends exactly one value field. The released fields are:
   `pdo_demand_position`, `pdo_demand_velocity`, `pdo_demand_torque`,
   `pdo_real_velocity`, and `pdo_real_torque`.
 
-Legacy wire example: set the homing method for channel 1 of the slave at
-position 1.
+Wire example: set the homing method for channel 1 of the slave at position 1.
 
 ```json
 {
@@ -183,7 +181,7 @@ Parameters needed:
 The released setters expose `period_us`, `group_capacity`, and `axis_capacity`,
 one value per request.
 
-Legacy wire example:
+Wire example:
 
 ```json
 {
@@ -210,7 +208,7 @@ The released setters expose `name`, `gtype` with its required `mapping`,
 `vmax`, `amax`, and `jmax`. Except for the paired group type and mapping, each
 client helper sends one value per request.
 
-Legacy wire example: configure group 1 as a 2D group mapped to axes 1 and 2.
+Wire example: configure group 1 as a 2D group mapped to axes 1 and 2.
 
 ```json
 {
@@ -244,7 +242,7 @@ Each released setter sends exactly one value field. The released fields are:
 - `ext_encoder_alias`, `ext_encoder_slave_position`, and
   `ext_encoder_channel`.
 
-Legacy wire example:
+Wire example:
 
 ```json
 {

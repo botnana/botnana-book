@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-bc01bb0a.js";
+            window.path_to_searchindex_js = "searchindex-34a37e2b.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -265,9 +265,11 @@
 </ul>
 <h3 id="相容性注意事項"><a class="header" href="#相容性注意事項">相容性注意事項</a></h3>
 <ul>
-<li>內建 HMI 與運動伺服器必須一起升級。設定變更需要設定通訊協定第 2 版，並
-必須帶入用戶端所檢查的草稿修訂版號。過期的修訂版號會被拒絕，不會覆蓋
-較新的設定檔狀態。</li>
+<li>內建 HMI 與運動伺服器必須一起升級。內建 HMI 的設定修改使用設定通訊協定
+第 2 版，並會拒絕過期的草稿修訂版號。</li>
+<li>1.14.4-21 與更新版本也接受已發行客戶函式庫送出的既有設定 setter，以及不帶
+參數的 <code>config.save</code>。這些舊版請求無法偵測同時發生的草稿修改，因此同一時間
+只能使用一個設定編輯器。</li>
 <li>系統仍使用既有的 JSON-RPC-over-WebSocket 方法及以管線符號分隔的 rtForth
 回應格式；但超出 1.14.4 准入界限的用戶端，現在可能收到上述明確過載結果。</li>
 <li>Botnana Control 仍提供兩個 rtForth 使用者工作供 WebSocket 用戶端使用。</li>

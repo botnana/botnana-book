@@ -97,10 +97,12 @@ HMI WebSocket traffic.
 
 ### Compatibility Notes
 
-- The bundled HMI and motion server must be upgraded together. Configuration
-  mutations require configuration protocol v2 and the draft revision reviewed
-  by the client. A stale revision is rejected without replacing newer profile
-  state.
+- The bundled HMI and motion server must be upgraded together. Bundled-HMI
+  configuration mutations use protocol v2 and reject stale draft revisions.
+- Release 1.14.4-21 and later also accepts the unchanged configuration setters
+  and parameterless `config.save` emitted by the released customer libraries.
+  Use only one configuration editor at a time because these legacy requests
+  cannot detect concurrent draft changes.
 - Existing JSON-RPC-over-WebSocket and pipe-delimited rtForth response formats
   remain in use, but clients that exceed the 1.14.4 admission boundary can now
   receive the explicit overload result shown above.

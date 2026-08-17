@@ -88,14 +88,14 @@ rtForth 使用者工作共用目前所選定的軸組。`group!` 以及依賴該
 
 ## Configuration API
 
-已發行的用戶端函式庫提供設定讀取、設定修改與 `config.save`。在 Botnana
-Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修改與儲存請求沒有
-攜帶目前設定檔修改所需的版本資訊。因此這些操作屬於**相容性受限**，不可用來
-修改 1.14.4 控制器。
+已發行的用戶端函式庫提供設定讀取、設定修改與 `config.save`。Botnana Control
+1.14.4-21 與更新版本接受這些已發行的請求格式，不要求用戶端協商內建 HMI 使用
+的版本感知設定協定。
 
-請使用內建 HMI 執行受支援的 1.14.4 設定變更。以下修改請求格式只用來辨識舊版
-已發行 API 範圍，不是 1.14.4 的操作程序。本章不會把內建 HMI 的內部設定協定
-公開為替代方法。
+同一時間只能使用一個設定編輯器。伺服器處理舊版 setter 請求時，會把修改套用至
+當時的設定草稿；不帶參數的 `config.save` 會儲存當時的草稿。舊版請求無法偵測
+另一個瀏覽器或用戶端是否在兩個請求之間修改草稿。請勿同時透過客戶 HMI 與內建
+HMI 編輯設定。內建 HMI 的版本感知操作仍會執行過期修改檢查。
 
 參數檔的設定，在重開機或重新讀取參數檔後生效。
 
@@ -137,7 +137,7 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
   `pdo_demand_position`、`pdo_demand_velocity`、`pdo_demand_torque`、
   `pdo_real_velocity` 與 `pdo_real_torque`。
 
-舊版 wire 範例：設定位置 1 從站之 channel 1 的回歸原點方法。
+Wire 範例：設定位置 1 從站之 channel 1 的回歸原點方法。
 
 ```json
 {
@@ -167,7 +167,7 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
 已發行 setter 提供 `period_us`、`group_capacity` 與 `axis_capacity`，每個
 請求只送出一個數值。
 
-舊版 wire 範例：
+Wire 範例：
 
 ```json
 {
@@ -194,7 +194,7 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
 `amax` 與 `jmax`。除軸組型態與 mapping 必須成對送出外，每個用戶端 helper
 只送出一個數值。
 
-舊版 wire 範例：將軸組 1 設為對應軸 1 與軸 2 的 2D 軸組。
+Wire 範例：將軸組 1 設為對應軸 1 與軸 2 的 2D 軸組。
 
 ```json
 {
@@ -228,7 +228,7 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
 - `ext_encoder_alias`、`ext_encoder_slave_position` 與
   `ext_encoder_channel`。
 
-舊版 wire 範例：
+Wire 範例：
 
 ```json
 {
