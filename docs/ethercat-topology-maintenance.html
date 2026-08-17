@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>EtherCAT 拓撲維護 - Botnana Control</title>
+        <title>檢查並設定 EtherCAT 拓撲 - Botnana Control</title>
 
 
         <!-- Custom HTML head -->
@@ -35,10 +35,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-d959d015.js";
+            window.path_to_searchindex_js = "searchindex-c5841eb4.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-c8aa6d42.js"></script>
+        <script src="toc-62f29738.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -174,12 +174,12 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="ethercat-拓撲維護"><a class="header" href="#ethercat-拓撲維護">EtherCAT 拓撲維護</a></h1>
+                        <h1 id="檢查並設定-ethercat-拓撲"><a class="header" href="#檢查並設定-ethercat-拓撲">檢查並設定 EtherCAT 拓撲</a></h1>
 <p>當獲授權的試車技術人員要刻意新增、移除、更換或重新排序 EtherCAT 從站時，請使用
-拓撲維護。如果硬體配置不應改變，請使用一般 <strong>Rescan EtherCAT</strong>。如果故障不是由
+引導式拓撲檢查。如果硬體配置不應改變，請使用一般 <strong>Rescan EtherCAT</strong>。如果故障不是由
 核准的配置變更造成，請使用 <a href="ethercat-controller-recovery.html">EtherCAT 控制器復原</a>。</p>
 <p>掃描已連接硬體不會儲存或採用硬體。只有明確使用完整掃描建立提案、檢查影響、
-儲存、套用該確切已儲存版本，而且控制器到達 <strong>Ready</strong> 後，變更的配置才會生效。</p>
+儲存、從該確切已儲存版本啟動，而且控制器到達 <strong>Ready</strong> 後，變更的配置才會生效。</p>
 <blockquote>
 <p>**安全注意事項：**請遵守現場的上鎖、動作停用、電氣隔離及驗證程序。HMI 確認
 只記錄您對機台已安全的聲明，不是安全連鎖。控制器無法使用、正在啟動或回報故障
@@ -194,72 +194,74 @@
 <tr><th>HMI 狀態</th><th>意義</th></tr>
 </thead>
 <tbody>
-<tr><td><strong>Configured slaves</strong></td><td>維護期間用作已儲存比較基準的唯讀拓撲。</td></tr>
-<tr><td><strong>Detected slaves</strong></td><td>最新一次成功維護掃描所得的唯讀硬體。一般啟動或重新掃描期間，則會跟隨每次最新完成的實體啟動掃描。</td></tr>
-<tr><td><strong>Proposed topology</strong></td><td>明確選擇 <strong>Use complete detected topology</strong> 後產生的完整偵測拓撲。此處只能編輯 <strong>Expected Alias</strong>。</td></tr>
+<tr><td><strong>Configured slaves</strong></td><td>檢查期間用作已儲存比較基準的唯讀拓撲。</td></tr>
+<tr><td><strong>Detected slaves</strong></td><td>最新一次成功更新掃描所得的唯讀硬體。一般啟動或重新掃描期間，則會跟隨每次最新完成的實體啟動掃描。</td></tr>
+<tr><td><strong>Proposed topology</strong></td><td>明確選擇 <strong>Configure detected topology</strong> 後產生的完整偵測拓撲。此處只能編輯 <strong>Expected Alias</strong>。</td></tr>
 <tr><td><strong>Shared draft</strong> 及 <strong>Draft version</strong></td><td>正在檢查的設定，尚未儲存供啟動使用。</td></tr>
 <tr><td><strong>Saved profile</strong> 及 <strong>Saved version</strong></td><td>持久儲存在控制器上的設定。</td></tr>
 <tr><td><strong>Running controller</strong></td><td>目前控制機台的設定；只有儲存不會改變它。</td></tr>
-<tr><td><strong>Pre-maintenance controller settings</strong></td><td>未套用提案而離開時，用來啟動控制器的確切保留設定。</td></tr>
+<tr><td><strong>Previous controller settings</strong></td><td>取消檢查時，用來恢復控制器的確切保留設定。</td></tr>
 </tbody>
 </table>
 </div>
 <p>各頁籤的數量可用來交叉檢查。Configured 與 Detected 數量不同本身不會造成任何
-變更。維護期間，<strong>Detected slaves</strong> 只顯示該次成功維護掃描，不會和啟動掃描的
-觀察結果混合。</p>
+變更。檢查期間，先前的偵測資料列會標示 <strong>Before review</strong> 及 <strong>Reference only</strong>，
+直到更新掃描完成後才由目前結果取代。</p>
 <p>請在 <strong>Slave Configuration</strong> 檢查驅動器、I/O、通道及其他從站類型設定。切換
 <strong>Controller &amp; Topology</strong> 頁籤不會取代該編輯器。</p>
 <h2 id="準備變更"><a class="header" href="#準備變更">準備變更</a></h2>
-<p>進入維護前：</p>
+<p>開始拓撲檢查前：</p>
 <ol>
 <li>記錄核准的實體變更、目前從站順序、別名、vendor ID、product code 及回復計畫。
 必要時拍攝標籤及配線。</li>
 <li>確認步驟 1 的回復計畫確實可行：如果變更後的拓撲無法到達 <strong>Ready</strong>，可以將
 原本的從站、實體排列順序及配線恢復成變更前的狀態。</li>
 <li>在 <strong>Controller &amp; Topology</strong> 比較 <strong>Configured slaves</strong> 和 <strong>Detected slaves</strong>。</li>
-<li>拓撲維護會以已儲存設定作為比較及回復基準。請儲存必須保留的現有編輯，或捨棄
+<li>拓撲檢查會以已儲存設定作為比較及回復基準。請儲存必須保留的現有編輯，或捨棄
 不需要的編輯，直到 HMI 不再顯示 <strong>Unsaved changes</strong>。這可避免將一般設定編輯
-和拓撲變更混在同一次維護程序中。</li>
+和拓撲變更混在同一次檢查程序中。</li>
 <li>停止正在使用控制器的指令稿、配方、HMI 工作及其他作業。</li>
 <li>讓機台進入現場核准的安全狀態。</li>
-<li>只有在可使用 <strong>Enter topology maintenance</strong>，且附近沒有顯示未解決原因時才繼續。</li>
+<li>只有在可使用 <strong>Review detected topology</strong>，且附近沒有顯示未解決原因時才繼續。</li>
 </ol>
 <p>控制器可以是 <strong>Ready</strong>；如果刻意改變的實體配置已經和乾淨的已儲存設定不同，
 控制器也可能是 <strong>Failed</strong>。</p>
-<h2 id="進入拓撲維護"><a class="header" href="#進入拓撲維護">進入拓撲維護</a></h2>
+<h2 id="開始引導式檢查"><a class="header" href="#開始引導式檢查">開始引導式檢查</a></h2>
 <ol>
-<li>選擇 <strong>Enter topology maintenance</strong>。</li>
+<li>選擇 <strong>Review detected topology</strong>。</li>
 <li>閱讀確認內容；只有在機台已安全時才確認。</li>
-<li>等待 Botnana Control 釋放控制器世代及 EtherCAT master。不要重複送出要求。</li>
-<li>確認可以使用 <strong>Scan connected slaves</strong>。</li>
-<li>第一次維護掃描前，確認 <strong>Detected slaves</strong> 的來源顯示 <strong>Maintenance scan
-required</strong>。先前觀察到的從站仍會顯示，而且每個資料列都會標示 <strong>Before
-maintenance</strong> 及 <strong>Reference only</strong>。維護掃描成功後，目前拓撲會取代這些資料列。</li>
+<li>等待 Botnana Control 釋放控制器世代及 EtherCAT master，並自動要求更新掃描。
+不要重複送出要求。</li>
+<li>更新掃描尚未完成時，確認 <strong>Detected slaves</strong> 保留先前資料列，並標示 <strong>Before
+review</strong> 及 <strong>Reference only</strong>。</li>
+<li>自動更新完成後，確認目前拓撲取代先前資料列。若在這個步驟重新連線，或需要
+明確重掃，仍可使用 <strong>Refresh detected topology</strong>。</li>
 <li>確認 <strong>Configured slaves</strong> 和 <strong>Detected slaves</strong> 仍彼此分開，而且尚未產生提案。</li>
 </ol>
-<p>此時控制器無法使用是正常狀態。進入維護不會改變草稿版本或已儲存版本。一般設定
-編輯器仍可看見，但會在維護期間停用。</p>
+<p>此時控制器無法使用是正常狀態。開始檢查不會改變草稿版本或已儲存版本。一般設定
+編輯器仍可看見，但偵測拓撲檢查期間會停用。</p>
 <p>如果進入要求遭拒，請讀取畫面原因，不要繞過限制。原因可能是控制器工作尚未完成、
-正在轉換狀態、有未儲存設定、已有另一項維護作業，或執行期資源無法安全釋放。</p>
+正在轉換狀態、有未儲存設定、已有另一項獨佔拓撲作業，或執行期資源無法安全釋放。</p>
 <h2 id="變更掃描及比較硬體"><a class="header" href="#變更掃描及比較硬體">變更、掃描及比較硬體</a></h2>
 <ol>
 <li>讓機台保持安全，並依現場及硬體說明隔離裝置電源。</li>
 <li>只執行已核准的新增、移除、更換或重新排序。</li>
 <li>檢查裝置電源、EtherCAT-IN/EtherCAT-OUT 方向、纜線接合及實體順序。只有在程序
 允許時才能恢復電源。</li>
-<li>選擇 <strong>Scan connected slaves</strong> 並等待完成。重新整理或關閉瀏覽器不會取消掃描。</li>
-<li>選擇 <strong>Detected slaves</strong>，確認來源指出目前的維護掃描。</li>
+<li>如果硬體是在自動掃描後才變更，請選擇 <strong>Refresh detected topology</strong> 並等待完成。
+重新整理或關閉瀏覽器不會取消控制器已接管的掃描。</li>
+<li>選擇 <strong>Detected slaves</strong>，確認來源指出目前的拓撲掃描。</li>
 <li>將每個位置、vendor ID、product code 及預期裝置和核准變更及實體標籤比較。</li>
 </ol>
 <p>不能只選擇一部分。每個偵測到的資料列都必須屬於預定配置。若出現任何非預期資料
 列，請修正硬體後再次掃描。新掃描會取代比較結果並使先前的檢查確認失效，但絕不會
 暗中儲存硬體。</p>
-<p>如果偵測拓撲和已儲存拓撲相同，可以離開並恢復維護前控制器設定。如果只需要改變
+<p>如果偵測拓撲和已儲存拓撲相同，可以取消檢查並恢復先前控制器設定。如果只需要改變
 預期別名，仍可建立提案。</p>
 <h2 id="建立並檢查完整提案"><a class="header" href="#建立並檢查完整提案">建立並檢查完整提案</a></h2>
 <ol>
 <li>再次確認每個偵測資料列都是預定項目。</li>
-<li>選擇 <strong>Use complete detected topology</strong>。不能只採用部分拓撲。</li>
+<li>選擇 <strong>Configure detected topology</strong>。不能只採用部分拓撲。</li>
 <li>確認 <strong>Proposed topology</strong> 的位置、vendor ID 及 product code 和 <strong>Detected
 slaves</strong> 相同。</li>
 <li>必要時編輯 <strong>Expected Alias</strong>，只能輸入 0 至 65535 的整數。這會改變設定中的
@@ -284,54 +286,53 @@ slaves</strong> 相同。</li>
 </table>
 </div>
 <p>不要只為了讓儲存按鈕可用而接受清除或預設值。如果影響不是預定結果，請取消、
-修正硬體或計畫後重新掃描，或離開並捨棄草稿。</p>
+修正硬體或計畫後重新掃描，或取消並捨棄草稿。</p>
 <p>移除最後一個從站可以產生零資料列的有效提案。空的已儲存從站清單會被視為尚未
 試車的拓撲；不代表系統會強制禁止日後連接任何從站。</p>
-<h2 id="儲存並套用新拓撲"><a class="header" href="#儲存並套用新拓撲">儲存並套用新拓撲</a></h2>
+<h2 id="儲存新拓撲並啟動"><a class="header" href="#儲存新拓撲並啟動">儲存新拓撲並啟動</a></h2>
 <ol>
 <li>確認畫面所示草稿版本的所有必要影響都已接受。</li>
-<li>選擇 <strong>Save reviewed topology (inactive)</strong>。</li>
+<li>選擇 <strong>Save topology</strong>。</li>
 <li>等待已儲存版本增加。確認控制器仍無法使用，而且 HMI 顯示已儲存拓撲尚未啟用。</li>
 <li>再次檢查已儲存版本及拓撲。</li>
-<li>選擇 <strong>Apply saved topology</strong>，確認訊息指出預定的已儲存變更。</li>
-<li>等待啟動。不要再送出套用或離開要求。</li>
+<li>選擇 <strong>Start controller with saved topology</strong>，確認訊息指出預定的已儲存變更。</li>
+<li>等待啟動。不要再送出啟動或取消要求。</li>
 <li>只有在控制器顯示 <strong>Ready</strong> 後才能繼續。</li>
 <li>恢復動作許可前，確認從站順序、身分、必要裝置設定及機台狀態。</li>
 </ol>
 <p>儲存不等於啟用。如果在儲存後停止，已儲存設定會和未啟用控制器不同，不可將機台
 視為已就緒。</p>
-<p>套用或離開正在啟動控制器時，只會顯示一般控制器生命週期進度。如果出現 <strong>Stop
-waiting</strong> 並加以確認，該次嘗試會取消、拓撲維護會結束，而且 HMI 會返回一般的
-控制器無法使用狀態。系統不會自動返回維護，也不會顯示維護重試／恢復操作。請依
-目前狀態明確選擇 <strong>Enter topology maintenance</strong>、<strong>Start controller</strong> 或修正設定。</p>
-<h2 id="不採用掃描結果而離開"><a class="header" href="#不採用掃描結果而離開">不採用掃描結果而離開</a></h2>
-<p>當偵測到的硬體不應在此時啟用時，請使用離開操作：</p>
+<p>啟動已儲存或先前控制器時，只會顯示一般控制器生命週期進度。如果出現 <strong>Stop
+waiting</strong> 並加以確認，該次嘗試會取消、內部檢查工作階段會結束，而且 HMI 會返回
+一般的控制器無法使用狀態。系統不會自動重新開啟拓撲檢查，也不會顯示重試／恢復操作。請依
+目前狀態明確選擇 <strong>Review detected topology</strong>、<strong>Start controller</strong> 或修正設定。</p>
+<h2 id="不採用掃描結果而取消"><a class="header" href="#不採用掃描結果而取消">不採用掃描結果而取消</a></h2>
+<p>當偵測到的硬體不應在此時啟用時，請取消檢查：</p>
 <ul>
-<li>沒有未儲存拓撲草稿時，選擇 <strong>Exit and restore pre-maintenance controller</strong>。</li>
-<li>檢查尚未完成時，選擇 <strong>Exit and discard draft</strong>；此時不能保留草稿。</li>
-<li>草稿已完整檢查時，請明確選擇 <strong>Exit and preserve draft</strong> 或 <strong>Exit and discard
+<li>沒有未儲存拓撲草稿時，選擇 <strong>Cancel and restore previous controller</strong>。</li>
+<li>檢查尚未完成時，選擇 <strong>Cancel and discard draft</strong>；此時不能保留草稿。</li>
+<li>草稿已完整檢查時，請明確選擇 <strong>Cancel and preserve draft</strong> 或 <strong>Cancel and discard
 draft</strong>。</li>
 </ul>
-<p>離開會啟動保留的維護前控制器設定，不會採用偵測掃描。必要時先恢復相容的實體
+<p>取消會啟動保留的先前控制器設定，不會採用偵測掃描。必要時先恢復相容的實體
 硬體，再等待 <strong>Ready</strong> 並確認機台。</p>
-<p>如果提案已經儲存，離開不會回復已儲存設定；已儲存拓撲會繼續保留但尚未啟用。</p>
+<p>如果提案已經儲存，取消不會回復已儲存設定；已儲存拓撲會繼續保留但尚未啟用。</p>
 <h2 id="重新連線及故障處理"><a class="header" href="#重新連線及故障處理">重新連線及故障處理</a></h2>
-<p>拓撲維護屬於控制器，不屬於單一瀏覽器。重新整理或重新連線後，請等待 <strong>Restoring
-topology maintenance state</strong> 被目前階段取代。繼續前先確認階段、狀態修訂版、草稿及
+<p>內部拓撲檢查工作階段屬於控制器，不屬於單一瀏覽器。重新整理或重新連線後，請等待
+<strong>Restoring topology review state</strong> 被目前階段取代。繼續前先確認階段、狀態修訂版、草稿及
 已儲存版本、偵測快照、提案和檢查結果。如果另一個工作階段已先執行操作，請檢查
 重新整理後的狀態，不要重複舊要求。</p>
 <ul>
 <li>**掃描失敗：**舊快照若標示為非目前狀態，不可使用。檢查電源、連線、纜線及偵測
 狀態；修正原因後才能重試。</li>
 <li>**儲存失敗：**草稿仍未儲存。修正回報的問題，並只在仍顯示相同草稿時重試。</li>
-<li>**套用或離開失敗：**讓機台保持安全，只使用 HMI 提供的重試或保留維護前設定
-離開操作。</li>
+<li>**啟動或恢復失敗：**讓機台保持安全，只使用 HMI 提供的重試或先前控制器恢復操作。</li>
 <li>**顯示 Service recovery is required：**不要再啟動程序內操作。記錄階段、版本、
 世代及錯誤，請獲授權管理員依照 <a href="ethercat-controller-recovery.html#清理失敗時">EtherCAT 控制器復原</a>
 中的 <code>bnc-motion</code> 程序處理。</li>
 </ul>
 <p>向支援人員回報時，請記錄安裝的 Botnana Control 版本、核准變更、變更前後的實體
-身分及順序、維護階段、草稿及已儲存版本、偵測快照、已接受的影響、最終控制器
+身分及順序、檢查階段、草稿及已儲存版本、偵測快照、已接受的影響、最終控制器
 狀態，以及任何中斷連線、重試或重新啟動服務的時間。</p>
 
                     </main>

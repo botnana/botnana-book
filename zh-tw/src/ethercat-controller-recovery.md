@@ -2,7 +2,7 @@
 
 當 Botnana Control 必須重新偵測已連接的 EtherCAT 硬體，或 **Controller &
 Topology** 顯示 **Controller unavailable** 時，請使用本程序。如果是核准的新增、
-移除、更換或重新排序，請改用 [EtherCAT 拓撲維護](ethercat-topology-maintenance.md)。
+移除、更換或重新排序，請改用 [檢查並設定 EtherCAT 拓撲](ethercat-topology-maintenance.md)。
 
 > **安全注意事項：**重新掃描、啟動或重新啟動控制器之前，請依現場核准的程序讓
 > 機台進入安全停止狀態。這些 HMI 操作是維護控制，不是安全功能。控制器無法使用
@@ -72,7 +72,7 @@ HMI 會分開管理下列狀態：
    返回。此要求不會強制終止掃描，也不保證最長完成時間。
 6. 等到 HMI 報告啟動已停止並顯示 **Controller unavailable** 後才能繼續。
 7. 修正已連接硬體或已儲存設定。如果實體差異是核准的配置變更，請進入
-   [EtherCAT 拓撲維護](ethercat-topology-maintenance.md)；否則再次啟動控制器。
+   [檢查並設定 EtherCAT 拓撲](ethercat-topology-maintenance.md)；否則再次啟動控制器。
    確認從站及機台狀態。
 
 停止等待不會儲存或捨棄變更、不會更改已儲存設定或 Last working settings，也不會

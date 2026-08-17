@@ -3,7 +3,7 @@
 Use this procedure when Botnana Control must rediscover connected EtherCAT
 hardware or **Controller & Topology** reports **Controller unavailable**. For an
 approved addition, removal, replacement, or reorder, use
-[EtherCAT Topology Maintenance](ethercat-topology-maintenance.md) instead.
+[Review and Configure the EtherCAT Topology](ethercat-topology-maintenance.md) instead.
 
 > **Safety:** Put the machine in the site-approved safe stopped condition before
 > rescanning, starting, or restarting the controller. These HMI operations are
@@ -82,7 +82,7 @@ unavailable after the wait stops.
    **Controller unavailable**.
 7. Correct the connected hardware or saved profile. If the physical difference
    is an approved layout change, enter
-   [EtherCAT Topology Maintenance](ethercat-topology-maintenance.md); otherwise,
+   [Review and Configure the EtherCAT Topology](ethercat-topology-maintenance.md); otherwise,
    start the controller again. Verify the slaves and machine state.
 
 Stopping does not save or discard edits, alter the saved profile or last working

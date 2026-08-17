@@ -12,7 +12,7 @@
 * [系統架構](./system-archetecture.md)
 * [Botnana Control 入門](./botnana-control-tutorial.md)
 * [EtherCAT 控制器復原](./ethercat-controller-recovery.md)
-* [EtherCAT 拓撲維護](./ethercat-topology-maintenance.md)
+* [檢查並設定 EtherCAT 拓撲](./ethercat-topology-maintenance.md)
 * [設定檔](./configuration-file.md)
 
 ### 4. 程式開發
