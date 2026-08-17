@@ -135,10 +135,12 @@ slave may be connected later.
 1. Select **Approve, save, and start**.
 2. Confirm the exact proposed topology, expected aliases, and displayed
    consequences.
-3. The proposal tab and both decision buttons close immediately. Botnana Control
-   accepts those consequences, saves that exact draft, and starts the controller
-   from the saved revision. Intermediate proposal and save acknowledgements are
-   not shown.
+3. The proposal tab and both decision buttons close immediately. One exact
+   approval request transfers the accepted consequences, durable save, and
+   controller start to Botnana Control. The server completes that sequence
+   without follow-up browser requests, so reconnecting or closing this browser
+   after acceptance does not interrupt it. Intermediate proposal and save
+   acknowledgements are not shown.
 4. Continue only when the controller reports **Ready**.
 5. Verify slave order, identity, required device settings, and machine state
    before restoring motion permission.

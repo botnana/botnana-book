@@ -19,9 +19,9 @@ The 1.14.4 book update has been published to the `master` branch, but the
 control repository still has release-closeout work:
 
 - `motion/Cargo.toml` currently uses product version `1.14.4` and package
-  revision `17`; additional 1.14.4 package revisions may be required before
+  revision `18`; additional 1.14.4 package revisions may be required before
   final release closeout.
-- `debian/changelog` finalizes revisions `1.14.4-2` through `1.14.4-17` for
+- `debian/changelog` finalizes revisions `1.14.4-2` through `1.14.4-18` for
   `unstable`; revision 3 adds the current-IP display correction, revision 4
   refreshes Detected slaves during rescan, revision 5 exposes **Stop waiting**
   directly in the controller command bar, revision 6 hides inapplicable
@@ -36,8 +36,10 @@ control repository still has release-closeout work:
   revision 14 removes redundant topology-scan acceptance feedback, and revision
   15 presents a guided detected-topology review with an automatic fresh scan,
   revision 16 automatically creates the proposal and combines review, save, and
-  start under one approval action, and revision 17 closes the proposal immediately
-  after approval and uses ordinary controller recovery after startup failure.
+  start under one approval action, revision 17 closes the proposal immediately
+  after approval and uses ordinary controller recovery after startup failure,
+  and revision 18 makes approval, durable save, and startup one server-owned
+  operation that does not depend on follow-up browser requests.
 - The bilingual book identifies version 1.14.4 with publication date
   August 17, 2026.
 - The release notes, software-update and rollback procedures, current HMI
@@ -73,7 +75,7 @@ acceptance, and documentation scope decisions are complete.
 Before changing the book, resolve these release questions with the control
 repository maintainers.
 
-- [x] Confirm that all commits through `98adfc4a0` on
+- [x] Confirm that all commits through `8dc31f4ca` on
       `bounded-hmi-websocket-throughput` belong in 1.14.4.
 - [x] Confirm the final Botnana Control version string (`1.14.4`).
 - [x] Confirm the Debian filename pattern
@@ -81,7 +83,7 @@ repository maintainers.
 - [ ] Confirm the final 1.14.4 Debian package revision after the remaining
       packaging iterations.
 - [x] Confirm the book publication date (August 17, 2026).
-- [x] Finalize the control repository Debian changelog through `1.14.4-17`.
+- [x] Finalize the control repository Debian changelog through `1.14.4-18`.
 - [ ] Decide whether the third-party HMI WebSocket profile is a supported
       integration contract or an operating recommendation.
 - [ ] Confirm the exact WebSocket overload message and limits for the final
