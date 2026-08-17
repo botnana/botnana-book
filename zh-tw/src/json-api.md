@@ -127,49 +127,30 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
     "position": Slave Position。
     "channel": Device Channel，從 1 開始計數。
 
-可設定參數：可以單獨設定一個或是多個
-       
-    "homing_method" : Homing method ,參考驅動器 0x6098:0x00 的描述。
-    "homing_speed_1" : Speed during search for switch ,參考驅動器 0x6099:0x01 的描述。
-    "homing_speed_2" : Speed during search for zero。參照選用驅動器 0x6099:0x02 的描述。
-    "homing_acceleration": Homing acceleration。參照選用驅動器 0x609A:0x00 的描述。
-    "profile_velocity": Profile velocity。參照選用驅動器 0x6081:0x00 的描述。
-    "profile_acceleration": Profile acceleration。參照選用驅動器 0x6083:0x00 的描述。
-    "profile_deceleration": Profile deceleration。參照選用驅動器 0x6084:0x00 的描述。
-    "baud_rate": UART baud rate。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x11 的描述。
-    "data_frame": UART data frame。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x15 的描述。
-    "half_duplex": Uart Half Duplex Transmission。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x06 的描述。
-    "uart_p2p":  UART point to point。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x07 的描述。
-    "tx_optimization": UART Tx optimization。參照 Beckhoff EL600x 或是 EL602X 0x8000:0x07 的描述。
-    
+每個已發行的 setter 請求只會送出一個數值欄位。已發行欄位如下：
 
-範例 1：修改 slave 1 channel 1 驅動器的回歸原點方法。
+- `homing_method`、`homing_speed_1`、`homing_speed_2` 與
+  `homing_acceleration`；
+- `profile_velocity`、`profile_acceleration` 與
+  `profile_deceleration`；以及
+- `pdo_velocity_offset`、`pdo_torque_offset`、`pdo_digital_inputs`、
+  `pdo_demand_position`、`pdo_demand_velocity`、`pdo_demand_torque`、
+  `pdo_real_velocity` 與 `pdo_real_torque`。
 
-    {
-      "jsonrpc": "2.0",
-      "method": "config.slave.set",
-      "params": {
-        "alias": 0,
-        "position": 1,
-        "channel": 1,
-        "homing_method" : 33,
-      }
-    }
-    
-範例 2：修改 slave 2 channel 3 驅動器的回歸原點的速度與加速度。
+舊版 wire 範例：設定位置 1 從站之 channel 1 的回歸原點方法。
 
-    {
-      "jsonrpc": "2.0",
-      "method": "config.slave.set",
-      "params": {
-        "alias": 0,
-        "position": 2,
-        "channel": 3,
-        "homing_speed_1" : 10000,
-        "homing_speed_2" : 100,
-        "homing_acceleration": 5000,
-      }
-    }    
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "config.slave.set",
+  "params": {
+    "alias": 0,
+    "position": 1,
+    "channel": 1,
+    "homing_method": 33
+  }
+}
+```
 
 
 #### 設定運動控制參數 `config.motion.set`
@@ -183,23 +164,20 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
     None
     
     
-可設定參數：可以單獨設定一個或是多個    
-    
-    "period_us": 執行周期 [us]
-    "group_capacity": 軸組數
-    "axis_capacity": 軸數
-   
-範例： 
+已發行 setter 提供 `period_us`、`group_capacity` 與 `axis_capacity`，每個
+請求只送出一個數值。
 
-    {
-      "jsonrpc": "2.0",
-      "method": "config.motion.set",
-      "params": {
-        "period_us": 2000,
-        "group_capacity": 5,
-        "axis_capacity": 5
-       }
-    }
+舊版 wire 範例：
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "config.motion.set",
+  "params": {
+    "period_us": 2000
+  }
+}
+```
 
 
 #### 設定軸組參數 `config.group.set`
@@ -212,30 +190,23 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
     
     "position": 指定軸組，從 1 開始計數。
     
-可設定參數：可以單獨設定一個或是多個    
-    
-    "name": 軸組名稱
-    "gtype": 軸組型態，可以設定 "1D","2D","3D","SINE"
-    "mapping": 指定對應的運動軸，例如 [1, 2] 或是 [2, 1, 3]
-    "vmax": 最大速度 [m/s],[rad/s],[pulse/s]
-    "amax": 最大加速度 [m/s^2],[rad/s^2],[pulse/s^2]
-    "jmax": 最大加加速度 [m/s^3],[rad/s^3],[pulse/s^3]    
+已發行 setter 提供 `name`、必須搭配 `mapping` 的 `gtype`、`vmax`、
+`amax` 與 `jmax`。除軸組型態與 mapping 必須成對送出外，每個用戶端 helper
+只送出一個數值。
 
-範例： 設定 Group 1 的參數 
+舊版 wire 範例：將軸組 1 設為對應軸 1 與軸 2 的 2D 軸組。
 
-    {
-      "jsonrpc": "2.0",
-      "method": "config.group.set",
-      "params": {
-        "position": 1,
-        "name": "BotnanaGo",
-        "gtype": "2D",
-        "mapping": [1, 2],
-        "vmax": 0.5,
-        "amax": 5.0,
-        "jmax": 80.0, 
-      }
-    }
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "config.group.set",
+  "params": {
+    "position": 1,
+    "gtype": "2D",
+    "mapping": [1, 2]
+  }
+}
+```
 
 #### 設定運動軸參數 `config.axis.set`
 
@@ -247,32 +218,28 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
     
     "position": 指定運動軸，從 1 開始計數。
     
-可設定參數：可以單獨設定一個或是多個    
-    
-    "name": 運動軸名稱,
-    "home_offset": Home offset,
-    "encoder_ppu": encoder pulses per unit [pulses]
-    "encoder_length_unit": encoder length unit [m],[rev],[pulse]
-    "encoder_direction": encode direction, 1 or -1
-    "vmax": 最大速度 [m/s],[rad/s],[pulse/s]
-    "amax": 最大加速度 [m/s^2],[rad/s^2],[pulse/s^2]
-    "slave_position": 對應驅動器的 EtherCAT 從站位置。
-    "drive_channel": 對應驅動器上的第幾個 Channel。一般設定為 1,如果是東方馬達AZ系列多軸驅動器，就有可能是 2~3 。
-   
-範例： 
+每個已發行的 setter 請求只會送出一個數值欄位。已發行欄位如下：
 
-    {
-      "jsonrpc": "2.0",
-      "method": "config.axis.set",
-      "params": {
-        "position": 1,
-        "name": "X",
-        "home_offset": 0.05,
-        "encoder_ppu": 2000000.0,
-        "encoder_length_unit":"Meter",
-        "encoder_direction": 1,
-      }
-    }
+- `name`、`home_offset`、`encoder_ppu`、`encoder_length_unit`、
+  `encoder_direction`、`vmax` 與 `amax`；
+- `ext_encoder_ppu`、`ext_encoder_direction`、`closed_loop_filter` 與
+  `max_position_deviation`；
+- `drive_alias`、`drive_slave_position` 與 `drive_channel`；以及
+- `ext_encoder_alias`、`ext_encoder_slave_position` 與
+  `ext_encoder_channel`。
+
+舊版 wire 範例：
+
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "config.axis.set",
+  "params": {
+    "position": 1,
+    "name": "X"
+  }
+}
+```
     
 ### 取得設定參數
 
@@ -296,7 +263,7 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
       "params": {
         "alias": 0,
         "position": 1,
-        "channel": 1,
+        "channel": 1
       }
     }
     
@@ -332,7 +299,7 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
 
     {
       "jsonrpc": "2.0",
-      "method": "config.motion.get",
+      "method": "config.motion.get"
     }
 
     回傳封包:
@@ -345,7 +312,7 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
 
 方法：
 
-    "method": "config.motion.get" 
+    "method": "config.group.get"
     
 必要參數：
     
@@ -358,7 +325,7 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
       "jsonrpc": "2.0",
       "method": "config.group.get",
       "params": {
-        "position": 1,
+        "position": 1
       }
     }
 
@@ -388,7 +355,7 @@ Control 1.14.4 中，已發行的讀取方法仍屬於客戶 API；但既有修�
       "jsonrpc": "2.0",
       "method": "config.axis.get",
       "params": {
-        "position": 1,
+        "position": 1
       }
     }
 

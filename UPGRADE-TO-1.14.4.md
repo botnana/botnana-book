@@ -323,14 +323,14 @@ the final 1.14.4 behavior without exceeding the public surface owned by
 
 ### Public API inventory gate
 
-- [ ] Generate the method and parameter inventory from the released
+- [x] Generate the method and parameter inventory from the released
       `botnana-apis` baseline rather than from Botnana Control routing code.
-- [ ] Classify each existing book example as public and current, public but
+- [x] Classify each existing book example as public and current, public but
       compatibility-limited, obsolete, or internal-only.
-- [ ] Keep bundled-HMI controller recovery and topology-maintenance wire methods
+- [x] Keep bundled-HMI controller recovery and topology-maintenance wire methods
       out of the public JSON API reference unless they are first promoted
       through `botnana-apis`.
-- [ ] Use Botnana Control evidence only to verify current behavior for methods
+- [x] Use Botnana Control evidence only to verify current behavior for methods
       already inside the public API boundary.
 
 ### Client traffic profile
@@ -413,11 +413,11 @@ Tasks:
 - [ ] If it is not supported for 1.14.4, clearly classify the existing public
       client setters and `config.save` as compatibility-limited instead of
       publishing internal protocol-v2 details as a workaround.
-- [ ] Correct malformed or obsolete examples only within the API surface
+- [x] Correct malformed or obsolete examples only within the API surface
       confirmed by `botnana-apis`.
-- [ ] Keep recovery and topology wire methods internal to the bundled HMI unless
+- [x] Keep recovery and topology wire methods internal to the bundled HMI unless
       a later API release explicitly promotes them.
-- [ ] Record the reviewed API repository tag or commit used for every final JSON
+- [x] Record the reviewed API repository tag or commit used for every final JSON
       API example.
 
 ## Step 10: Expand the configuration-file reference

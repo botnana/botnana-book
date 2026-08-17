@@ -143,49 +143,30 @@ Parameters needed:
     "position": Slave Position.
     "channel"Device Channel, counting from 1.
 
-Can set parameters: Can set one or more parameters separately
+Each released setter sends exactly one value field. The released fields are:
 
-    "homing_method" Homing method, reference to the description of drive 0x6098:0x00.
-    "homing_speed_1" Speed during search for switch, reference to drive 0x6099:0x01 description.
-    "homing_speed_2" Speed during search for zero. See description of the optional drive 0x6099:0x02.
-    "homing_acceleration"Homing acceleration: See description of the optional drive 0x609A:0x00.
-    "profile_velocity"Profile velocity: See description of the selected drive 0x6081:0x00.
-    "profile_acceleration"Profile acceleration: See description of the selected drive 0x6083:0x00.
-    "profile_deceleration"Profile deceleration: See description of the selected drive 0x6084:0x00.
-    "baud_rate"UART baud rate: see Beckhoff EL600x or EL602X 0x8000:0x11 description.
-    "data_frame": UART data frame. See Beckhoff's EL600x or EL602X 0x8000:0x15 description.
-    "half_duplex"Uart Half Duplex Transmission: See also Beckhoff EL600x or EL602X 0x8000:0x06 description.
-    "uart_p2p": UART point to point. See Beckhoff's description of EL600x or EL602X 0x8000:0x07.
-    "tx_optimization"UART Tx optimization: see Beckhoff EL600x or EL602X 0x8000:0x07 description.
+- `homing_method`, `homing_speed_1`, `homing_speed_2`, and
+  `homing_acceleration`;
+- `profile_velocity`, `profile_acceleration`, and `profile_deceleration`; and
+- `pdo_velocity_offset`, `pdo_torque_offset`, `pdo_digital_inputs`,
+  `pdo_demand_position`, `pdo_demand_velocity`, `pdo_demand_torque`,
+  `pdo_real_velocity`, and `pdo_real_torque`.
 
+Legacy wire example: set the homing method for channel 1 of the slave at
+position 1.
 
-Example 1: Modify the return point method of the slave 1 channel 1 drive.
-
-    {
-      "jsonrpc": "2.0",
-      "method": "config.slave.set",
-      "params": {
-        "alias": 0,
-        "position": 1,
-        "channel": 1,
-        "homing_method" : 33,
-      }
-    }
-
-Example 2: Modify the velocity and acceleration of the return point of the slave 2 channel 3 drive.
-
-    {
-      "jsonrpc": "2.0",
-      "method": "config.slave.set",
-      "params": {
-        "alias": 0,
-        "position": 2,
-        "channel": 3,
-        "homing_speed_1" : 10000,
-        "homing_speed_2" : 100,
-        "homing_acceleration": 5000,
-      }
-    }
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "config.slave.set",
+  "params": {
+    "alias": 0,
+    "position": 1,
+    "channel": 1,
+    "homing_method": 33
+  }
+}
+```
 
 
 #### Set Motion-Control Parameters: `config.motion.set`
@@ -199,23 +180,20 @@ Parameters needed:
     None
 
 
-Parameters can be set: one or more parameters can be set separately
+The released setters expose `period_us`, `group_capacity`, and `axis_capacity`,
+one value per request.
 
-    "period_us"The execution cycle: [us]
-    "group_capacity"Axis group number
-    "axis_capacity"Number of axes:
+Legacy wire example:
 
-Example:
-
-    {
-      "jsonrpc": "2.0",
-      "method": "config.motion.set",
-      "params": {
-        "period_us": 2000,
-        "group_capacity": 5,
-        "axis_capacity": 5
-       }
-    }
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "config.motion.set",
+  "params": {
+    "period_us": 2000
+  }
+}
+```
 
 
 #### Set Axis-Group Parameters: `config.group.set`
@@ -228,30 +206,23 @@ Parameters needed:
 
     "position": Specify axis group, counting from 1.
 
-Parameters can be set: one or more parameters can be set separately
+The released setters expose `name`, `gtype` with its required `mapping`,
+`vmax`, `amax`, and `jmax`. Except for the paired group type and mapping, each
+client helper sends one value per request.
 
-    "name": axis group name
-    "gtype"The axis group format can be set to: "1D","2D","3D","SINE"
-    "mapping": Specify the corresponding motion axes, for example [1, 2] or [2, 1, 3]
-    "vmax"Maximum speed: [m/s],[rad/s],[pulse/s]
-    "amax"Maximum acceleration: [m/s^2],[rad/s^2],[pulse/s^2]
-    "jmax"Maximum acceleration: [m/s^3],[rad/s^3],[pulse/s^3]
+Legacy wire example: configure group 1 as a 2D group mapped to axes 1 and 2.
 
-Example: Set the parameter for Group 1.
-
-    {
-      "jsonrpc": "2.0",
-      "method": "config.group.set",
-      "params": {
-        "position": 1,
-        "name": "BotnanaGo",
-        "gtype": "2D",
-        "mapping": [1, 2],
-        "vmax": 0.5,
-        "amax": 5.0,
-        "jmax": 80.0,
-      }
-    }
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "config.group.set",
+  "params": {
+    "position": 1,
+    "gtype": "2D",
+    "mapping": [1, 2]
+  }
+}
+```
 
 #### Set Motion-Axis Parameters: `config.axis.set`
 
@@ -263,32 +234,28 @@ Parameters needed:
 
     "position": Specify the motion axis, counting from 1.
 
-Parameters can be set: one or more parameters can be set separately
+Each released setter sends exactly one value field. The released fields are:
 
-    "name"The name of the movement axis:
-    "home_offset": Home offset,
-    "encoder_ppu": encoder pulses per unit [pulses]
-    "encoder_length_unit": encoder length unit [m],[rev],[pulse]
-    "encoder_direction": encode direction, 1 or -1
-    "vmax"Maximum speed: [m/s],[rad/s],[pulse/s]
-    "amax"Maximum acceleration: [m/s^2],[rad/s^2],[pulse/s^2]
-    "slave_position"EtherCAT slave position of the corresponding drive
-    "drive_channel"The first Channel on the corresponding drive. Generally set to 1, if it is a multi-axis drive of the Eastern motor AZ series, it is likely to be 2 to 3.
+- `name`, `home_offset`, `encoder_ppu`, `encoder_length_unit`,
+  `encoder_direction`, `vmax`, and `amax`;
+- `ext_encoder_ppu`, `ext_encoder_direction`, `closed_loop_filter`, and
+  `max_position_deviation`;
+- `drive_alias`, `drive_slave_position`, and `drive_channel`; and
+- `ext_encoder_alias`, `ext_encoder_slave_position`, and
+  `ext_encoder_channel`.
 
-Example:
+Legacy wire example:
 
-    {
-      "jsonrpc": "2.0",
-      "method": "config.axis.set",
-      "params": {
-        "position": 1,
-        "name": "X",
-        "home_offset": 0.05,
-        "encoder_ppu": 2000000.0,
-        "encoder_length_unit":"Meter",
-        "encoder_direction": 1,
-      }
-    }
+```json
+{
+  "jsonrpc": "2.0",
+  "method": "config.axis.set",
+  "params": {
+    "position": 1,
+    "name": "X"
+  }
+}
+```
 
 ### Retrieve Configuration Parameters
 
@@ -312,7 +279,7 @@ Example:
       "params": {
         "alias": 0,
         "position": 1,
-        "channel": 1,
+        "channel": 1
       }
     }
 
@@ -348,7 +315,7 @@ Example: Get the motion set
 
     {
       "jsonrpc": "2.0",
-      "method": "config.motion.get",
+      "method": "config.motion.get"
     }
 
     The return package:
@@ -361,7 +328,7 @@ Example: Get the motion set
 
 The method:
 
-    "method": "config.motion.get"
+    "method": "config.group.get"
 
 Parameters needed:
 
@@ -374,7 +341,7 @@ Example: Get set to Group 1
       "jsonrpc": "2.0",
       "method": "config.group.get",
       "params": {
-        "position": 1,
+        "position": 1
       }
     }
 
@@ -404,7 +371,7 @@ Example: Achieving Axis 1
       "jsonrpc": "2.0",
       "method": "config.axis.get",
       "params": {
-        "position": 1,
+        "position": 1
       }
     }
 
