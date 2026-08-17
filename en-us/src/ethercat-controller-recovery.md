@@ -175,6 +175,34 @@ may become available again because the failed replacement can still be released
 safely. Retry only when the HMI enables the action. If the HMI requires a
 service restart, use the cleanup-failure procedure instead.
 
+## Collect the Bounded Topology Trace
+
+Botnana Control 1.14.4 package revision 19 and later writes compact
+`topology.trace` records to the `bnc-motion` journal. Collect them before
+restarting the service or changing the profile:
+
+```bash
+sudo journalctl -u bnc-motion -n 300 --no-pager
+```
+
+Use the controller generation to correlate approval, expected saved topology,
+changed physical observations, the final comparison, and the Ready, failed, or
+cancelled outcome. A compact identity has the form
+`position:vendor_id:product_code` in hexadecimal. Repeated unchanged scans are
+suppressed, so a topology retry does not write a record every 500 milliseconds.
+The trace omits device settings, scripts, and other configuration content.
+
+For the exact mismatch reported by the HMI, preserve records containing:
+
+- `event=topology.approval`;
+- `event=controller.start`;
+- `event=topology.observed`;
+- `event=topology.verification`; and
+- `event=controller.start.completed`.
+
+Do not enable high-volume EtherCAT frame logging merely to collect this bounded
+trace.
+
 ## Information to Collect for Support
 
 Record:

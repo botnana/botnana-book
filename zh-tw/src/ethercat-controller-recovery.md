@@ -151,6 +151,30 @@ EtherCAT 控制器執行期；不是 EtherCAT 從站、驅動器或馬達。重�
 系統仍能安全釋放失敗的替代控制器。只有在 HMI 啟用此操作時才能重試。如果 HMI
 要求重新啟動服務，請改用清理失敗程序。
 
+## 收集有限拓撲追蹤記錄
+
+Botnana Control 1.14.4 套件修訂版 19 以上會在 `bnc-motion` journal 寫入精簡的
+`topology.trace` 記錄。重新啟動服務或變更設定前，請先收集：
+
+```bash
+sudo journalctl -u bnc-motion -n 300 --no-pager
+```
+
+請使用控制器世代（generation）串聯核准、預期的已儲存拓撲、發生變化的實體觀察
+結果、最終比較，以及 Ready、failed 或 cancelled 結果。精簡身分使用十六進位
+`position:vendor_id:product_code` 格式。重試期間未變的掃描會遭抑制，因此不會每
+500 毫秒寫入一筆相同記錄。追蹤不包含裝置設定、指令稿或其他設定內容。
+
+針對 HMI 回報的確切不符情況，請保留下列記錄：
+
+- `event=topology.approval`；
+- `event=controller.start`；
+- `event=topology.observed`；
+- `event=topology.verification`；以及
+- `event=controller.start.completed`。
+
+不要只為了收集這項有限追蹤而啟用高流量 EtherCAT frame logging。
+
 ## 提供支援人員的資訊
 
 請記錄：
