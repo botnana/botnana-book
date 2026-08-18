@@ -59,272 +59,114 @@ Torque         |  TQ    |      | Trajectory  |        |  Control  |      Effect
 
 ```
 
-**Return to the original model**The following are some common regression methods, each of which must be based on a manufacturer-supported method.
+#### Homing methods
 
-* Method 1 and 2 : Homing on the limit switch and index pulse
+In Homing mode (HM), the drive executes the method selected in CiA 402 object
+`0x6098`. A drive may implement only a subset of the standard methods, so its
+manufacturer manual and commissioning results remain authoritative.
 
-Depending on the negative/positive direction selected, the starting position is the nearest index pulse after a reversal when encountering the limit switch.
+The method locates a **reference event**. The configured home offset is applied
+after that event is found; it does not change the sensor-search sequence. A
+drive normally uses Homing Speed 1 for the switch or limit search and Homing
+Speed 2 for the final index-pulse search.
 
-```
-++                    ++                     ++
-||--------------------||---------------------||
-||--------------------||---------------------||
-++                    ++                     ++
-                       |
-     +-----------------|
-     |.     .          |
-     +-----(1)->
-      .     .
-      .     |         |       |    Index Pulse
-------------+---------+-------+----------------
-------+
-      |                    Negativ Limit Switch
-      +----------------------------------------
-                       |             .   .
-                       |-------------------+
-                       |             .   . |
-                                  <-(2)----+
-                                     .   .
-                                     .   .
-Index Pulse            |       |     |   .
------------------------+-------+-----+----------
-                                         +------
-Positive Limit Switch                    |
------------------------------------------+
-```
+In the tables below:
 
-* Methods 3 to 6: Homing on the home switch and index pulse
+- **negative** and **positive** mean the configured axis directions;
+- **active** and **inactive** describe the logical switch state, after input
+  polarity has been configured;
+- an **index pulse** is the encoder's repeating reference pulse;
+- **opposite edge** means the other boundary of the home-switch active region;
+- `→` means “then”; it does not indicate physical direction.
 
-Depending on the negative/positive direction and method chosen, the starting position is the nearest index pulse after encountering the home switch.
+##### Selection guide
 
-```
-++                                           ++
-||-------------------------------------------||
-||-------------------------------------------||
-++                                           ++
-    |
-    |------------------+
-    |            .    .|   .
-              <-(3)----+   .
-                 .    .    .             |
-              <-(3)----------------------|
-                 .    .    .             |
-    |            .    .    .
-    |---------------------(4)->
-    |            .    .    .             |
-                 .   +-------------------|
-                 .   |.    .             |
-                 .   +----(4)->
-                 .    .    .
-Index Pulse      |    .    |
------------------+----------------------------
-                      +-----------------------
-Home Switch           |
-----------------------+
-     |             .   .    .
-     |---------------------(5)->
-     |             .   .    .            |
-                   .  +------------------|
-                   .  |.    .            |
-                   .  +----(5)->
-     |             .   .    .
-     |------------------+   .
-     |             .   .|   .
-                <-(6)--.+   .
-                   .   .    .              |
-                <-(6)----------------------|
-                   .   .    .              |
-Index Pulse        |   .    |
--------------------+--------+--------------------
-Home Switch            .
------------------------+
-                       |
-                       +-------------------------
-```
+| Reference source | Index refinement | Methods covered here |
+|---|---:|---:|
+| Negative or positive limit switch | Yes | 1–2 |
+| Home switch | Yes | 3–6 |
+| Home switch with limit-switch fallback | Yes | 7–14 |
+| Negative or positive limit switch | No | 17–18 |
+| Home switch | No | 19–22 |
+| Index pulse only | Yes | 33–34 |
+| Current position | No | 35, 37 |
 
-* Methods 7 to 10: Homing on positive limit switch, home switch and index pulse
+Other CiA 402 and manufacturer-specific methods may exist. Do not select a
+method until the drive manual confirms its support, input assignment, polarity,
+and behavior.
 
-Similar to the method of Methods 3 to 6, a reversal after a positive boundary switch is encountered to find the index pulse according to its setting.
+##### Representative sequences
 
-```
-++                                                                ++
-||----------------------------------------------------------------||
-||----------------------------------------------------------------||
-++                                                                ++
-    |           .     .      .           .      .         .
-    |--------------------------------------------+------(10)->
-    |           .     .      .           .      .|        .
-    |------------------+----(8)->     <-(9)------+        .
-                .     .|     .           .      .         .
-             <-(7)-----+     .           .      .         .
-                .     .      .     |     .      .         .
-             <-(7)---+-------------+-------------+------(10)->
-                .    |.      .     |     .      .|        .
-                .    +------(8)->     <-(9)------+        .
-                .     .      .           .      .       | .  .
-                .     .      .           .      .       |-----+
-                .     .      .           .      .       | .  .|
-                .     .      .           .      .         .  .|
-             <-(7)---+----------------------------------------+
-                .    |.      .           .      .         .  .|
-                .    +------(8)->     <-(9)----+--------------+
-                .     .      .           .     |.         .  .
-                .     .      .           .     +--------(10)->
-                .     .      .           .      .         .  .
-Index Pulse     |     .      |           |      .         |  .
--------------------------------------------------------------------
-                      +-------------------------+            .
-Home Switch           |                         |            .
-----------------------+                         +------------------
-                                                             +-----
-Positive Limit Switch                                        |
--------------------------------------------------------------+
-```
+![Representative CiA 402 homing sequences using a limit switch, home switch, limit fallback, and current position](./figures/homing-method-examples.svg)
 
-* Methods 11 to 14: Homing on negative limit switch, home switch and index pulse
+The figure shows one representative starting state for methods 1, 3, 7, and 37.
+The event tables below define the method variants. `S` marks the starting
+position and the star marks the resulting reference event.
 
-Similar to the method of Methods 3 to 6, a reversal after a negative boundary switch is encountered to find the index pulse according to its setting.
+##### Limit switch with index refinement: methods 1–2
 
-```
-++                                                                       ++
-||-----------------------------------------------------------------------||
-||-----------------------------------------------------------------------||
-++                                                                       ++
-                  .      .     .           .      .      .         |
-              <-(14)----+-------------------------.----------------|
-                  .     |.     .           .      .      .         |
-                  .     +-----(13)->   <-(12)---+-.----------------|
-                  .      .     .           .    | .      .         |
-                  .      .     .           .    +-.-----(11)->
-                  .      .     .     |     .      .      .
-              <-(14)----+------------+-------------+----(11)->
-                  .     |.     .     |     .      .|     .
-                  .     +-----(13)->   <-(12)------+     .
-       .     |    .      .     .           .      .      .
-      +------|    .      .     .           .      .      .
-      |.     |    .      .     .           .      .      .
-      |.          .      .     .           .      .      .
-      +--------------------------------------------+----(11)->
-      |.          .      .     .           .      .|     .
-      +-------------------+---(13)->   <-(12)------+     .
-       .          .      .|    .           .      .      .
-       .      <-(14)------+    .           .      .      .
-       .          .      .     .           .      .      .
-Index Pulse       |      .     |           |      .      |
----------------------------------------------------------------------
-       .                 +------------------------+
-Home Switch              |                        |
-+------------------------+                        +------------------
-       +-------------------------------------------------------------
-       |                                      Negative Limit Switch
-+------+
-```
+| Method | Event sequence |
+|---:|---|
+| 1 | Search negative for the negative limit → reverse positive when the limit changes state → use the first index pulse on the positive side as the reference. |
+| 2 | Search positive for the positive limit → reverse negative when the limit changes state → use the first index pulse on the negative side as the reference. |
 
-* Methods 17 and 18: Homing on limit switch without an index pulse
+##### Home switch with index refinement: methods 3–6
 
-Depending on the negative/positive direction chosen, the starting position is on the limit switch.
+The initial movement depends on the current home-switch state. The selected
+method determines which switch transition and which adjacent index pulse form
+the reference.
 
-```
- ++                 ++                        ++
- ||-----------------||------------------------||
- ||-----------------||------------------------||
- ++                 ++                        ++
-       .             |
-    +----------------|
-    |  .             |
-    +-(17)->
-       .
- ------+
-       |                    Negative Limit Switch
-       +-----------------------------------------
-                      |                   .
-                      |-----------------------+
-                      |                   .   |
-                                       <-(18)-+
-                                          .
-                                          +------
-Positive Limit Switch                     |
-------------------------------------------+
-```
+| Method | Event sequence |
+|---:|---|
+| 3 | Find the positive home-switch transition to inactive → continue negative → use the first index pulse on the negative side. |
+| 4 | Find the positive home-switch transition to active → continue positive → use the first index pulse on the positive side. |
+| 5 | Find the negative home-switch transition to inactive → continue positive → use the first index pulse on the positive side. |
+| 6 | Find the negative home-switch transition to active → continue negative → use the first index pulse on the negative side. |
 
-* Methods 19 to 22: Homing on home switch without an index pulse
+##### Home switch with limit fallback: methods 7–14
 
-Depending on the negative/positive direction and method chosen, the original position is on the home switch.
+Methods 7–10 begin positive and reverse if the positive limit is reached before
+the required home-switch event. Methods 11–14 begin negative and similarly
+reverse at the negative limit. This permits recovery when the starting position
+is beyond the expected switch approach.
 
-```
- ++    ++                                     ++
- ||----||-------------------------------------||
- ||----||-------------------------------------||
- ++    ++                 .                   ++
-       |                  .
-       |-------------------------+
-       |                  .      |
-                      <-(19)-----+
-                          .            |
-                      <-(19)-----------|
-       |                  .            |
-       |----------------(20)->
-       |                  .            |
-                  +--------------------|
-                  |       .            |
-                  +-----(20)->
-                          .
-                          +--------------------
-Home Switch               |
---------------------------+
+| Method | Event sequence |
+|---:|---|
+| 7 | Begin positive → locate the home-switch inactive edge → search negative for the first index. |
+| 8 | Begin positive → locate the home-switch active edge → search positive for the first index. |
+| 9 | Begin positive → locate the opposite home-switch active edge → search negative for the first index. |
+| 10 | Begin positive → locate the opposite home-switch inactive edge → search positive for the first index. |
+| 11 | Begin negative → locate the home-switch inactive edge → search positive for the first index. |
+| 12 | Begin negative → locate the home-switch active edge → search negative for the first index. |
+| 13 | Begin negative → locate the opposite home-switch active edge → search positive for the first index. |
+| 14 | Begin negative → locate the opposite home-switch inactive edge → search negative for the first index. |
 
- ++    ++                                     ++
- ||----||-------------------------------------||
- ||----||-------------------------------------||
- ++    ++                 .                   ++
-       |                  .
-       |----------------(21)->
-       |                  .            |
-                  +--------------------|
-                  |       .            |
-                  +-----(21)->
-       |                  .
-       |-------------------------+
-       |                  .      |
-                      <-(22)-----+     |
-                      <-(22)-----------|
-                          .            |
-Home Switch               .
---------------------------+
-                          |
-                          +--------------------
-```
+##### Switch reference without an index pulse: methods 17–22
 
-* Methods 33 and 34: Homing on the index pulse
+These methods establish the reference at the selected switch transition; they
+do not perform the final encoder-index search.
 
-Depending on the negative/positive direction chosen, the starting position is the index pulse closest to the current position.
+| Method | Event sequence |
+|---:|---|
+| 17 | Search negative → establish the reference at the negative-limit transition. |
+| 18 | Search positive → establish the reference at the positive-limit transition. |
+| 19 | Find the positive home-switch transition to inactive → establish the reference there. |
+| 20 | Find the positive home-switch transition to active → establish the reference there. |
+| 21 | Find the negative home-switch transition to inactive → establish the reference there. |
+| 22 | Find the negative home-switch transition to active → establish the reference there. |
 
-```
-++                   ++                      ++
-||-------------------||----------------------||
-||-------------------||----------------------||
-++                   ++                      ++
-                .     |     .
-           <--(33)----|     .
-                .     |---(34)--->
-                .     |     .
- Index Pulse    .           .
-    |           |           |            |
- -------------------------------------------------
-```
+##### Index-only and current-position methods
 
-* Methods 35 and 37: Homing on current position
+| Method | Event sequence |
+|---:|---|
+| 33 | Search negative → establish the reference at the first index pulse. |
+| 34 | Search positive → establish the reference at the first index pulse. |
+| 35 | Establish the reference at the current position without search motion. This is the legacy form of method 37. |
+| 37 | Establish the reference at the current position without search motion. |
 
-The original position is in the current position.
-
-```
-++                   ++                      ++
-||-------------------||----------------------||
-||-------------------||----------------------||
-++                   ++                      ++
-                    (35)
-                    (37)
-```
+Before commissioning any moving homing method, verify the direction convention,
+switch polarity, sensor order, travel clearance, search speeds, acceleration,
+and stop behavior with the motor uncoupled or the machine otherwise made safe.
 
 **Drive running status**
 

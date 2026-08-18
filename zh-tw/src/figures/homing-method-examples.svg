@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 660" role="img" aria-labelledby="title description">
+  <title id="title">Representative CiA 402 homing sequences</title>
+  <desc id="description">Four examples show limit switch and index homing, home switch and index homing, positive limit fallback, and homing at the current position.</desc>
+  <defs>
+    <marker id="arrow-search" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#b44b00"/>
+    </marker>
+    <marker id="arrow-refine" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#006eb8"/>
+    </marker>
+    <style>
+      .card { fill: #ffffff; stroke: #aab2bf; stroke-width: 1.5; }
+      .axis { stroke: #293241; stroke-width: 3; }
+      .sensor { fill: #dfe4eb; stroke: #586273; stroke-width: 1.5; }
+      .index { stroke: #293241; stroke-width: 3; }
+      .guide { stroke: #9099a8; stroke-width: 1; stroke-dasharray: 5 5; }
+      .search { fill: none; stroke: #b44b00; stroke-width: 4; marker-end: url(#arrow-search); }
+      .refine { fill: none; stroke: #006eb8; stroke-width: 4; marker-end: url(#arrow-refine); }
+      .label { fill: #172033; font-family: sans-serif; font-size: 17px; }
+      .small { fill: #414b5a; font-family: sans-serif; font-size: 14px; }
+      .method { fill: #172033; font-family: sans-serif; font-size: 20px; font-weight: 700; }
+      .start { fill: #ffffff; stroke: #006eb8; stroke-width: 3; }
+      .start-text { fill: #006eb8; font-family: sans-serif; font-size: 14px; font-weight: 700; text-anchor: middle; }
+      .home { fill: #9c1745; font-family: sans-serif; font-size: 22px; font-weight: 700; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <rect x="10" y="10" width="980" height="640" rx="10" fill="#f7f8fa" stroke="#aab2bf"/>
+  <text class="label" x="35" y="42">Direction:  - negative (left)    + positive (right)</text>
+  <line class="search" x1="505" y1="36" x2="565" y2="36"/>
+  <text class="small" x="575" y="41">switch search</text>
+  <line class="refine" x1="690" y1="36" x2="750" y2="36"/>
+  <text class="small" x="760" y="41">index search</text>
+  <text class="home" x="890" y="45">★</text>
+  <text class="small" x="905" y="41">reference</text>
+
+  <g aria-label="Method 1 example">
+    <rect class="card" x="30" y="60" width="940" height="135" rx="8"/>
+    <text class="method" x="50" y="88">Method 1 - negative limit, then index</text>
+    <line class="axis" x1="95" y1="145" x2="925" y2="145"/>
+    <rect class="sensor" x="95" y="126" width="155" height="38"/>
+    <text class="small" x="108" y="151">negative limit active</text>
+    <line class="index" x1="345" y1="128" x2="345" y2="162"/>
+    <line class="index" x1="520" y1="128" x2="520" y2="162"/>
+    <circle class="start" cx="760" cy="145" r="14"/>
+    <text class="start-text" x="760" y="150">S</text>
+    <path class="search" d="M740 108 H185"/>
+    <text class="small" x="430" y="103">1  search -</text>
+    <path class="refine" d="M185 176 H337"/>
+    <text class="small" x="205" y="190">2  reverse +; first index</text>
+    <text class="home" x="345" y="122">★</text>
+  </g>
+
+  <g aria-label="Method 3 example">
+    <rect class="card" x="30" y="210" width="940" height="135" rx="8"/>
+    <text class="method" x="50" y="238">Method 3 - home switch inactive edge, then index</text>
+    <line class="axis" x1="95" y1="295" x2="925" y2="295"/>
+    <rect class="sensor" x="385" y="276" width="230" height="38"/>
+    <text class="small" x="405" y="301">switch active</text>
+    <line class="index" x1="300" y1="278" x2="300" y2="312"/>
+    <line class="index" x1="700" y1="278" x2="700" y2="312"/>
+    <circle class="start" cx="535" cy="295" r="14"/>
+    <text class="start-text" x="535" y="300">S</text>
+    <path class="search" d="M515 263 H385"/>
+    <text class="small" x="407" y="258">1  leave switch -</text>
+    <path class="refine" d="M375 324 H308"/>
+    <text class="small" x="315" y="340">2  first index -</text>
+    <text class="home" x="300" y="269">★</text>
+  </g>
+
+  <g aria-label="Method 7 example with positive limit fallback">
+    <rect class="card" x="30" y="360" width="940" height="155" rx="8"/>
+    <text class="method" x="50" y="388">Method 7 - positive search with limit fallback</text>
+    <line class="axis" x1="95" y1="458" x2="925" y2="458"/>
+    <rect class="sensor" x="350" y="439" width="180" height="38"/>
+    <text class="small" x="375" y="464">home switch active</text>
+    <rect class="sensor" x="820" y="439" width="105" height="38"/>
+    <text class="small" x="829" y="464">+ limit active</text>
+    <line class="index" x1="290" y1="441" x2="290" y2="475"/>
+    <circle class="start" cx="650" cy="458" r="14"/>
+    <text class="start-text" x="650" y="463">S</text>
+    <path class="search" d="M670 414 H850"/>
+    <text class="small" x="712" y="409">1  search +</text>
+    <path class="refine" d="M850 488 H298"/>
+    <text class="small" x="500" y="505">2  reverse at + limit; leave switch; first index -</text>
+    <text class="home" x="290" y="430">★</text>
+  </g>
+
+  <g aria-label="Method 37 example">
+    <rect class="card" x="30" y="530" width="940" height="95" rx="8"/>
+    <text class="method" x="50" y="558">Method 37 - current position</text>
+    <line class="axis" x1="95" y1="600" x2="925" y2="600"/>
+    <circle class="start" cx="510" cy="600" r="14"/>
+    <text class="start-text" x="510" y="605">S</text>
+    <text class="home" x="510" y="584">★</text>
+    <text class="label" x="545" y="580">establish the reference without search motion</text>
+  </g>
+</svg>

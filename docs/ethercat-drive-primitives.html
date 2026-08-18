@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-5cbf2993.js";
+            window.path_to_searchindex_js = "searchindex-f7a16986.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -223,256 +223,125 @@ Torque         |  TQ    |      | Trajectory  |        |  Control  |      Effect
               Mode Selector
 
 </code></pre>
-<p><strong>原點復歸模式</strong>：以下是幾種常見的復歸方法，每一種驅動器必須依該廠家的所支援的方法為準。</p>
+<h4 id="原點復歸方法"><a class="header" href="#原點復歸方法">原點復歸方法</a></h4>
+<p>在原點復歸模式（HM）中，驅動器會執行 CiA 402 物件 <code>0x6098</code> 所選的方法。驅動器
+可能只實作標準方法的一部分，因此仍應以製造商手冊及試車結果為準。</p>
+<p>復歸方法會尋找一個<strong>參考事件</strong>。系統在找到該事件後才套用已設定的原點偏移；原點
+偏移不會改變感測器搜尋順序。驅動器通常以 Homing Speed 1 搜尋原點或極限開關，
+再以 Homing Speed 2 搜尋最後的編碼器索引脈波。</p>
+<p>下列表格使用的詞彙如下：</p>
 <ul>
-<li>Method 1 and 2 : Homing on the limit switch and index pulse</li>
+<li><strong>負向</strong>及<strong>正向</strong>是設定後的運動軸方向；</li>
+<li><strong>有效</strong>及<strong>無效</strong>是設定輸入極性後的邏輯開關狀態；</li>
+<li><strong>索引脈波</strong>是編碼器週期出現的參考脈波；</li>
+<li><strong>另一側邊緣</strong>是原點開關有效區域的另一個邊界；</li>
+<li><code>→</code> 表示「接著發生」，不表示實際運動方向。</li>
 </ul>
-<p>依據所選擇的負/正方向，原點位置在遇到 limit switch 反轉後最靠近的 index pulse。</p>
-<pre><code>++                    ++                     ++
-||--------------------||---------------------||
-||--------------------||---------------------||
-++                    ++                     ++
-                       |
-     +-----------------|
-     |.     .          |
-     +-----(1)-&gt;
-      .     .
-      .     |         |       |    Index Pulse
-------------+---------+-------+----------------
-------+
-      |                    Negativ Limit Switch
-      +----------------------------------------
-                       |             .   .
-                       |-------------------+
-                       |             .   . |
-                                  &lt;-(2)----+
-                                     .   .
-                                     .   .
-Index Pulse            |       |     |   .
------------------------+-------+-----+----------
-                                         +------
-Positive Limit Switch                    |
------------------------------------------+
-</code></pre>
-<ul>
-<li>Methods 3 to 6: Homing on the home switch and index pulse</li>
-</ul>
-<p>依據所選擇的負/正方向與方法，原點位置在遇到 home switch 後最靠近的 index pulse。</p>
-<pre><code>++                                           ++
-||-------------------------------------------||
-||-------------------------------------------||
-++                                           ++
-    |
-    |------------------+
-    |            .    .|   .
-              &lt;-(3)----+   .
-                 .    .    .             |
-              &lt;-(3)----------------------|
-                 .    .    .             |
-    |            .    .    .
-    |---------------------(4)-&gt;
-    |            .    .    .             |
-                 .   +-------------------|
-                 .   |.    .             |
-                 .   +----(4)-&gt;
-                 .    .    .
-Index Pulse      |    .    |
------------------+----------------------------
-                      +-----------------------
-Home Switch           |
-----------------------+
-     |             .   .    .
-     |---------------------(5)-&gt;
-     |             .   .    .            |
-                   .  +------------------|
-                   .  |.    .            |
-                   .  +----(5)-&gt;
-     |             .   .    .
-     |------------------+   .
-     |             .   .|   .
-                &lt;-(6)--.+   .
-                   .   .    .              |
-                &lt;-(6)----------------------|
-                   .   .    .              |
-Index Pulse        |   .    |
--------------------+--------+--------------------
-Home Switch            .
------------------------+
-                       |
-                       +-------------------------
-</code></pre>
-<ul>
-<li>Methods 7 to 10: Homing on positive limit switch, home switch and index pulse</li>
-</ul>
-<p>與 Methods 3 to 6 的方法類似，遇到正極限開關後反轉，會依其設定方式尋找 index pulse。</p>
-<pre><code>++                                                                ++
-||----------------------------------------------------------------||
-||----------------------------------------------------------------||
-++                                                                ++
-    |           .     .      .           .      .         .
-    |--------------------------------------------+------(10)-&gt;
-    |           .     .      .           .      .|        .
-    |------------------+----(8)-&gt;     &lt;-(9)------+        .
-                .     .|     .           .      .         .
-             &lt;-(7)-----+     .           .      .         .
-                .     .      .     |     .      .         .
-             &lt;-(7)---+-------------+-------------+------(10)-&gt;
-                .    |.      .     |     .      .|        .
-                .    +------(8)-&gt;     &lt;-(9)------+        .
-                .     .      .           .      .       | .  .
-                .     .      .           .      .       |-----+
-                .     .      .           .      .       | .  .|
-                .     .      .           .      .         .  .|
-             &lt;-(7)---+----------------------------------------+
-                .    |.      .           .      .         .  .|
-                .    +------(8)-&gt;     &lt;-(9)----+--------------+
-                .     .      .           .     |.         .  .
-                .     .      .           .     +--------(10)-&gt;
-                .     .      .           .      .         .  .
-Index Pulse     |     .      |           |      .         |  .
--------------------------------------------------------------------
-                      +-------------------------+            .
-Home Switch           |                         |            .
-----------------------+                         +------------------
-                                                             +-----
-Positive Limit Switch                                        |
--------------------------------------------------------------+
-</code></pre>
-<ul>
-<li>Methods 11 to 14: Homing on negative limit switch, home switch and index pulse</li>
-</ul>
-<p>與 Methods 3 to 6 的方法類似，遇到負極限開關後反轉，會依其設定方式尋找 index pulse。</p>
-<pre><code>++                                                                       ++
-||-----------------------------------------------------------------------||
-||-----------------------------------------------------------------------||
-++                                                                       ++
-                  .      .     .           .      .      .         |
-              &lt;-(14)----+-------------------------.----------------|
-                  .     |.     .           .      .      .         |
-                  .     +-----(13)-&gt;   &lt;-(12)---+-.----------------|
-                  .      .     .           .    | .      .         |
-                  .      .     .           .    +-.-----(11)-&gt;
-                  .      .     .     |     .      .      .
-              &lt;-(14)----+------------+-------------+----(11)-&gt;
-                  .     |.     .     |     .      .|     .
-                  .     +-----(13)-&gt;   &lt;-(12)------+     .
-       .     |    .      .     .           .      .      .
-      +------|    .      .     .           .      .      .
-      |.     |    .      .     .           .      .      .
-      |.          .      .     .           .      .      .
-      +--------------------------------------------+----(11)-&gt;
-      |.          .      .     .           .      .|     .
-      +-------------------+---(13)-&gt;   &lt;-(12)------+     .
-       .          .      .|    .           .      .      .
-       .      &lt;-(14)------+    .           .      .      .
-       .          .      .     .           .      .      .
-Index Pulse       |      .     |           |      .      |
----------------------------------------------------------------------
-       .                 +------------------------+
-Home Switch              |                        |
-+------------------------+                        +------------------
-       +-------------------------------------------------------------
-       |                                      Negative Limit Switch
-+------+
-</code></pre>
-<ul>
-<li>Methods 17 and 18: Homing on limit switch without an index pulse</li>
-</ul>
-<p>依據所選擇的負/正方向，原點位置在 limit switch 上。</p>
-<pre><code> ++                 ++                        ++
- ||-----------------||------------------------||
- ||-----------------||------------------------||
- ++                 ++                        ++
-       .             |
-    +----------------|
-    |  .             |
-    +-(17)-&gt;
-       .
- ------+
-       |                    Negative Limit Switch
-       +-----------------------------------------
-                      |                   .
-                      |-----------------------+
-                      |                   .   |
-                                       &lt;-(18)-+
-                                          .
-                                          +------
-Positive Limit Switch                     |
-------------------------------------------+
-</code></pre>
-<ul>
-<li>Methods 19 to 22: Homing on home switch without an index pulse</li>
-</ul>
-<p>依據所選擇的負/正方向與方式，原點位置在 home switch 上。</p>
-<pre><code> ++    ++                                     ++
- ||----||-------------------------------------||
- ||----||-------------------------------------||
- ++    ++                 .                   ++
-       |                  .
-       |-------------------------+
-       |                  .      |
-                      &lt;-(19)-----+
-                          .            |
-                      &lt;-(19)-----------|
-       |                  .            |
-       |----------------(20)-&gt;
-       |                  .            |
-                  +--------------------|
-                  |       .            |
-                  +-----(20)-&gt;
-                          .
-                          +--------------------
-Home Switch               |
---------------------------+
-
- ++    ++                                     ++
- ||----||-------------------------------------||
- ||----||-------------------------------------||
- ++    ++                 .                   ++
-       |                  .
-       |----------------(21)-&gt;
-       |                  .            |
-                  +--------------------|
-                  |       .            |
-                  +-----(21)-&gt;
-       |                  .
-       |-------------------------+
-       |                  .      |
-                      &lt;-(22)-----+     |
-                      &lt;-(22)-----------|
-                          .            |
-Home Switch               .
---------------------------+
-                          |
-                          +--------------------
-</code></pre>
-<ul>
-<li>Methods 33 and 34: Homing on the index pulse</li>
-</ul>
-<p>依據所選擇的負/正方向，原點位置在最靠近目前位置的 index pulse。</p>
-<pre><code>++                   ++                      ++
-||-------------------||----------------------||
-||-------------------||----------------------||
-++                   ++                      ++
-                .     |     .
-           &lt;--(33)----|     .
-                .     |---(34)---&gt;
-                .     |     .
- Index Pulse    .           .
-    |           |           |            |
- -------------------------------------------------
-</code></pre>
-<ul>
-<li>Methods 35 and 37: Homing on current position</li>
-</ul>
-<p>原點位置就在目前位置。</p>
-<pre><code>++                   ++                      ++
-||-------------------||----------------------||
-||-------------------||----------------------||
-++                   ++                      ++
-                    (35)
-                    (37)
-</code></pre>
+<h5 id="選用指南"><a class="header" href="#選用指南">選用指南</a></h5>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>參考來源</th><th style="text-align: right">使用索引脈波精化</th><th style="text-align: right">本節說明的方法</th></tr>
+</thead>
+<tbody>
+<tr><td>負向或正向極限開關</td><td style="text-align: right">是</td><td style="text-align: right">1–2</td></tr>
+<tr><td>原點開關</td><td style="text-align: right">是</td><td style="text-align: right">3–6</td></tr>
+<tr><td>原點開關及極限開關反轉保護</td><td style="text-align: right">是</td><td style="text-align: right">7–14</td></tr>
+<tr><td>負向或正向極限開關</td><td style="text-align: right">否</td><td style="text-align: right">17–18</td></tr>
+<tr><td>原點開關</td><td style="text-align: right">否</td><td style="text-align: right">19–22</td></tr>
+<tr><td>僅使用索引脈波</td><td style="text-align: right">是</td><td style="text-align: right">33–34</td></tr>
+<tr><td>目前位置</td><td style="text-align: right">否</td><td style="text-align: right">35、37</td></tr>
+</tbody>
+</table>
+</div>
+<p>CiA 402 及各製造商可能另有其他方法。選用前，必須由驅動器手冊確認支援狀態、輸入
+指派、極性及實際行為。</p>
+<h5 id="代表性流程"><a class="header" href="#代表性流程">代表性流程</a></h5>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./figures/homing-method-examples.svg" alt="使用極限開關、原點開關、極限反轉保護及目前位置的代表性 CiA 402 原點復歸流程"><span class="img-wrapper"><img src="./figures/homing-method-examples.svg" alt="使用極限開關、原點開關、極限反轉保護及目前位置的代表性 CiA 402 原點復歸流程"></span></label></p>
+<p>上圖分別以方法 1、3、7 及 37 的一種代表性起始狀態說明流程。下列表格才是各方法
+變體的定義。圖中的 <code>S</code> 是起始位置，星號是最後建立的參考事件。</p>
+<h5 id="極限開關及索引脈波精化方法-12"><a class="header" href="#極限開關及索引脈波精化方法-12">極限開關及索引脈波精化：方法 1–2</a></h5>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: right">方法</th><th>事件順序</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: right">1</td><td>負向搜尋負極限 → 極限狀態改變時反轉為正向 → 以正向側第一個索引脈波作為參考。</td></tr>
+<tr><td style="text-align: right">2</td><td>正向搜尋正極限 → 極限狀態改變時反轉為負向 → 以負向側第一個索引脈波作為參考。</td></tr>
+</tbody>
+</table>
+</div>
+<h5 id="原點開關及索引脈波精化方法-36"><a class="header" href="#原點開關及索引脈波精化方法-36">原點開關及索引脈波精化：方法 3–6</a></h5>
+<p>初始運動取決於目前的原點開關狀態。所選方法會決定使用哪一個開關轉態，以及哪一側
+相鄰的索引脈波作為參考。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: right">方法</th><th>事件順序</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: right">3</td><td>找到正向原點開關轉為無效的轉態 → 繼續負向 → 使用負向側第一個索引脈波。</td></tr>
+<tr><td style="text-align: right">4</td><td>找到正向原點開關轉為有效的轉態 → 繼續正向 → 使用正向側第一個索引脈波。</td></tr>
+<tr><td style="text-align: right">5</td><td>找到負向原點開關轉為無效的轉態 → 繼續正向 → 使用正向側第一個索引脈波。</td></tr>
+<tr><td style="text-align: right">6</td><td>找到負向原點開關轉為有效的轉態 → 繼續負向 → 使用負向側第一個索引脈波。</td></tr>
+</tbody>
+</table>
+</div>
+<h5 id="原點開關及極限反轉保護方法-714"><a class="header" href="#原點開關及極限反轉保護方法-714">原點開關及極限反轉保護：方法 7–14</a></h5>
+<p>方法 7–10 會先正向搜尋；如果在找到指定的原點開關事件前先遇到正極限，便會反轉。
+方法 11–14 會先負向搜尋，並在先遇到負極限時反轉。因此即使起始位置已越過預期的
+開關進入方向，仍可回頭尋找參考。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: right">方法</th><th>事件順序</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: right">7</td><td>先正向 → 找到原點開關無效邊緣 → 負向搜尋第一個索引脈波。</td></tr>
+<tr><td style="text-align: right">8</td><td>先正向 → 找到原點開關有效邊緣 → 正向搜尋第一個索引脈波。</td></tr>
+<tr><td style="text-align: right">9</td><td>先正向 → 找到原點開關另一側的有效邊緣 → 負向搜尋第一個索引脈波。</td></tr>
+<tr><td style="text-align: right">10</td><td>先正向 → 找到原點開關另一側的無效邊緣 → 正向搜尋第一個索引脈波。</td></tr>
+<tr><td style="text-align: right">11</td><td>先負向 → 找到原點開關無效邊緣 → 正向搜尋第一個索引脈波。</td></tr>
+<tr><td style="text-align: right">12</td><td>先負向 → 找到原點開關有效邊緣 → 負向搜尋第一個索引脈波。</td></tr>
+<tr><td style="text-align: right">13</td><td>先負向 → 找到原點開關另一側的有效邊緣 → 正向搜尋第一個索引脈波。</td></tr>
+<tr><td style="text-align: right">14</td><td>先負向 → 找到原點開關另一側的無效邊緣 → 負向搜尋第一個索引脈波。</td></tr>
+</tbody>
+</table>
+</div>
+<h5 id="不使用索引脈波的開關參考方法-1722"><a class="header" href="#不使用索引脈波的開關參考方法-1722">不使用索引脈波的開關參考：方法 17–22</a></h5>
+<p>這些方法直接在指定的開關轉態建立參考，不會執行最後的編碼器索引脈波搜尋。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: right">方法</th><th>事件順序</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: right">17</td><td>負向搜尋 → 在負極限轉態建立參考。</td></tr>
+<tr><td style="text-align: right">18</td><td>正向搜尋 → 在正極限轉態建立參考。</td></tr>
+<tr><td style="text-align: right">19</td><td>找到正向原點開關轉為無效的轉態 → 在該處建立參考。</td></tr>
+<tr><td style="text-align: right">20</td><td>找到正向原點開關轉為有效的轉態 → 在該處建立參考。</td></tr>
+<tr><td style="text-align: right">21</td><td>找到負向原點開關轉為無效的轉態 → 在該處建立參考。</td></tr>
+<tr><td style="text-align: right">22</td><td>找到負向原點開關轉為有效的轉態 → 在該處建立參考。</td></tr>
+</tbody>
+</table>
+</div>
+<h5 id="僅使用索引脈波及目前位置的方法"><a class="header" href="#僅使用索引脈波及目前位置的方法">僅使用索引脈波及目前位置的方法</a></h5>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: right">方法</th><th>事件順序</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: right">33</td><td>負向搜尋 → 在第一個索引脈波建立參考。</td></tr>
+<tr><td style="text-align: right">34</td><td>正向搜尋 → 在第一個索引脈波建立參考。</td></tr>
+<tr><td style="text-align: right">35</td><td>不執行搜尋運動，直接在目前位置建立參考。這是方法 37 的舊式形式。</td></tr>
+<tr><td style="text-align: right">37</td><td>不執行搜尋運動，直接在目前位置建立參考。</td></tr>
+</tbody>
+</table>
+</div>
+<p>試車任何會移動的復歸方法前，應先確認方向定義、開關極性、感測器排列、可用行程、
+搜尋速度、加速度及停止行為，並將馬達與機構分離，或以其他方式確保機台安全。</p>
 <p><strong>驅動器運行狀態</strong></p>
 <pre><code>               +-------+
 --------------&gt;| FSA   +--------------&gt;
