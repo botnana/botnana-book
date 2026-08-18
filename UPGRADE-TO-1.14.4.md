@@ -56,8 +56,8 @@ release-closeout work:
   revision 30 keeps EtherCAT vendor and product identity read-only in the
   built-in Slave Configuration editor. Revision 24 was a diagnostic package
   and is not a release changelog entry.
-- The bilingual book identifies version 1.14.4 with publication date
-  August 17, 2026.
+- The bilingual book identifies version 1.14.4, Document Revision 1, with
+  publication date August 19, 2026.
 - The release notes, software-update and rollback procedures, current HMI
   screenshot, and About-page IP-address procedure are published.
 - The proposed third-party HMI WebSocket profile is still marked `draft`.

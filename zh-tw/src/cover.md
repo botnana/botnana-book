@@ -6,10 +6,12 @@
 
 ### Version 1.14.4
 
+#### Document Revision 1（文件修訂 1）
+
 Author: Sirius Wu
 
 Copyright © 2025 Mapacode Inc. All rights reserved.
 
-August 17, 2026
+August 19, 2026
 
 </div>
