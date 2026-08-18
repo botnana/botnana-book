@@ -98,6 +98,9 @@ HMI WebSocket traffic.
 
 - Excess request rate alone does not close the connection. One overloaded
   connection does not consume another connection's admission budget.
+- The built-in HMI **About** dialog compares live request rate, admission,
+  polling, rejection, overload, and output status for both active WebSocket
+  clients. Closed clients are removed and their counters are not retained.
 - WebSocket output no longer blocks the event loop, and closing a connection
   releases its socket, output worker, and assigned rtForth user task.
 
@@ -114,6 +117,8 @@ HMI WebSocket traffic.
   receive the explicit overload result shown above.
 - Botnana Control still provides two rtForth user sessions for WebSocket
   clients.
+- The **About** traffic comparison is an internal built-in-HMI diagnostic, not
+  an addition to the supported customer JSON API.
 - An accepted `script.evaluate` request still has no general success or
   completion acknowledgement. A successful WebSocket send or the absence of an
   error is not proof that a state-changing script ran.
@@ -122,9 +127,10 @@ HMI WebSocket traffic.
   disconnection, it must reconcile controller state before deciding whether a
   retry is safe.
 
-See [JSON API](./json-api.md) for the custom-HMI traffic and command-verification
-recommendations. See [Software Updates](./update-software.md) for the package
-update procedure.
+See [Getting Started](./botnana-control-tutorial.md#diagnose-hmi-websocket-traffic)
+for the built-in traffic comparison. See [JSON API](./json-api.md) for the
+custom-HMI traffic and command-verification recommendations, and
+[Software Updates](./update-software.md) for the package update procedure.
 
 ## Version 1.14.3
 

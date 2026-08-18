@@ -94,8 +94,8 @@ WebSocket connections
 - `MachineProfile` 管理一份共用的已儲存設定，以及具有版本檢查的記憶體內草稿。
 - `RuntimeSupervisor` 管理作用中世代、生命週期、最近一次 Ready 的建置計畫、啟動
   來源，以及最新一次完整的實體拓撲觀察。
-- `LiveConnectionRegistry` 管理即時 WebSocket 成員，並在世代變更時分離或重新繫結
-  每個工作階段。
+- `LiveConnectionRegistry` 管理即時 WebSocket 成員、彙整作用中工作階段的有界限
+  流量計數器，並在世代變更時分離或重新繫結每個工作階段。
 - 每個 WebSocket 工作階段具有對兩個 rtForth 使用者工作之一的世代專用繫結。過期
   繫結不能將工作送至替換後的世代。
 
@@ -103,6 +103,11 @@ WebSocket connections
 被默默重送。每條連線也具有有界限的輸出工作及佇列，因此緩慢或飽和的用戶端不會阻塞
 其他用戶端的 WebSocket 事件迴圈。Botnana Control 仍最多提供兩個即時 rtForth
 使用者工作階段。
+
+內建 HMI 的 **About** 對話框可以要求一份不含請求內容的快照，比較兩個作用中連線。
+登錄檔會標示提出要求的瀏覽器，只回報連線時間及有界限的流量／准入計數器，並在連線
+關閉時移除該欄。系統不會保留流量歷史，也不會包含對端位址、請求內容、回應或設定值。
+此協作是內建 HMI 的內部功能，不屬於支援的客戶 JSON API。
 
 ## 控制器啟動及就緒
 
@@ -203,8 +208,8 @@ Motion 服務不會將不完整的套件安裝誤認為安全的運動控制執�
 ## 客戶 API 邊界
 
 已發行的 `botnana-apis` 函式庫定義支援的客戶 WebSocket API。內建 HMI 的設定版本、
-控制器復原、拓撲維護及更新通訊協定都是產品內部協作，除非之後的公開 API 版本明確
-提升其狀態。不能只因內部路由可在網路上看到，就將它們視為客戶 API。
+控制器復原、拓撲維護、連線流量診斷及更新通訊協定都是產品內部協作，除非之後的公開
+API 版本明確提升其狀態。不能只因內部路由可在網路上看到，就將它們視為客戶 API。
 
 操作程序請參閱 [EtherCAT 控制器復原](./ethercat-controller-recovery.md)、
 [檢查並設定 EtherCAT 拓撲](./ethercat-topology-maintenance.md)及

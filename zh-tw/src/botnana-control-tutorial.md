@@ -24,10 +24,42 @@ Botnana BN-B3A 預設於開機時自動啟動動程科技的 Botnana Control P2P
 | **Slave Configuration** | 檢查已設定的 EtherCAT 從站身分；編輯支援的驅動器、I/O、通道及裝置專用設定。只有控制器狀態允許時，才能使用即時控制。 |
 | **Motion** | 檢查或編輯控制週期、軸及軸組容量，以及 EtherCAT 啟動重試時間等整體運動控制設定。 |
 | **Axis Group** | 檢查或編輯軸設定、驅動器及編碼器對應，以及軸組映射及限制。 |
-| **About** | 檢查 Botnana Control 版本及目前 IP 位址；管理核准的軟體更新、IP 位址變更、重新啟動及關機操作。 |
+| **About** | 檢查 Botnana Control 版本、目前 IP 位址及即時 WebSocket 連線流量；管理核准的軟體更新、IP 位址變更、重新啟動及關機操作。 |
 
 **Slave Configuration**、**Motion** 及 **Axis Group** 是同一份共用設定草稿的不同
 檢視。開始另一項獨佔設定或維護操作前，請先儲存或捨棄目前的編輯。
+
+### 診斷 HMI WebSocket 流量
+
+客戶可以使用內建 HMI，檢查自行開發 HMI 的流量。請讓客戶 HMI 維持連線，再開啟
+**About**，找到 **WebSocket connection traffic**。
+
+![About 比較內建 HMI 與另一個作用中 WebSocket 用戶端](./figures/about-websocket-connection-traffic.png)
+
+截圖中的連線 ID、速率及計數器是一次即時範例，不是文件所定義的預設值。
+
+比較表只顯示目前作用中的連線：
+
+- **This built-in HMI** 是正在顯示此表格的瀏覽器。
+- **Other client** 是另一個作用中的 WebSocket 應用程式；試車時通常是客戶 HMI。
+- **Active clients** 會對照系統最多支援的兩個 rtForth WebSocket 工作階段顯示。
+
+| 欄位 | 意義 |
+|---|---|
+| **Requests/s** | 最近十秒內收到的訊框平均速率；連線時間不足十秒時使用較短的連線時間。診斷重新整理本身也會計入。 |
+| **Received** 及 **Admitted** | 從連線建立後，伺服器收到的訊框數，以及通過准入控制的請求數。 |
+| **Coalesced polls** 及 **Discarded polls** | 已被新輪詢取代，或因待處理輪詢界限而捨棄的最新值輪詢工作。 |
+| **Rejected** 及 **Overload indications** | 容量不足而未獲准的工作，以及該連線收到的有界限過載通知。 |
+| **Pending polls** | 保留到之後再次嘗試准入的最新值輪詢批次。 |
+| **Status** | 明確的狀態摘要，例如 **Normal**、**Polling queued**、**Overload observed** 或 **Output saturated**。 |
+
+用戶端關閉後，其欄位會消失。重新連線會取得新的暫時連線 ID，計數器也會重設；HMI
+不會保留流量歷史，也不會顯示對端 IP 位址、請求內容、回應或設定值。關閉 **About**
+後，每秒一次的診斷重新整理會停止。
+
+此功能是內建診斷工具，不是客戶 WebSocket API。自行開發的 HMI 仍應只使用支援的
+[JSON API](./json-api.md)。畫面上的請求速率只是流量量測結果，不能證明運動命令已
+完成，也不代表控制器每秒可以執行相同數量的任意 rtForth 程式。
 
 ### 檢查及編輯從站設定
 

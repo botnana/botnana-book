@@ -96,8 +96,9 @@ The main ownership boundaries are:
 - `RuntimeSupervisor` owns the active generation, its lifecycle, the most
   recent Ready build plan, startup provenance, and the latest complete physical
   topology observation.
-- `LiveConnectionRegistry` owns live WebSocket membership and detaches or
-  rebinds each session when a generation changes.
+- `LiveConnectionRegistry` owns live WebSocket membership, assembles bounded
+  traffic counters for active sessions, and detaches or rebinds each session
+  when a generation changes.
 - Each WebSocket session owns a generation-specific binding to one of the two
   rtForth user tasks. A stale binding cannot submit work to a replacement
   generation.
@@ -107,6 +108,14 @@ be coalesced, while non-admitted commands are never silently replayed. Each
 connection also has a bounded output worker and queue, so a slow or saturated
 client cannot block the WebSocket event loop for other clients. Botnana Control
 continues to provide at most two live rtForth user sessions.
+
+The built-in HMI **About** dialog can request one payload-free snapshot of both
+active connections. The registry marks the requesting browser, reports only
+connection duration and bounded traffic/admission counters, and removes a row
+when that connection closes. It does not retain traffic history or include peer
+addresses, request contents, responses, or configuration values. This
+collaboration is internal to the built-in HMI and is not part of the supported
+customer JSON API.
 
 ## Controller Startup and Readiness
 
@@ -226,8 +235,9 @@ on a protected, site-controlled network and operating procedure.
 
 The released `botnana-apis` libraries define the supported customer-facing
 WebSocket API. Bundled-HMI profile revisions, controller recovery, topology
-maintenance, and update protocols are internal product collaborations unless a
-later public API release explicitly promotes them. Implemented internal routes
+maintenance, connection-traffic diagnostics, and update protocols are internal
+product collaborations unless a later public API release explicitly promotes
+them. Implemented internal routes
 must not be treated as customer API merely because they are visible on the
 network.
 

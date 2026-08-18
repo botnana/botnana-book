@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-47a7c7e1.js";
+            window.path_to_searchindex_js = "searchindex-d8bbf819.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -260,8 +260,8 @@ Motion 封鎖；此時會儘可能啟動 HMI，讓操作人員檢查結果並安
 <li><code>MachineProfile</code> 管理一份共用的已儲存設定，以及具有版本檢查的記憶體內草稿。</li>
 <li><code>RuntimeSupervisor</code> 管理作用中世代、生命週期、最近一次 Ready 的建置計畫、啟動
 來源，以及最新一次完整的實體拓撲觀察。</li>
-<li><code>LiveConnectionRegistry</code> 管理即時 WebSocket 成員，並在世代變更時分離或重新繫結
-每個工作階段。</li>
+<li><code>LiveConnectionRegistry</code> 管理即時 WebSocket 成員、彙整作用中工作階段的有界限
+流量計數器，並在世代變更時分離或重新繫結每個工作階段。</li>
 <li>每個 WebSocket 工作階段具有對兩個 rtForth 使用者工作之一的世代專用繫結。過期
 繫結不能將工作送至替換後的世代。</li>
 </ul>
@@ -269,6 +269,10 @@ Motion 封鎖；此時會儘可能啟動 HMI，讓操作人員檢查結果並安
 被默默重送。每條連線也具有有界限的輸出工作及佇列，因此緩慢或飽和的用戶端不會阻塞
 其他用戶端的 WebSocket 事件迴圈。Botnana Control 仍最多提供兩個即時 rtForth
 使用者工作階段。</p>
+<p>內建 HMI 的 <strong>About</strong> 對話框可以要求一份不含請求內容的快照，比較兩個作用中連線。
+登錄檔會標示提出要求的瀏覽器，只回報連線時間及有界限的流量／准入計數器，並在連線
+關閉時移除該欄。系統不會保留流量歷史，也不會包含對端位址、請求內容、回應或設定值。
+此協作是內建 HMI 的內部功能，不屬於支援的客戶 JSON API。</p>
 <h2 id="控制器啟動及就緒"><a class="header" href="#控制器啟動及就緒">控制器啟動及就緒</a></h2>
 <p>每個控制器世代都由不可變的 <code>ControllerBuildPlan</code> 建立。計畫包含該次嘗試所選用的
 控制板、週期、Motion 設定、軸、軸組、計時器、EtherCAT 從站及啟動腳本。</p>
@@ -373,8 +377,8 @@ Motion 服務不會將不完整的套件安裝誤認為安全的運動控制執�
 </div>
 <h2 id="客戶-api-邊界"><a class="header" href="#客戶-api-邊界">客戶 API 邊界</a></h2>
 <p>已發行的 <code>botnana-apis</code> 函式庫定義支援的客戶 WebSocket API。內建 HMI 的設定版本、
-控制器復原、拓撲維護及更新通訊協定都是產品內部協作，除非之後的公開 API 版本明確
-提升其狀態。不能只因內部路由可在網路上看到，就將它們視為客戶 API。</p>
+控制器復原、拓撲維護、連線流量診斷及更新通訊協定都是產品內部協作，除非之後的公開
+API 版本明確提升其狀態。不能只因內部路由可在網路上看到，就將它們視為客戶 API。</p>
 <p>操作程序請參閱 <a href="./ethercat-controller-recovery.html">EtherCAT 控制器復原</a>、
 <a href="./ethercat-topology-maintenance.html">檢查並設定 EtherCAT 拓撲</a>及
 <a href="./update-software.html">軟體更新</a>。支援的客戶整合邊界請參閱 <a href="./json-api.html">JSON API</a>。</p>

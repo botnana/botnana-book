@@ -20,9 +20,9 @@ the `master` branch for review, but the control repository and book still have
 release-closeout work:
 
 - `motion/Cargo.toml` currently uses product version `1.14.4` and package
-  revision `30`; additional 1.14.4 package revisions may be required before
+  revision `31`; additional 1.14.4 package revisions may be required before
   final release closeout.
-- `debian/changelog` records the current `1.14.4-30` candidate for `unstable`;
+- `debian/changelog` records the current `1.14.4-31` candidate for `unstable`;
   revision 3 adds the current-IP display correction, revision 4
   refreshes Detected slaves during rescan, revision 5 exposes **Stop waiting**
   directly in the controller command bar, revision 6 hides inapplicable
@@ -52,10 +52,11 @@ release-closeout work:
   mailbox preparation, and stable OP/process-data readiness, revision 27 keeps
   startup progress and its countdown visible until readiness, revision 28
   closes the reviewed deadline, mailbox, and reserved-state correctness gaps,
-  revision 29 distinguishes active Motion values from saved configuration, and
+  revision 29 distinguishes active Motion values from saved configuration,
   revision 30 keeps EtherCAT vendor and product identity read-only in the
-  built-in Slave Configuration editor. Revision 24 was a diagnostic package
-  and is not a release changelog entry.
+  built-in Slave Configuration editor, and revision 31 adds live two-client
+  WebSocket traffic diagnostics to the built-in About dialog. Revision 24 was a
+  diagnostic package and is not a release changelog entry.
 - The bilingual book identifies version 1.14.4, Document Revision 1, with
   publication date August 19, 2026.
 - The release notes, software-update and rollback procedures, current HMI
@@ -68,14 +69,16 @@ release-closeout work:
   complete; the candidate custom-HMI traffic profile remains open.
 - The current-IP display correction is committed as `3190c96c3` and included
   in official package revision `1.14.4-3`, prepared by `f9fa385ed`.
-- Current candidate `1.14.4-30` is prepared by control commit `f5a149590` as
-  `botnana-control_1.14.4-30_arm64.deb` with SHA-256
-  `8b3cf0680da95b1023ccd3e160f9f1c955b0a861dc02578b0a206a1b4369a0bc`.
+- Current candidate `1.14.4-31` is prepared by control commit `bbece012c` as
+  `botnana-control_1.14.4-31_arm64.deb` with SHA-256
+  `a6e588407e3613081c690ca8e7deb11ada36de89823e75bda8451f85799cdb15`.
 - Supported-hardware evidence currently covers a controlled rescan and repeated
   recovery on the EC5500/EC5621 chain with `1.14.4-26`, automatic initial
-  startup with `1.14.4-28`, and installation and operation of `1.14.4-30` with
+  startup with `1.14.4-28`, and installation and operation of `1.14.4-31` with
   three slaves in OP, both domains at complete `2/2` working counters, and
-  `NRestarts=0`. Broader product acceptance, especially hardware using
+  `NRestarts=0`. Revision 31 also passed a two-client diagnostic, bounded
+  read-only overload, installed-browser, cleanup, and profile-preservation check.
+  Broader product acceptance, especially hardware using
   `sdo_inhibit_before_op`, remains open.
 - Software-update screenshots are workflow examples. They may retain earlier
   package revisions and do not need replacement for every packaging-only
@@ -114,15 +117,16 @@ repository maintainers.
 - [x] Confirm that all commits through `dcb3fba51` on
       `bounded-hmi-websocket-throughput` belong in 1.14.4.
 - [ ] Confirm final release inclusion of the subsequent current-candidate
-      commits through `f5a149590`.
+      commits through `bbece012c`, including diagnostic behavior commits
+      `57dae9955` and `e1a41e324`.
 - [x] Confirm the final Botnana Control version string (`1.14.4`).
 - [x] Confirm the Debian filename pattern
       (`botnana-control_<Debian-version>_arm64.deb`).
 - [ ] Confirm the final 1.14.4 Debian package revision after the remaining
       packaging iterations.
-- [x] Confirm the book publication date (August 17, 2026).
+- [x] Confirm the book publication date (August 19, 2026).
 - [x] Record control repository Debian changelog entries through the current
-      `1.14.4-30` candidate.
+      `1.14.4-31` candidate.
 - [ ] Decide whether the third-party HMI WebSocket profile is a supported
       integration contract or an operating recommendation.
 - [ ] Confirm the exact WebSocket overload message and limits for the final
@@ -188,6 +192,8 @@ Add a 1.14.4 section describing changes since 1.14.3:
       output, and connection cleanup.
 - [x] Important reconnect, profile-editing, topology-refresh, and WebSocket
       lifecycle fixes.
+- [x] Built-in About diagnostics comparing live traffic and admission counters
+      for both active WebSocket clients without exposing request content.
 
 Compatibility notes:
 
@@ -346,6 +352,9 @@ Tasks:
 - [x] Explain the purpose of **Motion**.
 - [x] Explain the purpose of **Axis Group**.
 - [x] Explain the purpose of **About**.
+- [x] Document the **WebSocket connection traffic** comparison, active-only
+      lifetime, field meanings, two-client limit, and privacy boundary.
+- [x] Publish one clean installed-target screenshot showing both client columns.
 - [x] Explain that detected hardware, draft configuration, saved
       configuration, and the running controller are separate states.
 - [x] Link to the recovery, topology-maintenance, and update chapters rather
@@ -375,6 +384,10 @@ the final 1.14.4 behavior without exceeding the public surface owned by
       already inside the public API boundary.
 
 ### Client traffic profile
+
+The built-in About diagnostic is documented as an internal operator tool. It
+helps run this acceptance work but does not approve the draft profile, expose a
+new customer API, or complete any checkbox below.
 
 - [ ] Use one persistent WebSocket per application whenever possible.
 - [ ] Explain that only two rtForth WebSocket user sessions are available.

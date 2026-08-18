@@ -80,6 +80,8 @@
 
 - 系統不會只因請求速率過高而關閉連線。一條過載連線不會消耗另一條連線的
   准入額度。
+- 內建 HMI 的 **About** 對話框會比較兩個作用中 WebSocket 用戶端的即時請求速率、
+  准入、輪詢、拒絕、過載及輸出狀態。連線關閉後會移除該用戶端，不會保留其計數器。
 - WebSocket 輸出不再阻塞事件迴圈；連線關閉時會釋放通訊端、輸出工作程序及
   配發的 rtForth 使用者工作。
 
@@ -93,14 +95,17 @@
 - 系統仍使用既有的 JSON-RPC-over-WebSocket 方法及以管線符號分隔的 rtForth
   回應格式；但超出 1.14.4 准入界限的用戶端，現在可能收到上述明確過載結果。
 - Botnana Control 仍提供兩個 rtForth 使用者工作供 WebSocket 用戶端使用。
+- **About** 的流量比較是內建 HMI 的內部診斷功能，不是支援的客戶 JSON API 新增
+  項目。
 - 接受 `script.evaluate` 請求後，仍沒有通用的成功或完成確認。WebSocket 傳送
   成功或沒有收到錯誤，不能證明變更狀態的程式已經執行。
 - 自行開發的 HMI 應將軸組選擇、依賴該選擇的命令及讀回動作放在同一個
   `script.evaluate` 請求中。發生過載、逾時或斷線後，必須先核對控制器狀態，
   再決定是否能安全重試。
 
-自行開發 HMI 的流量與命令驗證建議，請參閱 [JSON API](./json-api.md)。套件
-更新程序請參閱[軟體更新](./update-software.md)。
+內建流量比較請參閱 [Botnana Control 入門](./botnana-control-tutorial.md#診斷-hmi-websocket-流量)。
+自行開發 HMI 的流量與命令驗證建議，請參閱 [JSON API](./json-api.md)；套件更新程序
+請參閱[軟體更新](./update-software.md)。
 
 ## 1.14.3 版
 

@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-47a7c7e1.js";
+            window.path_to_searchindex_js = "searchindex-d8bbf819.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -263,6 +263,10 @@
 准入額度。</p>
 </li>
 <li>
+<p>內建 HMI 的 <strong>About</strong> 對話框會比較兩個作用中 WebSocket 用戶端的即時請求速率、
+准入、輪詢、拒絕、過載及輸出狀態。連線關閉後會移除該用戶端，不會保留其計數器。</p>
+</li>
+<li>
 <p>WebSocket 輸出不再阻塞事件迴圈；連線關閉時會釋放通訊端、輸出工作程序及
 配發的 rtForth 使用者工作。</p>
 </li>
@@ -277,14 +281,17 @@
 <li>系統仍使用既有的 JSON-RPC-over-WebSocket 方法及以管線符號分隔的 rtForth
 回應格式；但超出 1.14.4 准入界限的用戶端，現在可能收到上述明確過載結果。</li>
 <li>Botnana Control 仍提供兩個 rtForth 使用者工作供 WebSocket 用戶端使用。</li>
+<li><strong>About</strong> 的流量比較是內建 HMI 的內部診斷功能，不是支援的客戶 JSON API 新增
+項目。</li>
 <li>接受 <code>script.evaluate</code> 請求後，仍沒有通用的成功或完成確認。WebSocket 傳送
 成功或沒有收到錯誤，不能證明變更狀態的程式已經執行。</li>
 <li>自行開發的 HMI 應將軸組選擇、依賴該選擇的命令及讀回動作放在同一個
 <code>script.evaluate</code> 請求中。發生過載、逾時或斷線後，必須先核對控制器狀態，
 再決定是否能安全重試。</li>
 </ul>
-<p>自行開發 HMI 的流量與命令驗證建議，請參閱 <a href="./json-api.html">JSON API</a>。套件
-更新程序請參閱<a href="./update-software.html">軟體更新</a>。</p>
+<p>內建流量比較請參閱 <a href="./botnana-control-tutorial.html#診斷-hmi-websocket-流量">Botnana Control 入門</a>。
+自行開發 HMI 的流量與命令驗證建議，請參閱 <a href="./json-api.html">JSON API</a>；套件更新程序
+請參閱<a href="./update-software.html">軟體更新</a>。</p>
 <h2 id="1143-版"><a class="header" href="#1143-版">1.14.3 版</a></h2>
 <h3 id="從-1141-版以來的變更"><a class="header" href="#從-1141-版以來的變更">從 1.14.1 版以來的變更</a></h3>
 <ul>

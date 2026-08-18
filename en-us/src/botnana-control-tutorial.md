@@ -26,11 +26,50 @@ not by itself change the saved profile or running controller.
 | **Slave Configuration** | Review configured EtherCAT slave identities; edit supported drive, I/O, channel, and device-specific profile settings. Runtime controls are available only when the controller state permits them. |
 | **Motion** | Review or edit motion-wide settings such as cycle period, axis and group capacities, and the EtherCAT startup retry window. |
 | **Axis Group** | Review or edit axis settings, drive and encoder assignments, and axis-group mappings and limits. |
-| **About** | Review the Botnana Control version and current IP address; manage approved software updates, IP-address changes, reboot, and power-off operations. |
+| **About** | Review the Botnana Control version, current IP address, and live WebSocket connection traffic; manage approved software updates, IP-address changes, reboot, and power-off operations. |
 
 **Slave Configuration**, **Motion**, and **Axis Group** are different views of
 the same shared profile draft. Finish the current edit by saving or discarding
 it before starting another exclusive configuration or maintenance operation.
+
+### Diagnose HMI WebSocket Traffic
+
+Customers can use the built-in HMI to inspect traffic from their own HMI. Keep
+the customer HMI connected, then open **About** and find **WebSocket connection
+traffic**.
+
+![About comparing the built-in HMI with another active WebSocket client](./figures/about-websocket-connection-traffic.png)
+
+The connection IDs, rates, and counters in this screenshot are one live example,
+not documented defaults.
+
+The comparison shows only active connections:
+
+- **This built-in HMI** is the browser displaying the table.
+- **Other client** is the other active WebSocket application, normally the
+  customer HMI during commissioning.
+- **Active clients** is shown against the supported maximum of two rtForth
+  WebSocket sessions.
+
+| Field | Meaning |
+|---|---|
+| **Requests/s** | Average frames received over the latest ten seconds, or over the shorter connection lifetime. The diagnostic refresh itself is included. |
+| **Received** and **Admitted** | Frames received by the server and requests accepted by its admission policy since the connection opened. |
+| **Coalesced polls** and **Discarded polls** | Superseded or bounded pending latest-value polling work. |
+| **Rejected** and **Overload indications** | Work not admitted because capacity was unavailable, and the bounded overload notices sent for that connection. |
+| **Pending polls** | Latest-value polling batches retained for a later admission opportunity. |
+| **Status** | A literal summary such as **Normal**, **Polling queued**, **Overload observed**, or **Output saturated**. |
+
+Closing a client removes its column. A reconnect receives a new temporary
+connection ID and reset counters; the HMI does not retain traffic history or
+show peer IP addresses, request contents, responses, or configuration values.
+Closing **About** stops its once-per-second diagnostic refresh.
+
+This is a built-in diagnostic, not a customer WebSocket API. Customer HMIs
+should continue using only the supported [JSON API](./json-api.md). The displayed
+request rate is a traffic measurement, not proof that a motion command completed
+or that the controller can execute the same number of arbitrary rtForth
+programs per second.
 
 ### Review and Edit Slave Configuration
 
