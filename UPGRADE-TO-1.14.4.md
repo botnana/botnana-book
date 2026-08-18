@@ -54,9 +54,11 @@ release-closeout work:
   closes the reviewed deadline, mailbox, and reserved-state correctness gaps,
   revision 29 distinguishes active Motion values from saved configuration,
   revision 30 keeps EtherCAT vendor and product identity read-only in the
-  built-in Slave Configuration editor, and revision 31 adds live two-client
-  WebSocket traffic diagnostics to the built-in About dialog. Revision 24 was a
-  diagnostic package and is not a release changelog entry.
+  built-in Slave Configuration editor, revision 31 adds live two-client
+  WebSocket traffic diagnostics to the built-in About dialog, revision 32
+  separates Poll and Ordered traffic and measures admission wait, and revision
+  33 keeps the complete comparison visible in Chromium and Firefox. Revision 24
+  was a diagnostic package and is not a release changelog entry.
 - The bilingual book identifies version 1.14.4, Document Revision 1, with
   publication date August 19, 2026.
 - The release notes, software-update and rollback procedures, current HMI
@@ -69,16 +71,17 @@ release-closeout work:
   complete; the candidate custom-HMI traffic profile remains open.
 - The current-IP display correction is committed as `3190c96c3` and included
   in official package revision `1.14.4-3`, prepared by `f9fa385ed`.
-- Current candidate `1.14.4-31` is prepared by control commit `bbece012c` as
-  `botnana-control_1.14.4-31_arm64.deb` with SHA-256
-  `a6e588407e3613081c690ca8e7deb11ada36de89823e75bda8451f85799cdb15`.
+- Current candidate `1.14.4-33` is prepared by control commit `83c64347b` as
+  `botnana-control_1.14.4-33_arm64.deb` with SHA-256
+  `0aa1d6e66a3a0ce15cb79921682b6ddbd156781af229ca580acf5c9da876bd35`.
 - Supported-hardware evidence currently covers a controlled rescan and repeated
   recovery on the EC5500/EC5621 chain with `1.14.4-26`, automatic initial
-  startup with `1.14.4-28`, and installation and operation of `1.14.4-31` with
+  startup with `1.14.4-28`, and installation and operation of `1.14.4-33` with
   three slaves in OP, both domains at complete `2/2` working counters, and
-  `NRestarts=0`. Revision 31 also passed a two-client diagnostic, bounded
-  read-only overload, installed-browser, cleanup, and profile-preservation check.
-  Broader product acceptance, especially hardware using
+  `NRestarts=0`. Revision 33 also passed separate Poll/Ordered diagnostics,
+  admission-wait measurement, bounded read-only overload, installed-Firefox
+  layout, cleanup, and profile-preservation checks. Broader product acceptance,
+  especially hardware using
   `sdo_inhibit_before_op`, remains open.
 - Software-update screenshots are workflow examples. They may retain earlier
   package revisions and do not need replacement for every packaging-only
@@ -192,8 +195,9 @@ Add a 1.14.4 section describing changes since 1.14.3:
       output, and connection cleanup.
 - [x] Important reconnect, profile-editing, topology-refresh, and WebSocket
       lifecycle fixes.
-- [x] Built-in About diagnostics comparing live traffic and admission counters
-      for both active WebSocket clients without exposing request content.
+- [x] Built-in About diagnostics comparing separate Poll and Ordered rates,
+      admission counters, p95 receive-to-admit wait, outcomes, and status for
+      both active WebSocket clients without exposing request content.
 
 Compatibility notes:
 
@@ -353,8 +357,11 @@ Tasks:
 - [x] Explain the purpose of **Axis Group**.
 - [x] Explain the purpose of **About**.
 - [x] Document the **WebSocket connection traffic** comparison, active-only
-      lifetime, field meanings, two-client limit, and privacy boundary.
-- [x] Publish one clean installed-target screenshot showing both client columns.
+      lifetime, Poll and Ordered meanings, p95 admission-wait boundary,
+      two-client limit, and privacy boundary.
+- [x] Publish one clean installed-target screenshot showing both clients, all
+      four request-class columns, outcomes, and status without horizontal
+      navigation.
 - [x] Explain that detected hardware, draft configuration, saved
       configuration, and the running controller are separate states.
 - [x] Link to the recovery, topology-maintenance, and update chapters rather

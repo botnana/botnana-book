@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-d8bbf819.js";
+            window.path_to_searchindex_js = "searchindex-c1d1d3a5.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -212,6 +212,8 @@
 <li><strong>This built-in HMI</strong> 是正在顯示此表格的瀏覽器。</li>
 <li><strong>Other client</strong> 是另一個作用中的 WebSocket 應用程式；試車時通常是客戶 HMI。</li>
 <li><strong>Active clients</strong> 會對照系統最多支援的兩個 rtForth WebSocket 工作階段顯示。</li>
+<li>每個用戶端都分為 <strong>Poll requests</strong> 及 <strong>Ordered requests</strong>，避免可取代輪詢的延遲
+掩蓋逐一處理的工作。</li>
 </ul>
 <div class="table-wrapper">
 <table>
@@ -219,15 +221,19 @@
 <tr><th>欄位</th><th>意義</th></tr>
 </thead>
 <tbody>
-<tr><td><strong>Requests/s</strong></td><td>最近十秒內收到的訊框平均速率；連線時間不足十秒時使用較短的連線時間。診斷重新整理本身也會計入。</td></tr>
-<tr><td><strong>Received</strong> 及 <strong>Admitted</strong></td><td>從連線建立後，伺服器收到的訊框數，以及通過准入控制的請求數。</td></tr>
-<tr><td><strong>Coalesced polls</strong> 及 <strong>Discarded polls</strong></td><td>已被新輪詢取代，或因待處理輪詢界限而捨棄的最新值輪詢工作。</td></tr>
-<tr><td><strong>Rejected</strong> 及 <strong>Overload indications</strong></td><td>容量不足而未獲准的工作，以及該連線收到的有界限過載通知。</td></tr>
-<tr><td><strong>Pending polls</strong></td><td>保留到之後再次嘗試准入的最新值輪詢批次。</td></tr>
+<tr><td><strong>Poll requests</strong></td><td>已辨識且可取代的最新值讀取。新的同等輪詢可以取代較舊的待處理輪詢。</td></tr>
+<tr><td><strong>Ordered requests</strong></td><td>其他所有訊框，包括心跳、單次讀取、變更狀態的請求、未知 script 及無效訊框。每個已獲准請求都會逐一處理，絕不合併。<strong>Ordered</strong> 不表示請求一定會變更狀態，也不表示會同步完成。</td></tr>
+<tr><td><strong>Requests/s</strong></td><td>最近十秒內該類別收到的訊框平均速率；連線時間不足十秒時使用較短的連線時間。診斷重新整理本身屬於 Ordered，也會計入。</td></tr>
+<tr><td><strong>Received</strong> 及 <strong>Admitted</strong></td><td>從連線建立後，伺服器收到的該類別訊框數，以及通過准入控制的請求數。</td></tr>
+<tr><td><strong>Admission wait p95</strong></td><td>最近時間範圍內，從收到訊框直到成功准入所需時間的第 95 百分位數。不包含遭拒絕、合併或捨棄的工作，也不是回應時間、命令完成時間、運動完成時間或網路往返時間。</td></tr>
+<tr><td><strong>Coalesced</strong>、<strong>Discarded</strong> 及 <strong>Pending</strong></td><td>只適用於 Poll，分別表示已被取代、移除或保留的最新值工作。</td></tr>
+<tr><td><strong>Rejected</strong> 及 <strong>Overload indications</strong></td><td>只適用於 Ordered，表示容量不足而未獲准的工作，以及該連線收到的有界限過載通知。</td></tr>
 <tr><td><strong>Status</strong></td><td>明確的狀態摘要，例如 <strong>Normal</strong>、<strong>Polling queued</strong>、<strong>Overload observed</strong> 或 <strong>Output saturated</strong>。</td></tr>
 </tbody>
 </table>
 </div>
+<p>破折號表示該結果不適用於該請求類別。<strong>No sample</strong> 表示目前的准入等待時間範圍內，
+該類別沒有已獲准的請求。</p>
 <p>用戶端關閉後，其欄位會消失。重新連線會取得新的暫時連線 ID，計數器也會重設；HMI
 不會保留流量歷史，也不會顯示對端 IP 位址、請求內容、回應或設定值。關閉 <strong>About</strong>
 後，每秒一次的診斷重新整理會停止。</p>

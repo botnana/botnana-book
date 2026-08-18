@@ -50,15 +50,22 @@ The comparison shows only active connections:
   customer HMI during commissioning.
 - **Active clients** is shown against the supported maximum of two rtForth
   WebSocket sessions.
+- Each client is divided into **Poll requests** and **Ordered requests** so
+  delayed replaceable polling does not obscure individually handled work.
 
 | Field | Meaning |
 |---|---|
-| **Requests/s** | Average frames received over the latest ten seconds, or over the shorter connection lifetime. The diagnostic refresh itself is included. |
-| **Received** and **Admitted** | Frames received by the server and requests accepted by its admission policy since the connection opened. |
-| **Coalesced polls** and **Discarded polls** | Superseded or bounded pending latest-value polling work. |
-| **Rejected** and **Overload indications** | Work not admitted because capacity was unavailable, and the bounded overload notices sent for that connection. |
-| **Pending polls** | Latest-value polling batches retained for a later admission opportunity. |
+| **Poll requests** | Recognized replaceable latest-value reads. A newer equivalent poll can replace an older pending poll. |
+| **Ordered requests** | Every other frame, including heartbeats, one-off reads, state-changing requests, unknown scripts, and invalid frames. Each admitted request is handled individually and is never coalesced. **Ordered** does not mean that it changes state or completes synchronously. |
+| **Requests/s** | Average frames received for that class over the latest ten seconds, or over the shorter connection lifetime. The diagnostic refresh itself is Ordered and is included. |
+| **Received** and **Admitted** | Frames in that class received by the server and requests accepted by its admission policy since the connection opened. |
+| **Admission wait p95** | The 95th-percentile time from frame receipt until successful admission during the recent window. It excludes rejected, coalesced, and discarded work. It is not response, command-completion, motion-completion, or network round-trip time. |
+| **Coalesced**, **Discarded**, and **Pending** | Poll-only outcomes for replaced, removed, or retained latest-value work. |
+| **Rejected** and **Overload indications** | Ordered-only outcomes for work not admitted because capacity was unavailable, and the bounded overload notices sent for that connection. |
 | **Status** | A literal summary such as **Normal**, **Polling queued**, **Overload observed**, or **Output saturated**. |
+
+A dash means an outcome does not apply to that request class. **No sample**
+means that class has no admitted request in the current admission-wait window.
 
 Closing a client removes its column. A reconnect receives a new temporary
 connection ID and reset counters; the HMI does not retain traffic history or

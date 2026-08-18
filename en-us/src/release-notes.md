@@ -98,9 +98,11 @@ HMI WebSocket traffic.
 
 - Excess request rate alone does not close the connection. One overloaded
   connection does not consume another connection's admission budget.
-- The built-in HMI **About** dialog compares live request rate, admission,
-  polling, rejection, overload, and output status for both active WebSocket
-  clients. Closed clients are removed and their counters are not retained.
+- The built-in HMI **About** dialog compares separate **Poll requests** and
+  **Ordered requests** rates, admission totals, p95 receive-to-admit wait,
+  class-specific outcomes, and output status for both active WebSocket clients.
+  Closed clients are removed and their counters are not retained. Admission wait
+  is not response or command-completion time.
 - WebSocket output no longer blocks the event loop, and closing a connection
   releases its socket, output worker, and assigned rtForth user task.
 

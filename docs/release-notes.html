@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-d8bbf819.js";
+            window.path_to_searchindex_js = "searchindex-c1d1d3a5.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -263,8 +263,10 @@
 准入額度。</p>
 </li>
 <li>
-<p>內建 HMI 的 <strong>About</strong> 對話框會比較兩個作用中 WebSocket 用戶端的即時請求速率、
-准入、輪詢、拒絕、過載及輸出狀態。連線關閉後會移除該用戶端，不會保留其計數器。</p>
+<p>內建 HMI 的 <strong>About</strong> 對話框會比較兩個作用中 WebSocket 用戶端各自的
+<strong>Poll requests</strong> 及 <strong>Ordered requests</strong> 速率、准入總數、從收到訊框到准入的
+第 95 百分位等待時間、各類別結果及輸出狀態。連線關閉後會移除該用戶端，不會
+保留其計數器。准入等待時間不是回應時間或命令完成時間。</p>
 </li>
 <li>
 <p>WebSocket 輸出不再阻塞事件迴圈；連線關閉時會釋放通訊端、輸出工作程序及
