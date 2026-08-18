@@ -80,10 +80,14 @@
 
 - 系統不會只因請求速率過高而關閉連線。一條過載連線不會消耗另一條連線的
   准入額度。
-- 內建 HMI 的 **About** 對話框會比較兩個作用中 WebSocket 用戶端各自的
-  **Poll requests** 及 **Ordered requests** 速率、准入總數、從收到訊框到准入的
+- 內建 HMI 從 **About** 開啟的 **Support diagnostics** 畫面，會比較兩個作用中
+  WebSocket 用戶端各自的 **Poll requests** 及 **Ordered requests** 速率、准入總數、
+  從收到訊框到准入的
   第 95 百分位等待時間、各類別結果及輸出狀態。連線關閉後會移除該用戶端，不會
   保留其計數器。准入等待時間不是回應時間或命令完成時間。
+- **Download diagnostic log** 會傳回由操作人員啟動的 ZIP，其中包含摘要、經允許的
+  執行環境中繼資料，以及 `bnc-motion` 與 `bnc-hmi` 目前／前一次開機的分類記錄。
+  ZIP 上限為 10 MiB，會回報遺漏及截短，不會保留，也不會自動上傳。
 - WebSocket 輸出不再阻塞事件迴圈；連線關閉時會釋放通訊端、輸出工作程序及
   配發的 rtForth 使用者工作。
 
@@ -97,8 +101,8 @@
 - 系統仍使用既有的 JSON-RPC-over-WebSocket 方法及以管線符號分隔的 rtForth
   回應格式；但超出 1.14.4 准入界限的用戶端，現在可能收到上述明確過載結果。
 - Botnana Control 仍提供兩個 rtForth 使用者工作供 WebSocket 用戶端使用。
-- **About** 的流量比較是內建 HMI 的內部診斷功能，不是支援的客戶 JSON API 新增
-  項目。
+- **Support diagnostics** 的流量比較及診斷下載是內建 HMI 的內部功能，不是支援的
+  客戶 JSON API 新增項目。
 - 接受 `script.evaluate` 請求後，仍沒有通用的成功或完成確認。WebSocket 傳送
   成功或沒有收到錯誤，不能證明變更狀態的程式已經執行。
 - 自行開發的 HMI 應將軸組選擇、依賴該選擇的命令及讀回動作放在同一個

@@ -56,10 +56,12 @@ release-closeout work:
   revision 30 keeps EtherCAT vendor and product identity read-only in the
   built-in Slave Configuration editor, revision 31 adds live two-client
   WebSocket traffic diagnostics to the built-in About dialog, revision 32
-  separates Poll and Ordered traffic and measures admission wait, and revision
-  33 keeps the complete comparison visible in Chromium and Firefox. Revision 24
-  was a diagnostic package and is not a release changelog entry.
-- The bilingual book identifies version 1.14.4, Document Revision 1, with
+  separates Poll and Ordered traffic and measures admission wait, revision 33
+  keeps the complete comparison visible in Chromium and Firefox, and revision
+  34 moves traffic to Support diagnostics and adds a bounded, sanitized support
+  archive. Revision 24 was a diagnostic package and is not a release changelog
+  entry.
+- The bilingual book identifies version 1.14.4, Document Revision 2, with
   publication date August 19, 2026.
 - The release notes, software-update and rollback procedures, current HMI
   screenshot, and About-page IP-address procedure are published.
@@ -71,16 +73,17 @@ release-closeout work:
   complete; the candidate custom-HMI traffic profile remains open.
 - The current-IP display correction is committed as `3190c96c3` and included
   in official package revision `1.14.4-3`, prepared by `f9fa385ed`.
-- Current candidate `1.14.4-33` is prepared by control commit `83c64347b` as
-  `botnana-control_1.14.4-33_arm64.deb` with SHA-256
-  `0aa1d6e66a3a0ce15cb79921682b6ddbd156781af229ca580acf5c9da876bd35`.
+- Current candidate `1.14.4-34` is prepared by control commit `e11118bd6` as
+  `botnana-control_1.14.4-34_arm64.deb` with SHA-256
+  `a70836d6444b04b150ca9c6a9755ee2502e105071213691c3a7d5bd4a83c9a6b`.
 - Supported-hardware evidence currently covers a controlled rescan and repeated
   recovery on the EC5500/EC5621 chain with `1.14.4-26`, automatic initial
-  startup with `1.14.4-28`, and installation and operation of `1.14.4-33` with
-  three slaves in OP, both domains at complete `2/2` working counters, and
-  `NRestarts=0`. Revision 33 also passed separate Poll/Ordered diagnostics,
-  admission-wait measurement, bounded read-only overload, installed-Firefox
-  layout, cleanup, and profile-preservation checks. Broader product acceptance,
+  startup with `1.14.4-28`, and installation and operation of `1.14.4-34` with
+  three slaves in OP, both domains at complete `2/2` working counters, and all
+  three services at `NRestarts=0`. Revision 34 also passed bounded support
+  archive, privacy, severity, concurrency, browser-disconnect cleanup,
+  Chromium/Firefox layout and real download, and profile-preservation checks.
+  Broader product acceptance,
   especially hardware using
   `sdo_inhibit_before_op`, remains open.
 - Software-update screenshots are workflow examples. They may retain earlier

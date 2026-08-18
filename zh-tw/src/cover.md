@@ -6,7 +6,7 @@
 
 ### Version 1.14.4
 
-#### Document Revision 1（文件修訂 1）
+#### Document Revision 2（文件修訂 2）
 
 Author: Sirius Wu
 

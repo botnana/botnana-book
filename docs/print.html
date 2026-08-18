@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-c1d1d3a5.js";
+            window.path_to_searchindex_js = "searchindex-d2a3af9f.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -205,7 +205,7 @@
 <h1 id="botnana-control"><a class="header" href="#botnana-control">Botnana Control</a></h1>
 <h2 id="the-official-user-manual"><a class="header" href="#the-official-user-manual">The Official User Manual</a></h2>
 <h3 id="version-1144"><a class="header" href="#version-1144">Version 1.14.4</a></h3>
-<h4 id="document-revision-1文件修訂-1"><a class="header" href="#document-revision-1文件修訂-1">Document Revision 1（文件修訂 1）</a></h4>
+<h4 id="document-revision-2文件修訂-2"><a class="header" href="#document-revision-2文件修訂-2">Document Revision 2（文件修訂 2）</a></h4>
 <p>Author: Sirius Wu</p>
 <p>Copyright © 2025 Mapacode Inc. All rights reserved.</p>
 <p>August 19, 2026</p>
@@ -410,10 +410,14 @@ Motion 封鎖；此時會儘可能啟動 HMI，讓操作人員檢查結果並安
 被默默重送。每條連線也具有有界限的輸出工作及佇列，因此緩慢或飽和的用戶端不會阻塞
 其他用戶端的 WebSocket 事件迴圈。Botnana Control 仍最多提供兩個即時 rtForth
 使用者工作階段。</p>
-<p>內建 HMI 的 <strong>About</strong> 對話框可以要求一份不含請求內容的快照，比較兩個作用中連線。
-登錄檔會標示提出要求的瀏覽器，只回報連線時間及有界限的流量／准入計數器，並在連線
-關閉時移除該欄。系統不會保留流量歷史，也不會包含對端位址、請求內容、回應或設定值。
-此協作是內建 HMI 的內部功能，不屬於支援的客戶 JSON API。</p>
+<p>內建 HMI 從 <strong>About</strong> 開啟的 <strong>Support diagnostics</strong> 畫面，可以要求一份不含請求
+內容的快照，比較兩個作用中連線。登錄檔會標示提出要求的瀏覽器，只回報連線時間及
+有界限的流量／准入計數器，並在連線關閉時移除該欄。系統不會保留流量歷史，也不會
+包含對端位址、請求內容、回應或設定值。</p>
+<p>另一個同源 HTTP 操作只會向 root 擁有的本機支援能力要求一項固定操作。該能力只讀取
+<code>bnc-motion</code> 與 <code>bnc-hmi</code> 目前及前一次開機的記錄，輸出經允許的分類記錄及中繼資料，
+並傳回一份不超過 10 MiB 的記憶體內 ZIP。非特權 HMI 不能選擇 journal 服務、開機、
+路徑、命令或封存選項。此協作及即時比較都不屬於支援的客戶 JSON API。</p>
 <h2 id="控制器啟動及就緒"><a class="header" href="#控制器啟動及就緒">控制器啟動及就緒</a></h2>
 <p>每個控制器世代都由不可變的 <code>ControllerBuildPlan</code> 建立。計畫包含該次嘗試所選用的
 控制板、週期、Motion 設定、軸、軸組、計時器、EtherCAT 從站及啟動腳本。</p>
@@ -547,17 +551,18 @@ API 版本明確提升其狀態。不能只因內部路由可在網路上看到�
 <tr><td><strong>Slave Configuration</strong></td><td>檢查已設定的 EtherCAT 從站身分；編輯支援的驅動器、I/O、通道及裝置專用設定。只有控制器狀態允許時，才能使用即時控制。</td></tr>
 <tr><td><strong>Motion</strong></td><td>檢查或編輯控制週期、軸及軸組容量，以及 EtherCAT 啟動重試時間等整體運動控制設定。</td></tr>
 <tr><td><strong>Axis Group</strong></td><td>檢查或編輯軸設定、驅動器及編碼器對應，以及軸組映射及限制。</td></tr>
-<tr><td><strong>About</strong></td><td>檢查 Botnana Control 版本、目前 IP 位址及即時 WebSocket 連線流量；管理核准的軟體更新、IP 位址變更、重新啟動及關機操作。</td></tr>
+<tr><td><strong>About</strong></td><td>檢查 Botnana Control 版本及目前 IP 位址；開啟 <strong>Support diagnostics</strong>；管理核准的軟體更新、IP 位址變更、重新啟動及關機操作。</td></tr>
 </tbody>
 </table>
 </div>
 <p><strong>Slave Configuration</strong>、<strong>Motion</strong> 及 <strong>Axis Group</strong> 是同一份共用設定草稿的不同
 檢視。開始另一項獨佔設定或維護操作前，請先儲存或捨棄目前的編輯。</p>
 <h3 id="診斷-hmi-websocket-流量"><a class="header" href="#診斷-hmi-websocket-流量">診斷 HMI WebSocket 流量</a></h3>
-<p>客戶可以使用內建 HMI，檢查自行開發 HMI 的流量。請讓客戶 HMI 維持連線，再開啟
-<strong>About</strong>，找到 <strong>WebSocket connection traffic</strong>。</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/about-websocket-connection-traffic.png" alt="About 比較內建 HMI 與另一個作用中 WebSocket 用戶端"><span class="img-wrapper"><img src="figures/about-websocket-connection-traffic.png" alt="About 比較內建 HMI 與另一個作用中 WebSocket 用戶端"></span></label></p>
-<p>截圖中的連線 ID、速率及計數器是一次即時範例，不是文件所定義的預設值。</p>
+<p>客戶可以使用內建 HMI，檢查自行開發 HMI 的流量。請讓客戶 HMI 維持連線，開啟
+<strong>About</strong>，選擇 <strong>Open support diagnostics</strong>，再找到 <strong>WebSocket connection
+traffic</strong>。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/support-diagnostics.png" alt="Support diagnostics 比較內建 HMI 與另一個作用中 WebSocket 用戶端"><span class="img-wrapper"><img src="figures/support-diagnostics.png" alt="Support diagnostics 比較內建 HMI 與另一個作用中 WebSocket 用戶端"></span></label></p>
+<p>截圖中的連線 ID、速率及計數器是一組試車範例，不是文件所定義的預設值。</p>
 <p>比較表只顯示目前作用中的連線：</p>
 <ul>
 <li><strong>This built-in HMI</strong> 是正在顯示此表格的瀏覽器。</li>
@@ -586,11 +591,27 @@ API 版本明確提升其狀態。不能只因內部路由可在網路上看到�
 <p>破折號表示該結果不適用於該請求類別。<strong>No sample</strong> 表示目前的准入等待時間範圍內，
 該類別沒有已獲准的請求。</p>
 <p>用戶端關閉後，其欄位會消失。重新連線會取得新的暫時連線 ID，計數器也會重設；HMI
-不會保留流量歷史，也不會顯示對端 IP 位址、請求內容、回應或設定值。關閉 <strong>About</strong>
-後，每秒一次的診斷重新整理會停止。</p>
+不會保留流量歷史，也不會顯示對端 IP 位址、請求內容、回應或設定值。關閉
+<strong>Support diagnostics</strong> 或返回 About 後，每秒一次的診斷重新整理會停止。</p>
 <p>此功能是內建診斷工具，不是客戶 WebSocket API。自行開發的 HMI 仍應只使用支援的
 <a href="#json-api">JSON API</a>。畫面上的請求速率只是流量量測結果，不能證明運動命令已
 完成，也不代表控制器每秒可以執行相同數量的任意 rtForth 程式。</p>
+<h3 id="下載支援診斷資料"><a class="header" href="#下載支援診斷資料">下載支援診斷資料</a></h3>
+<p>經授權的服務工程師要求控制器證據時，請開啟 <strong>About</strong>，選擇 <strong>Open support
+diagnostics</strong>，再使用 <strong>Download diagnostic log</strong>。只開啟此畫面不會收集檔案。</p>
+<p>瀏覽器會下載帶有時間戳記的 <code>botnana-support-*.zip</code>，其中包含：</p>
+<ul>
+<li>簡要的人員可讀摘要及資訊清單（manifest）；</li>
+<li>經允許的控制器版本、服務狀態、運作時間及網路鏈路狀態；</li>
+<li>目前及前一次開機中，<code>bnc-motion</code> 與 <code>bnc-hmi</code> 的分類結構化記錄；以及</li>
+<li>來源無法取得或證據遭截短時的明確通知。</li>
+</ul>
+<p>完整 ZIP 上限為 10 MiB。系統會在兩項服務及兩次開機之間公平保留最新記錄。
+Botnana Control 不會重新啟動服務、啟用額外記錄、改變機台、保留新產生的 ZIP，
+也不會自動上傳。憑證、機台設定、請求內容、rtForth script、設定值及對端 IP 位址
+都會排除。</p>
+<p>請由操作人員透過現場核准的支援管道傳送 ZIP。若運動控制連線無法使用，但 HTTP HMI
+仍可開啟，即時流量會顯示為無法取得，<strong>Download diagnostic log</strong> 仍可使用。</p>
 <h3 id="檢查及編輯從站設定"><a class="header" href="#檢查及編輯從站設定">檢查及編輯從站設定</a></h3>
 <p>開啟 <strong>Slave Configuration</strong>，檢查已儲存的 EtherCAT 從站及其支援的裝置設定。此
 工作區顯示已儲存設定，不是新的實體掃描。如果需要變更實體順序、身分或別名，請
@@ -4447,10 +4468,16 @@ repeat
 准入額度。</p>
 </li>
 <li>
-<p>內建 HMI 的 <strong>About</strong> 對話框會比較兩個作用中 WebSocket 用戶端各自的
-<strong>Poll requests</strong> 及 <strong>Ordered requests</strong> 速率、准入總數、從收到訊框到准入的
+<p>內建 HMI 從 <strong>About</strong> 開啟的 <strong>Support diagnostics</strong> 畫面，會比較兩個作用中
+WebSocket 用戶端各自的 <strong>Poll requests</strong> 及 <strong>Ordered requests</strong> 速率、准入總數、
+從收到訊框到准入的
 第 95 百分位等待時間、各類別結果及輸出狀態。連線關閉後會移除該用戶端，不會
 保留其計數器。准入等待時間不是回應時間或命令完成時間。</p>
+</li>
+<li>
+<p><strong>Download diagnostic log</strong> 會傳回由操作人員啟動的 ZIP，其中包含摘要、經允許的
+執行環境中繼資料，以及 <code>bnc-motion</code> 與 <code>bnc-hmi</code> 目前／前一次開機的分類記錄。
+ZIP 上限為 10 MiB，會回報遺漏及截短，不會保留，也不會自動上傳。</p>
 </li>
 <li>
 <p>WebSocket 輸出不再阻塞事件迴圈；連線關閉時會釋放通訊端、輸出工作程序及
@@ -4467,8 +4494,8 @@ repeat
 <li>系統仍使用既有的 JSON-RPC-over-WebSocket 方法及以管線符號分隔的 rtForth
 回應格式；但超出 1.14.4 准入界限的用戶端，現在可能收到上述明確過載結果。</li>
 <li>Botnana Control 仍提供兩個 rtForth 使用者工作供 WebSocket 用戶端使用。</li>
-<li><strong>About</strong> 的流量比較是內建 HMI 的內部診斷功能，不是支援的客戶 JSON API 新增
-項目。</li>
+<li><strong>Support diagnostics</strong> 的流量比較及診斷下載是內建 HMI 的內部功能，不是支援的
+客戶 JSON API 新增項目。</li>
 <li>接受 <code>script.evaluate</code> 請求後，仍沒有通用的成功或完成確認。WebSocket 傳送
 成功或沒有收到錯誤，不能證明變更狀態的程式已經執行。</li>
 <li>自行開發的 HMI 應將軸組選擇、依賴該選擇的命令及讀回動作放在同一個

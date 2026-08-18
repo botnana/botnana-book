@@ -24,19 +24,20 @@ Botnana BN-B3A 預設於開機時自動啟動動程科技的 Botnana Control P2P
 | **Slave Configuration** | 檢查已設定的 EtherCAT 從站身分；編輯支援的驅動器、I/O、通道及裝置專用設定。只有控制器狀態允許時，才能使用即時控制。 |
 | **Motion** | 檢查或編輯控制週期、軸及軸組容量，以及 EtherCAT 啟動重試時間等整體運動控制設定。 |
 | **Axis Group** | 檢查或編輯軸設定、驅動器及編碼器對應，以及軸組映射及限制。 |
-| **About** | 檢查 Botnana Control 版本、目前 IP 位址及即時 WebSocket 連線流量；管理核准的軟體更新、IP 位址變更、重新啟動及關機操作。 |
+| **About** | 檢查 Botnana Control 版本及目前 IP 位址；開啟 **Support diagnostics**；管理核准的軟體更新、IP 位址變更、重新啟動及關機操作。 |
 
 **Slave Configuration**、**Motion** 及 **Axis Group** 是同一份共用設定草稿的不同
 檢視。開始另一項獨佔設定或維護操作前，請先儲存或捨棄目前的編輯。
 
 ### 診斷 HMI WebSocket 流量
 
-客戶可以使用內建 HMI，檢查自行開發 HMI 的流量。請讓客戶 HMI 維持連線，再開啟
-**About**，找到 **WebSocket connection traffic**。
+客戶可以使用內建 HMI，檢查自行開發 HMI 的流量。請讓客戶 HMI 維持連線，開啟
+**About**，選擇 **Open support diagnostics**，再找到 **WebSocket connection
+traffic**。
 
-![About 比較內建 HMI 與另一個作用中 WebSocket 用戶端](./figures/about-websocket-connection-traffic.png)
+![Support diagnostics 比較內建 HMI 與另一個作用中 WebSocket 用戶端](./figures/support-diagnostics.png)
 
-截圖中的連線 ID、速率及計數器是一次即時範例，不是文件所定義的預設值。
+截圖中的連線 ID、速率及計數器是一組試車範例，不是文件所定義的預設值。
 
 比較表只顯示目前作用中的連線：
 
@@ -61,12 +62,32 @@ Botnana BN-B3A 預設於開機時自動啟動動程科技的 Botnana Control P2P
 該類別沒有已獲准的請求。
 
 用戶端關閉後，其欄位會消失。重新連線會取得新的暫時連線 ID，計數器也會重設；HMI
-不會保留流量歷史，也不會顯示對端 IP 位址、請求內容、回應或設定值。關閉 **About**
-後，每秒一次的診斷重新整理會停止。
+不會保留流量歷史，也不會顯示對端 IP 位址、請求內容、回應或設定值。關閉
+**Support diagnostics** 或返回 About 後，每秒一次的診斷重新整理會停止。
 
 此功能是內建診斷工具，不是客戶 WebSocket API。自行開發的 HMI 仍應只使用支援的
 [JSON API](./json-api.md)。畫面上的請求速率只是流量量測結果，不能證明運動命令已
 完成，也不代表控制器每秒可以執行相同數量的任意 rtForth 程式。
+
+### 下載支援診斷資料
+
+經授權的服務工程師要求控制器證據時，請開啟 **About**，選擇 **Open support
+diagnostics**，再使用 **Download diagnostic log**。只開啟此畫面不會收集檔案。
+
+瀏覽器會下載帶有時間戳記的 `botnana-support-*.zip`，其中包含：
+
+- 簡要的人員可讀摘要及資訊清單（manifest）；
+- 經允許的控制器版本、服務狀態、運作時間及網路鏈路狀態；
+- 目前及前一次開機中，`bnc-motion` 與 `bnc-hmi` 的分類結構化記錄；以及
+- 來源無法取得或證據遭截短時的明確通知。
+
+完整 ZIP 上限為 10 MiB。系統會在兩項服務及兩次開機之間公平保留最新記錄。
+Botnana Control 不會重新啟動服務、啟用額外記錄、改變機台、保留新產生的 ZIP，
+也不會自動上傳。憑證、機台設定、請求內容、rtForth script、設定值及對端 IP 位址
+都會排除。
+
+請由操作人員透過現場核准的支援管道傳送 ZIP。若運動控制連線無法使用，但 HTTP HMI
+仍可開啟，即時流量會顯示為無法取得，**Download diagnostic log** 仍可使用。
 
 ### 檢查及編輯從站設定
 

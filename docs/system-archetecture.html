@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-c1d1d3a5.js";
+            window.path_to_searchindex_js = "searchindex-d2a3af9f.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -269,10 +269,14 @@ Motion 封鎖；此時會儘可能啟動 HMI，讓操作人員檢查結果並安
 被默默重送。每條連線也具有有界限的輸出工作及佇列，因此緩慢或飽和的用戶端不會阻塞
 其他用戶端的 WebSocket 事件迴圈。Botnana Control 仍最多提供兩個即時 rtForth
 使用者工作階段。</p>
-<p>內建 HMI 的 <strong>About</strong> 對話框可以要求一份不含請求內容的快照，比較兩個作用中連線。
-登錄檔會標示提出要求的瀏覽器，只回報連線時間及有界限的流量／准入計數器，並在連線
-關閉時移除該欄。系統不會保留流量歷史，也不會包含對端位址、請求內容、回應或設定值。
-此協作是內建 HMI 的內部功能，不屬於支援的客戶 JSON API。</p>
+<p>內建 HMI 從 <strong>About</strong> 開啟的 <strong>Support diagnostics</strong> 畫面，可以要求一份不含請求
+內容的快照，比較兩個作用中連線。登錄檔會標示提出要求的瀏覽器，只回報連線時間及
+有界限的流量／准入計數器，並在連線關閉時移除該欄。系統不會保留流量歷史，也不會
+包含對端位址、請求內容、回應或設定值。</p>
+<p>另一個同源 HTTP 操作只會向 root 擁有的本機支援能力要求一項固定操作。該能力只讀取
+<code>bnc-motion</code> 與 <code>bnc-hmi</code> 目前及前一次開機的記錄，輸出經允許的分類記錄及中繼資料，
+並傳回一份不超過 10 MiB 的記憶體內 ZIP。非特權 HMI 不能選擇 journal 服務、開機、
+路徑、命令或封存選項。此協作及即時比較都不屬於支援的客戶 JSON API。</p>
 <h2 id="控制器啟動及就緒"><a class="header" href="#控制器啟動及就緒">控制器啟動及就緒</a></h2>
 <p>每個控制器世代都由不可變的 <code>ControllerBuildPlan</code> 建立。計畫包含該次嘗試所選用的
 控制板、週期、Motion 設定、軸、軸組、計時器、EtherCAT 從站及啟動腳本。</p>

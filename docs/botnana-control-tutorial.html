@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-c1d1d3a5.js";
+            window.path_to_searchindex_js = "searchindex-d2a3af9f.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -196,17 +196,18 @@
 <tr><td><strong>Slave Configuration</strong></td><td>檢查已設定的 EtherCAT 從站身分；編輯支援的驅動器、I/O、通道及裝置專用設定。只有控制器狀態允許時，才能使用即時控制。</td></tr>
 <tr><td><strong>Motion</strong></td><td>檢查或編輯控制週期、軸及軸組容量，以及 EtherCAT 啟動重試時間等整體運動控制設定。</td></tr>
 <tr><td><strong>Axis Group</strong></td><td>檢查或編輯軸設定、驅動器及編碼器對應，以及軸組映射及限制。</td></tr>
-<tr><td><strong>About</strong></td><td>檢查 Botnana Control 版本、目前 IP 位址及即時 WebSocket 連線流量；管理核准的軟體更新、IP 位址變更、重新啟動及關機操作。</td></tr>
+<tr><td><strong>About</strong></td><td>檢查 Botnana Control 版本及目前 IP 位址；開啟 <strong>Support diagnostics</strong>；管理核准的軟體更新、IP 位址變更、重新啟動及關機操作。</td></tr>
 </tbody>
 </table>
 </div>
 <p><strong>Slave Configuration</strong>、<strong>Motion</strong> 及 <strong>Axis Group</strong> 是同一份共用設定草稿的不同
 檢視。開始另一項獨佔設定或維護操作前，請先儲存或捨棄目前的編輯。</p>
 <h3 id="診斷-hmi-websocket-流量"><a class="header" href="#診斷-hmi-websocket-流量">診斷 HMI WebSocket 流量</a></h3>
-<p>客戶可以使用內建 HMI，檢查自行開發 HMI 的流量。請讓客戶 HMI 維持連線，再開啟
-<strong>About</strong>，找到 <strong>WebSocket connection traffic</strong>。</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./figures/about-websocket-connection-traffic.png" alt="About 比較內建 HMI 與另一個作用中 WebSocket 用戶端"><span class="img-wrapper"><img src="./figures/about-websocket-connection-traffic.png" alt="About 比較內建 HMI 與另一個作用中 WebSocket 用戶端"></span></label></p>
-<p>截圖中的連線 ID、速率及計數器是一次即時範例，不是文件所定義的預設值。</p>
+<p>客戶可以使用內建 HMI，檢查自行開發 HMI 的流量。請讓客戶 HMI 維持連線，開啟
+<strong>About</strong>，選擇 <strong>Open support diagnostics</strong>，再找到 <strong>WebSocket connection
+traffic</strong>。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./figures/support-diagnostics.png" alt="Support diagnostics 比較內建 HMI 與另一個作用中 WebSocket 用戶端"><span class="img-wrapper"><img src="./figures/support-diagnostics.png" alt="Support diagnostics 比較內建 HMI 與另一個作用中 WebSocket 用戶端"></span></label></p>
+<p>截圖中的連線 ID、速率及計數器是一組試車範例，不是文件所定義的預設值。</p>
 <p>比較表只顯示目前作用中的連線：</p>
 <ul>
 <li><strong>This built-in HMI</strong> 是正在顯示此表格的瀏覽器。</li>
@@ -235,11 +236,27 @@
 <p>破折號表示該結果不適用於該請求類別。<strong>No sample</strong> 表示目前的准入等待時間範圍內，
 該類別沒有已獲准的請求。</p>
 <p>用戶端關閉後，其欄位會消失。重新連線會取得新的暫時連線 ID，計數器也會重設；HMI
-不會保留流量歷史，也不會顯示對端 IP 位址、請求內容、回應或設定值。關閉 <strong>About</strong>
-後，每秒一次的診斷重新整理會停止。</p>
+不會保留流量歷史，也不會顯示對端 IP 位址、請求內容、回應或設定值。關閉
+<strong>Support diagnostics</strong> 或返回 About 後，每秒一次的診斷重新整理會停止。</p>
 <p>此功能是內建診斷工具，不是客戶 WebSocket API。自行開發的 HMI 仍應只使用支援的
 <a href="./json-api.html">JSON API</a>。畫面上的請求速率只是流量量測結果，不能證明運動命令已
 完成，也不代表控制器每秒可以執行相同數量的任意 rtForth 程式。</p>
+<h3 id="下載支援診斷資料"><a class="header" href="#下載支援診斷資料">下載支援診斷資料</a></h3>
+<p>經授權的服務工程師要求控制器證據時，請開啟 <strong>About</strong>，選擇 <strong>Open support
+diagnostics</strong>，再使用 <strong>Download diagnostic log</strong>。只開啟此畫面不會收集檔案。</p>
+<p>瀏覽器會下載帶有時間戳記的 <code>botnana-support-*.zip</code>，其中包含：</p>
+<ul>
+<li>簡要的人員可讀摘要及資訊清單（manifest）；</li>
+<li>經允許的控制器版本、服務狀態、運作時間及網路鏈路狀態；</li>
+<li>目前及前一次開機中，<code>bnc-motion</code> 與 <code>bnc-hmi</code> 的分類結構化記錄；以及</li>
+<li>來源無法取得或證據遭截短時的明確通知。</li>
+</ul>
+<p>完整 ZIP 上限為 10 MiB。系統會在兩項服務及兩次開機之間公平保留最新記錄。
+Botnana Control 不會重新啟動服務、啟用額外記錄、改變機台、保留新產生的 ZIP，
+也不會自動上傳。憑證、機台設定、請求內容、rtForth script、設定值及對端 IP 位址
+都會排除。</p>
+<p>請由操作人員透過現場核准的支援管道傳送 ZIP。若運動控制連線無法使用，但 HTTP HMI
+仍可開啟，即時流量會顯示為無法取得，<strong>Download diagnostic log</strong> 仍可使用。</p>
 <h3 id="檢查及編輯從站設定"><a class="header" href="#檢查及編輯從站設定">檢查及編輯從站設定</a></h3>
 <p>開啟 <strong>Slave Configuration</strong>，檢查已儲存的 EtherCAT 從站及其支援的裝置設定。此
 工作區顯示已儲存設定，不是新的實體掃描。如果需要變更實體順序、身分或別名，請

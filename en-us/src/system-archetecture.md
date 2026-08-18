@@ -109,13 +109,20 @@ connection also has a bounded output worker and queue, so a slow or saturated
 client cannot block the WebSocket event loop for other clients. Botnana Control
 continues to provide at most two live rtForth user sessions.
 
-The built-in HMI **About** dialog can request one payload-free snapshot of both
-active connections. The registry marks the requesting browser, reports only
-connection duration and bounded traffic/admission counters, and removes a row
-when that connection closes. It does not retain traffic history or include peer
-addresses, request contents, responses, or configuration values. This
-collaboration is internal to the built-in HMI and is not part of the supported
-customer JSON API.
+The built-in HMI **Support diagnostics** view, opened from **About**, can request
+one payload-free snapshot of both active connections. The registry marks the
+requesting browser, reports only connection duration and bounded
+traffic/admission counters, and removes a row when that connection closes. It
+does not retain traffic history or include peer addresses, request contents,
+responses, or configuration values.
+
+A separate same-origin HTTP action requests one fixed operation from the
+root-owned local support capability. That capability reads only current and
+previous boot records for `bnc-motion` and `bnc-hmi`, emits allowlisted
+categorized records and metadata, and returns one in-memory ZIP no larger than
+10 MiB. The unprivileged HMI cannot select a journal unit, boot, path, command,
+or archive option. Neither this collaboration nor the live comparison is part
+of the supported customer JSON API.
 
 ## Controller Startup and Readiness
 

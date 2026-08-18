@@ -98,11 +98,16 @@ HMI WebSocket traffic.
 
 - Excess request rate alone does not close the connection. One overloaded
   connection does not consume another connection's admission budget.
-- The built-in HMI **About** dialog compares separate **Poll requests** and
-  **Ordered requests** rates, admission totals, p95 receive-to-admit wait,
+- The built-in HMI **Support diagnostics** view, opened from **About**, compares
+  separate **Poll requests** and **Ordered requests** rates, admission totals,
+  p95 receive-to-admit wait,
   class-specific outcomes, and output status for both active WebSocket clients.
   Closed clients are removed and their counters are not retained. Admission wait
   is not response or command-completion time.
+- **Download diagnostic log** returns an operator-initiated ZIP with a summary,
+  allowlisted runtime metadata, and categorized current/previous-boot records
+  for `bnc-motion` and `bnc-hmi`. The ZIP is at most 10 MiB, reports omissions
+  and truncation, is not retained, and is never uploaded automatically.
 - WebSocket output no longer blocks the event loop, and closing a connection
   releases its socket, output worker, and assigned rtForth user task.
 
@@ -119,8 +124,9 @@ HMI WebSocket traffic.
   receive the explicit overload result shown above.
 - Botnana Control still provides two rtForth user sessions for WebSocket
   clients.
-- The **About** traffic comparison is an internal built-in-HMI diagnostic, not
-  an addition to the supported customer JSON API.
+- The **Support diagnostics** traffic comparison and diagnostic download are
+  internal built-in-HMI functions, not additions to the supported customer JSON
+  API.
 - An accepted `script.evaluate` request still has no general success or
   completion acknowledgement. A successful WebSocket send or the absence of an
   error is not proof that a state-changing script ran.
