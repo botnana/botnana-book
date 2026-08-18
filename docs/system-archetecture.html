@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-62d837e4.js";
+            window.path_to_searchindex_js = "searchindex-55c3f3a7.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -174,73 +174,205 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="系統架構-system-archetecture"><a class="header" href="#系統架構-system-archetecture">系統架構 (System Archetecture)</a></h1>
-<h2 id="系統概念"><a class="header" href="#系統概念">系統概念</a></h2>
-<pre><code>    +---------------+------------+               +-----------+
-    | User Program  |  Botnana   |               |           |
-    |               |  API       |               |           |
-    | Main thread   |------------|   JSON  1ms   |           |
-    |               |         Tx |--------------&gt;|           |
-    |         call -----&gt; Thread |               | Websocket |
-    |               |------------|   tag|value   | Server    |
-    |               |         Rx |&lt;--------------|           |
-    |     callback &lt;----- Thread |               |           |
-    |               |------------|     100ms     |           |
-    |               |       Poll |--------------&gt;|           |
-    |               |     Thread |               |         | |
-    |---------------+------------|               |---------|-|
-    | Device management software |               | Config. v |
-    | on Browser                 |               | File      |
-    |                            |               |           |
-    |     Learning               |   Webapp      |-----------|
-    |     Testing                |&lt;--------------| HTTP      |
-    |     Configuration          |               | Server    |
-    |     Software update        |               |           |
-    |----------------------------|               |-----------|
-    | Windows/Linux              |               | Linux     |
-    +----------------------------+               +-----------+
+                        <h1 id="系統架構"><a class="header" href="#系統架構">系統架構</a></h1>
+<p>Botnana Control 1.14.4 將瀏覽器內容提供、設定與生命週期協調、具權限的軟體更新，
+以及即時運動控制分開處理。因此，控制器執行環境故障時，不會自動移除 HMI 或已儲存
+的機台設定。</p>
+<h2 id="部署概觀"><a class="header" href="#部署概觀">部署概觀</a></h2>
+<pre><code class="language-text">操作人員瀏覽器                           客戶應用程式
+  | HTTP :3000       | WebSocket :3012       | WebSocket :3012
+  v                  +-------------------+    |
++----------------------+                 v    v
+| hmi-server           |            +------------------------+
+| 無特殊權限的 HTTP    |            | motion-server          |
++----------+-----------+            | 設定與生命週期         |
+           |                        +-----------+------------+
+           | 固定本機 Unix socket               |
+           v                            受監督的執行世代
++----------------------+                        |
+| update-agent         |              +---------v------------+
+| 具權限的套件檢查     |              | rtForth VM、運動引擎 |
+| 及暫存               |              | 及 EtherCAT HAL      |
++----------------------+              +---------+------------+
+                                                |
+                                      EtherCAT 主站及從站
 </code></pre>
-<p>以上架構圖左方為此軸控／IIoT 平台的客戶端，分三個部份，</p>
-<ol>
-<li>應用程式：應用程式可能是一台半導體設備或一個產線的控制系統。此一控制系統有自己的線程。</li>
-<li>Botnana API：是用動程科技提供的應用程式界面。又由三個線程構成。</li>
-<li>瀏覽器上的 Webapp。此一 Webapp 是右方軸控平台的 HTTP 伺服器產生。提供以下四種裝置管理服務：學習、測試、建構與軟體更新。</li>
-</ol>
-<h2 id="botnana-控制平台"><a class="header" href="#botnana-控制平台">Botnana 控制平台</a></h2>
-<pre><code>    +-------------+------------------+-----------------------+
-    |             |                  | Background task (NC)  |
-    |             |                  +-----------------------+
-    |             |                  | Background task (PLC) |
-    |             | Real-time script +-----------------------+
-    | Web socket  |&lt;----------------&gt;| Foreground task 2     |
-    | Server      | Real-time script +-----------------------+
-    |             |&lt;----------------&gt;| Foreground task 1     |
-    |             |                  +-----------------------+
-    |             |                  | Control Task          |
-    |             |                  +-----------------------+
-    |             | Realtime script VM (4MB Data + 4MB Code) |
-    +-------------+---------+------------+-------------------+
-    | Config.     |         | Axis Group | Kinematics        |
-    | File        |         +------------+-------------------+
-    |             |         | Look ahead | Interpolations    |
-    |             |         +------------+-------------------+
-    |             | Control | I/O                            |
-    +-------------+---------+--------------------------------+
-    | HTTP        | Hardware abstraction/detection layer     |
-    | Server      |                                          |
-    +-------------+------------------------------------------+
-    | Linux       | Real-time kernel                         |
-    +-------------+------------------------------------------+
-     Non-real-time                                  Real-time
-</code></pre>
-<p>此一架構分成兩大部份，左方為非實時的部份，在 Linux 作業系統下執行，具有兩個伺服器：HTTP 伺服器和 Websocket 伺服器，以及此一系統的各種建構檔案。</p>
-<p>右端為實時的部份，在實時系統上建置了一層硬體抽象層。此一硬體抽象層支援各家的 EtherCAT 從站。以硬體抽象層為基礎，其上為軸控的引擎。又包括了軸組、運動學、路徑預視、補間功能、順序流程圖的執行引擎。</p>
-<p>在軸控引擎之上是執行實時腳本語言 rtForth 的虚擬機，具直譯／編譯功能。虚擬機內建 4MB 的資料空間及 4MB 的程式碼空間，能儲存數十萬指令的 rtForth 程式。並以合作式多工的方式實作了五個工作：</p>
+<p>瀏覽器會與控制器建立兩條獨立的網路連線：</p>
 <ul>
-<li>Control 工作：執行以控制下軸控引擎。</li>
-<li>前景工作一和二：透過其左方非實時部份的 Websocket 伺服器，接受最多兩個客戶端應用程式的指令。</li>
-<li>NC 工作：使用底下軸控引擎中的各種功能執行複雜的運動及加工行為。虚擬機內建的空間使其能儲存相當於十萬行 CNC 工件程式的實時腳本。這些實時腳本可由是客戶端程式從工作程式轉譯得到，或是由客戶端直接以 C# 或其他語言規畫產生。</li>
+<li>HTTP 連接埠 <code>3000</code> 用於取得封裝在套件內的 HMI，並執行經檢查的軟體更新程序。</li>
+<li>WebSocket 連接埠 <code>3012</code> 傳送控制器狀態、具有版本檢查的設定作業、即時值、命令及
+rtForth 求值要求。</li>
 </ul>
+<p>客戶應用程式直接連至 Motion WebSocket。Rust <code>hmi-server</code> 不會代理即時流量，
+<code>motion-server</code> 也不提供瀏覽器檔案。HMI JavaScript 套件會在建立 Debian 套件前
+完成編譯；控制器不再需要部署 Node.js HTTP 伺服器。</p>
+<h2 id="程序及權限邊界"><a class="header" href="#程序及權限邊界">程序及權限邊界</a></h2>
+<p>systemd 以分開的責任啟動已安裝元件。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>元件</th><th>責任及邊界</th></tr>
+</thead>
+<tbody>
+<tr><td><code>bnc-update.service</code></td><td>只在開機時執行更新決策，而且早於一般 HMI 及 Motion 服務。每個已確認的受管理套件最多嘗試安裝一次。</td></tr>
+<tr><td><code>update-agent</code> 常駐程序</td><td>管理套件檢查、具有版本號的更新狀態、不可分割的暫存、保留套件及 Motion 准入決策。固定的本機 socket 不接受任意路徑或 shell 命令。</td></tr>
+<tr><td><code>hmi-server</code></td><td>以 systemd 動態使用者執行。它串流套件內的靜態檔案、寫入有界限的訊息記錄，並只將固定的更新操作轉交給 <code>update-agent</code>；不具套件管理程式或一般 root 權限。</td></tr>
+<tr><td><code>motion-server</code></td><td>管理 WebSocket 伺服器、共用機台設定、EtherCAT 拓撲程序、執行環境監督器及目前的即時控制器世代。</td></tr>
+<tr><td>EtherCAT 服務及主站</td><td>管理硬體抽象層所使用的原生 EtherCAT 主站及裝置通訊。</td></tr>
+</tbody>
+</table>
+</div>
+<p>開機更新會先得到終止決策，才允許 HMI 及 Motion 啟動。安裝失敗可能留下持久的
+Motion 封鎖；此時會儘可能啟動 HMI，讓操作人員檢查結果並安排經檢查的復原套件，
+而 <code>motion-server</code> 仍維持封鎖。</p>
+<h2 id="motion-server-及可替換的執行世代"><a class="header" href="#motion-server-及可替換的執行世代">Motion Server 及可替換的執行世代</a></h2>
+<p><code>motion-server</code> 包含非即時伺服器／控制面，以及可替換的即時控制器世代。</p>
+<pre><code class="language-text">WebSocket 連線
+      |
+      v
++-----------------------------------------------------------+
+| motion-server 非即時控制面                               |
+|                                                           |
+| 請求准入             共用 MachineProfile                 |
+| LiveConnectionRegistry RuntimeSupervisor                  |
+| 設定及拓撲要求協調器                                      |
++-------------------------------+---------------------------+
+                                |
+                          世代專用通道
+                                |
++-------------------------------v---------------------------+
+| 執行世代 N                                                |
+| 請求／回應工作 &lt;-&gt; rtForth VM 工作                        |
+| 控制工作 -&gt; 運動引擎 -&gt; 硬體抽象層                        |
++-----------------------------------------------+-----------+
+                                                |
+                                          EtherCAT 主站
+</code></pre>
+<p>程序層級的伺服器在控制器世代啟動、替換或故障時仍可使用。因此 HMI 可以繼續顯示
+生命週期狀態、保留的拓撲證據及設定復原控制，而不會將無法取得的即時運動值顯示為正常。</p>
+<p>主要擁有權邊界如下：</p>
+<ul>
+<li><code>MachineProfile</code> 管理一份共用的已儲存設定，以及具有版本檢查的記憶體內草稿。</li>
+<li><code>RuntimeSupervisor</code> 管理作用中世代、生命週期、最近一次 Ready 的建置計畫、啟動
+來源，以及最新一次完整的實體拓撲觀察。</li>
+<li><code>LiveConnectionRegistry</code> 管理即時 WebSocket 成員，並在世代變更時分離或重新繫結
+每個工作階段。</li>
+<li>每個 WebSocket 工作階段具有對兩個 rtForth 使用者工作之一的世代專用繫結。過期
+繫結不能將工作送至替換後的世代。</li>
+</ul>
+<p>系統針對每條連線進行請求准入。可替換的最新值輪詢可以合併；未獲准的命令不會在之後
+被默默重送。每條連線也具有有界限的輸出工作及佇列，因此緩慢或飽和的用戶端不會阻塞
+其他用戶端的 WebSocket 事件迴圈。Botnana Control 仍最多提供兩個即時 rtForth
+使用者工作階段。</p>
+<h2 id="控制器啟動及就緒"><a class="header" href="#控制器啟動及就緒">控制器啟動及就緒</a></h2>
+<p>每個控制器世代都由不可變的 <code>ControllerBuildPlan</code> 建立。計畫包含該次嘗試所選用的
+控制板、週期、Motion 設定、軸、軸組、計時器、EtherCAT 從站及啟動腳本。</p>
+<p>只有在下列有界限的程序全部成功後，世代才會成為 <strong>Ready</strong>：</p>
+<ol>
+<li>掃描完整的實體 EtherCAT 鏈，但不採用掃描結果。</li>
+<li>比較每個預期位置上觀察到的供應商及產品身分。</li>
+<li>保留 EtherCAT 主站，並在保留的執行環境再次檢查連線、回應從站數、身分及已穩定
+的 PREOP 狀態。</li>
+<li>在控制器能力交給 VM 前，完成必要的裝置 mailbox 作業及 PDO 映射設定。</li>
+<li>啟用主站並執行即時控制器。</li>
+<li>等待必要的啟動 mailbox 作業完成、穩定的 OP 狀態，以及完整的程序資料工作計數器。</li>
+<li>發布 <strong>Ready</strong>，再將即時 WebSocket 工作階段繫結或重新繫結至該確切世代。</li>
+</ol>
+<p>主站成功啟用本身不代表已經就緒。如果任何必要步驟失敗，或操作人員停止拓撲重試，
+該世代會維持無法使用；伺服器會發布終止生命週期狀態，不會發布錯誤的 <strong>Ready</strong>。</p>
+<h2 id="重新啟動復原及拓撲來源"><a class="header" href="#重新啟動復原及拓撲來源">重新啟動、復原及拓撲來源</a></h2>
+<p>不同操作會刻意選用不同的控制器計畫：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>操作</th><th>控制器來源</th></tr>
+</thead>
+<tbody>
+<tr><td>程序初次啟動</td><td>從 <code>/etc/botnana-control/motion.toml</code> 載入的設定及已設定的啟動腳本。</td></tr>
+<tr><td>一般 <strong>Rescan EtherCAT</strong></td><td>最近一次 Ready 世代的不可變建置計畫（<strong>Last working settings</strong>）；不會套用新儲存的設定編輯。</td></tr>
+<tr><td>故障狀態下的 <strong>Start controller</strong></td><td>操作人員檢查過的確切已儲存設定版本；尚未儲存的變更會阻止此啟動。</td></tr>
+<tr><td>拓撲變更的 <strong>Approve, save, and start</strong></td><td>由伺服器管理的核准操作所儲存之完整且確切的拓撲提案及設定。</td></tr>
+</tbody>
+</table>
+</div>
+<p>一般替換執行環境時，監督器會停止接受舊世代的新工作、排空已接受要求、分離即時工作
+階段、關閉舊世代，再以選定來源建立替換世代。系統會先重新繫結正常工作階段，才發布
+<strong>Ready</strong>。如果一個工作階段無法重新繫結，只會關閉該工作階段；其他工作階段及正常
+控制器仍可使用。</p>
+<p>拓撲核准、持久儲存及啟動由控制器協調。瀏覽器是檢查者及命令來源，不是多重要求所組成
+之儲存／啟動交易的擁有者。</p>
+<h2 id="設定及執行狀態"><a class="header" href="#設定及執行狀態">設定及執行狀態</a></h2>
+<p>HMI 會顯示數個相關狀態，但其擁有者及生命週期不同。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>狀態</th><th>擁有者及持久性</th><th>意義</th></tr>
+</thead>
+<tbody>
+<tr><td>偵測到的硬體</td><td><code>RuntimeSupervisor</code> 保留的最新完整觀察；不是持久設定</td><td>實體掃描所得的唯讀證據。未知拓撲不會回報為零個從站。</td></tr>
+<tr><td>共用草稿</td><td><code>MachineProfile</code> 記憶體及草稿版本</td><td>所有 HMI 設定工作區共用且已驗證的待處理編輯；儲存前不具持久性。</td></tr>
+<tr><td>已儲存設定</td><td><code>/etc/botnana-control/motion.toml</code>，以及伺服器目前的儲存版本</td><td>持久的預定設定；儲存不會改變運作中的控制器。</td></tr>
+<tr><td>上次正常運作設定</td><td><code>RuntimeSupervisor</code> 保留的不可變 Ready 建置計畫</td><td>一般重新掃描，以及取消未核准拓撲草稿時的來源。</td></tr>
+<tr><td>作用中控制器</td><td>目前的執行世代</td><td>成功啟動時實際選用的值及硬體資源。</td></tr>
+<tr><td>更新狀態</td><td><code>/var/lib/botnana-control-update/</code> 下由 root 管理的檔案</td><td>待處理套件、報告、保留套件、更新版本及 Motion 封鎖。</td></tr>
+</tbody>
+</table>
+</div>
+<p>瀏覽器進度及快取資料列只是呈現狀態，不具權威性。重新整理或重新連線時，會以伺服器
+管理的設定、拓撲、生命週期及更新狀態取代它們。</p>
+<h2 id="即時執行"><a class="header" href="#即時執行">即時執行</a></h2>
+<p>執行世代使用有界限且由世代管理的請求及回應通道，在 WebSocket 要求與 rtForth VM
+之間傳遞資料。VM 具有五個合作式即時工作：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>工作</th><th>作用</th></tr>
+</thead>
+<tbody>
+<tr><td>NC 工作</td><td>執行背景數值控制腳本及複雜運動程序。</td></tr>
+<tr><td>使用者工作 1 及 2</td><td>執行兩個即時 WebSocket 應用程式工作階段的要求。</td></tr>
+<tr><td>Controller 工作</td><td>依設定的 <code>period_us</code> 執行週期性運動控制引擎。</td></tr>
+<tr><td>SFC 工作</td><td>執行順序控制邏輯。</td></tr>
+</tbody>
+</table>
+</div>
+<p>運動引擎管理軸與軸組協調、限制、補間、路徑預視、計時器及程序 I/O。硬體抽象層透過
+原生 EtherCAT 主站，將這些責任轉換至支援的 EtherCAT 裝置。設定擁有權會留在週期
+工作之外，直到刻意建立新的控制器世代。</p>
+<h2 id="軟體更新信任邊界"><a class="header" href="#軟體更新信任邊界">軟體更新信任邊界</a></h2>
+<p>瀏覽器可以提供 Debian 套件內容，但不會取得 root 或套件管理程式權限。
+<code>hmi-server</code> 會限制 HTTP 上傳，並以固定的 Unix socket 通訊協定串流至具權限的
+更新代理程式。<code>update-agent</code> 會獨立檢查套件身分、架構、大小、中繼資料及 SHA-256，
+再將確認操作綁定至操作人員檢查過的更新狀態版本。</p>
+<p>已確認的 Botnana Control 套件會在下次開機重新驗證，並只嘗試安裝一次。更新程式會
+在執行 <code>dpkg</code> 前記錄 Motion 封鎖；只有受管理的安裝成功才能清除封鎖。因此 HMI 及
+Motion 服務不會將不完整的套件安裝誤認為安全的運動控制執行環境。</p>
+<p>此邊界不是使用者驗證。Botnana Control 1.14.4 沒有新增 TLS、應用程式登入或套件
+簽章身分。任何可連至控制網路 HMI 的用戶端都能提交套件供檢查，因此部署環境必須依賴
+受保護且由現場管理的網路及操作程序。</p>
+<h2 id="故障隔離"><a class="header" href="#故障隔離">故障隔離</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>故障</th><th>架構上的結果</th></tr>
+</thead>
+<tbody>
+<tr><td>控制器世代故障</td><td>HTTP HMI 及程序層級的 WebSocket 狀態／設定作業仍可使用；即時執行環境操作無法使用。</td></tr>
+<tr><td><code>motion-server</code> 服務停止</td><td>獨立的 HMI HTTP 服務仍可載入，但控制器 WebSocket 資料無法使用。</td></tr>
+<tr><td>HMI HTTP 服務停止</td><td>不會因此替換或停止作用中的控制器世代；已連線的客戶 WebSocket 是另一條獨立路徑。</td></tr>
+<tr><td>一條 WebSocket 過載或停止讀取</td><td>每條連線的准入及輸出限制會隔離其他連線；飽和連線可能被關閉。</td></tr>
+<tr><td>無法證明執行環境清理完成</td><td>拒絕同一程序內的替換；HMI 會要求授權的 <code>bnc-motion</code> 服務重新啟動。</td></tr>
+<tr><td>受管理套件可能只完成部分安裝</td><td>持久更新狀態會封鎖 Motion，同時保留更新及復原邊界。</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="客戶-api-邊界"><a class="header" href="#客戶-api-邊界">客戶 API 邊界</a></h2>
+<p>已發行的 <code>botnana-apis</code> 函式庫定義支援的客戶 WebSocket API。內建 HMI 的設定版本、
+控制器復原、拓撲維護及更新通訊協定都是產品內部協作，除非之後的公開 API 版本明確
+提升其狀態。不能只因內部路由可在網路上看到，就將它們視為客戶 API。</p>
+<p>操作程序請參閱 <a href="./ethercat-controller-recovery.html">EtherCAT 控制器復原</a>、
+<a href="./ethercat-topology-maintenance.html">檢查並設定 EtherCAT 拓撲</a>及
+<a href="./update-software.html">軟體更新</a>。支援的客戶整合邊界請參閱 <a href="./json-api.html">JSON API</a>。</p>
 
                     </main>
 

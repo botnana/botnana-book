@@ -63,9 +63,9 @@ release-closeout work:
 - The proposed third-party HMI WebSocket profile is still marked `draft`.
 - The bilingual controller-recovery and topology-maintenance chapters are
   published, and the public JSON API reference has been reconciled with the
-  released customer API baseline. Primary-navigation guidance, the candidate
-  custom-HMI traffic profile, the configuration-file reference, and the system
-  architecture update remain open.
+  released customer API baseline. Primary-navigation guidance, the
+  configuration-file reference, and the system architecture update are now
+  complete; the candidate custom-HMI traffic profile remains open.
 - The current-IP display correction is committed as `3190c96c3` and included
   in official package revision `1.14.4-3`, prepared by `f9fa385ed`.
 - Current candidate `1.14.4-30` is prepared by control commit `f5a149590` as
@@ -501,18 +501,18 @@ Files:
 
 Tasks:
 
-- [ ] Replace the legacy Node.js HTTP-server description with the Rust
+- [x] Replace the legacy Node.js HTTP-server description with the Rust
       `hmi-server`.
-- [ ] Show the boot-only update agent separately from the normal HMI server.
-- [ ] Describe the motion runtime supervisor and replaceable runtime
+- [x] Show the boot-only update agent separately from the normal HMI server.
+- [x] Describe the motion runtime supervisor and replaceable runtime
       generations.
-- [ ] Show draft profile, saved profile, detected topology, and active
+- [x] Show draft profile, saved profile, detected topology, and active
       controller as separate concepts.
-- [ ] Explain that the HMI can remain available while the EtherCAT controller
+- [x] Explain that the HMI can remain available while the EtherCAT controller
       is unavailable.
-- [ ] Add per-connection WebSocket admission and bounded output at an
+- [x] Add per-connection WebSocket admission and bounded output at an
       appropriate level of detail.
-- [ ] Retain the existing real-time VM and motion-engine explanation where it
+- [x] Retain the existing real-time VM and motion-engine explanation where it
       remains accurate.
 
 ## Step 12: Update About-page IP instructions
