@@ -50,6 +50,12 @@ HMI WebSocket traffic.
   controller starts from another browser session.
 - Profile changes are validated and applied atomically. A failed save retains
   the unsaved draft for correction or retry.
+- **Motion** and **Axis Group** distinguish values used by the active controller
+  from saved or draft configuration. Saving prepares values for a later
+  controller start; it does not apply them to the running controller.
+- EtherCAT vendor ID and product code remain read-only in ordinary **Slave
+  Configuration** editing. Expected identity changes use the guided topology
+  workflow.
 - Server IP-address changes are validated, saved atomically, acknowledged by
   the HMI, and take effect after reboot.
 - Spreadsheet layouts, profile status, action availability, and recovery

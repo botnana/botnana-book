@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-34a37e2b.js";
+            window.path_to_searchindex_js = "searchindex-62d837e4.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -385,12 +385,180 @@
 <h1 id="botnana-control-入門-1"><a href="#botnana-control-入門-1" class="header">Botnana Control 入門</a></h1>
 <h2 id="botnana-control-入門"><a class="header" href="#botnana-control-入門">Botnana Control 入門</a></h2>
 <p>Botnana BN-B3A 預設於開機時自動啟動動程科技的 Botnana Control P2P 軸控軟體。</p>
+<h3 id="開啟-hmi"><a class="header" href="#開啟-hmi">開啟 HMI</a></h3>
 <p>將上位電腦連接至 BN-B3A 控制網路，然後使用瀏覽器連上
 <a href="http://192.168.7.2:3000">http://192.168.7.2:3000</a>。如果控制器使用其他已設定的
-位址，請改用該位址。連線後可見到以下畫面。</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/b3a-controlsheet.png" alt="Botnana Control 介面"><span class="img-wrapper"><img src="figures/b3a-controlsheet.png" alt="Botnana Control 介面"></span></label></p>
-<p>如果 <strong>Controller &amp; Topology</strong> 顯示 <strong>Controller unavailable</strong>，請依照
-<a href="#ethercat-控制器復原">EtherCAT 控制器復原</a>處理。</p>
+位址，請改用該位址。</p>
+<p>請等待 HMI 連線並顯示目前的控制器生命週期。不要因為頁面已開啟，就認為 EtherCAT
+控制器已經就緒。下列範例顯示 <strong>Controller &amp; Topology</strong> 工作區內的 <strong>Ready</strong>
+控制器。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/b3a-controlsheet.png" alt="Botnana Control 主要導覽列及 Controller &amp; Topology 工作區"><span class="img-wrapper"><img src="figures/b3a-controlsheet.png" alt="Botnana Control 主要導覽列及 Controller &amp; Topology 工作區"></span></label></p>
+<h3 id="選擇工作區"><a class="header" href="#選擇工作區">選擇工作區</a></h3>
+<p>請使用 HMI 上方的主要導覽列。只切換工作區不會改變已儲存設定或運作中的控制器。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>導覽項目</th><th>用途</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Controller &amp; Topology</strong></td><td>檢查控制器生命週期及啟動進度；比較已設定、已偵測及提案中的 EtherCAT 拓撲；並在適當時執行一般重新掃描、復原或引導式拓撲檢查。</td></tr>
+<tr><td><strong>Slave Configuration</strong></td><td>檢查已設定的 EtherCAT 從站身分；編輯支援的驅動器、I/O、通道及裝置專用設定。只有控制器狀態允許時，才能使用即時控制。</td></tr>
+<tr><td><strong>Motion</strong></td><td>檢查或編輯控制週期、軸及軸組容量，以及 EtherCAT 啟動重試時間等整體運動控制設定。</td></tr>
+<tr><td><strong>Axis Group</strong></td><td>檢查或編輯軸設定、驅動器及編碼器對應，以及軸組映射及限制。</td></tr>
+<tr><td><strong>About</strong></td><td>檢查 Botnana Control 版本及目前 IP 位址；管理核准的軟體更新、IP 位址變更、重新啟動及關機操作。</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Slave Configuration</strong>、<strong>Motion</strong> 及 <strong>Axis Group</strong> 是同一份共用設定草稿的不同
+檢視。開始另一項獨佔設定或維護操作前，請先儲存或捨棄目前的編輯。</p>
+<h3 id="檢查及編輯從站設定"><a class="header" href="#檢查及編輯從站設定">檢查及編輯從站設定</a></h3>
+<p>開啟 <strong>Slave Configuration</strong>，檢查已儲存的 EtherCAT 從站及其支援的裝置設定。此
+工作區顯示已儲存設定，不是新的實體掃描。如果需要變更實體順序、身分或別名，請
+使用<a href="#檢查並設定-ethercat-拓撲">拓撲檢查程序</a>。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/slave-configuration-saved.png" alt="顯示 Edit profile 操作及獨立即時驅動器控制的已儲存從站設定"><span class="img-wrapper"><img src="figures/slave-configuration-saved.png" alt="顯示 Edit profile 操作及獨立即時驅動器控制的已儲存從站設定"></span></label></p>
+<p>此工作區內各類資料列的作用不同：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>資料列類型</th><th>範例</th><th>行為</th></tr>
+</thead>
+<tbody>
+<tr><td>已儲存身分</td><td>從站位置、說明、供應商 ID 及產品代碼</td><td>識別已儲存設定中的從站。即使在設定編輯模式下，供應商 ID 及產品代碼仍為唯讀。實體身分或別名變更須經由拓撲程序檢查。</td></tr>
+<tr><td>設定項目</td><td>原點復歸方法、偏移、速度、加速度，以及支援的 I/O 或通道設定</td><td>只有在設定編輯模式下才能編輯。經確認的編輯只會改變共用草稿，不會改變運作中的控制器。</td></tr>
+<tr><td>即時狀態</td><td>PDS 狀態、數位輸入、實際位置及裝置狀態計數器</td><td>控制器運作狀態的唯讀觀察資料。</td></tr>
+<tr><td>即時控制</td><td>運作模式、PDS 目標、目標值、<strong>Reset Fault</strong>、<strong>Stop</strong> 及 <strong>Start</strong></td><td>可用時會作用於運作中的控制器，不是已儲存設定的編輯。</td></tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>**警告：**頁首的 <strong>Read-only</strong> 及 <strong>Editing</strong> 描述的是已儲存設定。這些狀態不會
+使機台進入安全狀態，也不會將即時控制轉為設定項目。只有在 <strong>Controller &amp;
+Topology</strong> 顯示 <strong>Ready</strong>，且機台處於現場核准的安全狀態時，才能使用即時控制。</p>
+</blockquote>
+<p>若要編輯已儲存的從站設定：</p>
+<ol>
+<li>
+<p>使用一個瀏覽器工作階段作為目前的設定編輯者。先與其他 HMI 使用者協調，並確認
+畫面顯示的已儲存從站是預定設定。</p>
+</li>
+<li>
+<p>選擇 <strong>Edit profile</strong>。可編輯的設定儲存格會開放使用；即時狀態及即時控制仍有
+各自獨立的作用。</p>
+</li>
+<li>
+<p>變更需要的設定儲存格，然後等待 HMI 顯示新的草稿版本及未儲存變更數量。</p>
+</li>
+<li>
+<p>選擇 <strong>Review changes</strong>。逐列檢查設定項目、已儲存值、未儲存值及所屬畫面。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/slave-configuration-review.png" alt="儲存或捨棄前，展開檢查一項未儲存的從站設定變更"><span class="img-wrapper"><img src="figures/slave-configuration-review.png" alt="儲存或捨棄前，展開檢查一項未儲存的從站設定變更"></span></label></p>
+</li>
+<li>
+<p>選擇一項操作：</p>
+<ul>
+<li><strong>Save changes</strong>：儲存整份共用草稿，供控制器下次啟動時使用；不會取代運作中
+控制器的設定。</li>
+<li><strong>Discard changes</strong>：捨棄整份共用草稿，並恢復已儲存設定。</li>
+</ul>
+</li>
+<li>
+<p>沒有未儲存變更後，選擇 <strong>Finish editing</strong> 回到唯讀模式。<strong>Finish editing</strong> 不會
+儲存任何資料。</p>
+</li>
+</ol>
+<p>儲存及捨棄會作用於整份共用草稿，不只限於 <strong>Slave Configuration</strong> 畫面上可見的
+資料列。如果 <strong>Review changes</strong> 列出其他畫面的編輯，請先與該項編輯的負責人協調。
+如果編輯或儲存時回報設定已由其他工作階段變更，請檢查重新整理後的值，不要直接
+重複操作。</p>
+<h3 id="檢查及編輯-motion-設定"><a class="header" href="#檢查及編輯-motion-設定">檢查及編輯 Motion 設定</a></h3>
+<p>開啟 <strong>Motion</strong>，比較運作中控制器使用的整體運動控制值與共用設定中的值。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/motion-active-and-configuration.png" alt="顯示作用中控制器值及不同下次啟動設定值的已儲存 Motion 設定"><span class="img-wrapper"><img src="figures/motion-active-and-configuration.png" alt="顯示作用中控制器值及不同下次啟動設定值的已儲存 Motion 設定"></span></label></p>
+<p>兩個數值欄位具有不同的生命週期：</p>
+<ul>
+<li><strong>Active controller</strong> 顯示目前控制器世代啟動時選用的值。儲存設定不會改變此欄。</li>
+<li><strong>Configuration</strong> 在唯讀模式顯示已儲存設定，在編輯模式則顯示共用草稿。截圖刻意
+顯示與作用中控制器不同的已儲存值；這些是範例值，不是預設值。</li>
+</ul>
+<p>Motion 各列的作用如下：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>設定</th><th>意義</th></tr>
+</thead>
+<tbody>
+<tr><td><code>period_us</code></td><td>即時運動控制週期，單位為微秒。週期越短，所需處理頻率越高。</td></tr>
+<tr><td><code>group_capacity</code></td><td><strong>Axis Group</strong> 中可用的軸組設定數量。</td></tr>
+<tr><td><code>axis_capacity</code></td><td><strong>Axis Group</strong> 中可用的軸設定數量，也是軸組映射可使用的軸編號上限。</td></tr>
+<tr><td><code>boot_retry_window_ms</code></td><td>控制器啟動期間，重試取得可用 EtherCAT 主站的時間範圍，單位為毫秒；不是完整的就緒期限。</td></tr>
+</tbody>
+</table>
+</div>
+<p>請使用從站設定一節所述的同一套 <strong>Edit profile</strong>、<strong>Review changes</strong>、<strong>Save
+changes</strong> 及 <strong>Discard changes</strong> 程序。不要開始第二個編輯工作階段，也不要試圖只
+儲存共用草稿的一部分。</p>
+<blockquote>
+<p>**重要：**儲存 Motion 設定只會準備供之後的控制器啟動使用，不會套用至運作中的
+控制器。一般 <strong>Rescan EtherCAT</strong> 會使用上次正常運作設定，不會使用剛儲存的設定
+值。任何受控重新啟動都應依現場試車程序規劃；啟動後先確認 <strong>Ready</strong> 及 <strong>Active
+controller</strong> 回讀，再啟用運動控制。</p>
+</blockquote>
+<div style="page-break-before: always;"></div>
+
+<h3 id="檢查及編輯軸與軸組設定"><a class="header" href="#檢查及編輯軸與軸組設定">檢查及編輯軸與軸組設定</a></h3>
+<p>開啟 <strong>Axis Group</strong>，比較作用中的軸與軸組值及其設定值。<strong>Motion</strong> 中設定的容量會
+決定此工作區顯示多少個 <code>Group/N</code> 及 <code>Axis/N</code> 區段。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/axis-group-profile.png" alt="顯示作用中控制器值及已儲存設定的軸與軸組設定"><span class="img-wrapper"><img src="figures/axis-group-profile.png" alt="顯示作用中控制器值及已儲存設定的軸與軸組設定"></span></label></p>
+<p>此工作區依責任區分設定：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>區段</th><th>設定</th></tr>
+</thead>
+<tbody>
+<tr><td>軸組識別</td><td><code>name</code> 及 <code>type</code>；支援的軸組類型包括 <code>1D</code>、<code>2D</code>、<code>3D</code> 及 <code>SINE</code>。</td></tr>
+<tr><td>軸組映射</td><td><code>mapping</code> 列出軸組協調且從 1 起算的軸編號；編號數量必須符合軸組類型。</td></tr>
+<tr><td>軸組限制</td><td><code>vmax</code>、<code>amax</code>、<code>jmax</code> 及 <code>ignorable_distance</code> 依設定的工程單位定義軸組指令及完成判定限制。</td></tr>
+<tr><td>軸回授</td><td>原點偏移、編碼器比例與方向、選用的外部編碼器設定，以及閉迴路設定。</td></tr>
+<tr><td>軸限制及調整</td><td>軸速度及加速度限制、可忽略距離、位置偏差限制，以及前饋值。</td></tr>
+<tr><td>裝置指派</td><td>驅動器及外部編碼器的別名、從站位置及通道。這些指派參照已儲存拓撲，不會變更 EtherCAT 供應商或產品身分。</td></tr>
+</tbody>
+</table>
+</div>
+<p>軸與軸組的編輯使用同一份共用設定程序；儲存前，應逐項檢查待處理變更所顯示的
+<strong>Screen</strong>。如果在同一份草稿同時變更 Motion 容量及 Axis Group 內容，應依設定的
+軸數量重新檢查每項映射。</p>
+<blockquote>
+<p>**警告：**錯誤的比例、方向、映射、限制或裝置指派可能造成非預期運動，或使回授
+失效。試車時應停用運動控制，並讓機台保持在現場核准的安全狀態。受控啟動控制器
+後，請先確認裝置指派、方向、比例及限制，再啟用運動控制。</p>
+</blockquote>
+<h3 id="分開看待觀察設定及運作狀態"><a class="header" href="#分開看待觀察設定及運作狀態">分開看待觀察、設定及運作狀態</a></h3>
+<p>HMI 會刻意分開管理下列狀態：</p>
+<ul>
+<li>**偵測到的硬體（Detected hardware）**是最新一次完整 EtherCAT 實體掃描所得的
+唯讀證據。掃描不會儲存或採用硬體。</li>
+<li>**共用草稿（Shared draft）**包含目前在設定工作區檢查的設定。尚未儲存的草稿
+變更不會持久保存。</li>
+<li>**已儲存設定（Saved profile）**是持久儲存在控制器上的設定。</li>
+<li>**運作中的控制器（Running controller）**使用成功啟動時的設定。儲存設定不會
+在未告知的情況下取代目前運作中的設定。</li>
+</ul>
+<p>一般 <strong>Rescan EtherCAT</strong> 會使用 <strong>Last working settings</strong> 重建控制器，不會使用
+尚未儲存的編輯。控制器無法使用時，<strong>Start controller</strong> 會使用檢查過的已儲存
+設定。核准的實體拓撲變更則使用專用檢查及 <strong>Approve, save, and start</strong> 程序。</p>
+<p>使用動作控制或即時 EtherCAT 控制前，請等待 <strong>Controller &amp; Topology</strong> 顯示
+<strong>Ready</strong>。控制器無法使用、正在啟動或回報故障時，請讓機台保持在現場核准的安全
+狀態；HMI 指令是維護控制，不是安全連鎖。</p>
+<h3 id="依需求繼續操作"><a class="header" href="#依需求繼續操作">依需求繼續操作</a></h3>
+<ul>
+<li>如果 <strong>Controller &amp; Topology</strong> 顯示 <strong>Controller unavailable</strong>，或需要執行一般
+重新掃描，請依照 <a href="#ethercat-控制器復原">EtherCAT 控制器復原</a>。</li>
+<li>如果是核准的實體新增、移除、更換或重新排序，請依照
+<a href="#檢查並設定-ethercat-拓撲">檢查並設定 EtherCAT 拓撲</a>。</li>
+<li>如果要安裝套件或回復舊版本，請參閱<a href="#軟體更新">軟體更新</a>。</li>
+<li>如果要變更控制器 IP 位址，請參閱
+<a href="#usb-連線-ip-設定-1">USB 連線 IP 設定</a>。</li>
+<li>如果設定是在 HMI 外維護，請參閱<a href="#設定檔-1">設定檔</a>。</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="ethercat-控制器復原"><a class="header" href="#ethercat-控制器復原">EtherCAT 控制器復原</a></h1>
 <p>當 Botnana Control 必須重新偵測已連接的 EtherCAT 硬體，或 <strong>Controller &amp;
@@ -726,43 +894,133 @@ waiting</strong> 並加以確認，該次嘗試會取消、內部檢查工作階
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="設定檔-1"><a href="#設定檔-1" class="header">設定檔</a></h1>
 <h2 id="設定檔"><a class="header" href="#設定檔">設定檔</a></h2>
-<p>Botnana Control Motion Server 的設定檔位於 /opt/mapacode/botnana-control/config/motion.toml 。</p>
-<p>設定檔使用 <a href="https://github.com/toml-lang/toml">Toml</a> 格式。說明如下。</p>
-<h3 id="file-section"><a class="header" href="#file-section">File section</a></h3>
-<ul>
-<li><em>spec_version</em> 欄位：列出使用的設定檔格式的版本，本文件目前的版本是 0.0.1。</li>
-</ul>
-<h3 id="slave-section"><a class="header" href="#slave-section">Slave section</a></h3>
-<p>可以有多個 slaves，因此使用 <code>[[slave]]</code>。每個 slave 有以下欄位。</p>
-<ul>
-<li><em>position</em>: slave 的位置。</li>
-<li><em>vendor_id</em></li>
-<li><em>product_code</em></li>
-<li><em>homing_method</em></li>
-<li><em>home_offset</em></li>
-<li><em>homing_speed_1</em></li>
-<li><em>homing_speed_2</em></li>
-<li><em>homing_acceleration</em></li>
-<li><em>profile_velocity</em></li>
-<li><em>profile_acceleration</em></li>
-<li><em>profile_deceleration</em></li>
-</ul>
-<h3 id="example-of-a-motiontoml"><a class="header" href="#example-of-a-motiontoml">Example of a motion.toml</a></h3>
-<pre><code>[file]
-  spec_version = "0.0.1"
-[[slave]]
-  position = 1
-  vendor_id = 6661
-  product_code = 22049
-  homing_method = 33
-  home_offset = 0
-  homing_speed_1 = 50
-  homing_speed_2 = 5
-  homing_acceleration = 8
-  profile_velocity = 8000
-  profile_acceleration = 9000
-  profile_deceleration = 9000
+<p>Botnana Control 將持久的機台設定儲存在
+<code>/etc/botnana-control/motion.toml</code>。此檔案使用
+<a href="https://toml.io/">TOML</a> 格式。</p>
+<p>支援的設定變更應優先使用內建 HMI。HMI 編輯具有版本檢查，並會以一份共用設定儲存。
+HMI 尚有草稿或正在進行拓撲維護時，請勿編輯檔案。若經授權必須手動編輯，應先依現場
+維修程序停止控制器，並備份完整檔案。即使設定檔語法正確，內容錯誤仍可能使控制器
+無法啟動或造成非預期運動設定。</p>
+<p>儲存設定不會改變運作中的控制器。<strong>Active controller</strong> 會保留控制器成功啟動時選用
+的值，直到之後的受控啟動選用已儲存設定為止。一般 <strong>Rescan EtherCAT</strong> 會使用上次
+正常運作設定，不會使用剛儲存的值。</p>
+<h3 id="file-及-server-區段"><a class="header" href="#file-及-server-區段">File 及 Server 區段</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>TOML 欄位</th><th>意義</th><th>預設值</th></tr>
+</thead>
+<tbody>
+<tr><td><code>[file].spec_version</code></td><td>機台設定格式版本。</td><td><code>"0.0.1"</code></td></tr>
+<tr><td><code>[server].address</code></td><td>Motion Server 監聽位址；不是控制器網路介面的設定。</td><td><code>"0.0.0.0:3012"</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>若要變更控制器網路位址，請使用 HMI <strong>About</strong> 程序，不要修改
+<code>[server].address</code>。</p>
+<h3 id="motion-區段"><a class="header" href="#motion-區段">Motion 區段</a></h3>
+<p><code>[motion]</code> 區段管理控制器整體的運動控制及 EtherCAT 啟動值。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>TOML 欄位</th><th>預設值及限制</th><th>作用</th></tr>
+</thead>
+<tbody>
+<tr><td><code>period_us</code></td><td><code>2000</code>；大於或等於 <code>1000</code> 微秒的整數。</td><td>即時運動控制週期。週期越短，所需處理頻率越高。</td></tr>
+<tr><td><code>axis_capacity</code></td><td><code>10</code>；<code>1</code> 至 <code>24</code> 的整數。</td><td>可用軸設定數量，也是軸組映射的軸編號上限。</td></tr>
+<tr><td><code>group_capacity</code></td><td><code>2</code>；正整數。</td><td>可用軸組設定數量。</td></tr>
+<tr><td><code>boot_retry_window_ms</code></td><td><code>120000</code>；以毫秒表示的非負整數。</td><td>EtherCAT 主站取得重試時間；不是完整的就緒逾時。</td></tr>
+</tbody>
+</table>
+</div>
+<p><code>boot_retry_window_ms</code> 不是完整的控制器就緒逾時。取得可接受的 EtherCAT 候選主站
+後，設定、啟用及就緒檢查會保留仍較晚的既有期限；若既有期限不足，則取得至少 30 秒
+的新就緒時間範圍。</p>
+<h3 id="ethercat-從站及裝置區段"><a class="header" href="#ethercat-從站及裝置區段">EtherCAT 從站及裝置區段</a></h3>
+<p>每個已儲存的 EtherCAT 從站以 <code>[[slaves]]</code> 表示。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>TOML 欄位</th><th>意義</th></tr>
+</thead>
+<tbody>
+<tr><td><code>protocol</code></td><td>從站通訊協定；EtherCAT 從站使用 <code>"EtherCAT"</code>。</td></tr>
+<tr><td><code>alias</code></td><td>設定的 EtherCAT 別名。</td></tr>
+<tr><td><code>position</code></td><td>從 1 起算的實體從站位置。</td></tr>
+<tr><td><code>vendor_id</code></td><td>預期的 EtherCAT 供應商識別碼，以十進位整數儲存。</td></tr>
+<tr><td><code>product_code</code></td><td>預期的 EtherCAT 產品代碼，以十進位整數儲存。</td></tr>
+<tr><td><code>wd_proc_data_enabled</code></td><td>設為 <code>true</code> 時啟用從站程序資料看門狗。</td></tr>
+<tr><td><code>devices</code></td><td>產品專用通道及裝置設定；有內容時在 TOML 中寫成 <code>[[slaves.devices]]</code>。</td></tr>
+</tbody>
+</table>
+</div>
+<p>在內建 <strong>Slave Configuration</strong> 編輯器中，供應商 ID 及產品代碼永遠是唯讀。實體
+身分、順序或別名若有變更，應使用引導式拓撲維護程序檢查，不可當成一般設定值編輯。</p>
+<p>裝置欄位依偵測到的產品而異，可能包括原點復歸方法、原點偏移、原點復歸速度、
+加速度、輪廓限制、I/O 選擇、編碼器設定或產品專用程序資料設定。只使用 <strong>Slave
+Configuration</strong> 對該裝置顯示的欄位，或遵循適用的產品試車說明；不要複製其他產品
+的裝置區塊。</p>
+<h3 id="group-區段"><a class="header" href="#group-區段">Group 區段</a></h3>
+<p>每個 <code>[[group]]</code> 項目定義一個協同運作的軸組。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>TOML 欄位</th><th>意義</th><th>新軸組預設值或限制</th></tr>
+</thead>
+<tbody>
+<tr><td><code>position</code></td><td>從 1 起算的軸組編號。</td><td>必須在 <code>group_capacity</code> 範圍內。</td></tr>
+<tr><td><code>name</code></td><td>操作者可見的軸組名稱。</td><td><code>"Anonymous"</code></td></tr>
+<tr><td><code>gtype</code></td><td>軸組幾何類型。</td><td><code>"1D"</code>；可用值為 <code>"1D"</code>、<code>"2D"</code>、<code>"3D"</code> 及 <code>"SINE"</code>。</td></tr>
+<tr><td><code>mapping</code></td><td>軸組使用且從 1 起算的軸編號。</td><td><code>[1]</code>；<code>1D</code> 或 <code>SINE</code> 使用一軸、<code>2D</code> 使用兩軸、<code>3D</code> 使用三軸，且每個編號必須在 <code>axis_capacity</code> 範圍內。</td></tr>
+<tr><td><code>vmax</code></td><td>依設定工程單位表示的軸組最大速度。</td><td><code>0.1</code>；必須為正值。</td></tr>
+<tr><td><code>amax</code></td><td>依設定工程單位表示的軸組最大加速度。</td><td><code>5.0</code>；必須為正值。</td></tr>
+<tr><td><code>jmax</code></td><td>依設定工程單位表示的軸組最大加加速度。</td><td><code>80.0</code>；必須為正值。</td></tr>
+<tr><td><code>ignorable_distance</code></td><td>可視為已完成的剩餘距離。</td><td><code>0.0000005</code>；必須為正值。</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="axis-區段"><a class="header" href="#axis-區段">Axis 區段</a></h3>
+<p>每個 <code>[[axis]]</code> 項目定義一軸。<strong>Axis Group</strong> 會依功能分組顯示這些欄位。</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>TOML 欄位</th><th>意義及限制</th><th>新軸預設值</th></tr>
+</thead>
+<tbody>
+<tr><td><code>position</code>、<code>name</code>、<code>home_offset</code></td><td>從 1 起算的軸編號、操作者可見名稱及原點偏移。編號必須在 <code>axis_capacity</code> 範圍內。</td><td>名稱 <code>"Anonymous"</code>；偏移 <code>0.0</code>。</td></tr>
+<tr><td><code>encoder_length_unit</code></td><td>軸的工程單位；可用形式代表公尺、轉、脈衝或使用者自訂單位。</td><td><code>"Meter"</code></td></tr>
+<tr><td><code>encoder_ppu</code>、<code>encoder_direction</code></td><td>主編碼器每單位脈衝數及方向。每單位脈衝數必須為正值；方向為 <code>1</code> 或 <code>-1</code>。</td><td><code>1000000.0</code>、<code>1</code></td></tr>
+<tr><td><code>ext_encoder_ppu</code>、<code>ext_encoder_direction</code></td><td>選用外部編碼器的比例及方向，限制相同。</td><td><code>1000000.0</code>、<code>1</code></td></tr>
+<tr><td><code>closed_loop_filter</code>、<code>max_position_deviation</code></td><td>全閉迴路濾波器頻率（Hz）及允許的位置偏差，兩者皆須為非負值。</td><td><code>30.0</code>、<code>0.001</code></td></tr>
+<tr><td><code>vmax</code>、<code>amax</code>、<code>ignorable_distance</code></td><td>依設定工程單位表示的軸速度限制、加速度限制及完成容許值，皆須為正值。</td><td><code>0.1</code>、<code>5.0</code>、<code>0.0000005</code></td></tr>
+<tr><td><code>vff</code>、<code>vfactor</code>、<code>aff</code>、<code>afactor</code></td><td>速度與加速度前饋值及係數。</td><td><code>0.0</code>、<code>1.0</code>、<code>0.0</code>、<code>1.0</code></td></tr>
+<tr><td><code>drive_alias</code>、<code>drive_slave_position</code>、<code>drive_channel</code></td><td>軸驅動器的 EtherCAT 指派。</td><td>別名 <code>0</code>、從站位置等於新軸編號、通道 <code>1</code>。</td></tr>
+<tr><td><code>ext_encoder_alias</code>、<code>ext_encoder_slave_position</code>、<code>ext_encoder_channel</code></td><td>選用外部編碼器的 EtherCAT 指派。</td><td><code>0</code>、<code>0</code>、<code>0</code></td></tr>
+</tbody>
+</table>
+</div>
+<p>驅動器及編碼器指派會參照已儲存拓撲，但不會改變從站的供應商 ID 或產品代碼。任何
+受控啟動後，都應在停用運動控制的狀態下確認裝置指派、方向、比例及限制。</p>
+<h3 id="timer-區段"><a class="header" href="#timer-區段">Timer 區段</a></h3>
+<p>每個 <code>[[timer]]</code> 項目包含從 1 起算的 <code>position</code> 及 <code>name</code>。1.14.4 的設定工作區不
+顯示 Timer 設定；只有適用的整合說明要求時才能變更。</p>
+<h3 id="最小語法範例"><a class="header" href="#最小語法範例">最小語法範例</a></h3>
+<p>下列範例只顯示 File、Server 及 Motion 語法，不是完整的機台設定，不可取代已完成
+試車的控制器檔案。</p>
+<pre><code class="language-toml">[file]
+spec_version = "0.0.1"
+
+[server]
+address = "0.0.0.0:3012"
+
+[motion]
+period_us = 2000
+axis_capacity = 10
+group_capacity = 2
+boot_retry_window_ms = 120000
 </code></pre>
+<p>儲存前，請使用 <strong>Slave Configuration</strong>、<strong>Motion</strong> 及 <strong>Axis Group</strong> 檢查支援的
+設定及共用的待處理變更清單。</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="程式開發界面"><a class="header" href="#程式開發界面">程式開發界面</a></h1>
 <p>Botnana Control 內建伺服器。伺服器提供以下程式開發界面：</p>
@@ -4090,6 +4348,10 @@ repeat
 編輯、儲存、捨棄或啟動控制器。</li>
 <li>設定檔變更會先驗證並以不可分割方式套用。儲存失敗時會保留未儲存草稿，
 以便修正或重試。</li>
+<li><strong>Motion</strong> 及 <strong>Axis Group</strong> 會分開顯示作用中控制器使用的值與已儲存或草稿
+設定。儲存只會準備供之後的控制器啟動使用，不會套用至運作中的控制器。</li>
+<li>一般 <strong>Slave Configuration</strong> 編輯中的 EtherCAT 供應商 ID 及產品代碼維持
+唯讀；預期身分若有變更，應使用引導式拓撲程序。</li>
 <li>伺服器 IP 位址變更會先驗證、以不可分割方式儲存，並由 HMI 回報結果；新
 位址會在重新開機後生效。</li>
 <li>試算表版面、設定檔狀態、操作可用性及復原控制已重新設計，在較小顯示器上

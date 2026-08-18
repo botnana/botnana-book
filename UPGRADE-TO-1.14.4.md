@@ -20,9 +20,9 @@ the `master` branch for review, but the control repository and book still have
 release-closeout work:
 
 - `motion/Cargo.toml` currently uses product version `1.14.4` and package
-  revision `28`; additional 1.14.4 package revisions may be required before
+  revision `30`; additional 1.14.4 package revisions may be required before
   final release closeout.
-- `debian/changelog` records the current `1.14.4-28` candidate for `unstable`;
+- `debian/changelog` records the current `1.14.4-30` candidate for `unstable`;
   revision 3 adds the current-IP display correction, revision 4
   refreshes Detected slaves during rescan, revision 5 exposes **Stop waiting**
   directly in the controller command bar, revision 6 hides inapplicable
@@ -50,9 +50,12 @@ release-closeout work:
   revision 25 adds bounded same-generation reserved-master acquisition and
   ordinary PDO failure handling, revision 26 requires settled PREOP, successful
   mailbox preparation, and stable OP/process-data readiness, revision 27 keeps
-  startup progress and its countdown visible until readiness, and revision 28
-  closes the reviewed deadline, mailbox, and reserved-state correctness gaps.
-  Revision 24 was a diagnostic package and is not a release changelog entry.
+  startup progress and its countdown visible until readiness, revision 28
+  closes the reviewed deadline, mailbox, and reserved-state correctness gaps,
+  revision 29 distinguishes active Motion values from saved configuration, and
+  revision 30 keeps EtherCAT vendor and product identity read-only in the
+  built-in Slave Configuration editor. Revision 24 was a diagnostic package
+  and is not a release changelog entry.
 - The bilingual book identifies version 1.14.4 with publication date
   August 17, 2026.
 - The release notes, software-update and rollback procedures, current HMI
@@ -65,13 +68,14 @@ release-closeout work:
   architecture update remain open.
 - The current-IP display correction is committed as `3190c96c3` and included
   in official package revision `1.14.4-3`, prepared by `f9fa385ed`.
-- Current candidate `1.14.4-28` is prepared by control commit `2e4caa8b4` as
-  `botnana-control_1.14.4-28_arm64.deb` with SHA-256
-  `3903f9358c752342fa35efeae20288d6ca218411ca8d55487ee2c845913dc24b`.
+- Current candidate `1.14.4-30` is prepared by control commit `f5a149590` as
+  `botnana-control_1.14.4-30_arm64.deb` with SHA-256
+  `8b3cf0680da95b1023ccd3e160f9f1c955b0a861dc02578b0a206a1b4369a0bc`.
 - Supported-hardware evidence currently covers a controlled rescan and repeated
-  recovery on the EC5500/EC5621 chain with `1.14.4-26`, plus automatic initial
-  startup with `1.14.4-28`. The `1.14.4-28` installation did not issue a rescan.
-  Broader product acceptance, especially hardware using
+  recovery on the EC5500/EC5621 chain with `1.14.4-26`, automatic initial
+  startup with `1.14.4-28`, and installation and operation of `1.14.4-30` with
+  three slaves in OP, both domains at complete `2/2` working counters, and
+  `NRestarts=0`. Broader product acceptance, especially hardware using
   `sdo_inhibit_before_op`, remains open.
 - Software-update screenshots are workflow examples. They may retain earlier
   package revisions and do not need replacement for every packaging-only
@@ -110,7 +114,7 @@ repository maintainers.
 - [x] Confirm that all commits through `dcb3fba51` on
       `bounded-hmi-websocket-throughput` belong in 1.14.4.
 - [ ] Confirm final release inclusion of the subsequent current-candidate
-      commits through `2e4caa8b4`.
+      commits through `f5a149590`.
 - [x] Confirm the final Botnana Control version string (`1.14.4`).
 - [x] Confirm the Debian filename pattern
       (`botnana-control_<Debian-version>_arm64.deb`).
@@ -118,7 +122,7 @@ repository maintainers.
       packaging iterations.
 - [x] Confirm the book publication date (August 17, 2026).
 - [x] Record control repository Debian changelog entries through the current
-      `1.14.4-28` candidate.
+      `1.14.4-30` candidate.
 - [ ] Decide whether the third-party HMI WebSocket profile is a supported
       integration contract or an operating recommendation.
 - [ ] Confirm the exact WebSocket overload message and limits for the final
@@ -336,15 +340,15 @@ Files:
 Tasks:
 
 - [x] Replace the old HMI screenshot with the final 1.14.4 interface.
-- [ ] Introduce the primary navigation.
-- [ ] Explain the purpose of **Controller & Topology**.
-- [ ] Explain the purpose of **Slave Configuration**.
-- [ ] Explain the purpose of **Motion**.
-- [ ] Explain the purpose of **Axis Group**.
-- [ ] Explain the purpose of **About**.
-- [ ] Explain that detected hardware, draft configuration, saved
+- [x] Introduce the primary navigation.
+- [x] Explain the purpose of **Controller & Topology**.
+- [x] Explain the purpose of **Slave Configuration**.
+- [x] Explain the purpose of **Motion**.
+- [x] Explain the purpose of **Axis Group**.
+- [x] Explain the purpose of **About**.
+- [x] Explain that detected hardware, draft configuration, saved
       configuration, and the running controller are separate states.
-- [ ] Link to the recovery, topology-maintenance, and update chapters rather
+- [x] Link to the recovery, topology-maintenance, and update chapters rather
       than duplicating their full procedures.
 
 ## Step 8: Update the JSON API and custom-HMI contract
@@ -468,17 +472,17 @@ Files:
 
 Add the currently relevant sections and defaults:
 
-- [ ] `[file] spec_version`
-- [ ] `[server] address`
-- [ ] `[motion] period_us`
-- [ ] `[motion] axis_capacity`
-- [ ] `[motion] group_capacity`
-- [ ] `[motion] boot_retry_window_ms`, default `120000`
-- [ ] Explain that `boot_retry_window_ms` bounds topology acquisition and
+- [x] `[file] spec_version`
+- [x] `[server] address`
+- [x] `[motion] period_us`
+- [x] `[motion] axis_capacity`
+- [x] `[motion] group_capacity`
+- [x] `[motion] boot_retry_window_ms`, default `120000`
+- [x] Explain that `boot_retry_window_ms` bounds topology acquisition and
       candidate retry; after a candidate is accepted, configuration and
       activation readiness preserve any later deadline and otherwise receive a
       fresh minimum 30-second window.
-- [ ] Existing slave, device, axis, group, and timer settings that customers
+- [x] Existing slave, device, axis, group, and timer settings that customers
       are expected to edit directly or through the HMI.
 
 Do not document the `[doip]` settings in the public 1.14.4 manual. The DoIP
