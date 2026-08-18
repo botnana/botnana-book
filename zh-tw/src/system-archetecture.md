@@ -7,24 +7,28 @@ Botnana Control 1.14.4 將瀏覽器內容提供、設定與生命週期協調、
 ## 部署概觀
 
 ```text
-操作人員瀏覽器                           客戶應用程式
-  | HTTP :3000       | WebSocket :3012       | WebSocket :3012
-  v                  +-------------------+    |
-+----------------------+                 v    v
-| hmi-server           |            +------------------------+
-| 無特殊權限的 HTTP    |            | motion-server          |
-+----------+-----------+            | 設定與生命週期         |
-           |                        +-----------+------------+
-           | 固定本機 Unix socket               |
-           v                            受監督的執行世代
-+----------------------+                        |
-| update-agent         |              +---------v------------+
-| 具權限的套件檢查     |              | rtForth VM、運動引擎 |
-| 及暫存               |              | 及 EtherCAT HAL      |
-+----------------------+              +---------+------------+
-                                                |
-                                      EtherCAT 主站及從站
+Operator browser                          Customer application
+  | HTTP :3000       | WebSocket :3012        | WebSocket :3012
+  v                  +--------------------+    |
++----------------------+                  v    v
+| hmi-server           |             +------------------------+
+| unprivileged HTTP    |             | motion-server          |
++----------+-----------+             | profile + lifecycle    |
+           |                         +-----------+------------+
+           | fixed local Unix socket             |
+           v                           supervised runtime
++----------------------+                         |
+| update-agent         |               +---------v------------+
+| package inspection  |               | rtForth VM + motion  |
+| and staging         |               | engine + EtherCAT HAL|
++----------------------+               +---------+------------+
+                                                 |
+                                       EtherCAT master / slaves
 ```
+
+圖中的 `Operator browser` 是操作人員瀏覽器，`Customer application` 是客戶應用程式；
+`profile + lifecycle` 表示設定與生命週期協調，`supervised runtime` 則表示受監督的
+執行世代。圖內只使用 ASCII 文字，以確保 HTML 與 PDF 中的框線對齊。
 
 瀏覽器會與控制器建立兩條獨立的網路連線：
 
@@ -57,27 +61,30 @@ Motion 封鎖；此時會儘可能啟動 HMI，讓操作人員檢查結果並安
 `motion-server` 包含非即時伺服器／控制面，以及可替換的即時控制器世代。
 
 ```text
-WebSocket 連線
-      |
-      v
+WebSocket connections
+        |
+        v
 +-----------------------------------------------------------+
-| motion-server 非即時控制面                               |
+| Non-real-time motion-server control plane                 |
 |                                                           |
-| 請求准入             共用 MachineProfile                 |
+| Request admission     Shared MachineProfile               |
 | LiveConnectionRegistry RuntimeSupervisor                  |
-| 設定及拓撲要求協調器                                      |
+| Configuration and topology request coordinators          |
 +-------------------------------+---------------------------+
                                 |
-                          世代專用通道
+                      generation-bound channels
                                 |
 +-------------------------------v---------------------------+
-| 執行世代 N                                                |
-| 請求／回應工作 <-> rtForth VM 工作                        |
-| 控制工作 -> 運動引擎 -> 硬體抽象層                        |
+| Runtime generation N                                      |
+| request/response tasks <-> rtForth VM tasks               |
+| controller task -> motion engine -> hardware abstraction  |
 +-----------------------------------------------+-----------+
                                                 |
-                                          EtherCAT 主站
+                                      EtherCAT master
 ```
+
+圖中的 `control plane` 是非即時控制面，`generation-bound channels` 是世代專用通道，
+而 `Runtime generation N` 是可替換的第 N 個控制器執行世代。
 
 程序層級的伺服器在控制器世代啟動、替換或故障時仍可使用。因此 HMI 可以繼續顯示
 生命週期狀態、保留的拓撲證據及設定復原控制，而不會將無法取得的即時運動值顯示為正常。

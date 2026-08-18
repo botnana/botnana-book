@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-55c3f3a7.js";
+            window.path_to_searchindex_js = "searchindex-5cbf2993.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -179,24 +179,27 @@
 以及即時運動控制分開處理。因此，控制器執行環境故障時，不會自動移除 HMI 或已儲存
 的機台設定。</p>
 <h2 id="部署概觀"><a class="header" href="#部署概觀">部署概觀</a></h2>
-<pre><code class="language-text">操作人員瀏覽器                           客戶應用程式
-  | HTTP :3000       | WebSocket :3012       | WebSocket :3012
-  v                  +-------------------+    |
-+----------------------+                 v    v
-| hmi-server           |            +------------------------+
-| 無特殊權限的 HTTP    |            | motion-server          |
-+----------+-----------+            | 設定與生命週期         |
-           |                        +-----------+------------+
-           | 固定本機 Unix socket               |
-           v                            受監督的執行世代
-+----------------------+                        |
-| update-agent         |              +---------v------------+
-| 具權限的套件檢查     |              | rtForth VM、運動引擎 |
-| 及暫存               |              | 及 EtherCAT HAL      |
-+----------------------+              +---------+------------+
-                                                |
-                                      EtherCAT 主站及從站
+<pre><code class="language-text">Operator browser                          Customer application
+  | HTTP :3000       | WebSocket :3012        | WebSocket :3012
+  v                  +--------------------+    |
++----------------------+                  v    v
+| hmi-server           |             +------------------------+
+| unprivileged HTTP    |             | motion-server          |
++----------+-----------+             | profile + lifecycle    |
+           |                         +-----------+------------+
+           | fixed local Unix socket             |
+           v                           supervised runtime
++----------------------+                         |
+| update-agent         |               +---------v------------+
+| package inspection  |               | rtForth VM + motion  |
+| and staging         |               | engine + EtherCAT HAL|
++----------------------+               +---------+------------+
+                                                 |
+                                       EtherCAT master / slaves
 </code></pre>
+<p>圖中的 <code>Operator browser</code> 是操作人員瀏覽器，<code>Customer application</code> 是客戶應用程式；
+<code>profile + lifecycle</code> 表示設定與生命週期協調，<code>supervised runtime</code> 則表示受監督的
+執行世代。圖內只使用 ASCII 文字，以確保 HTML 與 PDF 中的框線對齊。</p>
 <p>瀏覽器會與控制器建立兩條獨立的網路連線：</p>
 <ul>
 <li>HTTP 連接埠 <code>3000</code> 用於取得封裝在套件內的 HMI，並執行經檢查的軟體更新程序。</li>
@@ -227,27 +230,29 @@ Motion 封鎖；此時會儘可能啟動 HMI，讓操作人員檢查結果並安
 而 <code>motion-server</code> 仍維持封鎖。</p>
 <h2 id="motion-server-及可替換的執行世代"><a class="header" href="#motion-server-及可替換的執行世代">Motion Server 及可替換的執行世代</a></h2>
 <p><code>motion-server</code> 包含非即時伺服器／控制面，以及可替換的即時控制器世代。</p>
-<pre><code class="language-text">WebSocket 連線
-      |
-      v
+<pre><code class="language-text">WebSocket connections
+        |
+        v
 +-----------------------------------------------------------+
-| motion-server 非即時控制面                               |
+| Non-real-time motion-server control plane                 |
 |                                                           |
-| 請求准入             共用 MachineProfile                 |
+| Request admission     Shared MachineProfile               |
 | LiveConnectionRegistry RuntimeSupervisor                  |
-| 設定及拓撲要求協調器                                      |
+| Configuration and topology request coordinators          |
 +-------------------------------+---------------------------+
                                 |
-                          世代專用通道
+                      generation-bound channels
                                 |
 +-------------------------------v---------------------------+
-| 執行世代 N                                                |
-| 請求／回應工作 &lt;-&gt; rtForth VM 工作                        |
-| 控制工作 -&gt; 運動引擎 -&gt; 硬體抽象層                        |
+| Runtime generation N                                      |
+| request/response tasks &lt;-&gt; rtForth VM tasks               |
+| controller task -&gt; motion engine -&gt; hardware abstraction  |
 +-----------------------------------------------+-----------+
                                                 |
-                                          EtherCAT 主站
+                                      EtherCAT master
 </code></pre>
+<p>圖中的 <code>control plane</code> 是非即時控制面，<code>generation-bound channels</code> 是世代專用通道，
+而 <code>Runtime generation N</code> 是可替換的第 N 個控制器執行世代。</p>
 <p>程序層級的伺服器在控制器世代啟動、替換或故障時仍可使用。因此 HMI 可以繼續顯示
 生命週期狀態、保留的拓撲證據及設定復原控制，而不會將無法取得的即時運動值顯示為正常。</p>
 <p>主要擁有權邊界如下：</p>
