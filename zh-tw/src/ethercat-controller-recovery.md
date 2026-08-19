@@ -12,7 +12,8 @@ Topology** 顯示 **Controller unavailable** 時，請使用本程序。如果�
 
 HMI 會分開管理下列狀態：
 
-- **草稿設定（draft profile）**是 HMI 目前顯示、尚在編輯的內容。
+- **共用草稿（shared draft）**是 HMI 目前顯示的編輯內容，由各設定工作區共用，
+  儲存前不會持久保留。
 - **已儲存設定（saved profile）**是持久保存的設定，也是 **Start controller**
   使用的設定。
 - **Last working settings** 是上一次正常運作控制器所保留的設定，一般重新掃描會
@@ -154,7 +155,8 @@ EtherCAT 控制器執行期；不是 EtherCAT 從站、驅動器或馬達。重�
 ## 收集有限拓撲追蹤記錄
 
 Botnana Control 1.14.4 套件修訂版 19 以上會在 `bnc-motion` journal 寫入精簡的
-`topology.trace` 記錄。重新啟動服務或變更設定前，請先收集：
+`topology.trace` 記錄。重新啟動服務或變更設定前，請由獲授權管理員收集；以下
+`sudo` 命令需要管理員權限：
 
 ```bash
 sudo journalctl -u bnc-motion -n 300 --no-pager

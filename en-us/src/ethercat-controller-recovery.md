@@ -14,7 +14,8 @@ approved addition, removal, replacement, or reorder, use
 
 The HMI keeps several states separate:
 
-- The **draft profile** contains edits currently shown in the HMI.
+- The **shared draft** contains edits currently shown in the HMI. It is shared
+  by the profile work areas and is not durable until saved.
 - The **saved profile** is the durable configuration used by **Start
   controller**.
 - **Last working settings** are the settings retained from the previously
@@ -92,7 +93,7 @@ unavailable after the wait stops.
    start the controller again. Verify the slaves and machine state.
 
 Stopping does not save or discard edits, alter the saved profile or last working
-settings, or adopt detected hardware. If **Stop waiting** disappears or the
+settings, or adopt detected topology. If **Stop waiting** disappears or the
 request is rejected, rely on the refreshed status; do not assume startup
 stopped.
 
@@ -178,8 +179,9 @@ service restart, use the cleanup-failure procedure instead.
 ## Collect the Bounded Topology Trace
 
 Botnana Control 1.14.4 package revision 19 and later writes compact
-`topology.trace` records to the `bnc-motion` journal. Collect them before
-restarting the service or changing the profile:
+`topology.trace` records to the `bnc-motion` journal. Before restarting the
+service or changing the profile, have an authorized administrator collect them;
+the following `sudo` command requires administrator privileges:
 
 ```bash
 sudo journalctl -u bnc-motion -n 300 --no-pager

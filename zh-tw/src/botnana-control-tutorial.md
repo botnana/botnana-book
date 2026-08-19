@@ -202,8 +202,8 @@ changes** 及 **Discard changes** 程序。不要開始第二個編輯工作階�
 
 HMI 會刻意分開管理下列狀態：
 
-- **偵測到的硬體（Detected hardware）**是最新一次完整 EtherCAT 實體掃描所得的
-  唯讀證據。掃描不會儲存或採用硬體。
+- **偵測拓撲（Detected topology）**是最新一次完整 EtherCAT 實體掃描所得的
+  唯讀證據。掃描不會儲存或採用該拓撲。
 - **共用草稿（Shared draft）**包含目前在設定工作區檢查的設定。尚未儲存的草稿
   變更不會持久保存。
 - **已儲存設定（Saved profile）**是持久儲存在控制器上的設定。

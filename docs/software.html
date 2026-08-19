@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-c9330b8d.js";
+            window.path_to_searchindex_js = "searchindex-335275fb.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -186,22 +186,27 @@
 <tr><td>Real-time System</td><td>Preempt RT + Xenomai 3.2.3 Mercury Core</td></tr>
 <tr><td>EtherCAT Master</td><td>BotnanaCAT 2.0.1 based on IgH EtherCAT master branch stable 1.5 commit c8a512ac0</td></tr>
 <tr><td>Botnana Control</td><td>v1.14.4</td></tr>
-<tr><td>Period</td><td>2ms</td></tr>
-<tr><td>Supported slaves</td><td>1-16</td></tr>
+<tr><td>Period</td><td>2 ms</td></tr>
+<tr><td>BN-B3A-10S 可控軸數</td><td>1–10</td></tr>
+<tr><td>支援 EtherCAT 從站數</td><td>1–16</td></tr>
+<tr><td>執行期掃描容量</td><td>16 個 EtherCAT 從站</td></tr>
 </tbody>
 </table>
 </div>
+<p>可控軸數、支援從站數與執行期掃描容量是不同限制。BN-B3A-10S 最多提供 10 個運動軸，
+並支援最多 16 個 EtherCAT 從站的拓撲，其中可包含非軸類 I/O 及閘道裝置。執行期同樣
+最多掃描 16 個從站；此實作界限不會把產品公布容量提高至 16 個以上。</p>
 <h2 id="軸控軟體"><a class="header" href="#軸控軟體">軸控軟體</a></h2>
 <p>所有等級的 Botnana Control 都支援以下規格：</p>
 <ul>
-<li>可控制至 1-16 台 EtherCAT 從站。</li>
+<li>支援 1–16 個 EtherCAT 從站；BN-B3A-10S 最多提供 10 個運動軸。</li>
 <li>支援 Panasonic、Delta、Sanyo Denki 和 Yaskawa 的 EtherCAT 馬達驅動器。基本上有符合 CiA 402 規範的馬達驅動器都有支援。</li>
 <li>支援 Beckhoff，Delta 的類比及數位輸出入模組。因應客戶需求陸續整合其他廠牌的 EtherCAT 模組。</li>
 </ul>
 <h3 id="基本功能"><a class="header" href="#基本功能">基本功能</a></h3>
 <ul>
 <li>Real-time extenstion (Xenomai)</li>
-<li>系統掃描與設定軟體，自動偵測 EtherCAT 從站。</li>
+<li>系統掃描與設定軟體會回報偵測到的 EtherCAT 從站。偵測結果是唯讀證據，不會自動採用已改變的實體拓撲。</li>
 <li>支援 EtherCAT 馬達驅動器 <em>HM</em>, <em>PP</em>, <em>CSP</em>, <em>PV</em>, <em>CSV</em> 模式。</li>
 <li>監控軟體。支援 EtherCAT 馬達驅動器與 IO 模組。</li>
 <li>可進行二與三軸同動及直線圓弧補間。補間支援具 <em>CSP</em> 模式的馬達驅動器。</li>

@@ -8,7 +8,7 @@ Its goal is to help users quickly develop industrial automation and industrial I
 Botnana Control is suitable for the following applications:
 
 * Data acquisition as a Remote Terminal Unit (RTU).
-* Axis control for 1–16 motors over EtherCAT. Supported devices include EtherCAT motor drives from Delta, Panasonic, Sanyo Denki, and Yaskawa; Delta pulse generators; and Copley EtherCAT drives.
+* Axis control for up to 10 motors on the BN-B3A-10S, within a supported topology of up to 16 EtherCAT slaves. Supported devices include EtherCAT motor drives from Delta, Panasonic, Sanyo Denki, and Yaskawa; Delta pulse generators; and Copley EtherCAT drives.
 * PLC-like control through EtherCAT I/O modules, including modules from Delta and Beckhoff.
 * Industrial IoT integration with customer cloud services or HMIs through the built-in WebSocket server.
 * CNC control.

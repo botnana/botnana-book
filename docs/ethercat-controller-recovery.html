@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-c9330b8d.js";
+            window.path_to_searchindex_js = "searchindex-335275fb.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -186,7 +186,8 @@ Topology</strong> 顯示 <strong>Controller unavailable</strong> 時，請使用
 <h2 id="瞭解控制器狀態"><a class="header" href="#瞭解控制器狀態">瞭解控制器狀態</a></h2>
 <p>HMI 會分開管理下列狀態：</p>
 <ul>
-<li>**草稿設定（draft profile）**是 HMI 目前顯示、尚在編輯的內容。</li>
+<li>**共用草稿（shared draft）**是 HMI 目前顯示的編輯內容，由各設定工作區共用，
+儲存前不會持久保留。</li>
 <li>**已儲存設定（saved profile）**是持久保存的設定，也是 <strong>Start controller</strong>
 使用的設定。</li>
 <li><strong>Last working settings</strong> 是上一次正常運作控制器所保留的設定，一般重新掃描會
@@ -332,7 +333,8 @@ EtherCAT 控制器執行期；不是 EtherCAT 從站、驅動器或馬達。重�
 要求重新啟動服務，請改用清理失敗程序。</p>
 <h2 id="收集有限拓撲追蹤記錄"><a class="header" href="#收集有限拓撲追蹤記錄">收集有限拓撲追蹤記錄</a></h2>
 <p>Botnana Control 1.14.4 套件修訂版 19 以上會在 <code>bnc-motion</code> journal 寫入精簡的
-<code>topology.trace</code> 記錄。重新啟動服務或變更設定前，請先收集：</p>
+<code>topology.trace</code> 記錄。重新啟動服務或變更設定前，請由獲授權管理員收集；以下
+<code>sudo</code> 命令需要管理員權限：</p>
 <pre><code class="language-bash">sudo journalctl -u bnc-motion -n 300 --no-pager
 </code></pre>
 <p>請使用控制器世代（generation）串聯核准、預期的已儲存拓撲、發生變化的實體觀察

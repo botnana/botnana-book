@@ -235,7 +235,7 @@ configured axis count.
 
 The HMI deliberately keeps these states separate:
 
-- **Detected hardware** is read-only evidence from the latest complete physical
+- **Detected topology** is read-only evidence from the latest complete physical
   EtherCAT scan. A scan does not save or adopt it.
 - The **shared draft** contains the configuration currently being reviewed in
   the profile work areas. Unsaved draft changes are not durable.

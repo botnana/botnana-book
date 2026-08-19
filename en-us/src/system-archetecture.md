@@ -91,7 +91,7 @@ controls without publishing unavailable live motion values as healthy.
 
 The main ownership boundaries are:
 
-- `MachineProfile` owns one shared saved configuration and its revision-aware
+- `MachineProfile` owns the saved profile and its revision-aware shared
   in-memory draft.
 - `RuntimeSupervisor` owns the active generation, its lifecycle, the most
   recent Ready build plan, startup provenance, and the latest complete physical
@@ -178,7 +178,7 @@ lifetimes.
 
 | State | Owner and durability | Meaning |
 |---|---|---|
-| Detected hardware | Latest complete observation retained by `RuntimeSupervisor`; not a durable profile | Read-only evidence from a physical scan. Unknown topology is not reported as zero slaves. |
+| Detected topology | Latest complete observation retained by `RuntimeSupervisor`; not a durable profile | Read-only evidence from a physical scan. Unknown topology is not reported as zero slaves. |
 | Shared draft | `MachineProfile` memory with a draft revision | Validated pending edits shared by all HMI work areas. It is not durable until saved. |
 | Saved profile | `/etc/botnana-control/motion.toml`, with the server's current saved revision | Durable intended configuration. Saving it does not modify the running controller. |
 | Last working settings | Immutable Ready build plan retained by `RuntimeSupervisor` | Source for normal rescan and rollback from an unapproved topology draft. |

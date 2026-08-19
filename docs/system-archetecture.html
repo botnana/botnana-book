@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-c9330b8d.js";
+            window.path_to_searchindex_js = "searchindex-335275fb.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -257,7 +257,7 @@ Motion 封鎖；此時會儘可能啟動 HMI，讓操作人員檢查結果並安
 生命週期狀態、保留的拓撲證據及設定復原控制，而不會將無法取得的即時運動值顯示為正常。</p>
 <p>主要擁有權邊界如下：</p>
 <ul>
-<li><code>MachineProfile</code> 管理一份共用的已儲存設定，以及具有版本檢查的記憶體內草稿。</li>
+<li><code>MachineProfile</code> 管理已儲存設定檔，以及具有版本檢查的記憶體內共用草稿。</li>
 <li><code>RuntimeSupervisor</code> 管理作用中世代、生命週期、最近一次 Ready 的建置計畫、啟動
 來源，以及最新一次完整的實體拓撲觀察。</li>
 <li><code>LiveConnectionRegistry</code> 管理即時 WebSocket 成員、彙整作用中工作階段的有界限
@@ -322,7 +322,7 @@ Motion 封鎖；此時會儘可能啟動 HMI，讓操作人員檢查結果並安
 <tr><th>狀態</th><th>擁有者及持久性</th><th>意義</th></tr>
 </thead>
 <tbody>
-<tr><td>偵測到的硬體</td><td><code>RuntimeSupervisor</code> 保留的最新完整觀察；不是持久設定</td><td>實體掃描所得的唯讀證據。未知拓撲不會回報為零個從站。</td></tr>
+<tr><td>偵測拓撲</td><td><code>RuntimeSupervisor</code> 保留的最新完整觀察；不是持久設定檔</td><td>實體掃描所得的唯讀證據。未知拓撲不會回報為零個從站。</td></tr>
 <tr><td>共用草稿</td><td><code>MachineProfile</code> 記憶體及草稿版本</td><td>所有 HMI 設定工作區共用且已驗證的待處理編輯；儲存前不具持久性。</td></tr>
 <tr><td>已儲存設定</td><td><code>/etc/botnana-control/motion.toml</code>，以及伺服器目前的儲存版本</td><td>持久的預定設定；儲存不會改變運作中的控制器。</td></tr>
 <tr><td>上次正常運作設定</td><td><code>RuntimeSupervisor</code> 保留的不可變 Ready 建置計畫</td><td>一般重新掃描，以及取消未核准拓撲草稿時的來源。</td></tr>

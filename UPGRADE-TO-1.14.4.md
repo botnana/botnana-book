@@ -411,8 +411,8 @@ the final 1.14.4 behavior without exceeding the public surface owned by
 ### Client traffic profile
 
 The built-in About diagnostic is documented as an internal operator tool. It
-helps run this acceptance work but does not approve the draft profile, expose a
-new customer API, or complete any checkbox below.
+helps run this acceptance work but does not approve the draft client traffic
+profile, expose a new customer API, or complete any checkbox below.
 
 - [ ] Use one persistent WebSocket per application whenever possible.
 - [ ] Explain that only two rtForth WebSocket user sessions are available.
@@ -544,7 +544,7 @@ Tasks:
 - [x] Show the boot-only update agent separately from the normal HMI server.
 - [x] Describe the motion runtime supervisor and replaceable runtime
       generations.
-- [x] Show draft profile, saved profile, detected topology, and active
+- [x] Show shared draft, saved profile, detected topology, and active
       controller as separate concepts.
 - [x] Explain that the HMI can remain available while the EtherCAT controller
       is unavailable.
@@ -585,15 +585,35 @@ Files to review include:
 - `zh-tw/src/bn-b3a.md`
 - `presentation.md`
 
+Review outcome:
+
+- The current BN-B3A-10S product declaration in book commit `9c284ffd` separates
+  10 controllable axes from 16 supported EtherCAT slaves. Control revision
+  `68d7dab64` has the same 16-slave runtime scan bound in
+  `motion::SLAVE_CAPACITY`. The older `doc/bn-b3a` page identifies version
+  1.13.28 and its 10-slave statement is historical, not the 1.14.4 product
+  authority. The published tables now name all three limits explicitly.
+- Operator-facing text uses **shared draft**, **saved profile**, **detected
+  topology**, and **running/active controller** for the distinct states;
+  **runtime generation** remains the implementation instance. Normal rescan,
+  failed-controller recovery, and planned topology maintenance remain separate
+  operations.
+- The topology, recovery, tutorial, and presentation warnings state that HMI
+  confirmation, **Ready**, and software commands are not safety interlocks or
+  motion-permission functions.
+- Every published `sudo` procedure is introduced as an authorized-administrator
+  procedure. Network changes warn about disconnection, root-shell access is
+  scoped, and the Wi-Fi example no longer contains a literal passphrase.
+
 Tasks:
 
-- [ ] Resolve the difference between the product-supported slave count and the
+- [x] Resolve the difference between the product-supported slave count and the
       runtime scan capacity before changing published capacity claims.
-- [ ] Use consistent terms for controller, runtime generation, saved profile,
+- [x] Use consistent terms for controller, runtime generation, saved profile,
       draft, detected topology, rescan, recovery, and topology maintenance.
-- [ ] Ensure safety wording does not imply that HMI confirmation is a safety
+- [x] Ensure safety wording does not imply that HMI confirmation is a safety
       interlock.
-- [ ] Ensure commands requiring administrator access are clearly labelled.
+- [x] Ensure commands requiring administrator access are clearly labelled.
 
 ## Step 14: Perform bilingual and technical review
 

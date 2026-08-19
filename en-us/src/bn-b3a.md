@@ -6,9 +6,13 @@ The Botnana BN-B3A specifications are listed below.
 
 ## Product Model
 
-| Model        | Controllable axes | Maximum EtherCAT slaves |
-|-------------|------------------:|-------------------------:|
-| BN-B3A-10S  | 10                | 16                       |
+| Model        | Controllable axes | Supported EtherCAT slaves | Runtime scan capacity |
+|-------------|------------------:|---------------------------:|----------------------:|
+| BN-B3A-10S  | 10                | 16                         | 16                    |
+
+These are separate limits. The runtime can scan up to 16 EtherCAT slaves, but a
+BN-B3A-10S provides 10 motion axes. I/O modules, gateways, and other non-axis
+slaves can occupy the remaining supported slave positions.
 
 ## Hardware specifications
 

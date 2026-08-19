@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-c9330b8d.js";
+            window.path_to_searchindex_js = "searchindex-335275fb.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -219,7 +219,7 @@
 <p>霸那控制器軟體適合以下應用</p>
 <ul>
 <li>資料收集：做為 Remote Control Unit (RTU) 使用。</li>
-<li>軸控：可透過 EtherCAT 控制 1-16 軸的馬達。目前已支援台達電、Panasonic、Sanyo Denki 以及 Yaskawa 的 EtherCAT 馬達驅動器，以及台達電的脈波產生器，Coply 的 EtherCAT 驅動器。</li>
+<li>軸控：BN-B3A-10S 可透過 EtherCAT 控制最多 10 軸馬達，整體支援最多 16 個 EtherCAT 從站。目前已支援台達電、Panasonic、Sanyo Denki 以及 Yaskawa 的 EtherCAT 馬達驅動器，以及台達電的脈波產生器，Copley 的 EtherCAT 驅動器。</li>
 <li>可透過 EtherCAT IO 模組進行類似 PLC 的控制，目前支援台達電及 Beckhoff 的 IO 模組。</li>
 <li>IIoT：透過內建的 Websocket 伺服器，和客戶的雲端服務或 HMI 整合。</li>
 <li>CNC 控制器。</li>
@@ -246,13 +246,15 @@
 <div class="table-wrapper">
 <table>
 <thead>
-<tr><th>型號</th><th style="text-align: right">可控軸數</th><th style="text-align: right">最大 EtherCAT 從站數量</th></tr>
+<tr><th>型號</th><th style="text-align: right">可控軸數</th><th style="text-align: right">支援 EtherCAT 從站數量</th><th style="text-align: right">執行期掃描容量</th></tr>
 </thead>
 <tbody>
-<tr><td>BN-B3A-10S</td><td style="text-align: right">10</td><td style="text-align: right">16</td></tr>
+<tr><td>BN-B3A-10S</td><td style="text-align: right">10</td><td style="text-align: right">16</td><td style="text-align: right">16</td></tr>
 </tbody>
 </table>
 </div>
+<p>這些數字是不同限制。執行期最多可掃描 16 個 EtherCAT 從站，但 BN-B3A-10S 提供
+10 個運動軸；I/O 模組、閘道及其他非軸類從站可使用其餘支援的從站位置。</p>
 <h2 id="硬體規格-1"><a class="header" href="#硬體規格-1">硬體規格</a></h2>
 <div class="table-wrapper">
 <table>
@@ -292,22 +294,27 @@
 <tr><td>Real-time System</td><td>Preempt RT + Xenomai 3.2.3 Mercury Core</td></tr>
 <tr><td>EtherCAT Master</td><td>BotnanaCAT 2.0.1 based on IgH EtherCAT master branch stable 1.5 commit c8a512ac0</td></tr>
 <tr><td>Botnana Control</td><td>v1.14.4</td></tr>
-<tr><td>Period</td><td>2ms</td></tr>
-<tr><td>Supported slaves</td><td>1-16</td></tr>
+<tr><td>Period</td><td>2 ms</td></tr>
+<tr><td>BN-B3A-10S 可控軸數</td><td>1–10</td></tr>
+<tr><td>支援 EtherCAT 從站數</td><td>1–16</td></tr>
+<tr><td>執行期掃描容量</td><td>16 個 EtherCAT 從站</td></tr>
 </tbody>
 </table>
 </div>
+<p>可控軸數、支援從站數與執行期掃描容量是不同限制。BN-B3A-10S 最多提供 10 個運動軸，
+並支援最多 16 個 EtherCAT 從站的拓撲，其中可包含非軸類 I/O 及閘道裝置。執行期同樣
+最多掃描 16 個從站；此實作界限不會把產品公布容量提高至 16 個以上。</p>
 <h2 id="軸控軟體"><a class="header" href="#軸控軟體">軸控軟體</a></h2>
 <p>所有等級的 Botnana Control 都支援以下規格：</p>
 <ul>
-<li>可控制至 1-16 台 EtherCAT 從站。</li>
+<li>支援 1–16 個 EtherCAT 從站；BN-B3A-10S 最多提供 10 個運動軸。</li>
 <li>支援 Panasonic、Delta、Sanyo Denki 和 Yaskawa 的 EtherCAT 馬達驅動器。基本上有符合 CiA 402 規範的馬達驅動器都有支援。</li>
 <li>支援 Beckhoff，Delta 的類比及數位輸出入模組。因應客戶需求陸續整合其他廠牌的 EtherCAT 模組。</li>
 </ul>
 <h3 id="基本功能"><a class="header" href="#基本功能">基本功能</a></h3>
 <ul>
 <li>Real-time extenstion (Xenomai)</li>
-<li>系統掃描與設定軟體，自動偵測 EtherCAT 從站。</li>
+<li>系統掃描與設定軟體會回報偵測到的 EtherCAT 從站。偵測結果是唯讀證據，不會自動採用已改變的實體拓撲。</li>
 <li>支援 EtherCAT 馬達驅動器 <em>HM</em>, <em>PP</em>, <em>CSP</em>, <em>PV</em>, <em>CSV</em> 模式。</li>
 <li>監控軟體。支援 EtherCAT 馬達驅動器與 IO 模組。</li>
 <li>可進行二與三軸同動及直線圓弧補間。補間支援具 <em>CSP</em> 模式的馬達驅動器。</li>
@@ -398,7 +405,7 @@ Motion 封鎖；此時會儘可能啟動 HMI，讓操作人員檢查結果並安
 生命週期狀態、保留的拓撲證據及設定復原控制，而不會將無法取得的即時運動值顯示為正常。</p>
 <p>主要擁有權邊界如下：</p>
 <ul>
-<li><code>MachineProfile</code> 管理一份共用的已儲存設定，以及具有版本檢查的記憶體內草稿。</li>
+<li><code>MachineProfile</code> 管理已儲存設定檔，以及具有版本檢查的記憶體內共用草稿。</li>
 <li><code>RuntimeSupervisor</code> 管理作用中世代、生命週期、最近一次 Ready 的建置計畫、啟動
 來源，以及最新一次完整的實體拓撲觀察。</li>
 <li><code>LiveConnectionRegistry</code> 管理即時 WebSocket 成員、彙整作用中工作階段的有界限
@@ -463,7 +470,7 @@ Motion 封鎖；此時會儘可能啟動 HMI，讓操作人員檢查結果並安
 <tr><th>狀態</th><th>擁有者及持久性</th><th>意義</th></tr>
 </thead>
 <tbody>
-<tr><td>偵測到的硬體</td><td><code>RuntimeSupervisor</code> 保留的最新完整觀察；不是持久設定</td><td>實體掃描所得的唯讀證據。未知拓撲不會回報為零個從站。</td></tr>
+<tr><td>偵測拓撲</td><td><code>RuntimeSupervisor</code> 保留的最新完整觀察；不是持久設定檔</td><td>實體掃描所得的唯讀證據。未知拓撲不會回報為零個從站。</td></tr>
 <tr><td>共用草稿</td><td><code>MachineProfile</code> 記憶體及草稿版本</td><td>所有 HMI 設定工作區共用且已驗證的待處理編輯；儲存前不具持久性。</td></tr>
 <tr><td>已儲存設定</td><td><code>/etc/botnana-control/motion.toml</code>，以及伺服器目前的儲存版本</td><td>持久的預定設定；儲存不會改變運作中的控制器。</td></tr>
 <tr><td>上次正常運作設定</td><td><code>RuntimeSupervisor</code> 保留的不可變 Ready 建置計畫</td><td>一般重新掃描，以及取消未核准拓撲草稿時的來源。</td></tr>
@@ -741,8 +748,8 @@ controller</strong> 回讀，再啟用運動控制。</p>
 <h3 id="分開看待觀察設定及運作狀態"><a class="header" href="#分開看待觀察設定及運作狀態">分開看待觀察、設定及運作狀態</a></h3>
 <p>HMI 會刻意分開管理下列狀態：</p>
 <ul>
-<li>**偵測到的硬體（Detected hardware）**是最新一次完整 EtherCAT 實體掃描所得的
-唯讀證據。掃描不會儲存或採用硬體。</li>
+<li>**偵測拓撲（Detected topology）**是最新一次完整 EtherCAT 實體掃描所得的
+唯讀證據。掃描不會儲存或採用該拓撲。</li>
 <li>**共用草稿（Shared draft）**包含目前在設定工作區檢查的設定。尚未儲存的草稿
 變更不會持久保存。</li>
 <li>**已儲存設定（Saved profile）**是持久儲存在控制器上的設定。</li>
@@ -779,7 +786,8 @@ Topology</strong> 顯示 <strong>Controller unavailable</strong> 時，請使用
 <h2 id="瞭解控制器狀態"><a class="header" href="#瞭解控制器狀態">瞭解控制器狀態</a></h2>
 <p>HMI 會分開管理下列狀態：</p>
 <ul>
-<li>**草稿設定（draft profile）**是 HMI 目前顯示、尚在編輯的內容。</li>
+<li>**共用草稿（shared draft）**是 HMI 目前顯示的編輯內容，由各設定工作區共用，
+儲存前不會持久保留。</li>
 <li>**已儲存設定（saved profile）**是持久保存的設定，也是 <strong>Start controller</strong>
 使用的設定。</li>
 <li><strong>Last working settings</strong> 是上一次正常運作控制器所保留的設定，一般重新掃描會
@@ -925,7 +933,8 @@ EtherCAT 控制器執行期；不是 EtherCAT 從站、驅動器或馬達。重�
 要求重新啟動服務，請改用清理失敗程序。</p>
 <h2 id="收集有限拓撲追蹤記錄"><a class="header" href="#收集有限拓撲追蹤記錄">收集有限拓撲追蹤記錄</a></h2>
 <p>Botnana Control 1.14.4 套件修訂版 19 以上會在 <code>bnc-motion</code> journal 寫入精簡的
-<code>topology.trace</code> 記錄。重新啟動服務或變更設定前，請先收集：</p>
+<code>topology.trace</code> 記錄。重新啟動服務或變更設定前，請由獲授權管理員收集；以下
+<code>sudo</code> 命令需要管理員權限：</p>
 <pre><code class="language-bash">sudo journalctl -u bnc-motion -n 300 --no-pager
 </code></pre>
 <p>請使用控制器世代（generation）串聯核准、預期的已儲存拓撲、發生變化的實體觀察
@@ -4649,7 +4658,9 @@ ZIP 上限為 50 MiB，會回報遺漏及截短，不會保留，也不會自動
 <pre><code>ssh debian@192.168.7.2
 </code></pre>
 <p>密碼為 temppwd</p>
-<p>如果有必要切換使用者為 root，可執行</p>
+<p>下列命令會取得不受限制的 root shell，必須由獲授權管理員執行。程序若提供明確的
+<code>sudo &lt;命令&gt;</code>，應優先只執行該命令；只有核准的維修工作才可使用 root shell，完成後
+應立即退出：</p>
 <pre><code>sudo su
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div>

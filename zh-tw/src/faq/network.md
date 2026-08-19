@@ -1,6 +1,10 @@
 ## 網路設定
 
-使用 `connmanctl` 指令進行設定。以下是幾個常用的設定需求，若是需要詳細說明可參考 [connmanctl - ConnMan CLI](https://manpages.debian.org/bookworm/connman/connmanctl.1.en.html)
+使用 `connmanctl` 指令進行設定。若需要詳細說明，請參考 [connmanctl - ConnMan CLI](https://manpages.debian.org/bookworm/connman/connmanctl.1.en.html)。
+
+> **管理員程序：**下列每個以 `sudo` 開頭的命令都需要獲授權管理員執行。變更作用中的
+> 網路可能立即中斷 HMI、客戶端及 SSH 工作階段；變更前請先記錄復原方式。若要變更
+> 一般由 Botnana Control 管理的控制器 IP 位址，應優先使用 [About 頁面程序](gadget.md#修改控制器-ip-位址)。
    
 ### WIFI 設定
     
@@ -78,7 +82,7 @@ Passphrase?
 輸入密碼，等待出現 `Connected wifi_1c5f2bc586d1_4d617061636f6465_managed_psk` 就大功告成。
 
 ```
-Passphrase? 062970665 // 輸入密碼
+Passphrase? <network password>
 Connected wifi_1c5f2bc586d1_4d617061636f6465_managed_psk
 connmanctl>  
 ```

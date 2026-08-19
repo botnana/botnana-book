@@ -1,6 +1,12 @@
 ## Network Configuration
 
-Use `connmanctl` command for settings. Here are some common settings needs; for detailed explanations, refer to [connmanctl - ConnMan CLI](https://manpages.debian.org/bookworm/connman/connmanctl.1.en.html).
+Use `connmanctl` for settings. For detailed explanations, refer to [connmanctl - ConnMan CLI](https://manpages.debian.org/bookworm/connman/connmanctl.1.en.html).
+
+> **Administrator procedure:** Every command below prefixed with `sudo` requires
+> an authorized administrator. Changing the active network can immediately
+> disconnect the HMI, customer clients, and SSH session. Record a recovery path
+> before changing it. For the controller IP address normally managed by Botnana
+> Control, prefer the [About-page procedure](gadget.md#update-the-controller-ip-address).
 
 ### Wi-Fi Settings
 
@@ -78,7 +84,7 @@ Passphrase?
 Enter the password and wait for `Connected wifi_1c5f2bc586d1_4d617061636f6465_managed_psk` to appear.
 
 ```
-Passphrase? 062970665 // Input password
+Passphrase? <network password>
 Connected wifi_1c5f2bc586d1_4d617061636f6465_managed_psk
 connmanctl>
 ```
