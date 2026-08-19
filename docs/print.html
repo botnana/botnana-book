@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-836d0f95.js";
+            window.path_to_searchindex_js = "searchindex-c9330b8d.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -205,7 +205,7 @@
 <h1 id="botnana-control"><a class="header" href="#botnana-control">Botnana Control</a></h1>
 <h2 id="the-official-user-manual"><a class="header" href="#the-official-user-manual">The Official User Manual</a></h2>
 <h3 id="version-1144"><a class="header" href="#version-1144">Version 1.14.4</a></h3>
-<h4 id="document-revision-4文件修訂-4"><a class="header" href="#document-revision-4文件修訂-4">Document Revision 4（文件修訂 4）</a></h4>
+<h4 id="document-revision-5文件修訂-5"><a class="header" href="#document-revision-5文件修訂-5">Document Revision 5（文件修訂 5）</a></h4>
 <p>Author: Sirius Wu</p>
 <p>Copyright © 2025 Mapacode Inc. All rights reserved.</p>
 <p>August 19, 2026</p>
@@ -416,7 +416,7 @@ Motion 封鎖；此時會儘可能啟動 HMI，讓操作人員檢查結果並安
 包含對端位址、請求內容、回應或設定值。</p>
 <p>另一個同源 HTTP 操作只會向 root 擁有的本機支援能力要求一項固定操作。該能力只讀取
 <code>bnc-motion</code> 與 <code>bnc-hmi</code> 目前及前一次開機的記錄，輸出經允許的分類記錄及中繼資料，
-並傳回一份不超過 10 MiB 的記憶體內 ZIP。非特權 HMI 不能選擇 journal 服務、開機、
+並傳回一份不超過 50 MiB 的記憶體內 ZIP。非特權 HMI 不能選擇 journal 服務、開機、
 路徑、命令或封存選項。此協作及即時比較都不屬於支援的客戶 JSON API。</p>
 <h2 id="控制器啟動及就緒"><a class="header" href="#控制器啟動及就緒">控制器啟動及就緒</a></h2>
 <p>每個控制器世代都由不可變的 <code>ControllerBuildPlan</code> 建立。計畫包含該次嘗試所選用的
@@ -561,9 +561,9 @@ API 版本明確提升其狀態。不能只因內部路由可在網路上看到�
 <p>客戶可以使用內建 HMI，檢查自行開發 HMI 的流量。請讓客戶 HMI 維持連線，開啟
 <strong>About</strong>，選擇 <strong>Open support diagnostics</strong>，再找到 <strong>WebSocket connection
 traffic</strong>。</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/support-diagnostics.png" alt="Support diagnostics 顯示一個作用中的內建 HMI 用戶端及診斷下載操作"><span class="img-wrapper"><img src="figures/support-diagnostics.png" alt="Support diagnostics 顯示一個作用中的內建 HMI 用戶端及診斷下載操作"></span></label></p>
-<p>此現場截圖只顯示內建 HMI 這一個作用中用戶端。客戶 HMI 連線後，旁邊會出現
-<strong>Other client</strong> 欄位。連線 ID、速率及計數器都是試車範例，不是文件所定義的預設值。</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/support-diagnostics.png" alt="Support diagnostics 比較兩個作用中用戶端並顯示診斷下載操作"><span class="img-wrapper"><img src="figures/support-diagnostics.png" alt="Support diagnostics 比較兩個作用中用戶端並顯示診斷下載操作"></span></label></p>
+<p>此已安裝目標截圖顯示內建 HMI 及另一個作用中用戶端。連線 ID、速率及計數器都是
+試車範例，不是文件所定義的預設值。</p>
 <p>比較表只顯示目前作用中的連線：</p>
 <ul>
 <li><strong>This built-in HMI</strong> 是正在顯示此表格的瀏覽器。</li>
@@ -607,12 +607,12 @@ diagnostics</strong>，再使用 <strong>Download diagnostic log</strong>。只�
 <li>目前及前一次開機中，<code>bnc-motion</code> 與 <code>bnc-hmi</code> 的分類結構化記錄；以及</li>
 <li>來源無法取得或證據遭截短時的明確通知。</li>
 </ul>
-<p>完整 ZIP 上限為 10 MiB，但此大小不代表固定的記錄時數。涵蓋時間取決於可回報事件
+<p>完整 ZIP 上限為 50 MiB，但此大小不代表固定的記錄時數。涵蓋時間取決於可回報事件
 的發生頻率，以及控制器的 journal 保留狀況。狀態安定的控制器可能涵蓋許多小時，
 或涵蓋目前及前一次開機中可取得的部分；若啟動、重試或失敗事件集中發生，則會更快
 用完容量。請檢查 <code>summary.txt</code>，以及 manifest 中的 <code>includedFrom</code>、
 <code>includedThrough</code>、<code>sourceCaptureTruncated</code> 與 <code>archiveBudgetTruncated</code> 欄位，確認
-該下載檔案的確切涵蓋範圍。檔案遠小於 10 MiB 是正常情況。</p>
+該下載檔案的確切涵蓋範圍。檔案遠小於 50 MiB 是正常情況。</p>
 <p>系統會在兩項服務及兩次開機之間公平保留最新記錄。Botnana Control 不會重新啟動
 服務、啟用額外記錄、改變機台、保留新產生的 ZIP，也不會自動上傳。憑證、機台設定、
 請求內容、rtForth script、設定值及對端 IP 位址都會排除。</p>
@@ -4483,7 +4483,7 @@ WebSocket 用戶端各自的 <strong>Poll requests</strong> 及 <strong>Ordered 
 <li>
 <p><strong>Download diagnostic log</strong> 會傳回由操作人員啟動的 ZIP，其中包含摘要、經允許的
 執行環境中繼資料，以及 <code>bnc-motion</code> 與 <code>bnc-hmi</code> 目前／前一次開機的分類記錄。
-ZIP 上限為 10 MiB，會回報遺漏及截短，不會保留，也不會自動上傳。此限制是檔案
+ZIP 上限為 50 MiB，會回報遺漏及截短，不會保留，也不會自動上傳。此限制是檔案
 大小上限，不保證固定的記錄時數。</p>
 </li>
 <li>

@@ -111,7 +111,7 @@ WebSocket connections
 
 另一個同源 HTTP 操作只會向 root 擁有的本機支援能力要求一項固定操作。該能力只讀取
 `bnc-motion` 與 `bnc-hmi` 目前及前一次開機的記錄，輸出經允許的分類記錄及中繼資料，
-並傳回一份不超過 10 MiB 的記憶體內 ZIP。非特權 HMI 不能選擇 journal 服務、開機、
+並傳回一份不超過 50 MiB 的記憶體內 ZIP。非特權 HMI 不能選擇 journal 服務、開機、
 路徑、命令或封存選項。此協作及即時比較都不屬於支援的客戶 JSON API。
 
 ## 控制器啟動及就緒

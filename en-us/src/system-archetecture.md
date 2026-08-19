@@ -120,7 +120,7 @@ A separate same-origin HTTP action requests one fixed operation from the
 root-owned local support capability. That capability reads only current and
 previous boot records for `bnc-motion` and `bnc-hmi`, emits allowlisted
 categorized records and metadata, and returns one in-memory ZIP no larger than
-10 MiB. The unprivileged HMI cannot select a journal unit, boot, path, command,
+50 MiB. The unprivileged HMI cannot select a journal unit, boot, path, command,
 or archive option. Neither this collaboration nor the live comparison is part
 of the supported customer JSON API.
 

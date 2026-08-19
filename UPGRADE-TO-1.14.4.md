@@ -59,20 +59,22 @@ release-closeout work:
   separates Poll and Ordered traffic and measures admission wait, revision 33
   keeps the complete comparison visible in Chromium and Firefox, and revision
   34 moves traffic to Support diagnostics and adds a bounded, sanitized support
-  archive, and revision 35 keeps the diagnostic download action clear of dialog
-  actions at real desktop browser content heights. Revision 24 was a diagnostic
-  package and is not a release changelog entry.
-- The bilingual book identifies version 1.14.4, Document Revision 4, with
+  archive, revision 35 keeps the diagnostic download action clear of dialog
+  actions at real desktop browser content heights, and revision 36 raises the
+  archive ceiling and supporting bounded resources to 50 MiB. Revision 24 was a
+  diagnostic package and is not a release changelog entry.
+- The bilingual book identifies version 1.14.4, Document Revision 5, with
   publication date August 19, 2026.
 - The release notes, software-update and rollback procedures, current HMI
   screenshots, and About-page IP-address procedure are published. The Support
-  diagnostics figure is the operator-confirmed 1,440-by-810 field screenshot
+  diagnostics figure is the 1,440-by-810 installed `1.14.4-36` target screenshot
   with SHA-256
-  `d8b270dec89e9c76179e8073d778a9d1776d3fb4eaa41a78b546c1dc7a27e5e2`.
+  `e85cd1b0b1c38c74542d5db35d5763ef59eca0f0b5e89836d7799d03ee380805`.
 - The operator-downloaded 1.14.4-35 support archive was complete, untruncated,
-  and 2,866 bytes at 51 seconds of target uptime. The manual states that 10 MiB
-  is a size bound rather than a fixed number of retained hours and directs
-  readers to the summary and manifest for exact per-source coverage.
+  and 2,866 bytes at 51 seconds of target uptime. Revision 36 raises the maximum
+  to 50 MiB. The manual states that the maximum is a size bound rather than a
+  fixed number of retained hours and directs readers to the summary and manifest
+  for exact per-source coverage.
 - The proposed third-party HMI WebSocket profile is still marked `draft`.
 - The bilingual controller-recovery and topology-maintenance chapters are
   published, and the public JSON API reference has been reconciled with the
@@ -81,18 +83,22 @@ release-closeout work:
   complete; the candidate custom-HMI traffic profile remains open.
 - The current-IP display correction is committed as `3190c96c3` and included
   in official package revision `1.14.4-3`, prepared by `f9fa385ed`.
-- Current candidate `1.14.4-35` is prepared by control commit `990f74964` as
-  `botnana-control_1.14.4-35_arm64.deb` with SHA-256
-  `c1b80abf160dfaa8fd645a8c2d86e119125b14dd7a0a9c08898f51cdff1ef11d`.
+- Current candidate `1.14.4-36` is prepared by control commit `0e599ab50` as
+  `botnana-control_1.14.4-36_arm64.deb` with SHA-256
+  `fe0ce4caeb287e6717aa6d6c161f99288d6dadfa010c0d752f261f9d695e34b5`.
 - Supported-hardware evidence currently covers a controlled rescan and repeated
   recovery on the EC5500/EC5621 chain with `1.14.4-26`, automatic initial
-  startup with `1.14.4-28`, and installation and operation of `1.14.4-35` with
+  startup with `1.14.4-28`, and installation and operation of `1.14.4-36` with
   three slaves in OP, both domains at complete `2/2` working counters, and all
   three services at `NRestarts=0`. Revision 34 passed bounded support archive,
   privacy, severity, concurrency, browser-disconnect cleanup, and real download
   checks. Revision 35 additionally passed complete download-action visibility
   and real downloads in Chromium and Firefox at a 1,440-by-810 content viewport,
-  with profile preservation. Broader product acceptance,
+  with profile preservation. Revision 36 passed installed 50-MiB limit readback,
+  real Chromium/Firefox downloads, cleanup, privacy, controller health, and
+  profile-preservation checks; the near-limit archive boundary remains
+  deterministic local evidence rather than manufactured target journal load.
+  Broader product acceptance,
   especially hardware using
   `sdo_inhibit_before_op`, remains open.
 - Software-update screenshots are workflow examples. They may retain earlier

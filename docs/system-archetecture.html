@@ -35,7 +35,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-836d0f95.js";
+            window.path_to_searchindex_js = "searchindex-c9330b8d.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -275,7 +275,7 @@ Motion 封鎖；此時會儘可能啟動 HMI，讓操作人員檢查結果並安
 包含對端位址、請求內容、回應或設定值。</p>
 <p>另一個同源 HTTP 操作只會向 root 擁有的本機支援能力要求一項固定操作。該能力只讀取
 <code>bnc-motion</code> 與 <code>bnc-hmi</code> 目前及前一次開機的記錄，輸出經允許的分類記錄及中繼資料，
-並傳回一份不超過 10 MiB 的記憶體內 ZIP。非特權 HMI 不能選擇 journal 服務、開機、
+並傳回一份不超過 50 MiB 的記憶體內 ZIP。非特權 HMI 不能選擇 journal 服務、開機、
 路徑、命令或封存選項。此協作及即時比較都不屬於支援的客戶 JSON API。</p>
 <h2 id="控制器啟動及就緒"><a class="header" href="#控制器啟動及就緒">控制器啟動及就緒</a></h2>
 <p>每個控制器世代都由不可變的 <code>ControllerBuildPlan</code> 建立。計畫包含該次嘗試所選用的
