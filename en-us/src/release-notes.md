@@ -108,6 +108,8 @@ HMI WebSocket traffic.
   allowlisted runtime metadata, and categorized current/previous-boot records
   for `bnc-motion` and `bnc-hmi`. The ZIP is at most 10 MiB, reports omissions
   and truncation, is not retained, and is never uploaded automatically.
+- The diagnostic download action remains fully visible above the dialog actions
+  after scrolling at the desktop browser content height.
 - WebSocket output no longer blocks the event loop, and closing a connection
   releases its socket, output worker, and assigned rtForth user task.
 

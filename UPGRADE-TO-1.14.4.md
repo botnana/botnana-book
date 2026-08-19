@@ -59,9 +59,10 @@ release-closeout work:
   separates Poll and Ordered traffic and measures admission wait, revision 33
   keeps the complete comparison visible in Chromium and Firefox, and revision
   34 moves traffic to Support diagnostics and adds a bounded, sanitized support
-  archive. Revision 24 was a diagnostic package and is not a release changelog
-  entry.
-- The bilingual book identifies version 1.14.4, Document Revision 2, with
+  archive, and revision 35 keeps the diagnostic download action clear of dialog
+  actions at real desktop browser content heights. Revision 24 was a diagnostic
+  package and is not a release changelog entry.
+- The bilingual book identifies version 1.14.4, Document Revision 3, with
   publication date August 19, 2026.
 - The release notes, software-update and rollback procedures, current HMI
   screenshot, and About-page IP-address procedure are published.
@@ -73,17 +74,18 @@ release-closeout work:
   complete; the candidate custom-HMI traffic profile remains open.
 - The current-IP display correction is committed as `3190c96c3` and included
   in official package revision `1.14.4-3`, prepared by `f9fa385ed`.
-- Current candidate `1.14.4-34` is prepared by control commit `e11118bd6` as
-  `botnana-control_1.14.4-34_arm64.deb` with SHA-256
-  `a70836d6444b04b150ca9c6a9755ee2502e105071213691c3a7d5bd4a83c9a6b`.
+- Current candidate `1.14.4-35` is prepared by control commit `990f74964` as
+  `botnana-control_1.14.4-35_arm64.deb` with SHA-256
+  `c1b80abf160dfaa8fd645a8c2d86e119125b14dd7a0a9c08898f51cdff1ef11d`.
 - Supported-hardware evidence currently covers a controlled rescan and repeated
   recovery on the EC5500/EC5621 chain with `1.14.4-26`, automatic initial
-  startup with `1.14.4-28`, and installation and operation of `1.14.4-34` with
+  startup with `1.14.4-28`, and installation and operation of `1.14.4-35` with
   three slaves in OP, both domains at complete `2/2` working counters, and all
-  three services at `NRestarts=0`. Revision 34 also passed bounded support
-  archive, privacy, severity, concurrency, browser-disconnect cleanup,
-  Chromium/Firefox layout and real download, and profile-preservation checks.
-  Broader product acceptance,
+  three services at `NRestarts=0`. Revision 34 passed bounded support archive,
+  privacy, severity, concurrency, browser-disconnect cleanup, and real download
+  checks. Revision 35 additionally passed complete download-action visibility
+  and real downloads in Chromium and Firefox at a 1,440-by-810 content viewport,
+  with profile preservation. Broader product acceptance,
   especially hardware using
   `sdo_inhibit_before_op`, remains open.
 - Software-update screenshots are workflow examples. They may retain earlier
