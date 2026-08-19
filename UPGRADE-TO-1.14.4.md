@@ -62,10 +62,17 @@ release-closeout work:
   archive, and revision 35 keeps the diagnostic download action clear of dialog
   actions at real desktop browser content heights. Revision 24 was a diagnostic
   package and is not a release changelog entry.
-- The bilingual book identifies version 1.14.4, Document Revision 3, with
+- The bilingual book identifies version 1.14.4, Document Revision 4, with
   publication date August 19, 2026.
 - The release notes, software-update and rollback procedures, current HMI
-  screenshot, and About-page IP-address procedure are published.
+  screenshots, and About-page IP-address procedure are published. The Support
+  diagnostics figure is the operator-confirmed 1,440-by-810 field screenshot
+  with SHA-256
+  `d8b270dec89e9c76179e8073d778a9d1776d3fb4eaa41a78b546c1dc7a27e5e2`.
+- The operator-downloaded 1.14.4-35 support archive was complete, untruncated,
+  and 2,866 bytes at 51 seconds of target uptime. The manual states that 10 MiB
+  is a size bound rather than a fixed number of retained hours and directs
+  readers to the summary and manifest for exact per-source coverage.
 - The proposed third-party HMI WebSocket profile is still marked `draft`.
 - The bilingual controller-recovery and topology-maintenance chapters are
   published, and the public JSON API reference has been reconciled with the

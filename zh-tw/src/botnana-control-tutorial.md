@@ -35,9 +35,10 @@ Botnana BN-B3A 預設於開機時自動啟動動程科技的 Botnana Control P2P
 **About**，選擇 **Open support diagnostics**，再找到 **WebSocket connection
 traffic**。
 
-![Support diagnostics 比較內建 HMI 與另一個作用中 WebSocket 用戶端](./figures/support-diagnostics.png)
+![Support diagnostics 顯示一個作用中的內建 HMI 用戶端及診斷下載操作](./figures/support-diagnostics.png)
 
-截圖中的連線 ID、速率及計數器是一組試車範例，不是文件所定義的預設值。
+此現場截圖只顯示內建 HMI 這一個作用中用戶端。客戶 HMI 連線後，旁邊會出現
+**Other client** 欄位。連線 ID、速率及計數器都是試車範例，不是文件所定義的預設值。
 
 比較表只顯示目前作用中的連線：
 
@@ -81,10 +82,16 @@ diagnostics**，再使用 **Download diagnostic log**。只開啟此畫面不會
 - 目前及前一次開機中，`bnc-motion` 與 `bnc-hmi` 的分類結構化記錄；以及
 - 來源無法取得或證據遭截短時的明確通知。
 
-完整 ZIP 上限為 10 MiB。系統會在兩項服務及兩次開機之間公平保留最新記錄。
-Botnana Control 不會重新啟動服務、啟用額外記錄、改變機台、保留新產生的 ZIP，
-也不會自動上傳。憑證、機台設定、請求內容、rtForth script、設定值及對端 IP 位址
-都會排除。
+完整 ZIP 上限為 10 MiB，但此大小不代表固定的記錄時數。涵蓋時間取決於可回報事件
+的發生頻率，以及控制器的 journal 保留狀況。狀態安定的控制器可能涵蓋許多小時，
+或涵蓋目前及前一次開機中可取得的部分；若啟動、重試或失敗事件集中發生，則會更快
+用完容量。請檢查 `summary.txt`，以及 manifest 中的 `includedFrom`、
+`includedThrough`、`sourceCaptureTruncated` 與 `archiveBudgetTruncated` 欄位，確認
+該下載檔案的確切涵蓋範圍。檔案遠小於 10 MiB 是正常情況。
+
+系統會在兩項服務及兩次開機之間公平保留最新記錄。Botnana Control 不會重新啟動
+服務、啟用額外記錄、改變機台、保留新產生的 ZIP，也不會自動上傳。憑證、機台設定、
+請求內容、rtForth script、設定值及對端 IP 位址都會排除。
 
 請由操作人員透過現場核准的支援管道傳送 ZIP。若運動控制連線無法使用，但 HTTP HMI
 仍可開啟，即時流量會顯示為無法取得，**Download diagnostic log** 仍可使用。

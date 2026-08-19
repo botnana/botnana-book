@@ -38,10 +38,11 @@ Customers can use the built-in HMI to inspect traffic from their own HMI. Keep
 the customer HMI connected, open **About**, select **Open support diagnostics**,
 and find **WebSocket connection traffic**.
 
-![Support diagnostics comparing the built-in HMI with another active WebSocket client](./figures/support-diagnostics.png)
+![Support diagnostics showing one active built-in-HMI client and the diagnostic download action](./figures/support-diagnostics.png)
 
-The connection IDs, rates, and counters in this screenshot are one commissioning
-example, not documented defaults.
+This field screenshot shows the built-in HMI as the only active client. When a
+customer HMI is connected, **Other client** columns appear beside it. Connection
+IDs, rates, and counters are commissioning examples, not documented defaults.
 
 The comparison shows only active connections:
 
@@ -93,11 +94,20 @@ The browser downloads a timestamped `botnana-support-*.zip` containing:
   and previous boot; and
 - explicit notices when a source is unavailable or evidence is truncated.
 
-The complete ZIP is limited to 10 MiB. Newest records are retained fairly across
-both services and boots. Botnana Control does not restart services, enable extra
-logging, change the machine, retain the generated ZIP, or upload it
-automatically. Credentials, machine configuration, request payloads, rtForth
-scripts, configuration values, and peer IP addresses are excluded.
+The complete ZIP is limited to 10 MiB. This size is not a fixed number of log
+hours: coverage depends on how often reportable events occur and on the
+controller's journal retention. A quiet controller can cover many hours or the
+available parts of both boots, while concentrated startup, retry, or failure
+events consume the bound sooner. Check `summary.txt` and the manifest's
+`includedFrom`, `includedThrough`, `sourceCaptureTruncated`, and
+`archiveBudgetTruncated` fields for the exact coverage of a downloaded file. A
+file much smaller than 10 MiB is normal.
+
+Newest records are retained fairly across both services and boots. Botnana
+Control does not restart services, enable extra logging, change the machine,
+retain the generated ZIP, or upload it automatically. Credentials, machine
+configuration, request payloads, rtForth scripts, configuration values, and
+peer IP addresses are excluded.
 
 Send the ZIP manually through the site's approved support channel. If the motion
 connection is unavailable while the HTTP HMI still opens, live traffic is shown

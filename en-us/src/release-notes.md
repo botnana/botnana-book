@@ -107,7 +107,8 @@ HMI WebSocket traffic.
 - **Download diagnostic log** returns an operator-initiated ZIP with a summary,
   allowlisted runtime metadata, and categorized current/previous-boot records
   for `bnc-motion` and `bnc-hmi`. The ZIP is at most 10 MiB, reports omissions
-  and truncation, is not retained, and is never uploaded automatically.
+  and truncation, is not retained, and is never uploaded automatically. The
+  limit is a size bound, not a guaranteed number of log hours.
 - The diagnostic download action remains fully visible above the dialog actions
   after scrolling at the desktop browser content height.
 - WebSocket output no longer blocks the event loop, and closing a connection
