@@ -11,6 +11,7 @@ optional = true
 renderer = ["html"]
 
 [output.html]
+additional-css = ["theme/zh-tw.css"]
 additional-js = ["language-switch.js"]
 
 [output.html.print]

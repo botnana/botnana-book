@@ -26,6 +26,15 @@ jobs:
       - name: Check out the release source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
+      - name: Install Traditional Chinese font and PDF inspection tools
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends fonts-noto-cjk poppler-utils
+          fc-match "Noto Sans CJK TC" | grep -Fq "NotoSansCJK"
+
       - name: Install pinned mdBook renderers
         shell: bash
         run: |
@@ -82,6 +91,14 @@ jobs:
 
       - name: Build both PDF editions
         run: ./build-book.bash
+
+      - name: Verify Traditional Chinese glyphs are embedded
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          pdffonts botnana-book_zh-tw.pdf |
+            grep -E 'NotoSansCJK(tc|TC)' > /dev/null
 
       - name: Upload release candidates
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1

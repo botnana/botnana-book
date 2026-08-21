@@ -4,9 +4,11 @@ PDF 檔案下載連結: [botnana-book_zh-tw.pdf](https://github.com/botnana/botn
 
 ## 建置 HTML 與 PDF
 
-建置前需要安裝 `mdbook`、`mdbook-pdf`，以及 Google Chrome 或 Chromium：
+建置前需要安裝 `mdbook`、`mdbook-pdf`、Google Chrome 或 Chromium，以及支援
+繁體中文的 Noto CJK 字型。在 Ubuntu/Debian 可安裝：
 
 ```bash
+sudo apt-get install fonts-noto-cjk
 cargo install mdbook
 cargo install mdbook-pdf
 ```

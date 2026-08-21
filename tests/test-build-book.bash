@@ -127,7 +127,18 @@ both_language_configs_require_pdf_output() {
     assert_required_pdf_renderer "$repository_root/zh-tw/book.toml"
 }
 
+chinese_config_selects_a_traditional_chinese_font() {
+    local config="$repository_root/zh-tw/book.toml"
+    local stylesheet="$repository_root/zh-tw/theme/zh-tw.css"
+
+    grep -Fq 'additional-css = ["theme/zh-tw.css"]' "$config" ||
+        fail "Traditional Chinese config does not load its font stylesheet"
+    grep -Fq 'font-family: "Noto Sans CJK TC"' "$stylesheet" ||
+        fail "Traditional Chinese stylesheet does not prefer Noto Sans CJK TC"
+}
+
 both_language_configs_require_pdf_output
+chinese_config_selects_a_traditional_chinese_font
 missing_pdf_backend_then_existing_outputs_remain_unchanged
 second_language_failure_then_existing_outputs_remain_unchanged
 successful_build_then_publishes_chinese_html_and_both_pdfs

@@ -30,6 +30,8 @@ assert_contains 'MDBOOK_SHA256: "084e4342ba564db270108763e404a7d1f309d932651a224
 assert_contains 'MDBOOK_PDF_VERSION: "0.1.13"'
 assert_contains 'MDBOOK_PDF_SHA256: "78926f96540add76d8dd035d683b01bee01844229544c129e04a7bc4c30a5cbb"'
 assert_contains '--retry 5 --retry-all-errors --retry-delay 2'
+assert_contains 'fonts-noto-cjk poppler-utils'
+assert_contains 'fc-match "Noto Sans CJK TC"'
 assert_contains 'contents: read'
 assert_contains 'contents: write'
 assert_contains "expected_cover_version=\"### Version \$release_version\""
@@ -37,6 +39,8 @@ assert_contains 'en-us/src/cover.md zh-tw/src/cover.md'
 assert_contains 'bash tests/test-build-book.bash'
 assert_contains 'bash tests/test-release-workflow.bash'
 assert_contains './build-book.bash'
+assert_contains 'pdffonts botnana-book_zh-tw.pdf'
+assert_contains "grep -E 'NotoSansCJK(tc|TC)' > /dev/null"
 assert_contains 'botnana-book_en-us.pdf'
 assert_contains 'botnana-book_zh-tw.pdf'
 assert_contains 'if-no-files-found: error'
