@@ -7,8 +7,8 @@
 | Operating system | Linux distribution Debian Buster 4.19.232-rt104 |
 | Real-time System | Preempt RT + Xenomai 3.2.3 Mercury Core |
 | EtherCAT Master | BotnanaCAT 2.0.1 based on IgH EtherCAT master branch stable 1.5 commit c8a512ac0 |
-| Botnana Control | v1.14.4 |
-| Period | 2 ms |
+| Botnana Control | v1.14 (最新發布版本 v1.14.12) |
+| Period | 2 ms (可於設定檔調整) |
 | BN-B3A-10S 可控軸數 | 1–10 |
 | 支援 EtherCAT 從站數 | 1–16 |
 | 執行期掃描容量 | 16 個 EtherCAT 從站 |
@@ -22,8 +22,8 @@
 所有等級的 Botnana Control 都支援以下規格：
 
 * 支援 1–16 個 EtherCAT 從站；BN-B3A-10S 最多提供 10 個運動軸。
-* 支援 Panasonic、Delta、Sanyo Denki 和 Yaskawa 的 EtherCAT 馬達驅動器。基本上有符合 CiA 402 規範的馬達驅動器都有支援。
-* 支援 Beckhoff，Delta 的類比及數位輸出入模組。因應客戶需求陸續整合其他廠牌的 EtherCAT 模組。
+* 支援 Panasonic、Delta (台達)、Sanyo Denki、Yaskawa (安川)、Oriental Motor (東方馬達 AZD2B/AZD4A) 等 EtherCAT 馬達驅動器。符合 CiA 402 規範之馬達驅動器皆可支援。
+* 支援 Beckhoff、Delta、Syn-Tek (先達工控 R1 系列)、研華 (Advantech) 的類比及數位輸出入模組，並支援 R1-EC5621 脈衝型驅動模組。因應客戶需求陸續整合其他廠牌的 EtherCAT 模組。
 
 ### 基本功能
 

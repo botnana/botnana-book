@@ -28,6 +28,7 @@
         <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/zh-tw-1f872bb8.css">
 
 
         <!-- Provide site root and default themes to javascript -->
@@ -35,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-335275fb.js";
+            window.path_to_searchindex_js = "searchindex-ce9c6015.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -179,12 +180,12 @@
 <code>/etc/botnana-control/motion.toml</code>。此檔案使用
 <a href="https://toml.io/">TOML</a> 格式。</p>
 <p>支援的設定變更應優先使用內建 HMI。HMI 編輯具有版本檢查，並會以一份共用設定儲存。
-HMI 尚有草稿或正在進行拓撲維護時，請勿編輯檔案。若經授權必須手動編輯，應先依現場
-維修程序停止控制器，並備份完整檔案。即使設定檔語法正確，內容錯誤仍可能使控制器
-無法啟動或造成非預期運動設定。</p>
-<p>儲存設定不會改變運作中的控制器。<strong>Active controller</strong> 會保留控制器成功啟動時選用
-的值，直到之後的受控啟動選用已儲存設定為止。一般 <strong>Rescan EtherCAT</strong> 會使用上次
-正常運作設定，不會使用剛儲存的值。</p>
+操作人員亦可透過 HMI 的 <strong>Download configuration</strong> 下載目前設定檔案進行備份，或在需要時透過 <strong>Upload configuration</strong> 還原設定。</p>
+<blockquote>
+<p><strong>升級保護機制</strong>：在進行 Botnana Control Debian 套件更新或升級時，系統會完整保留既有的 <code>/etc/botnana-control/motion.toml</code> 設定檔，絕不覆蓋機台已校正的參數。</p>
+</blockquote>
+<p>HMI 尚有草稿或正在進行拓撲維護時，請勿直接於後台編輯檔案。若經授權必須手動編輯，應先依現場維修程序停止控制器，並備份完整檔案。即使設定檔語法正確，內容錯誤仍可能使控制器無法啟動或造成非預期運動設定。</p>
+<p>儲存設定不會改變運作中的控制器。<strong>Active controller</strong> 會保留控制器成功啟動時選用的值，直到之後的受控啟動選用已儲存設定為止。一般 <strong>Rescan EtherCAT</strong> 會使用上次正常運作設定，不會使用剛儲存的值。</p>
 <h3 id="file-及-server-區段"><a class="header" href="#file-及-server-區段">File 及 Server 區段</a></h3>
 <div class="table-wrapper">
 <table>

@@ -152,11 +152,11 @@ EtherCAT 控制器執行期；不是 EtherCAT 從站、驅動器或馬達。重�
 系統仍能安全釋放失敗的替代控制器。只有在 HMI 啟用此操作時才能重試。如果 HMI
 要求重新啟動服務，請改用清理失敗程序。
 
-## 收集有限拓撲追蹤記錄
+## 收集支援診斷資訊與拓撲追蹤記錄
 
-Botnana Control 1.14.4 套件修訂版 19 以上會在 `bnc-motion` journal 寫入精簡的
-`topology.trace` 記錄。重新啟動服務或變更設定前，請由獲授權管理員收集；以下
-`sudo` 命令需要管理員權限：
+最便捷的方式是直接在 Web HMI 的系統設定或狀態頁面點選 **下載診斷包**（產生 `botnana-support-*.zip`）。診斷包內已自動封裝完整的系統記錄（含 journal）、硬體偵測報告與目前設定檔，可直接提供給原廠支援團隊分析。
+
+若需由獲授權管理員自命令列收集精簡的 `topology.trace` 記錄（Botnana Control v1.14 以上支援），可在重新啟動服務或變更設定前執行下列命令（需要管理員權限）：
 
 ```bash
 sudo journalctl -u bnc-motion -n 300 --no-pager

@@ -1,5 +1,27 @@
 # Release Notes
 
+## Version 1.14.12
+
+Version 1.14.12 is a production-hardened release delivering multi-axis drive integration, boot diagnostic visibility, low-latency communication optimizations, and configuration preservation guarantees.
+
+### Startup Diagnostics & Slave Telemetry Visibility
+- **Per-Slave AL State Telemetry**: The Detected Slaves table in HMI features an `AL State` column, displaying live Application Layer states (`OP`, `SAFEOP`, `PREOP`, `INIT`) with clear status coloring.
+- **Attributable Startup Timeout Diagnostics**: When startup fails to reach OP within the deadline, the error message pinpoints the exact unready slave positions and states (e.g., `slaves not in OP: Slave 8 (PREOP)`), accelerating field troubleshooting.
+- **Uncommissioned Machine Guidance**: Clear banner appears when a controller boots with an empty configuration, offering one-click topology adoption or profile upload.
+
+### Hardware Catalog Expansion
+- **Oriental Motor Multi-Axis Drivers**: Full support for AZD2B-KED (2-axis) and AZD4A-KED (4-axis) drivers with supported factory homing method 24 and dynamic Profile Position (PP) parameters.
+- **Delta / Syn-Tek R1 Series**: Comprehensive 16-tuple catalog support for R1 bus couplers (R1-EC5500), 1-axis pulse drive modules (R1-EC5621), digital inputs (R1-EC6002/6022), digital outputs (R1-EC7062/70E2), analog inputs (R1-EC8124), and analog outputs (R1-EC9144).
+
+### Configuration Safety & Disaster Recovery
+- **Upgrade Protection**: Debian package upgrades 100% preserve existing `/etc/botnana-control/motion.toml` configuration files without overwrite.
+- **HMI Backup & Restore**: One-click configuration download and disaster-recovery upload directly accessible through the browser.
+
+### Fieldbus & Real-Time Performance
+- **Low-Latency WebSocket Transport**: Enabled `TCP_NODELAY` on WebSocket connections, reducing round-trip communication latency to 0.14 ms for responsive HMI and host interactions.
+- **EtherCAT Distributed Clocks (DC) Recovery**: Automatic reference clock re-acquisition upon bus re-attachment.
+- **HMI Live Control Guarding**: Restored digital/analog output editing and fail-closed dispatch guarding against offline or unmapped slaves.
+
 ## Version 1.14.4
 
 Version 1.14.4 adds controller recovery and EtherCAT topology-maintenance

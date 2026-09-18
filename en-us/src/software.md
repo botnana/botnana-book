@@ -7,8 +7,8 @@ Botnana controllers ship with Linux, a real-time operating system, and Mapacode'
 | Operating system | Linux distribution Debian Buster 4.19.232-rt104 |
 | Real-time System | Preempt RT + Xenomai 3.2.3 Mercury Core |
 | EtherCAT Master | BotnanaCAT 2.0.1 based on IgH EtherCAT master branch stable 1.5 commit c8a512ac0 |
-| Botnana Control | v1.14.4 |
-| Period | 2 ms |
+| Botnana Control | v1.14 (Latest release v1.14.12) |
+| Period | 2 ms (Configurable via configuration file) |
 | Controllable axes on BN-B3A-10S | 1–10 |
 | Supported EtherCAT slaves | 1–16 |
 | Runtime scan capacity | 16 EtherCAT slaves |
@@ -24,8 +24,8 @@ published product capacity beyond 16.
 All levels of Botnana Control support the following specifications:
 
 * Botnana Control supports 1–16 EtherCAT slaves; the BN-B3A-10S provides up to 10 motion axes.
-* Supports EtherCAT motor drives from Panasonic, Delta, Sanyo Denki, and Yaskawa, including those that comply with CiA 402.
-* Supports Beckhoff and Delta's analog and digital input/output modules. In response to customer needs, we are gradually integrating modules from other brands of EtherCAT controllers.
+* Supports EtherCAT motor drives from Panasonic, Delta, Sanyo Denki, Yaskawa, and Oriental Motor (AZD2B/AZD4A multi-axis drivers). Motor drives complying with the CiA 402 standard are supported.
+* Supports analog and digital I/O modules from Beckhoff, Delta, Syn-Tek (R1 series), and Advantech, as well as the R1-EC5621 pulse motion module. Modules from additional manufacturers are continuously integrated based on customer requirements.
 
 ### Basic Functions
 

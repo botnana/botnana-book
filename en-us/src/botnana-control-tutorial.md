@@ -32,86 +32,41 @@ not by itself change the saved profile or running controller.
 the same shared profile draft. Finish the current edit by saving or discarding
 it before starting another exclusive configuration or maintenance operation.
 
-### Diagnose HMI WebSocket Traffic
+### Physical Slave AL State and Startup Diagnostics
 
-Customers can use the built-in HMI to inspect traffic from their own HMI. Keep
-the customer HMI connected, open **About**, select **Open support diagnostics**,
-and find **WebSocket connection traffic**.
+In the **Controller & Topology** work area, the **Detected Slaves** table provides real-time visibility into the EtherCAT Application Layer (AL) status of each connected physical slave:
 
-![Support diagnostics comparing two active clients with the diagnostic download action](./figures/support-diagnostics.png)
+![Detected slaves table displaying physical hardware and real-time AL State](./figures/detected-slaves-al-state.png)
 
-This installed-target screenshot shows the built-in HMI beside another active
-client. Connection IDs, rates, and counters are commissioning examples, not
-documented defaults.
+* **AL State Column**:
+  * `OP` (highlighted in green): The slave has successfully reached Operational state and cyclic process data (PDO) is actively communicating.
+  * `SAFEOP` / `PREOP` / `INIT` (highlighted with warning/red styling): The slave has not reached OP. This typically indicates wiring disconnection, device alarm, or hardware configuration mismatch.
+* **Attributable Startup Timeout Diagnostics**:
+  If the EtherCAT bus fails to reach OP before the startup deadline, the controller no longer reports a generic error. It explicitly names the specific slave positions and states that failed to boot (e.g., `slaves not in OP: Slave 8 (PREOP)`), allowing technicians to instantly isolate faulty hardware without external bus analyzers.
+* **Uncommissioned Machine Guidance**:
+  When a new machine boots with an uncommissioned configuration (0 configured slaves in `/etc/botnana-control/motion.toml`) but physical slaves are detected on the bus, a clear guidance banner appears above the workspace:
+  > **Uncommissioned Configuration:** 14 physical EtherCAT slaves detected, but no slaves are configured in motion.toml. Adopt detected topology or upload a configuration to commission this machine.
+  This confirms that the machine is awaiting initial commissioning rather than suffering from a lost configuration. Operators can click **Adopt detected topology** to import the scanned hardware, or upload a saved configuration via the **About** menu.
 
-The comparison shows only active connections:
+### Connection Diagnostics and Support Log Download
 
-- **This built-in HMI** is the browser displaying the table.
-- **Other client** is the other active WebSocket application, normally the
-  customer HMI during commissioning.
-- **Active clients** is shown against the supported maximum of two rtForth
-  WebSocket sessions.
-- Each client is divided into **Poll requests** and **Ordered requests** so
-  delayed replaceable polling does not obscure individually handled work.
+Under **About**, select **Open support diagnostics** to access communication health and diagnostic tools:
 
-| Field | Meaning |
-|---|---|
-| **Poll requests** | Recognized replaceable latest-value reads. A newer equivalent poll can replace an older pending poll. |
-| **Ordered requests** | Every other frame, including heartbeats, one-off reads, state-changing requests, unknown scripts, and invalid frames. Each admitted request is handled individually and is never coalesced. **Ordered** does not mean that it changes state or completes synchronously. |
-| **Requests/s** | Average frames received for that class over the latest ten seconds, or over the shorter connection lifetime. The diagnostic refresh itself is Ordered and is included. |
-| **Received** and **Admitted** | Frames in that class received by the server and requests accepted by its admission policy since the connection opened. |
-| **Admission wait p95** | The 95th-percentile time from frame receipt until successful admission during the recent window. It excludes rejected, coalesced, and discarded work. It is not response, command-completion, motion-completion, or network round-trip time. |
-| **Coalesced**, **Discarded**, and **Pending** | Poll-only outcomes for replaced, removed, or retained latest-value work. |
-| **Rejected** and **Overload indications** | Ordered-only outcomes for work not admitted because capacity was unavailable, and the bounded overload notices sent for that connection. |
-| **Status** | A literal summary such as **Normal**, **Polling queued**, **Overload observed**, or **Output saturated**. |
+![Support diagnostics window with real-time telemetry and one-click diagnostic log download](./figures/support-diagnostics.png)
 
-A dash means an outcome does not apply to that request class. **No sample**
-means that class has no admitted request in the current admission-wait window.
+1. **Connection Activity**:
+   - Displays real-time status of active Web HMI and customer application connections.
+   - Monitors request throughput for telemetry polling and ordered motion commands to ensure robust client-controller communication.
+2. **Download Diagnostic Log**:
+   - When troubleshooting assistance from Mapacode support engineers is required, click **Download diagnostic log**.
+   - The browser downloads a self-contained `botnana-support-*.zip` package (up to 50 MiB) containing controller versions, system service states, and structured journal logs.
+   - Machine coordinates, credentials, and proprietary configuration values are automatically excluded for privacy and safety.
 
-Closing a client removes its column. A reconnect receives a new temporary
-connection ID and reset counters; the HMI does not retain traffic history or
-show peer IP addresses, request contents, responses, or configuration values.
-Closing **Support diagnostics** or returning to About stops its once-per-second
-diagnostic refresh.
+### Configuration Backup and Disaster Recovery
 
-This is a built-in diagnostic, not a customer WebSocket API. Customer HMIs
-should continue using only the supported [JSON API](./json-api.md). The displayed
-request rate is a traffic measurement, not proof that a motion command completed
-or that the controller can execute the same number of arbitrary rtForth
-programs per second.
-
-### Download Support Diagnostics
-
-When an authorized service engineer asks for controller evidence, open **About**,
-select **Open support diagnostics**, and use **Download diagnostic log**. Opening
-the view alone does not collect a file.
-
-The browser downloads a timestamped `botnana-support-*.zip` containing:
-
-- a concise human-readable summary and manifest;
-- allowlisted controller version, service state, uptime, and network-link state;
-- categorized structured records for `bnc-motion` and `bnc-hmi` from the current
-  and previous boot; and
-- explicit notices when a source is unavailable or evidence is truncated.
-
-The complete ZIP is limited to 50 MiB. This size is not a fixed number of log
-hours: coverage depends on how often reportable events occur and on the
-controller's journal retention. A quiet controller can cover many hours or the
-available parts of both boots, while concentrated startup, retry, or failure
-events consume the bound sooner. Check `summary.txt` and the manifest's
-`includedFrom`, `includedThrough`, `sourceCaptureTruncated`, and
-`archiveBudgetTruncated` fields for the exact coverage of a downloaded file. A
-file much smaller than 50 MiB is normal.
-
-Newest records are retained fairly across both services and boots. Botnana
-Control does not restart services, enable extra logging, change the machine,
-retain the generated ZIP, or upload it automatically. Credentials, machine
-configuration, request payloads, rtForth scripts, configuration values, and
-peer IP addresses are excluded.
-
-Send the ZIP manually through the site's approved support channel. If the motion
-connection is unavailable while the HTTP HMI still opens, live traffic is shown
-as unavailable but **Download diagnostic log** remains usable.
+Botnana Control supports seamless configuration backup and restoration directly through the browser:
+* **Export Backup**: From the **About** screen or configuration toolbar, click **Download configuration** to save the current `/etc/botnana-control/motion.toml` file to your PC.
+* **Restore Configuration**: During controller hardware replacement or disaster recovery, click **Upload configuration**, select the backup `.toml` file, and confirm the restart. Recovery upload is accessible even from disconnected browser sessions.
 
 ### Review and Edit Slave Configuration
 

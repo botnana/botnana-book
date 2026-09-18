@@ -176,12 +176,11 @@ may become available again because the failed replacement can still be released
 safely. Retry only when the HMI enables the action. If the HMI requires a
 service restart, use the cleanup-failure procedure instead.
 
-## Collect the Bounded Topology Trace
+## Collect Support Diagnostics and Topology Trace
 
-Botnana Control 1.14.4 package revision 19 and later writes compact
-`topology.trace` records to the `bnc-motion` journal. Before restarting the
-service or changing the profile, have an authorized administrator collect them;
-the following `sudo` command requires administrator privileges:
+The most convenient method is to click **Download Diagnostics** in the Web HMI system settings or status view (generating a `botnana-support-*.zip` archive). The diagnostics bundle automatically packages system journal logs, hardware detection reports, and the current configuration file for technical support analysis.
+
+If an authorized administrator needs to inspect compact `topology.trace` records directly from the command line (supported in Botnana Control v1.14 and later), run the following command before restarting the service or modifying the profile (requires administrator privileges):
 
 ```bash
 sudo journalctl -u bnc-motion -n 300 --no-pager

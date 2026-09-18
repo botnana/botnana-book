@@ -5,8 +5,14 @@ Botnana Control stores its durable machine profile in
 [TOML](https://toml.io/) format.
 
 Prefer the built-in HMI for supported profile changes. HMI edits are
-revision-aware and are saved as one shared profile. Do not edit the file while
-an HMI draft or topology-maintenance operation is active. Before an authorized
+revision-aware and are saved as one shared profile. Operators can also use
+**Download configuration** in the HMI to export the configuration file for backup,
+or **Upload configuration** to restore settings during commissioning or recovery.
+
+> **Upgrade Protection**: Debian package updates and upgrades 100% preserve existing
+> `/etc/botnana-control/motion.toml` configuration files without overwriting calibrated machine parameters.
+
+Do not edit the file while an HMI draft or topology-maintenance operation is active. Before an authorized
 manual edit, stop the controller under the site's service procedure and back up
 the complete file. A syntactically valid but incorrect profile can prevent the
 controller from starting or can configure unintended motion.

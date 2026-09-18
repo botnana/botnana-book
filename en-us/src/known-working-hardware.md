@@ -46,15 +46,16 @@ currently Botnana Control supports the following EtherCAT slaves:
 
 * Xenus XEL-230-36, EtherCAT Servo Drive
 
-### Delta
+### Delta / Syn-Tek
 
-* ASDA-A2-E, EtherCAT(CoE) Drive
-* R1-EC5500, EtherCAT to E-BUS power module
-* R1-EC6022, 16 digital inputs, sink/source type
-* R1-EC7062, 16 digital outputs, sink type
-* R1-EC9144, 4 channels 16-bit D/A control module
-* R1-EC8124, 4 channels 16-bit single-ended A/D control module
-* R1-EC5621, Single-axis pulse output motion control module
+* ASDA-A2-E, EtherCAT(CoE) Servo Drive (Delta)
+* ASDA-B3-E, EtherCAT(CoE) Servo Drive (Delta)
+* R1-EC5500, EtherCAT to E-BUS power module / bus coupler
+* R1-EC5621, Single-axis pulse output motion control module (1-axis pulse drive)
+* R1-EC6002 / R1-EC6022, 16 digital inputs, sink/source type (with filter)
+* R1-EC7062 / R1-EC70E2, 16 digital outputs, sink type
+* R1-EC8124, 4 channels 16-bit single-ended A/D analog input module
+* R1-EC9144, 4 channels 16-bit D/A analog output module
 
 ### ELMO
 
@@ -80,6 +81,8 @@ currently Botnana Control supports the following EtherCAT slaves:
 ### Oriental Motor
 
 * AZ Series DC power input Multi-Axis Driver
+  * AZD2B-KED (2-axis DC power driver)
+  * AZD4A-KED (4-axis DC power driver)
 
 ### Panasonic
 

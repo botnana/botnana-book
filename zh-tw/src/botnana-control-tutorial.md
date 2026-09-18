@@ -29,72 +29,41 @@ Botnana BN-B3A 預設於開機時自動啟動動程科技的 Botnana Control P2P
 **Slave Configuration**、**Motion** 及 **Axis Group** 是同一份共用設定草稿的不同
 檢視。開始另一項獨佔設定或維護操作前，請先儲存或捨棄目前的編輯。
 
-### 診斷 HMI WebSocket 流量
+### 實體從站 AL State 狀態與開機診斷
 
-客戶可以使用內建 HMI，檢查自行開發 HMI 的流量。請讓客戶 HMI 維持連線，開啟
-**About**，選擇 **Open support diagnostics**，再找到 **WebSocket connection
-traffic**。
+在 **Controller & Topology** 工作區的 **Detected Slaves (偵測從站)** 表格中，系統提供各從站的即時 Application Layer (AL) 通訊狀態：
 
-![Support diagnostics 比較兩個作用中用戶端並顯示診斷下載操作](./figures/support-diagnostics.png)
+![Detected slaves 顯示實體從站及即時 AL State 運作狀態](./figures/detected-slaves-al-state.png)
 
-此已安裝目標截圖顯示內建 HMI 及另一個作用中用戶端。連線 ID、速率及計數器都是
-試車範例，不是文件所定義的預設值。
+* **AL State 欄位**：
+  * `OP`（綠色標示）：表示從站處於正常運作狀態 (Operational)，週期性資料 (PDO) 正常交換中。
+  * `SAFEOP` / `PREOP` / `INIT`（紅色/警示標示）：表示該從站尚未進入 OP，常見於接線鬆脫、硬體設定不符或馬達驅動器報警。
+* **開機逾時明確歸因**：
+  若開機期間從站未能在時限內全數進入 OP，系統不再只回報模糊的啟動失敗，而是直接指認未進入 OP 的具體從站位置（例如：`slaves not in OP: Slave 8 (PREOP)`），讓工程師無需接上分析儀器即可快速排除異常硬體。
+* **未配置機器導引 (Uncommissioned Configuration)**：
+  當新機台或更換新控制器開機時，若偵測到實體從站但 `/etc/botnana-control/motion.toml` 內無任何已配置從站 (`configured_slaves == 0`)，HMI 上方會出現清晰的提示橫幅：
+  > **Uncommissioned Configuration:** 14 physical EtherCAT slaves detected, but no slaves are configured in motion.toml. Adopt detected topology or upload a configuration to commission this machine.
+  此提示明確告知機器處於等待初始試車狀態，而非設定遺失。操作人員可點選 **Adopt detected topology** 一鍵採用掃描結果，或透過 **About** 上傳既有設定檔。
 
-比較表只顯示目前作用中的連線：
+### 連線狀態與下載支援診斷資料
 
-- **This built-in HMI** 是正在顯示此表格的瀏覽器。
-- **Other client** 是另一個作用中的 WebSocket 應用程式；試車時通常是客戶 HMI。
-- **Active clients** 會對照系統最多支援的兩個 rtForth WebSocket 工作階段顯示。
-- 每個用戶端都分為 **Poll requests** 及 **Ordered requests**，避免可取代輪詢的延遲
-  掩蓋逐一處理的工作。
+在 **About** 頁面點選 **Open support diagnostics**，可開啟系統連線與診斷介面：
 
-| 欄位 | 意義 |
-|---|---|
-| **Poll requests** | 已辨識且可取代的最新值讀取。新的同等輪詢可以取代較舊的待處理輪詢。 |
-| **Ordered requests** | 其他所有訊框，包括心跳、單次讀取、變更狀態的請求、未知 script 及無效訊框。每個已獲准請求都會逐一處理，絕不合併。**Ordered** 不表示請求一定會變更狀態，也不表示會同步完成。 |
-| **Requests/s** | 最近十秒內該類別收到的訊框平均速率；連線時間不足十秒時使用較短的連線時間。診斷重新整理本身屬於 Ordered，也會計入。 |
-| **Received** 及 **Admitted** | 從連線建立後，伺服器收到的該類別訊框數，以及通過准入控制的請求數。 |
-| **Admission wait p95** | 最近時間範圍內，從收到訊框直到成功准入所需時間的第 95 百分位數。不包含遭拒絕、合併或捨棄的工作，也不是回應時間、命令完成時間、運動完成時間或網路往返時間。 |
-| **Coalesced**、**Discarded** 及 **Pending** | 只適用於 Poll，分別表示已被取代、移除或保留的最新值工作。 |
-| **Rejected** 及 **Overload indications** | 只適用於 Ordered，表示容量不足而未獲准的工作，以及該連線收到的有界限過載通知。 |
-| **Status** | 明確的狀態摘要，例如 **Normal**、**Polling queued**、**Overload observed** 或 **Output saturated**。 |
+![支援診斷視窗提供即時連線監控與一鍵下載診斷日誌](./figures/support-diagnostics.png)
 
-破折號表示該結果不適用於該請求類別。**No sample** 表示目前的准入等待時間範圍內，
-該類別沒有已獲准的請求。
+1. **連線活動檢視**：
+   - 顯示目前已連線的 Web HMI 瀏覽器與客戶端應用程式連線狀態。
+   - 監測即時資料輪詢 (Poll) 與控制命令 (Ordered) 的連線頻率與健康度，確保上位程式與控制器通訊順暢。
+2. **下載支援診斷日誌 (Download diagnostic log)**：
+   - 當現場試車遇到疑難問題需動程科技工程團隊協助時，點選 **Download diagnostic log** 按鈕。
+   - 瀏覽器將自動下載打包好的 `botnana-support-*.zip` 檔案（內含控制器版本、服務運作狀態及系統日誌，上限 50 MiB）。
+   - 日誌已自動過濾私密憑證與機台座標資料，可安心透過電子郵件或技術支援管道提供給動程工程師進行分析。
 
-用戶端關閉後，其欄位會消失。重新連線會取得新的暫時連線 ID，計數器也會重設；HMI
-不會保留流量歷史，也不會顯示對端 IP 位址、請求內容、回應或設定值。關閉
-**Support diagnostics** 或返回 About 後，每秒一次的診斷重新整理會停止。
+### 機台設定備份與災難復原
 
-此功能是內建診斷工具，不是客戶 WebSocket API。自行開發的 HMI 仍應只使用支援的
-[JSON API](./json-api.md)。畫面上的請求速率只是流量量測結果，不能證明運動命令已
-完成，也不代表控制器每秒可以執行相同數量的任意 rtForth 程式。
-
-### 下載支援診斷資料
-
-經授權的服務工程師要求控制器證據時，請開啟 **About**，選擇 **Open support
-diagnostics**，再使用 **Download diagnostic log**。只開啟此畫面不會收集檔案。
-
-瀏覽器會下載帶有時間戳記的 `botnana-support-*.zip`，其中包含：
-
-- 簡要的人員可讀摘要及資訊清單（manifest）；
-- 經允許的控制器版本、服務狀態、運作時間及網路鏈路狀態；
-- 目前及前一次開機中，`bnc-motion` 與 `bnc-hmi` 的分類結構化記錄；以及
-- 來源無法取得或證據遭截短時的明確通知。
-
-完整 ZIP 上限為 50 MiB，但此大小不代表固定的記錄時數。涵蓋時間取決於可回報事件
-的發生頻率，以及控制器的 journal 保留狀況。狀態安定的控制器可能涵蓋許多小時，
-或涵蓋目前及前一次開機中可取得的部分；若啟動、重試或失敗事件集中發生，則會更快
-用完容量。請檢查 `summary.txt`，以及 manifest 中的 `includedFrom`、
-`includedThrough`、`sourceCaptureTruncated` 與 `archiveBudgetTruncated` 欄位，確認
-該下載檔案的確切涵蓋範圍。檔案遠小於 50 MiB 是正常情況。
-
-系統會在兩項服務及兩次開機之間公平保留最新記錄。Botnana Control 不會重新啟動
-服務、啟用額外記錄、改變機台、保留新產生的 ZIP，也不會自動上傳。憑證、機台設定、
-請求內容、rtForth script、設定值及對端 IP 位址都會排除。
-
-請由操作人員透過現場核准的支援管道傳送 ZIP。若運動控制連線無法使用，但 HTTP HMI
-仍可開啟，即時流量會顯示為無法取得，**Download diagnostic log** 仍可使用。
+Botnana Control 支援機台設定檔的直接匯出與匯入：
+* **匯出備份**：在 **About** 頁面或設定工具列中，點選 **Download configuration**，即可將現有的 `/etc/botnana-control/motion.toml` 下載保存至電腦。
+* **上傳復原**：在更換控制器硬體或災難復原時，點選 **Upload configuration** 並選擇先前備份的 `.toml` 檔案，經安全性確認後系統將自動寫入並重啟生效。即使在控制器尚未連線的離線頁面上，亦可直接使用復原上傳功能。
 
 ### 檢查及編輯從站設定
 

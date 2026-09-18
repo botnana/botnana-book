@@ -29,6 +29,7 @@
         <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/zh-tw-1f872bb8.css">
 
 
         <!-- Provide site root and default themes to javascript -->
@@ -36,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-335275fb.js";
+            window.path_to_searchindex_js = "searchindex-ce9c6015.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -204,11 +205,11 @@
                         <div style="text-align: center;">
 <h1 id="botnana-control"><a class="header" href="#botnana-control">Botnana Control</a></h1>
 <h2 id="the-official-user-manual"><a class="header" href="#the-official-user-manual">The Official User Manual</a></h2>
-<h3 id="version-1144"><a class="header" href="#version-1144">Version 1.14.4</a></h3>
-<h4 id="document-revision-5文件修訂-5"><a class="header" href="#document-revision-5文件修訂-5">Document Revision 5（文件修訂 5）</a></h4>
+<h3 id="version-11412"><a class="header" href="#version-11412">Version 1.14.12</a></h3>
+<h4 id="document-revision-6文件修訂-6"><a class="header" href="#document-revision-6文件修訂-6">Document Revision 6（文件修訂 6）</a></h4>
 <p>Author: Sirius Wu</p>
 <p>Copyright © 2025 Mapacode Inc. All rights reserved.</p>
-<p>August 19, 2026</p>
+<p>September 18, 2026</p>
 </div>
 
 <div style="break-before: page; page-break-before: always;"></div>
@@ -293,8 +294,8 @@
 <tr><td>Operating system</td><td>Linux distribution Debian Buster 4.19.232-rt104</td></tr>
 <tr><td>Real-time System</td><td>Preempt RT + Xenomai 3.2.3 Mercury Core</td></tr>
 <tr><td>EtherCAT Master</td><td>BotnanaCAT 2.0.1 based on IgH EtherCAT master branch stable 1.5 commit c8a512ac0</td></tr>
-<tr><td>Botnana Control</td><td>v1.14.4</td></tr>
-<tr><td>Period</td><td>2 ms</td></tr>
+<tr><td>Botnana Control</td><td>v1.14 (最新發布版本 v1.14.12)</td></tr>
+<tr><td>Period</td><td>2 ms (可於設定檔調整)</td></tr>
 <tr><td>BN-B3A-10S 可控軸數</td><td>1–10</td></tr>
 <tr><td>支援 EtherCAT 從站數</td><td>1–16</td></tr>
 <tr><td>執行期掃描容量</td><td>16 個 EtherCAT 從站</td></tr>
@@ -308,8 +309,8 @@
 <p>所有等級的 Botnana Control 都支援以下規格：</p>
 <ul>
 <li>支援 1–16 個 EtherCAT 從站；BN-B3A-10S 最多提供 10 個運動軸。</li>
-<li>支援 Panasonic、Delta、Sanyo Denki 和 Yaskawa 的 EtherCAT 馬達驅動器。基本上有符合 CiA 402 規範的馬達驅動器都有支援。</li>
-<li>支援 Beckhoff，Delta 的類比及數位輸出入模組。因應客戶需求陸續整合其他廠牌的 EtherCAT 模組。</li>
+<li>支援 Panasonic、Delta (台達)、Sanyo Denki、Yaskawa (安川)、Oriental Motor (東方馬達 AZD2B/AZD4A) 等 EtherCAT 馬達驅動器。符合 CiA 402 規範之馬達驅動器皆可支援。</li>
+<li>支援 Beckhoff、Delta、Syn-Tek (先達工控 R1 系列)、研華 (Advantech) 的類比及數位輸出入模組，並支援 R1-EC5621 脈衝型驅動模組。因應客戶需求陸續整合其他廠牌的 EtherCAT 模組。</li>
 </ul>
 <h3 id="基本功能"><a class="header" href="#基本功能">基本功能</a></h3>
 <ul>
@@ -323,217 +324,98 @@
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="系統架構"><a class="header" href="#系統架構">系統架構</a></h1>
-<p>Botnana Control 1.14.4 將瀏覽器內容提供、設定與生命週期協調、具權限的軟體更新，
-以及即時運動控制分開處理。因此，控制器執行環境故障時，不會自動移除 HMI 或已儲存
-的機台設定。</p>
-<h2 id="部署概觀"><a class="header" href="#部署概觀">部署概觀</a></h2>
-<pre><code class="language-text">Operator browser                          Customer application
-  | HTTP :3000       | WebSocket :3012        | WebSocket :3012
-  v                  +--------------------+    |
-+----------------------+                  v    v
-| hmi-server           |             +------------------------+
-| unprivileged HTTP    |             | motion-server          |
-+----------+-----------+             | profile + lifecycle    |
-           |                         +-----------+------------+
-           | fixed local Unix socket             |
-           v                           supervised runtime
-+----------------------+                         |
-| update-agent         |               +---------v------------+
-| package inspection  |               | rtForth VM + motion  |
-| and staging         |               | engine + EtherCAT HAL|
-+----------------------+               +---------+------------+
-                                                 |
-                                       EtherCAT master / slaves
+<p>Botnana Control 是專為工業自動化與半導體/精密設備設計的即時運動控制平台。系統將網頁操作介面 (Web HMI)、即時運動控制核心以及 EtherCAT 現場總線通訊進行清晰的分層設計，確保高可靠度、高即時性與維護便利性。</p>
+<h2 id="系統架構概觀"><a class="header" href="#系統架構概觀">系統架構概觀</a></h2>
+<pre><code class="language-text">+-----------------------+              +-----------------------+
+|  操作人員瀏覽器 (HMI)   |              |  客戶端應用程式 (Host)  |
++-----------+-----------+              +-----------+-----------+
+            | HTTP :3000                           | WebSocket :3012
+            | (Web UI &amp; 更新)                       | (即時運動控制 API)
+            v                                      v
++--------------------------------------------------------------+
+|                     Botnana Control 控制器                    |
+|                                                              |
+|  [HMI 服務] (HTTP :3000)                                      |
+|    - 網頁操作介面提供                                          |
+|    - 軟體套件檢查與更新管理                                      |
+|                                                              |
+|  [運動控制核心] (WebSocket :3012)                              |
+|    - 即時通訊與 JSON-RPC / rtForth 腳本處理                     |
+|    - 多軸協調運動、路徑插補與軌跡規劃 (1D / 2D / 3D / SINE)       |
+|    - 機台設定持久化管理 (/etc/botnana-control/motion.toml)       |
+|    - 控制器生命週期監督與開機診斷                               |
+|                                                              |
+|  [EtherCAT 主站引擎]                                          |
+|    - 週期性程序資料交換 (PDO, 預設 2ms 週期)                    |
+|    - 非週期性信箱通訊 (SDO 參數設定與讀取)                        |
+|    - 分布式時鐘 (DC) 同步與自動參考時鐘恢復                      |
++-------------------------------+------------------------------+
+                                | EtherCAT 現場總線
+                                v
++--------------------------------------------------------------+
+|                    EtherCAT 從站設備 (Slaves)                 |
+|                                                              |
+|  - 伺服驅動器 (台達 ASDA-A2/B3, Panasonic A5B/A6B, Yaskawa)   |
+|  - 多軸驅動器 (Oriental Motor AZD2B-KED, AZD4A-KED)          |
+|  - 脈衝型驅動模組 (先達/台達 R1-EC5621)                        |
+|  - 遠端 I/O 模組 (先達/台達 R1 系列, Beckhoff, 研華 AMAX)       |
+|  - 總線耦合器、編碼器與通訊閘道器                              |
++--------------------------------------------------------------+
 </code></pre>
-<p>圖中的 <code>Operator browser</code> 是操作人員瀏覽器，<code>Customer application</code> 是客戶應用程式；
-<code>profile + lifecycle</code> 表示設定與生命週期協調，<code>supervised runtime</code> 則表示受監督的
-執行世代。圖內只使用 ASCII 文字，以確保 HTML 與 PDF 中的框線對齊。</p>
-<p>瀏覽器會與控制器建立兩條獨立的網路連線：</p>
-<ul>
-<li>HTTP 連接埠 <code>3000</code> 用於取得封裝在套件內的 HMI，並執行經檢查的軟體更新程序。</li>
-<li>WebSocket 連接埠 <code>3012</code> 傳送控制器狀態、具有版本檢查的設定作業、即時值、命令及
-rtForth 求值要求。</li>
-</ul>
-<p>客戶應用程式直接連至 Motion WebSocket。Rust <code>hmi-server</code> 不會代理即時流量，
-<code>motion-server</code> 也不提供瀏覽器檔案。HMI JavaScript 套件會在建立 Debian 套件前
-完成編譯；控制器不再需要部署 Node.js HTTP 伺服器。</p>
-<h2 id="程序及權限邊界"><a class="header" href="#程序及權限邊界">程序及權限邊界</a></h2>
-<p>systemd 以分開的責任啟動已安裝元件。</p>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>元件</th><th>責任及邊界</th></tr>
-</thead>
-<tbody>
-<tr><td><code>bnc-update.service</code></td><td>只在開機時執行更新決策，而且早於一般 HMI 及 Motion 服務。每個已確認的受管理套件最多嘗試安裝一次。</td></tr>
-<tr><td><code>update-agent</code> 常駐程序</td><td>管理套件檢查、具有版本號的更新狀態、不可分割的暫存、保留套件及 Motion 准入決策。固定的本機 socket 不接受任意路徑或 shell 命令。</td></tr>
-<tr><td><code>hmi-server</code></td><td>以 systemd 動態使用者執行。它串流套件內的靜態檔案、寫入有界限的訊息記錄，並只將固定的更新操作轉交給 <code>update-agent</code>；不具套件管理程式或一般 root 權限。</td></tr>
-<tr><td><code>motion-server</code></td><td>管理 WebSocket 伺服器、共用機台設定、EtherCAT 拓撲程序、執行環境監督器及目前的即時控制器世代。</td></tr>
-<tr><td>EtherCAT 服務及主站</td><td>管理硬體抽象層所使用的原生 EtherCAT 主站及裝置通訊。</td></tr>
-</tbody>
-</table>
-</div>
-<p>開機更新會先得到終止決策，才允許 HMI 及 Motion 啟動。安裝失敗可能留下持久的
-Motion 封鎖；此時會儘可能啟動 HMI，讓操作人員檢查結果並安排經檢查的復原套件，
-而 <code>motion-server</code> 仍維持封鎖。</p>
-<h2 id="motion-server-及可替換的執行世代"><a class="header" href="#motion-server-及可替換的執行世代">Motion Server 及可替換的執行世代</a></h2>
-<p><code>motion-server</code> 包含非即時伺服器／控制面，以及可替換的即時控制器世代。</p>
-<pre><code class="language-text">WebSocket connections
-        |
-        v
-+-----------------------------------------------------------+
-| Non-real-time motion-server control plane                 |
-|                                                           |
-| Request admission     Shared MachineProfile               |
-| LiveConnectionRegistry RuntimeSupervisor                  |
-| Configuration and topology request coordinators          |
-+-------------------------------+---------------------------+
-                                |
-                      generation-bound channels
-                                |
-+-------------------------------v---------------------------+
-| Runtime generation N                                      |
-| request/response tasks &lt;-&gt; rtForth VM tasks               |
-| controller task -&gt; motion engine -&gt; hardware abstraction  |
-+-----------------------------------------------+-----------+
-                                                |
-                                      EtherCAT master
-</code></pre>
-<p>圖中的 <code>control plane</code> 是非即時控制面，<code>generation-bound channels</code> 是世代專用通道，
-而 <code>Runtime generation N</code> 是可替換的第 N 個控制器執行世代。</p>
-<p>程序層級的伺服器在控制器世代啟動、替換或故障時仍可使用。因此 HMI 可以繼續顯示
-生命週期狀態、保留的拓撲證據及設定復原控制，而不會將無法取得的即時運動值顯示為正常。</p>
-<p>主要擁有權邊界如下：</p>
-<ul>
-<li><code>MachineProfile</code> 管理已儲存設定檔，以及具有版本檢查的記憶體內共用草稿。</li>
-<li><code>RuntimeSupervisor</code> 管理作用中世代、生命週期、最近一次 Ready 的建置計畫、啟動
-來源，以及最新一次完整的實體拓撲觀察。</li>
-<li><code>LiveConnectionRegistry</code> 管理即時 WebSocket 成員、彙整作用中工作階段的有界限
-流量計數器，並在世代變更時分離或重新繫結每個工作階段。</li>
-<li>每個 WebSocket 工作階段具有對兩個 rtForth 使用者工作之一的世代專用繫結。過期
-繫結不能將工作送至替換後的世代。</li>
-</ul>
-<p>系統針對每條連線進行請求准入。可替換的最新值輪詢可以合併；未獲准的命令不會在之後
-被默默重送。每條連線也具有有界限的輸出工作及佇列，因此緩慢或飽和的用戶端不會阻塞
-其他用戶端的 WebSocket 事件迴圈。Botnana Control 仍最多提供兩個即時 rtForth
-使用者工作階段。</p>
-<p>內建 HMI 從 <strong>About</strong> 開啟的 <strong>Support diagnostics</strong> 畫面，可以要求一份不含請求
-內容的快照，比較兩個作用中連線。登錄檔會標示提出要求的瀏覽器，只回報連線時間及
-有界限的流量／准入計數器，並在連線關閉時移除該欄。系統不會保留流量歷史，也不會
-包含對端位址、請求內容、回應或設定值。</p>
-<p>另一個同源 HTTP 操作只會向 root 擁有的本機支援能力要求一項固定操作。該能力只讀取
-<code>bnc-motion</code> 與 <code>bnc-hmi</code> 目前及前一次開機的記錄，輸出經允許的分類記錄及中繼資料，
-並傳回一份不超過 50 MiB 的記憶體內 ZIP。非特權 HMI 不能選擇 journal 服務、開機、
-路徑、命令或封存選項。此協作及即時比較都不屬於支援的客戶 JSON API。</p>
-<h2 id="控制器啟動及就緒"><a class="header" href="#控制器啟動及就緒">控制器啟動及就緒</a></h2>
-<p>每個控制器世代都由不可變的 <code>ControllerBuildPlan</code> 建立。計畫包含該次嘗試所選用的
-控制板、週期、Motion 設定、軸、軸組、計時器、EtherCAT 從站及啟動腳本。</p>
-<p>只有在下列有界限的程序全部成功後，世代才會成為 <strong>Ready</strong>：</p>
+<h2 id="通訊連接埠與介面"><a class="header" href="#通訊連接埠與介面">通訊連接埠與介面</a></h2>
+<p>控制器對外提供兩個獨立的網路通訊埠：</p>
 <ol>
-<li>掃描完整的實體 EtherCAT 鏈，但不採用掃描結果。</li>
-<li>比較每個預期位置上觀察到的供應商及產品身分。</li>
-<li>保留 EtherCAT 主站，並在保留的執行環境再次檢查連線、回應從站數、身分及已穩定
-的 PREOP 狀態。</li>
-<li>在控制器能力交給 VM 前，完成必要的裝置 mailbox 作業及 PDO 映射設定。</li>
-<li>啟用主站並執行即時控制器。</li>
-<li>等待必要的啟動 mailbox 作業完成、穩定的 OP 狀態，以及完整的程序資料工作計數器。</li>
-<li>發布 <strong>Ready</strong>，再將即時 WebSocket 工作階段繫結或重新繫結至該確切世代。</li>
+<li>
+<p><strong>HTTP 連接埠 <code>3000</code> (Web HMI 與軟體管理)</strong></p>
+<ul>
+<li>供工程師與操作人員透過瀏覽器（如 Google Chrome）直接連線，進行設備試車、監控、I/O 測試、設定檔備份/還原與軟體升級。</li>
+<li>不需額外安裝專用軟體，跨平台支援各類上位裝置。</li>
+</ul>
+</li>
+<li>
+<p><strong>WebSocket 連接埠 <code>3012</code> (即時運動控制 API)</strong></p>
+<ul>
+<li>供客戶端自動化主控程式（如 C#、Python、JavaScript、C++）直連。</li>
+<li>採用標準 JSON-RPC 與即時腳本求值，提供極低延遲（啟用 <code>TCP_NODELAY</code>，通訊延遲約 0.14 ms）的即時運動指令派送與狀態回讀。</li>
+<li>支援官方釋出的 <code>botnana-apis</code> 客戶端函式庫。</li>
+</ul>
+</li>
 </ol>
-<p>主站成功啟用本身不代表已經就緒。如果任何必要步驟失敗，或操作人員停止拓撲重試，
-該世代會維持無法使用；伺服器會發布終止生命週期狀態，不會發布錯誤的 <strong>Ready</strong>。</p>
-<h2 id="重新啟動復原及拓撲來源"><a class="header" href="#重新啟動復原及拓撲來源">重新啟動、復原及拓撲來源</a></h2>
-<p>不同操作會刻意選用不同的控制器計畫：</p>
+<h2 id="控制器生命週期與運作狀態"><a class="header" href="#控制器生命週期與運作狀態">控制器生命週期與運作狀態</a></h2>
+<p>Botnana Control 嚴格區分控制器的運作狀態，防止在硬體未就緒時執行運動指令：</p>
 <div class="table-wrapper">
 <table>
 <thead>
-<tr><th>操作</th><th>控制器來源</th></tr>
+<tr><th>控制器狀態</th><th>說明與特徵</th></tr>
 </thead>
 <tbody>
-<tr><td>程序初次啟動</td><td>從 <code>/etc/botnana-control/motion.toml</code> 載入的設定及已設定的啟動腳本。</td></tr>
-<tr><td>一般 <strong>Rescan EtherCAT</strong></td><td>最近一次 Ready 世代的不可變建置計畫（<strong>Last working settings</strong>）；不會套用新儲存的設定編輯。</td></tr>
-<tr><td>故障狀態下的 <strong>Start controller</strong></td><td>操作人員檢查過的確切已儲存設定版本；尚未儲存的變更會阻止此啟動。</td></tr>
-<tr><td>拓撲變更的 <strong>Approve, save, and start</strong></td><td>由伺服器管理的核准操作所儲存之完整且確切的拓撲提案及設定。</td></tr>
+<tr><td><strong>Ready (就緒)</strong></td><td>EtherCAT 總線已成功配置，所有實體從站皆進入穩定操作模式 (<strong>OP</strong>)，週期資料交換正常。此時允許執行軸運動與即時控制。</td></tr>
+<tr><td><strong>Starting (啟動中)</strong></td><td>控制器正在進行 EtherCAT 拓撲掃描、從站身分核對、Mailbox 參數配置及狀態轉換。畫面會顯示啟動進度與重試時間。</td></tr>
+<tr><td><strong>Unavailable / Fault (無法使用 / 故障)</strong></td><td>控制器未啟動或啟動逾時。系統具備<strong>可歸因的開機診斷</strong>能力，當開機逾時時會明確指出未進入 OP 的具體從站位置（例如 <code>slaves not in OP: Slave 8 (PREOP)</code>），大幅縮短現場排錯時間。</td></tr>
 </tbody>
 </table>
 </div>
-<p>一般替換執行環境時，監督器會停止接受舊世代的新工作、排空已接受要求、分離即時工作
-階段、關閉舊世代，再以選定來源建立替換世代。系統會先重新繫結正常工作階段，才發布
-<strong>Ready</strong>。如果一個工作階段無法重新繫結，只會關閉該工作階段；其他工作階段及正常
-控制器仍可使用。</p>
-<p>拓撲核准、持久儲存及啟動由控制器協調。瀏覽器是檢查者及命令來源，不是多重要求所組成
-之儲存／啟動交易的擁有者。</p>
-<h2 id="設定及執行狀態"><a class="header" href="#設定及執行狀態">設定及執行狀態</a></h2>
-<p>HMI 會顯示數個相關狀態，但其擁有者及生命週期不同。</p>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>狀態</th><th>擁有者及持久性</th><th>意義</th></tr>
-</thead>
-<tbody>
-<tr><td>偵測拓撲</td><td><code>RuntimeSupervisor</code> 保留的最新完整觀察；不是持久設定檔</td><td>實體掃描所得的唯讀證據。未知拓撲不會回報為零個從站。</td></tr>
-<tr><td>共用草稿</td><td><code>MachineProfile</code> 記憶體及草稿版本</td><td>所有 HMI 設定工作區共用且已驗證的待處理編輯；儲存前不具持久性。</td></tr>
-<tr><td>已儲存設定</td><td><code>/etc/botnana-control/motion.toml</code>，以及伺服器目前的儲存版本</td><td>持久的預定設定；儲存不會改變運作中的控制器。</td></tr>
-<tr><td>上次正常運作設定</td><td><code>RuntimeSupervisor</code> 保留的不可變 Ready 建置計畫</td><td>一般重新掃描，以及取消未核准拓撲草稿時的來源。</td></tr>
-<tr><td>作用中控制器</td><td>目前的執行世代</td><td>成功啟動時實際選用的值及硬體資源。</td></tr>
-<tr><td>更新狀態</td><td><code>/var/lib/botnana-control-update/</code> 下由 root 管理的檔案</td><td>待處理套件、報告、保留套件、更新版本及 Motion 封鎖。</td></tr>
-</tbody>
-</table>
-</div>
-<p>瀏覽器進度及快取資料列只是呈現狀態，不具權威性。重新整理或重新連線時，會以伺服器
-管理的設定、拓撲、生命週期及更新狀態取代它們。</p>
-<h2 id="即時執行"><a class="header" href="#即時執行">即時執行</a></h2>
-<p>執行世代使用有界限且由世代管理的請求及回應通道，在 WebSocket 要求與 rtForth VM
-之間傳遞資料。VM 具有五個合作式即時工作：</p>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>工作</th><th>作用</th></tr>
-</thead>
-<tbody>
-<tr><td>NC 工作</td><td>執行背景數值控制腳本及複雜運動程序。</td></tr>
-<tr><td>使用者工作 1 及 2</td><td>執行兩個即時 WebSocket 應用程式工作階段的要求。</td></tr>
-<tr><td>Controller 工作</td><td>依設定的 <code>period_us</code> 執行週期性運動控制引擎。</td></tr>
-<tr><td>SFC 工作</td><td>執行順序控制邏輯。</td></tr>
-</tbody>
-</table>
-</div>
-<p>運動引擎管理軸與軸組協調、限制、補間、路徑預視、計時器及程序 I/O。硬體抽象層透過
-原生 EtherCAT 主站，將這些責任轉換至支援的 EtherCAT 裝置。設定擁有權會留在週期
-工作之外，直到刻意建立新的控制器世代。</p>
-<h2 id="軟體更新信任邊界"><a class="header" href="#軟體更新信任邊界">軟體更新信任邊界</a></h2>
-<p>瀏覽器可以提供 Debian 套件內容，但不會取得 root 或套件管理程式權限。
-<code>hmi-server</code> 會限制 HTTP 上傳，並以固定的 Unix socket 通訊協定串流至具權限的
-更新代理程式。<code>update-agent</code> 會獨立檢查套件身分、架構、大小、中繼資料及 SHA-256，
-再將確認操作綁定至操作人員檢查過的更新狀態版本。</p>
-<p>已確認的 Botnana Control 套件會在下次開機重新驗證，並只嘗試安裝一次。更新程式會
-在執行 <code>dpkg</code> 前記錄 Motion 封鎖；只有受管理的安裝成功才能清除封鎖。因此 HMI 及
-Motion 服務不會將不完整的套件安裝誤認為安全的運動控制執行環境。</p>
-<p>此邊界不是使用者驗證。Botnana Control 1.14.4 沒有新增 TLS、應用程式登入或套件
-簽章身分。任何可連至控制網路 HMI 的用戶端都能提交套件供檢查，因此部署環境必須依賴
-受保護且由現場管理的網路及操作程序。</p>
-<h2 id="故障隔離"><a class="header" href="#故障隔離">故障隔離</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>故障</th><th>架構上的結果</th></tr>
-</thead>
-<tbody>
-<tr><td>控制器世代故障</td><td>HTTP HMI 及程序層級的 WebSocket 狀態／設定作業仍可使用；即時執行環境操作無法使用。</td></tr>
-<tr><td><code>motion-server</code> 服務停止</td><td>獨立的 HMI HTTP 服務仍可載入，但控制器 WebSocket 資料無法使用。</td></tr>
-<tr><td>HMI HTTP 服務停止</td><td>不會因此替換或停止作用中的控制器世代；已連線的客戶 WebSocket 是另一條獨立路徑。</td></tr>
-<tr><td>一條 WebSocket 過載或停止讀取</td><td>每條連線的准入及輸出限制會隔離其他連線；飽和連線可能被關閉。</td></tr>
-<tr><td>無法證明執行環境清理完成</td><td>拒絕同一程序內的替換；HMI 會要求授權的 <code>bnc-motion</code> 服務重新啟動。</td></tr>
-<tr><td>受管理套件可能只完成部分安裝</td><td>持久更新狀態會封鎖 Motion，同時保留更新及復原邊界。</td></tr>
-</tbody>
-</table>
-</div>
-<h2 id="客戶-api-邊界"><a class="header" href="#客戶-api-邊界">客戶 API 邊界</a></h2>
-<p>已發行的 <code>botnana-apis</code> 函式庫定義支援的客戶 WebSocket API。內建 HMI 的設定版本、
-控制器復原、拓撲維護、連線流量診斷及更新通訊協定都是產品內部協作，除非之後的公開
-API 版本明確提升其狀態。不能只因內部路由可在網路上看到，就將它們視為客戶 API。</p>
-<p>操作程序請參閱 <a href="#ethercat-控制器復原">EtherCAT 控制器復原</a>、
-<a href="#檢查並設定-ethercat-拓撲">檢查並設定 EtherCAT 拓撲</a>及
-<a href="#軟體更新">軟體更新</a>。支援的客戶整合邊界請參閱 <a href="#json-api">JSON API</a>。</p>
+<p>即使控制器處於 Unavailable 狀態，Web HMI 與設定管理功能仍可正常使用，操作人員可檢視目前硬體偵測狀態、檢查設定檔或重新掃描總線。</p>
+<h2 id="設定檔持久化與安全防護"><a class="header" href="#設定檔持久化與安全防護">設定檔持久化與安全防護</a></h2>
+<p>機台的所有核心設定均儲存於 <code>/etc/botnana-control/motion.toml</code>（TOML 格式），包括：</p>
+<ul>
+<li>運動控制週期 (<code>period_us</code>)、軸數與軸組容量。</li>
+<li>EtherCAT 從站列表、產品身分、軸通道與 I/O 映射。</li>
+<li>軸參數（速度、加速度、原點復歸模式、電子齒輪比/脈衝當量）。</li>
+<li>軸組協調參數（幾何類型、同動軸映射、加加速度限制）。</li>
+</ul>
+<h3 id="安全管理原則"><a class="header" href="#安全管理原則">安全管理原則：</a></h3>
+<ol>
+<li><strong>升級保護機制</strong>：Debian 套件升級時，系統 100% 保留現有 <code>/etc/botnana-control/motion.toml</code>，絕不覆蓋客戶已試車完成的參數。</li>
+<li><strong>HMI 設定安全流程</strong>：HMI 上的編輯需經過審查 (Review) 與確認儲存 (Save)，儲存後的設定會在下一次受控啟動時正式套用，避免運作中參數突變造成機械危險。</li>
+<li><strong>災難復原與配置傳輸</strong>：操作介面提供一鍵下載設定備份，並支援在斷線或更換硬體時上傳復原設定檔。</li>
+</ol>
+<h2 id="ethercat-總線整合優勢"><a class="header" href="#ethercat-總線整合優勢">EtherCAT 總線整合優勢</a></h2>
+<ol>
+<li><strong>多品牌伺服與步進驅動器支援</strong>：支援標準 CiA 402 設定檔與原廠專用模式（如東方馬達 AZ 系列原點模式 24）。</li>
+<li><strong>即時總線熱恢復 (DC Recovery)</strong>：具備 EtherCAT 分布式時鐘 (DC) 自動參考時鐘恢復能力，當總線發生短暫斷線或重連時，自動重新同步鎖定時鐘，防止軸控異常中斷。</li>
+<li><strong>實體從站 AL State 即時可見度</strong>：HMI 偵測列表中即時呈現各從站的應用層通訊狀態（OP、SAFEOP、PREOP、INIT），一目了然掌握總線健康度。</li>
+</ol>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="botnana-control-入門-1"><a href="#botnana-control-入門-1" class="header">Botnana Control 入門</a></h1>
 <h2 id="botnana-control-入門"><a class="header" href="#botnana-control-入門">Botnana Control 入門</a></h2>
@@ -564,67 +446,50 @@ API 版本明確提升其狀態。不能只因內部路由可在網路上看到�
 </div>
 <p><strong>Slave Configuration</strong>、<strong>Motion</strong> 及 <strong>Axis Group</strong> 是同一份共用設定草稿的不同
 檢視。開始另一項獨佔設定或維護操作前，請先儲存或捨棄目前的編輯。</p>
-<h3 id="診斷-hmi-websocket-流量"><a class="header" href="#診斷-hmi-websocket-流量">診斷 HMI WebSocket 流量</a></h3>
-<p>客戶可以使用內建 HMI，檢查自行開發 HMI 的流量。請讓客戶 HMI 維持連線，開啟
-<strong>About</strong>，選擇 <strong>Open support diagnostics</strong>，再找到 <strong>WebSocket connection
-traffic</strong>。</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/support-diagnostics.png" alt="Support diagnostics 比較兩個作用中用戶端並顯示診斷下載操作"><span class="img-wrapper"><img src="figures/support-diagnostics.png" alt="Support diagnostics 比較兩個作用中用戶端並顯示診斷下載操作"></span></label></p>
-<p>此已安裝目標截圖顯示內建 HMI 及另一個作用中用戶端。連線 ID、速率及計數器都是
-試車範例，不是文件所定義的預設值。</p>
-<p>比較表只顯示目前作用中的連線：</p>
+<h3 id="實體從站-al-state-狀態與開機診斷"><a class="header" href="#實體從站-al-state-狀態與開機診斷">實體從站 AL State 狀態與開機診斷</a></h3>
+<p>在 <strong>Controller &amp; Topology</strong> 工作區的 <strong>Detected Slaves (偵測從站)</strong> 表格中，系統提供各從站的即時 Application Layer (AL) 通訊狀態：</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/detected-slaves-al-state.png" alt="Detected slaves 顯示實體從站及即時 AL State 運作狀態"><span class="img-wrapper"><img src="figures/detected-slaves-al-state.png" alt="Detected slaves 顯示實體從站及即時 AL State 運作狀態"></span></label></p>
 <ul>
-<li><strong>This built-in HMI</strong> 是正在顯示此表格的瀏覽器。</li>
-<li><strong>Other client</strong> 是另一個作用中的 WebSocket 應用程式；試車時通常是客戶 HMI。</li>
-<li><strong>Active clients</strong> 會對照系統最多支援的兩個 rtForth WebSocket 工作階段顯示。</li>
-<li>每個用戶端都分為 <strong>Poll requests</strong> 及 <strong>Ordered requests</strong>，避免可取代輪詢的延遲
-掩蓋逐一處理的工作。</li>
-</ul>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>欄位</th><th>意義</th></tr>
-</thead>
-<tbody>
-<tr><td><strong>Poll requests</strong></td><td>已辨識且可取代的最新值讀取。新的同等輪詢可以取代較舊的待處理輪詢。</td></tr>
-<tr><td><strong>Ordered requests</strong></td><td>其他所有訊框，包括心跳、單次讀取、變更狀態的請求、未知 script 及無效訊框。每個已獲准請求都會逐一處理，絕不合併。<strong>Ordered</strong> 不表示請求一定會變更狀態，也不表示會同步完成。</td></tr>
-<tr><td><strong>Requests/s</strong></td><td>最近十秒內該類別收到的訊框平均速率；連線時間不足十秒時使用較短的連線時間。診斷重新整理本身屬於 Ordered，也會計入。</td></tr>
-<tr><td><strong>Received</strong> 及 <strong>Admitted</strong></td><td>從連線建立後，伺服器收到的該類別訊框數，以及通過准入控制的請求數。</td></tr>
-<tr><td><strong>Admission wait p95</strong></td><td>最近時間範圍內，從收到訊框直到成功准入所需時間的第 95 百分位數。不包含遭拒絕、合併或捨棄的工作，也不是回應時間、命令完成時間、運動完成時間或網路往返時間。</td></tr>
-<tr><td><strong>Coalesced</strong>、<strong>Discarded</strong> 及 <strong>Pending</strong></td><td>只適用於 Poll，分別表示已被取代、移除或保留的最新值工作。</td></tr>
-<tr><td><strong>Rejected</strong> 及 <strong>Overload indications</strong></td><td>只適用於 Ordered，表示容量不足而未獲准的工作，以及該連線收到的有界限過載通知。</td></tr>
-<tr><td><strong>Status</strong></td><td>明確的狀態摘要，例如 <strong>Normal</strong>、<strong>Polling queued</strong>、<strong>Overload observed</strong> 或 <strong>Output saturated</strong>。</td></tr>
-</tbody>
-</table>
-</div>
-<p>破折號表示該結果不適用於該請求類別。<strong>No sample</strong> 表示目前的准入等待時間範圍內，
-該類別沒有已獲准的請求。</p>
-<p>用戶端關閉後，其欄位會消失。重新連線會取得新的暫時連線 ID，計數器也會重設；HMI
-不會保留流量歷史，也不會顯示對端 IP 位址、請求內容、回應或設定值。關閉
-<strong>Support diagnostics</strong> 或返回 About 後，每秒一次的診斷重新整理會停止。</p>
-<p>此功能是內建診斷工具，不是客戶 WebSocket API。自行開發的 HMI 仍應只使用支援的
-<a href="#json-api">JSON API</a>。畫面上的請求速率只是流量量測結果，不能證明運動命令已
-完成，也不代表控制器每秒可以執行相同數量的任意 rtForth 程式。</p>
-<h3 id="下載支援診斷資料"><a class="header" href="#下載支援診斷資料">下載支援診斷資料</a></h3>
-<p>經授權的服務工程師要求控制器證據時，請開啟 <strong>About</strong>，選擇 <strong>Open support
-diagnostics</strong>，再使用 <strong>Download diagnostic log</strong>。只開啟此畫面不會收集檔案。</p>
-<p>瀏覽器會下載帶有時間戳記的 <code>botnana-support-*.zip</code>，其中包含：</p>
+<li><strong>AL State 欄位</strong>：
 <ul>
-<li>簡要的人員可讀摘要及資訊清單（manifest）；</li>
-<li>經允許的控制器版本、服務狀態、運作時間及網路鏈路狀態；</li>
-<li>目前及前一次開機中，<code>bnc-motion</code> 與 <code>bnc-hmi</code> 的分類結構化記錄；以及</li>
-<li>來源無法取得或證據遭截短時的明確通知。</li>
+<li><code>OP</code>（綠色標示）：表示從站處於正常運作狀態 (Operational)，週期性資料 (PDO) 正常交換中。</li>
+<li><code>SAFEOP</code> / <code>PREOP</code> / <code>INIT</code>（紅色/警示標示）：表示該從站尚未進入 OP，常見於接線鬆脫、硬體設定不符或馬達驅動器報警。</li>
 </ul>
-<p>完整 ZIP 上限為 50 MiB，但此大小不代表固定的記錄時數。涵蓋時間取決於可回報事件
-的發生頻率，以及控制器的 journal 保留狀況。狀態安定的控制器可能涵蓋許多小時，
-或涵蓋目前及前一次開機中可取得的部分；若啟動、重試或失敗事件集中發生，則會更快
-用完容量。請檢查 <code>summary.txt</code>，以及 manifest 中的 <code>includedFrom</code>、
-<code>includedThrough</code>、<code>sourceCaptureTruncated</code> 與 <code>archiveBudgetTruncated</code> 欄位，確認
-該下載檔案的確切涵蓋範圍。檔案遠小於 50 MiB 是正常情況。</p>
-<p>系統會在兩項服務及兩次開機之間公平保留最新記錄。Botnana Control 不會重新啟動
-服務、啟用額外記錄、改變機台、保留新產生的 ZIP，也不會自動上傳。憑證、機台設定、
-請求內容、rtForth script、設定值及對端 IP 位址都會排除。</p>
-<p>請由操作人員透過現場核准的支援管道傳送 ZIP。若運動控制連線無法使用，但 HTTP HMI
-仍可開啟，即時流量會顯示為無法取得，<strong>Download diagnostic log</strong> 仍可使用。</p>
+</li>
+<li><strong>開機逾時明確歸因</strong>：
+若開機期間從站未能在時限內全數進入 OP，系統不再只回報模糊的啟動失敗，而是直接指認未進入 OP 的具體從站位置（例如：<code>slaves not in OP: Slave 8 (PREOP)</code>），讓工程師無需接上分析儀器即可快速排除異常硬體。</li>
+<li><strong>未配置機器導引 (Uncommissioned Configuration)</strong>：
+當新機台或更換新控制器開機時，若偵測到實體從站但 <code>/etc/botnana-control/motion.toml</code> 內無任何已配置從站 (<code>configured_slaves == 0</code>)，HMI 上方會出現清晰的提示橫幅：
+<blockquote>
+<p><strong>Uncommissioned Configuration:</strong> 14 physical EtherCAT slaves detected, but no slaves are configured in motion.toml. Adopt detected topology or upload a configuration to commission this machine.
+此提示明確告知機器處於等待初始試車狀態，而非設定遺失。操作人員可點選 <strong>Adopt detected topology</strong> 一鍵採用掃描結果，或透過 <strong>About</strong> 上傳既有設定檔。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="連線狀態與下載支援診斷資料"><a class="header" href="#連線狀態與下載支援診斷資料">連線狀態與下載支援診斷資料</a></h3>
+<p>在 <strong>About</strong> 頁面點選 <strong>Open support diagnostics</strong>，可開啟系統連線與診斷介面：</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/support-diagnostics.png" alt="支援診斷視窗提供即時連線監控與一鍵下載診斷日誌"><span class="img-wrapper"><img src="figures/support-diagnostics.png" alt="支援診斷視窗提供即時連線監控與一鍵下載診斷日誌"></span></label></p>
+<ol>
+<li><strong>連線活動檢視</strong>：
+<ul>
+<li>顯示目前已連線的 Web HMI 瀏覽器與客戶端應用程式連線狀態。</li>
+<li>監測即時資料輪詢 (Poll) 與控制命令 (Ordered) 的連線頻率與健康度，確保上位程式與控制器通訊順暢。</li>
+</ul>
+</li>
+<li><strong>下載支援診斷日誌 (Download diagnostic log)</strong>：
+<ul>
+<li>當現場試車遇到疑難問題需動程科技工程團隊協助時，點選 <strong>Download diagnostic log</strong> 按鈕。</li>
+<li>瀏覽器將自動下載打包好的 <code>botnana-support-*.zip</code> 檔案（內含控制器版本、服務運作狀態及系統日誌，上限 50 MiB）。</li>
+<li>日誌已自動過濾私密憑證與機台座標資料，可安心透過電子郵件或技術支援管道提供給動程工程師進行分析。</li>
+</ul>
+</li>
+</ol>
+<h3 id="機台設定備份與災難復原"><a class="header" href="#機台設定備份與災難復原">機台設定備份與災難復原</a></h3>
+<p>Botnana Control 支援機台設定檔的直接匯出與匯入：</p>
+<ul>
+<li><strong>匯出備份</strong>：在 <strong>About</strong> 頁面或設定工具列中，點選 <strong>Download configuration</strong>，即可將現有的 <code>/etc/botnana-control/motion.toml</code> 下載保存至電腦。</li>
+<li><strong>上傳復原</strong>：在更換控制器硬體或災難復原時，點選 <strong>Upload configuration</strong> 並選擇先前備份的 <code>.toml</code> 檔案，經安全性確認後系統將自動寫入並重啟生效。即使在控制器尚未連線的離線頁面上，亦可直接使用復原上傳功能。</li>
+</ul>
 <h3 id="檢查及編輯從站設定"><a class="header" href="#檢查及編輯從站設定">檢查及編輯從站設定</a></h3>
 <p>開啟 <strong>Slave Configuration</strong>，檢查已儲存的 EtherCAT 從站及其支援的裝置設定。此
 工作區顯示已儲存設定，不是新的實體掃描。如果需要變更實體順序、身分或別名，請
@@ -931,10 +796,9 @@ EtherCAT 控制器執行期；不是 EtherCAT 從站、驅動器或馬達。重�
 <p>成功清理後發生的啟動失敗並不相同：此時可能再次出現 <strong>Start controller</strong>，因為
 系統仍能安全釋放失敗的替代控制器。只有在 HMI 啟用此操作時才能重試。如果 HMI
 要求重新啟動服務，請改用清理失敗程序。</p>
-<h2 id="收集有限拓撲追蹤記錄"><a class="header" href="#收集有限拓撲追蹤記錄">收集有限拓撲追蹤記錄</a></h2>
-<p>Botnana Control 1.14.4 套件修訂版 19 以上會在 <code>bnc-motion</code> journal 寫入精簡的
-<code>topology.trace</code> 記錄。重新啟動服務或變更設定前，請由獲授權管理員收集；以下
-<code>sudo</code> 命令需要管理員權限：</p>
+<h2 id="收集支援診斷資訊與拓撲追蹤記錄"><a class="header" href="#收集支援診斷資訊與拓撲追蹤記錄">收集支援診斷資訊與拓撲追蹤記錄</a></h2>
+<p>最便捷的方式是直接在 Web HMI 的系統設定或狀態頁面點選 <strong>下載診斷包</strong>（產生 <code>botnana-support-*.zip</code>）。診斷包內已自動封裝完整的系統記錄（含 journal）、硬體偵測報告與目前設定檔，可直接提供給原廠支援團隊分析。</p>
+<p>若需由獲授權管理員自命令列收集精簡的 <code>topology.trace</code> 記錄（Botnana Control v1.14 以上支援），可在重新啟動服務或變更設定前執行下列命令（需要管理員權限）：</p>
 <pre><code class="language-bash">sudo journalctl -u bnc-motion -n 300 --no-pager
 </code></pre>
 <p>請使用控制器世代（generation）串聯核准、預期的已儲存拓撲、發生變化的實體觀察
@@ -1114,12 +978,12 @@ waiting</strong> 並加以確認，該次嘗試會取消、內部檢查工作階
 <code>/etc/botnana-control/motion.toml</code>。此檔案使用
 <a href="https://toml.io/">TOML</a> 格式。</p>
 <p>支援的設定變更應優先使用內建 HMI。HMI 編輯具有版本檢查，並會以一份共用設定儲存。
-HMI 尚有草稿或正在進行拓撲維護時，請勿編輯檔案。若經授權必須手動編輯，應先依現場
-維修程序停止控制器，並備份完整檔案。即使設定檔語法正確，內容錯誤仍可能使控制器
-無法啟動或造成非預期運動設定。</p>
-<p>儲存設定不會改變運作中的控制器。<strong>Active controller</strong> 會保留控制器成功啟動時選用
-的值，直到之後的受控啟動選用已儲存設定為止。一般 <strong>Rescan EtherCAT</strong> 會使用上次
-正常運作設定，不會使用剛儲存的值。</p>
+操作人員亦可透過 HMI 的 <strong>Download configuration</strong> 下載目前設定檔案進行備份，或在需要時透過 <strong>Upload configuration</strong> 還原設定。</p>
+<blockquote>
+<p><strong>升級保護機制</strong>：在進行 Botnana Control Debian 套件更新或升級時，系統會完整保留既有的 <code>/etc/botnana-control/motion.toml</code> 設定檔，絕不覆蓋機台已校正的參數。</p>
+</blockquote>
+<p>HMI 尚有草稿或正在進行拓撲維護時，請勿直接於後台編輯檔案。若經授權必須手動編輯，應先依現場維修程序停止控制器，並備份完整檔案。即使設定檔語法正確，內容錯誤仍可能使控制器無法啟動或造成非預期運動設定。</p>
+<p>儲存設定不會改變運作中的控制器。<strong>Active controller</strong> 會保留控制器成功啟動時選用的值，直到之後的受控啟動選用已儲存設定為止。一般 <strong>Rescan EtherCAT</strong> 會使用上次正常運作設定，不會使用剛儲存的值。</p>
 <h3 id="file-及-server-區段"><a class="header" href="#file-及-server-區段">File 及 Server 區段</a></h3>
 <div class="table-wrapper">
 <table>
@@ -4333,15 +4197,16 @@ repeat
 <ul>
 <li>Xenus XEL-230-36, EtherCAT Servo Drive</li>
 </ul>
-<h3 id="台達電-delta"><a class="header" href="#台達電-delta">台達電 (Delta)</a></h3>
+<h3 id="台達電-delta--先達工控-syn-tek"><a class="header" href="#台達電-delta--先達工控-syn-tek">台達電 (Delta) / 先達工控 (Syn-Tek)</a></h3>
 <ul>
-<li>ASDA-A2-E, EtherCAT(CoE) Drive</li>
-<li>R1-EC5500, EtherCAT to E-BUS power module</li>
-<li>R1-EC6022, 16 digital inputs, sink/source type</li>
-<li>R1-EC7062, 16 digital outputs, sink type</li>
-<li>R1-EC9144, 4 channels 16-bit D/A control module</li>
-<li>R1-EC8124, 4 channels 16-bit single-ended A/D control module</li>
-<li>R1-EC5621, Single-axis pulse output motion control module</li>
+<li>ASDA-A2-E, EtherCAT(CoE) Servo Drive (Delta)</li>
+<li>ASDA-B3-E, EtherCAT(CoE) Servo Drive (Delta)</li>
+<li>R1-EC5500, EtherCAT to E-BUS power module / bus coupler</li>
+<li>R1-EC5621, Single-axis pulse output motion control module (1-axis pulse drive)</li>
+<li>R1-EC6002 / R1-EC6022, 16 digital inputs, sink/source type (with filter)</li>
+<li>R1-EC7062 / R1-EC70E2, 16 digital outputs, sink type</li>
+<li>R1-EC8124, 4 channels 16-bit single-ended A/D analog input module</li>
+<li>R1-EC9144, 4 channels 16-bit D/A analog output module</li>
 </ul>
 <h3 id="elmo"><a class="header" href="#elmo">ELMO</a></h3>
 <ul>
@@ -4364,9 +4229,14 @@ repeat
 <li>GX-MD1611 REMOTE TERMINAL (8 Ch. Digital Input， 8 Ch. Digital Output)</li>
 <li>NX-ECC203, ID5342, OD5121 (IO 模組，測試中)</li>
 </ul>
-<h3 id="oriental-motor"><a class="header" href="#oriental-motor">Oriental Motor</a></h3>
+<h3 id="oriental-motor-東方馬達"><a class="header" href="#oriental-motor-東方馬達">Oriental Motor (東方馬達)</a></h3>
 <ul>
-<li>AZ Series DC power input Multi-Axis Driver</li>
+<li>AZ Series DC power input Multi-Axis Driver
+<ul>
+<li>AZD2B-KED (2-axis DC power driver)</li>
+<li>AZD4A-KED (4-axis DC power driver)</li>
+</ul>
+</li>
 </ul>
 <h3 id="panasonic"><a class="header" href="#panasonic">Panasonic</a></h3>
 <ul>
@@ -4395,6 +4265,30 @@ repeat
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="版本說明"><a class="header" href="#版本說明">版本說明</a></h1>
+<h2 id="11412-版"><a class="header" href="#11412-版">1.14.12 版</a></h2>
+<p>1.14.12 版是經過現場嚴格驗證的穩定發行版本，整合了多軸驅動器支援、開機診斷可見度、低延遲調度優化以及設定檔安全保護。</p>
+<h3 id="開機診斷與從站通訊狀態可見度"><a class="header" href="#開機診斷與從站通訊狀態可見度">開機診斷與從站通訊狀態可見度</a></h3>
+<ul>
+<li><strong>從站 AL State 即時狀態</strong>：HMI 偵測從站列表中新增 <code>AL State</code> 欄位，以綠色 (<code>OP</code>) 與紅色 (非 <code>OP</code>) 即時反映硬體運作狀態。</li>
+<li><strong>可歸因的開機逾時診斷</strong>：若開機逾時，錯誤訊息明確指出未進入 OP 的從站編號與狀態（例如 <code>slaves not in OP: Slave 8 (PREOP)</code>），大幅加速現場排錯。</li>
+<li><strong>未配置機台導引</strong>：新機台或空設定檔開機時，顯示清晰提示並提供一鍵採用偵測拓撲或上傳設定檔導引。</li>
+</ul>
+<h3 id="新增與擴展硬體支援"><a class="header" href="#新增與擴展硬體支援">新增與擴展硬體支援</a></h3>
+<ul>
+<li><strong>東方馬達 (Oriental Motor)</strong>：完整支援 AZD2B-KED (雙軸) 與 AZD4A-KED (四軸) 驅動器，預設原廠原點復歸模式 24，支援動態位置輪廓 (PP) 參數配置。</li>
+<li><strong>台達 / 先達工控 (Delta / Syn-Tek) R1 系列</strong>：支援完整 16 款 R1 模組，包括 R1-EC5500 總線耦合器、R1-EC5621 單軸脈衝驅動器、R1-EC6002/6022 數位輸入、R1-EC7062/70E2 數位輸出、R1-EC8124 類比輸入與 R1-EC9144 類比輸出。</li>
+</ul>
+<h3 id="機台設定保護與災難復原"><a class="header" href="#機台設定保護與災難復原">機台設定保護與災難復原</a></h3>
+<ul>
+<li><strong>升級保護</strong>：Debian 套件升級時 100% 保留現有 <code>/etc/botnana-control/motion.toml</code>，避免現場校正參數遭到覆蓋。</li>
+<li><strong>配置備份與復原</strong>：HMI 支援一鍵下載 <code>motion.toml</code> 備份，並支援在斷線或更換硬體時上傳還原。</li>
+</ul>
+<h3 id="效能與即時總線穩定性"><a class="header" href="#效能與即時總線穩定性">效能與即時總線穩定性</a></h3>
+<ul>
+<li><strong>低通訊延遲</strong>：WebSocket 傳輸啟用 <code>TCP_NODELAY</code>，往返通訊延遲降至 0.14 ms，上位程式互動更流暢。</li>
+<li><strong>EtherCAT 分布式時鐘 (DC) 自動恢復</strong>：總線重連時自動識別並鎖定 DC 參考時鐘，確保多軸精密同步。</li>
+<li><strong>HMI 控制項安全保護</strong>：修復 DOUT / AOUT 輸出編輯可用性，阻斷對離線/未匹配硬體的無效指令派送。</li>
+</ul>
 <h2 id="1144-版"><a class="header" href="#1144-版">1.14.4 版</a></h2>
 <p>1.14.4 版新增控制器復原與 EtherCAT 拓撲維護流程，強化設定及軟體更新處理，
 並限制 HMI 的 WebSocket 流量。</p>

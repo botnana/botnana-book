@@ -1,0 +1,8 @@
+/*
+ * mdBook's bundled Open Sans files do not contain Chinese glyphs. Keep the
+ * Traditional Chinese edition on a known CJK font so Chromium can embed the
+ * glyphs when mdbook-pdf prints the book.
+ */
+html[lang="zh-TW"] {
+    font-family: "Noto Sans CJK TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}

@@ -28,6 +28,7 @@
         <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/zh-tw-1f872bb8.css">
 
 
         <!-- Provide site root and default themes to javascript -->
@@ -35,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-335275fb.js";
+            window.path_to_searchindex_js = "searchindex-ce9c6015.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -202,67 +203,50 @@
 </div>
 <p><strong>Slave Configuration</strong>、<strong>Motion</strong> 及 <strong>Axis Group</strong> 是同一份共用設定草稿的不同
 檢視。開始另一項獨佔設定或維護操作前，請先儲存或捨棄目前的編輯。</p>
-<h3 id="診斷-hmi-websocket-流量"><a class="header" href="#診斷-hmi-websocket-流量">診斷 HMI WebSocket 流量</a></h3>
-<p>客戶可以使用內建 HMI，檢查自行開發 HMI 的流量。請讓客戶 HMI 維持連線，開啟
-<strong>About</strong>，選擇 <strong>Open support diagnostics</strong>，再找到 <strong>WebSocket connection
-traffic</strong>。</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./figures/support-diagnostics.png" alt="Support diagnostics 比較兩個作用中用戶端並顯示診斷下載操作"><span class="img-wrapper"><img src="./figures/support-diagnostics.png" alt="Support diagnostics 比較兩個作用中用戶端並顯示診斷下載操作"></span></label></p>
-<p>此已安裝目標截圖顯示內建 HMI 及另一個作用中用戶端。連線 ID、速率及計數器都是
-試車範例，不是文件所定義的預設值。</p>
-<p>比較表只顯示目前作用中的連線：</p>
+<h3 id="實體從站-al-state-狀態與開機診斷"><a class="header" href="#實體從站-al-state-狀態與開機診斷">實體從站 AL State 狀態與開機診斷</a></h3>
+<p>在 <strong>Controller &amp; Topology</strong> 工作區的 <strong>Detected Slaves (偵測從站)</strong> 表格中，系統提供各從站的即時 Application Layer (AL) 通訊狀態：</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./figures/detected-slaves-al-state.png" alt="Detected slaves 顯示實體從站及即時 AL State 運作狀態"><span class="img-wrapper"><img src="./figures/detected-slaves-al-state.png" alt="Detected slaves 顯示實體從站及即時 AL State 運作狀態"></span></label></p>
 <ul>
-<li><strong>This built-in HMI</strong> 是正在顯示此表格的瀏覽器。</li>
-<li><strong>Other client</strong> 是另一個作用中的 WebSocket 應用程式；試車時通常是客戶 HMI。</li>
-<li><strong>Active clients</strong> 會對照系統最多支援的兩個 rtForth WebSocket 工作階段顯示。</li>
-<li>每個用戶端都分為 <strong>Poll requests</strong> 及 <strong>Ordered requests</strong>，避免可取代輪詢的延遲
-掩蓋逐一處理的工作。</li>
-</ul>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>欄位</th><th>意義</th></tr>
-</thead>
-<tbody>
-<tr><td><strong>Poll requests</strong></td><td>已辨識且可取代的最新值讀取。新的同等輪詢可以取代較舊的待處理輪詢。</td></tr>
-<tr><td><strong>Ordered requests</strong></td><td>其他所有訊框，包括心跳、單次讀取、變更狀態的請求、未知 script 及無效訊框。每個已獲准請求都會逐一處理，絕不合併。<strong>Ordered</strong> 不表示請求一定會變更狀態，也不表示會同步完成。</td></tr>
-<tr><td><strong>Requests/s</strong></td><td>最近十秒內該類別收到的訊框平均速率；連線時間不足十秒時使用較短的連線時間。診斷重新整理本身屬於 Ordered，也會計入。</td></tr>
-<tr><td><strong>Received</strong> 及 <strong>Admitted</strong></td><td>從連線建立後，伺服器收到的該類別訊框數，以及通過准入控制的請求數。</td></tr>
-<tr><td><strong>Admission wait p95</strong></td><td>最近時間範圍內，從收到訊框直到成功准入所需時間的第 95 百分位數。不包含遭拒絕、合併或捨棄的工作，也不是回應時間、命令完成時間、運動完成時間或網路往返時間。</td></tr>
-<tr><td><strong>Coalesced</strong>、<strong>Discarded</strong> 及 <strong>Pending</strong></td><td>只適用於 Poll，分別表示已被取代、移除或保留的最新值工作。</td></tr>
-<tr><td><strong>Rejected</strong> 及 <strong>Overload indications</strong></td><td>只適用於 Ordered，表示容量不足而未獲准的工作，以及該連線收到的有界限過載通知。</td></tr>
-<tr><td><strong>Status</strong></td><td>明確的狀態摘要，例如 <strong>Normal</strong>、<strong>Polling queued</strong>、<strong>Overload observed</strong> 或 <strong>Output saturated</strong>。</td></tr>
-</tbody>
-</table>
-</div>
-<p>破折號表示該結果不適用於該請求類別。<strong>No sample</strong> 表示目前的准入等待時間範圍內，
-該類別沒有已獲准的請求。</p>
-<p>用戶端關閉後，其欄位會消失。重新連線會取得新的暫時連線 ID，計數器也會重設；HMI
-不會保留流量歷史，也不會顯示對端 IP 位址、請求內容、回應或設定值。關閉
-<strong>Support diagnostics</strong> 或返回 About 後，每秒一次的診斷重新整理會停止。</p>
-<p>此功能是內建診斷工具，不是客戶 WebSocket API。自行開發的 HMI 仍應只使用支援的
-<a href="./json-api.html">JSON API</a>。畫面上的請求速率只是流量量測結果，不能證明運動命令已
-完成，也不代表控制器每秒可以執行相同數量的任意 rtForth 程式。</p>
-<h3 id="下載支援診斷資料"><a class="header" href="#下載支援診斷資料">下載支援診斷資料</a></h3>
-<p>經授權的服務工程師要求控制器證據時，請開啟 <strong>About</strong>，選擇 <strong>Open support
-diagnostics</strong>，再使用 <strong>Download diagnostic log</strong>。只開啟此畫面不會收集檔案。</p>
-<p>瀏覽器會下載帶有時間戳記的 <code>botnana-support-*.zip</code>，其中包含：</p>
+<li><strong>AL State 欄位</strong>：
 <ul>
-<li>簡要的人員可讀摘要及資訊清單（manifest）；</li>
-<li>經允許的控制器版本、服務狀態、運作時間及網路鏈路狀態；</li>
-<li>目前及前一次開機中，<code>bnc-motion</code> 與 <code>bnc-hmi</code> 的分類結構化記錄；以及</li>
-<li>來源無法取得或證據遭截短時的明確通知。</li>
+<li><code>OP</code>（綠色標示）：表示從站處於正常運作狀態 (Operational)，週期性資料 (PDO) 正常交換中。</li>
+<li><code>SAFEOP</code> / <code>PREOP</code> / <code>INIT</code>（紅色/警示標示）：表示該從站尚未進入 OP，常見於接線鬆脫、硬體設定不符或馬達驅動器報警。</li>
 </ul>
-<p>完整 ZIP 上限為 50 MiB，但此大小不代表固定的記錄時數。涵蓋時間取決於可回報事件
-的發生頻率，以及控制器的 journal 保留狀況。狀態安定的控制器可能涵蓋許多小時，
-或涵蓋目前及前一次開機中可取得的部分；若啟動、重試或失敗事件集中發生，則會更快
-用完容量。請檢查 <code>summary.txt</code>，以及 manifest 中的 <code>includedFrom</code>、
-<code>includedThrough</code>、<code>sourceCaptureTruncated</code> 與 <code>archiveBudgetTruncated</code> 欄位，確認
-該下載檔案的確切涵蓋範圍。檔案遠小於 50 MiB 是正常情況。</p>
-<p>系統會在兩項服務及兩次開機之間公平保留最新記錄。Botnana Control 不會重新啟動
-服務、啟用額外記錄、改變機台、保留新產生的 ZIP，也不會自動上傳。憑證、機台設定、
-請求內容、rtForth script、設定值及對端 IP 位址都會排除。</p>
-<p>請由操作人員透過現場核准的支援管道傳送 ZIP。若運動控制連線無法使用，但 HTTP HMI
-仍可開啟，即時流量會顯示為無法取得，<strong>Download diagnostic log</strong> 仍可使用。</p>
+</li>
+<li><strong>開機逾時明確歸因</strong>：
+若開機期間從站未能在時限內全數進入 OP，系統不再只回報模糊的啟動失敗，而是直接指認未進入 OP 的具體從站位置（例如：<code>slaves not in OP: Slave 8 (PREOP)</code>），讓工程師無需接上分析儀器即可快速排除異常硬體。</li>
+<li><strong>未配置機器導引 (Uncommissioned Configuration)</strong>：
+當新機台或更換新控制器開機時，若偵測到實體從站但 <code>/etc/botnana-control/motion.toml</code> 內無任何已配置從站 (<code>configured_slaves == 0</code>)，HMI 上方會出現清晰的提示橫幅：
+<blockquote>
+<p><strong>Uncommissioned Configuration:</strong> 14 physical EtherCAT slaves detected, but no slaves are configured in motion.toml. Adopt detected topology or upload a configuration to commission this machine.
+此提示明確告知機器處於等待初始試車狀態，而非設定遺失。操作人員可點選 <strong>Adopt detected topology</strong> 一鍵採用掃描結果，或透過 <strong>About</strong> 上傳既有設定檔。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="連線狀態與下載支援診斷資料"><a class="header" href="#連線狀態與下載支援診斷資料">連線狀態與下載支援診斷資料</a></h3>
+<p>在 <strong>About</strong> 頁面點選 <strong>Open support diagnostics</strong>，可開啟系統連線與診斷介面：</p>
+<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="./figures/support-diagnostics.png" alt="支援診斷視窗提供即時連線監控與一鍵下載診斷日誌"><span class="img-wrapper"><img src="./figures/support-diagnostics.png" alt="支援診斷視窗提供即時連線監控與一鍵下載診斷日誌"></span></label></p>
+<ol>
+<li><strong>連線活動檢視</strong>：
+<ul>
+<li>顯示目前已連線的 Web HMI 瀏覽器與客戶端應用程式連線狀態。</li>
+<li>監測即時資料輪詢 (Poll) 與控制命令 (Ordered) 的連線頻率與健康度，確保上位程式與控制器通訊順暢。</li>
+</ul>
+</li>
+<li><strong>下載支援診斷日誌 (Download diagnostic log)</strong>：
+<ul>
+<li>當現場試車遇到疑難問題需動程科技工程團隊協助時，點選 <strong>Download diagnostic log</strong> 按鈕。</li>
+<li>瀏覽器將自動下載打包好的 <code>botnana-support-*.zip</code> 檔案（內含控制器版本、服務運作狀態及系統日誌，上限 50 MiB）。</li>
+<li>日誌已自動過濾私密憑證與機台座標資料，可安心透過電子郵件或技術支援管道提供給動程工程師進行分析。</li>
+</ul>
+</li>
+</ol>
+<h3 id="機台設定備份與災難復原"><a class="header" href="#機台設定備份與災難復原">機台設定備份與災難復原</a></h3>
+<p>Botnana Control 支援機台設定檔的直接匯出與匯入：</p>
+<ul>
+<li><strong>匯出備份</strong>：在 <strong>About</strong> 頁面或設定工具列中，點選 <strong>Download configuration</strong>，即可將現有的 <code>/etc/botnana-control/motion.toml</code> 下載保存至電腦。</li>
+<li><strong>上傳復原</strong>：在更換控制器硬體或災難復原時，點選 <strong>Upload configuration</strong> 並選擇先前備份的 <code>.toml</code> 檔案，經安全性確認後系統將自動寫入並重啟生效。即使在控制器尚未連線的離線頁面上，亦可直接使用復原上傳功能。</li>
+</ul>
 <h3 id="檢查及編輯從站設定"><a class="header" href="#檢查及編輯從站設定">檢查及編輯從站設定</a></h3>
 <p>開啟 <strong>Slave Configuration</strong>，檢查已儲存的 EtherCAT 從站及其支援的裝置設定。此
 工作區顯示已儲存設定，不是新的實體掃描。如果需要變更實體順序、身分或別名，請

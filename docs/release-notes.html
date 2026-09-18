@@ -28,6 +28,7 @@
         <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="theme/zh-tw-1f872bb8.css">
 
 
         <!-- Provide site root and default themes to javascript -->
@@ -35,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-335275fb.js";
+            window.path_to_searchindex_js = "searchindex-ce9c6015.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -175,6 +176,30 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="版本說明"><a class="header" href="#版本說明">版本說明</a></h1>
+<h2 id="11412-版"><a class="header" href="#11412-版">1.14.12 版</a></h2>
+<p>1.14.12 版是經過現場嚴格驗證的穩定發行版本，整合了多軸驅動器支援、開機診斷可見度、低延遲調度優化以及設定檔安全保護。</p>
+<h3 id="開機診斷與從站通訊狀態可見度"><a class="header" href="#開機診斷與從站通訊狀態可見度">開機診斷與從站通訊狀態可見度</a></h3>
+<ul>
+<li><strong>從站 AL State 即時狀態</strong>：HMI 偵測從站列表中新增 <code>AL State</code> 欄位，以綠色 (<code>OP</code>) 與紅色 (非 <code>OP</code>) 即時反映硬體運作狀態。</li>
+<li><strong>可歸因的開機逾時診斷</strong>：若開機逾時，錯誤訊息明確指出未進入 OP 的從站編號與狀態（例如 <code>slaves not in OP: Slave 8 (PREOP)</code>），大幅加速現場排錯。</li>
+<li><strong>未配置機台導引</strong>：新機台或空設定檔開機時，顯示清晰提示並提供一鍵採用偵測拓撲或上傳設定檔導引。</li>
+</ul>
+<h3 id="新增與擴展硬體支援"><a class="header" href="#新增與擴展硬體支援">新增與擴展硬體支援</a></h3>
+<ul>
+<li><strong>東方馬達 (Oriental Motor)</strong>：完整支援 AZD2B-KED (雙軸) 與 AZD4A-KED (四軸) 驅動器，預設原廠原點復歸模式 24，支援動態位置輪廓 (PP) 參數配置。</li>
+<li><strong>台達 / 先達工控 (Delta / Syn-Tek) R1 系列</strong>：支援完整 16 款 R1 模組，包括 R1-EC5500 總線耦合器、R1-EC5621 單軸脈衝驅動器、R1-EC6002/6022 數位輸入、R1-EC7062/70E2 數位輸出、R1-EC8124 類比輸入與 R1-EC9144 類比輸出。</li>
+</ul>
+<h3 id="機台設定保護與災難復原"><a class="header" href="#機台設定保護與災難復原">機台設定保護與災難復原</a></h3>
+<ul>
+<li><strong>升級保護</strong>：Debian 套件升級時 100% 保留現有 <code>/etc/botnana-control/motion.toml</code>，避免現場校正參數遭到覆蓋。</li>
+<li><strong>配置備份與復原</strong>：HMI 支援一鍵下載 <code>motion.toml</code> 備份，並支援在斷線或更換硬體時上傳還原。</li>
+</ul>
+<h3 id="效能與即時總線穩定性"><a class="header" href="#效能與即時總線穩定性">效能與即時總線穩定性</a></h3>
+<ul>
+<li><strong>低通訊延遲</strong>：WebSocket 傳輸啟用 <code>TCP_NODELAY</code>，往返通訊延遲降至 0.14 ms，上位程式互動更流暢。</li>
+<li><strong>EtherCAT 分布式時鐘 (DC) 自動恢復</strong>：總線重連時自動識別並鎖定 DC 參考時鐘，確保多軸精密同步。</li>
+<li><strong>HMI 控制項安全保護</strong>：修復 DOUT / AOUT 輸出編輯可用性，阻斷對離線/未匹配硬體的無效指令派送。</li>
+</ul>
 <h2 id="1144-版"><a class="header" href="#1144-版">1.14.4 版</a></h2>
 <p>1.14.4 版新增控制器復原與 EtherCAT 拓撲維護流程，強化設定及軟體更新處理，
 並限制 HMI 的 WebSocket 流量。</p>
