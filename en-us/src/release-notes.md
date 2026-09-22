@@ -1,5 +1,24 @@
 # Release Notes
 
+## Version 1.14.13
+
+Version 1.14.13 introduces the dual-loop "Tune Live -> Adopt to Profile" architecture, eliminates UI mode ambiguities, provides interactive drive parameter tuning, adds guided controller restart upon profile save, and delivers robust warm-boot master discovery resilience.
+
+### Dual-Loop "Tune Live -> Adopt to Profile" Architecture
+- **Interactive Live Drive Tuning**: When in live view (read-only mode), motion parameters (Profile Velocity, Profile Acceleration, Profile Deceleration) can be adjusted interactively and committed directly to volatile drive RAM via Enter key or Blur. Intermediate keystrokes are suppressed and disk configuration remains untouched.
+- **Revision-Safe "Adopt Live Values"**: In profile-editing mode, a single-click "Adopt Live Values" action pulls active drive velocity and acceleration into the shared draft, sequentially chaining updates with strict revision safety across single- and multi-axis drives (Delta ASDA-A2-E, Oriental Motor AZD2B/AZD4A).
+- **Parameter Group & Live Mode Decoupling**: Completely eliminates the ambiguous "Mode" dropdown from configuration table cells, replacing it with an explicit parameter group selector (`[ Homing Parameters ]` / `[ Profile Motion (PP) Parameters ]`). Live operation mode selection is strictly isolated to live view.
+
+### Lifecycle-Aware Guided Controller Restart
+- **Actionable Post-Save Banner**: Saving profile changes renders a high-visibility status banner (`Configuration saved to disk. [Restart Controller to Apply]`).
+- **Lifecycle Routing**: Clicking the action dynamically routes to `ethercat.rescan` when the controller is Ready, or `ethercat.recover` when in a Failed state per ADR-001.
+
+### Warm-Boot Master Discovery Resilience
+- **Pre-Op Convergence Loop**: Bounded pre-op settling loop continuously holds the reserved EtherCAT master during slave convergence on host warm reboots (`sudo reboot`), eliminating reservation teardown thrashing and race conditions. All powered slaves automatically return to PREOP and transition smoothly to OP without manual cable replugging or manual rescan.
+
+### Strict Dead-Code Hygiene
+- Eradicated all test-only helper exports, unused export aliases, and vestigial test scaffolding to satisfy strict Phase 6 qualification requirements.
+
 ## Version 1.14.12
 
 Version 1.14.12 is a production-hardened release delivering multi-axis drive integration, boot diagnostic visibility, low-latency communication optimizations, and configuration preservation guarantees.

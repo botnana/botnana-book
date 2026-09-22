@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-ce9c6015.js";
+            window.path_to_searchindex_js = "searchindex-8022ed7f.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -260,9 +260,9 @@
 </thead>
 <tbody>
 <tr><td>已儲存身分</td><td>從站位置、說明、供應商 ID 及產品代碼</td><td>識別已儲存設定中的從站。即使在設定編輯模式下，供應商 ID 及產品代碼仍為唯讀。實體身分或別名變更須經由拓撲程序檢查。</td></tr>
-<tr><td>設定項目</td><td>原點復歸方法、偏移、速度、加速度，以及支援的 I/O 或通道設定</td><td>只有在設定編輯模式下才能編輯。經確認的編輯只會改變共用草稿，不會改變運作中的控制器。</td></tr>
+<tr><td>設定項目</td><td>原點復歸方法、偏移、速度、加速度，以及支援的 I/O 或通道設定</td><td>只有在設定編輯模式下才能編輯。透過表格上方 <strong>[ Homing Parameters ]</strong> 與 <strong>[ Profile Motion (PP) Parameters ]</strong> 選取器切換可編輯欄位。經確認的編輯只會改變共用草稿，不會改變運作中的控制器。</td></tr>
 <tr><td>即時狀態</td><td>PDS 狀態、數位輸入、實際位置及裝置狀態計數器</td><td>控制器運作狀態的唯讀觀察資料。</td></tr>
-<tr><td>即時控制</td><td>運作模式、PDS 目標、目標值、<strong>Reset Fault</strong>、<strong>Stop</strong> 及 <strong>Start</strong></td><td>可用時會作用於運作中的控制器，不是已儲存設定的編輯。</td></tr>
+<tr><td>即時控制</td><td>即時運作模式、PDS 目標、目標值、<strong>Reset Fault</strong>、<strong>Stop</strong>、<strong>Start</strong> 及即時調校</td><td>可用時會作用於運作中的控制器，不是已儲存設定的編輯。在唯讀模式下，運動參數（Profile Velocity, Profile Acceleration, Profile Deceleration）可直接輸入並以 Enter 鍵確認，即時送入驅動器揮發性記憶體生效，便於現場微調。</td></tr>
 </tbody>
 </table>
 </div>
@@ -279,7 +279,11 @@ Topology</strong> 顯示 <strong>Ready</strong>，且機台處於現場核准的
 </li>
 <li>
 <p>選擇 <strong>Edit profile</strong>。可編輯的設定儲存格會開放使用；即時狀態及即時控制仍有
-各自獨立的作用。</p>
+各自獨立的作用。可透過上方參數群組選取器切換欲設定的原點或運動參數欄位。</p>
+</li>
+<li>
+<p>若先前已在即時檢視調校好滿意的運動參數，可點選工具列上的 <strong>Adopt Live Values</strong>，
+系統會安全地將線上驅動器的即時加速度與速度依序填入當前草稿中。</p>
 </li>
 <li>
 <p>變更需要的設定儲存格，然後等待 HMI 顯示新的草稿版本及未儲存變更數量。</p>
@@ -291,8 +295,9 @@ Topology</strong> 顯示 <strong>Ready</strong>，且機台處於現場核准的
 <li>
 <p>選擇一項操作：</p>
 <ul>
-<li><strong>Save changes</strong>：儲存整份共用草稿，供控制器下次啟動時使用；不會取代運作中
-控制器的設定。</li>
+<li><strong>Save changes</strong>：儲存整份共用草稿，供控制器下次啟動時使用；儲存成功後，
+畫面頂部會顯示引導式重啟提示橫幅 <strong>Configuration saved to disk. [Restart Controller to Apply]</strong>，
+點擊按鈕即可自動依控制器就緒或失敗狀態快速重啟套用。</li>
 <li><strong>Discard changes</strong>：捨棄整份共用草稿，並恢復已儲存設定。</li>
 </ul>
 </li>

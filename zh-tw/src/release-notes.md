@@ -1,5 +1,24 @@
 # 版本說明
 
+## 1.14.13 版
+
+1.14.13 版引入「即時調校與設定採納」（Tune Live -> Adopt to Profile）雙循環架構，徹底解決操作模式與參數編輯介面混淆問題，提供即時驅動器參數調校、設定檔引導式控制器重啟，以及強韌的主機重開機（Warm Reboot）從站自動復原能力。
+
+### 即時調校與設定檔採納（Tune Live -> Adopt to Profile）
+- **即時驅動器參數調校**：在即時檢視模式（唯讀狀態）下，運作中的驅動器運動參數（Profile Velocity, Profile Acceleration, Profile Deceleration）開放即時調整，並以 Enter 鍵確認或游標離開（Blur）即時發送指令至驅動器揮發性記憶體生效，中間按鍵不發送指令，且不更動磁碟設定。
+- **一鍵採用即時數值（Adopt Live Values）**：在設定檔編輯模式下，新增「Adopt Live Values」操作，可循序讀取運作中驅動器的即時加速度與速度數值並填入草稿，具備嚴格的修訂版本控制（Revision Safety），安全支援單軸及多軸（如 AZD2B、AZD4A）驅動器。
+- **參數群組切換與即時模式分離**：設定表格內完全移除容易造成誤解的「Mode」選單，改以頂部參數群組選取器（`[ Homing Parameters ]` 與 `[ Profile Motion (PP) Parameters ]`）切換顯示欄位；即時操作模式（Live Operation Mode）移至即時檢視獨立操作，消除將即時指令誤認為開機模式的介面混淆。
+
+### 引導式控制器重啟（Guided Controller Restart）
+- **設定檔儲存後引導重啟**：當完成設定檔變更並點擊「Save changes」寫入磁碟後，介面顯示引導式重啟提示橫幅（`Configuration saved to disk. [Restart Controller to Apply]`）。
+- **生命週期感知路由**：點擊重啟按鈕自動評估控制器狀態，於就緒（Ready）狀態下執行 `ethercat.rescan` 快速重載；於失敗（Failed）狀態下依 ADR-001 執行 `ethercat.recover` 復原啟動。
+
+### 主機重開機從站發現韌性（Warm-Boot Resilience）
+- **保留主站連續收斂流程**：主機重開機（`sudo reboot`）且從站持續供電時，啟動流程持續保留 EtherCAT 主站控制權進行 50ms 週期輪詢收斂，消除主站反覆釋放與重取導致的總線中斷與震盪，所有從站自動回歸 PREOP 並順利進入 OP 運作，無需手動插拔總線線路或重新掃描。
+
+### 代碼品質與嚴格無效代碼清理
+- 徹底清理所有僅供測試的生產輔助函式、未使用的導出別名與殘留測試腳手架，通過嚴格的 Phase 6 反幽靈調用審查。
+
 ## 1.14.12 版
 
 1.14.12 版是經過現場嚴格驗證的穩定發行版本，整合了多軸驅動器支援、開機診斷可見度、低延遲調度優化以及設定檔安全保護。

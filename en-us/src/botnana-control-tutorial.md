@@ -82,9 +82,9 @@ Rows in this work area can have different effects:
 | Row kind | Examples | Behavior |
 |---|---|---|
 | Saved identity | Slave position, description, vendor ID, and product code | Identifies the slave in the saved profile. Vendor ID and product code remain read-only, including in profile-editing mode. Review physical identity or alias changes through the topology workflow. |
-| Profile setting | Homing method, offsets, speeds, acceleration, and supported I/O or channel settings | Editable only in profile-editing mode. A confirmed edit changes the shared draft, not the running controller. |
+| Profile setting | Homing method, offsets, speeds, acceleration, and supported I/O or channel settings | Editable only in profile-editing mode. Toggle visible fields via the **[ Homing Parameters ]** and **[ Profile Motion (PP) Parameters ]** selector above the table. A confirmed edit changes the shared draft, not the running controller. |
 | Live status | PDS status, digital inputs, real position, and device status counters | Read-only observations from the running controller. |
-| Live control | Operation mode, PDS goal, target values, **Reset Fault**, **Stop**, and **Start** | Acts on the running controller when available. It is not a saved-profile edit. |
+| Live control | Live operation mode, PDS goal, target values, **Reset Fault**, **Stop**, **Start**, and live tuning | Acts on the running controller when available. It is not a saved-profile edit. In read-only view, motion parameters (Profile Velocity, Profile Acceleration, Profile Deceleration) can be entered directly and committed on Enter key or Blur, sending immediate Forth commands to volatile drive RAM for live motor testing. |
 
 > **Warning:** **Read-only** and **Editing** in the page header describe the
 > saved profile. They do not make the machine safe and do not turn live controls
@@ -97,20 +97,26 @@ To edit the saved slave profile:
    HMI users and confirm that the displayed saved slaves are the intended
    configuration.
 2. Select **Edit profile**. Editable profile cells become available; live status
-   and live controls retain their separate meanings.
-3. Change the required profile cell and wait for the HMI to show the new draft
+   and live controls retain their separate meanings. Use the parameter group
+   selector above the table to switch between homing and profile motion fields.
+3. If parameters were previously tuned live, click **Adopt Live Values** in the
+   toolbar to sequentially pull the active drive's live acceleration and velocity
+   into the shared draft with full revision safety.
+4. Change the required profile cell and wait for the HMI to show the new draft
    version and unsaved-change count.
-4. Select **Review changes**. Check the setting, saved value, unsaved value, and
+5. Select **Review changes**. Check the setting, saved value, unsaved value, and
    owning screen for every row.
 
    ![One unsaved slave-profile change expanded for review before save or discard](./figures/slave-configuration-review.png)
 
-5. Choose one action:
+6. Choose one action:
    - **Save changes** saves the entire shared draft for the next controller
-     start. It does not replace settings in the running controller.
+     start. Upon successful save, an actionable guided restart banner appears
+     (**Configuration saved to disk. [Restart Controller to Apply]**); clicking
+     it automatically restarts or recovers the controller to apply new parameters.
    - **Discard changes** discards the entire shared draft and restores the saved
      profile.
-6. When no unsaved changes remain, select **Finish editing** to return to
+7. When no unsaved changes remain, select **Finish editing** to return to
    read-only mode. **Finish editing** does not save anything.
 
 Save and discard apply to the shared draft, not only to rows visible on

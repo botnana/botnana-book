@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-ce9c6015.js";
+            window.path_to_searchindex_js = "searchindex-8022ed7f.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -205,11 +205,11 @@
                         <div style="text-align: center;">
 <h1 id="botnana-control"><a class="header" href="#botnana-control">Botnana Control</a></h1>
 <h2 id="the-official-user-manual"><a class="header" href="#the-official-user-manual">The Official User Manual</a></h2>
-<h3 id="version-11412"><a class="header" href="#version-11412">Version 1.14.12</a></h3>
-<h4 id="document-revision-6文件修訂-6"><a class="header" href="#document-revision-6文件修訂-6">Document Revision 6（文件修訂 6）</a></h4>
+<h3 id="version-11413"><a class="header" href="#version-11413">Version 1.14.13</a></h3>
+<h4 id="document-revision-7文件修訂-7"><a class="header" href="#document-revision-7文件修訂-7">Document Revision 7（文件修訂 7）</a></h4>
 <p>Author: Sirius Wu</p>
 <p>Copyright © 2025 Mapacode Inc. All rights reserved.</p>
-<p>September 18, 2026</p>
+<p>September 22, 2026</p>
 </div>
 
 <div style="break-before: page; page-break-before: always;"></div>
@@ -294,7 +294,7 @@
 <tr><td>Operating system</td><td>Linux distribution Debian Buster 4.19.232-rt104</td></tr>
 <tr><td>Real-time System</td><td>Preempt RT + Xenomai 3.2.3 Mercury Core</td></tr>
 <tr><td>EtherCAT Master</td><td>BotnanaCAT 2.0.1 based on IgH EtherCAT master branch stable 1.5 commit c8a512ac0</td></tr>
-<tr><td>Botnana Control</td><td>v1.14 (最新發布版本 v1.14.12)</td></tr>
+<tr><td>Botnana Control</td><td>v1.14 (最新發布版本 v1.14.13)</td></tr>
 <tr><td>Period</td><td>2 ms (可於設定檔調整)</td></tr>
 <tr><td>BN-B3A-10S 可控軸數</td><td>1–10</td></tr>
 <tr><td>支援 EtherCAT 從站數</td><td>1–16</td></tr>
@@ -503,9 +503,9 @@
 </thead>
 <tbody>
 <tr><td>已儲存身分</td><td>從站位置、說明、供應商 ID 及產品代碼</td><td>識別已儲存設定中的從站。即使在設定編輯模式下，供應商 ID 及產品代碼仍為唯讀。實體身分或別名變更須經由拓撲程序檢查。</td></tr>
-<tr><td>設定項目</td><td>原點復歸方法、偏移、速度、加速度，以及支援的 I/O 或通道設定</td><td>只有在設定編輯模式下才能編輯。經確認的編輯只會改變共用草稿，不會改變運作中的控制器。</td></tr>
+<tr><td>設定項目</td><td>原點復歸方法、偏移、速度、加速度，以及支援的 I/O 或通道設定</td><td>只有在設定編輯模式下才能編輯。透過表格上方 <strong>[ Homing Parameters ]</strong> 與 <strong>[ Profile Motion (PP) Parameters ]</strong> 選取器切換可編輯欄位。經確認的編輯只會改變共用草稿，不會改變運作中的控制器。</td></tr>
 <tr><td>即時狀態</td><td>PDS 狀態、數位輸入、實際位置及裝置狀態計數器</td><td>控制器運作狀態的唯讀觀察資料。</td></tr>
-<tr><td>即時控制</td><td>運作模式、PDS 目標、目標值、<strong>Reset Fault</strong>、<strong>Stop</strong> 及 <strong>Start</strong></td><td>可用時會作用於運作中的控制器，不是已儲存設定的編輯。</td></tr>
+<tr><td>即時控制</td><td>即時運作模式、PDS 目標、目標值、<strong>Reset Fault</strong>、<strong>Stop</strong>、<strong>Start</strong> 及即時調校</td><td>可用時會作用於運作中的控制器，不是已儲存設定的編輯。在唯讀模式下，運動參數（Profile Velocity, Profile Acceleration, Profile Deceleration）可直接輸入並以 Enter 鍵確認，即時送入驅動器揮發性記憶體生效，便於現場微調。</td></tr>
 </tbody>
 </table>
 </div>
@@ -522,7 +522,11 @@ Topology</strong> 顯示 <strong>Ready</strong>，且機台處於現場核准的
 </li>
 <li>
 <p>選擇 <strong>Edit profile</strong>。可編輯的設定儲存格會開放使用；即時狀態及即時控制仍有
-各自獨立的作用。</p>
+各自獨立的作用。可透過上方參數群組選取器切換欲設定的原點或運動參數欄位。</p>
+</li>
+<li>
+<p>若先前已在即時檢視調校好滿意的運動參數，可點選工具列上的 <strong>Adopt Live Values</strong>，
+系統會安全地將線上驅動器的即時加速度與速度依序填入當前草稿中。</p>
 </li>
 <li>
 <p>變更需要的設定儲存格，然後等待 HMI 顯示新的草稿版本及未儲存變更數量。</p>
@@ -534,8 +538,9 @@ Topology</strong> 顯示 <strong>Ready</strong>，且機台處於現場核准的
 <li>
 <p>選擇一項操作：</p>
 <ul>
-<li><strong>Save changes</strong>：儲存整份共用草稿，供控制器下次啟動時使用；不會取代運作中
-控制器的設定。</li>
+<li><strong>Save changes</strong>：儲存整份共用草稿，供控制器下次啟動時使用；儲存成功後，
+畫面頂部會顯示引導式重啟提示橫幅 <strong>Configuration saved to disk. [Restart Controller to Apply]</strong>，
+點擊按鈕即可自動依控制器就緒或失敗狀態快速重啟套用。</li>
 <li><strong>Discard changes</strong>：捨棄整份共用草稿，並恢復已儲存設定。</li>
 </ul>
 </li>
@@ -4265,6 +4270,27 @@ repeat
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="版本說明"><a class="header" href="#版本說明">版本說明</a></h1>
+<h2 id="11413-版"><a class="header" href="#11413-版">1.14.13 版</a></h2>
+<p>1.14.13 版引入「即時調校與設定採納」（Tune Live -&gt; Adopt to Profile）雙循環架構，徹底解決操作模式與參數編輯介面混淆問題，提供即時驅動器參數調校、設定檔引導式控制器重啟，以及強韌的主機重開機（Warm Reboot）從站自動復原能力。</p>
+<h3 id="即時調校與設定檔採納tune-live---adopt-to-profile"><a class="header" href="#即時調校與設定檔採納tune-live---adopt-to-profile">即時調校與設定檔採納（Tune Live -&gt; Adopt to Profile）</a></h3>
+<ul>
+<li><strong>即時驅動器參數調校</strong>：在即時檢視模式（唯讀狀態）下，運作中的驅動器運動參數（Profile Velocity, Profile Acceleration, Profile Deceleration）開放即時調整，並以 Enter 鍵確認或游標離開（Blur）即時發送指令至驅動器揮發性記憶體生效，中間按鍵不發送指令，且不更動磁碟設定。</li>
+<li><strong>一鍵採用即時數值（Adopt Live Values）</strong>：在設定檔編輯模式下，新增「Adopt Live Values」操作，可循序讀取運作中驅動器的即時加速度與速度數值並填入草稿，具備嚴格的修訂版本控制（Revision Safety），安全支援單軸及多軸（如 AZD2B、AZD4A）驅動器。</li>
+<li><strong>參數群組切換與即時模式分離</strong>：設定表格內完全移除容易造成誤解的「Mode」選單，改以頂部參數群組選取器（<code>[ Homing Parameters ]</code> 與 <code>[ Profile Motion (PP) Parameters ]</code>）切換顯示欄位；即時操作模式（Live Operation Mode）移至即時檢視獨立操作，消除將即時指令誤認為開機模式的介面混淆。</li>
+</ul>
+<h3 id="引導式控制器重啟guided-controller-restart"><a class="header" href="#引導式控制器重啟guided-controller-restart">引導式控制器重啟（Guided Controller Restart）</a></h3>
+<ul>
+<li><strong>設定檔儲存後引導重啟</strong>：當完成設定檔變更並點擊「Save changes」寫入磁碟後，介面顯示引導式重啟提示橫幅（<code>Configuration saved to disk. [Restart Controller to Apply]</code>）。</li>
+<li><strong>生命週期感知路由</strong>：點擊重啟按鈕自動評估控制器狀態，於就緒（Ready）狀態下執行 <code>ethercat.rescan</code> 快速重載；於失敗（Failed）狀態下依 ADR-001 執行 <code>ethercat.recover</code> 復原啟動。</li>
+</ul>
+<h3 id="主機重開機從站發現韌性warm-boot-resilience"><a class="header" href="#主機重開機從站發現韌性warm-boot-resilience">主機重開機從站發現韌性（Warm-Boot Resilience）</a></h3>
+<ul>
+<li><strong>保留主站連續收斂流程</strong>：主機重開機（<code>sudo reboot</code>）且從站持續供電時，啟動流程持續保留 EtherCAT 主站控制權進行 50ms 週期輪詢收斂，消除主站反覆釋放與重取導致的總線中斷與震盪，所有從站自動回歸 PREOP 並順利進入 OP 運作，無需手動插拔總線線路或重新掃描。</li>
+</ul>
+<h3 id="代碼品質與嚴格無效代碼清理"><a class="header" href="#代碼品質與嚴格無效代碼清理">代碼品質與嚴格無效代碼清理</a></h3>
+<ul>
+<li>徹底清理所有僅供測試的生產輔助函式、未使用的導出別名與殘留測試腳手架，通過嚴格的 Phase 6 反幽靈調用審查。</li>
+</ul>
 <h2 id="11412-版"><a class="header" href="#11412-版">1.14.12 版</a></h2>
 <p>1.14.12 版是經過現場嚴格驗證的穩定發行版本，整合了多軸驅動器支援、開機診斷可見度、低延遲調度優化以及設定檔安全保護。</p>
 <h3 id="開機診斷與從站通訊狀態可見度"><a class="header" href="#開機診斷與從站通訊狀態可見度">開機診斷與從站通訊狀態可見度</a></h3>

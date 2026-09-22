@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-ce9c6015.js";
+            window.path_to_searchindex_js = "searchindex-8022ed7f.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-62f29738.js"></script>
@@ -176,6 +176,27 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="版本說明"><a class="header" href="#版本說明">版本說明</a></h1>
+<h2 id="11413-版"><a class="header" href="#11413-版">1.14.13 版</a></h2>
+<p>1.14.13 版引入「即時調校與設定採納」（Tune Live -&gt; Adopt to Profile）雙循環架構，徹底解決操作模式與參數編輯介面混淆問題，提供即時驅動器參數調校、設定檔引導式控制器重啟，以及強韌的主機重開機（Warm Reboot）從站自動復原能力。</p>
+<h3 id="即時調校與設定檔採納tune-live---adopt-to-profile"><a class="header" href="#即時調校與設定檔採納tune-live---adopt-to-profile">即時調校與設定檔採納（Tune Live -&gt; Adopt to Profile）</a></h3>
+<ul>
+<li><strong>即時驅動器參數調校</strong>：在即時檢視模式（唯讀狀態）下，運作中的驅動器運動參數（Profile Velocity, Profile Acceleration, Profile Deceleration）開放即時調整，並以 Enter 鍵確認或游標離開（Blur）即時發送指令至驅動器揮發性記憶體生效，中間按鍵不發送指令，且不更動磁碟設定。</li>
+<li><strong>一鍵採用即時數值（Adopt Live Values）</strong>：在設定檔編輯模式下，新增「Adopt Live Values」操作，可循序讀取運作中驅動器的即時加速度與速度數值並填入草稿，具備嚴格的修訂版本控制（Revision Safety），安全支援單軸及多軸（如 AZD2B、AZD4A）驅動器。</li>
+<li><strong>參數群組切換與即時模式分離</strong>：設定表格內完全移除容易造成誤解的「Mode」選單，改以頂部參數群組選取器（<code>[ Homing Parameters ]</code> 與 <code>[ Profile Motion (PP) Parameters ]</code>）切換顯示欄位；即時操作模式（Live Operation Mode）移至即時檢視獨立操作，消除將即時指令誤認為開機模式的介面混淆。</li>
+</ul>
+<h3 id="引導式控制器重啟guided-controller-restart"><a class="header" href="#引導式控制器重啟guided-controller-restart">引導式控制器重啟（Guided Controller Restart）</a></h3>
+<ul>
+<li><strong>設定檔儲存後引導重啟</strong>：當完成設定檔變更並點擊「Save changes」寫入磁碟後，介面顯示引導式重啟提示橫幅（<code>Configuration saved to disk. [Restart Controller to Apply]</code>）。</li>
+<li><strong>生命週期感知路由</strong>：點擊重啟按鈕自動評估控制器狀態，於就緒（Ready）狀態下執行 <code>ethercat.rescan</code> 快速重載；於失敗（Failed）狀態下依 ADR-001 執行 <code>ethercat.recover</code> 復原啟動。</li>
+</ul>
+<h3 id="主機重開機從站發現韌性warm-boot-resilience"><a class="header" href="#主機重開機從站發現韌性warm-boot-resilience">主機重開機從站發現韌性（Warm-Boot Resilience）</a></h3>
+<ul>
+<li><strong>保留主站連續收斂流程</strong>：主機重開機（<code>sudo reboot</code>）且從站持續供電時，啟動流程持續保留 EtherCAT 主站控制權進行 50ms 週期輪詢收斂，消除主站反覆釋放與重取導致的總線中斷與震盪，所有從站自動回歸 PREOP 並順利進入 OP 運作，無需手動插拔總線線路或重新掃描。</li>
+</ul>
+<h3 id="代碼品質與嚴格無效代碼清理"><a class="header" href="#代碼品質與嚴格無效代碼清理">代碼品質與嚴格無效代碼清理</a></h3>
+<ul>
+<li>徹底清理所有僅供測試的生產輔助函式、未使用的導出別名與殘留測試腳手架，通過嚴格的 Phase 6 反幽靈調用審查。</li>
+</ul>
 <h2 id="11412-版"><a class="header" href="#11412-版">1.14.12 版</a></h2>
 <p>1.14.12 版是經過現場嚴格驗證的穩定發行版本，整合了多軸驅動器支援、開機診斷可見度、低延遲調度優化以及設定檔安全保護。</p>
 <h3 id="開機診斷與從站通訊狀態可見度"><a class="header" href="#開機診斷與從站通訊狀態可見度">開機診斷與從站通訊狀態可見度</a></h3>

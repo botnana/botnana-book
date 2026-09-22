@@ -7,7 +7,7 @@
 | Operating system | Linux distribution Debian Buster 4.19.232-rt104 |
 | Real-time System | Preempt RT + Xenomai 3.2.3 Mercury Core |
 | EtherCAT Master | BotnanaCAT 2.0.1 based on IgH EtherCAT master branch stable 1.5 commit c8a512ac0 |
-| Botnana Control | v1.14 (最新發布版本 v1.14.12) |
+| Botnana Control | v1.14 (最新發布版本 v1.14.13) |
 | Period | 2 ms (可於設定檔調整) |
 | BN-B3A-10S 可控軸數 | 1–10 |
 | 支援 EtherCAT 從站數 | 1–16 |
