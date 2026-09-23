@@ -32,6 +32,7 @@
 * [支援的硬體清單](./known-working-hardware.md)
 * [版本說明](./release-notes.md)
 * [軟體更新](./update-software.md)
+* [故障排除與診斷指南](./troubleshooting.md)
 * [常見問題](./faq.md)
   * [登入 Linux 系統](./faq/login-linux.md)
   * [USB 連線 IP 設定](./faq/gadget.md)

@@ -32,6 +32,7 @@
 * [Supported Hardware](./known-working-hardware.md)
 * [Release Notes](./release-notes.md)
 * [Software Updates](./update-software.md)
+* [Troubleshooting & Diagnostics Guide](./troubleshooting.md)
 * [Frequently Asked Questions](./faq.md)
   * [Log In to Linux](./faq/login-linux.md)
   * [USB Connection IP Settings](./faq/gadget.md)
