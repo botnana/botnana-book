@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-8022ed7f.js";
+            window.path_to_searchindex_js = "searchindex-a8cab411.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -64,9 +64,9 @@
                 }
             });
         </script>
-    <div style="display: none"><a href="#cover">cover</a><a href="#index">index</a><a href="#hardware">hardware</a><a href="#bn-b3a">bn-b3a</a><a href="#software">software</a><a href="#system-archetecture">system-archetecture</a><a href="#botnana-control-tutorial">botnana-control-tutorial</a><a href="#ethercat-controller-recovery">ethercat-controller-recovery</a><a href="#ethercat-topology-maintenance">ethercat-topology-maintenance</a><a href="#configuration-file">configuration-file</a><a href="#programming">programming</a><a href="#json-api">json-api</a><a href="#real-time-script-api">real-time-script-api</a><a href="#host-primitives">host-primitives</a><a href="#ethercat-primitives">ethercat-primitives</a><a href="#ethercat-drive-primitives">ethercat-drive-primitives</a><a href="#ethercat-io-primitives">ethercat-io-primitives</a><a href="#ethercat-uart-primitives">ethercat-uart-primitives</a><a href="#ethercat-encoder-primitives">ethercat-encoder-primitives</a><a href="#ethercat-gateway-primitives">ethercat-gateway-primitives</a><a href="#axis-group">axis-group</a><a href="#known-working-hardware">known-working-hardware</a><a href="#release-notes">release-notes</a><a href="#update-software">update-software</a><a href="#faq">faq</a><a href="#faq-login-linux">faq-login-linux</a><a href="#faq-gadget">faq-gadget</a></div>
+    <div style="display: none"><a href="#cover">cover</a><a href="#index">index</a><a href="#hardware">hardware</a><a href="#bn-b3a">bn-b3a</a><a href="#software">software</a><a href="#system-archetecture">system-archetecture</a><a href="#botnana-control-tutorial">botnana-control-tutorial</a><a href="#ethercat-controller-recovery">ethercat-controller-recovery</a><a href="#ethercat-topology-maintenance">ethercat-topology-maintenance</a><a href="#configuration-file">configuration-file</a><a href="#programming">programming</a><a href="#json-api">json-api</a><a href="#real-time-script-api">real-time-script-api</a><a href="#host-primitives">host-primitives</a><a href="#ethercat-primitives">ethercat-primitives</a><a href="#ethercat-drive-primitives">ethercat-drive-primitives</a><a href="#ethercat-io-primitives">ethercat-io-primitives</a><a href="#ethercat-uart-primitives">ethercat-uart-primitives</a><a href="#ethercat-encoder-primitives">ethercat-encoder-primitives</a><a href="#ethercat-gateway-primitives">ethercat-gateway-primitives</a><a href="#axis-group">axis-group</a><a href="#known-working-hardware">known-working-hardware</a><a href="#release-notes">release-notes</a><a href="#update-software">update-software</a><a href="#troubleshooting">troubleshooting</a><a href="#faq">faq</a><a href="#faq-login-linux">faq-login-linux</a><a href="#faq-gadget">faq-gadget</a></div>
         <!-- Start loading toc.js asap -->
-        <script src="toc-62f29738.js"></script>
+        <script src="toc-d45a6f4d.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -205,11 +205,11 @@
                         <div style="text-align: center;">
 <h1 id="botnana-control"><a class="header" href="#botnana-control">Botnana Control</a></h1>
 <h2 id="the-official-user-manual"><a class="header" href="#the-official-user-manual">The Official User Manual</a></h2>
-<h3 id="version-11413"><a class="header" href="#version-11413">Version 1.14.13</a></h3>
-<h4 id="document-revision-7文件修訂-7"><a class="header" href="#document-revision-7文件修訂-7">Document Revision 7（文件修訂 7）</a></h4>
+<h3 id="version-11415"><a class="header" href="#version-11415">Version 1.14.15</a></h3>
+<h4 id="document-revision-8文件修訂-8"><a class="header" href="#document-revision-8文件修訂-8">Document Revision 8（文件修訂 8）</a></h4>
 <p>Author: Sirius Wu</p>
 <p>Copyright © 2025 Mapacode Inc. All rights reserved.</p>
-<p>September 22, 2026</p>
+<p>October 5, 2026</p>
 </div>
 
 <div style="break-before: page; page-break-before: always;"></div>
@@ -294,7 +294,7 @@
 <tr><td>Operating system</td><td>Linux distribution Debian Buster 4.19.232-rt104</td></tr>
 <tr><td>Real-time System</td><td>Preempt RT + Xenomai 3.2.3 Mercury Core</td></tr>
 <tr><td>EtherCAT Master</td><td>BotnanaCAT 2.0.1 based on IgH EtherCAT master branch stable 1.5 commit c8a512ac0</td></tr>
-<tr><td>Botnana Control</td><td>v1.14 (最新發布版本 v1.14.13)</td></tr>
+<tr><td>Botnana Control</td><td>v1.14 (最新發布版本 v1.14.15)</td></tr>
 <tr><td>Period</td><td>2 ms (可於設定檔調整)</td></tr>
 <tr><td>BN-B3A-10S 可控軸數</td><td>1–10</td></tr>
 <tr><td>支援 EtherCAT 從站數</td><td>1–16</td></tr>
@@ -502,57 +502,44 @@
 <tr><th>資料列類型</th><th>範例</th><th>行為</th></tr>
 </thead>
 <tbody>
-<tr><td>已儲存身分</td><td>從站位置、說明、供應商 ID 及產品代碼</td><td>識別已儲存設定中的從站。即使在設定編輯模式下，供應商 ID 及產品代碼仍為唯讀。實體身分或別名變更須經由拓撲程序檢查。</td></tr>
-<tr><td>設定項目</td><td>原點復歸方法、偏移、速度、加速度，以及支援的 I/O 或通道設定</td><td>只有在設定編輯模式下才能編輯。透過表格上方 <strong>[ Homing Parameters ]</strong> 與 <strong>[ Profile Motion (PP) Parameters ]</strong> 選取器切換可編輯欄位。經確認的編輯只會改變共用草稿，不會改變運作中的控制器。</td></tr>
+<tr><td>已儲存身分</td><td>從站位置、說明、供應商 ID 及產品代碼</td><td>識別已儲存設定中的從站。供應商 ID 及產品代碼仍為唯讀。實體身分或別名變更須經由拓撲程序檢查。</td></tr>
+<tr><td>設定項目</td><td>原點復歸方法、偏移、速度、加速度，以及支援的 I/O 或通道設定</td><td>直接在表格中點擊儲存格編輯。參數列會依驅動器通道當前之運作模式自動切換（<code>home</code> 與 <code>pp</code>/<code>pv</code>/<code>csp</code>）。經確認的編輯會自動排入共用草稿，同時即時發送揮發性調校指令至運作中的驅動器。</td></tr>
 <tr><td>即時狀態</td><td>PDS 狀態、數位輸入、實際位置及裝置狀態計數器</td><td>控制器運作狀態的唯讀觀察資料。</td></tr>
-<tr><td>即時控制</td><td>即時運作模式、PDS 目標、目標值、<strong>Reset Fault</strong>、<strong>Stop</strong>、<strong>Start</strong> 及即時調校</td><td>可用時會作用於運作中的控制器，不是已儲存設定的編輯。在唯讀模式下，運動參數（Profile Velocity, Profile Acceleration, Profile Deceleration）可直接輸入並以 Enter 鍵確認，即時送入驅動器揮發性記憶體生效，便於現場微調。</td></tr>
+<tr><td>即時控制</td><td>即時運作模式、PDS 目標、目標值、<strong>Reset Fault</strong>、<strong>Stop</strong> 及 <strong>Start</strong></td><td>可用時會作用於運作中的控制器，不是已儲存設定的編輯。</td></tr>
 </tbody>
 </table>
 </div>
 <blockquote>
-<p>**警告：**頁首的 <strong>Read-only</strong> 及 <strong>Editing</strong> 描述的是已儲存設定。這些狀態不會
-使機台進入安全狀態，也不會將即時控制轉為設定項目。只有在 <strong>Controller &amp;
-Topology</strong> 顯示 <strong>Ready</strong>，且機台處於現場核准的安全狀態時，才能使用即時控制。</p>
+<p>**警告：**設定項目與即時控制具有不同的生命週期。輸入即時數值或編輯草稿儲存格不會使機台進入安全狀態。只有在 <strong>Controller &amp; Topology</strong> 顯示 <strong>Ready</strong>，且機台處於現場核准的安全狀態時，才能使用即時控制。</p>
 </blockquote>
 <p>若要編輯已儲存的從站設定：</p>
 <ol>
 <li>
-<p>使用一個瀏覽器工作階段作為目前的設定編輯者。先與其他 HMI 使用者協調，並確認
-畫面顯示的已儲存從站是預定設定。</p>
+<p>先與其他 HMI 使用者協調，並確認畫面顯示的已儲存從站是預定設定。</p>
 </li>
 <li>
-<p>選擇 <strong>Edit profile</strong>。可編輯的設定儲存格會開放使用；即時狀態及即時控制仍有
-各自獨立的作用。可透過上方參數群組選取器切換欲設定的原點或運動參數欄位。</p>
+<p>直接點擊任一可編輯設定儲存格（例如說明、原點或運動參數）。整合表格會依作用中驅動器通道的運作模式自動顯示對應參數欄位。</p>
 </li>
 <li>
-<p>若先前已在即時檢視調校好滿意的運動參數，可點選工具列上的 <strong>Adopt Live Values</strong>，
-系統會安全地將線上驅動器的即時加速度與速度依序填入當前草稿中。</p>
+<p>編輯數值後，系統會自動建立或更新共用草稿修訂版本，並在畫面底部呈現常駐浮動式提交工具列，顯示未儲存變更數量。</p>
 </li>
 <li>
-<p>變更需要的設定儲存格，然後等待 HMI 顯示新的草稿版本及未儲存變更數量。</p>
+<p>編輯連線中驅動器的速度或加速度時，系統會同步發送指令至驅動器揮發性記憶體，便於現場立即驗證馬達運動，同時將新值排入草稿等待寫入磁碟。</p>
 </li>
 <li>
-<p>選擇 <strong>Review changes</strong>。逐列檢查設定項目、已儲存值、未儲存值及所屬畫面。</p>
+<p>點擊浮動工具列上的 <strong>Review Changes</strong> 展開差異檢視抽屜，檢查設定項目、已儲存值、草稿值（含刪除線對比）及所屬畫面。</p>
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/slave-configuration-review.png" alt="儲存或捨棄前，展開檢查一項未儲存的從站設定變更"><span class="img-wrapper"><img src="figures/slave-configuration-review.png" alt="儲存或捨棄前，展開檢查一項未儲存的從站設定變更"></span></label></p>
 </li>
 <li>
 <p>選擇一項操作：</p>
 <ul>
-<li><strong>Save changes</strong>：儲存整份共用草稿，供控制器下次啟動時使用；儲存成功後，
-畫面頂部會顯示引導式重啟提示橫幅 <strong>Configuration saved to disk. [Restart Controller to Apply]</strong>，
-點擊按鈕即可自動依控制器就緒或失敗狀態快速重啟套用。</li>
-<li><strong>Discard changes</strong>：捨棄整份共用草稿，並恢復已儲存設定。</li>
+<li><strong>Save to Disk</strong>：儲存整份共用草稿，供控制器下次啟動時使用；儲存成功後，畫面頂部會顯示引導式重啟提示橫幅 <strong>Configuration saved to disk. [Restart Controller to Apply]</strong>，點擊按鈕即可自動依控制器就緒或失敗狀態快速重啟套用。</li>
+<li><strong>Discard Changes</strong>：捨棄待儲存草稿編輯，並恢復已儲存設定值。捨棄的數值仍會保留於草稿記憶體中供後續比對。</li>
 </ul>
 </li>
-<li>
-<p>沒有未儲存變更後，選擇 <strong>Finish editing</strong> 回到唯讀模式。<strong>Finish editing</strong> 不會
-儲存任何資料。</p>
-</li>
 </ol>
-<p>儲存及捨棄會作用於整份共用草稿，不只限於 <strong>Slave Configuration</strong> 畫面上可見的
-資料列。如果 <strong>Review changes</strong> 列出其他畫面的編輯，請先與該項編輯的負責人協調。
-如果編輯或儲存時回報設定已由其他工作階段變更，請檢查重新整理後的值，不要直接
-重複操作。</p>
+<p>若需匯出或匯入機器設定 JSON 檔以進行備份或災難復原，請由導覽列開啟 <strong>About</strong> 對話框，使用 <strong>Machine configuration</strong> 區塊內的下載或上傳按鈕。</p>
+<p>儲存及捨棄會作用於整份共用草稿，不只限於 <strong>Slave Configuration</strong> 畫面上可見的資料列。如果 <strong>Review Changes</strong> 列出其他畫面的編輯，請先與該項編輯的負責人協調。如果編輯或儲存時回報設定已由其他工作階段變更，請檢查重新整理後的值，不要直接重複操作。</p>
 <h3 id="檢查及編輯-motion-設定"><a class="header" href="#檢查及編輯-motion-設定">檢查及編輯 Motion 設定</a></h3>
 <p>開啟 <strong>Motion</strong>，比較運作中控制器使用的整體運動控制值與共用設定中的值。</p>
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="figures/motion-active-and-configuration.png" alt="顯示作用中控制器值及不同下次啟動設定值的已儲存 Motion 設定"><span class="img-wrapper"><img src="figures/motion-active-and-configuration.png" alt="顯示作用中控制器值及不同下次啟動設定值的已儲存 Motion 設定"></span></label></p>
@@ -4270,6 +4257,29 @@ repeat
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="版本說明"><a class="header" href="#版本說明">版本說明</a></h1>
+<h2 id="11415-版"><a class="header" href="#11415-版">1.14.15 版</a></h2>
+<p>1.14.15 版推出現代化 HMI 流暢設定編輯平台（ADR-014），引入試算表儲存格直接編輯、浮動式底部提交工具列、模式驅動參數整合表格與通訊協定安全防護。</p>
+<h3 id="試算表儲存格直接編輯與自動草稿"><a class="header" href="#試算表儲存格直接編輯與自動草稿">試算表儲存格直接編輯與自動草稿</a></h3>
+<ul>
+<li><strong>原地儲存格編輯</strong>：Motion、AxisGroup 及 Slave Configuration 表格均支援點擊儲存格直接就地編輯，徹底淘汰舊式彈出視窗與「Edit profile」編輯模式。</li>
+<li><strong>即時調校與草稿整合</strong>：編輯運動參數儲存格時，若控制器處於運作中，會立即送出即時 SDO 揮發性調校指令生效，同時自動將變更納入共用草稿，無需先變更磁碟檔案。</li>
+</ul>
+<h3 id="浮動式底部提交工具列與差異檢查"><a class="header" href="#浮動式底部提交工具列與差異檢查">浮動式底部提交工具列與差異檢查</a></h3>
+<ul>
+<li><strong>常駐變更追蹤</strong>：畫面底部常駐浮動式提交工具列，即時顯示未儲存變更數量，並提供一鍵「<strong>Save to Disk</strong>」（儲存至磁碟）與「<strong>Discard Changes</strong>」（捨棄變更）功能。</li>
+<li><strong>可展開差異檢視抽屜</strong>：點擊「<strong>Review Changes</strong>」可展開差異抽屜，以刪除線對比顯示所有畫面的變更前後數值。捨棄的編輯仍保留於草稿記憶體中供後續比對。</li>
+<li><strong>動態表格高度適應</strong>：表格透過 <code>ResizeObserver</code> 即時監聽底部工具列與抽屜高度變化，確保展開檢視時不會遮蔽底層表格資料列。</li>
+</ul>
+<h3 id="模式驅動驅動器參數整合表格"><a class="header" href="#模式驅動驅動器參數整合表格">模式驅動驅動器參數整合表格</a></h3>
+<ul>
+<li><strong>自動對應運作模式</strong>：淘汰原先的頂部參數群組選取器，改以單一整合表格動態呈現。系統依各驅動器通道當前之運作模式自動顯示對應參數：<code>home</code> 模式顯示 5 項原點復歸參數；<code>pp</code>、<code>pv</code> 或 <code>csp</code> 模式顯示 3 項運動參數。多通道驅動器（如東方馬達 AZD2B/AZD4A）各通道獨立切換。</li>
+<li><strong>離線與連線中斷防護</strong>：控制器離線或遙測資料為 null 時，下拉選單顯示「Unavailable」預設預留項目，並展開全部 8 項參數供離線編輯，且確保不發出異常指令。</li>
+</ul>
+<h3 id="通訊協定安全與介面簡化"><a class="header" href="#通訊協定安全與介面簡化">通訊協定安全與介面簡化</a></h3>
+<ul>
+<li><strong>通訊協定版本鎖定</strong>：若與控制器的設定通訊協定未達第 2 版或回報 <code>upgrade-required</code>，輸入儲存格會自動鎖定並丟棄編輯，避免執行時期 RPC 異常。</li>
+<li><strong>機器設定匯出與匯入位置調整</strong>：設定 JSON 檔案之上傳（備份還原）與下載按鈕統一移至「About」對話框之機器設定區塊中。</li>
+</ul>
 <h2 id="11413-版"><a class="header" href="#11413-版">1.14.13 版</a></h2>
 <p>1.14.13 版引入「即時調校與設定採納」（Tune Live -&gt; Adopt to Profile）雙循環架構，徹底解決操作模式與參數編輯介面混淆問題，提供即時驅動器參數調校、設定檔引導式控制器重啟，以及強韌的主機重開機（Warm Reboot）從站自動復原能力。</p>
 <h3 id="即時調校與設定檔採納tune-live---adopt-to-profile"><a class="header" href="#即時調校與設定檔採納tune-live---adopt-to-profile">即時調校與設定檔採納（Tune Live -&gt; Adopt to Profile）</a></h3>
@@ -4563,6 +4573,135 @@ ZIP 上限為 50 MiB，會回報遺漏及截短，不會保留，也不會自動
 <p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="update-rollback-success-1.14.4.png" alt="成功降至 1.14.4，並保留可供復原的 1.14.5"><span class="img-wrapper"><img src="update-rollback-success-1.14.4.png" alt="成功降至 1.14.4，並保留可供復原的 1.14.5"></span></label></p>
 <h2 id="畫面版本不符合預期時"><a class="header" href="#畫面版本不符合預期時">畫面版本不符合預期時</a></h2>
 <p>保持機台停止。重新載入 <strong>ABOUT</strong>，並比較產品版本與 <strong>Last result</strong>。若完成一次性舊版升級後沒有安裝結果，請確認產品版本是否已變更為預定版本。若更新結果顯示失敗或版本仍是舊版，請暫存已審查且確認正常的套件後再重新開機；不要在沒有 pending 復原套件時反覆重新開機。</p>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="故障排除與診斷指南-troubleshooting--diagnostics-guide"><a class="header" href="#故障排除與診斷指南-troubleshooting--diagnostics-guide">故障排除與診斷指南 (Troubleshooting &amp; Diagnostics Guide)</a></h1>
+<p>本指南旨在協助自動化工程師、電控人員與軟體開發者在開發機器或撰寫自訂 HMI (如 C/C++ <code>libbotnana</code>) 時，快速診斷並排除馬達無法運轉、通訊異常或控制模式不符等常見問題。</p>
+<hr>
+<h2 id="1-快速診斷決策表-diagnostic-decision-table"><a class="header" href="#1-快速診斷決策表-diagnostic-decision-table">1. 快速診斷決策表 (Diagnostic Decision Table)</a></h2>
+<p>當遇到驅動器或軸無法運動時，請依照下表逐一比對症狀、檢查項目與排除方法：</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">症狀現象</th><th style="text-align: left">根本原因</th><th style="text-align: left">快速檢查方法</th><th style="text-align: left">排除步驟</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left"><strong>馬達已激磁 (Servo On)，但下 Jog 或目標位置後完全不動</strong></td><td style="text-align: left"><strong>操作模式不匹配</strong>：在 <strong>CSP 模式</strong> 下發送了 PP 指令（如 <code>target-p!</code> 與 <code>go</code>），或控制器仍處於開機預設的 <strong>HM (原點) 模式</strong>。</td><td style="text-align: left">查詢即時操作模式：<br>Forth: <code>1 1 op-mode .</code><br>或監聽 tag <code>real_operation_mode.1.1</code></td><td style="text-align: left">• 若要使用單軸點對點點動，<strong>必須先切換為 PP 模式</strong>：<br><code>pp 1 1 op-mode! until-no-requests</code><br>• 若在 CSP 模式下，請勿使用 <code>target-p!</code> 與 <code>go</code>，請改用軸組插補指令。</td></tr>
+<tr><td style="text-align: left"><strong>在 CSP 模式下下運動指令不動或報錯</strong></td><td style="text-align: left"><strong>軸組未設定 (Unconfigured Axis Group)</strong>：驅動器未在 <code>motion.toml</code> 中綁定至軸 (Axis) 與軸組 (Group)。</td><td style="text-align: left">查詢軸與組組態：<br><code>1 .slave 1 .axiscfg 1 .grpcfg</code><br>或檢查 Web HMI 中的 Axis 與 Group 頁面。</td><td style="text-align: left">在 Web HMI 中建立軸 (Axis 1) 並綁定對應驅動器，建立軸組 (Group 1, 1D/2D/3D) 並將軸納入群組，儲存並重啟控制器。</td></tr>
+<tr><td style="text-align: left"><strong>下 Jog 或運動指令時馬達完全無力 (自由旋轉)</strong></td><td style="text-align: left"><strong>PDS 狀態未進入 Operation Enabled</strong>：驅動器處於 Switch On Disabled (1)、Ready to Switch On (2) 或故障 (Fault) 狀態。</td><td style="text-align: left">查詢 PDS 狀態：<br>Forth: <code>1 1 pds-state .</code><br>(正常激磁應回傳 <code>4</code>)<br>或查詢驅動器狀態字 <code>0x6041</code>。</td><td style="text-align: left">依序清除故障並下達激磁指令：<br><code>1 1 reset-fault 1 1 drive-on until-drive-on</code></td></tr>
+<tr><td style="text-align: left"><strong>在 PP 模式下下 <code>go</code> 後，立即回報到達 (<code>target-reached</code>) 但軸完全沒轉</strong></td><td style="text-align: left"><strong>Profile 速度或加速度為 0</strong>：驅動器暫存記憶體 (RAM) 中的 <code>profile_velocity</code> (<code>0x6081</code>) 或加速度為 0。</td><td style="text-align: left">查詢目標速度：<br>Forth: <code>1 1 profile-v@ .</code></td><td style="text-align: left">設定有效的運行速度與加速度：<br><code>100000 1 1 profile-v!</code><br><code>50000 1 1 profile-a1!</code><br>再重新下達 <code>target-p!</code> 與 <code>go</code>。</td></tr>
+<tr><td style="text-align: left"><strong>EtherCAT 從站無法進入 OP 狀態 (卡在 PREOP 或 SAFEOP)</strong></td><td style="text-align: left"><strong>硬體接線不良、配置不符或 DC 分散式時鐘同步失敗</strong>。</td><td style="text-align: left">在 Web HMI <strong>Detected Slaves</strong> 檢視 <strong>AL State</strong> 欄位，或在終端機執行 <code>list-slaves</code>。</td><td style="text-align: left">1. 檢查線路與接頭指示燈。<br>2. 若在 CSP 模式下，確認該型號驅動器支援並已啟用 EtherCAT DC 分散式時鐘。<br>3. 執行 <strong>Rescan EtherCAT</strong> 重新掃描匯流排。</td></tr>
+<tr><td style="text-align: left"><strong>自訂 C++ HMI 收到 <code>error|No message_to_task_producer.</code></strong></td><td style="text-align: left"><strong>WebSocket 終端作業階段 (Session) 超限</strong>：Botnana Control 核心提供固定 <strong>2 個</strong> 即時使用者任務作業階段，已被多餘的瀏覽器分頁或連線佔滿。</td><td style="text-align: left">檢查是否有開啟多個 Web HMI 瀏覽器分頁或多個用戶端程式。</td><td style="text-align: left">關閉未使用的瀏覽器分頁；自訂 HMI 應用程式應保持單一持久 WebSocket 連線，避免頻繁重複連線。</td></tr>
+<tr><td style="text-align: left"><strong>自訂 C++ HMI 收到 <code>error|Scripts buffer is fulled.</code></strong></td><td style="text-align: left"><strong>指令發送頻率超出 Token Bucket 預算</strong>：未做流量控制，連續爆發發送指令填滿了緩衝區。</td><td style="text-align: left">檢查客戶端發送迴圈或輪詢 (Polling) 間隔。</td><td style="text-align: left">遵循第三方 HMI 通訊標準：將相關指令合併在單一 <code>script.evaluate</code> 請求內發送，常態輪詢頻率維持在 100 req/s 以內。</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="2-cia-402-操作模式核心機制pp-vs-csp"><a class="header" href="#2-cia-402-操作模式核心機制pp-vs-csp">2. CiA 402 操作模式核心機制：PP vs. CSP</a></h2>
+<p>在開發驅動器控制程式時，最常見的誤區是混淆了 <strong>PP 模式</strong> 與 <strong>CSP 模式</strong> 的運動控制責任歸屬：</p>
+<pre><code class="language-text">┌────────────────────────────────────────────────────────────────────────┐
+│   PP Mode (Profile Position, Mode 1)                                   │
+│   [Master: Botnana] ──(一次性下達 target-p! &amp; go)──► [Drive onboard DSP]│
+│                                                     (內部自行規劃 S 曲線)│
+└────────────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────────────┐
+│   CSP Mode (Cyclic Synchronous Position, Mode 8)                       │
+│   [Master: Botnana Coordinator] ──(每 1ms 週期串流位置)──► [Drive]     │
+│   (主站負責軌跡插補與軸組協同運算)                         (僅單純追隨位置)│
+└────────────────────────────────────────────────────────────────────────┘
+</code></pre>
+<h3 id="pp-模式-profile-position-cia-402-mode-1"><a class="header" href="#pp-模式-profile-position-cia-402-mode-1">PP 模式 (Profile Position, CiA 402 Mode 1)</a></h3>
+<ul>
+<li><strong>軌跡計算位置</strong>：在 <strong>驅動器內部的 DSP</strong>。</li>
+<li><strong>適用場景</strong>：單軸點動 (Manual Jog)、單軸定點測試、換刀定位。</li>
+<li><strong>運作機制</strong>：
+<ol>
+<li>主站下達目標位置 <code>0x607A</code> (<code>target-p!</code>) 與運動速度 <code>0x6081</code> (<code>profile-v!</code>)。</li>
+<li>主站發送 <code>go</code> 指令（將 Controlword <code>0x6040</code> 第 4 位元 <code>New set-point</code> 設為 1）。</li>
+<li>驅動器偵測到 Bit 4 觸發，在內部啟動加減速規劃並驅動馬達。</li>
+</ol>
+</li>
+<li><strong>標準指令範例</strong>：
+<pre><code class="language-forth">pp 1 1 op-mode! 100000 1 1 profile-v! until-no-requests
+1 1 drive-on until-drive-on
+250000 1 1 target-p! 1 1 go
+</code></pre>
+</li>
+</ul>
+<h3 id="csp-模式-cyclic-synchronous-position-cia-402-mode-8"><a class="header" href="#csp-模式-cyclic-synchronous-position-cia-402-mode-8">CSP 模式 (Cyclic Synchronous Position, CiA 402 Mode 8)</a></h3>
+<ul>
+<li><strong>軌跡計算位置</strong>：在 <strong>Botnana Control 主站</strong> 的 Coordinator 協同器。</li>
+<li><strong>適用場景</strong>：多軸同動插補、線性切削、圓弧軌跡、機器人逆向運動學。</li>
+<li><strong>運作機制</strong>：
+<ol>
+<li>驅動器內部的加減速規劃器完全被關閉。</li>
+<li>驅動器 <strong>完全忽略 Controlword 第 4 位元 (<code>go</code>)</strong>。若在 CSP 模式下下達 <code>go</code>，驅動器不會有任何反應！</li>
+<li>Botnana Control 主站以 1 ms 週期計算群組路徑，並透過 EtherCAT PDO <code>0x607A</code> 每毫秒發送最新位置給驅動器。</li>
+<li>靜態下達的 <code>target-p!</code> 會在下一毫秒被主站 Coordinator 的插補值立刻覆蓋。</li>
+</ol>
+</li>
+<li><strong>重要前提</strong>：
+<ul>
+<li><strong>必須設定軸組</strong>：驅動器必須在 <code>motion.toml</code> 中綁定至軸 (Axis) 與軸組 (Group)。若無軸組，Coordinator 無法計算目標位置。</li>
+<li><strong>必須啟用 Coordinator</strong>：使用 <code>+coordinator</code> 指令。</li>
+</ul>
+</li>
+<li><strong>標準指令範例</strong> (<code>botnanac/examples/group1d.c</code>)：
+<pre><code class="language-forth">\ 1. 驅動器切換為 CSP 模式並激磁
+csp 1 1 op-mode! until-no-requests
+1 1 drive-on until-drive-on
+
+\ 2. 啟用協同器並建立軸組路徑
++coordinator
+1 group! 0path 1 0axis-ferr +group
+
+\ 3. 透過群組插補指令下達運動 (而非 target-p! / go)
+0.05e vcmd!          \ 設定路徑速度
+10.0e move1d         \ 單軸群組運動 10 mm
+start-job            \ 啟動任務
+</code></pre>
+</li>
+</ul>
+<h3 id="hm-模式-homing-mode-cia-402-mode-6"><a class="header" href="#hm-模式-homing-mode-cia-402-mode-6">HM 模式 (Homing Mode, CiA 402 Mode 6)</a></h3>
+<ul>
+<li><strong>注意</strong>：Botnana Control 開機完成後，預設會將所有連線之驅動器設定為 <strong>HM (原點復歸) 模式</strong>。</li>
+<li>在 HM 模式下，Controlword 第 4 位元代表 <strong>Homing operation start</strong>。若未切換模式就下達 <code>go</code>，驅動器會嘗試搜尋原點開關，而不會進行點對點位移！</li>
+</ul>
+<hr>
+<h2 id="3-五秒快速健康檢查-5-second-quick-health-check"><a class="header" href="#3-五秒快速健康檢查-5-second-quick-health-check">3. 五秒快速健康檢查 (5-Second Quick Health Check)</a></h2>
+<p>當在現場遇到機器不動時，請在 Web HMI 的終端機、即時控制介面或透過 C++ 程式發送下列指令，5 秒內即可判別問題根因：</p>
+<h3 id="檢查指令清單"><a class="header" href="#檢查指令清單">檢查指令清單</a></h3>
+<pre><code class="language-forth">\ 1. 查詢 1 號從站 1 號通道驅動器的即時操作模式
+1 1 op-mode .
+\ 回傳: 1 -&gt; PP 模式, 6 -&gt; HM 模式, 8 -&gt; CSP 模式
+
+\ 2. 查詢驅動器 PDS 狀態
+1 1 pds-state .
+\ 回傳: 1 -&gt; Switch on disabled, 2 -&gt; Ready to switch on, 4 -&gt; Operation enabled (正常激磁)
+
+\ 3. 查詢驅動器是否有警報
+1 1 error-code .
+\ 回傳 0 表示無故障；若非 0 請查閱驅動器原廠手冊之 Error Code 代碼表
+
+\ 4. 檢查軸與軸組組態
+1 .axiscfg
+1 .grpcfg
+\ 若回傳為空或未設定，表示尚未於 motion.toml 完成軸組設定
+</code></pre>
+<hr>
+<h2 id="4-支援診斷套件收集與分析-support-diagnostics"><a class="header" href="#4-支援診斷套件收集與分析-support-diagnostics">4. 支援診斷套件收集與分析 (Support Diagnostics)</a></h2>
+<p>若問題仍無法解決，請匯出官方支援診斷套件以供工程分析：</p>
+<ol>
+<li>開啟 Web HMI，點擊右上角 <strong>About (關於)</strong>。</li>
+<li>點選 <strong>Support diagnostics (支援診斷)</strong>。</li>
+<li>點擊 <strong>Download diagnostic log (下載診斷紀錄)</strong>。</li>
+<li>將產生的 <code>botnana-support-&lt;timestamp&gt;.zip</code> 封裝檔案提供給支援團隊。</li>
+</ol>
+<h3 id="診斷檔案結構分析"><a class="header" href="#診斷檔案結構分析">診斷檔案結構分析</a></h3>
+<ul>
+<li><code>metadata.json</code>：包含 Botnana Control 軟體版本、系統開機時間、<code>bnc-motion</code> 與 <code>bnc-hmi</code> 服務運行狀態及重啟次數。</li>
+<li><code>logs/current/bnc-motion.jsonl</code>：包含 EtherCAT 拓撲掃描從站數量 (<code>slaveCount</code>)、啟動階段生命週期與 WebSocket 連線健康指標。</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="常見問題"><a class="header" href="#常見問題">常見問題</a></h1>
 <ul>

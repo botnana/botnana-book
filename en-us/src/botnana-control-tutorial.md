@@ -81,46 +81,48 @@ Rows in this work area can have different effects:
 
 | Row kind | Examples | Behavior |
 |---|---|---|
-| Saved identity | Slave position, description, vendor ID, and product code | Identifies the slave in the saved profile. Vendor ID and product code remain read-only, including in profile-editing mode. Review physical identity or alias changes through the topology workflow. |
-| Profile setting | Homing method, offsets, speeds, acceleration, and supported I/O or channel settings | Editable only in profile-editing mode. Toggle visible fields via the **[ Homing Parameters ]** and **[ Profile Motion (PP) Parameters ]** selector above the table. A confirmed edit changes the shared draft, not the running controller. |
+| Saved identity | Slave position, description, vendor ID, and product code | Identifies the slave in the saved profile. Vendor ID and product code remain read-only. Review physical identity or alias changes through the topology workflow. |
+| Profile setting | Homing method, offsets, speeds, acceleration, and supported I/O or channel settings | Directly editable in the table. Parameter rows automatically adapt to the drive channel's reported operation mode (`home` vs `pp`/`pv`/`csp`). A confirmed edit queues the persistent change into the shared draft while concurrently dispatching volatile live tuning to the active drive. |
 | Live status | PDS status, digital inputs, real position, and device status counters | Read-only observations from the running controller. |
-| Live control | Live operation mode, PDS goal, target values, **Reset Fault**, **Stop**, **Start**, and live tuning | Acts on the running controller when available. It is not a saved-profile edit. In read-only view, motion parameters (Profile Velocity, Profile Acceleration, Profile Deceleration) can be entered directly and committed on Enter key or Blur, sending immediate Forth commands to volatile drive RAM for live motor testing. |
+| Live control | Live operation mode, PDS goal, target values, **Reset Fault**, **Stop**, and **Start** | Acts on the running controller when available. It is not a saved-profile edit. |
 
-> **Warning:** **Read-only** and **Editing** in the page header describe the
-> saved profile. They do not make the machine safe and do not turn live controls
-> into profile settings. Use live controls only after **Controller & Topology**
-> reports **Ready**, with the machine in the site-approved safe condition.
+> **Warning:** Profile settings and live controls have distinct lifecycles. Entering
+> live values or editing draft cells does not make the machine safe. Use live controls
+> only after **Controller & Topology** reports **Ready**, with the machine in the
+> site-approved safe condition.
 
 To edit the saved slave profile:
 
-1. Use one browser session as the active profile editor. Coordinate with other
-   HMI users and confirm that the displayed saved slaves are the intended
-   configuration.
-2. Select **Edit profile**. Editable profile cells become available; live status
-   and live controls retain their separate meanings. Use the parameter group
-   selector above the table to switch between homing and profile motion fields.
-3. If parameters were previously tuned live, click **Adopt Live Values** in the
-   toolbar to sequentially pull the active drive's live acceleration and velocity
-   into the shared draft with full revision safety.
-4. Change the required profile cell and wait for the HMI to show the new draft
-   version and unsaved-change count.
-5. Select **Review changes**. Check the setting, saved value, unsaved value, and
+1. Coordinate with other HMI users and confirm that the displayed saved slaves are
+   the intended configuration.
+2. Click directly into any editable configuration cell (e.g. Description, Homing,
+   or Profile Motion parameters). The unified table automatically displays the
+   appropriate parameters matching the active drive channel's operation mode.
+3. Editing a value automatically updates the shared draft revision and reveals
+   the floating bottom configuration commit bar indicating the unsaved change count.
+4. When editing motion velocity or acceleration on a connected drive, the change is
+   concurrently dispatched to volatile drive RAM, allowing immediate live motor testing
+   while queuing the persistent value for disk save.
+5. Select **Review Changes** on the floating commit bar to expand the diff drawer.
+   Verify the setting, saved value, draft value (with strikethrough comparison), and
    owning screen for every row.
 
    ![One unsaved slave-profile change expanded for review before save or discard](./figures/slave-configuration-review.png)
 
 6. Choose one action:
-   - **Save changes** saves the entire shared draft for the next controller
+   - **Save to Disk** saves the entire shared draft for the next controller
      start. Upon successful save, an actionable guided restart banner appears
      (**Configuration saved to disk. [Restart Controller to Apply]**); clicking
      it automatically restarts or recovers the controller to apply new parameters.
-   - **Discard changes** discards the entire shared draft and restores the saved
-     profile.
-7. When no unsaved changes remain, select **Finish editing** to return to
-   read-only mode. **Finish editing** does not save anything.
+   - **Discard Changes** discards pending draft edits and restores the saved
+     profile values. Discarded values remain in draft memory for review.
+
+To export or import machine configuration JSON files for backup or disaster recovery,
+open the **About** dialog from the navigation header and use the download or upload
+controls under **Machine configuration**.
 
 Save and discard apply to the shared draft, not only to rows visible on
-**Slave Configuration**. If **Review changes** lists work from another screen,
+**Slave Configuration**. If **Review Changes** lists work from another screen,
 coordinate with its owner before proceeding. If an edit or save reports that
 the profile changed in another session, review the refreshed values instead of
 repeating the action blindly.

@@ -36,10 +36,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-8022ed7f.js";
+            window.path_to_searchindex_js = "searchindex-a8cab411.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-62f29738.js"></script>
+        <script src="toc-d45a6f4d.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -176,6 +176,29 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="版本說明"><a class="header" href="#版本說明">版本說明</a></h1>
+<h2 id="11415-版"><a class="header" href="#11415-版">1.14.15 版</a></h2>
+<p>1.14.15 版推出現代化 HMI 流暢設定編輯平台（ADR-014），引入試算表儲存格直接編輯、浮動式底部提交工具列、模式驅動參數整合表格與通訊協定安全防護。</p>
+<h3 id="試算表儲存格直接編輯與自動草稿"><a class="header" href="#試算表儲存格直接編輯與自動草稿">試算表儲存格直接編輯與自動草稿</a></h3>
+<ul>
+<li><strong>原地儲存格編輯</strong>：Motion、AxisGroup 及 Slave Configuration 表格均支援點擊儲存格直接就地編輯，徹底淘汰舊式彈出視窗與「Edit profile」編輯模式。</li>
+<li><strong>即時調校與草稿整合</strong>：編輯運動參數儲存格時，若控制器處於運作中，會立即送出即時 SDO 揮發性調校指令生效，同時自動將變更納入共用草稿，無需先變更磁碟檔案。</li>
+</ul>
+<h3 id="浮動式底部提交工具列與差異檢查"><a class="header" href="#浮動式底部提交工具列與差異檢查">浮動式底部提交工具列與差異檢查</a></h3>
+<ul>
+<li><strong>常駐變更追蹤</strong>：畫面底部常駐浮動式提交工具列，即時顯示未儲存變更數量，並提供一鍵「<strong>Save to Disk</strong>」（儲存至磁碟）與「<strong>Discard Changes</strong>」（捨棄變更）功能。</li>
+<li><strong>可展開差異檢視抽屜</strong>：點擊「<strong>Review Changes</strong>」可展開差異抽屜，以刪除線對比顯示所有畫面的變更前後數值。捨棄的編輯仍保留於草稿記憶體中供後續比對。</li>
+<li><strong>動態表格高度適應</strong>：表格透過 <code>ResizeObserver</code> 即時監聽底部工具列與抽屜高度變化，確保展開檢視時不會遮蔽底層表格資料列。</li>
+</ul>
+<h3 id="模式驅動驅動器參數整合表格"><a class="header" href="#模式驅動驅動器參數整合表格">模式驅動驅動器參數整合表格</a></h3>
+<ul>
+<li><strong>自動對應運作模式</strong>：淘汰原先的頂部參數群組選取器，改以單一整合表格動態呈現。系統依各驅動器通道當前之運作模式自動顯示對應參數：<code>home</code> 模式顯示 5 項原點復歸參數；<code>pp</code>、<code>pv</code> 或 <code>csp</code> 模式顯示 3 項運動參數。多通道驅動器（如東方馬達 AZD2B/AZD4A）各通道獨立切換。</li>
+<li><strong>離線與連線中斷防護</strong>：控制器離線或遙測資料為 null 時，下拉選單顯示「Unavailable」預設預留項目，並展開全部 8 項參數供離線編輯，且確保不發出異常指令。</li>
+</ul>
+<h3 id="通訊協定安全與介面簡化"><a class="header" href="#通訊協定安全與介面簡化">通訊協定安全與介面簡化</a></h3>
+<ul>
+<li><strong>通訊協定版本鎖定</strong>：若與控制器的設定通訊協定未達第 2 版或回報 <code>upgrade-required</code>，輸入儲存格會自動鎖定並丟棄編輯，避免執行時期 RPC 異常。</li>
+<li><strong>機器設定匯出與匯入位置調整</strong>：設定 JSON 檔案之上傳（備份還原）與下載按鈕統一移至「About」對話框之機器設定區塊中。</li>
+</ul>
 <h2 id="11413-版"><a class="header" href="#11413-版">1.14.13 版</a></h2>
 <p>1.14.13 版引入「即時調校與設定採納」（Tune Live -&gt; Adopt to Profile）雙循環架構，徹底解決操作模式與參數編輯介面混淆問題，提供即時驅動器參數調校、設定檔引導式控制器重啟，以及強韌的主機重開機（Warm Reboot）從站自動復原能力。</p>
 <h3 id="即時調校與設定檔採納tune-live---adopt-to-profile"><a class="header" href="#即時調校與設定檔採納tune-live---adopt-to-profile">即時調校與設定檔採納（Tune Live -&gt; Adopt to Profile）</a></h3>

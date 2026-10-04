@@ -1,5 +1,26 @@
 # Release Notes
 
+## Version 1.14.15
+
+Version 1.14.15 delivers the streamlined HMI configuration platform (ADR-014), introducing direct spreadsheet cell editing, a persistent floating bottom commit bar with diff review, mode-driven drive parameter display in a unified table, and protocol gating.
+
+### Direct Spreadsheet Cell Editing & Auto-Drafting
+- **In-Place Cell Editing**: Configuration grids across Motion, AxisGroup, and Slave Configuration support direct inline cell editing, permanently retiring modal dialogs and the legacy "Edit profile" mode.
+- **Unified Dual-Effect Tuning**: Editing a cell dispatches live volatile SDO tuning immediately when the controller is running, while automatically queuing the persistent change into the shared draft without premature disk mutations.
+
+### Floating Bottom Configuration Commit Bar & Diff Review
+- **Persistent Change Tracking**: A floating bottom commit bar dynamically indicates the number of unsaved changes across all configuration screens with one-click **Save to Disk** and **Discard Changes** actions.
+- **Collapsible Diff Review Drawer**: Clicking **Review Changes** expands a review drawer displaying before-and-after values with strikethrough comparison across all modified screens. Discarded edits are safely preserved in draft memory.
+- **Dynamic Table Resizing**: The spreadsheet table automatically tracks commit bar and drawer dimensions via `ResizeObserver`, ensuring no rows are obscured when the review drawer is toggled.
+
+### Mode-Driven Drive Parameters in Unified Table
+- **Context-Aware Parameter Display**: Replaces the legacy parameter group toggle with a single unified table. Parameters automatically reflect the active drive channel's reported operation mode: 5 homing parameters in `home` mode, or 3 profile motion parameters in `pp`, `pv`, or `csp` modes. Multi-channel drives resolve each channel independently.
+- **Offline / Telemetry Disconnection Grace**: When disconnected from the controller or when telemetry is null, an explicit "Unavailable" placeholder is presented, revealing all 8 parameters for offline drafting while ensuring inert command boundaries.
+
+### Protocol Safety & Lifecycle Protection
+- **Protocol Gating**: Configurable inputs are strictly disabled and edits dropped if configuration protocol version 2 is not negotiated or signals `upgrade-required`.
+- **Relocated Configuration Utilities**: JSON configuration backup and disaster-recovery upload buttons are relocated to the About dialog under Machine configuration.
+
 ## Version 1.14.13
 
 Version 1.14.13 introduces the dual-loop "Tune Live -> Adopt to Profile" architecture, eliminates UI mode ambiguities, provides interactive drive parameter tuning, adds guided controller restart upon profile save, and delivers robust warm-boot master discovery resilience.
