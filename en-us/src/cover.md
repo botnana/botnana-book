@@ -4,14 +4,14 @@
 
 ## The Official User Manual
 
-### Version 1.14.15
+### Version 1.14.16
 
-#### Document Revision 8
+#### Document Revision 9
 
 Author: Sirius Wu
 
 Copyright © 2025 Mapacode Inc. All rights reserved.
 
-October 5, 2026
+October 8, 2026
 
 </div>

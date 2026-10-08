@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-a8cab411.js";
+            window.path_to_searchindex_js = "searchindex-2904e926.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -205,11 +205,11 @@
                         <div style="text-align: center;">
 <h1 id="botnana-control"><a class="header" href="#botnana-control">Botnana Control</a></h1>
 <h2 id="the-official-user-manual"><a class="header" href="#the-official-user-manual">The Official User Manual</a></h2>
-<h3 id="version-11415"><a class="header" href="#version-11415">Version 1.14.15</a></h3>
-<h4 id="document-revision-8文件修訂-8"><a class="header" href="#document-revision-8文件修訂-8">Document Revision 8（文件修訂 8）</a></h4>
+<h3 id="version-11416"><a class="header" href="#version-11416">Version 1.14.16</a></h3>
+<h4 id="document-revision-9文件修訂-9"><a class="header" href="#document-revision-9文件修訂-9">Document Revision 9（文件修訂 9）</a></h4>
 <p>Author: Sirius Wu</p>
 <p>Copyright © 2025 Mapacode Inc. All rights reserved.</p>
-<p>October 5, 2026</p>
+<p>October 8, 2026</p>
 </div>
 
 <div style="break-before: page; page-break-before: always;"></div>
@@ -294,7 +294,7 @@
 <tr><td>Operating system</td><td>Linux distribution Debian Buster 4.19.232-rt104</td></tr>
 <tr><td>Real-time System</td><td>Preempt RT + Xenomai 3.2.3 Mercury Core</td></tr>
 <tr><td>EtherCAT Master</td><td>BotnanaCAT 2.0.1 based on IgH EtherCAT master branch stable 1.5 commit c8a512ac0</td></tr>
-<tr><td>Botnana Control</td><td>v1.14 (最新發布版本 v1.14.15)</td></tr>
+<tr><td>Botnana Control</td><td>v1.14 (最新發布版本 v1.14.16)</td></tr>
 <tr><td>Period</td><td>2 ms (可於設定檔調整)</td></tr>
 <tr><td>BN-B3A-10S 可控軸數</td><td>1–10</td></tr>
 <tr><td>支援 EtherCAT 從站數</td><td>1–16</td></tr>
@@ -853,7 +853,7 @@ EtherCAT 控制器執行期；不是 EtherCAT 從站、驅動器或馬達。重�
 變更。檢查期間，先前的偵測資料列會標示 <strong>Before configuration</strong> 及 <strong>Reference only</strong>，
 直到更新掃描完成後才由目前結果取代。</p>
 <p>請在 <strong>Slave Configuration</strong> 檢查驅動器、I/O、通道及其他從站類型設定。切換
-<strong>Controller &amp; Topology</strong> 頁籤不會取代該編輯器。</p>
+<strong>Controller &amp; Topology</strong> 頁籤不會取代該編輯器。針對複合式閘道器（Compound Gateway，如模組化 EtherCAT 耦合器與背板切片），控制器啟動時會嚴格驗證背板拓撲指紋（Topology Fingerprint，包含模組排列順序與數量）。若實體插槽與設定檔不符，控制器會維持 Fail-Closed 狀態中止啟動，防止指令或訊號對應錯誤。</p>
 <h2 id="準備變更"><a class="header" href="#準備變更">準備變更</a></h2>
 <p>開始拓撲檢查前：</p>
 <ol>
@@ -4257,6 +4257,24 @@ repeat
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="版本說明"><a class="header" href="#版本說明">版本說明</a></h1>
+<h2 id="11416-版"><a class="header" href="#11416-版">1.14.16 版</a></h2>
+<p>1.14.16 版推出動態 CoE I/O 掃描探測、複合式閘道器拓撲指紋驗證與宣告式裝置設定檔引擎（ADR-015），進一步強化 EtherCAT 現場匯流排的動態擴充彈性與啟動防護。</p>
+<h3 id="動態-coe-pdo-探測與語意通道類型化"><a class="header" href="#動態-coe-pdo-探測與語意通道類型化">動態 CoE PDO 探測與語意通道類型化</a></h3>
+<ul>
+<li><strong>可容錯 CoE 字典遍歷</strong>：實作可容錯之 CoE PDO 物件字典走訪機制，精準擷取各物件之實際位元長度，並支援跨多個 PDO 累積計算位元偏移量。</li>
+<li><strong>動態數位與類比 I/O 辨識</strong>：動態分類現場從站之數位（DIN/DOUT）與類比（AIN/AOUT）訊號通道，徹底擺脫對硬編碼從站偏移量的依賴。</li>
+<li><strong>SDO 0x1008 裝置名稱讀取</strong>：具有時限防護與安全字串截斷機制之製造商裝置名稱（SDO 0x1008）讀取，精準識別複合式閘道器並區分一般模組化耦合器。</li>
+</ul>
+<h3 id="複合式閘道器拓撲指紋驗證"><a class="header" href="#複合式閘道器拓撲指紋驗證">複合式閘道器拓撲指紋驗證</a></h3>
+<ul>
+<li><strong>嚴格拓撲指紋比對</strong>：針對模組化耦合器背板插槽計算並檢驗確定性排序拓撲指紋（包含供應商、產品代碼、修訂版、序號與模組排布），若實體插槽模組或數量與設定檔不符，控制器將維持 Fail-Closed 狀態中止啟動，防止 SDO 寫入或 I/O 對應錯位。</li>
+<li><strong>有序啟動 SDO 執行</strong>：宣告式啟動 SDO 指令嚴格於 PREOP 轉 SAFEOP 且拓撲指紋驗證通過後依序執行，並加入嚴格之整數數值範圍（U8/U16/U32、I8/I16/I32）邊界防護。</li>
+</ul>
+<h3 id="宣告式裝置設定檔引擎與-hmi-解耦"><a class="header" href="#宣告式裝置設定檔引擎與-hmi-解耦">宣告式裝置設定檔引擎與 HMI 解耦</a></h3>
+<ul>
+<li><strong>TOML 宣告式裝置設定檔</strong>：引入具結構綱要驗證（Schema Validation）之宣告式裝置設定檔引擎，取代過往於 Rust 程式碼內硬編碼之特定廠牌驅動器與耦合器邏輯。</li>
+<li><strong>動態 I/O 標籤合成與編輯器保護</strong>：解除 HMI 從站描述器與固定結構的綁定，動態合成線上從站拓撲位置與即時 CoE I/O 通道標籤，同時只要從站具備子裝置即自動保留 <code>kind = "configurable"</code>，完整保留驅動器、串列與編碼器設定編輯功能。</li>
+</ul>
 <h2 id="11415-版"><a class="header" href="#11415-版">1.14.15 版</a></h2>
 <p>1.14.15 版推出現代化 HMI 流暢設定編輯平台（ADR-014），引入試算表儲存格直接編輯、浮動式底部提交工具列、模式驅動參數整合表格與通訊協定安全防護。</p>
 <h3 id="試算表儲存格直接編輯與自動草稿"><a class="header" href="#試算表儲存格直接編輯與自動草稿">試算表儲存格直接編輯與自動草稿</a></h3>

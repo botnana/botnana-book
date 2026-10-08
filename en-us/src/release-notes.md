@@ -1,5 +1,22 @@
 # Release Notes
 
+## Version 1.14.16
+
+Version 1.14.16 delivers Dynamic CoE I/O Discovery, compound gateway topology fingerprinting, and a declarative device profile engine (ADR-015), significantly enhancing fieldbus modularity, dynamic I/O discovery, and startup safety.
+
+### Dynamic CoE PDO Discovery & Semantic Channel Typing
+- **Fallible CoE Dictionary Traversal**: Implements fallible CoE PDO object dictionary traversal, extracting actual bit lengths and accumulating bit offsets across multiple PDO entries.
+- **Dynamic Digital & Analog I/O Classification**: Dynamically classifies digital (DIN/DOUT) and analog (AIN/AOUT) channels without hardcoded slave offsets.
+- **SDO 0x1008 Device Name Upload**: Bounded timeout upload of manufacturer device names (SDO 0x1008) with safe string slicing, accurately distinguishing compound gateways from standard modular couplers.
+
+### Compound Gateway Topology Fingerprinting
+- **Deterministic Topology Fingerprint Verification**: Computes and validates ordered topology fingerprints (vendor, product, revision, serial, and module layout) for modular gateway racks. Halts startup cleanly in a fail-closed manner if physical backplane slices do not match commissioned configuration.
+- **Ordered Startup SDO Execution**: Declarative startup SDO writes execute strictly during PREOP -> SAFEOP transition after topology fingerprint verification passes, guarded by strict integer range validation across U8/U16/U32 and I8/I16/I32 types.
+
+### Declarative Device Profiles Engine & HMI Decoupling
+- **TOML Declarative Device Profiles**: Introduces schema-validated declarative device profiles in TOML, eliminating imperative drive and coupler hardcoding.
+- **Dynamic I/O Labels & Editor Safety**: Decouples HMI slave descriptors from fixed configuration schemas, synthesizing live slave positioning and I/O channel labels while preserving `kind = "configurable"` whenever child devices are configured to keep drive, serial, and encoder configuration editors fully accessible.
+
 ## Version 1.14.15
 
 Version 1.14.15 delivers the streamlined HMI configuration platform (ADR-014), introducing direct spreadsheet cell editing, a persistent floating bottom commit bar with diff review, mode-driven drive parameter display in a unified table, and protocol gating.

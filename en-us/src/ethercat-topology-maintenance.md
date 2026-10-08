@@ -38,7 +38,7 @@ them.
 
 Use **Slave Configuration** to review drive, I/O, channel, and other device-type
 settings. Changing sheets in **Controller & Topology** does not replace that
-editor.
+editor. For compound gateways (such as modular EtherCAT couplers with backplane slices), the controller strictly verifies an ordered topology fingerprint (module order and count) upon boot; mismatched racks fail closed to prevent misaligned SDO writes or I/O mapping.
 
 ## Prepare the Change
 

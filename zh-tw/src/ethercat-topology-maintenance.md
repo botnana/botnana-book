@@ -31,7 +31,7 @@
 直到更新掃描完成後才由目前結果取代。
 
 請在 **Slave Configuration** 檢查驅動器、I/O、通道及其他從站類型設定。切換
-**Controller & Topology** 頁籤不會取代該編輯器。
+**Controller & Topology** 頁籤不會取代該編輯器。針對複合式閘道器（Compound Gateway，如模組化 EtherCAT 耦合器與背板切片），控制器啟動時會嚴格驗證背板拓撲指紋（Topology Fingerprint，包含模組排列順序與數量）。若實體插槽與設定檔不符，控制器會維持 Fail-Closed 狀態中止啟動，防止指令或訊號對應錯誤。
 
 ## 準備變更
 
