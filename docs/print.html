@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-2904e926.js";
+            window.path_to_searchindex_js = "searchindex-023fc6f7.js";
         </script>
 
         <!-- Custom JS scripts for mdbook-pdf PDF generation -->
@@ -205,11 +205,11 @@
                         <div style="text-align: center;">
 <h1 id="botnana-control"><a class="header" href="#botnana-control">Botnana Control</a></h1>
 <h2 id="the-official-user-manual"><a class="header" href="#the-official-user-manual">The Official User Manual</a></h2>
-<h3 id="version-11416"><a class="header" href="#version-11416">Version 1.14.16</a></h3>
-<h4 id="document-revision-9文件修訂-9"><a class="header" href="#document-revision-9文件修訂-9">Document Revision 9（文件修訂 9）</a></h4>
+<h3 id="version-11417"><a class="header" href="#version-11417">Version 1.14.17</a></h3>
+<h4 id="document-revision-10文件修訂-10"><a class="header" href="#document-revision-10文件修訂-10">Document Revision 10（文件修訂 10）</a></h4>
 <p>Author: Sirius Wu</p>
 <p>Copyright © 2025 Mapacode Inc. All rights reserved.</p>
-<p>October 8, 2026</p>
+<p>October 13, 2026</p>
 </div>
 
 <div style="break-before: page; page-break-before: always;"></div>
@@ -294,7 +294,7 @@
 <tr><td>Operating system</td><td>Linux distribution Debian Buster 4.19.232-rt104</td></tr>
 <tr><td>Real-time System</td><td>Preempt RT + Xenomai 3.2.3 Mercury Core</td></tr>
 <tr><td>EtherCAT Master</td><td>BotnanaCAT 2.0.1 based on IgH EtherCAT master branch stable 1.5 commit c8a512ac0</td></tr>
-<tr><td>Botnana Control</td><td>v1.14 (最新發布版本 v1.14.16)</td></tr>
+<tr><td>Botnana Control</td><td>v1.14 (最新發布版本 v1.14.17)</td></tr>
 <tr><td>Period</td><td>2 ms (可於設定檔調整)</td></tr>
 <tr><td>BN-B3A-10S 可控軸數</td><td>1–10</td></tr>
 <tr><td>支援 EtherCAT 從站數</td><td>1–16</td></tr>
@@ -4216,6 +4216,10 @@ repeat
 <ul>
 <li>MR-J4-10TM Servo Drive</li>
 </ul>
+<h3 id="moons鳴志"><a class="header" href="#moons鳴志">MOONS’（鳴志）</a></h3>
+<ul>
+<li>MET2-EC00，EtherCAT 模組化遠端 I/O 耦合器</li>
+</ul>
 <h3 id="omron"><a class="header" href="#omron">OMRON</a></h3>
 <ul>
 <li>GX-MD1611 REMOTE TERMINAL (8 Ch. Digital Input， 8 Ch. Digital Output)</li>
@@ -4257,6 +4261,20 @@ repeat
 </ul>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="版本說明"><a class="header" href="#版本說明">版本說明</a></h1>
+<h2 id="11417-版"><a class="header" href="#11417-版">1.14.17 版</a></h2>
+<p>1.14.17 版正式支援鳴志（MOONS’）MET2-EC00 模組化耦合器，改進複合式閘道器之啟動排程與錯誤防護，並升級系統支援診斷機制，納入即時 EtherCAT 拓撲證據收集與時間校正容錯防護（SD-REQ-001-r4、SD-REQ-001-r5）。</p>
+<h3 id="moons-met2-ec00-模組化耦合器與安全閘道排程"><a class="header" href="#moons-met2-ec00-模組化耦合器與安全閘道排程">MOONS’ MET2-EC00 模組化耦合器與安全閘道排程</a></h3>
+<ul>
+<li><strong>複合式閘道器優先排程</strong>：將複合式模組化閘道器（Compound Gateway）優先排入動態 CoE 探索流程，先於一般裝置類型判斷。徹底防止 ETG.5001 模組化裝置（裝置類型 <code>0x00001389</code>）被誤判為編碼器從站。</li>
+<li><strong>精準產品身份辨識</strong>：修正 MOONS’ MET2-EC00 之標準供應商與產品代碼為 <code>0x00000168:0x00000132</code>。</li>
+<li><strong>安全啟動郵箱錯誤通報</strong>：以具體包含從站位置與型號之啟動郵箱錯誤訊息，取代編碼器模組設定中未處理之崩潰中斷（Panic），確保啟動防護透明可追蹤。</li>
+</ul>
+<h3 id="強化支援診斷與-ethercat-拓撲證據收集"><a class="header" href="#強化支援診斷與-ethercat-拓撲證據收集">強化支援診斷與 EtherCAT 拓撲證據收集</a></h3>
+<ul>
+<li><strong>EtherCAT 拓撲結構打包</strong>：支援診斷封裝包全面納入 <code>/run/botnana-control-motion/ethercat-topology.json</code> 至 <code>ethercat/topology.json</code>，即使運動核心重啟或異常，仍能完整保留從站識別、同步管理器（Sync Manager）、PDO 映射、模組插槽與拓撲指紋。</li>
+<li><strong>Journalctl 路徑容錯機制</strong>：日誌收集器改由 <code>PATH</code> 動態搜尋，並於 <code>/usr/bin/journalctl</code> 不存在時自動降級至 <code>/bin/journalctl</code>，確保在未合併 <code>/usr</code> 之 Debian 系統上仍能完整收集日誌。</li>
+<li><strong>系統時鐘校正容錯</strong>：以 journald 之開機相對單調時間戳記（<code>__MONOTONIC_TIMESTAMP</code>）取代絕對掛鐘時間進行日誌時間排序檢查。防止因 NTP 或 <code>systemd-timesyncd</code> 時間往前回退導致支援診斷下載失敗（HTTP 503），並於清單與摘要中明確標記 <code>clockAdjusted: true</code>。</li>
+</ul>
 <h2 id="11416-版"><a class="header" href="#11416-版">1.14.16 版</a></h2>
 <p>1.14.16 版推出動態 CoE I/O 掃描探測、複合式閘道器拓撲指紋驗證與宣告式裝置設定檔引擎（ADR-015），進一步強化 EtherCAT 現場匯流排的動態擴充彈性與啟動防護。</p>
 <h3 id="動態-coe-pdo-探測與語意通道類型化"><a class="header" href="#動態-coe-pdo-探測與語意通道類型化">動態 CoE PDO 探測與語意通道類型化</a></h3>

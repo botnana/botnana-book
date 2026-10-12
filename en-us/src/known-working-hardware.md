@@ -73,6 +73,10 @@ currently Botnana Control supports the following EtherCAT slaves:
 
 * MR-J4-10TM Servo Drive
 
+### MOONS'
+
+* MET2-EC00, EtherCAT Modular Remote I/O Coupler
+
 ### OMRON
 
 * GX-MD1611 REMOTE TERMINAL (8 Ch. Digital Input, 8 Ch. Digital Output)

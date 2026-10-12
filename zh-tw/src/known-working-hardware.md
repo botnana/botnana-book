@@ -73,6 +73,10 @@
 
 * MR-J4-10TM Servo Drive
 
+### MOONS'（鳴志）
+
+* MET2-EC00，EtherCAT 模組化遠端 I/O 耦合器
+
 ### OMRON
 
 * GX-MD1611 REMOTE TERMINAL (8 Ch. Digital Input， 8 Ch. Digital Output)

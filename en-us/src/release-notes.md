@@ -1,5 +1,19 @@
 # Release Notes
 
+## Version 1.14.17
+
+Version 1.14.17 delivers official support for MOONS' MET2-EC00 modular couplers, non-panicking modular gateway startup dispatch, and robust support diagnostics with EtherCAT topology evidence collection and clock-adjustment resilience (SD-REQ-001-r4, SD-REQ-001-r5).
+
+### MOONS' MET2-EC00 Modular Coupler & Safe Gateway Routing
+- **Compound Gateway Priority Dispatch**: Compound modular gateways are dispatched to dynamic CoE discovery prior to generic device-type checks. Prevents ETG.5001 modular devices (`0x00001389`) from erroneously matching encoder catch-all rules.
+- **Accurate Product Identification**: Canonical vendor ID and product code `0x00000168:0x00000132` correctly assigned for MOONS' MET2-EC00.
+- **Fail-Safe Startup Mailbox Errors**: Replaces unhandled panic traps in encoder module configuration with descriptive startup mailbox errors identifying the exact slave position and identity.
+
+### Robust Support Diagnostics & EtherCAT Topology Evidence
+- **Packaged EtherCAT Topology Evidence**: Support diagnostic archives now package `/run/botnana-control-motion/ethercat-topology.json` into `ethercat/topology.json`, capturing slave identities, sync managers, assigned PDOs, detected modules, and mapping fingerprints across runtime restarts.
+- **Journalctl Path Fallback**: The diagnostic collector resolves `journalctl` via `PATH` and falls back from `/usr/bin/journalctl` to `/bin/journalctl`, ensuring complete log capture on Debian systems with unmerged `/usr`.
+- **Clock-Adjustment Resilience**: Journal record ordering is evaluated against journald boot-relative monotonic time (`__MONOTONIC_TIMESTAMP`) rather than wall-clock time. Avoids archive generation failures (`HTTP 503`) when NTP or `systemd-timesyncd` steps the clock back, accurately reporting `clockAdjusted: true` in the diagnostic manifest and summary.
+
 ## Version 1.14.16
 
 Version 1.14.16 delivers Dynamic CoE I/O Discovery, compound gateway topology fingerprinting, and a declarative device profile engine (ADR-015), significantly enhancing fieldbus modularity, dynamic I/O discovery, and startup safety.
