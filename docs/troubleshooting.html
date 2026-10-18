@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-023fc6f7.js";
+            window.path_to_searchindex_js = "searchindex-cb20a298.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-d45a6f4d.js"></script>
@@ -301,7 +301,14 @@ start-job            \ 啟動任務
 <h3 id="診斷檔案結構分析"><a class="header" href="#診斷檔案結構分析">診斷檔案結構分析</a></h3>
 <ul>
 <li><code>metadata.json</code>：包含 Botnana Control 軟體版本、系統開機時間、<code>bnc-motion</code> 與 <code>bnc-hmi</code> 服務運行狀態及重啟次數。</li>
-<li><code>logs/current/bnc-motion.jsonl</code>：包含 EtherCAT 拓撲掃描從站數量 (<code>slaveCount</code>)、啟動階段生命週期與 WebSocket 連線健康指標。</li>
+<li><code>ethercat/topology.json</code>：包含即時 EtherCAT 現場匯流排拓撲快照：
+<ul>
+<li><code>detectedModules</code>：記錄模組化複合式閘道器（如鳴志 MET2-EC00）透過 SDO <code>0xF050</code> 先行探索所偵測到的實體背板切片模組。</li>
+<li><code>startupError</code>：若從站啟動失敗（<code>startupFailed: true</code>），此欄位直接提供底層 SDO 中止代碼或郵箱錯誤訊息（例如 <code>"slave 1 startup mailbox error: Failed to read entry count for PDO 0x1A01:00: Capability absent"</code>）。</li>
+<li><code>syncs</code>：包含同步管理器（Sync Manager）與 PDO 配置。</li>
+</ul>
+</li>
+<li><code>logs/current/bnc-motion.jsonl</code>：包含 EtherCAT 拓撲掃描從站數量 (<code>slaveCount</code>)、結構化 <code>coeDiscoveryFailed</code> 與 <code>startupMailboxError</code> 錯誤事件，以及 WebSocket 連線健康指標。</li>
 </ul>
 
                     </main>

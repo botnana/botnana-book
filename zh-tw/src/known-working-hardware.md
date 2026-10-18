@@ -76,6 +76,11 @@
 ### MOONS'（鳴志）
 
 * MET2-EC00，EtherCAT 模組化遠端 I/O 耦合器
+  * MET2-DI16，16 通道數位輸入模組（WORD/BYTE/BIT）
+  * MET2-DO16-N，16 通道數位輸出模組（NPN，WORD/BYTE/BIT）
+  * MET2-DO16-P，16 通道數位輸出模組（PNP，WORD/BYTE/BIT）
+  * MET2-AI04，4 通道 16 位元類比輸入模組（INT/UINT）
+  * MET2-AO04，4 通道 16 位元類比輸出模組（INT/UINT）
 
 ### OMRON
 

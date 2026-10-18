@@ -76,6 +76,11 @@ currently Botnana Control supports the following EtherCAT slaves:
 ### MOONS'
 
 * MET2-EC00, EtherCAT Modular Remote I/O Coupler
+  * MET2-DI16, 16 Ch. Digital Input Module (WORD/BYTE/BIT)
+  * MET2-DO16-N, 16 Ch. Digital Output Module (NPN, WORD/BYTE/BIT)
+  * MET2-DO16-P, 16 Ch. Digital Output Module (PNP, WORD/BYTE/BIT)
+  * MET2-AI04, 4 Ch. 16-bit Analog Input Module (INT/UINT)
+  * MET2-AO04, 4 Ch. 16-bit Analog Output Module (INT/UINT)
 
 ### OMRON
 

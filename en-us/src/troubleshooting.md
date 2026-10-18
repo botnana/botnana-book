@@ -118,3 +118,14 @@ If an issue persists, generate a support diagnostic bundle for analysis:
 2. Select **Support diagnostics**.
 3. Click **Download diagnostic log**.
 4. Submit the generated `botnana-support-<timestamp>.zip` archive to support engineering.
+
+### Diagnostic Archive Structure & Topology Inspection
+
+The generated `botnana-support-<timestamp>.zip` archive contains critical operational evidence:
+
+* `metadata.json`: Botnana Control package version, system uptime, and `bnc-motion` / `bnc-hmi` systemd service states and restart counts.
+* `ethercat/topology.json`: EtherCAT fieldbus topology snapshot across restarts, including:
+  * `detectedModules`: Slices detected on modular compound gateways (such as MOONS' MET2-EC00) via upfront SDO `0xF050` reads.
+  * `startupError`: If a slave fails during startup (`startupFailed: true`), this field captures the exact mailbox error message and SDO abort code (e.g. `"slave 1 startup mailbox error: Failed to read entry count for PDO 0x1A01:00: Capability absent"`).
+  * `syncs`: Sync Manager PDO mappings and directions.
+* `logs/current/bnc-motion.jsonl`: Real-time motion controller journal logs, including structured `coeDiscoveryFailed` and `startupMailboxError` events.

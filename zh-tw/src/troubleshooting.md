@@ -123,4 +123,8 @@
 
 ### 診斷檔案結構分析
 * `metadata.json`：包含 Botnana Control 軟體版本、系統開機時間、`bnc-motion` 與 `bnc-hmi` 服務運行狀態及重啟次數。
-* `logs/current/bnc-motion.jsonl`：包含 EtherCAT 拓撲掃描從站數量 (`slaveCount`)、啟動階段生命週期與 WebSocket 連線健康指標。
+* `ethercat/topology.json`：包含即時 EtherCAT 現場匯流排拓撲快照：
+  * `detectedModules`：記錄模組化複合式閘道器（如鳴志 MET2-EC00）透過 SDO `0xF050` 先行探索所偵測到的實體背板切片模組。
+  * `startupError`：若從站啟動失敗（`startupFailed: true`），此欄位直接提供底層 SDO 中止代碼或郵箱錯誤訊息（例如 `"slave 1 startup mailbox error: Failed to read entry count for PDO 0x1A01:00: Capability absent"`）。
+  * `syncs`：包含同步管理器（Sync Manager）與 PDO 配置。
+* `logs/current/bnc-motion.jsonl`：包含 EtherCAT 拓撲掃描從站數量 (`slaveCount`)、結構化 `coeDiscoveryFailed` 與 `startupMailboxError` 錯誤事件，以及 WebSocket 連線健康指標。

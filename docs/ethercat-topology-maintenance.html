@@ -36,7 +36,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-023fc6f7.js";
+            window.path_to_searchindex_js = "searchindex-cb20a298.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-d45a6f4d.js"></script>
@@ -209,7 +209,7 @@
 變更。檢查期間，先前的偵測資料列會標示 <strong>Before configuration</strong> 及 <strong>Reference only</strong>，
 直到更新掃描完成後才由目前結果取代。</p>
 <p>請在 <strong>Slave Configuration</strong> 檢查驅動器、I/O、通道及其他從站類型設定。切換
-<strong>Controller &amp; Topology</strong> 頁籤不會取代該編輯器。針對複合式閘道器（Compound Gateway，如模組化 EtherCAT 耦合器與背板切片），控制器啟動時會嚴格驗證背板拓撲指紋（Topology Fingerprint，包含模組排列順序與數量）。若實體插槽與設定檔不符，控制器會維持 Fail-Closed 狀態中止啟動，防止指令或訊號對應錯誤。</p>
+<strong>Controller &amp; Topology</strong> 頁籤不會取代該編輯器。針對複合式閘道器（Compound Gateway，如模組化 EtherCAT 耦合器與背板切片），控制器啟動時會嚴格驗證背板拓撲指紋（Topology Fingerprint，包含模組排列順序與數量）。若實體插槽與設定檔不符，控制器會維持 Fail-Closed 狀態中止啟動，防止指令或訊號對應錯誤。在支援診斷封裝包中，<code>ethercat/topology.json</code> 亦會同步記錄偵測到的實體背板模組（<code>detectedModules</code>）與啟動郵箱錯誤訊息（<code>startupError</code>）。</p>
 <h2 id="準備變更"><a class="header" href="#準備變更">準備變更</a></h2>
 <p>開始拓撲檢查前：</p>
 <ol>

@@ -1,5 +1,27 @@
 # Release Notes
 
+## Version 1.14.19
+
+Version 1.14.19 delivers complete mixed Digital and Analog I/O slice commissioning for MOONS' MET2-EC00 modular couplers, ETG.5001 slot-based PDO address resolution, upfront SDO `0xF050`/`0xF030` physical slice discovery, flexible 2-byte UINT subindex 0 SDO uploads, and structured `startupError` reporting in EtherCAT topology diagnostics.
+
+### MOONS' MET2-EC00 Mixed Digital & Analog I/O Expansion
+- **Full Slice Family Support**: Official profile and commissioning support for the MOONS' MET2 modular slice system connected to the `MET2-EC00` (`0x00000168:0x00000132`) EtherCAT coupler:
+  - `MET2-DI16` (`0x00008221`): 16-channel digital input slice supporting `WORD` (16-bit), `BYTE` (8-bit), and `BIT` (1-bit) modes.
+  - `MET2-DO16-N` (`0x00008222`) / `MET2-DO16-P` (`0x00008225`): 16-channel digital output slices (NPN / PNP) supporting `WORD`, `BYTE`, and `BIT` modes.
+  - `MET2-AI04` (`0x00008223`): 4-channel 16-bit analog input slice supporting signed `INT` and unsigned `UINT` representations.
+  - `MET2-AO04` (`0x00008224`): 4-channel 16-bit analog output slice supporting signed `INT` and unsigned `UINT` representations.
+- **ETG.5001 Slot-Increment PDO Resolution**: Resolves modular slot PDO addressing based on `SlotPdoIncrement = 0x10` and `SlotIndexIncrement = 0x10`. Maps slot `s` to `0x1A00 + 0x10*s` (inputs) and `0x1600 + 0x10*s` (outputs). Correctly navigates non-consecutive PDO tables, gracefully skipping unassigned intermediate indices (e.g. `0x1A01:00` Capability absent) without failing startup.
+- **Diagnostic Register & Mode Compatibility**: Automatically handles the per-slot 16-bit `Err` status register mapped at subindex `:0x01` across all MET2 slice types, correctly identifying true I/O payloads at subindex `:0x02`.
+- **Targeted CiA 402 Filtering**: Restricts CiA 402 denylist checks to drive axes, eliminating false-positive rejections of ETG.5001 digital I/O slices situated in Slot 4 (`0x6040`) and Slot 6 (`0x6060`).
+
+### Upfront Module Discovery & Flexible Subindex 0 SDO Upload
+- **Upfront Backplane Slice Discovery**: Reads SDO `0xF050` (detected modules) and `0xF030` (configured modules) upfront during startup, decoupled from PDO mapping queries. Guarantees that physical backplane inventory is always recorded in topology diagnostics even if subsequent PDO mapping encounters errors.
+- **Flexible Subindex 0 SDO Buffer Capacity**: Replaces 1-byte buffer allocations (`RequestValue::U8`) with 32-bit requests (`RequestValue::U32`) for reading subindex `0` count entries on `0x1C12`, `0x1C13`, `0x16xx`, and `0x1Axx`. Fully accommodates 2-byte `UINT` and expedited 4-byte responses, eliminating buffer overflow errors (`-EOVERFLOW` / `-75`).
+
+### Structured Startup Mailbox Error Diagnostics
+- **Detailed `startupError` in Topology Evidence**: `ethercat/topology.json` now includes a `startupError` field on failing slaves that captures the exact SDO abort code or mailbox error message (e.g. `"slave 1 startup mailbox error: Failed to read entry count for PDO 0x1A01:00: Capability absent"`), enabling immediate field diagnosis without trial-and-error log parsing.
+- **Classified Journal Logging**: Motion server logs now format CoE discovery failures (`event: "coeDiscoveryFailed"`) and startup mailbox errors (`event: "startupMailboxError"`) with structured `error` severity and syslog priority prefixes, ensuring they are clearly preserved in support diagnostic archives.
+
 ## Version 1.14.17
 
 Version 1.14.17 delivers official support for MOONS' MET2-EC00 modular couplers, non-panicking modular gateway startup dispatch, and robust support diagnostics with EtherCAT topology evidence collection and clock-adjustment resilience (SD-REQ-001-r4, SD-REQ-001-r5).
